@@ -5505,7 +5505,7 @@ def format_driver():
 
     global _log, encoding, filename, dofile_basename
 
-    if '--options' in sys.argv:
+    if '--help' in sys.argv:
         from .misc import help_format
         help_format()
         sys.exit(1)
@@ -5524,7 +5524,7 @@ def format_driver():
         options = ' '.join(get_legal_command_line_options())
         print('Usage: %s format filename [preprocessor options] [%s]\n' \
                 % (sys.argv[0], options))
-        print('Run "doconce format --options" to see explanation of all options')
+        print('Run "doconce format --help" to see explanation of all options')
         if len(sys.argv) == 1:
             print('Missing format specification!')
         print('formats:', ', '.join(supported_format_names()))
