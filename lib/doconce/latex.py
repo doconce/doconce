@@ -828,8 +828,10 @@ def latex_code(filestr, code_blocks, code_block_types,
 \listofexercises
 """ % vars()
                     target = r'\newcounter{doconceexercisecounter}'
-                    filestr = filestr.replace(
-                        target, target + style_listofexercises)
+                    # Do not modify preamble if the --latex_preamble option is used to to create a custom preamble
+                    if option('latex_preamble=', 'none') == 'none':
+                        filestr = filestr.replace(
+                            target, target + style_listofexercises)
                     if option('latex_list_of_exercises=', 'none') == 'loe':
                         target = r'\tableofcontents'
                         filestr = filestr.replace(
