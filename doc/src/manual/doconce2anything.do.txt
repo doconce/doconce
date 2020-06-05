@@ -1336,7 +1336,7 @@ It is no guarantee that the notebook can be executed. For example,
 having the code
 
 !bc pycod
-print sys.version
+print(sys.version)
 !ec
 will not execute unless `sys` is imported. While a book may show such
 code and skip (potentially tedious) initializing statements, they must
@@ -1352,7 +1352,7 @@ import sys
 |ec
 !ec
 The notebook will feature the `import sys` statement in a cell prior to the
-`print sys.version` cell, and the latter will work.
+`print(sys.version)` cell, and the latter will work.
 
 Similarly, if you import from your own modules, say `from mymod import hello`,
 the `mymod.py` must be accessible for the notebook. Suppose this file
@@ -1457,7 +1457,7 @@ Here is a code:
 |bc pypro
 a = 1
 b = 2
-print a + b
+print(a + b)
 |ec
 !ec
 We translate this DocOnce document to a notebook:
@@ -1468,7 +1468,7 @@ Terminal> doconce format ipynb mydoc
 We load `mydoc.ipynb` into the notebook application and add a code cell
 
 !bc pycod
-print "Hello, World!"
+print("Hello, World!")
 !ec
 before the original code cell. After executing the cells we download
 the new notebook as the file `mydoc2.ipynb`. We can then generate
