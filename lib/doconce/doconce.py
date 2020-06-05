@@ -2821,13 +2821,15 @@ def typeset_envirs(filestr, format):
                         # Could also consider subsubsection formatting
                     text = title + m.group(2) + '\n\n'
                     return text
-
-            # else: other envirs for slides are treated later with
-            # the begin and end directives set in comments, see doconce2format
+            else: 
+                #other envirs for slides are treated later with
+                # the begin and end directives set in comments, see doconce2format
+                subst = None
 
         #pattern = r'^!b%s([A-Za-z0-9,.!:? /()\-]*?)\n(.+?)\s*^!e%s\s*' % (envir, envir)
         pattern = r'^!b%s(.*?)\n(.+?)\s*^!e%s' % (envir, envir)
-        filestr = re.sub(pattern, subst, filestr,
+        if subst:
+            filestr = re.sub(pattern, subst, filestr,
                          flags=re.DOTALL | re.MULTILINE)
 
         latexfigdir_all = latex.latexfigdir + '.all'
@@ -3737,7 +3739,7 @@ def interpret_authors(filestr, format):
         try:
             with open('.' + dofile_basename + '.copyright', 'w') as f:
                 f.write(repr(copyright_))
-        except NameError:
+        except: # NameError:
             pass # file is already written
 
     inst2index = OrderedDict()

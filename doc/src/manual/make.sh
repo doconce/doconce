@@ -134,7 +134,8 @@ rm -f *.ps
 
 rm -rf demo
 mkdir demo
-cp -r manual.do.txt manual.html ._manual*.html fig mov manual.tex manual.tex manual.pdf manual_latex.pdf manual.rst manual.sphinx.rst manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.md sphinx-rootdir/_build/html demo
+#I removed ._manual*.html from the following:
+cp -r manual.do.txt manual.html fig mov manual.tex manual.pdf manual_latex.pdf manual.rst manual.sphinx.rst manual.xml manual.rst.html manual.rst.tex manual.rst.pdf manual.gwiki manual.cwiki manual.mwiki manual.txt manual.epytext manual.md sphinx-rootdir/_build/html demo
 
 cd demo
 cat > index.html <<EOF
@@ -190,7 +191,8 @@ EOF
 
 cd ..
 dest=../../pub/manual
-cp -r demo/html demo/manual.pdf demo/manual.html demo/._manual*.html demo/fig demo/mov $dest
+#I removed demo/._manual*.html from the following:
+cp -r demo/html demo/manual.pdf demo/manual.html demo/fig demo/mov $dest
 
 dest=../../../../doconce.wiki
 # rst is inferior to md
@@ -198,3 +200,6 @@ dest=../../../../doconce.wiki
 # mediawiki at github is too bad - very ugly result
 #cp demo/manual.mwiki $dest/manual_mediawiki.mediawiki
 cp demo/manual.md $dest
+
+echo "To remove untracked files run:"
+echo "git clean -f -d"

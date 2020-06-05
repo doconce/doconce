@@ -1057,12 +1057,12 @@ where `cmd` is any text that can be run in the operating system.
 The output is copied into the DocOnce source. For example,
 
 !bc do
-@@@OSCMD python -c 'print "Hello,\nWorld!"'
+@@@OSCMD python -c 'print("Hello,\nWorld!")'
 !ec
 results in
 
 !bc sys
-Terminal> python -c 'print "Hello,\nWorld!"'
+Terminal> python -c 'print("Hello,\nWorld!")'
 Hello,
 World!
 !ec
@@ -3422,7 +3422,7 @@ def f(x, y):
 
 # Main program
 from math import pi
-print 'Testing f:', f(pi, 0)
+print('Testing f:', f(pi, 0))
 |ec
 !ec
 The typeset result of this block becomes
@@ -3433,7 +3433,7 @@ def f(x, y):
 
 # Main program
 from math import pi
-print 'Testing f:', f(pi, 0)
+print('Testing f:', f(pi, 0))
 !ec
 
 !bwarning Tip
@@ -3600,19 +3600,19 @@ code
 
 !bc pycod
 compute(x)
-print x
+print(x)
 x = new(x)
 compute(x)
-print x
+print(x)
 x = new(x)
 compute(x)
 !ec
 and you want to copy from the first `compute` and include the second,
-but not the following `print x` statement, i.e.,
+but not the following `print(x)` statement, i.e.,
 
 !bc pycod
 compute(x)
-print x
+print(x)
 x = new(x)
 compute(x)
 !ec
@@ -3621,11 +3621,11 @@ a comment statement after the desired ``to'' expression:
 
 !bc pycod
 compute(x)
-print x
+print(x)
 x = new(x)
 compute(x)
 # dummy comment
-print x
+print(x)
 x = new(x)
 compute(x)
 !ec
@@ -5190,7 +5190,7 @@ import sys
 a = float(sys.argv[1])
 b = float(sys.argv[2])
 x = -b/a
-print x
+print(x)
 |ec
 |eblock
 !ec

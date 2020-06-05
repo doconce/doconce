@@ -206,6 +206,7 @@ def mwiki_figure(m):
             f = urllib.request.urlopen(url)
 
             imageinfo = f.read()
+            imageinfo = imageinfo.decode('utf-8')
             f.close()
             def get_data(name, text):
                 pattern = '%s="(.*?)"' % name
