@@ -6243,7 +6243,7 @@ def _do_fixes_4MSWord(text):
     return t
 
 
-def _spellcheck(filename, language='English', dictionaries=['.dict4spell.txt'], newdict=None,
+def _spellcheck(filename, language='English', spellchecker='ispell', dictionaries=['.dict4spell.txt'], newdict=None,
                 remove_multiplicity=False, strip_file='.strip', verbose=False):
     """
     Spellcheck `filename` and list misspellings in the file misspellings.txt~.
@@ -6378,9 +6378,22 @@ def _spellcheck(filename, language='English', dictionaries=['.dict4spell.txt'], 
         sys.exit(0)
     aspell_dictionary = locale_dict[language]['aspell_dictionary']
 
-    cmd = 'cat %s | ispell -l -t -d %s %s > %s' % \
-          (scratchfile, aspell_dictionary, p_opt, misspellings)
-    #cmd = 'cat %s | aspell -t -d american list %s > %s'
+    cmd = 'cat %s | ' % scratchfile
+    if spellchecker == 'ispell':
+        cmd += 'ispell -l -t -d %s %s > %s' % \
+               (aspell_dictionary, p_opt, misspellings)
+    elif spellchecker == 'aspell':
+
+        # The personal file with word list has a special format in aspell, eg 'personal_ws-1.1 en 1'
+        f = open(dictionary, 'r')
+        line = f.readline()
+        f.close()
+        pattern = r'personal_ws-1.1 \w+ '
+        if line!="" and not re.search(pattern, line):
+            print('Warning: aspell requires a special format for the personal file %s.' % dictionary)
+            print('         Check that the first line is eg "personal_ws-1.1 en 1"')
+        cmd += 'aspell -t -d %s list %s > %s' % \
+               (aspell_dictionary, p_opt, misspellings)
     system(cmd)
 
     # Load misspellings, remove duplicates
@@ -6540,22 +6553,29 @@ execfile is applied to .strip to execute the definition of the lists.
 
 
 def spellcheck():
+    if len(sys.argv) < 2:
+        _usage_spellcheck()
+        return
     supported_languages = list(filter(lambda l: 'aspell_dictionary' in locale_dict[l], sorted(locale_dict.keys())))
     supported_languages_str = ', '.join(supported_languages)
 
     import argparse
     parser = argparse.ArgumentParser(prog="doconce spellcheck",
         description="Spellcheck DocOnce documents",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        epilog="Call doconce spellcheck without any arguments to get more information")
     parser.add_argument('filename', type=str, nargs='+', help='A *.do.txt file to spellcheck')
     parser.add_argument('-d', '--dictionary', type=str, default=None, dest='dictionary',
         help='A personal dictionary file with whitelisted words')
+    parser.add_argument('-c', '--command', type=str, default='ispell', dest='spellchecker',
+                        help='The spell checker program. ispell or aspell')
     parser.add_argument('-l', '--language', type=str, default='English', dest='language',
         help="Supported languages: %s" % supported_languages_str)
     parser.add_argument('--debug', default=False, action='store_true')
     args = parser.parse_args()
     filenames = args.filename
     dictionary_filename = args.dictionary
+    spellchecker = args.spellchecker
     language = args.language
     verbose = args.debug
 
@@ -6571,12 +6591,15 @@ def spellcheck():
         else:
             dictionary = []
 
+    if spellchecker not in ['ispell','aspell']:
+        print("Unsupported spell checker '%s'. Choose ispell or aspell" % spellchecker)
+
     if language not in supported_languages:
         print("Unsupported language '%s'" % language)
         print("Supported languages: %s" % supported_languages_str)
         sys.exit(0)
 
-    _spellcheck_all(filenames, language=language, newdict='misspellings.txt~', remove_multiplicity=False,
+    _spellcheck_all(filenames, language=language, spellchecker=spellchecker, newdict='misspellings.txt~', remove_multiplicity=False,
                     dictionaries=dictionary, verbose=verbose)
 
 def _usage_ref_external():

@@ -21,6 +21,7 @@ temp*
 *.aux
 *.blg
 *.bbl
+*.egg
 *.idx
 *.ilg
 *.ind

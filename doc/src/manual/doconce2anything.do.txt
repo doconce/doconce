@@ -53,7 +53,7 @@ doconce clean
 #doconce lightclean
 
 # Run spellcheck
-system doconce spellcheck -d .dict4spell.txt *.do.txt
+system doconce spellcheck -c ispell -d .dict4spell.txt *.do.txt
 
 name=mydoc # name of DocOnce master document
 
@@ -158,7 +158,7 @@ Despite not being a part of compiling DocOnce to some format, spell checking
 is often the first task done in a `make.sh` or `make.py` file. DocOnce
 comes with a convenient support for spell checking, `doconce spellcheck`, where
 all code and mathematics are stripped from the document, as well as all inline
-verbatim expressions, comments, etc. Then the program `ispell` is run on
+verbatim expressions, comments, etc. Then a spell checker program (`ispell` or `aspell`) is run on
 the stripped document, and a list of misspellings is reported.
 
 Any DocOnce document has its own set of ``legal words'' (approved by the
@@ -167,9 +167,9 @@ new misspellings, some are corrected and some are added to `.dict4spell.txt`.
 The spell checker applies an American dictionary and the user's custom
 dictionary in `.dict4spell.txt`.
 
-The work flow is simple:
+The workflow is simple:
 
-  o Run `doconce spellcheck -d .dict4spell.txt *.do.txt`
+  o Run `doconce spellcheck -c ispell -d .dict4spell.txt *.do.txt`
   o Examine `misspellings.txt~` for misspellings and make corrections in
     the source files.
   o Rerun `doconce spellcheck` and repeat the procedure.

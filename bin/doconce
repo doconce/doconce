@@ -1542,7 +1542,7 @@ def main():
     if len(sys.argv) > 2 and sys.argv[1] == 'format' and misc_option('help'):
         help_format()
         sys.exit(0)
-    if len(sys.argv) == 1 or misc_option('help'):
+    elif len(sys.argv) == 1 or misc_option('help') and sys.argv[1] not in ['spellcheck']:
         print('DocOnce version', version, '(from %s)' % doconce_dir)
         print('Usage: doconce command [optional arguments]')
         print('commands: %s' % (' '.join(commands)))
