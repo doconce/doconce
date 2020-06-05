@@ -168,11 +168,17 @@ sudo apt-get install texlive-font-utils
 
 === Spellcheck ===
 
-The utility `doconce spellcheck` applies the `ispell` program for
+The utility `doconce spellcheck` applies by default the `ispell` program for
 spellcheck. On Debian (including Ubuntu) it is installed by
 
 !bc sys
 sudo apt-get install ispell
+!ec
+
+Alternatively, `doconce spellcheck` can use the `aspell` program, which can be installed by
+
+!bc sys
+sudo apt-get install aspell
 !ec
 
 
