@@ -2147,7 +2147,7 @@ def _usage_change_encoding():
 
 def _change_encoding_unix(filename, from_enc, to_enc):
     backupfile = filename + '.old~~'
-    if sys.platform == 'linux2':
+    if sys.platform.startswith('linux'):
         cmd = 'iconv -f %s -t %s %s --output %s' % \
               (from_enc, to_enc, backupfile, filename)
     elif sys.platform == 'darwin':
