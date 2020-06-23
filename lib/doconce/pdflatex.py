@@ -16,13 +16,14 @@ def pdflatex_emoji(m):
         # Download emoji image
         from .common import emoji_url
         url = emoji_url + name + '.png'
-        import urllib.request, urllib.parse, urllib.error
-        urllib.request.urlretrieve(url, filename=emojifile)
+        import requests
+        r = requests.get(url)
         # Check that this was successful
-        with open(emojifile, 'r') as f:
-            if 'Not Found' in f.read():
-                errwarn('*** error: emoji "name" is probably misspelled - cannot find any emoji with that name')
-                _abort()
+        if not r.ok:
+            errwarn('*** error: emoji "name" is probably misspelled - cannot find any emoji with that name')
+            _abort()
+        with open(emojifile, 'wb', encoding=r.encoding) as f:
+            f.write(r.content)
     s = space1 + r'\raisebox{-\height+\ht\strutbox}{\includegraphics[height=1.5em]{%s}}' % emojifile + space2
     # NOTE: \ht needs the calc package!
     return s
