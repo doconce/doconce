@@ -86,10 +86,10 @@ log.close()
 # Drop tutorial
 """
 tutdir = os.path.join(os.pardir, 'doc', 'src', 'tutorial')
-print 'cd', tutdir
+print('cd', tutdir)
 os.chdir(tutdir)
 
-print '...running ./make.sh in doc/tutorial'  # works only under Unix...
+print('...running ./make.sh in doc/tutorial')  # works only under Unix...
 clean_and_make()
 
 log = open(logfilename, 'a')
@@ -118,7 +118,7 @@ log.close()
 # test manual:
 """
 mandir = os.path.join(os.pardir, 'doc', 'manual')
-print 'cd', mandir
+print('cd', mandir)
 os.chdir(mandir)
 
 clean_and_make()

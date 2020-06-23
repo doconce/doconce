@@ -67,7 +67,7 @@ def f(x):
     return x*sin(x)
 
 x = 1.4
-print f(x)
+print(f(x))
 ```
 
 And HTML:

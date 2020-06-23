@@ -3,9 +3,9 @@ Testing admons
 
 H. P. Langtangen
 
-Date: Jul 29, 2016
+Date: Jun 22, 2020
 
-Copyright 2016, H. P. Langtangen. Made with DocOnce
+Copyright 2020, H. P. Langtangen. Made with DocOnce
 
 # !split
 Introduction
@@ -130,7 +130,7 @@ Title ending with math \sqrt{2}\approx 1.4 --------------|
 |                                                        |
 | And a complete program::                               |
 |                                                        |
-|         print "Hello, World!"                          |
+|         print("Hello, World!")                         |
 |--------------------------------------------------------|
 
 

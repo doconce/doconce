@@ -171,7 +171,7 @@ With a main program
 a = 1
 from math import pi
 w = pi
-print f(0)
+print(f(0))
 !ec
 we can run the program:
 
@@ -223,7 +223,7 @@ With a main program
 a = 1
 from math import pi
 w = pi
-print f(0)
+print(f(0))
 !ec
 we can run the program:
 

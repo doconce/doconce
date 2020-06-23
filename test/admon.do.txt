@@ -131,7 +131,7 @@ def f(x):
 And a complete program
 
 !bc pypro
-print "Hello, World!"
+print("Hello, World!")
 !ec
 !ewarning
 

@@ -78,7 +78,7 @@ differences between versions 2 and 3 are expected to be significant for
 the programs in the book:
 `a/b` implies float division in version 3 if `a` and `b`
 are integers,
-and `print 'Hello'` in version 2 must be turned into a function call
+and `print('Hello')` in version 2 must be turned into a function call
 `print('Hello')` in version 3. None of these differences should lead
 to any annoying problems when future readers study the book's v2.7
 examples, but program in version 3. Anyway, running 2to3 on the
@@ -488,7 +488,7 @@ s = raw_input('Give s:')
 is equivalent to
 
 !bc pycod
-print 'Give s: ',
+print('Give s: '),
 s = sys.stdin.readline()
 !ec
 Recall that the trailing comma in the `print` statement avoids the
@@ -501,13 +501,13 @@ s = eval(raw_input('Give s:'))
 is equivalent to
 
 !bc pycod
-print 'Give s: ',
+print('Give s: '),
 s = eval(sys.stdin.readline())
 !ec
 For output to the terminal window, the statement
 
 !bc pycod
-print s
+print(s)
 !ec
 is equivalent to
 
