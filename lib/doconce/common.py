@@ -9,7 +9,9 @@ from future import standard_library
 standard_library.install_aliases()
 from builtins import str
 from builtins import range
-import re, sys, urllib.request, urllib.parse, urllib.error, os, shutil, subprocess#, xml.etree.ElementTree
+import re, sys, os, shutil, subprocess#, xml.etree.ElementTree
+import requests
+import urllib.request, urllib.parse, urllib.error #TODO: substitute urllib with requests library
 from .misc import option, _abort
 from .doconce import errwarn, locale_dict
 
@@ -138,11 +140,9 @@ def is_file_or_url(filename, msg='checking existence of', debug=True):
             # Print a message in case the program hangs a while here
             if msg is not None or debug:
                 errwarn('... ' +  msg + ' ' +  filename + ' ...')
-            import urllib.request, urllib.error, urllib.parse
-            f = urllib.request.urlopen(filename, timeout=10)
-            content = f.read()
-            content_type_str = f.getheader('Content-Type')
-            f.close()
+            r = requests.get(filename, timeout=10)
+            content = r.content
+            content_type_str = r.headers.get('Content-Type')
             ext = os.path.splitext(filename)[1]
             if ext in ('.html', 'htm'):
                 # Successful opening of an HTML file

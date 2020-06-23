@@ -129,7 +129,7 @@ Or we can do it numerically via the Trapezoidal rule::
         def f(x):
             return x*numpy.sin(x)*numpy.exp(-x)
         
-        print trapezoidal(f, 0, 4)
+        print(trapezoidal(f, 0, 4))
 
 Admonitions
 -----------

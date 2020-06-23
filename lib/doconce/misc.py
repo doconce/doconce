@@ -2114,17 +2114,19 @@ def _usage_guess_encoding():
 
 def _encoding_guesser(filename, verbose=False):
     """Try to guess the encoding of a file."""
-    f = open(filename, 'r')
-    text = f.read()
-    f.close()
+    if not os.path.isfile(filename):
+        print('*** error: file %s does not exist' % filename)
+        _abort()
     encodings = ['ascii', 'us-ascii', 'iso-8859-1', 'iso-8859-2',
                  'iso-8859-3', 'iso-8859-4', 'cp37', 'cp930', 'cp1047',
                  'utf-8', 'utf-16', 'windows-1250', 'windows-1252',]
     for encoding in encodings:
         try:
             if verbose:
-                print('Trying encoding ' + encoding + ' with unicode(text, encoding)')
-            str(text, encoding, "strict")
+                print('Trying encoding ' + encoding + " with open(filename, 'r', encoding="+encoding+')')
+            f = open(filename, 'r', encoding=encoding)
+            f.read()
+            f.close()
         except Exception as e:
             if verbose:
                 print('failed: %s' % e)
@@ -2145,7 +2147,7 @@ def _usage_change_encoding():
 
 def _change_encoding_unix(filename, from_enc, to_enc):
     backupfile = filename + '.old~~'
-    if sys.platform == 'linux2':
+    if sys.platform.startswith('linux'):
         cmd = 'iconv -f %s -t %s %s --output %s' % \
               (from_enc, to_enc, backupfile, filename)
     elif sys.platform == 'darwin':
@@ -3482,12 +3484,12 @@ var slideshow = new SlideShow();
 
 var snippets = document.querySelectorAll('.snippet');
 for(var i=0; i<snippets.length; i++) {
-	new CSSSnippet(snippets[i]);
+    new CSSSnippet(snippets[i]);
 }
 
 var cssControls = document.querySelectorAll('.css-control');
 for(var i=0; i<cssControls.length; i++) {
-	new CSSControl(cssControls[i]);
+    new CSSControl(cssControls[i]);
 }
 </script>
 """,
@@ -4309,18 +4311,18 @@ hr.figure { border: 0; width: 80%%; border-bottom: 1px solid #aaa}
 
 <!-- deck.status snippet
 <p class="deck-status">
-	<span class="deck-status-current"></span>
-	/
-	<span class="deck-status-total"></span>
+    <span class="deck-status-current"></span>
+    /
+    <span class="deck-status-total"></span>
 </p>
 -->
 
 <!-- deck.goto snippet
 <form action="." method="get" class="goto-form">
-	<label for="goto-slide">Go to slide:</label>
-	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
-	<datalist id="goto-datalist"></datalist>
-	<input type="submit" value="Go">
+    <label for="goto-slide">Go to slide:</label>
+    <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+    <datalist id="goto-datalist"></datalist>
+    <input type="submit" value="Go">
 </form>
 -->
 
@@ -4358,9 +4360,9 @@ hr.figure { border: 0; width: 80%%; border-bottom: 1px solid #aaa}
 
 <!-- Initialize the deck. You can put this in an external file if desired. -->
 <script>
-	$(function() {
-		$.deck('.slide');
-	});
+    $(function() {
+        $.deck('.slide');
+    });
 </script>
 """,
             theme=None,

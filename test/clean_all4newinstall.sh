@@ -6,8 +6,8 @@ echo "and you know very well what this script does!"
 
 rm -f `which doconce2format`
 rm -f `which doconce_insertdocstr`
-prefix=`python -c 'import sys; print sys.prefix'`
-pyver=`python -c 'import sys; print sys.version[:3]'`
+prefix=`python -c 'import sys; print(sys.prefix)'`
+pyver=`python -c 'import sys; print(sys.version[:3])'`
 rm -rf $prefix/lib/python$pyver/site-packages/doconce
 rm -rf $prefix/lib/python$pyver/site-packages/Doconce*
 cd ..

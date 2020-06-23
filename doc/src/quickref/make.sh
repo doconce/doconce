@@ -1,4 +1,6 @@
 #!/bin/bash -x
+#set -x
+#export PS4='+ l.${LINENO}: ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 name=quickref
 
 function system {
@@ -18,8 +20,13 @@ if [ ! -L guidelines.do.txt ]; then
     ln -s ../manual/guidelines.do.txt guidelines.do.txt
 fi
 
-# Make latest bin/doconce doc
+# Make latest bin/doconce doc. The next commands will print this output to $name.html and $name.tex
+# Use sed to replace terminal colors (four special characters per line) or pdflatex will halt
 doconce > doconce_program.sh
+sed -i 's/^\x1b\[[0-9;]*m//' doconce_program.sh
+sed -i 's/\x1b\[[0-9;]*m//' doconce_program.sh
+sed -i 's/\x1b\[[0-9;]*m\s*/\n# /' doconce_program.sh
+sed -i 's/\x1b\[[0-9;]*m//g' doconce_program.sh
 
 system doconce format html $name --pygments_html_style=none --no_preprocess --no_abort --html_style=bootswatch_readable
 
@@ -28,6 +35,7 @@ system doconce format html $name --pygments_html_style=none --no_preprocess --no
 
 # pdflatex
 system doconce format pdflatex $name --no_preprocess --latex_font=helvetica --no_ampersand_quote --latex_code_style=vrb --no_abort
+
 # Since we have native latex table and --no_ampersand_quote, we need to
 # manually fix the quote examples elsewhere
 doconce subst '([^`])Guns & Roses([^`])' '\g<1>Guns {\&} Roses\g<2>' $name.tex
@@ -38,7 +46,10 @@ system pdflatex -shell-escape $name
 # Sphinx
 system doconce format sphinx $name --no_preprocess --no_abort
 rm -rf sphinx-rootdir
-system doconce sphinx_dir theme=cbc $name
+#ALE problem reproducible after: `git clean -fd && rm -rf sphinx-rootdir`
+#Hack: because doconce sphinx_dir ony works the second time (after an error), trigger that error by creating a bogus conf.py in ./
+touch conf.py
+system doconce sphinx_dir theme=cbc $name dirname=sphinx-rootdir
 doconce replace 'doconce format sphinx %s' 'doconce format sphinx %s --no-preprocess' automake_sphinx.py
 system python automake_sphinx.py
 cp $name.rst $name.sphinx.rst  # save
@@ -116,7 +127,7 @@ and maybe the most important format of all:
 EOF
 
 echo
-echo "Go to the demo directory and load index.html into a web browser."
+echo "Go to the demo directory $PWD and load index.html into a web browser."
 
 cd ..
 dest=../../pub/$name

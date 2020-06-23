@@ -127,7 +127,7 @@ def g(x):
     return f(42)
 
 (*@\pause@*)
-print g(13)
+print(g(13))
 !ec
 
 !split

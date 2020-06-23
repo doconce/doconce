@@ -1521,6 +1521,10 @@ def insert_code_from_file(filestr, format):
                 codelines = []
                 copy = False
                 for line_no, codeline in enumerate(codefile_lines):
+                    try:
+                        codeline = codeline.decode(encoding or 'utf-8')
+                    except (UnicodeDecodeError, AttributeError):
+                        pass
                     mf = cfrom.search(codeline)
                     if mf and fromto == 'fromto:' and not from_found:
                         # The test on not to_found ensures that

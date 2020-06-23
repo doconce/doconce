@@ -1,9 +1,9 @@
 #TITLE (actually governed by the filename): Testing admons
 
 By '''H. P. Langtangen'''
-==== Jul 29, 2016 ====
+==== Jun 22, 2020 ====
 
-Copyright 2016, H. P. Langtangen. Made with DocOnce
+Copyright 2020, H. P. Langtangen. Made with DocOnce
 
 
 
@@ -162,7 +162,7 @@ def f(x):
 And a complete program
 
 <syntaxhighlight lang="python">
-print "Hello, World!"
+print("Hello, World!")
 </syntaxhighlight>
 }}
 
