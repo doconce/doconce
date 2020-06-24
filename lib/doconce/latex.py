@@ -15,7 +15,8 @@ from .common import plain_exercise, table_analysis, \
      online_python_tutor, envir_delimiter_lines, safe_join, \
      insert_code_and_tex, is_file_or_url, chapter_pattern
 from .misc import option, _abort, replace_code_command
-from .doconce import errwarn, debugpr, locale_dict
+from .doconce import errwarn, debugpr
+from doconce import globals
 additional_packages = ''  # comma-sep. list of packages for \usepackage{}
 
 include_numbering_of_exercises = True
@@ -52,8 +53,8 @@ def aux_label2number():
 def get_bib_index_pages():
     """Find the page number for the Index and Bibliography from .aux file."""
     bib_page = idx_page = '9999'
-    from .doconce import dofile_basename
-    name = dofile_basename + '.aux'
+    #name = dofile_basename + '.aux'
+    name = globals.dofile_basename
     if not os.path.isfile(name):
         return bib_page, idx_page
 
@@ -471,8 +472,8 @@ def latex_code(filestr, code_blocks, code_block_types,
     #NO: filestr = re.sub(r"""'([^']+?)'""", r"""`\g<1>'""", filestr)
 
     # Specify language to be used in \documentclass
-    if locale_dict[locale_dict['language']]['latex package'] != 'english':
-        filestr = re.sub(r'(\\documentclass\[%?\n?)', r'\g<1>%s,' % locale_dict[locale_dict['language']]['latex package'], filestr)
+    if globals.locale_dict[globals.locale_dict['language']]['latex package'] != 'english':
+        filestr = re.sub(r'(\\documentclass\[%?\n?)', r'\g<1>%s,' % globals.locale_dict[globals.locale_dict['language']]['latex package'], filestr)
 
     # References to external documents (done before !bc blocks in
     # case such blocks explain the syntax of the external doc. feature)
@@ -779,11 +780,11 @@ def latex_code(filestr, code_blocks, code_block_types,
                     types_of_exer = ', '.join(types_of_exer)
                 heading = "List of %s" % types_of_exer
                 # Translate
-                lang = locale_dict['language']
+                lang = globals.locale_dict['language']
                 phrases = 'list of', 'exercises', 'projects', 'and', 'problems'
                 for phrase in phrases:
-                    if phrase in locale_dict['language']:
-                        heading = heading.replace(phrase, locale_dict[lang][phrase])
+                    if phrase in globals.locale_dict['language']:
+                        heading = heading.replace(phrase, globals.locale_dict[lang][phrase])
 
                 # Insert definition of \listofexercises
                 if r'\tableofcontents' in filestr:
@@ -866,7 +867,7 @@ def latex_code(filestr, code_blocks, code_block_types,
 
     # Avoid Filename: as a new paragraph with indentation
     for filename in 'Filename', 'Filenames':
-        locale_fn = locale_dict[locale_dict['language']][filename]
+        locale_fn = globals.locale_dict[globals.locale_dict['language']][filename]
         filestr = re.sub(r'^(%s): +?\\code\{' % locale_fn,
                          r'\\noindent \g<1>: \\code{', filestr,
                          flags=re.MULTILINE)
@@ -2341,7 +2342,7 @@ def get_admon_figname(admon_tp, admon_name):
 # Generate Python functions for admons
 admons = 'notice', 'summary', 'warning', 'question', 'block'
 for _admon in admons:
-    _Admon = locale_dict[locale_dict['language']].get(_admon, _admon).capitalize()
+    _Admon = globals.locale_dict[globals.locale_dict['language']].get(_admon, _admon).capitalize()
     _title_period = '' if option('latex_admon_title_no_period') else '.'
     text = r"""
 def latex_%(_admon)s(text_block, format, title='%(_Admon)s', text_size='normal'):

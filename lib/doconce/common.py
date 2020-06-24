@@ -13,7 +13,8 @@ import re, sys, os, shutil, subprocess#, xml.etree.ElementTree
 import requests
 import urllib.request, urllib.parse, urllib.error #TODO: substitute urllib with requests library
 from .misc import option, _abort
-from .doconce import errwarn, locale_dict
+from .doconce import errwarn
+from doconce import globals
 
 format = None   # latex, pdflatex, html, plain, etc
 
@@ -208,8 +209,7 @@ def get_copyfile_info(filestr=None, copyright_filename=None, format=None):
     # Copyright info
     cr_text = None
     if copyright_filename is None:
-        from .doconce import dofile_basename
-        cr_filename = '.' + dofile_basename + '.copyright'
+        cr_filename = '.' + globals.dofile_basename + '.copyright'
     else:
         cr_filename = copyright_filename
     if os.path.isfile(cr_filename):
@@ -885,14 +885,14 @@ def doconce_exercise_output(
     latex_style = option('latex_style=', 'std')
     solution_style = option('exercise_solution=', 'paragraph') # admon, quote
 
-    language = locale_dict['language']
-    Solution = locale_dict[language]['Solution']
+    language = globals.locale_dict['language']
+    Solution = globals.locale_dict[language]['Solution']
     if solution_header == '__Solution.__':
-        solution_header = '__{0}.__'.format(locale_dict[language]['Solution'])
+        solution_header = '__{0}.__'.format(globals.locale_dict[language]['Solution'])
     if answer_header == '__Answer.__':
-        answer_header = '__{0}.__'.format(locale_dict[language]['Answer'])
+        answer_header = '__{0}.__'.format(globals.locale_dict[language]['Answer'])
     if hint_header == '__Hint.__':
-        hint_header = '__{0}.__'.format(locale_dict[language]['Hint'])
+        hint_header = '__{0}.__'.format(globals.locale_dict[language]['Hint'])
 
     # Store solutions and answers in a separate string
     # s holds the formatted exercise in doconce format for the main text
@@ -1103,10 +1103,10 @@ def doconce_exercise_output(
 
                 if subex['file']:
                     if len(subex['file']) == 1:
-                        Filename = locale_dict[language]['Filename']
+                        Filename = globals.locale_dict[language]['Filename']
                         s += '%s: `%s`' % (Filename, subex['file'][0]) + '.\n'
                     else:
-                        Filenames = locale_dict[language]['Filenames']
+                        Filenames = globals.locale_dict[language]['Filenames']
                         s += '%s: %s' % (Filenames, ', '.join(
                             ['`%s`' % f for f in subex['file']]) + '.\n')
 
@@ -1203,16 +1203,16 @@ def doconce_exercise_output(
             # otherwise let it proceed at the end of the exercise text.
             s += '\n'
         if len(exer['file']) == 1:
-            Filename = locale_dict[language]['Filename']
+            Filename = globals.locale_dict[language]['Filename']
             s += '%s: `%s`' % (Filename, exer['file'][0]) + '.\n'
         else:
-            Filenames = locale_dict[language]['Filenames']
+            Filenames = globals.locale_dict[language]['Filenames']
             s += '%s: %s' % (Filenames,
                              ', '.join(['`%s`' %
                                         f for f in exer['file']]) + '.\n')
     if exer['closing_remarks']:
         s += '\n# Closing remarks for this %s\n\n=== %s ===\n\n' % \
-             (exer['type'], locale_dict[locale_dict['language']]['remarks'].capitalize()) + exer['closing_remarks'] + '\n\n'
+             (exer['type'], globals.locale_dict[globals.locale_dict['language']]['remarks'].capitalize()) + exer['closing_remarks'] + '\n\n'
 
     if exer['solution_file']:
         if len(exer['solution_file']) == 1:
@@ -1465,22 +1465,10 @@ TOC = {}
 ENVIRS = {}
 QUIZ = {}
 
-
-# regular expressions for inline tags:
-#inline_tag_begin = r"""(?P<begin>(^|[(\s~>]|^__))"""
-# Need {} and ! in begin/end because of idx{...!_bold face_ ...}
-inline_tag_begin = r"""(?P<begin>(^|[(\s~>{!-]|^__|&[mn]dash;))"""
-# ' is included as apostrophe in end tag
-inline_tag_end = r"""(?P<end>($|[.,?!;:)<}!'\s~\[<&;-]))"""
-# alternatives using positive lookbehind and lookahead (not tested!):
-inline_tag_before = r"""(?<=(^|[(\s]))"""
-inline_tag_after = r"""(?=$|[.,?!;:)\s])"""
-# the begin-end works, so don't touch (must be tested in a safe branch....)
-
 _linked_files = '''\s*"(?P<url>([^"]+?\.html?|[^"]+?\.html?\#[^"]+?|[^"]+?\.txt|[^"]+?\.tex|[^"]+?\.pdf|[^"]+?\.f|[^"]+?\.c|[^"]+?\.cpp|[^"]+?\.cxx|[^"]+?\.py|[^"]+?\.ipynb|[^"]+?\.java|[^"]+?\.pl|[^"]+?\.sh|[^"]+?\.csh|[^"]+?\.zsh|[^"]+?\.ksh|[^"]+?\.tar\.gz|[^"]+?\.tar|[^"]+?\.zip|[^"]+?\.f77|[^"]+?\.f90|[^"]+?\.f95|[^"]+?\.png|[^"]+?\.jpe?g|[^"]+?\.gif|[^"]+?\.pdf|[^"]+?\.flv|[^"]+?\.webm|[^"]+?\.ogg|[^"]+?\.mp4|[^"]+?\.mpe?g|[^"]+?\.e?ps|_static-?[^/]*/[^"]+?))"'''
 #_linked_files = '''\s*"(?P<url>([^"]+?))"'''  # any file is accepted
 
-abstract_names = '|'.join([locale_dict[locale_dict['language']][p]
+abstract_names = '|'.join([globals.locale_dict[globals.locale_dict['language']][p]
                            for p in ['Abstract', 'Summary', 'Preface']])
 
 INLINE_TAGS = {
@@ -1489,31 +1477,31 @@ INLINE_TAGS = {
     # mark after the enclosing $.
     'math':
     r'%s\$(?P<subst>[^ `][^$`]*)\$%s' % \
-    (inline_tag_begin, inline_tag_end),
+    (globals.inline_tag_begin, globals.inline_tag_end),
 
     # $latex text$|$pure text alternative$
     'math2':
     r'%s\$(?P<latexmath>[^ `][^$`]*)\$\|\$(?P<puretext>[^ `][^$`]*)\$%s' % \
-    (inline_tag_begin, inline_tag_end),
+    (globals.inline_tag_begin, globals.inline_tag_end),
     # simpler (not tested):
     #r'%s\$(?P<latexmath>[^$]+?)\$\|\$(?P<puretext>[^$]+)\$%s' % \
-    #(inline_tag_begin, inline_tag_end),
+    #(globals.inline_tag_begin, globals.inline_tag_end),
 
     # *emphasized words*
     'emphasize':
     r'%s\*(?P<subst>[^ `][^*`]*)\*%s' % \
-    (inline_tag_begin, inline_tag_end),
+    (globals.inline_tag_begin, globals.inline_tag_end),
 
     # `verbatim inline text is enclosed in back quotes`
     'verbatim':
     r'%s`(?P<subst>[^ `][^`]*)`%s' % \
-    (inline_tag_begin, inline_tag_end),
-    #(inline_tag_begin, r"(?P<end>($|[.,?!;:)}'\s|-]))"),
+    (globals.inline_tag_begin, globals.inline_tag_end),
+    #(globals.inline_tag_begin, r"(?P<end>($|[.,?!;:)}'\s|-]))"),
 
     # _underscore before and after signifies bold_
     'bold':
     r'%s_(?P<subst>[^ `][^\]_`]*)_%s' % \
-    (inline_tag_begin, inline_tag_end),
+    (globals.inline_tag_begin, globals.inline_tag_end),
 
     # color{col}{text} (\b is useful, but :.;`? is not word boundary)
     'colortext':
@@ -1522,7 +1510,7 @@ INLINE_TAGS = {
     # http://some.where.org/mypage<link text>  # old outdated syntax
     'linkURL':
     r'%s(?P<url>https?://[^<\n]+)<(?P<link>[^>]+)>%s' % \
-    (inline_tag_begin, inline_tag_end),
+    (globals.inline_tag_begin, globals.inline_tag_end),
 
     'linkURL2':  # "some link": "https://bla-bla"
     r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>(file:///|https?://|ftp://|mailto:).+?)"''',

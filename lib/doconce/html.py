@@ -12,7 +12,8 @@ from .common import table_analysis, plain_exercise, insert_code_and_tex, \
      get_legal_pygments_lexers, has_custom_pygments_lexer, emoji_url, \
      fix_ref_section_chapter
 from .misc import option, _abort
-from .doconce import errwarn, locale_dict, lookup_locale_dict
+from doconce import globals
+from .doconce import errwarn, debugpr
 
 box_shadow = 'box-shadow: 8px 8px 5px #888888;'
 #box_shadow = 'box-shadow: 0px 0px 10px #888888'
@@ -1247,7 +1248,6 @@ function show_hide_code%d(){
             tex_blocks[i] = re.sub(r'^label\{', r'\\label{', tex_blocks[i],
                                    flags=re.MULTILINE)
 
-    from .doconce import debugpr
     debugpr('File before call to insert_code_and_tex (format html):', filestr)
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
     debugpr('File after call to insert_code_and tex (format html):', filestr)
@@ -1476,8 +1476,7 @@ function show_hide_code%d(){
         # Check that template does not have "main content" begin and
         # end lines that may interfere with the automatically generated
         # ones in DocOnce (may destroy the split_html command)
-        from .doconce import main_content_char as _c
-        m = re.findall(r'(<!-- %s+ main content %s+)' % (_c,_c), template)
+        m = re.findall(r'(<!-- %s+ main content %s+)' % (globals.main_content_char, globals.main_content_char), template)
         if m:
             errwarn('*** error: template contains lines that may interfere')
             errwarn('    with markers that doconce inserts - remove these')
@@ -1520,7 +1519,7 @@ function show_hide_code%d(){
     if html_style.startswith('boots'):
         # Insert toc if toc
         if '***TABLE_OF_CONTENTS***' in filestr:
-            contents = locale_dict[locale_dict['language']]['Contents']
+            contents = globals.locale_dict[globals.locale_dict['language']]['Contents']
             try:
                 filestr = filestr.replace('***TABLE_OF_CONTENTS***',
                                           toc_html)
@@ -2176,7 +2175,7 @@ def html_author(authors_and_institutions, auth2index,
 def html_abstract(m):
     # m is r'<b>\g<type>.</b> \g<text>\n\g<rest>'
     type = m.group('type')
-    type = locale_dict[locale_dict['language']].get(type, type)
+    type = globals.locale_dict[globals.locale_dict['language']].get(type, type)
     text = m.group('text')
     rest = m.group('rest')
     if type.lower() == 'preface':
@@ -2309,10 +2308,10 @@ def html_exercise(exer):
     bootstrap = option('html_style=', '').startswith('boots')
     if bootstrap:
         # Bootstrap typesetting where hints and solutions can be folded
-        language = locale_dict['language']
-        envir2heading = dict(hint=r'(?P<heading>__{0}(?P<hintno> \d+)?\.__)'.format(locale_dict[language]['Hint']),
-                             ans=r'(?P<heading>__{0}\.__)'.format(locale_dict[language]['Answer']),
-                             sol=r'(?P<heading>__{0}\.__)'.format(locale_dict[language]['Solution']))
+        language = globals.locale_dict['language']
+        envir2heading = dict(hint=r'(?P<heading>__{0}(?P<hintno> \d+)?\.__)'.format(globals.locale_dict[language]['Hint']),
+                             ans=r'(?P<heading>__{0}\.__)'.format(globals.locale_dict[language]['Answer']),
+                             sol=r'(?P<heading>__{0}\.__)'.format(globals.locale_dict[language]['Solution']))
         global _id_counter # need this trick to update this var in subst func
         _id_counter = 0
         for envir in 'hint', 'ans', 'sol':
@@ -2396,7 +2395,7 @@ def html_toc(sections, filestr):
     toc_depth = int(option('toc_depth=', 2))
 
     extended_sections = []  # extended list for toc in HTML file
-    toc = locale_dict[locale_dict['language']]['toc']
+    toc = globals.locale_dict[globals.locale_dict['language']]['toc']
     # This function is always called, only extend headings if a TOC is wanted
     m = re.search(r'^TOC: +[Oo]n', filestr, flags=re.MULTILINE)
     if m:
@@ -2477,8 +2476,8 @@ def html_quiz(quiz):
     import string
     bootstrap = option('html_style=', '').startswith('boots')
     button_text = option('html_quiz_button_text=', '')
-    question_prefix_default = lookup_locale_dict('question_prefix')
-    common_choice_prefix_default = lookup_locale_dict('choice_prefix')
+    question_prefix_default = globals.lookup_locale_dict('question_prefix')
+    common_choice_prefix_default = globals.lookup_locale_dict('choice_prefix')
     question_prefix = quiz.get('question prefix',
                                option('quiz_question_prefix=', question_prefix_default))
     common_choice_prefix = option('quiz_choice_prefix=', common_choice_prefix_default)
@@ -2593,7 +2592,7 @@ if html_admon_style is None:
 for _admon in admons:
     # _Admon is constructed at import time, used as default title, but
     # will always be in English because of the early construction
-    _Admon = locale_dict[locale_dict['language']].get(_admon, _admon).capitalize()  # upper first char
+    _Admon = globals.locale_dict[globals.locale_dict['language']].get(_admon, _admon).capitalize()  # upper first char
 
     # Below we could use
     # <img src="data:image/png;base64,iVBORw0KGgoAAAANSUh..."/>
@@ -3174,8 +3173,7 @@ body { %s; }
             # Make link back to the main HTML file
             outfilename = option('html_output=', None)
             if outfilename is None:
-                from .doconce import dofile_basename
-                outfilename = dofile_basename + '.html'
+                outfilename = globals.dofile_basename + '.html'
             else:
                 if not outfilename.endswith('html'):
                     outfilename += '.html'

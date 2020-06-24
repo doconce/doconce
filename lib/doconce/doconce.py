@@ -8,9 +8,7 @@ from builtins import chr
 from builtins import str
 from builtins import range
 from past.builtins import basestring, unicode
-
-global dofile_basename
-dofile_basename = None
+from doconce import globals
 
 import re, os, sys, shutil, subprocess, pprint, time, glob, codecs
 try:
@@ -20,239 +18,21 @@ except ImportError:
     # citations is then lost)
     OrderedDict = dict
 
-# Support for non-English languages (not really implemented yet)
-global locale_dict
-locale_dict = dict(
-    language='English',  # language to be used
-    American={
-        # 'English' is an alias for 'American'
-        'locale': 'us_US.UTF-8',
-        'latex package': 'english',
-        'aspell_dictionary' : 'american', # with aspell, this is an alias for 'en_US'
-        'toc': 'Table of contents',
-        'Contents': 'Contents',
-        'Figure': 'Figure',
-        'Movie': 'Movie',
-        'list of': 'List of',
-        'and': 'and',
-        'Exercise': 'Exercise',
-        'Project': 'Project',
-        'Problem': 'Problem',
-        'Example': 'Example',
-        'Projects': 'Projects',
-        'Problems': 'Problems',
-        'Examples': 'Examples',
-        'Preface': 'Preface',
-        'Abstract': 'Abstract',
-        'Summary': 'Summary',
-        # Admons
-        'summary': 'summary',
-        'hint': 'hint',
-        'question': 'question',
-        'notice': 'notice',
-        'warning': 'warning',
-        # box, quote are silent wrt title
-        'remarks': 'remarks', # In exercises
-        # Exercise headings
-        'Solution': 'Solution',
-        'Answer': 'Answer',
-        'Hint': 'Hint',
-        # At the end (in Sphinx)
-        'index': 'Index',
-        # References
-        'Filename': 'Filename',
-        'Filenames': 'Filenames',
-        # Quiz
-        'question_prefix': 'Question:', # question in multiple-choice quiz
-        'choice_prefix': 'Choice',      # choice in multiple-choice quiz
-    },
-    Norwegian={
-        'locale': 'nb_NO.UTF-8', # norsk bokmål
-        'latex package': 'norsk',
-        'aspell_dictionary' : 'norsk', # with aspell, this is an alias for 'nb'
-        'toc': 'Innholdsfortegnelse',
-        'Contents': 'Innhold',
-        'Figure': 'Figur',
-        'Movie': 'Video',
-        'list of': 'Liste over',
-        'and': 'og',
-        'Exercise': 'Oppgave',
-        'Project': 'Prosjekt',
-        'Problem': 'Problem',
-        'Example': 'Eksempel',
-        'Exercises': 'oppgaver',
-        'Projects': 'prosjekter',
-        'Problems': 'problemer',
-        'Examples': 'eksempler',
-        'Preface': 'Forord',
-        'Abstract': 'Sammendrag',
-        'Summary': 'Sammendrag',
-        'summary': 'sammendrag',
-        'hint': 'Hint',
-        'question': u'spørsmål',
-        'notice': u'observér',
-        'warning': 'advarsel',
-        'remarks': 'bemerkning',
-        'index': 'Stikkordsliste',
-        'Solution': u'Løsningsforslag',  # In exercises
-        'Answer': 'Fasit',  # In exercises
-        'Hint': 'Hint',  # In exercises
-        'Filename': 'Filnavn',
-        'Filenames': 'Filnavn',
-        # Quiz
-        'question_prefix': u'Spørsmål:',    # question in multiple-choice quiz
-        'choice_prefix': 'Alternativ',      # choice in multiple-choice quiz
-    },
-    German={
-        'locale': 'de_DE.UTF-8',
-        'latex package': 'german',
-        'aspell_dictionary' : 'deutsch', # with aspell, this is an alias for 'de_DE'
-        'toc': 'Inhaltsverzeichnis',
-        'Contents': 'Inhalt',
-        'Figure': 'Abbildung',
-        'Movie': 'Film',
-        'list of': 'Liste von',
-        'and': 'und',
-        'Exercise': u'Übung',
-        'Project': 'Projekt',
-        'Problem': 'Problem',
-        'Example': 'Beispiel',
-        'Projects': 'Projekte',
-        'Problems': 'Probleme',
-        'Examples': 'Beispiele',
-        'Preface': 'Vorwort',
-        'Abstract': 'Abstract',
-        'Summary': 'Zusammenfassung',
-        # Admons
-        'summary': 'Zusammenfassung',
-        'hint': 'Hinweis',
-        'question': 'Frage',
-        'notice': 'Notiz',
-        'warning': 'Warnung',
-        # box, quote are silent wrt title
-        'remarks': 'Bemerkung', # In exercises
-        # Exercise headings
-        'Solution': u'Lösung',
-        'Answer': 'Antwort',
-        'Hint': 'Hinweis',
-        # At the end (in Sphinx)
-        'index': 'Index',
-        # References
-        'Filename': 'Dateiname',
-        'Filenames': 'Dateiname',
-    },
-    Basque={
-	    'locale': 'eu_ES.UTF-8',
-	    'latex package': 'basque',
-	    'toc': 'Aurkibidea',
-	    'Contents': 'Edukiak',
-	    'Figure': 'Irudia',
-	    'Movie': 'Filma',
-	    'list of': 'Zerrenda',
-	    'and': 'eta',
-	    'Exercise': 'Ariketa',
-	    'Project': 'Proiektua',
-	    'Problem': 'Problema',
-	    'Example': 'Adibidea',
-	    'Projects': 'Proiektuak',
-	    'Problems': 'Problemak',
-	    'Examples': 'Adibideak',
-	    'Preface': 'Hitzaurrea',
-	    'Abstract': 'Laburpena',
-	    'Summary': 'Laburpena',
-	    # Admons
-	    'summary': 'laburpena',
-	    'hint': 'laguntza',
-	    'question': 'galdera',
-	    'notice': 'oharra',
-	    'warning': 'kontuz',
-	    # box, quote are silent wrt title
-	    'remarks': 'iruzkinak', # In exercises
-	    # Exercise headings
-	    'Solution': 'Soluzioa',
-	    'Answer': 'Erantzuna',
-	    'Hint': 'Laguntza',
-	    # At the end (in Sphinx)
-	    'index': 'Indizea',
-	    # References
-	    'Filename': 'Fitxategi',
-	    'Filenames': 'Fitxategiak',
-    },
-    Arabic={
-        'locale': 'ar_SA.UTF-8',
-        'latex package': 'arabic',
-        'aspell_dictionary' : 'arabic', # with aspell, this is an alias for 'ar'
-        'toc': u'الفَهْرس',
-        'Contents': u'المُحْتويات',
-        'Figure': u'رَسْم تَوضِيحي',
-        'Movie': u'فِيلم',
-        'list of': u'قَائِمة',
-        'and': u'و',
-        'Exercise': u'تَمْرِين',
-        'Project': u'مَشْرُوع',
-        'Problem': u'مَسْألة',
-        'Example': u'مِثَال',
-        'Projects': u'مَشَارِيع',
-        'Problems': u'مَسَائِل',
-        'Examples': u'أَمْثِلة',
-        'Preface': u'مُقَدِّمة',
-        'Abstract': u'المُلَّخص',
-        'Summary': u'الخُلاصَة',
-        # Admons
-        'summary': u'الخُلاصة',
-        'hint': u'تَلْمِيح',
-        'question': u'سُؤال',
-        'notice': u'تَنْبِيه',
-        'warning': u'تَحْذِير',
-        # box, quote are silent wrt title
-        'remarks': u'مُلاحَظات', # In exercises
-        # Exercise headings
-        'Solution': u'الحَل',
-        'Answer': u'الجَواب',
-        'Hint': u'تَلْميح',
-        # At the end (in Sphinx)
-        'index': u'الدَّليل',
-        # References
-        'Filename': u'اسم_الملف',
-        'Filenames': u'أسماء_الملفات',
-    }
-    )
-# Let English be an alias for American
-locale_dict['English'] = locale_dict['American'].copy()
-# Create British based on (American) English
-locale_dict['British'] = locale_dict['American'].copy()
-locale_dict['British']['locale'] = 'en_GB.UTF-8'
-locale_dict['British']['aspell_dictionary'] = 'british' # with aspell, this is an alias for 'en_GB'
-locale_dict['British']['latex package'] = 'british' # with aspell, this is an alias for 'en_GB'
-
-
-def lookup_locale_dict(key, fallback_to_english=True):
-    if key in locale_dict[locale_dict['language']]:
-        return locale_dict[locale_dict['language']][key]
-
-    # could not find localized term
-    if fallback_to_english:
-        assert key in locale_dict['English'], "'%s' is not in locale_dict" % key
-        return locale_dict['English'][key]
-    else:
-        raise ValueError("'%s' is not in locale_dict for %s" % (key, locale_dict['language']))
-
 def debugpr(heading='', text=''):
     """Add `heading` and `text` to the log/debug file."""
     if option('debug'):
-        global _log
-        if encoding:
-            _log = codecs.open('_doconce_debugging.log','a', encoding)
+        if globals.encoding:
+            globals._log = codecs.open('_doconce_debugging.log','a', globals.encoding)
         else:
-            _log = open('_doconce_debugging.log','a')
+            globals._log = open('_doconce_debugging.log','a')
         out_class = str(type(text)).split("'")[1]
         pre = '\n' + '*'*60 + '\n%s>>> ' % out_class if text else ''
-        _log.write(pre + heading + '\n\n')
-        _log.write(text + '\n')
-        _log.close()
+        globals._log.write(pre + heading + '\n\n')
+        globals._log.write(text + '\n')
+        globals._log.close()
 
 def _rmdolog():
-    logfilename = dofile_basename + '.dolog'
+    logfilename = globals.dofile_basename + '.dolog'
     if os.path.isfile(logfilename):
         os.remove(logfilename)
 
@@ -262,12 +42,12 @@ def errwarn(msg, newline=True):
         print(msg)
     else:
         print(msg, end=' ')
-    if dofile_basename is None:
+    if globals.dofile_basename is None:
         return
-    logfilename = dofile_basename + '.dlog'
+    logfilename = globals.dofile_basename + '.dlog'
     mode = 'a' if os.path.isfile(logfilename) else 'w'
-    if encoding:
-        err = codecs.open(logfilename, mode, encoding)
+    if globals.encoding:
+        err = codecs.open(logfilename, mode, globals.encoding)
     else:
         err = open(logfilename, mode)
     err.write(msg)
@@ -276,29 +56,15 @@ def errwarn(msg, newline=True):
 
 from .common import *
 from .misc import option, which, _abort
-from . import html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc, ipynb, matlabnb
-
-def supported_format_names():
-    return 'html', 'latex', 'pdflatex', 'rst', 'sphinx', 'st', 'epytext', 'plain', 'gwiki', 'mwiki', 'cwiki', 'pandoc', 'ipynb', 'matlabnb'
-
-def doconce_envirs():                     # begin-end environments
-    return ['c', 't',                     # verbatim and tex blocks
-            'ans', 'sol', 'subex',        # exercises
-            'ans_docend', 'sol_docend',   # exercises at document end
-            'pop', 'slidecell', 'notes',  # slides
-            'hint', 'remarks',            # exercises
-            'quote', 'box',
-            'notice', 'summary', 'warning', 'question', 'block', # admon
-            'quiz', 'u-',
-            ]
+from . import html, latex, pdflatex, rst, sphinx, st, epytext, gwiki, mwiki, cwiki, pandoc, ipynb, matlabnb
+from . import plaintext as plain
 
 admons = 'notice', 'summary', 'warning', 'question', 'block'
 
-main_content_char = '-'
-main_content_begin = main_content_char*19 + ' main content ' + \
-                     main_content_char*22
-main_content_end = main_content_char*19 + ' end of main content ' + \
-                   main_content_char*15
+main_content_begin = globals.main_content_char*19 + ' main content ' + \
+                     globals.main_content_char*22
+main_content_end = globals.main_content_char*19 + ' end of main content ' + \
+                   globals.main_content_char*15
 
 #----------------------------------------------------------------------------
 # Translators: (do not include, use import as shown above)
@@ -412,7 +178,8 @@ def markdown2doconce(filestr, format=None, ipynb_mode=False):
     quote_envir = 'quote'
     quote_envir = 'block'
 
-    from .common import inline_tag_begin, inline_tag_end
+    tmp_inline_tag_begin = globals.inline_tag_begin
+    tmp_inline_tag_end = globals.inline_tag_end
     extended_markdown_language2dolang = dict(
         python='py', ruby='rb', fortran='f', cpp='cpp', c='c',
         perl='pl', bash='sh', html='html')
@@ -431,7 +198,7 @@ def markdown2doconce(filestr, format=None, ipynb_mode=False):
         # Paragraph heading written in boldface
         (r"\n\n\*\*(?P<subst>[^*]+?)([.?!:])\*\* ", r"\n\n__\g<subst>\g<2>__ "),
         # Boldface **word** to _word_
-        (r"%(inline_tag_begin)s\*\*(?P<subst>[^*]+?)\*\*%(inline_tag_end)s" % vars(),
+        (r"%(tmp_inline_tag_begin)s\*\*(?P<subst>[^*]+?)\*\*%(tmp_inline_tag_end)s" % vars(),
          r"\g<begin>_\g<subst>_\g<end>"),
         # Figure/movie references [Figure](#label)
         (r'\[Figure\]\(#(.+?)\)', 'Figure ref{\g<1>}'),
@@ -589,8 +356,8 @@ def fix(filestr, format, verbose=0):
     Drop this and report error instead:
     # Space before commands that should begin in 1st column at a line?
     commands = 'FIGURE MOVIE TITLE AUTHOR DATE TOC BIBFILE'.split()
-    commands += ['!b' + envir for envir in doconce_envirs()]
-    commands += ['!e' + envir for envir in doconce_envirs()]
+    commands += ['!b' + envir for envir in globals.doconce_envirs]
+    commands += ['!e' + envir for envir in globals.doconce_envirs]
     for command in commands:
         pattern = r'^ +' + command
         m = re.search(pattern, filestr, flags=re.MULTILINE)
@@ -624,7 +391,7 @@ def syntax_check(filestr, format):
         _abort()
     # Consistency of implemented environments
     user_defined_envirs = list(set(re.findall(r'^!b(u-[^ ]+)', filestr, flags=re.MULTILINE)))
-    envirs = doconce_envirs() + user_defined_envirs
+    envirs = globals.doconce_envirs + user_defined_envirs
     envirs.remove('u-')
     # Maybe good intentions with this test, but in doc/src/latexcode/demo.do.txt
     # it causes trouble
@@ -652,7 +419,7 @@ def syntax_check(filestr, format):
     # Initial spaces in verbatim, bold, emphasize cannot be tested
     # (one may get matches between last ` and next beginning `, for instance).
 
-    for envir in doconce_envirs():
+    for envir in globals.doconce_envirs:
         # Check that environments !bc, !ec, !bans, !eans, etc.
         # appear at the very beginning of the line
         # (allow e.g. `!benvir argument` and comment lines)
@@ -812,7 +579,7 @@ def syntax_check(filestr, format):
         errwarn(filestr[m.start()-50:m.start()+50])
         _abort()
 
-    begin_end_consistency_checks(filestr, doconce_envirs())
+    begin_end_consistency_checks(filestr, globals.doconce_envirs)
 
     # Check that !bt-!et directives surround math blocks
     inside_code = False
@@ -986,8 +753,7 @@ Causes of missing labels:
 
     # Quotes or inline verbatim is not allowed inside emphasize and bold:
     # (force non-blank in the beginning and end to avoid interfering with lists)
-    from .common import inline_tag_begin, inline_tag_end
-    pattern = r'%s\*(?P<subst>[^ ][^*]+?[^ ])\*%s' % (inline_tag_begin, inline_tag_end)
+    pattern = r'%s\*(?P<subst>[^ ][^*]+?[^ ])\*%s' % (globals.inline_tag_begin, globals.inline_tag_end)
     for dummy1, dummy2, phrase, dummy3, dummy4 in \
             re.findall(pattern, filestr, flags=re.MULTILINE):
         if '`' in phrase:
@@ -1522,7 +1288,7 @@ def insert_code_from_file(filestr, format):
                 copy = False
                 for line_no, codeline in enumerate(codefile_lines):
                     try:
-                        codeline = codeline.decode(encoding or 'utf-8')
+                        codeline = codeline.decode(globals.encoding or 'utf-8')
                     except (UnicodeDecodeError, AttributeError):
                         pass
                     mf = cfrom.search(codeline)
@@ -2060,7 +1826,7 @@ def exercises(filestr, format, code_blocks, tex_blocks):
         # Is writing to file a good idea? <<<!!CODE_BLOCK will not be
         # substituted. Better to grab the solution chapter/section
         # at the end of substitutions and write this to file!
-        solfilename = dofile_basename + '_exersol.do.txt'
+        solfilename = globals.dofile_basename + '_exersol.do.txt'
         f = open(solfilename, 'w')
         # Header for answer and/or solutions at end of book
         header_at_end = '======= '
@@ -2078,7 +1844,7 @@ def exercises(filestr, format, code_blocks, tex_blocks):
         f.write(header_at_end)
         f.write(solutions)
         f.close()
-        #errwarn('solutions to exercises in', dofile_basename)
+        #errwarn('solutions to exercises in', globals.dofile_basename)
         #Add solution/answers section
         pattern = '(^={5,7} +(References|Bibliography) +={5,7})'
         sol_sec = header_at_end + solutions
@@ -2287,7 +2053,7 @@ def extract_individual_standalone_exercises(
         _abort()
 
     import zipfile
-    filename = dofile_basename + '_exercises.zip'
+    filename = globals.dofile_basename + '_exercises.zip'
     archive = zipfile.ZipFile(filename, mode='w')
     exer_filename = option('exercises_in_zip_filename=', 'logical')
 
@@ -2332,7 +2098,7 @@ FILE_EXTENSIONS = ['.tex', '.ipynb']
 # a compiled parent document (with ../%s.aux file), but other formats
 # will have missing references.
 # Externaldocuments: ../%s
-""" % (dofile_basename, dofile_basename, dofile_basename)
+""" % (globals.dofile_basename, globals.dofile_basename, globals.dofile_basename)
 
         # At this stage {Exercise}: has the {} removed
         sa = re.sub(
@@ -2761,7 +2527,7 @@ def typeset_envirs(filestr, format):
     # Note: exercises are done (and translated to doconce syntax)
     # before this function is called. bt/bc are taken elsewhere.
     # quiz is taken later.
-    envirs = doconce_envirs()[8:-2]
+    envirs = globals.doconce_envirs[8:-2]
 
     for envir in envirs:
         if not '!b' + envir in filestr:
@@ -2781,7 +2547,7 @@ def typeset_envirs(filestr, format):
                         errwarn('*** warning: wrong text size "%s" specified in %s environment!' % (text_size, envir))
                         errwarn('    must be "large" or "small" - will be set to normal')
                 if option('language=', 'English') != 'English' and title == '':
-                    title = locale_dict[locale_dict['language']].get(envir, envir).capitalize() + '.'
+                    title = globals.locale_dict[globals.locale_dict['language']].get(envir, envir).capitalize() + '.'
 
                 if title == '':
                     # Rely on the format's default title
@@ -2807,7 +2573,7 @@ def typeset_envirs(filestr, format):
                     m2 = re.search('^\s*\((.+?)\)', title)
 
                     if title == '' and envir != 'block':
-                        title = locale_dict[locale_dict['language']].get(envir, envir).capitalize() + '.'
+                        title = globals.locale_dict[globals.locale_dict['language']].get(envir, envir).capitalize() + '.'
                     elif title.lower() == 'none':
                         title == ''
                     elif m2:
@@ -3741,7 +3507,7 @@ def interpret_authors(filestr, format):
     if copyright_:
         # Store in file for use elsewhere (will only work for doconce format)
         try:
-            with open('.' + dofile_basename + '.copyright', 'w') as f:
+            with open('.' + globals.dofile_basename + '.copyright', 'w') as f:
                 f.write(repr(copyright_))
         except: # NameError:
             pass # file is already written
@@ -4126,20 +3892,20 @@ def typeset_quizzes2(filestr, format):
     # That is why we use the method above of exact replacement.
     #filestr = re.sub(r'^%d ' % i , text, filestr,
     #                 flags=re.MULTILINE)
-    if encoding:
-        f = codecs.open('.%s.quiz' % dofile_basename, 'w', encoding)
+    if globals.encoding:
+        f = codecs.open('.%s.quiz' % globals.dofile_basename, 'w', globals.encoding)
     else:
-        f = open('.%s.quiz' % dofile_basename, 'w')
+        f = open('.%s.quiz' % globals.dofile_basename, 'w')
     try:
         text = pprint.pformat([dict(quiz) for quiz in quizzes])
         f.write(text)
     except UnicodeEncodeError as e:
         encode_error_message(e, text)
     f.close()
-    if encoding:
-        f = codecs.open('.%s.quiz.html' % dofile_basename, 'w', encoding)
+    if globals.encoding:
+        f = codecs.open('.%s.quiz.html' % globals.dofile_basename, 'w', globals.encoding)
     else:
-        f = open('.%s.quiz.html' % dofile_basename, 'w')
+        f = open('.%s.quiz.html' % globals.dofile_basename, 'w')
     for quiz in html_quizzes:
         try:
             f.write(quiz + '\n\n')
@@ -4156,8 +3922,8 @@ def typeset_quizzes2(filestr, format):
             errwarn('*** error: quiz inside admon is not possible with rst/sphinx')
             errwarn('    edit these quizzes:')
             for q in questions:
-                if encoding:
-                    errwarn('Quiz: ' + q.encode(encoding))
+                if globals.encoding:
+                    errwarn('Quiz: ' + q.encode(globals.encoding))
                 else:
                     errwarn('Quiz: ' + q)
             _abort()
@@ -4177,12 +3943,12 @@ def inline_tag_subst(filestr, format):
         origstr = m.group(1)
 
         # Find curent date
-        if locale_dict['language'] == 'English':
+        if globals.locale_dict['language'] == 'English':
             w = time.asctime().split()
             date = w[1] + ' ' + w[2] + ', ' + w[4]
         else:
             import locale
-            locale_str = locale_dict[locale_dict['language']]['locale']
+            locale_str = globals.locale_dict[globals.locale_dict['language']]['locale']
             try:
                 locale.setlocale(locale.LC_TIME,
                                  locale_str)
@@ -4203,8 +3969,8 @@ def inline_tag_subst(filestr, format):
                         recovered = True
                 if not recovered:
                     errwarn('*** error: ' + str(e))
-                    errwarn('    locale=%s must be installed' % (locale_dict[locale_dict['language']]['locale']))
-                    errwarn('    sudo locale-gen %s; sudo update-locale' % (locale_dict[locale_dict['language']]['locale']))
+                    errwarn('    locale=%s must be installed' % (globals.locale_dict[globals.locale_dict['language']]['locale']))
+                    errwarn('    sudo locale-gen %s; sudo update-locale' % (globals.locale_dict[globals.locale_dict['language']]['locale']))
                     _abort()
             date = time.strftime('%A, %d. %b, %Y')
 
@@ -4377,10 +4143,10 @@ def file2file(in_filename, format, basename):
     This is the principal function in the module.
     """
     if in_filename.startswith('__'):
-        errwarn('translating preprocessed doconce text in ' + in_filename +
+        errwarn('Translating preprocessed doconce text in ' + in_filename +
                 ' to ' + format)
     else:
-        errwarn('translating doconce text in ' + in_filename + ' to ' + format)
+        errwarn('Translating doconce text in ' + in_filename + ' to ' + format)
 
     if format == 'html':
         html_output = option('html_output=', '')
@@ -4393,30 +4159,7 @@ def file2file(in_filename, format, basename):
         html.add_to_file_collection(basename + '.html',
                                     basename, mode='w')
 
-    # if trouble with encoding:
-    # Unix> doconce guess_encoding myfile.do.txt
-    # Unix> doconce change_encoding latin1 utf-8 myfile.do.txt
-    # or plain Unix:
-    # Unix> file myfile.do.txt
-    # myfile.do.txt: UTF-8 Unicode English text
-    # Unix> # convert to latin-1:
-    # Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
-    if encoding:  # global variable
-        errwarn('open file with encoding ' + encoding)
-        f = codecs.open(in_filename, 'r', encoding)
-    else:
-        f = open(in_filename, 'r')
-    try:
-        filestr = f.read()
-    except UnicodeDecodeError as e:
-        errwarn('Cannot read file: ' + in_filename + ' '+ str(e))
-        _abort()
-    f.close()
-
-    if not filestr:
-        errwarn('*** error: empty file ' + in_filename)
-        errwarn('    something went wrong with Preprocess/Mako')
-        _abort()
+    filestr = read_file(in_filename, _encoding = globals.encoding)
 
     if in_filename.endswith('.py') or in_filename.endswith('.py.do.txt'):
         filestr = doconce2format4docstrings(filestr, format)
@@ -4425,35 +4168,84 @@ def file2file(in_filename, format, basename):
         filestr, bg_session = doconce2format(filestr, format)
 
     out_filename = basename + FILENAME_EXTENSION[format]
+    write_file(filestr, out_filename, _encoding = globals.encoding)
+    return out_filename, bg_session
 
-    if encoding:
-        f = codecs.open(out_filename, 'w', encoding)
+def read_file(in_filename, _encoding = None):
+    """Read text from file
+
+    Read text from file using an optional encoding
+
+    Parameters
+    ----------
+
+    in_filename : str
+        filename to be read
+    _encoding : str, optional
+        encoding string. Usually the encoding variable in globals.py
+
+    Returns
+    ----------
+    str
+        The text read"""
+    # if trouble with encoding:
+    # Unix> doconce guess_encoding myfile.do.txt
+    # Unix> doconce change_encoding latin1 utf-8 myfile.do.txt
+    # or plain Unix:
+    # Unix> file myfile.do.txt
+    # myfile.do.txt: UTF-8 Unicode English text
+    # Unix> # convert to latin-1:
+    # Unix> iconv -f utf-8 -t LATIN1 myfile.do.txt --output newfile
+    if _encoding:
+        errwarn('open file with encoding ' + _encoding)
+        f = codecs.open(in_filename, 'r', _encoding)
+    else:
+        f = open(in_filename, 'r')
+    try:
+        text = f.read()
+    except UnicodeDecodeError as e:
+        errwarn('Cannot read file: ' + in_filename + ' '+ str(e))
+        _abort()
+    f.close()
+
+    if not text:
+        errwarn('*** error: empty file ' + in_filename)
+        errwarn('    something went wrong with Preprocess/Mako')
+        _abort()
+
+    return text
+
+def write_file(text, out_filename, _encoding = ''):
+    """Write string to file
+
+    Write string to file using an ooptional encoding
+
+    Parameters
+    ----------
+    text : str
+        Text string to be written
+    out_filename : str
+        Output filename
+    _encoding : str, optional
+        Encoding string. Usually the encoding variable in globals.py
+
+    Returns
+    ----------
+    None
+    """
+    if _encoding:
+        f = codecs.open(out_filename, 'w', _encoding)
     else:
         f = open(out_filename, 'w')
-
-
     try:
-        f.write(filestr)
+        f.write(text)
     except UnicodeEncodeError as e:
         # Provide error message and abortion, because the code
         # below that tries UTF-8 will result in strange characters
         # in the output. It is better that the user specifies
         # correct encoding and gets correct results.
-        encode_error_message(e, filestr)
-        # Try UTF-8 (not a good fallback as the output may be corrupt)
-        """
-        try:
-            f.close()
-            f = codecs.open(out_filename, 'w', encoding='utf-8')
-            f.write(filestr)
-        except UnicodeEncodeError, e:
-            # Cannot write ASCII or UTF-8 - giving up...
-            # (could have tested latin1 on older systems)
-            error_message()
-        """
-
+        encode_error_message(e, text)
     f.close()
-    return out_filename, bg_session
 
 
 def doconce2format4docstrings(filestr, format):
@@ -4544,7 +4336,7 @@ def doconce2format(filestr, format):
            LIST, ARGLIST,TABLE, EXERCISE, FIGURE_EXT, CROSS_REFS, INDEX_BIB, \
            TOC, ENVIRS, INTRO, OUTRO
 
-    for module in html, latex, pdflatex, rst, sphinx, st, epytext, plaintext, gwiki, mwiki, cwiki, pandoc, ipynb, matlabnb:
+    for module in [eval(module) for module in globals.supported_format_names]:
         #errwarn('calling define function in', module.__name__)
         module.define(
             FILENAME_EXTENSION,
@@ -4579,14 +4371,13 @@ def doconce2format(filestr, format):
     filestr = re.sub(r'(\r\n|\r|\n)', '\n', filestr)
 
     # Next step: set language
-    global locale_dict
-    locale_dict['language'] = option('language=', 'English')
-    if locale_dict['language'] not in locale_dict:
-        print('*** error: language "%s" not supported in locale_dict' % locale_dict['language'])
+    globals.locale_dict['language'] = option('language=', 'English')
+    if globals.locale_dict['language'] not in globals.locale_dict:
+        print('*** error: language "%s" not supported in locale_dict' % globals.locale_dict['language'])
         _abort()
     else:
-        if locale_dict['language'] != 'English':
-            errwarn('*** locale set to ' + locale_dict['language'])
+        if globals.locale_dict['language'] != 'English':
+            errwarn('*** locale set to ' + globals.locale_dict['language'])
 
     # Check that all eqrefs have labels in tex blocks (\label{})
     if option('labelcheck=', 'off') == 'on':
@@ -4965,7 +4756,7 @@ def doconce2format(filestr, format):
     # Enough to consider |bc, |ec, |bt, and |et since all other environments
     # are processed when code and tex blocks are removed from the document.
     if '|b' in filestr or '|e' in filestr:
-        for envir in doconce_envirs():
+        for envir in globals.doconce_envirs:
             filestr = filestr.replace('|b' + envir, '!b' + envir)
             filestr = filestr.replace('|e' + envir, '!e' + envir)
 
@@ -5006,7 +4797,7 @@ def doconce2format(filestr, format):
     # Next step: do some language specific substitutions in headings
     # (assume correct native language in running text)
     for word in ['Figure', 'Movie', 'Exercise', 'Project', 'Problem']:
-        filestr = filestr.replace(word, locale_dict[locale_dict['language']][word])
+        filestr = filestr.replace(word, globals.locale_dict[globals.locale_dict['language']][word])
 
     # Next step: remove exercise solution/answers, notes, etc
     # (Note: must be done after code and tex blocks are inserted!
@@ -5399,10 +5190,10 @@ On Debian (incl. Ubuntu) systems, you can alternatively do
         lookup = TemplateLookup(directories=[os.curdir])
         #temp = Template(filename=resultfile2, lookup=lookup,
         #                strict_undefined=strict_undefined)
-        if encoding:
+        if globals.encoding:
             try:
                 if sys.version_info[0] == 2:
-                    filestr = unicode(filestr, encoding)
+                    filestr = unicode(filestr, globals.encoding)
             except UnicodeDecodeError as e:
                 if "unicode codec can't decode" in str(e):
                     errwarn(e)
@@ -5483,8 +5274,8 @@ On Debian (incl. Ubuntu) systems, you can alternatively do
             # Just dump everything mako has
             filestr = temp.render(**mako_kwargs)
 
-        if encoding:
-            f = codecs.open(resultfile2, 'w', encoding)
+        if globals.encoding:
+            f = codecs.open(resultfile2, 'w', globals.encoding)
         else:
             f = open(resultfile2, 'w')
         f.write(filestr)
@@ -5499,77 +5290,32 @@ On Debian (incl. Ubuntu) systems, you can alternatively do
 
     return resultfile
 
-def format_driver():
-    # doconce format accepts special command-line arguments:
-    #   - debug (for debugging in file _doconce_debugging.log) or
-    #   - skip_inline_comments
-    #   - oneline (for removal of newlines/linebreaks within paragraphs)
-    #   - encoding utf-8 (e.g.)
-    #   - preprocessor options (-DVAR etc. for preprocess)
-
-    # oneline is inactive (doesn't work well yet)
-
-    global _log, encoding, filename, dofile_basename
-
-    if '--help' in sys.argv:
-        from .misc import help_format
-        help_format()
-        sys.exit(1)
-
-    from .misc import check_command_line_options
-    check_command_line_options(4)
-
-    try:
-        format = sys.argv[1]
-        filename = sys.argv[2]
-        del sys.argv[1:3]
-        from . import common
-        common.format = format
-    except IndexError:
-        from .misc import get_legal_command_line_options
-        options = ' '.join(get_legal_command_line_options())
-        print('Usage: %s format filename [preprocessor options] [%s]\n' \
-                % (sys.argv[0], options))
-        print('Run "doconce format --help" to see explanation of all options')
-        if len(sys.argv) == 1:
-            print('Missing format specification!')
-        print('formats:', ', '.join(supported_format_names()))
-        print('\n-DFORMAT=format is always defined when running preprocess')
-        print('Other -Dvar or -Dvar=value options can be added')
-        sys.exit(1)
-
-    # Treat some synonyms of format
-    if format == 'markdown':
-        format = 'pandoc'
-
-    names = supported_format_names()
-    if format not in names:
-        print('%s is not among the supported formats:\n%s' % (format, names))
-        _abort()
-
-    encoding = option('encoding=', default='')
-
-    if option('debug'):
-        _log_filename = '_doconce_debugging.log'
-        _log = open(_log_filename,'w')
-        _log.write("""
-    This is a log file for the doconce script.
-    Debugging is turned on by the command-line argument '--debug'
-    to doconce format. Without that command-line argument,
-    this file is not produced.
-
-    """)
-        print('*** debug output in ' + _log_filename)
 
 
-    debugpr('\n\n******* output format: %s *******\n\n' % format)
+def parse_doconce_filename(filename):
+    """Parse the DocOnce filename. Abort if the file is not found
 
+    Parameters
+    ----------
+    filename : str
+        Filename. The DocOnce extensions '.do.txt' can be omitted
+
+    Returns
+    ----------
+    dirname : str
+        The output directory
+    basename : str
+        The output file's basename
+    ext : str
+        The output file's format
+    filename :str
+        The output file's filename"""
     dirname, basename = os.path.split(filename)
     if dirname:
         os.chdir(dirname)
         filename = basename
         # errwarn('*** doconce format now works in directory %s' % dirname)
-        # cannot call errwarn before dofile_basename is initialized
+        # cannot call errwarn before globals.dofile_basename is initialized
         # print instead
         print('*** doconce format now works in directory %s' % dirname)
 
@@ -5604,15 +5350,81 @@ def format_driver():
             print('    must be %s' % ' or '.join(legal_extensions))
             _abort()
 
-    dofile_basename = basename  # global variable
+    return dirname, basename, ext, filename
+
+
+def format_driver():
+    # doconce format accepts special command-line arguments:
+    #   - debug (for debugging in file _doconce_debugging.log) or
+    #   - skip_inline_comments
+    #   - oneline (for removal of newlines/linebreaks within paragraphs)
+    #   - encoding utf-8 (e.g.)
+    #   - preprocessor options (-DVAR etc. for preprocess)
+
+    # oneline is inactive (doesn't work well yet)
+
+    global filename #TODO: moving this global to globals.py and carry out extensive testing
+
+    if option('help') or '-h' in sys.argv:
+        from .misc import help_format
+        help_format()
+        sys.exit(1)
+
+    from .misc import check_command_line_options
+    check_command_line_options(4)
+
+    try:
+        format = sys.argv[1]
+        filename = sys.argv[2]
+        del sys.argv[1:3]
+        from . import common
+        common.format = format
+    except IndexError:
+        options = ' '.join([opt for opt, help in globals._registered_command_line_options])
+        print('Usage: %s format filename [preprocessor options] [%s]\n' \
+                % (sys.argv[0], options))
+        print('Run "doconce format --help" to see explanation of all options')
+        if len(sys.argv) == 1:
+            print('Missing format specification!')
+        print('formats:', ', '.join(globals.supported_format_names))
+        print('\n-DFORMAT=format is always defined when running preprocess')
+        print('Other -Dvar or -Dvar=value options can be added')
+        sys.exit(1)
+
+    # Treat some synonyms of format
+    if format == 'markdown':
+        format = 'pandoc'
+
+    if format not in globals.supported_format_names:
+        print('%s is not among the supported formats:\n%s' % (format, globals.supported_format_names))
+        _abort()
+
+    globals.encoding = option('encoding=', default='')
+
+    if option('debug'):
+        globals._log_filename = '_doconce_debugging.log'
+        globals._log = open(globals._log_filename,'w')
+        globals._log.write("""
+    This is a log file for the doconce script.
+    Debugging is turned on by the command-line argument '--debug'
+    to doconce format. Without that command-line argument,
+    this file is not produced.
+
+    """)
+        print('*** debug output in ' + globals._log_filename)
+
+
+    debugpr('\n\n******* output format: %s *******\n\n' % format)
+
+    dirname, basename, ext, filename = parse_doconce_filename(filename)
+    globals.dofile_basename = basename
 
     _rmdolog()     # always start with clean log file with errors
 
     #errwarn('\n----- doconce format %s %s' % (format, filename))
     preprocessor_options = [arg for arg in sys.argv[1:]
                             if not arg.startswith('--')]
-    filename_preprocessed = preprocess(filename, format,
-                                       preprocessor_options)
+    filename_preprocessed = preprocess(filename, format, preprocessor_options)
     out_filename, bg_session = file2file(filename_preprocessed, format, basename)
 
     if filename_preprocessed.startswith('__') and not option('debug'):
