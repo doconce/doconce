@@ -9,6 +9,7 @@ from .pandoc import pandoc_ref_and_label, pandoc_index_bib, pandoc_quote, \
      language2pandoc, pandoc_quiz
 from .misc import option, _abort
 from .doconce import errwarn
+from doconce import globals
 
 # Global variables
 figure_encountered = False
@@ -264,8 +265,8 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     filestr = re.sub('^<!-- !bnotes.*?<!-- !enotes -->\n', '', filestr,
                      flags=re.DOTALL|re.MULTILINE)
     filestr = re.sub('^<!-- !split -->\n', '', filestr, flags=re.MULTILINE)
-    from .doconce import doconce_envirs
-    envirs = doconce_envirs()[8:-2]
+
+    envirs = globals.doconce_envirs[8:-2]
     for envir in envirs:
         pattern = r'^!b%s(.*?)\n(.+?)\s*^!e%s' % (envir, envir)
         if envir_format in ('quote', 'paragraph', 'hrule'):
@@ -335,8 +336,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     # Insert %matplotlib inline in the first block using matplotlib
     # Only typeset Python code as blocks, otherwise !bc environmens
     # become plain indented Markdown.
-    from .doconce import dofile_basename
-    ipynb_tarfile = 'ipynb-%s-src.tar.gz' % dofile_basename
+    ipynb_tarfile = 'ipynb-%s-src.tar.gz' % globals.dofile_basename
     src_paths = set()
     mpl_inline = False
 
@@ -513,7 +513,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
         else:
             notebook_blocks[i] = ['text', notebook_blocks[i]]
 
-    # Go through tex_blocks and wrap in $$
+    # Go through tex_blocks and wrap math blocks in $$
     # (doconce.py runs align2equations so there are no align/align*
     # environments in tex blocks)
     label2tag = {}
@@ -692,7 +692,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     """
     # Dump the notebook cells in a simple ASCII format
     # (doc/src/ipynb/ipynb_generator.py can translate it back to .ipynb file)
-    f = open(dofile_basename + '.md-ipynb', 'w')
+    f = open(globals.dofile_basename + '.md-ipynb', 'w')
     for cell_tp, block in mdstr:
         if cell_tp == 'markdown':
             f.write('\n-----\n\n')
