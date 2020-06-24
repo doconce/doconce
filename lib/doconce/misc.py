@@ -1037,8 +1037,8 @@ def _dofix_localURLs(filename, exclude_adr):
     link1 = r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>([^"]+?\.html?|[^"]+?\.txt|[^"]+?\.pdf|[^"]+?\.f|[^"]+?\.c|[^"]+?\.cpp|[^"]+?\.cxx|[^"]+?\.py|[^"]+?\.java|[^"]+?\.pl))"'''
     link2 = r'("URL"|"url"|URL|url) ?:\s*"(?P<url>.+?)"'
     groups1 = [(link, url) for link, url, url in re.findall(link1, text)]
-    print groups1
-    print groups2
+    print(groups1)
+    print(groups2)
     """
     link_pattern = r'<([A-Za-z0-9/._-]+?)>`_'
     links = re.findall(link_pattern, text)
@@ -6349,10 +6349,10 @@ def _spellcheck(filename, language='English', spellchecker='ispell', dictionarie
     _grep_common_typos(text, filename, common_typos)
 
     text = _strip_environments(text, environments, verbose)
-    #print 'Text after environment strip:\n', text
+    #print('Text after environment strip:\n', text)
 
     text = _do_regex_replacements(text, replacements, verbose)
-    #print 'Text after regex replacements:\n', text
+    #print('Text after regex replacements:\n', text)
 
     text = _do_fixes_4MSWord(text)
 
@@ -7684,7 +7684,7 @@ def _latex2doconce(filestr):
     for problem in problems:
         p = re.findall(problem, filestr)
         if len(p) > 0:
-            print 'PROBLEM:', problem, '\n', p
+            print('PROBLEM:', problem, '\n', p)
     """
 
     math_envirs = 'equation', 'eqnarray', 'eqnarray*', 'align', r'align\*', r'equation\*'
@@ -8044,7 +8044,7 @@ def _latex2doconce(filestr):
     '''
     for ref in refs:
         if ref not in labels:
-            print 'found reference but no label{%s}' % ref
+            print('found reference but no label{%s}' % ref)
             problems = True
             # Attempt to do a generalized reference
             # (Make table of chapters, stand-alone docs and their labels - quite easy if associated chapters and their URLs are in a file!!!)
@@ -8701,29 +8701,29 @@ unix_command_recorder = []
 
 def os_system(cmd):
     """Run system command cmd using the simple os.system command."""
-    print cmd
+    print(cmd)
     failure = os.system(cmd)
     if failure:
-        print """Command
+        print("""Command
   %s
-failed""" % cmd
+failed""" % cmd)
         sys.exit(1)
     unix_command_recorder.append(cmd)  # record command for bash script
 
 def system(cmd):
     """Run system command cmd using subprocess module."""
-    print cmd
+    print(cmd)
     try:
         output = subprocess.check_output(cmd, shell=True,
                                          stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
-        print """Command
+        print("""Command
   %s
-failed""" % cmd
-        print 'Return code:', e.returncode
-        print e.output
+failed""" % cmd)
+        print('Return code:', e.returncode)
+        print(e.output)
         sys.exit(1)
-    print output
+    print(output)
     f = open(logfile, 'a'); f.write(output); f.close()
     unix_command_recorder.append(cmd)  # record command for bash script
     return output
@@ -9119,7 +9119,7 @@ def main():
     make.write(r"""
     # Dump all Unix commands run above as a Bash script
     bash = open('tmp_make.sh', 'w')
-    print 'see tmp_make.sh for an equivalent auto-generated unix script'
+    print('see tmp_make.sh for an equivalent auto-generated unix script')
     bash.write('''\
 #!/bin/bash
 set -x  # display all commands in output
@@ -9140,7 +9140,7 @@ function system {
         bash.write('system ' + cmd + '\\n')
     bash.close()
 
-    print 'see tmp_output.log for the output of all the commands'
+    print('see tmp_output.log for the output of all the commands')
 """)
     make.write(r"""
 

@@ -184,7 +184,7 @@ def ipynb_movie(m):
         if youtube and 'YouTube' in display_method:
             text += YouTubeVideo(filename)
             if caption:
-                text += '\nprint "%s"' % caption
+                text += '\nprint("%s")' % caption
         else:
             # Use HTML formatting
             if not html_encountered:
@@ -200,7 +200,7 @@ def ipynb_movie(m):
         if youtube:
             text += YouTubeVideo(filename)
             if caption:
-                text += '\nprint "%s"' % caption
+                text += '\nprint("%s")' % caption
         else:
             # see http://nbviewer.ipython.org/github/ipython/ipython/blob/1.x/examples/notebooks/Part%205%20-%20Rich%20Display%20System.ipynb
             # http://stackoverflow.com/questions/18019477/how-can-i-play-a-local-video-in-my-ipython-notebook
@@ -230,7 +230,7 @@ video_tag = '<video controls loop alt="%s" height="%s" width="%s" src="data:vide
                 html_encountered = True
             text += 'HTML(data=video_tag)\n'
             if caption:
-                text += '\nprint "%s"' % caption
+                text += '\nprint("%s")' % caption
         text += '!ec\n'
     else:
         errwarn('*** error: --ipynb_movie=%s is not supported' % display_method)
