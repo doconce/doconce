@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
-
+#export PS4='+ l.${LINENO}: ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 # NOTE: There are many doconce errors arising when compiling this manual
 # because it describes doconce syntax in the text, and this syntax is
 # not in the right context for all the syntax checks in doconce.
@@ -56,6 +56,9 @@ system doconce split_tmp.html manual.html
 system doconce format sphinx manual.do.txt --no_mako --cite_doconce --no_abort
 # We have several examples on AUTHOR: so to avoid multiple
 # authors we have to specify
+# Problem reproducible after: `git clean -fd && rm -rf sphinx-testdoc`
+#Hack: because doconce sphinx_dir ony works the second time (after an error), trigger that error by creating a bogus conf.py in ./
+touch conf.py 
 system doconce sphinx_dir theme=bootstrap version=1.0 intersphinx manual.do.txt
 cp manual.rst manual.sphinx.rst
 python automake_sphinx.py
