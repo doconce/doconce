@@ -5205,7 +5205,7 @@ On Debian (incl. Ubuntu) systems, you can alternatively do
                             strict_undefined=strict_undefined)
         except Exception as e:
             errwarn('*** mako error: ' + str(type(e)).split("'")[1])
-            errwarn('   ' + str(e))
+            errwarn('    ' + str(e))
             if isinstance(e, mako.exceptions.SyntaxException):
                 import platform
                 errwarn('This could indicate that the mako template code is not compatible with the version of Python currently used by DocOnce and mako, which is Python %s' % platform.python_version())

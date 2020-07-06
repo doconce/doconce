@@ -1102,7 +1102,7 @@ DocOnce starts translating the document. Such comments are very valuable
 as they will never interfere with the output format and they are only
 present in the DocOnce source. Mako has two types of comments:
 lines starting with a double hash `##` and multiple lines enclosed by
-the `<%doc>` (beginning) and `<%doc/>` (closing) tags.
+the `<%doc>` (beginning) and `</%doc>` (closing) tags.
 
 If you need a lot of comments in the DocOnce file, consider using
 Mako comments instead of the single hash, unless you want the
@@ -5489,7 +5489,7 @@ is
 a
 block
 comment in Mako.
-<%doc/>
+</%doc>
 !ec
 
 ===== Debugging Python code in Mako =====
