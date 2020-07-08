@@ -17,7 +17,7 @@ FIGURE: [fig/CN_logo, width=300 frac=0.3]
 ===== Goal =====
 
 The primary goal of this demo talk is to demonstrate how to write
-talks with "DocOnce": "https://github.com/hplgit/doconce"
+talks with "DocOnce": "https://github.com/doconce/doconce"
 and get them rendered in numerous HTML formats.
 # #if FORMAT in ("html", "pdflatex", "latex")
 !bnotice Layout
@@ -49,7 +49,7 @@ pressing "p".
 % elif SLIDE_TYPE == 'dzslides':
 clicking on the arrow head before Details below.
 % elif SLIDE_TYPE == 'csss':
-using the "onstage.html": "https://raw.github.com/hplgit/doconce/master/bundled/dzslides/shells/onstage.html" embedding page.
+using the "onstage.html": "https://raw.github.com/doconce/doconce/master/bundled/dzslides/shells/onstage.html" embedding page.
 % endif
 % endif
 !enotice

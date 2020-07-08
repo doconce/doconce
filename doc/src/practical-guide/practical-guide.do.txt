@@ -26,7 +26,7 @@ The easiest way to install DocOnce is to clone the repo from GitHub and perform 
 
 === Initial installation ===
 !bc
-git clone https://github.com/hplgit/doconce
+git clone https://github.com/doconce/doconce
 cd doconce
 sudo pip install --upgrade .
 !ec

@@ -1,5 +1,6 @@
 #!/bin/sh -x
 set -x
+#export PS4='+ l.${LINENO}: ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 sh -x ./clean.sh
 
 function system {
@@ -28,6 +29,9 @@ dvipdf tutorial.dvi
 # Sphinx
 system doconce format sphinx tutorial --no_mako --no_abort
 doconce replace XXX1 '(ref{myeq1})' tutorial.rst
+# Problem reproducible after: `git clean -fd && rm -rf sphinx-testdoc`
+#Hack: because doconce sphinx_dir ony works the second time (after an error), trigger that error by creating a bogus conf.py in ./
+touch conf.py 
 system doconce sphinx_dir theme=cbc tutorial
 cp tutorial.rst tutorial.sphinx.rst
 mv tutorial.rst sphinx-rootdir
@@ -43,6 +47,7 @@ cd ../../..
 #firefox sphinx-rootdir/_build/html/index.html
 
 # reStructuredText:
+#ALE here it fails
 system doconce format rst tutorial  --no_mako --no_abort
 doconce replace XXX1 '(ref{myeq1})' tutorial.rst
 rst2xml.py tutorial.rst > tutorial.xml
@@ -80,4 +85,5 @@ dest=../../../../doconce.wiki
 #cp tutorial.rst $dest/tutorial_rst.rst
 # mediawiki at github is too bad - very ugly result
 #cp demo/tutorial.mwiki $dest/tutorial_mediawiki.mediawiki
-cp tutorial.md $dest/
+
+#cp tutorial.md $dest/

@@ -90,7 +90,7 @@ idx{cite}
 idx{acknowledge the DocOnce software}
 
 See the ``How to cite'' section
-on the "project page": "https://github.com/hplgit/doconce".
+on the "project page": "https://github.com/doconce/doconce".
 
 ===== Translation aborts when labels are not defined =====
 
@@ -103,7 +103,7 @@ in other documents (these references will of course not work).
 
 References to labels in other documents should anyway appear inside
 *generalized references*, see the "Generalied Cross-Referencing":
-"http://hplgit.github.io/doconce/doc/pub/manual/html/manual.html#generalized-xross-referencing"
+"http://doconce.github.io/doconce/doc/pub/manual/html/manual.html#generalized-xross-referencing"
 section in the manual.
 
 
@@ -145,7 +145,7 @@ Terminal> doconce format html tmp1 --html_style=bootstrap \
           "--html_bootstrap_navbar_links=\
           Google|http://google.com;\
           DocOnce formats|\
-          http://hplgit.github.io/teamods/writing_reports/index.html"
+          http://doconce.github.io/teamods/writing_reports/index.html"
 !ec
 This command is broken over several lines but should be written on one
 line. The syntax for custom links is `link|url;link|url;link|url`.
@@ -157,10 +157,10 @@ menu.
 === Vagrant HTML template ===
 
 DocOnce comes with the "Vagrant HTML template":
-"https://github.com/hplgit/doconce/tree/master/bundled/html_styles/style_vagrant",
+"https://github.com/doconce/doconce/tree/master/bundled/html_styles/style_vagrant",
 which allows for custom links in the header (here is an "example on a
 document":
-"http://hplgit.github.io/teamods/writing_reports/_static/report_vagrant.html"). Copy
+"http://doconce.github.io/teamods/writing_reports/_static/report_vagrant.html"). Copy
 the `template_vagrant.html` file and the `css` directory to the
 directory containing the DocOnce document. Edit the `LogoWord` and
 `withSubWord` in the `template_vagrant.html` and insert your own links
@@ -192,7 +192,7 @@ elif html_theme == 'bootstrap':
         'navbar_links': [
 	   ('Google', 'http://google.com', True),
            ('DocOnce formats',
-            'http://hplgit.github.io/teamods/writing_reports/index.html',
+            'http://doconce.github.io/teamods/writing_reports/index.html',
 	    True),
 	   ],
 !ec
@@ -214,7 +214,7 @@ doconce sphinx_dir theme=alabaster toc_depth=2 mydoc
 doconce subst "#'navbar_links':.+" "'navbar_links': [
 	   ('Google', 'http://google.com', True),
            ('DocOnce formats',
-            'http://hplgit.github.io/teamods/writing_reports/index.html',
+            'http://doconce.github.io/teamods/writing_reports/index.html',
 	    True),
 	   ]," mydoc.rst
 python automake_sphinx.py
@@ -356,7 +356,7 @@ LaTeX writers often lack their favorite environments, but DocOnce has
 a way to define such environments, with corresponding typesetting also
 for HTML and all other output formats. See the section "User-Defined
 Environments":
-"http://hplgit.github.io/doconce/doc/pub/manual/html/manual.html#user-defined-environments"
+"http://doconce.github.io/doconce/doc/pub/manual/html/manual.html#user-defined-environments"
 in the DocOnce manual. It contains all the details for using a
 standard example or theorem environment in LaTeX output.
 
@@ -365,9 +365,9 @@ standard example or theorem environment in LaTeX output.
 It is easy with *user-defined environments*, see
 such an example at the end of the document
 "Demonstration of DocOnce support for LaTeX code block environments":
-"http://hplgit.github.io/doconce/doc/pub/latexcode/demo.html".
+"http://doconce.github.io/doconce/doc/pub/latexcode/demo.html".
 Description of user-defined environments are found in
-the "DocOnce manual": "http://hplgit.github.io/doconce/doc/pub/manual/html/manual.html#user-defined-environments".
+the "DocOnce manual": "http://doconce.github.io/doconce/doc/pub/manual/html/manual.html#user-defined-environments".
 
 ===== How can links open in new tabs/windows =====
 
@@ -434,7 +434,7 @@ label{trouble:copyright}
 
 idx{copyright}
 
-See the "Copyright section of the DocOnce manual": "http://hplgit.github.io/doconce/doc/pub/manual/html/manual.html#copyright".
+See the "Copyright section of the DocOnce manual": "http://doconce.github.io/doconce/doc/pub/manual/html/manual.html#copyright".
 
 === Other formats ===
 
@@ -877,7 +877,7 @@ label{trouble:epub}
 idx{epub format}
 
 DocOnce has no direct translation to ePub, but one can apply a script
-"`ebookmaker.py`": "https://github.com/hplgit/ebookmaker" to translate
+"`ebookmaker.py`": "https://github.com/doconce/ebookmaker" to translate
 a set of split HTML files to ePub. Bootstrap styles with mathematics
 and code come out very nice in ePub this way.
 The script needs a JSON file. If `mydoc.do.txt` is the DocOnce file
@@ -964,11 +964,11 @@ Some other points of importance:
 There is an example of a document in Norwegian in the DocOnce repository
 where we do all necessary adjustments mentioned above:
 
- * "DocOnce source": "https://github.com/hplgit/doconce/blob/master/doc/src/locale/Norwegian.do.txt"
- * "Bash script for compiling the DocOnce source": "https://github.com/hplgit/doconce/blob/master/doc/src/locale/make.sh"
- * "PDF": "http://hplgit.github.io/doconce/doc/pub/locale/Norwegian.pdf"
- * "HTML": "http://hplgit.github.io/doconce/doc/pub/locale/Norwegian.html"
- * "Sphinx": "http://hplgit.github.io/doconce/doc/pub/locale/sphinx/index.html"
+ * "DocOnce source": "https://github.com/doconce/doconce/blob/master/doc/src/locale/Norwegian.do.txt"
+ * "Bash script for compiling the DocOnce source": "https://github.com/doconce/doconce/blob/master/doc/src/locale/make.sh"
+ * "PDF": "http://doconce.github.io/doconce/doc/pub/locale/Norwegian.pdf"
+ * "HTML": "http://doconce.github.io/doconce/doc/pub/locale/Norwegian.html"
+ * "Sphinx": "http://doconce.github.io/doconce/doc/pub/locale/sphinx/index.html"
 
 ===== Lists look wrong =====
 
@@ -1046,9 +1046,9 @@ in this file will refer to `.aux`
 files in other directories (which the publisher then must have).
 A good fix to this problem is provided by the sample packing
 script "`pack_Springer.sh`":
-"https://github.com/hplgit/setup4book-doconce/blob/master/doc/src/book/pack_Springer.sh",
+"https://github.com/doconce/setup4book-doconce/blob/master/doc/src/book/pack_Springer.sh",
 which calls up another script "`grab_stylefiles.py`":
-"https://github.com/hplgit/setup4book-doconce/blob/master/doc/src/book/grab_stylefiles.py",
+"https://github.com/doconce/setup4book-doconce/blob/master/doc/src/book/grab_stylefiles.py",
 which automatically copies the `.aux` files in question to a subdirectory and
 autoedits the main `.tex` for the DocOnce document accordingly. The
 purpose of `pack_Springer.sh` is to make a directory tree with all
@@ -1689,12 +1689,12 @@ idx{minipage environment}
 
 A (much) better approach is to define a *user-defined environment*,
 called (e.g.) minipage, see the "manual":
-"http://hplgit.github.io/doconce/doc/pub/manual/manual.html#manual:userdef:envir".
+"http://doconce.github.io/doconce/doc/pub/manual/manual.html#manual:userdef:envir".
 This environment has begin tag `!bu-minipage` and end tag
 `!eu-minipage`. The environment is defined in a file
 `userdef_environments.py` in the same directory as the DocOnce source
 file.  An example is given in this "`userdef_environments.py`":
-"https://github.com/hplgit/doconce/blob/master/doc/src/userdef_envirs/minipage/userdef_environments.py"
+"https://github.com/doconce/doconce/blob/master/doc/src/userdef_envirs/minipage/userdef_environments.py"
 file.
 
 

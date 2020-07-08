@@ -15,7 +15,7 @@ in the background while generating the notebook.
 Ascii input is particularly useful if you have LaTeX code
 that you want to make use of in notebooks. Then you must
 translate the LaTeX code to the syntax described here and
-run the "compiler": "https://github.com/hplgit/doconce/blob/master/doc/src/ipynb/ipynb_generator.py" to be described.
+run the "compiler": "https://github.com/doconce/doconce/blob/master/doc/src/ipynb/ipynb_generator.py" to be described.
 
 ======= Sample problem =======
 
@@ -172,7 +172,7 @@ finally `% endif`.
 
 ======= The compiled file =======
 
-We compile "our example file": "https://github.com/hplgit/doconce/blob/master/doc/src/ipynb/.test1.aipynb" by the following command:
+We compile "our example file": "https://github.com/doconce/doconce/blob/master/doc/src/ipynb/.test1.aipynb" by the following command:
 
 !bc sys
 Terminal> python ipynb_generator.py .test1.aipynb NAME="Core Dump" \
@@ -189,7 +189,7 @@ is a notebook file `.test1.ipynb`. The file looks like this:
 @@@CODE .test1.ipynb
 
 The notebook file resides in GitHub and can be automatically
-"rendered there": "https://github.com/hplgit/doconce/blob/master/doc/src/ipynb/.test1.ipynb".
+"rendered there": "https://github.com/doconce/doconce/blob/master/doc/src/ipynb/.test1.ipynb".
 
 ======= The generator code =======
 
@@ -231,7 +231,7 @@ A driver or main program is needed:
 
 @@@CODE ipynb_generator_v4.py fromto: def driver@def test_
 
-The "true generator file": "https://github.com/hplgit/doconce/blob/master/doc/src/ipynb/ipynb_generator.py" has support for notebook format version 3 and 4
+The "true generator file": "https://github.com/doconce/doconce/blob/master/doc/src/ipynb/ipynb_generator.py" has support for notebook format version 3 and 4
 and contains also a lot of `logging` statements to aid
 debugging.
 

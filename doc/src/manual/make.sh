@@ -99,13 +99,22 @@ doconce subst '([^`])Texas A & M([^`])' '\g<2>Texas A {\&} M\g<2>' manual.tex
 # Must fix one \eqref{} to (ref{})
 doconce replace '\eqref{my:special:eq}' '(ref{my:special:eq})' manual.tex
 doconce replace '\eqref{eq1}' '(ref{eq1})' manual.tex
-latex -shell-escape manual
-latex -shell-escape manual
-bibtex manual
+# Using latex results in errors due to the size of figures,
+# so use pdfltex
+#latex -shell-escape manual
+#latex -shell-escape manual
+#bibtex manual
+#makeindex manual
+#latex -shell-escape manual
+#latex -shell-escape manual
+#dvipdf manual.dvi
+pdflatex -shell-escape manual
+pdflatex -shell-escape manual
 makeindex manual
-latex -shell-escape manual
-latex -shell-escape manual
-dvipdf manual.dvi
+bibtex manual
+pdflatex -shell-escape manual
+pdflatex -shell-escape manual
+pdflatex -shell-escape manual
 cp manual.pdf manual_latex.pdf
 
 # doconce pdflatex:
@@ -128,7 +137,7 @@ pdflatex -shell-escape manual
 # Google Code wiki:
 system doconce format gwiki manual.do.txt --cite_doconce --no_mako --no_abort
 # fix figure in wiki: (can also by done by doconce gwiki_figsubst)
-doconce subst "\(the URL of the image file fig/wave1D.png must be inserted here\)" "(https://raw.github.com/hplgit/doconce/master/doc/src/manual/fig/wave1D.png" manual.gwiki
+doconce subst "\(the URL of the image file fig/wave1D.png must be inserted here\)" "(https://raw.github.com/doconce/doconce/master/doc/src/manual/fig/wave1D.png" manual.gwiki
 
 system doconce format cwiki manual.do.txt --cite_doconce --no_mako --no_abort
 system doconce format mwiki manual.do.txt --cite_doconce --no_mako --no_abort

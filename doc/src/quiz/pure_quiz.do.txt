@@ -4,7 +4,7 @@ DATE: today
 
 This quiz collection is automatically extracted from the documentation
 of the "quiz specification format":
-"http://hplgit.github.io/doconce/doc/pub/quiz/quiz.html". All syntax
+"http://doconce.github.io/doconce/doc/pub/quiz/quiz.html". All syntax
 is explained in that document.
 
 

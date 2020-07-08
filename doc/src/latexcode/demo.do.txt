@@ -506,7 +506,7 @@ This is fairly easy: we define a *user-defined environment* in
 DocOnce, here called `code` and provide a Python module that translates
 this environment into proper format-specific code.
 Details are provided in the DocOnce manual, see the section
-"User-Defined Environments": "http://hplgit.github.io/doconce/doc/pub/manual/html/manual.html#user-defined-environments". In the present case,
+"User-Defined Environments": "http://doconce.github.io/doconce/doc/pub/manual/html/manual.html#user-defined-environments". In the present case,
 the syntax in a DocOnce file is to wrap every `@@@CODE` line or
 `!bc` environment in a `!bu-code` and `!eu-code` environment. The
 code in the figure above is produced by

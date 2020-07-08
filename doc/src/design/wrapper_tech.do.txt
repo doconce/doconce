@@ -43,7 +43,7 @@ with layouts.
 
 ===== Step 1: Use DocOnce to generate text =====
 
-We shall in this document use "DocOnce": "https://github.com/hplgit/doconce"
+We shall in this document use "DocOnce": "https://github.com/doconce/doconce"
 for writing the core text. DocOnce looks like plain text, with just a
 few tags for enabling full LaTeX mathematics and nicely typeset
 computer code. From DocOnce you can go to plain LaTeX, pdfLaTeX,
@@ -99,7 +99,7 @@ Midpoint) schemes first. Then generalize to the $\theta$-rule above.
 
 The numerical method is implemented in a Python function
 `solver` (found in the "`decay_mod`":
-"https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py" module):
+"https://github.com/doconce/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py" module):
 
 |bc pycod
 from numpy import linspace, zeros
@@ -244,7 +244,7 @@ application we customize the template:
    replaced by something appropriate, here `Exercise` and
    `Differential Equations`.
 
-DocOnce features a "GitHub minimal template": "https://github.com/hplgit/doconce/blob/master/bundled/html_styles/style_github_minimal/template_github_minimal.html" that you can adapt to your own purposes.
+DocOnce features a "GitHub minimal template": "https://github.com/doconce/doconce/blob/master/bundled/html_styles/style_github_minimal/template_github_minimal.html" that you can adapt to your own purposes.
 
 
 ===== Step 5: Embed your HTML document in the template =====
@@ -341,7 +341,7 @@ templates for web documents anywhere else.
 ======= Using the Vagrant template =======
 
 Besides the GitHub "minimal" theme, DocOnce comes with a template
-"`template_vagrant.html`": "https://github.com/hplgit/doconce/blob/master/bundled/html_styles/style_vagrant/template_vagrant.html"
+"`template_vagrant.html`": "https://github.com/doconce/doconce/blob/master/bundled/html_styles/style_vagrant/template_vagrant.html"
 adopted from
 the style in the original documentation of the "Vagrant":
 "http://docs.vagrantup.com/v1/docs/getting-started/index.html" virtual machine
@@ -396,4 +396,4 @@ text in the template.
 However, embedding DocOnce documents in fancy web pages is just *one*
 technique to achive nice web designs. DocOnce features Bootstrap and
 Sphinx HTML styles, which offer a lot of different designs, see our
-"Bootstrap demo": "http://hplgit.github.io/doconce/doc/pub/bootstrap/index.html" and our extensive "report demo": "http://hplgit.github.com/teamods/writing_reports/index.html".
+"Bootstrap demo": "http://doconce.github.io/doconce/doc/pub/bootstrap/index.html" and our extensive "report demo": "http://doconce.github.com/teamods/writing_reports/index.html".

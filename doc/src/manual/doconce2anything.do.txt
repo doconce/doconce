@@ -295,7 +295,7 @@ future revisions.
 idx{demos}
 
 A simple scientific report is available in "a lot of different formats":
-"http://hplgit.github.com/teamods/writing_reports/index_with_doconce_commands.html".
+"http://doconce.github.com/teamods/writing_reports/index_with_doconce_commands.html".
 How to create the different formats is explained in more depth
 in the coming sections.
 
@@ -417,7 +417,7 @@ specified as `--html_style=name`, where `name` can be
  * `bootstrap*` or `bootswatch*` in a lot of variants, see
    `doconce format --help` for a list of all styles.
 
-There is a "comprehensive demonstration": "http://hplgit.github.io/teamods/writing_reports/index.html" of almost all available styles!
+There is a "comprehensive demonstration": "http://doconce.github.io/teamods/writing_reports/index.html" of almost all available styles!
 
 Using `--css=filename` where `filename` is a non-existing file makes
 DocOnce write the built-in style to that file. Otherwise the HTML
@@ -437,11 +437,11 @@ the translated HTML text into the template to form the complete HTML
 document.
 
 DocOnce comes with a few ready-made HTML templates. The usage of templates is
-described in a "separate document": "http://hplgit.github.io/doconce/doc/pub/design/". That document describes how you your DocOnce-generated
+described in a "separate document": "http://doconce.github.io/doconce/doc/pub/design/". That document describes how you your DocOnce-generated
 HTML file can have any specified layout.
 
 The HTML file can be embedded in a template with your own tailored
-design, see a "tutorial": "http://hplgit.github.io/doconce/doc/pub/tech_wrapper.htl" on this topic. The template file must contain
+design, see a "tutorial": "http://doconce.github.io/doconce/doc/pub/tech_wrapper.htl" on this topic. The template file must contain
 valid HTML code and can have three "slots": `%(title)s` for a title,
 `%(date)s` for a date, and `%(main)s` for the main body of text. The
 latter is the
@@ -525,7 +525,7 @@ The type of URL is set with the `--html_raw_github_url=...` option:
    developing HTML pages and the DocOnce GitHub links in the HTML files
    are also developed and subject to changes
  * `--html_raw_github_url=github` or `--html_raw_github_url=raw.github`:
-   URL directly to the raw GitHub file (`https://raw.github.com/hplgit/doconce/...`) that may fail to load properly in (e.g.) Internet explorer
+   URL directly to the raw GitHub file (`https://raw.github.com/doconce/doconce/...`) that may fail to load properly in (e.g.) Internet explorer
  * `--html_raw_github_url=githubusercontent` or `--html_raw_github_url=raw.githubusercontent`: as the one above, but using `https://raw.githubusercontent.com` instead
 
 ===== Other HTML options =====
@@ -909,7 +909,7 @@ translation, which is simpler and actually more versatile than even
 using the `ptex2tex` program.
 
 Direct translation is specified by the `--latex_code_style=` command-line
-option. A separate document, "Demonstration of DocOnce support for LaTeX code block environments": "http://hplgit.github.io/doconce/doc/pub/latexcode/demo.html", describes how this option is used and the demonstrates
+option. A separate document, "Demonstration of DocOnce support for LaTeX code block environments": "http://doconce.github.io/doconce/doc/pub/latexcode/demo.html", describes how this option is used and the demonstrates
 many possibilities that are available. One popular choice is
 
 !bc
@@ -1091,7 +1091,7 @@ for verbatim type setting:
  * `any` for any environment named `any` from any package
 
 A separate "demo":
-"http://hplgit.github.io/doconce/doc/pub/latexcode/demo.html" explains
+"http://doconce.github.io/doconce/doc/pub/latexcode/demo.html" explains
 the many possible settings of `X`. Popular choices are minimalistic
 plain verbatim,
 

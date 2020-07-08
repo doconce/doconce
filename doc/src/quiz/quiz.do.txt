@@ -150,7 +150,7 @@ It is easy to use *emphasize font*, _boldface_, color{red}{color},
 "hyperlinks": "http://google.com", etc.,
 since the text in the specification of questions, choices,
 and explanations are rendered according to the
-"DocOnce": "https://github.com/hplgit/doconce" markup language.
+"DocOnce": "https://github.com/doconce/doconce" markup language.
 For simple typesetting (emphasize, boldface, links) DocOnce also
 accepts Markdown syntax.
 Here is an example:
@@ -794,7 +794,7 @@ and written to `.mydoc.quiz`.
 Each list element represents one quiz as
 a dictionary. Such `.quiz` files holds all the information in a collection
 of quizzes and can be given to, e.g.,
-"Quiztools": "https://github.com/hplgit/quiztools"
+"Quiztools": "https://github.com/doconce/quiztools"
 for automatic generation of
 "Kahoot!":
 "https://getkahoot.com" online games where you can participate via
@@ -918,8 +918,8 @@ The program `doconce` must be run to interpret the quiz format, translate
 it to LaTeX, HTML, or other formats, and produce the Python representation
 of the collection of quizzes in a document. Let the name of the
 document with quiz specifications and optional text be `myquiz.do.txt`.
-Documents to play around with are "`pure_quiz.do.txt`": "https://github.com/hplgit/doconce/tree/master/doc/src/quiz/pure_quiz.do.txt" or
-"the present document": "https://github.com/hplgit/doconce/tree/master/doc/src/quiz/quiz.do.txt".
+Documents to play around with are "`pure_quiz.do.txt`": "https://github.com/doconce/doconce/tree/master/doc/src/quiz/pure_quiz.do.txt" or
+"the present document": "https://github.com/doconce/doconce/tree/master/doc/src/quiz/quiz.do.txt".
 
 ===== HTML =====
 
@@ -946,7 +946,7 @@ Other variations of this class of styles are `bootswatch`, and
 
 The Bootstrap-based styles have a striking red color for inline computer
 code, which can be avoided by giving the option `--html_code_style=inherit`
-(see the documentation of "DocOnce and Bootstrap": "http://hplgit.github.io/doconce/doc/pub/bootstrap/index.html" for details and examples).
+(see the documentation of "DocOnce and Bootstrap": "http://doconce.github.io/doconce/doc/pub/bootstrap/index.html" for details and examples).
 
 By default, there is a horizontal rule enclosing each quiz in the HTML format.
 This can be turned off by the option `--quiz_horizontal_rule=off`.

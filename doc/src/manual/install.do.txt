@@ -20,8 +20,8 @@ Terminal> conda install doconce
 If you do not want to use Anaconda and are
 on a Debian-based Linux
 computer (running, e.g., Ubuntu), you can instead run the Bash script
-"`install_doconce.sh`": "https://raw.githubusercontent.com/hplgit/doconce/master/doc/src/manual/install_doconce.sh" or the equivalent Python script
-"`install_doconce.py`": "https://raw.githubusercontent.com/hplgit/doconce/master/doc/src/manual/install_doconce.py".
+"`install_doconce.sh`": "https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.sh" or the equivalent Python script
+"`install_doconce.py`": "https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.py".
 These scripts give a comprehensive installation. Some users will prefer to
 install just what is needed for them, and this is explained below.
 
@@ -45,20 +45,20 @@ You can omit reading the next sections if you rely on `conda` or
 ===== DocOnce =====
 
 DocOnce itself is pure Python code hosted at URL:
-"https://github.com/hplgit/doconce".
+"https://github.com/doconce/doconce".
 Installation can be done via
 
 !bc sys
-sudo pip install git+https://github.com/hplgit/doconce
+sudo pip install git+https://github.com/doconce/doconce
 # or if doconce is already installed
-sudo pip install git+https://github.com/hplgit/doconce --upgrade
+sudo pip install git+https://github.com/doconce/doconce --upgrade
 !ec
 
 However, the recommended approach is to have a copy of the source on
 the local computer and run `pip install` in that directory:
 
 !bc sys
-git clone git@github.com:hplgit/doconce.git
+git clone git@github.com:doconce/doconce.git
 cd doconce
 sudo pip install .
 cd ..

@@ -29,11 +29,11 @@ If any of these questions are of interest, you should keep on reading.
 
  * Strong support for texts with much math and code.
  * Same source can produce a variety of output formats:
-   * "traditional LaTeX B/W documents for printing": "http://hplgit.github.com/teamods/writing_reports/_static/report_4printing.pdf"
-   * "color LaTeX PDF documents": "http://hplgit.github.com/teamods/writing_reports/_static/report.pdf"
-   * "color LaTeX PDF documents for viewing on small phones": "http://hplgit.github.com/teamods/writing_reports/_static/report_4phone.pdf"
-   * "Sphinx HTML documents with 20+ different designs": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal1/report.html"
-   * "Plain HTML": "http://hplgit.github.com/teamods/writing_reports/_static/report.html", "Boostrap HTML": "http://hplgit.github.com/teamods/writing_reports/_static/report_bootstrap_bluegray.html", or with a "template": "http://hplgit.github.com/teamods/writing_reports/_static/report_vagrant.html", or with "another template": "http://hplgit.github.com/teamods/writing_reports/_static/report_github_minimal.html", or "solarized HTML": "http://hplgit.github.com/teamods/writing_reports/_static/report_solarized3_light.html"
+   * "traditional LaTeX B/W documents for printing": "http://doconce.github.com/teamods/writing_reports/_static/report_4printing.pdf"
+   * "color LaTeX PDF documents": "http://doconce.github.com/teamods/writing_reports/_static/report.pdf"
+   * "color LaTeX PDF documents for viewing on small phones": "http://doconce.github.com/teamods/writing_reports/_static/report_4phone.pdf"
+   * "Sphinx HTML documents with 20+ different designs": "http://doconce.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal1/report.html"
+   * "Plain HTML": "http://doconce.github.com/teamods/writing_reports/_static/report.html", "Boostrap HTML": "http://doconce.github.com/teamods/writing_reports/_static/report_bootstrap_bluegray.html", or with a "template": "http://doconce.github.com/teamods/writing_reports/_static/report_vagrant.html", or with "another template": "http://doconce.github.com/teamods/writing_reports/_static/report_github_minimal.html", or "solarized HTML": "http://doconce.github.com/teamods/writing_reports/_static/report_solarized3_light.html"
    * HTML for "Google": "http://doconce-report-demo.blogspot.no/" or "Wordpress": "http://doconcereportdemo.wordpress.com/" blog posts
    * "MediaWiki": "http://doconcedemo.shoutwiki.com/wiki/DocOnce_demo_page" (Wikipedia, Wikibooks, etc)
    * Markdown for further processing by Pandoc to a lot of formats
@@ -468,7 +468,7 @@ this tool has more functionality than BibTeX, but any BibTeX database can
 be automatically converted to the simple Publish format.
 
 For further details on functionality and
-syntax we refer to the "DocOnce manual": "http://hplgit.github.io/doconce/doc/pub/manual/html/".
+syntax we refer to the "DocOnce manual": "http://doconce.github.io/doconce/doc/pub/manual/html/".
 
 
 ======= From DocOnce to Other Formats =======
@@ -533,14 +533,14 @@ Other formats are
 ===== Slides =====
 
 DocOnce has strong support for writing slides, see the
-"slides demo": "http://hplgit.github.io/doconce/doc/pub/slides/demo/index.html"
+"slides demo": "http://doconce.github.io/doconce/doc/pub/slides/demo/index.html"
 for examples. Each slide starts with
 a subsection heading (5 `=`), preceded by `!split` to indicate a
 new slide. Section headings are used to mark parts of the presentation.
 The slides are compiled as any other DocOnce file, but there is usually
 a second step where the text is modified to become a proper slide text
 in the chosen output format. We refer to the manual for details
-and the "DocOnce slide demo": "http://hplgit.github.io/doconce/doc/pub/slides/demo/index.html".
+and the "DocOnce slide demo": "http://doconce.github.io/doconce/doc/pub/slides/demo/index.html".
 
 Several popular slide formats are supported:
 
@@ -553,25 +553,25 @@ Several popular slide formats are supported:
 ======= Demos =======
 
 Our "short scientific report":
-"http://hplgit.github.io/teamods/writing_reports/index.html" is a good
+"http://doconce.github.io/teamods/writing_reports/index.html" is a good
 starting point for seeing how DocOnce documents are written and get a
 demonstration of the vast choice of output formats and settings that
 are available.
 
 There is also a demo of different "slide formats":
-"http://hplgit.github.io/doconce/doc/pub/slides/demo/index.html".
+"http://doconce.github.io/doconce/doc/pub/slides/demo/index.html".
 
 DocOnce has support for *responsive* HTML documents with design and
 functionality based on Bootstrap styles.  A "Bootstrap demo":
-"http://hplgit.github.io/doconce/doc/pub/bootstrap/index.html"
+"http://doconce.github.io/doconce/doc/pub/bootstrap/index.html"
 illustrates the many possibilities for colors and layouts.
 
 DocOnce also has support for exercises in "quiz format":
-"http://hplgit.github.io/doconce/doc/pub/quiz/quiz.html". Pure quiz
+"http://doconce.github.io/doconce/doc/pub/quiz/quiz.html". Pure quiz
 files can be *automatically uploaded* to "Kahoot!":
 "https://getkahoot.com" online quiz games operated through smart
 phones (with the aid of "quiztools":
-"https://github.com/hplgit/quiztools" for DocOnce to Kahoot!
+"https://github.com/doconce/quiztools" for DocOnce to Kahoot!
 translation).
 
 The current text is generated from a DocOnce format stored in the file

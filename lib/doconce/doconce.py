@@ -1389,8 +1389,10 @@ def insert_os_commands(filestr, format):
         """Run system command cmd."""
         errwarn('*** running OS command ' + cmd)
         try:
-            output = str(subprocess.check_output(cmd, shell=True,
+            output = str(subprocess.check_output(cmd, shell=True, universal_newlines=True,
                                                  stderr=subprocess.STDOUT))
+            # Remove ANSI colors
+            output = re.sub('\x1b\[[0-9;]*m', '', output)
         except subprocess.CalledProcessError as e:
             errwarn('*** error: failure of @@@OSCMD %s' % cmd)
             errwarn(e.output)

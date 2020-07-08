@@ -38,7 +38,7 @@ Midpoint) schemes first. Then generalize to the $\theta$-rule above.
 
 The numerical method is implemented in a Python function
 `solver` (found in the "`decay_mod`":
-"https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py" module):
+"https://github.com/doconce/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py" module):
 
 !bc pycod
 from numpy import linspace, zeros
