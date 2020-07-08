@@ -8019,7 +8019,7 @@ or checkout the code on
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Terminal&gt; hg clone https://bitbucket.org/logg/publish
 Terminal&gt; cd publish
-Terminal&gt; sudo python setup.py install
+Terminal&gt; python setup.py install
 </pre></div>
 
 <h2 id="___sec110" class="anchor">Importing your data to the Publish database </h2>
@@ -12165,7 +12165,7 @@ here for convenience.
 --html_exercise_icon_width=...      Width of the icon image in pixels (must be used with --html_exercise_icon).
 --html_raw_github_url=...           URLs to files hosted on the doconce github account. Internet Explorer (and perhaps other browsers) will not show raw.github.com files. Instead on should use rawgit.com. For development of HTML sites in Safari and Chrome and can use rawgit.com. 
   Values of --html_raw_github_url=: safe or cdn.rawgit: use this for ready-made sites with potentially some traffic. The URL becomes https://cdn.rawgit.com/doconce/doconce/...
-  test or rawgit: use this for test purposes and development with low traffic. The URL becomes https://rawgit.com/hplgit/doconce/... 
+  test or rawgit: use this for test purposes and development with low traffic. The URL becomes https://rawgit.com/doconce/doconce/... 
   github or raw.github: the URL becomes https://raw.github.com and may fail to load properly. 
   githubusercontent or raw.githubusercontent: The URL becomes https://raw.githubusercontent.com and may fail to load properly.
 --html_DOCTYPE                      Insert &lt;!DOCTYPE HTML&gt; in the top of the HTML file. This is required for Internet Explorer and Mozilla. However, some of the CSS files used by DocOnce may not load properly if they are not well formed. That is why no doctype is default in the generated HTML files.
@@ -12379,9 +12379,9 @@ Installation can be done via
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>sudo pip install git+https://github.com/doconce/doconce
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pip install git+https://github.com/doconce/doconce
 # or if doconce is already installed
-sudo pip install git+https://github.com/doconce/doconce --upgrade
+pip install git+https://github.com/doconce/doconce --upgrade
 </pre></div>
 <p>
 However, the recommended approach is to have a copy of the source on
@@ -12392,7 +12392,7 @@ the local computer and run <code>pip install</code> in that directory:
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>git clone git@github.com:doconce/doconce.git
 cd doconce
-sudo pip install .
+pip install .
 cd ..
 </pre></div>
 <p>
@@ -12404,7 +12404,7 @@ that you work with the most recent version:
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>cd doconce
 git pull origin master
-sudo pip install --upgrade .
+pip install --upgrade .
 </pre></div>
 
 <h2 id="___sec227" class="anchor">Dependencies </h2>
@@ -12547,7 +12547,7 @@ The stand-alone <code>ptex2tex</code> program is installed by
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
 cd ptex2tex
-sudo python setup.py install
+python setup.py install
 </pre></div>
 <p>
 It may happen that you need additional style files, you can run
@@ -12706,7 +12706,7 @@ will need more software, typically the following on a Debian system:
 <!-- using ReportLab instead of LaTeX. The enabling software is -->
 <!-- <a href="http://code.google.com/p/rst2pdf" target="_self">rst2pdf</a>. Either download the tarball -->
 <!-- or clone the svn repository, go to the <code>rst2pdf</code> directory and -->
-<!-- run the usual <code>sudo python setup.py install</code>. -->
+<!-- run the usual <code>python setup.py install</code>. -->
 
 <h3 id="___sec237" class="anchor">Markdown and Pandoc Output </h3>
 
@@ -12746,9 +12746,9 @@ are also available in Debian-based system through the
 <code>apt-get install</code> command. However, we recommend installation directly
 from the version control system repository as there might be important
 updates and bug fixes. For <code>svn</code> directories, go to the directory,
-run <code>svn update</code>, and then <code>sudo python setup.py install</code>. For
+run <code>svn update</code>, and then <code>python setup.py install</code>. For
 Mercurial (<code>hg</code>) directories, go to the directory, run
-<code>hg pull; hg update</code>, and then <code>sudo python setup.py install</code>.
+<code>hg pull; hg update</code>, and then <code>python setup.py install</code>.
 
 <h3 id="___sec239" class="anchor">Analyzing file differences </h3>
 

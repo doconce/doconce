@@ -87,3 +87,6 @@ dest=../../../../doconce.wiki
 #cp demo/tutorial.mwiki $dest/tutorial_mediawiki.mediawiki
 
 #cp tutorial.md $dest/
+
+echo "To remove untracked files run:"
+echo "git clean -f -d"

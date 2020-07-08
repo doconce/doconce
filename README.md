@@ -37,8 +37,8 @@ DocOnce is a pure Python package and can be installed with `pip`.
 
 
 ```
-Terminal> sudo pip install --upgrade git+https://github.com/doconce/preprocess
-Terminal> sudo pip install --upgrade .
+Terminal> pip install --upgrade git+https://github.com/doconce/preprocess
+Terminal> pip install --upgrade .
 ```
 
 *Notice.* 

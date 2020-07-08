@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="1.0">
+<html lang="1.0">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DocOnce Description &#8212; _ Hans Petter Langtangen, Kristian Gregorius Hustad, Some Author, O. Nordmann, John Doe, Chan Siu Ming, ... and HPL documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -12,7 +13,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="DocOnce Description" href="index.html" />
@@ -6094,7 +6095,7 @@ on).</p>
 <a class="reference external" href="https://bitbucket.org/logg/publish">bitbucket.org</a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Terminal&gt; hg clone https://bitbucket.org/logg/publish
 Terminal&gt; cd publish
-Terminal&gt; sudo python setup.py install
+Terminal&gt; python setup.py install
 </pre></div>
 </div>
 <div class="section" id="importing-your-data-to-the-publish-database">
@@ -9481,8 +9482,8 @@ here for convenience.</p>
 --html_exercise_icon=...            Specify a question icon (as a filename in the bundled/html_images directory in the doconce repo) for being inserted to the right in exercises. default: turn on predefined question icons according to the chosen style. none: no icons (this is the default value).
 --html_exercise_icon_width=...      Width of the icon image in pixels (must be used with --html_exercise_icon).
 --html_raw_github_url=...           URLs to files hosted on the doconce github account. Internet Explorer (and perhaps other browsers) will not show raw.github.com files. Instead on should use rawgit.com. For development of HTML sites in Safari and Chrome and can use rawgit.com.
-  Values of --html_raw_github_url=: safe or cdn.rawgit: use this for ready-made sites with potentially some traffic. The URL becomes https://cdn.rawgit.com/hplgit/doconce/...
-  test or rawgit: use this for test purposes and development with low traffic. The URL becomes https://rawgit.com/hplgit/doconce/...
+  Values of --html_raw_github_url=: safe or cdn.rawgit: use this for ready-made sites with potentially some traffic. The URL becomes https://cdn.rawgit.com/doconce/doconce/...
+  test or rawgit: use this for test purposes and development with low traffic. The URL becomes https://rawgit.com/doconce/doconce/...
   github or raw.github: the URL becomes https://raw.github.com and may fail to load properly.
   githubusercontent or raw.githubusercontent: The URL becomes https://raw.githubusercontent.com and may fail to load properly.
 --html_DOCTYPE                      Insert &lt;!DOCTYPE HTML&gt; in the top of the HTML file. This is required for Internet Explorer and Mozilla. However, some of the CSS files used by DocOnce may not load properly if they are not well formed. That is why no doctype is default in the generated HTML files.
@@ -9677,16 +9678,16 @@ image processing tools and spell checking apply Unix-specific software.</p>
 <h3>DocOnce<a class="headerlink" href="#doconce" title="Permalink to this headline">¶</a></h3>
 <p>DocOnce itself is pure Python code hosted at <a class="reference external" href="https://github.com/doconce/doconce">https://github.com/doconce/doconce</a>.
 Installation can be done via</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo pip install git+https://github.com/doconce/doconce
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pip install git+https://github.com/doconce/doconce
 # or if doconce is already installed
-sudo pip install git+https://github.com/doconce/doconce --upgrade
+pip install git+https://github.com/doconce/doconce --upgrade
 </pre></div>
 </div>
 <p>However, the recommended approach is to have a copy of the source on
 the local computer and run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> in that directory:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:doconce/doconce.git
 cd doconce
-sudo pip install .
+pip install .
 cd ..
 </pre></div>
 </div>
@@ -9694,7 +9695,7 @@ cd ..
 that you work with the most recent version:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd doconce
 git pull origin master
-sudo pip install --upgrade .
+pip install --upgrade .
 </pre></div>
 </div>
 </div>
@@ -9791,7 +9792,7 @@ just use the <code class="docutils literal notranslate"><span class="pre">--late
 <p>The stand-alone <code class="docutils literal notranslate"><span class="pre">ptex2tex</span></code> program is installed by</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
 cd ptex2tex
-sudo python setup.py install
+python setup.py install
 </pre></div>
 </div>
 <p>It may happen that you need additional style files, you can run
@@ -9930,9 +9931,9 @@ are also available in Debian-based system through the
 <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">install</span></code> command. However, we recommend installation directly
 from the version control system repository as there might be important
 updates and bug fixes. For <code class="docutils literal notranslate"><span class="pre">svn</span></code> directories, go to the directory,
-run <code class="docutils literal notranslate"><span class="pre">svn</span> <span class="pre">update</span></code>, and then <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code>. For
+run <code class="docutils literal notranslate"><span class="pre">svn</span> <span class="pre">update</span></code>, and then <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code>. For
 Mercurial (<code class="docutils literal notranslate"><span class="pre">hg</span></code>) directories, go to the directory, run
-<code class="docutils literal notranslate"><span class="pre">hg</span> <span class="pre">pull;</span> <span class="pre">hg</span> <span class="pre">update</span></code>, and then <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">hg</span> <span class="pre">pull;</span> <span class="pre">hg</span> <span class="pre">update</span></code>, and then <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code>.</p>
 </div>
 <div class="section" id="analyzing-file-differences">
 <h4>Analyzing file differences<a class="headerlink" href="#analyzing-file-differences" title="Permalink to this headline">¶</a></h4>
@@ -10154,7 +10155,7 @@ Springer,
     </p>
     <p>
         &copy; Copyright 2020, DocOnce Description.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>

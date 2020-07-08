@@ -1,4 +1,4 @@
-<div class="highlight"><pre><span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="p">{</span>
  <span class="nt">&quot;cells&quot;</span><span class="p">:</span> <span class="p">[</span>
   <span class="p">{</span>
    <span class="nt">&quot;cell_type&quot;</span><span class="p">:</span> <span class="s2">&quot;markdown&quot;</span><span class="p">,</span>
@@ -7,11 +7,12 @@
     <span class="s2">&quot;&lt;!-- dom:TITLE: On Schemes for Exponential Decay --&gt;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;# On Schemes for Exponential Decay\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;&lt;!-- dom:AUTHOR: Hans Petter Langtangen Email:hpl@simula.no at Center for Biomedical Computing, Simula Research Laboratory &amp; Department of Informatics, University of Oslo --&gt;\n&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&lt;!-- Author: --&gt; **Hans Petter Langtangen** (email: `hpl@simula.no`), Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo\n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;&lt;!-- Author: --&gt;  \n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;**Hans Petter Langtangen** (email: `hpl@simula.no`), Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Date: **Sep 24, 2015**\n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Date: **Jul 8, 2020**\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Copyright 2015, Hans Petter Langtangen. Released under CC Attribution 4.0 license\n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Copyright 2020, Hans Petter Langtangen. Released under CC Attribution 4.0 license\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
@@ -33,7 +34,7 @@
     <span class="s2">&quot;## Goal\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;The primary goal of this demo talk is to demonstrate how to write\n&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;talks with [DocOnce](https://github.com/hplgit/doconce)\n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;talks with [DocOnce](https://github.com/doconce/doconce)\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;and get them rendered in numerous HTML formats.\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
@@ -99,15 +100,15 @@
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot; * $u(t)$ is the unknown function\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
-    <span class="s2">&quot; * The ODE [(1)](#ode) has the initial condition [(2)](#initial:value)\n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot; * The ODE ([1](#ode)) has the initial condition ([2](#initial:value))\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&lt;!-- dom:FIGURE: [https://raw.githubusercontent.com/hplgit/doconce/master/doc/pub/slides/demo/fig/teacher2.jpg, width=250 frac=0.5] --&gt;\n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;&lt;!-- dom:FIGURE: [https://raw.githubusercontent.com/hplgit/doconce/master/doc/pub/slides/demo/fig/teacher2.png, width=250 frac=0.5] --&gt;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;&lt;!-- begin figure --&gt;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;&lt;p&gt;&lt;/p&gt;\n&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&lt;img src=\&quot;https://raw.githubusercontent.com/hplgit/doconce/master/doc/pub/slides/demo/fig/teacher2.jpg\&quot; width=250&gt;\n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;&lt;img src=\&quot;https://raw.githubusercontent.com/hplgit/doconce/master/doc/pub/slides/demo/fig/teacher2.png\&quot; width=250&gt;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;&lt;!-- end figure --&gt;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
@@ -194,7 +195,7 @@
     <span class="s2">&quot;def solver(I, a, T, dt, theta):\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;    \&quot;\&quot;\&quot;Solve u&#39;=-a*u, u(0)=I, for t in (0,T]; step: dt.\&quot;\&quot;\&quot;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;    dt = float(dt)           # avoid integer division\n&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;    N = int(round(T/dt))     # no of time intervals\n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;    N = int(round(old_div(T,dt)))     # no of time intervals\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;    T = N*dt                 # adjust T to fit time step dt\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;    u = zeros(N+1)           # array of u[n] values\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;    t = linspace(0, T, N+1)  # time mesh\n&quot;</span><span class="p">,</span>
@@ -231,9 +232,11 @@
     <span class="s2">&quot;T = 8\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;dt = 0.25\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;theta = 0.5\n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;|\\pause|\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;from solver import solver, exact_solution\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;u, t = solver(I, a, T, dt, theta)\n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;|\\pause|\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;import matplotlib.pyplot as plt\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;plt.plot(t, u, t, exact_solution)\n&quot;</span><span class="p">,</span>
@@ -247,11 +250,11 @@
    <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="s2">&quot;# Results\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&lt;!-- dom:FIGURE: [https://raw.githubusercontent.com/hplgit/doconce/master/doc/pub/slides/demo/fig/results.jpg, width=600 frac=0.8] --&gt;\n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;&lt;!-- dom:FIGURE: [https://raw.githubusercontent.com/hplgit/doconce/master/doc/pub/slides/demo/fig/results.png, width=600 frac=0.8] --&gt;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;&lt;!-- begin figure --&gt;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;&lt;p&gt;&lt;/p&gt;\n&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&lt;img src=\&quot;https://raw.githubusercontent.com/hplgit/doconce/master/doc/pub/slides/demo/fig/results.jpg\&quot; width=600&gt;\n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;&lt;img src=\&quot;https://raw.githubusercontent.com/hplgit/doconce/master/doc/pub/slides/demo/fig/results.png\&quot; width=600&gt;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;&lt;!-- end figure --&gt;\n&quot;</span><span class="p">,</span>
     <span class="s2">&quot;\n&quot;</span><span class="p">,</span>
@@ -306,6 +309,6 @@
  <span class="p">],</span>
  <span class="nt">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{},</span>
  <span class="nt">&quot;nbformat&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
- <span class="nt">&quot;nbformat_minor&quot;</span><span class="p">:</span> <span class="mi">0</span>
+ <span class="nt">&quot;nbformat_minor&quot;</span><span class="p">:</span> <span class="mi">4</span>
 <span class="p">}</span>
 </pre></div>

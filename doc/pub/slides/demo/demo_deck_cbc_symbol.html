@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="On Schemes for Exponential Decay">
 
 <title>On Schemes for Exponential Decay</title>
@@ -195,10 +196,10 @@ MathJax.Hub.Config({
 <center>[2] <b style="font-weight: bold">Department of Informatics, University of Oslo</b></center>
 <br>
 <p>
-<center><b style="font-weight: bold">Sep 24, 2015</b></center> <!-- date -->
+<center><b style="font-weight: bold">Jul 8, 2020</b></center> <!-- date -->
 <br>
 <p>
-<center><p><img src="fig/CN_logo.png" align="bottom" width=300></p></center>
+<br /><br /><center><p><img src="fig/CN_logo.png" align="bottom" width=300></p></center><br /><br />
 
 <p>
 <!-- Each slide starts with !split and a title inside 5 = on each side -->
@@ -209,7 +210,7 @@ MathJax.Hub.Config({
 <p>
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 2015, Hans Petter Langtangen. Released under CC Attribution 4.0 license
+<!-- copyright --> &copy; 2020, Hans Petter Langtangen. Released under CC Attribution 4.0 license
 </center>
 </section>
 
@@ -220,7 +221,7 @@ MathJax.Hub.Config({
 
 <p>
 The primary goal of this demo talk is to demonstrate how to write
-talks with <a href="https://github.com/hplgit/doconce" target="_self">DocOnce</a>
+talks with <a href="https://github.com/doconce/doconce" target="_self">DocOnce</a>
 and get them rendered in numerous HTML formats.
 <div class="alert alert-block alert-notice alert-text-normal">
 <b style="font-weight: bold">Layout.</b>
@@ -256,7 +257,7 @@ demonstrated.
 <!-- Short title: Problem -->
 
 <p>
-<center><p><img src="fig/method.png" align="bottom" width=600></p></center>
+<br /><br /><center><p><img src="fig/method.png" align="bottom" width=600></p></center><br /><br />
 </section>
 
 
@@ -292,7 +293,7 @@ Here,
 <p>
 </td>
 <td class="padding">
-<center><p><img src="fig/teacher2.jpg" align="bottom" width=250></p></center>
+<br /><br /><center><p><img src="fig/teacher2.jpg" align="bottom" width=250></p></center><br /><br />
 </td>
 </tr>
 </table>
@@ -354,10 +355,10 @@ schemes.
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">solver</span>(I, a, T, dt, theta):
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">solver</span>(I, a, T, dt, theta):
     <span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Solve u&#39;=-a*u, u(0)=I, for t in (0,T]; step: dt.&quot;&quot;&quot;</span>
     dt <span style="color: #666666">=</span> <span style="color: #008000">float</span>(dt)           <span style="color: #408080; font-style: italic"># avoid integer division</span>
-    N <span style="color: #666666">=</span> <span style="color: #008000">int</span>(<span style="color: #008000">round</span>(T<span style="color: #666666">/</span>dt))     <span style="color: #408080; font-style: italic"># no of time intervals</span>
+    N <span style="color: #666666">=</span> <span style="color: #008000">int</span>(<span style="color: #008000">round</span>(old_div(T,dt)))     <span style="color: #408080; font-style: italic"># no of time intervals</span>
     T <span style="color: #666666">=</span> N<span style="color: #666666">*</span>dt                 <span style="color: #408080; font-style: italic"># adjust T to fit time step dt</span>
     u <span style="color: #666666">=</span> zeros(N<span style="color: #666666">+1</span>)           <span style="color: #408080; font-style: italic"># array of u[n] values</span>
     t <span style="color: #666666">=</span> linspace(<span style="color: #666666">0</span>, T, N<span style="color: #666666">+1</span>)  <span style="color: #408080; font-style: italic"># time mesh</span>
@@ -382,15 +383,17 @@ schemes.
 <p>
 
 <!-- code=python (!bc pypro) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic"># Set problem parameters</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Set problem parameters</span>
 I <span style="color: #666666">=</span> <span style="color: #666666">1.2</span>
 a <span style="color: #666666">=</span> <span style="color: #666666">0.2</span>
 T <span style="color: #666666">=</span> <span style="color: #666666">8</span>
 dt <span style="color: #666666">=</span> <span style="color: #666666">0.25</span>
 theta <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>
+<span style="color: #666666">|</span>\pause<span style="color: #666666">|</span>
 
 <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">solver</span> <span style="color: #008000; font-weight: bold">import</span> solver, exact_solution
 u, t <span style="color: #666666">=</span> solver(I, a, T, dt, theta)
+<span style="color: #666666">|</span>\pause<span style="color: #666666">|</span>
 
 <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
 plt<span style="color: #666666">.</span>plot(t, u, t, exact_solution)
@@ -407,7 +410,7 @@ plt<span style="color: #666666">.</span>show()
 <h1 id="___sec7">Results </h1>
 
 <p>
-<center><p><img src="fig/results.jpg" align="bottom" width=600></p></center>
+<br /><br /><center><p><img src="fig/results.jpg" align="bottom" width=600></p></center><br /><br />
 </section>
 
 
@@ -416,7 +419,7 @@ plt<span style="color: #666666">.</span>show()
 <h2 id="___sec8">The Crank-Nicolson method shows oscillatory behavior for not sufficiently small time steps, while the solution should be monotone </h2>
 
 <p>
-<center><p><img src="fig/CN.png" align="bottom" width=600></p></center>
+<br /><br /><center><p><img src="fig/CN.png" align="bottom" width=600></p></center><br /><br />
 </section>
 
 
@@ -474,18 +477,18 @@ qualitatively correct results.
 
 <!-- deck.status snippet
 <p class="deck-status">
-	<span class="deck-status-current"></span>
-	/
-	<span class="deck-status-total"></span>
+    <span class="deck-status-current"></span>
+    /
+    <span class="deck-status-total"></span>
 </p>
 -->
 
 <!-- deck.goto snippet
 <form action="." method="get" class="goto-form">
-	<label for="goto-slide">Go to slide:</label>
-	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
-	<datalist id="goto-datalist"></datalist>
-	<input type="submit" value="Go">
+    <label for="goto-slide">Go to slide:</label>
+    <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+    <datalist id="goto-datalist"></datalist>
+    <input type="submit" value="Go">
 </form>
 -->
 
@@ -523,9 +526,9 @@ qualitatively correct results.
 
 <!-- Initialize the deck. You can put this in an external file if desired. -->
 <script>
-	$(function() {
-		$.deck('.slide');
-	});
+    $(function() {
+        $.deck('.slide');
+    });
 </script>
 
 

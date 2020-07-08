@@ -3675,9 +3675,9 @@ Here is the result:
 !bt
 \begin{align}
 {\partial u\over\partial t} &= \nabla^2 u + f,
-label{myeq1}\\
+label{myeq3}\\
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g.
-label{myeq2}
+label{myeq4}
 \end{align}
 !et
 
@@ -4516,7 +4516,7 @@ or checkout the code on
 !bc sys
 Terminal> hg clone https://bitbucket.org/logg/publish
 Terminal> cd publish
-Terminal> sudo python setup.py install
+Terminal> python setup.py install
 !ec
 
 ===== Importing your data to the Publish database =====

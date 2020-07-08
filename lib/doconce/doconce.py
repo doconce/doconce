@@ -386,7 +386,7 @@ def syntax_check(filestr, format):
     labels = re.findall('label\{(.+?)\}', filestr)
     multiple_labels = list(set([label for label in labels if labels.count(label) > 1]))
     if multiple_labels:
-        errwarn('*** error: found multiple labels:')
+        errwarn('*** error: found duplicate labels:')
         errwarn('    ' + ' '.join(multiple_labels))
         _abort()
     # Consistency of implemented environments
@@ -3329,7 +3329,7 @@ def handle_index_and_bib(filestr, format):
         errwarn('*** error: you have citations and specified a BIBFILE, but')
         errwarn('    publish (needed to treat the BIBFILE) is not installed.')
         errwarn('    Download publish from https://bitbucket.org/logg/publish,')
-        errwarn('    do cd publish; sudo python setup.py install')
+        errwarn('    do cd publish; python setup.py install')
         _abort()
     # Check that citations are correct
     if pubdata:
@@ -5000,7 +5000,7 @@ preprocess package (sudo apt-get install preprocess).
         if version_compare(preprocess.__version__, required_preprocess_version) == -1:
             errwarn("ERROR: DocOnce requires preprocess >= 1.2.2")
             errwarn("Install a newer version with:\n"
-                    + "sudo pip install -U git+https://github.com/doconce/preprocess#egg=preprocess")
+                    + "pip install --exists-action i -U git+https://github.com/doconce/preprocess#egg=preprocess")
             _abort()
 
         if option('no_preprocess'):
@@ -5165,7 +5165,7 @@ to be installed (www.makotemplates.org).
 
 If you have pip installed, do
 
-   sudo pip install mako
+   pip install mako
 
 On Debian (incl. Ubuntu) systems, you can alternatively do
 

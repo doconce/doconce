@@ -45,12 +45,12 @@ class: center, middle
 # On Schemes for Exponential Decay
 
 
-###**Hans Petter Langtangen** at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
+### **Hans Petter Langtangen** at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
 
 
-### Sep 24, 2015
+### Jul 8, 2020
 
-Copyright 2015, Hans Petter Langtangen. Released under CC Attribution 4.0 license
+Copyright 2020, Hans Petter Langtangen. Released under CC Attribution 4.0 license
 
 
 
@@ -67,7 +67,7 @@ Copyright 2015, Hans Petter Langtangen. Released under CC Attribution 4.0 licens
 ## Goal
 
 The primary goal of this demo talk is to demonstrate how to write
-talks with [DocOnce](https://github.com/hplgit/doconce)
+talks with [DocOnce](https://github.com/doconce/doconce)
 and get them rendered in numerous HTML formats.
 
 
@@ -90,17 +90,12 @@ and get them rendered in numerous HTML formats.
 
 
 $$
-\begin{equation}
-u'(t) = -au(t)
-\label{ode}
-\end{equation}
-$$
-
-$$
-\begin{equation}  
-u(0)  = I
+\begin{align}
+u'(t) &= -au(t)
+\label{ode}\\ 
+u(0)  &= I
 \label{initial:value}
-\end{equation}
+\end{align}
 $$
 
 Here,
@@ -108,7 +103,7 @@ Here,
  * \\( t\in (0,T] \\)
  * \\( a \\), \\( I \\), and \\( T \\) are prescribed parameters
  * \\( u(t) \\) is the unknown function
- * The ODE \eqref{ode} has the initial condition \eqref{initial:value}
+ * The ODE ([ode](#ode)) has the initial condition ([initial:value](#initial:value))
 
 .center[<img src="fig/teacher2.jpg" width=250>]
 ---
@@ -155,7 +150,7 @@ schemes.
 def solver(I, a, T, dt, theta):
     """Solve u'=-a*u, u(0)=I, for t in (0,T]; step: dt."""
     dt = float(dt)           # avoid integer division
-    N = int(round(T/dt))     # no of time intervals
+    N = int(round(old_div(T,dt)))     # no of time intervals
     T = N*dt                 # adjust T to fit time step dt
     u = zeros(N+1)           # array of u[n] values
     t = linspace(0, T, N+1)  # time mesh
@@ -182,9 +177,11 @@ a = 0.2
 T = 8
 dt = 0.25
 theta = 0.5
+|\pause|
 
 from solver import solver, exact_solution
 u, t = solver(I, a, T, dt, theta)
+|\pause|
 
 import matplotlib.pyplot as plt
 plt.plot(t, u, t, exact_solution)

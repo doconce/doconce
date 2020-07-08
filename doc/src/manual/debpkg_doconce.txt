@@ -76,7 +76,7 @@ pip install html5lib
 $ cd srclib
 $ git clone git@github.com:hplgit/ptex2tex.git
 $ cd ptex2tex
-$ sudo python setup.py install
+$ python setup.py install
 $ cd latex
 $ sh cp2texmf.sh  # copy stylefiles to ~/texmf directory
 $ cd ../../..
@@ -124,4 +124,4 @@ $ if [ -d mdframed ]; then cd mdframed; make localinstall; cd ..; fi
 # DocOnce itself
 $ cd srclib
 $ git clone https://github.com/hplgit/doconce.git
-$ if [ -d doconce ]; then cd doconce; sudo python setup.py install; cd ../..; fi
+$ if [ -d doconce ]; then cd doconce; python setup.py install; cd ../..; fi

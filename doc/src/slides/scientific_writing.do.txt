@@ -595,9 +595,9 @@ which is rendered as
 !bt
 \begin{align}
 \frac{\partial u}{\partial t} &= \nabla^2 u,
-label{a:eq}\\
+label{c:eq}\\
 \nabla\cdot\pmb{v} & = 0
-label{b:eq}
+label{d:eq}
 \end{align}
 !et
 
@@ -1230,7 +1230,7 @@ doconce format plain  doconcefile  # plain, untagged text for email
 ===== Installation =====
 
  * Source at "GitHub": "https://github.com/doconce/doconce" (recommended!)
-   * `git clone` + `sudo python setyp.py install`
+   * `git clone` + `python setup.py install`
  * Many "dependencies...": "http://doconce.github.io/doconce/doc/pub/manual/html/manual.html#installation-of-doconce-and-its-dependencies"
    * Must have `preprocess` and `mako`
    * Need `latex`, `sphinx`, `pandoc`, etc. (see the "Installation": "http://doconce.github.io/doconce/doc/pub/manual/html/manual.html#installation-of-doconce-and-its-dependencies" description)

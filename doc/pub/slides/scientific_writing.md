@@ -3,9 +3,9 @@
 <!-- TITLE: Scientific Writing and Publishing for the Future: How Can We Handle the eLearning Revolution? -->
 % Scientific Writing and Publishing for the Future
 % **Hans Petter Langtangen**
-% Sep 24, 2015
+% Jul 8, 2020
 
-Copyright 2015, Hans Petter Langtangen
+Copyright 2020, Hans Petter Langtangen
 
 
 
@@ -377,7 +377,7 @@ of new opportunities*.
 <!-- !split -->
 ### Solution II: Use DocOnce
 
-[DocOnce](http://hplgit.github.io/doconce/doc/web/index.html)
+[DocOnce](http://doconce.github.io/doconce/doc/web/index.html)
 offers minimalistic typing, great flexibility wrt format,
 especially for scientific writing with *much math and code*.
 
@@ -401,14 +401,14 @@ especially for scientific writing with *much math and code*.
 <!-- !split -->
 ### DocOnce demos
 
-<http://hplgit.github.com/teamods/writing_reports/>
+<http://doconce.github.com/teamods/writing_reports/>
 
- * LaTeX-based PDF [for screen](http://hplgit.github.com/teamods/writing_reports/_static/report.pdf), [for printing](http://hplgit.github.com/teamods/writing_reports/_static/report_4printing.pdf), [for phone](http://hplgit.github.com/teamods/writing_reports/_static/report_4phone.pdf)
- * [Plain HTML](http://hplgit.github.com/teamods/writing_reports/_static/report_bloodish.html) or [Bootstrap](http://hplgit.github.com/teamods/writing_reports/_static/report_bootstrap_wtoc.html) or [Bootswatch](http://hplgit.github.com/teamods/writing_reports/_static/report_bootswatch_journal.html) or with a [template](http://hplgit.github.com/teamods/writing_reports/_static/report_vagrant.html) or [another template](http://hplgit.github.com/teamods/writing_reports/_static/report_github_minimal.html) or [solarized](http://hplgit.github.com/teamods/writing_reports/_static/report_solarized.html)
- * Sphinx: [agni](http://hplgit.github.com/teamods/writing_reports/_static/sphinx-agni/index.html), [pyramid](http://hplgit.github.com/teamods/writing_reports/_static/sphinx-pyramid/report.html), [classy](http://hplgit.github.com/teamods/writing_reports/_static/sphinx-classy/report.html), [fenics](http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html), [redcloud](http://hplgit.github.com/teamods/writing_reports/_static/sphinx-redcloud/report.html)
+ * LaTeX-based PDF [for screen](http://doconce.github.com/teamods/writing_reports/_static/report.pdf), [for printing](http://doconce.github.com/teamods/writing_reports/_static/report_4printing.pdf), [for phone](http://doconce.github.com/teamods/writing_reports/_static/report_4phone.pdf)
+ * [Plain HTML](http://doconce.github.com/teamods/writing_reports/_static/report_bloodish.html) or [Bootstrap](http://doconce.github.com/teamods/writing_reports/_static/report_bootstrap_wtoc.html) or [Bootswatch](http://doconce.github.com/teamods/writing_reports/_static/report_bootswatch_journal.html) or with a [template](http://doconce.github.com/teamods/writing_reports/_static/report_vagrant.html) or [another template](http://doconce.github.com/teamods/writing_reports/_static/report_github_minimal.html) or [solarized](http://doconce.github.com/teamods/writing_reports/_static/report_solarized.html)
+ * Sphinx: [agni](http://doconce.github.com/teamods/writing_reports/_static/sphinx-agni/index.html), [pyramid](http://doconce.github.com/teamods/writing_reports/_static/sphinx-pyramid/report.html), [classy](http://doconce.github.com/teamods/writing_reports/_static/sphinx-classy/report.html), [fenics](http://doconce.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html), [redcloud](http://doconce.github.com/teamods/writing_reports/_static/sphinx-redcloud/report.html)
  * HTML for [Google](http://doconce-report-demo.blogspot.no/) or [Wordpress](http://doconcereportdemo.wordpress.com/) for blog posts
  * [MediaWiki](http://doconcedemo.shoutwiki.com/wiki/DocOnce_demo_page) (Wikipedia, Wikibooks, etc)
- * DocOnce [source code](http://hplgit.github.com/teamods/writing_reports/_static/report.do.txt.html) and [tutorial](http://hplgit.github.io/doconce/doc/pub/tutorial/html/index.html)
+ * DocOnce [source code](http://doconce.github.com/teamods/writing_reports/_static/report.do.txt.html) and [tutorial](http://doconce.github.io/doconce/doc/pub/tutorial/html/index.html)
 
 <!-- !split -->
 ### DocOnce disclaimer
@@ -527,8 +527,8 @@ This gets rendered as
  * **Boldface words** are also possible
  * <font color="red">colored words</font> too
  * `inline verbatim code` is featured
-  1. and sublists with enumerated items starting with `o`
-  2. items are just indented as you would do in email
+  a. and sublists with enumerated items starting with `o`
+  b. items are just indented as you would do in email
 
 
 <!-- !split -->
@@ -552,10 +552,10 @@ but without backslashes.
 See \eqref{eq1}-\eqref{myeq}.
 
 # Make hyperlink
-"some link text": "https://github.com/hplgit/doconce"
+"some link text": "https://github.com/doconce/doconce"
 
 # Hyperlink with complete URL as link text
-URL: "https://github.com/hplgit/doconce"
+URL: "https://github.com/doconce/doconce"
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 <!-- !split -->
@@ -615,17 +615,12 @@ the rest is plain LaTeX:
 which is rendered as
 
 $$
-\begin{equation}
-\frac{\partial u}{\partial t} = \nabla^2 u,
-\label{a:eq}
-\end{equation}
-$$
-
-$$
-\begin{equation}  
-\nabla\cdot\pmb{v}  = 0
-\label{b:eq}
-\end{equation}
+\begin{align}
+\frac{\partial u}{\partial t} &= \nabla^2 u,
+\label{c:eq}\\ 
+\nabla\cdot\pmb{v} & = 0
+\label{d:eq}
+\end{align}
 $$
 
 <!-- !split -->
@@ -785,7 +780,7 @@ Works only in Sphinx documents (but HTML support is possible).
 ### Demonstrating code execution; IPython notebook
 <div id="slide:ipynb"></div>
 
-Can take a [DocOnce source](http://hplgit.github.com/teamods/writing_reports/_static/report.do.txt.html) and transform to an [IPython notebook](http://nbviewer.ipython.org/url/hplgit.github.com/teamods/writing_reports/_static/report.ipynb) with [source](http://hplgit.github.com/teamods/writing_reports/_static/report.ipynb.html)
+Can take a [DocOnce source](http://doconce.github.com/teamods/writing_reports/_static/report.do.txt.html) and transform to an [IPython notebook](http://nbviewer.ipython.org/url/hplgit.github.com/teamods/writing_reports/_static/report.ipynb) with [source](http://doconce.github.com/teamods/writing_reports/_static/report.ipynb.html)
 
 <!-- !split -->
 ### Tables
@@ -919,7 +914,6 @@ Compute the probability of getting heads.
 <!-- --- begin answer of exercise --- -->
 *Answer.*
 0.5.
-
 <!-- --- end answer of exercise --- -->
 
 Filenames: `flip_coin.py`, `flip_coin.pdf`.
@@ -1173,7 +1167,7 @@ $$
    * **Solution**: slide code is autogenerated from DocOnce
 
  * **Problem**: reveal and deck have numerous styles
-   * **Solution**: easy [to autogenerate all styles](http://hplgit.github.com/teamods/doconce/demo/index.html) for a talk
+   * **Solution**: easy [to autogenerate all styles](http://doconce.github.com/teamods/doconce/demo/index.html) for a talk
 
  * **Problem**: HTML5 slides need many style files
    * **Solution**: autocopy all files to talk directory
@@ -1295,12 +1289,12 @@ doconce format plain  doconcefile  # plain, untagged text for email
 <!-- !split -->
 ### Installation
 
- * Source at [GitHub](https://github.com/hplgit/doconce) (recommended!)
-   * `git clone` + `sudo python setyp.py install`
+ * Source at [GitHub](https://github.com/doconce/doconce) (recommended!)
+   * `git clone` + `python setyp.py install`
 
- * Many [dependencies...](http://hplgit.github.io/doconce/doc/pub/manual/html/manual.html#installation-of-doconce-and-its-dependencies)
+ * Many [dependencies...](http://doconce.github.io/doconce/doc/pub/manual/html/manual.html#installation-of-doconce-and-its-dependencies)
    * Must have `preprocess` and `mako`
-   * Need `latex`, `sphinx`, `pandoc`, etc. (see the [Installation](http://hplgit.github.io/doconce/doc/pub/manual/html/manual.html#installation-of-doconce-and-its-dependencies) description)
+   * Need `latex`, `sphinx`, `pandoc`, etc. (see the [Installation](http://doconce.github.io/doconce/doc/pub/manual/html/manual.html#installation-of-doconce-and-its-dependencies) description)
    * Easy for slides: only `preprocess` and `mako` are needed :-)
 
 

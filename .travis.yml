@@ -15,9 +15,9 @@ addons:
       - python-dev
       - python-pip
 before_install:
-    - sudo pip install --upgrade git+https://github.com/doconce/preprocess
+    - pip install --upgrade git+https://github.com/doconce/preprocess
 install:
-    - sudo pip install .
+    - pip install .
 script:
     - doconce --version
     - doconce
