@@ -86,7 +86,7 @@ follow the rules below.
    macros.
  * Use *generalized references* when referring to companion documents
    that may later become part of this document (or migrated out of this document).
- * Follow "recommendations for DocOnce books": "https://github.com/hplgit/setup4book-doconce" if you plan to write a book.
+ * Follow "recommendations for DocOnce books": "https://github.com/doconce/setup4book-doconce" if you plan to write a book.
 
 [^exception]: There is an exception: by using *user-defined environments*
 within `!bu-name` and `!eu-name` directives, it is possible to

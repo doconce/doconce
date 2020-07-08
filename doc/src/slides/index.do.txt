@@ -414,7 +414,7 @@ you compile the document before doing `doconce slides_beamer`,
 doconce format ipynb demo
 
 # Or with URL to figures (required if rendered by nbviewer.ipython.org)
-doconce format ipynb demo --figure_prefix=https://raw.githubusercontent.com/hplgit/doconce/master/doc/pub/slides/demo/
+doconce format ipynb demo --figure_prefix=https://raw.githubusercontent.com/doconce/doconce/master/doc/pub/slides/demo/
 !ec
 
 ===== DocOnce talk: Why and How =====

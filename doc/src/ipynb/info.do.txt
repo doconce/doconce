@@ -277,7 +277,7 @@ plt.plot(x, y)
 % if FORMAT != 'ipynb':
 The result of this code segment appears in Figure ref{myfig}.
 
-FIGURE: [https://raw.githubusercontent.com/hplgit/doconce/master/doc/src/ipynb/fig/sinplot, width=400 frac=0.6] Plot. label{myfig}
+FIGURE: [https://raw.githubusercontent.com/doconce/doconce/master/doc/src/ipynb/fig/sinplot, width=400 frac=0.6] Plot. label{myfig}
 % else:
 Note that `%matplotlib inline` is automatically inserted before the
 first import of `matplotlib` in a DocOnce-generated notebook such
@@ -307,7 +307,7 @@ rendered in format _${FORMAT}_.
 with `--ipynb_figure=${ipynb_figure}`.
 % endif
 
-FIGURE: [https://raw.githubusercontent.com/hplgit/doconce/master/doc/src/manual/fig/wave1D.png, width=400]
+FIGURE: [https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/fig/wave1D.png, width=400]
 
 
 For the movies we have the values
@@ -454,7 +454,7 @@ converting to a Jupyter Notebook.
 !ewarning
 
 As a specific example on generating a notebook and converting it back,
-consider the "`example.do.txt`": "https://github.com/hplgit/doconce/blob/master/doc/src/ipynb/example.do.txt" file:
+consider the "`example.do.txt`": "https://github.com/doconce/doconce/blob/master/doc/src/ipynb/example.do.txt" file:
 
 !bc sys
 Terminal> cp example.do.txt tmp1.do.txt

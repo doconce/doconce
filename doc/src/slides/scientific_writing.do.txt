@@ -370,7 +370,7 @@ of new opportunities*.
 !split
 ===== Solution II: Use DocOnce =====
 
-"DocOnce": "http://hplgit.github.io/doconce/doc/web/index.html"
+"DocOnce": "http://doconce.github.io/doconce/doc/web/index.html"
 offers minimalistic typing, great flexibility wrt format,
 especially for scientific writing with *much math and code*.
 
@@ -393,14 +393,14 @@ FIGURE: [fig/doconce1b, width=600 frac=0.7]
 !split
 ===== DocOnce demos =====
 
-URL: "http://hplgit.github.com/teamods/writing_reports/"
+URL: "http://doconce.github.com/teamods/writing_reports/"
 
- * LaTeX-based PDF "for screen": "http://hplgit.github.com/teamods/writing_reports/_static/report.pdf", "for printing": "http://hplgit.github.com/teamods/writing_reports/_static/report_4printing.pdf", "for phone": "http://hplgit.github.com/teamods/writing_reports/_static/report_4phone.pdf"
- * "Plain HTML": "http://hplgit.github.com/teamods/writing_reports/_static/report_bloodish.html" or "Bootstrap": "http://hplgit.github.com/teamods/writing_reports/_static/report_bootstrap_wtoc.html" or "Bootswatch": "http://hplgit.github.com/teamods/writing_reports/_static/report_bootswatch_journal.html" or with a "template": "http://hplgit.github.com/teamods/writing_reports/_static/report_vagrant.html" or "another template": "http://hplgit.github.com/teamods/writing_reports/_static/report_github_minimal.html" or "solarized": "http://hplgit.github.com/teamods/writing_reports/_static/report_solarized.html"
- * Sphinx: "agni": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-agni/index.html", "pyramid": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-pyramid/report.html", "classy": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-classy/report.html", "fenics": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html", "redcloud": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-redcloud/report.html"
+ * LaTeX-based PDF "for screen": "http://doconce.github.com/teamods/writing_reports/_static/report.pdf", "for printing": "http://doconce.github.com/teamods/writing_reports/_static/report_4printing.pdf", "for phone": "http://doconce.github.com/teamods/writing_reports/_static/report_4phone.pdf"
+ * "Plain HTML": "http://doconce.github.com/teamods/writing_reports/_static/report_bloodish.html" or "Bootstrap": "http://doconce.github.com/teamods/writing_reports/_static/report_bootstrap_wtoc.html" or "Bootswatch": "http://doconce.github.com/teamods/writing_reports/_static/report_bootswatch_journal.html" or with a "template": "http://doconce.github.com/teamods/writing_reports/_static/report_vagrant.html" or "another template": "http://doconce.github.com/teamods/writing_reports/_static/report_github_minimal.html" or "solarized": "http://doconce.github.com/teamods/writing_reports/_static/report_solarized.html"
+ * Sphinx: "agni": "http://doconce.github.com/teamods/writing_reports/_static/sphinx-agni/index.html", "pyramid": "http://doconce.github.com/teamods/writing_reports/_static/sphinx-pyramid/report.html", "classy": "http://doconce.github.com/teamods/writing_reports/_static/sphinx-classy/report.html", "fenics": "http://doconce.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html", "redcloud": "http://doconce.github.com/teamods/writing_reports/_static/sphinx-redcloud/report.html"
  * HTML for "Google": "http://doconce-report-demo.blogspot.no/" or "Wordpress": "http://doconcereportdemo.wordpress.com/" for blog posts
  * "MediaWiki": "http://doconcedemo.shoutwiki.com/wiki/DocOnce_demo_page" (Wikipedia, Wikibooks, etc)
- * DocOnce "source code": "http://hplgit.github.com/teamods/writing_reports/_static/report.do.txt.html" and "tutorial": "http://hplgit.github.io/doconce/doc/pub/tutorial/html/index.html"
+ * DocOnce "source code": "http://doconce.github.com/teamods/writing_reports/_static/report.do.txt.html" and "tutorial": "http://doconce.github.io/doconce/doc/pub/tutorial/html/index.html"
 
 !split
 ===== DocOnce disclaimer =====
@@ -540,10 +540,10 @@ but without backslashes.
 See (ref{eq1})-(ref{myeq}).
 
 # Make hyperlink
-"some link text": "https://github.com/hplgit/doconce"
+"some link text": "https://github.com/doconce/doconce"
 
 # Hyperlink with complete URL as link text
-URL: "https://github.com/hplgit/doconce"
+URL: "https://github.com/doconce/doconce"
 !ec
 
 !split
@@ -737,7 +737,7 @@ Works only in Sphinx documents (but HTML support is possible).
 ===== Demonstrating code execution; IPython notebook =====
 label{slide:ipynb}
 
-Can take a "DocOnce source": "http://hplgit.github.com/teamods/writing_reports/_static/report.do.txt.html" and transform to an "IPython notebook": "http://nbviewer.ipython.org/url/hplgit.github.com/teamods/writing_reports/_static/report.ipynb" with "source": "http://hplgit.github.com/teamods/writing_reports/_static/report.ipynb.html"
+Can take a "DocOnce source": "http://doconce.github.com/teamods/writing_reports/_static/report.do.txt.html" and transform to an "IPython notebook": "http://nbviewer.ipython.org/url/hplgit.github.com/teamods/writing_reports/_static/report.ipynb" with "source": "http://doconce.github.com/teamods/writing_reports/_static/report.ipynb.html"
 
 !split
 ===== Tables =====
@@ -1116,7 +1116,7 @@ FIGURE: [fig/broken_pen_and_paper, width=400]
  * _Problem_: each package has its own syntax (though similar)
    * _Solution_: slide code is autogenerated from DocOnce
  * _Problem_: reveal and deck have numerous styles
-   * _Solution_: easy "to autogenerate all styles": "http://hplgit.github.com/teamods/doconce/demo/index.html" for a talk
+   * _Solution_: easy "to autogenerate all styles": "http://doconce.github.com/teamods/doconce/demo/index.html" for a talk
  * _Problem_: HTML5 slides need many style files
    * _Solution_: autocopy all files to talk directory
  * _Problem_: original versions of the styles have too large fonts,
@@ -1229,11 +1229,11 @@ doconce format plain  doconcefile  # plain, untagged text for email
 !split
 ===== Installation =====
 
- * Source at "GitHub": "https://github.com/hplgit/doconce" (recommended!)
+ * Source at "GitHub": "https://github.com/doconce/doconce" (recommended!)
    * `git clone` + `sudo python setyp.py install`
- * Many "dependencies...": "http://hplgit.github.io/doconce/doc/pub/manual/html/manual.html#installation-of-doconce-and-its-dependencies"
+ * Many "dependencies...": "http://doconce.github.io/doconce/doc/pub/manual/html/manual.html#installation-of-doconce-and-its-dependencies"
    * Must have `preprocess` and `mako`
-   * Need `latex`, `sphinx`, `pandoc`, etc. (see the "Installation": "http://hplgit.github.io/doconce/doc/pub/manual/html/manual.html#installation-of-doconce-and-its-dependencies" description)
+   * Need `latex`, `sphinx`, `pandoc`, etc. (see the "Installation": "http://doconce.github.io/doconce/doc/pub/manual/html/manual.html#installation-of-doconce-and-its-dependencies" description)
    * Easy for slides: only `preprocess` and `mako` are needed :-)
 
 !split

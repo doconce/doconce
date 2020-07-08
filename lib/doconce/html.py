@@ -100,13 +100,13 @@ admon_styles1 = admon_styles_text + """\
   background-repeat: no-repeat; background-position: 10px center;
 }
 .notice   { color: #00529B; background-color: %(background_notice)s;
-            background-image: url(RAW_GITHUB_URL/hplgit/doconce/master/bundled/html_images/%(icon_notice)s); }
+            background-image: url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_notice)s); }
 .summary  { color: #4F8A10; background-color: %(background_summary)s;
-            background-image:url(RAW_GITHUB_URL/hplgit/doconce/master/bundled/html_images/%(icon_summary)s); }
+            background-image:url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_summary)s); }
 .warning  { color: #9F6000; background-color: %(background_warning)s;
-            background-image: url(RAW_GITHUB_URL/hplgit/doconce/master/bundled/html_images/%(icon_warning)s); }
+            background-image: url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_warning)s); }
 .question { color: #4F8A10; background-color: %(background_question)s;
-            background-image:url(RAW_GITHUB_URL/hplgit/doconce/master/bundled/html_images/%(icon_question)s); }
+            background-image:url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_question)s); }
 .block    { color: #00529B; background-color: %(background_notice)s; }
 """
 
@@ -130,10 +130,10 @@ admon_styles2 = admon_styles_text + """\
 .alert-block > p, .alert-block > ul {margin-bottom:1em}
 .alert li {margin-top: 1em}
 .alert-block p+p {margin-top:5px}
-.alert-notice { background-image: url(RAW_GITHUB_URL/hplgit/doconce/master/bundled/html_images/%(icon_notice)s); }
-.alert-summary  { background-image:url(RAW_GITHUB_URL/hplgit/doconce/master/bundled/html_images/%(icon_summary)s); }
-.alert-warning { background-image: url(RAW_GITHUB_URL/hplgit/doconce/master/bundled/html_images/%(icon_warning)s); }
-.alert-question {background-image:url(RAW_GITHUB_URL/hplgit/doconce/master/bundled/html_images/%(icon_question)s); }
+.alert-notice { background-image: url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_notice)s); }
+.alert-summary  { background-image:url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_summary)s); }
+.alert-warning { background-image: url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_warning)s); }
+.alert-question {background-image:url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_question)s); }
 """
 # alt: background-image: url(data:image/png;base64,iVBORw0KGgoAAAAN...);
 
@@ -180,8 +180,8 @@ a:hover { color: #2aa198; }
 
 def css_link_solarized_highlight(style='light'):
     return """
-<link href="RAW_GITHUB_URL/hplgit/doconce/master/bundled/html_styles/style_solarized_box/css/solarized_%(style)s_code.css" rel="stylesheet" type="text/css" title="%(style)s"/>
-<script src="RAW_GITHUB_URL/hplgit/doconce/master/bundled/html_styles/style_solarized_box/js/highlight.pack.js"></script>
+<link href="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_styles/style_solarized_box/css/solarized_%(style)s_code.css" rel="stylesheet" type="text/css" title="%(style)s"/>
+<script src="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_styles/style_solarized_box/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 """ % vars()
 
@@ -330,7 +330,7 @@ table {	border-collapse: collapse; border-spacing: 0; }
 body {
   font-size: 1em;
   line-height: 1.5;
-  background: #e7e7e7 url(RAW_GITHUB_URL/hplgit/num-methods-for-PDEs/master/doc/web/images/body-bg.png) 0 0 repeat;
+  background: #e7e7e7 url(RAW_GITHUB_URL/doconce/num-methods-for-PDEs/master/doc/web/images/body-bg.png) 0 0 repeat;
   font-family: 'Helvetica Neue', Helvetica, Arial, serif;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
   color: #6d6d6d;
@@ -1616,7 +1616,7 @@ function show_hide_code%d(){
                 icon = 'question_blue_on_white2.png'
             else:
                 icon = 'exercise1.svg'
-        icon_path = 'RAW_GITHUB_URL/hplgit/doconce/master/bundled/html_images/' + icon
+        icon_path = 'RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/' + icon
         pattern = r'(<h3>(Exercise|Project|Problem) \d+:.+</h3>)'
         filestr = re.sub(pattern, '\g<1>\n\n<img src="%s" width=%s align="right">\n' % (icon_path, icon_width), filestr)
 
@@ -2542,7 +2542,7 @@ def html_quiz(quiz):
                     expl = 'Wrong!'
             # Use collapse functionality, see http://jsfiddle.net/8cYFj/
             visible_text = '&nbsp;<b>%s</b>\n%s' % (choice_prefix, choice[1])
-            collapsed_text = '<img src="RAW_GITHUB_URL/hplgit/doconce/master/bundled/html_images/%s.gif">\n%s' % ('correct' if choice[0] == 'right' else 'incorrect', expl)
+            collapsed_text = '<img src="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%s.gif">\n%s' % ('correct' if choice[0] == 'right' else 'incorrect', expl)
             text += bootstrap_collapse(
                visible_text, collapsed_text,
                id, button_text, icon='pencil')
@@ -2683,7 +2683,7 @@ def html_%(_admon)s(block, format, title='%(_Admon)s', text_size='normal'):
 <table width="95%%%%" border="0">
 <tr>
 <td width="25" align="center" valign="top">
-<img src="RAW_GITHUB_URL/hplgit/doconce/master/bundled/html_images/lyx_%(_admon)s.png" hspace="5" alt="%(_admon)s"></td>
+<img src="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/lyx_%(_admon)s.png" hspace="5" alt="%(_admon)s"></td>
 <th align="left" valign="middle"><b>%%s</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
@@ -3052,7 +3052,7 @@ div { text-align: justify; text-justify: inter-word; }
             # Local DocOnce stored or modified bootstrap themes
             boots_style = html_style.split('_')[1]
             urls = ['https://netdna.bootstrapcdn.com/bootstrap/%s/css/bootstrap.min.css' % boots_version,
-                    'RAW_GITHUB_URL/hplgit/doconce/master/bundled/html_styles/style_bootstrap/css/%s.css' % html_style]
+                    'RAW_GITHUB_URL/doconce/doconce/master/bundled/html_styles/style_bootstrap/css/%s.css' % html_style]
         elif html_style.startswith('bootswatch'):
             default = 'cosmo'
             boots_style = default if 'bootswatch_' not in html_style else \
@@ -3158,7 +3158,7 @@ body { %s; }
 
     meta_tags = """\
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 """
     bootstrap_title_bar = ''
@@ -3245,7 +3245,7 @@ body { %s; }
     if option('pygments_html_style=', 'default') == 'highlight.js':
         scripts += """
 <!-- use highlight.js and styles for code -->
-<script src="RAW_GITHUB_URL/hplgit/doconce/master/bundled/html_styles/style_solarized_box/js/highlight.pack.js"></script>
+<script src="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_styles/style_solarized_box/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 """
 
@@ -3278,7 +3278,7 @@ $(function () {
     INTRO['html'] = """\
 <!--
 Automatically generated HTML file from DocOnce source
-(https://github.com/hplgit/doconce/)
+(https://github.com/doconce/doconce/)
 -->
 <html>
 <head>

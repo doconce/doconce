@@ -44,7 +44,7 @@ so you *must* use a text editor with monospace font.
 ===== Emacs syntax support =====
 
 The file ".doconce-mode.el":
-"https://github.com/hplgit/doconce/blob/master/misc/.doconce-mode.el"
+"https://github.com/doconce/doconce/blob/master/misc/.doconce-mode.el"
 in the DocOnce source distribution gives a "DocOnce Editing Mode" in
 Emacs. Store the raw version of the file in the home directory and add
 `(load-file "~/.doconce-mode.el")` to the `.emacs` file.
@@ -989,7 +989,7 @@ the environments:
    slide
 
 In addition, the user can define new environments `!bc-name` as
-explained in the "manual": "http://hplgit.github.io/doconce/doc/pub/manual/manual.html#manual:userdef:envir".
+explained in the "manual": "http://doconce.github.io/doconce/doc/pub/manual/manual.html#manual:userdef:envir".
 
 ===== Preprocessing =====
 
@@ -1036,7 +1036,7 @@ constructions:
 !ec
 
 With the `mako` preprocessor the if-else tests have slightly different syntax.
-An "example document": "http://hplgit.github.com/bioinf-py/" contains
+An "example document": "http://doconce.github.com/bioinf-py/" contains
 some illustrations on how to utilize `mako` (clone the GitHub project and
 examine the DocOnce source and the `doc/src/make.sh` script).
 

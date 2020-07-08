@@ -3,7 +3,7 @@ AUTHOR: Hans Petter Langtangen at Simula & University of Oslo
 DATE: today
 
 !bbox
-The following text was generated from a "DocOnce file": "https://github.com/hplgit/doconce/blob/master/doc/src/pyembed/pyembed.do.txt"
+The following text was generated from a "DocOnce file": "https://github.com/doconce/doconce/blob/master/doc/src/pyembed/pyembed.do.txt"
 where all mathematical computations are done in the background
 by SymPy.
 !ebox

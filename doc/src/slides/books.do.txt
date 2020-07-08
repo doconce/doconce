@@ -131,7 +131,7 @@ FIGURE: [fig/direction14, width=510 frac=0.5]
 !split
 ===== An experimental one-size-fits-all solution =====
 
-"DocOnce": "http://hplgit.github.io/doconce/doc/web/index.html"
+"DocOnce": "http://doconce.github.io/doconce/doc/web/index.html"
 is a kind of extended Markdown that can produce
 
    * classical LaTeX books
@@ -154,14 +154,14 @@ is a kind of extended Markdown that can produce
 !split
 ===== Some demos =====
 
-URL: "http://hplgit.github.com/teamods/writing_reports/"
+URL: "http://doconce.github.com/teamods/writing_reports/"
 
- * LaTeX-based PDF "for screen": "http://hplgit.github.com/teamods/writing_reports/_static/report.pdf", "for printing": "http://hplgit.github.com/teamods/writing_reports/_static/report_4printing.pdf", "for phone": "http://hplgit.github.com/teamods/writing_reports/_static/report_4phone.pdf"
- * "Plain HTML": "http://hplgit.github.com/teamods/writing_reports/_static/report_bloodish.html" or "Bootstrap": "http://hplgit.github.com/teamods/writing_reports/_static/report_bootstrap_wtoc.html" or "Bootswatch": "http://hplgit.github.com/teamods/writing_reports/_static/report_bootswatch_journal.html" or with a "template": "http://hplgit.github.com/teamods/writing_reports/_static/report_vagrant.html" or "another template": "http://hplgit.github.com/teamods/writing_reports/_static/report_github_minimal.html" or "solarized": "http://hplgit.github.com/teamods/writing_reports/_static/report_solarized.html"
- * Sphinx: "agni": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-agni/index.html", "pyramid": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-pyramid/report.html", "classy": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-classy/report.html", "fenics": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html", "redcloud": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-redcloud/report.html"
+ * LaTeX-based PDF "for screen": "http://doconce.github.com/teamods/writing_reports/_static/report.pdf", "for printing": "http://doconce.github.com/teamods/writing_reports/_static/report_4printing.pdf", "for phone": "http://doconce.github.com/teamods/writing_reports/_static/report_4phone.pdf"
+ * "Plain HTML": "http://doconce.github.com/teamods/writing_reports/_static/report_bloodish.html" or "Bootstrap": "http://doconce.github.com/teamods/writing_reports/_static/report_bootstrap_wtoc.html" or "Bootswatch": "http://doconce.github.com/teamods/writing_reports/_static/report_bootswatch_journal.html" or with a "template": "http://doconce.github.com/teamods/writing_reports/_static/report_vagrant.html" or "another template": "http://doconce.github.com/teamods/writing_reports/_static/report_github_minimal.html" or "solarized": "http://doconce.github.com/teamods/writing_reports/_static/report_solarized.html"
+ * Sphinx: "agni": "http://doconce.github.com/teamods/writing_reports/_static/sphinx-agni/index.html", "pyramid": "http://doconce.github.com/teamods/writing_reports/_static/sphinx-pyramid/report.html", "classy": "http://doconce.github.com/teamods/writing_reports/_static/sphinx-classy/report.html", "fenics": "http://doconce.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html", "redcloud": "http://doconce.github.com/teamods/writing_reports/_static/sphinx-redcloud/report.html"
  * HTML for "Google": "http://doconce-report-demo.blogspot.no/" or "Wordpress": "http://doconcereportdemo.wordpress.com/" for blog posts
  * "MediaWiki": "http://doconcedemo.shoutwiki.com/wiki/DocOnce_demo_page" (Wikipedia, Wikibooks, etc)
- * DocOnce "source code": "http://hplgit.github.com/teamods/writing_reports/_static/report.do.txt.html" and "tutorial": "http://hplgit.github.io/doconce/doc/pub/tutorial/html/index.html"
+ * DocOnce "source code": "http://doconce.github.com/teamods/writing_reports/_static/report.do.txt.html" and "tutorial": "http://doconce.github.io/doconce/doc/pub/tutorial/html/index.html"
 
 
 !split

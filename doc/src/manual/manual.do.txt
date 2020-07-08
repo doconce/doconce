@@ -8,7 +8,7 @@ DATE: today
 # (documents can also have mako comment lines)
 
 !bwarning
-Some parts of this manual may be outdated. Please create an issue at URL: "https://github.com/hplgit/doconce" to report errors.
+Some parts of this manual may be outdated. Please create an issue at URL: "https://github.com/doconce/doconce" to report errors.
 !ewarning
 
 ======= What Is DocOnce? =======
@@ -55,12 +55,12 @@ a little around with a simple document.
 
 
 The primary demo for what can be achieved as output from DocOnce documents
-regards a little "scientific report": "http://hplgit.github.io/teamods/writing_reports/_static/report/do.txt.html" that is compiled to
-a "range of various output documents": "http://hplgit.github.io/teamods/writing_reports/index.html". A version of that web page contains the specific
+regards a little "scientific report": "http://doconce.github.io/teamods/writing_reports/_static/report/do.txt.html" that is compiled to
+a "range of various output documents": "http://doconce.github.io/teamods/writing_reports/index.html". A version of that web page contains the specific
 compilation commands to create each of the output demonstrations.
 
 There is also a demo on the many different ways one can "create slides":
-"http://hplgit.github.io/doconce/doc/pub/slides/demo/index.html".
+"http://doconce.github.io/doconce/doc/pub/slides/demo/index.html".
 
 !bwarning Write DocOnce documents in a text editor with monospace font!
 Some DocOnce constructions are sensitive to whitespace (indentation in
@@ -74,9 +74,9 @@ sensitive to whitespace and require a monospace font in the text editor.)
 !bnotice Tip: Read the FAQ!
 A lot of tips and problems have over the years been collected in the
 Troubleshooting and FAQ document, available in
-"Sphinx": "http://hplgit.github.io/doconce/doc/pub/trouble/html/index.html",
-"HTML": "http://hplgit.github.io/doconce/doc/pub/trouble/trouble.html", and
-"PDF": "http://hplgit.github.io/doconce/doc/pub/trouble/trouble.pdf".
+"Sphinx": "http://doconce.github.io/doconce/doc/pub/trouble/html/index.html",
+"HTML": "http://doconce.github.io/doconce/doc/pub/trouble/trouble.html", and
+"PDF": "http://doconce.github.io/doconce/doc/pub/trouble/trouble.pdf".
 The FAQ and this manual are the two key references for how to make use
 of DocOnce.
 !enotice
@@ -84,9 +84,9 @@ of DocOnce.
 ## setup4books-doconce, all the books?
 
 The DocOnce tutorial (available in
-"Sphinx": "http://hplgit.github.io/doconce/doc/pub/tutorial/html/index.html",
-"HTML": "http://hplgit.github.io/doconce/doc/pub/tutorial/tutorial.html", and
-"PDF": "http://hplgit.github.io/doconce/doc/pub/tutorial/tutorial.pdf" formats)
+"Sphinx": "http://doconce.github.io/doconce/doc/pub/tutorial/html/index.html",
+"HTML": "http://doconce.github.io/doconce/doc/pub/tutorial/tutorial.html", and
+"PDF": "http://doconce.github.io/doconce/doc/pub/tutorial/tutorial.pdf" formats)
 has its source code in the GitHub repository for
 DocOnce, more precisely in the file
 
@@ -94,10 +94,10 @@ DocOnce, more precisely in the file
 doc/src/tutorial/tutorial.do.txt
 !ec
 One can compare this source with the output in
-"HTML": "http://hplgit.github.io/doconce/doc/pub/tutorial/tutorial.html",
-"Sphinx": "http://hplgit.github.io/doconce/doc/pub/tutorial/html/index.html",
+"HTML": "http://doconce.github.io/doconce/doc/pub/tutorial/tutorial.html",
+"Sphinx": "http://doconce.github.io/doconce/doc/pub/tutorial/html/index.html",
 and
-"PDF": "http://hplgit.github.io/doconce/doc/pub/tutorial/tutorial.pdf".
+"PDF": "http://doconce.github.io/doconce/doc/pub/tutorial/tutorial.pdf".
 The `make.sh` script in the same directory
 tells in detail how the various versions were compiled.
 
@@ -108,10 +108,10 @@ for DocOnce, in the file
 doc/src/manual/manual.do.txt
 !ec
 You can compare this source with the available output in
-"HTML": "http://hplgit.github.io/doconce/doc/pub/manual/manual.html",
-"Sphinx": "http://hplgit.github.io/doconce/doc/pub/manual/html/index.html",
+"HTML": "http://doconce.github.io/doconce/doc/pub/manual/manual.html",
+"Sphinx": "http://doconce.github.io/doconce/doc/pub/manual/html/index.html",
 and
-"PDF": "http://hplgit.github.io/doconce/doc/pub/manual/manual.pdf".
+"PDF": "http://doconce.github.io/doconce/doc/pub/manual/manual.pdf".
 
 
 
@@ -644,7 +644,7 @@ The `sidecap=True` figure option has no impact on other formats.
 
 Many LaTeX writers are dependent upon TikZ figures, and these can be
 used in DocOnce documents, see the "demo document":
-"http://hplgit.github.io/doconce/doc/pub/pgf_tikz/pgf_tikz.html".
+"http://doconce.github.io/doconce/doc/pub/pgf_tikz/pgf_tikz.html".
 
 === Plot Files in LaTeX ===
 
@@ -724,9 +724,9 @@ access.
 
 An interactive plot like the one shown above, stored in a file
 "`tmp.html`":
-"https://github.com/hplgit/doconce/tree/master/doc/src/manual/fig/bokeh_demo.html",
+"https://github.com/doconce/doconce/tree/master/doc/src/manual/fig/bokeh_demo.html",
 can be made by the code below ("download file":
-"https://github.com/hplgit/doconce/tree/master/doc/src/manual/bokeh_demo.py"):
+"https://github.com/doconce/doconce/tree/master/doc/src/manual/bokeh_demo.py"):
 
 @@@CODE bokeh_demo.py
 
@@ -787,10 +787,10 @@ MOVIE: [mov/wave.igg, width=600] A movie in Ogg format.
 A URL works too as movie address:
 
 !bc do
-MOVIE: [http://hplgit.github.io/animate/doc/pub/mov-animate/demo.ogg] Ogg movie in cyberspace.
+MOVIE: [http://doconce.github.io/animate/doc/pub/mov-animate/demo.ogg] Ogg movie in cyberspace.
 !ec
 
-MOVIE: [http://hplgit.github.io/animate/doc/pub/mov-animate/demo.ogg] Ogg movie in cyberspace.
+MOVIE: [http://doconce.github.io/animate/doc/pub/mov-animate/demo.ogg] Ogg movie in cyberspace.
 
 !bwarning Important
 Movies will not work properly in `sphinx` format unless they are located
@@ -935,7 +935,7 @@ MOVIE: [http://some.where.net/experiments/frame_%04d.png:0->320]
 
 Here is an example:
 
-MOVIE: [http://hplgit.github.io/animate/doc/pub/mov-animate/frames/frame_%04d.png:0->320]
+MOVIE: [http://doconce.github.io/animate/doc/pub/mov-animate/frames/frame_%04d.png:0->320]
 
 !bnotice Recommendations
 It is challenging to write robust DocOnce code with movies.
@@ -1401,7 +1401,7 @@ m-dash (as in m---dash), and horizontal rule can be specified (below).
 Since DocOnce applies regular expressions to recognize inline tagging,
 there might be cases where the tags are not correctly interpreted
 and translated. Fortunately, most such pitfalls are easily circumvented.
-The "troubleshooting document": "http://hplgit.github.io/doconce/doc/pub/trouble/trouble/trouble.html#trouble:pitfalls" shows some
+The "troubleshooting document": "http://doconce.github.io/doconce/doc/pub/trouble/trouble/trouble.html#trouble:pitfalls" shows some
 examples.
 !ewarning
 
@@ -1485,10 +1485,10 @@ To have the URL address itself as link text, put an "URL" or URL
 before the address enclosed in double quotes:
 
 !bc do
-Click on this link: URL: "https://github.com/hplgit/doconce".
+Click on this link: URL: "https://github.com/doconce/doconce".
 !ec
 which gets rendered as
-Click on this link: URL: "https://github.com/hplgit/doconce".
+Click on this link: URL: "https://github.com/doconce/doconce".
 
 (There is also support for lazy writing of URLs: any http or https web address
 with a leading space and a trailing space, comma, semi-colon, or question
@@ -1500,12 +1500,12 @@ Links that launches a mail to a specified address is written as
 ordinary URLs, typically as
 
 !bc do
-Send "mail": "mailto:hpl@simula.no"
+Send "mail": "mailto:yourusername@example.com"
 # Alternative:
-to "`hpl@simula.no`": "mailto:hpl@simula.no".
+to "`yourusername@example.com`": "mailto:yourusername@example.com".
 !ec
-which appears as Send "mail": "mailto:hpl@simula.no" to
-"`hpl@simula.no`": "mailto:hpl@simula.no".
+which appears as Send "mail": "mailto:yourusername@example.com" to
+"`yourusername@example.com`": "mailto:yourusername@example.com".
 
 ===== Links to Local Files =====
 
@@ -2361,11 +2361,11 @@ the LaTeX output also has a hyperlink:
 !bc do
 As explained in
 ref[Section ref{subsec:ex}][in "Langtangen, 2012":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex"
+"http://doconce.github.io/doconce/test/demo_testdoc.html#subsec:ex"
 cite{DocOnce:test}][a "section":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex" in
+"http://doconce.github.io/doconce/test/demo_testdoc.html#subsec:ex" in
 the document "A Document for Testing DocOnce":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html"
+"http://doconce.github.io/doconce/test/demo_testdoc.html"
 cite{DocOnce:test}], DocOnce documents may include tables.
 !ec
 With `latex` or `pdflatex` as output, this translates to
@@ -2380,7 +2380,7 @@ otherwise
 !bc do
 As explained in
 Section ref{subsec:ex} in "Langtangen, 2012":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex"
+"http://doconce.github.io/doconce/test/demo_testdoc.html#subsec:ex"
 cite{DocOnce:test}, DocOnce documents may include tables.
 !ec
 The latter DocOnce code is translated to the following
@@ -2389,7 +2389,7 @@ LaTeX code:
 !bc do
 As explained in
 Section~\ref{subsec:ex} in
-\href{{http://hplgit.github.io/doconce/...}}{Langtangen, 2012}
+\href{{http://doconce.github.io/doconce/...}}{Langtangen, 2012}
 \cite{DocOnce:test}, DocOnce documents may include tables.
 !ec
 In a format different from `latex` and `pdflatex`, the effective DocOnce
@@ -2398,9 +2398,9 @@ text becomes
 !bc do
 As explained in
 a "section":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex" in
+"http://doconce.github.io/doconce/test/demo_testdoc.html#subsec:ex" in
 the document "A Document for Testing DocOnce":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html"
+"http://doconce.github.io/doconce/test/demo_testdoc.html"
 cite{DocOnce:test}, DocOnce documents may include tables.
 !ec
 The rendered text in the current format becomes
@@ -2408,11 +2408,11 @@ The rendered text in the current format becomes
 !bquote
 As explained in
 ref[Section ref{subsec:ex}][in "Langtangen, 2012":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex"
+"http://doconce.github.io/doconce/test/demo_testdoc.html#subsec:ex"
 cite{DocOnce:test}][a "section":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex" in
+"http://doconce.github.io/doconce/test/demo_testdoc.html#subsec:ex" in
 the document "A Document for Testing DocOnce":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html"
+"http://doconce.github.io/doconce/test/demo_testdoc.html"
 cite{DocOnce:test}], DocOnce documents may include tables.
 !equote
 
@@ -2421,10 +2421,10 @@ A complete ``chapter'' reference may look like
 !bc do
 As explained in
 refch[Chapter ref{ch:testdoc}]["Langtangen, 2012":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html"
+"http://doconce.github.io/doconce/test/demo_testdoc.html"
 cite{DocOnce:test}][the document
 "A Document for Testing DocOnce":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html"
+"http://doconce.github.io/doconce/test/demo_testdoc.html"
 cite{DocOnce:test}], DocOnce documents may include tables.
 !ec
 The output now, if `ch:testdoc` is not a label in the document,
@@ -2433,7 +2433,7 @@ becomes in the `latex` and `pdflatex` case
 !bc do
 As explained in
 "Langtangen, 2012":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html"
+"http://doconce.github.io/doconce/test/demo_testdoc.html"
 cite{DocOnce:test}, DocOnce documents may include tables.
 !ec
 That is, the internal reference `Chapter ...` is omitted since
@@ -2442,10 +2442,10 @@ The resulting rendered text in the current format becomes
 !bquote
 As explained in
 refch[Chapter ref{ch:testdoc}]["Langtangen, 2012":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html"
+"http://doconce.github.io/doconce/test/demo_testdoc.html"
 cite{DocOnce:test}][the document
 "A Document for Testing DocOnce":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html"
+"http://doconce.github.io/doconce/test/demo_testdoc.html"
 cite{DocOnce:test}], DocOnce documents may include tables.
 !equote
 
@@ -3752,7 +3752,7 @@ paragraph) if the ePub or MOBI is a requested format.
 
 What has been successfully used to convert DocOnce documents with
 mathematics and code to ePub is
-the `ebookmaker.py` script (use this "fork": "https://github.com/hplgit/ebookmaker" by the author for a version of this script that actually works).
+the `ebookmaker.py` script (use this "fork": "https://github.com/doconce/ebookmaker" by the author for a version of this script that actually works).
 HTML, in particular with Bootstrap styles, translates well to ePub by
 this script. The script requires a JSON file describing the content of
 the book. A typical file for a DocOnce document `mydoc.do.txt` that
@@ -3998,7 +3998,7 @@ and summary boxes. The boxes normally have an icon, a heading,
 and may also have a background color. A special box, the block,
 has never any icon and can be used when an icon would be disturbing
 or misleading. The variety of admonitions and their many typesetting
-styles are available through a "demo": "http://hplgit.github.io/doconce/doc/pub/admon/index.html".
+styles are available through a "demo": "http://doconce.github.io/doconce/doc/pub/admon/index.html".
 
 === Examples on Admonition Types ===
 
@@ -4096,7 +4096,7 @@ idx{HTML admonitions}
 === Layout of Admonitions in HTML ===
 
 The command-line argument `--html_admon` sets the admonition style
-for the `html` format (see "demo": "http://hplgit.github.io/doconce/doc/pub/admon/index.html"):
+for the `html` format (see "demo": "http://doconce.github.io/doconce/doc/pub/admon/index.html"):
 
  * `--html_admon=gray` for
    icons with gray background and small font,
@@ -4137,7 +4137,7 @@ idx{LaTeX admonitions}
 
 In `latex` and `pdflatex`, the type of admonition style is set by
 the command-line option `--latex_admon=`.
-Several values are available (see "demo": "http://hplgit.github.io/doconce/doc/pub/admon/index.html"):
+Several values are available (see "demo": "http://doconce.github.io/doconce/doc/pub/admon/index.html"):
 
  * `paragraph` is the simplest type of admonition and typeset
    as plain text with an optional paragraph heading. The variant
@@ -4433,11 +4433,11 @@ there is a neat alternative solution for all other formats.
 It is also possible to make enumerated environments such that their `ref`s use numbers
 instead of section headings in HTML format (just like Figures do). This mimics LaTeX
 behaviour on theorem-style environments. See the example in "DocOnce repository":
-"https://github.com/hplgit/doconce/blob/master/doc/src/userdef_envirs/enumerated_envs".
+"https://github.com/doconce/doconce/blob/master/doc/src/userdef_envirs/enumerated_envs".
 !enotice
 
 You may take a look at a complete "`userdef_environments.py`":
-"https://github.com/hplgit/doconce/blob/master/doc/src/manual/userdef_environments.py"
+"https://github.com/doconce/doconce/blob/master/doc/src/manual/userdef_environments.py"
 file to see this example environment and another *highlight* environment
 where we define blue boxes in LaTeX and HTML and rely on a standard
 notice admon for all other formats. The highlight environment is
@@ -4485,10 +4485,10 @@ FIGURE: [fig/userdef_code_envir.png, width=400 frac=0.5]
 # #endif
 appears at the end of the document
 "Demonstration of DocOnce support for LaTeX code block environments":
-"http://hplgit.github.io/doconce/doc/pub/latexcode/demo.html".
+"http://doconce.github.io/doconce/doc/pub/latexcode/demo.html".
 
 Other examples are available in the "DocOnce repository":
-"https://github.com/hplgit/doconce/blob/master/doc/src/userdef_envirs".
+"https://github.com/doconce/doconce/blob/master/doc/src/userdef_envirs".
 
 ======= Bibliography (References) =======
 
@@ -4997,7 +4997,7 @@ idx{short title (for slides)}
 
 DocOnce can generate two types of slides: HTML5+CSS3 type of
 slides to be presented through a web browser, and classical
-LaTeX Beamer slides. A "comprehensive demo": "http://hplgit.github.io/doconce/doc/pub/slides/demo/index.html" shows the range of possible
+LaTeX Beamer slides. A "comprehensive demo": "http://doconce.github.io/doconce/doc/pub/slides/demo/index.html" shows the range of possible
 layouts.
 
 The following specific types of output is supported:
@@ -5226,9 +5226,9 @@ Terminal> doconce slides_html myslides reveal \
 
 Four themes come with DocOnce: `X_Y`, where `X` is `blue` or `red`
 (the main color of the slides) and `Y` is "`plain`":
-"http://hplgit.github.io/teamods/doconce/demo/demo_red_plain.pdf"
+"http://doconce.github.io/teamods/doconce/demo/demo_red_plain.pdf"
 for simple layout and
-"`shadow`": "http://hplgit.github.io/teamods/doconce/demo/demo_blue_shadow.pdf"
+"`shadow`": "http://doconce.github.io/teamods/doconce/demo/demo_blue_shadow.pdf"
 for shadowed boxes and more visual structure in the slides.
 
 === Pop of list items and blocks ===
@@ -5254,9 +5254,9 @@ The cycle is
 ======= Support for non-English =======
 
 DocOnce can handle documents in other languages than English. At the time
-of this writing there is support for Basque, German and Norwegian. Please create an issue at URL: "https://github.com/hplgit/doconce/issues" to request support for additional languages.
+of this writing there is support for Basque, German and Norwegian. Please create an issue at URL: "https://github.com/doconce/doconce/issues" to request support for additional languages.
 
-A demo directory with files is "`locale`": "https://github.com/hplgit/doconce/tree/master/doc/src/locale". For example, `norsk.do.txt` contains a simple document
+A demo directory with files is "`locale`": "https://github.com/doconce/doconce/tree/master/doc/src/locale". For example, `norsk.do.txt` contains a simple document
 in Norwegian. To compile, one must supply the options
 `--encoding=utf-8 --language=Norwegian`:
 
@@ -5368,10 +5368,10 @@ idx{doconce editing (Emacs)}
 ## for highly configurable latex editors that perhaps can be adapted
 ## to doconce (Kile seems to be the choice because of extensibility)
 
-The file ".doconce-mode.el": "https://github.com/hplgit/doconce/blob/master/misc/.doconce-mode.el" in the DocOnce source distribution
+The file ".doconce-mode.el": "https://github.com/doconce/doconce/blob/master/misc/.doconce-mode.el" in the DocOnce source distribution
 gives a "DocOnce Editing Mode" in Emacs.
 
-Here is how to get the DocOnce Editing Mode in Emacs: Download ".doconce-mode.el": "https://raw.github.com/hplgit/doconce/master/misc/.doconce-mode.el" and save it in your home directory, then add these lines to `~/.emacs`:
+Here is how to get the DocOnce Editing Mode in Emacs: Download ".doconce-mode.el": "https://raw.github.com/doconce/doconce/master/misc/.doconce-mode.el" and save it in your home directory, then add these lines to `~/.emacs`:
 
 !bc do
 (load-file "~/.doconce-mode.el")
