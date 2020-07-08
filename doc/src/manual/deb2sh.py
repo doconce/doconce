@@ -43,7 +43,7 @@ function apt_install {
 }
 
 function pip_install {
-  sudo pip install --upgrade "$@"
+  pip install --upgrade "$@"
   if [ $? -ne 0 ]; then
     echo "could not install $p - abort"
     exit 1

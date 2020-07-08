@@ -49,9 +49,9 @@ DocOnce itself is pure Python code hosted at URL:
 Installation can be done via
 
 !bc sys
-sudo pip install git+https://github.com/doconce/doconce
+pip install git+https://github.com/doconce/doconce
 # or if doconce is already installed
-sudo pip install git+https://github.com/doconce/doconce --upgrade
+pip install git+https://github.com/doconce/doconce --upgrade
 !ec
 
 However, the recommended approach is to have a copy of the source on
@@ -60,7 +60,7 @@ the local computer and run `pip install` in that directory:
 !bc sys
 git clone git@github.com:doconce/doconce.git
 cd doconce
-sudo pip install .
+pip install .
 cd ..
 !ec
 Since DocOnce is frequently updated, it becomes necessary to ensure
@@ -69,7 +69,7 @@ that you work with the most recent version:
 !bc sys
 cd doconce
 git pull origin master
-sudo pip install --upgrade .
+pip install --upgrade .
 !ec
 
 
@@ -197,7 +197,7 @@ The stand-alone `ptex2tex` program is installed by
 !bc sys
 svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
 cd ptex2tex
-sudo python setup.py install
+python setup.py install
 !ec
 It may happen that you need additional style files, you can run
 a script, `cp2texmf.sh`:
@@ -328,7 +328,7 @@ sudo apt-get install unoconv libreoffice libreoffice-dmaths
 #using ReportLab instead of LaTeX. The enabling software is
 #"rst2pdf": "http://code.google.com/p/rst2pdf". Either download the tarball
 #or clone the svn repository, go to the `rst2pdf` directory and
-#run the usual `sudo python setup.py install`.
+#run the usual `python setup.py install`.
 
 === Markdown and Pandoc Output ===
 
@@ -361,9 +361,9 @@ are also available in Debian-based system through the
 `apt-get install` command. However, we recommend installation directly
 from the version control system repository as there might be important
 updates and bug fixes. For `svn` directories, go to the directory,
-run `svn update`, and then `sudo python setup.py install`. For
+run `svn update`, and then `python setup.py install`. For
 Mercurial (`hg`) directories, go to the directory, run
-`hg pull; hg update`, and then `sudo python setup.py install`.
+`hg pull; hg update`, and then `python setup.py install`.
 
 === Analyzing file differences ===
 

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="On Schemes for Exponential Decay">
 
 <title>On Schemes for Exponential Decay</title>
@@ -147,10 +148,10 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Informatics, University of Oslo</b></center>
 <br>
 <p>&nbsp;<br>
-<center><h4>Sep 24, 2015</h4></center> <!-- date -->
+<center><h4>Jul 8, 2020</h4></center> <!-- date -->
 <br>
 <p>
-<center><p><img src="fig/CN_logo.png" align="bottom" width=300></p></center>
+<br /><br /><center><p><img src="fig/CN_logo.png" align="bottom" width=300></p></center><br /><br />
 
 <p>
 <!-- Each slide starts with !split and a title inside 5 = on each side -->
@@ -161,7 +162,7 @@ MathJax.Hub.Config({
 <p>
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 2015, Hans Petter Langtangen. Released under CC Attribution 4.0 license
+<!-- copyright --> &copy; 2020, Hans Petter Langtangen. Released under CC Attribution 4.0 license
 </center>
 </section>
 
@@ -171,7 +172,7 @@ MathJax.Hub.Config({
 
 <p>
 The primary goal of this demo talk is to demonstrate how to write
-talks with <a href="https://github.com/hplgit/doconce" target="_self">DocOnce</a>
+talks with <a href="https://github.com/doconce/doconce" target="_self">DocOnce</a>
 and get them rendered in numerous HTML formats.
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Layout.</b>
@@ -207,7 +208,7 @@ demonstrated.
 <!-- Short title: Problem -->
 
 <p>
-<center><p><img src="fig/method.png" align="bottom" width=600></p></center>
+<br /><br /><center><p><img src="fig/method.png" align="bottom" width=600></p></center><br /><br />
 </section>
 
 
@@ -242,7 +243,7 @@ Here,
 <p>
 </td>
 <td class="padding">
-<center><p><img src="fig/teacher2.jpg" align="bottom" width=250></p></center>
+<br /><br /><center><p><img src="fig/teacher2.jpg" align="bottom" width=250></p></center><br /><br />
 </td>
 </tr>
 </table>
@@ -303,7 +304,7 @@ schemes.
 <pre><code data-trim contenteditable>def solver(I, a, T, dt, theta):
     &quot;&quot;&quot;Solve u'=-a*u, u(0)=I, for t in (0,T]; step: dt.&quot;&quot;&quot;
     dt = float(dt)           # avoid integer division
-    N = int(round(T/dt))     # no of time intervals
+    N = int(round(old_div(T,dt)))     # no of time intervals
     T = N*dt                 # adjust T to fit time step dt
     u = zeros(N+1)           # array of u[n] values
     t = linspace(0, T, N+1)  # time mesh
@@ -334,9 +335,11 @@ a = 0.2
 T = 8
 dt = 0.25
 theta = 0.5
+|\pause|
 
 from solver import solver, exact_solution
 u, t = solver(I, a, T, dt, theta)
+|\pause|
 
 import matplotlib.pyplot as plt
 plt.plot(t, u, t, exact_solution)
@@ -352,7 +355,7 @@ plt.show()
 <h1 id="___sec7">Results </h1>
 
 <p>
-<center><p><img src="fig/results.jpg" align="bottom" width=600></p></center>
+<br /><br /><center><p><img src="fig/results.jpg" align="bottom" width=600></p></center><br /><br />
 </section>
 
 
@@ -360,7 +363,7 @@ plt.show()
 <h2 id="___sec8">The Crank-Nicolson method shows oscillatory behavior for not sufficiently small time steps, while the solution should be monotone </h2>
 
 <p>
-<center><p><img src="fig/CN.png" align="bottom" width=600></p></center>
+<br /><br /><center><p><img src="fig/CN.png" align="bottom" width=600></p></center><br /><br />
 </section>
 
 

@@ -1036,20 +1036,20 @@ try:
     import alabaster
     additional_themes_installed.append('alabaster')
 except ImportError:
-    additional_themes_url['alabaster'] = 'sudo pip install alabaster'
+    additional_themes_url['alabaster'] = 'pip install alabaster'
 
 try:
     import sphinxjp.themes.solarized
     additional_themes_installed.append('solarized')
 except ImportError:
-    additional_themes_url['solarized'] = 'https://bitbucket.org/miiton/sphinxjp.themes.solarized: sudo pip install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized --upgrade'
+    additional_themes_url['solarized'] = 'https://bitbucket.org/miiton/sphinxjp.themes.solarized: pip install --exists-action i -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized --upgrade'
 
 try:
     import cloud_sptheme as csp
     additional_themes_installed.append('cloud')
     additional_themes_installed.append('redcloud')
 except ImportError:
-    url = 'https://bitbucket.org/ecollins/cloud_sptheme: sudo pip install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme --upgrade'
+    url = 'https://bitbucket.org/ecollins/cloud_sptheme: pip install --exists-action i -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme --upgrade'
     additional_themes_url['cloud'] = url
     additional_themes_url['redcloud'] = url
 
@@ -1064,26 +1064,26 @@ try:
     additional_themes_installed.append('basicstrap')
 except ImportError:
     # Use basicstrap as an example on a theme with sphinxjp.themecore (??)
-    additional_themes_url['basicstrap'] = 'https://github.com/tell-k/sphinxjp.themes.basicstrap: sudo pip install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme --upgrade'
+    additional_themes_url['basicstrap'] = 'https://github.com/tell-k/sphinxjp.themes.basicstrap: pip install --exists-action i -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme --upgrade'
 '''
 
 try:
     import sphinxjp.themes.impressjs
     additional_themes_installed.append('impressjs')
 except ImportError:
-    additional_themes_url['impressjs'] = 'https://github.com/shkumagai/sphinxjp.themes.impressjs: sudo pip install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs --upgrade'
+    additional_themes_url['impressjs'] = 'https://github.com/shkumagai/sphinxjp.themes.impressjs: pip install --exists-action i -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs --upgrade'
 
 try:
     import sphinx_bootstrap_theme
     additional_themes_installed.append('bootstrap')
 except ImportError:
-    additional_themes_url['bootstrap'] = 'https://github.com/ryan-roemer/sphinx-bootstrap-theme: sudo pip install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme --upgrade'
+    additional_themes_url['bootstrap'] = 'https://github.com/ryan-roemer/sphinx-bootstrap-theme: pip install --exists-action i -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme --upgrade'
 
 try:
     import icsecontrib.sagecellserver
     extensions += ['icsecontrib.sagecellserver']
 except ImportError:
-    # sudo pip install -e git+https://github.com/kriskda/sphinx-sagecell#egg=sphinx-sagecell --upgrade
+    # pip install --exists-action i -e git+https://github.com/kriskda/sphinx-sagecell#egg=sphinx-sagecell --upgrade
     pass
 
 # Is the document built on readthedocs.org? If so, don't import
@@ -1093,7 +1093,7 @@ if not on_rtd:  # only import and set the theme if we're building docs locally
         import sphinx_rtd_theme
         additional_themes_installed.append('sphinx_rtd_theme')
     except ImportError:
-        additional_themes_url['sphinx_rtd_theme'] = 'sudo pip install sphinx_rtd_theme'
+        additional_themes_url['sphinx_rtd_theme'] = 'pip install sphinx_rtd_theme'
 
 tinker_themes = [
   'dark', 'flat', 'modern5', 'minimal5', 'responsive']
@@ -1105,7 +1105,7 @@ try:
     additional_themes_installed += tinker_themes
 except ImportError:
     for theme in tinker_themes:
-        additional_themes_url[theme] = 'sudo pip install tinkerer --upgrade'
+        additional_themes_url[theme] = 'pip install tinkerer --upgrade'
 
 """
     # Intersphinx mapping: the look up of URLs can take quite

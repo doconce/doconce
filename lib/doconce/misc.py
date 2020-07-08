@@ -1566,7 +1566,7 @@ requires the pygments package to be installed. On Debian/Ubuntu: run
 Terminal> sudo apt-get install python-pygments
 Or
 Terminal> hg clone http://bitbucket.org/birkenfeld/pygments-main pygments
-Terminal> cd pygments; sudo python setup.py install
+Terminal> cd pygments; python setup.py install
 """)
             _abort()
 

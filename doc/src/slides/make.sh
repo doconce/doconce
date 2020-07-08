@@ -1,8 +1,11 @@
-#!/bin/bash
+#!/bin/sh -x
 set -x
-bash clean.sh
+export PS4='+ l.${LINENO}: ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
+sh -x ./clean.sh
 
 function system {
+# Run operating system command and if failure, report and abort
+
   "$@"
   if [ $? -ne 0 ]; then
     echo "make.sh: unsuccessful command $@"
@@ -107,6 +110,9 @@ cp $name.tex ${name}-anslistings.tex
 
 # sphinx doesn't handle math inside code well, we drop it since
 # other formats demonstrate doconce writing this way
+# Problem reproducible after: `git clean -fd && rm -rf sphinx-testdoc`
+#Hack: because doconce sphinx_dir ony works the second time (after an error), trigger that error by creating a bogus conf.py in ./
+touch conf.py 
 system doconce format sphinx $name
 editfix ${name}.rst
 system doconce sphinx_dir theme=pyramid $name
@@ -187,6 +193,7 @@ system doconce slides_markdown demo remark --slide_theme=dark
 cp demo.html demo_remark_dark.html
 
 # LaTeX Beamer slides
+#Note: it fails on cbc and simula
 themes="blue_plain blue_shadow red_plain red_shadow dark_gradient vintage cbc simula"
 for theme in $themes; do
 system doconce format pdflatex demo SLIDE_TYPE="beamer" SLIDE_THEME="$theme" --latex_title_layout=beamer --latex_code_style=pyg
@@ -237,3 +244,6 @@ cp -r demo*.pdf demo_*.html ._demo*.html reveal.js deck.js csss fig demo.do.txt.
 # index.html toc file
 system doconce format html index --html_style=bootstrap_FlatUI --html_links_in_new_window --html_code_style=inherit $rawgit
 cp index.html $dest/demo/index.html
+
+echo "To remove untracked files run:"
+echo "git clean -f -d"

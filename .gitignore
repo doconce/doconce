@@ -49,4 +49,4 @@ private
 venv
 lib/DocOnce.egg-info/
 # dependencies:
-doc/src/manual/src/pygments-doconce
+doc/src/manual/src/

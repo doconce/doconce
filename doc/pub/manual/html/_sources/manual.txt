@@ -6826,7 +6826,7 @@ or checkout the code on
 
     Terminal> hg clone https://bitbucket.org/logg/publish
     Terminal> cd publish
-    Terminal> sudo python setup.py install
+    Terminal> python setup.py install
 
 Importing your data to the Publish database
 -------------------------------------------
@@ -12163,9 +12163,9 @@ Installation can be done via
 
 .. code-block:: text
 
-    sudo pip install -e git+https://github.com/hplgit/doconce#egg=doconce
+    pip install -e git+https://github.com/hplgit/doconce#egg=doconce
     # or if doconce is already installed
-    sudo pip install -e git+https://github.com/hplgit/doconce#egg=doconce --upgrade
+    pip install -e git+https://github.com/hplgit/doconce#egg=doconce --upgrade
 
 However, the recommended approach is to have a copy of the source on
 the local computer and run ``setup.py``:
@@ -12174,7 +12174,7 @@ the local computer and run ``setup.py``:
 
     git clone git@github.com:hplgit/doconce.git
     cd doconce
-    sudo python setup.py install
+    python setup.py install
     cd ..
 
 Since DocOnce is frequently updated, it becomes necessary to ensure
@@ -12184,7 +12184,7 @@ that you work with the most recent version:
 
     cd doconce
     git pull origin master
-    sudo python setup.py install
+    python setup.py install
 
 Dependencies
 ------------
@@ -12300,7 +12300,7 @@ The stand-alone ``ptex2tex`` program is installed by
 
     svn checkout http://ptex2tex.googlecode.com/svn/trunk/ ptex2tex
     cd ptex2tex
-    sudo python setup.py install
+    python setup.py install
 
 It may happen that you need additional style files, you can run
 a script, ``cp2texmf.sh``:
@@ -12442,7 +12442,7 @@ will need more software, typically the following on a Debian system:
 
 .. or clone the svn repository, go to the ``rst2pdf`` directory and
 
-.. run the usual ``sudo python setup.py install``.
+.. run the usual ``python setup.py install``.
 
 Markdown and Pandoc Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -12479,9 +12479,9 @@ are also available in Debian-based system through the
 ``apt-get install`` command. However, we recommend installation directly
 from the version control system repository as there might be important
 updates and bug fixes. For ``svn`` directories, go to the directory,
-run ``svn update``, and then ``sudo python setup.py install``. For
+run ``svn update``, and then ``python setup.py install``. For
 Mercurial (``hg``) directories, go to the directory, run
-``hg pull; hg update``, and then ``sudo python setup.py install``.
+``hg pull; hg update``, and then ``python setup.py install``.
 
 Analyzing file differences
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
