@@ -18,7 +18,7 @@ import os, sys, glob, gzip, tempfile
 # (need this for extracting the version below)
 sys.path.insert(0, os.path.join('lib'))
 
-__version__ = '1.4.14'
+__version__ = '1.5.00'
 
 man_filename = os.path.join("doc", "man", "man1", "doconce.1")
 if "install" in sys.argv:
@@ -55,7 +55,7 @@ setup(
     description = __doc__,
     license = "BSD",
     name = "DocOnce",
-    url = "https://github.com/hplgit/doconce",
+    url = "https://github.com/doconce/doconce",
     classifiers = [
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',

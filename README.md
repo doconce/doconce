@@ -8,10 +8,10 @@
 
 Here are some of the most recent features and enhancements in DocOnce:
  * MathJax, which is used to render LaTeX formulae in HTML, has shut down their CDN (Content Delivery Network) which serves the JavaScript files. DocOnce has been updated to use a new CDN. For the time being, the old URL redirects to the new CDN, and old DocOnce documents still display LaTeX correctly. However, at some point in the future, documents created before July 2017 will cease to display LaTeX formulae properly. **It is therefore recommended to rerun DocOnce on HTML documents which contain LaTeX formulae.**
- * On 10 October 2016, Hans Petter Langtangen, creator of DocOnce, [passed away](https://www.simula.no/news/hans-petter-langtangen-1962-2016). Kristian Gregorius Hustad, supported by the [Centre for Computing in Science Education](http://www.mn.uio.no/ccse/english/) at the University of Oslo, will assume the role of principal maintainer.
+ * On 10 October 2016, Hans Petter Langtangen, creator of DocOnce, [passed away](https://www.simula.no/news/hans-petter-langtangen-1962-2016). Alessandro Marin, supported by the [Centre for Computing in Science Education](http://www.mn.uio.no/ccse/english/) at the University of Oslo, will assume the role of principal maintainer.
  * Language support for Basque has been added. Thanks to Josu M. Igartua for providing the translation.
- * DocOnce can now be used with both Python 2 and Python 3.
- * Kristian Gregorius Hustad has now made support for TikZ figures
+ * DocOnce supports Python 3.
+ * Kristian Gregorius Hustad has made support for TikZ figures
    in DocOnce. This means that you can use TikZ (popular among LaTeX writers)
    to make a figure. The TikZ code will be used directly in `latex` or
    `pdflatex` output, while an SVG version is made for HTML and a PNG is made
@@ -37,8 +37,8 @@ DocOnce is a pure Python package and can be installed with `pip`.
 
 
 ```
-Terminal> pip install --upgrade git+https://github.com/doconce/preprocess
-Terminal> pip install --upgrade .
+Terminal> sudo pip install --upgrade git+https://github.com/doconce/preprocess
+Terminal> sudo pip install --upgrade .
 ```
 
 *Notice.* 
@@ -65,9 +65,9 @@ As of March 2017, a few dependencies have yet to be added to the `conda-forge` c
 
 
 On Debian/Ubuntu it is fairly straightforward
-to get the packages you need. Basically, you can run a [Bash script](https://raw.githubusercontent.com/hplgit/doconce/master/doc/src/manual/install_doconce.sh) or an equivalent [Python script](https://raw.githubusercontent.com/hplgit/doconce/master/doc/src/manual/install_doconce.py). Such a script installs
+to get the packages you need. Basically, you can run a [Bash script](https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.sh) or an equivalent [Python script](https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.py). Such a script installs
 a very comprehensive bundle of software. You can read the
-[Installation Guide](http://hplgit.github.io/doconce/doc/pub/manual/html/manual.html#installation-of-doconce-and-its-dependencies) to get a more
+[Installation Guide](http://doconce.github.io/doconce/doc/pub/manual/html/manual.html#installation-of-doconce-and-its-dependencies) to get a more
 detailed description of what is needed of software for various purposes.
 For HTML output, for example, you can usually get away with just installing
 the pure DocOnce source (and perhaps the preprocessors if you use them).
@@ -86,8 +86,8 @@ and run `pip install` or use `conda install`.
 ### Highlights
 
 
- * DocOnce is a modestly tagged markup language (see [syntax example](http://hplgit.github.io/teamods/writing_reports/_static/report.do.txt.html)), quite like Markdown, but with many more features, aimed at documents with
-   *much math and code in the text* (see [demo](http://hplgit.github.io/teamods/writing_reports/index.html)).
+ * DocOnce is a modestly tagged markup language (see [syntax example](http://doconce.github.io/teamods/writing_reports/_static/report.do.txt.html)), quite like Markdown, but with many more features, aimed at documents with
+   *much math and code in the text* (see [demo](http://doconce.github.io/teamods/writing_reports/index.html)).
  * There is extensive support for book projects. In addition to classical LaTeX-based paper books one gets for free fully responsive, modern-looking, HTML-based ebooks for tablets and phones. Parts of books can, e.g., appear in blog posts for discussion and as IPython notebooks for experimentation and annotation.
  * For documents with math and code, you can generate *clean* plain LaTeX (PDF), HTML (with MathJax and Pygments - embedded in your own templates), Sphinx for attractive web design, Markdown, IPython notebooks, HTML for Google or Wordpress blog posts, and MediaWiki. The LaTeX output has many fancy layouts for typesetting of computer code.
  * DocOnce can also output other formats (though without support for nicely typeset math and code): plain untagged text, Google wiki, Creole wiki, and reStructuredText. From Markdown or reStructuredText you can go to XML, DocBook, epub, OpenOffice/LibreOffice, MS Word, and other formats.
@@ -101,7 +101,7 @@ Markdown](http://johnmacfarlane.net/pandoc/), and in particular
 advantage of DocOnce is the richer support for writing large documents
 (books) with much math and code and with
 tailored output both in HTML and
-LaTeX. DocOnce also has special support for exercises, [quizzes](http://hplgit.github.io/doconce/doc/pub/quiz/quiz.html), and [admonitions](http://hplgit.github.io/doconce/doc/pub/manual/._manual017.html#___sec55),
+LaTeX. DocOnce also has special support for exercises, [quizzes](http://doconce.github.io/doconce/doc/pub/quiz/quiz.html), and [admonitions](http://doconce.github.io/doconce/doc/pub/manual/._manual017.html#___sec55),
 three very desired features when developing educational material.
 Books can be composed of many smaller documents that may exist
 independently of the book, thus lowering the barrier of writing books
@@ -110,7 +110,7 @@ independently of the book, thus lowering the barrier of writing books
 
 ### Demo
 
-A [short scientific report](http://hplgit.github.io/teamods/writing_reports/index.html)
+A [short scientific report](http://doconce.github.io/teamods/writing_reports/index.html)
 demonstrates the many formats that DocOnce can generate and how
 mathematics and computer code look like. (Note that at the bottom of
 the page there is a link to another version of the demo with complete
@@ -119,17 +119,17 @@ DocOnce commands for producing the different versions.)
 <!-- Note: local links does not work since this README file is a source -->
 <!-- code file and not part of the published gh-pages. Use full URL. -->
 
-Another demo shows how DocOnce can be used to [create slides](http://hplgit.github.io/doconce/doc/pub/slides/demo/index.html) in
+Another demo shows how DocOnce can be used to [create slides](http://doconce.github.io/doconce/doc/pub/slides/demo/index.html) in
 various formats (HTML5 reveal.js, deck.js, etc., as well as LaTeX
 Beamer).
 
 DocOnce has support for *responsive* HTML documents with design and
-functionality based on Bootstrap styles.  A [Bootstrap demo](http://hplgit.github.io/doconce/doc/pub/bootstrap/index.html)
+functionality based on Bootstrap styles.  A [Bootstrap demo](http://doconce.github.io/doconce/doc/pub/bootstrap/index.html)
 illustrates the many possibilities for colors and layouts.
 
-DocOnce also has support for exercises in [quiz format](http://hplgit.github.io/doconce/doc/pub/quiz/quiz.html). Pure quiz
+DocOnce also has support for exercises in [quiz format](http://doconce.github.io/doconce/doc/pub/quiz/quiz.html). Pure quiz
 files can be *automatically uploaded* to [Kahoot!](https://getkahoot.com) online quiz games operated through smart
-phones (with the aid of [quiztools](https://github.com/hplgit/quiztools) for DocOnce to Kahoot!
+phones (with the aid of [quiztools](https://github.com/doconce/quiztools) for DocOnce to Kahoot!
 translation).
 
 
@@ -137,11 +137,11 @@ translation).
 Several books (up to over 1000 pages) have been written entirely in
 DocOnce. The primary format is a publisher-specific LaTeX style, but
 HTML or Sphinx formats can easily be generated, such as [this chapter
-in Bootstrap style](http://hplgit.github.io/primer.html/doc/pub/looplist/looplist-bootstrap.html),
-or the [solarized color style](http://hplgit.github.io/primer.html/doc/pub/looplist/looplist-solarized.html)
+in Bootstrap style](http://doconce.github.io/primer.html/doc/pub/looplist/looplist-bootstrap.html),
+or the [solarized color style](http://doconce.github.io/primer.html/doc/pub/looplist/looplist-solarized.html)
 as many prefer. Slides can quickly be generated from the raw text in
-the book.  Here are examples in the [reveal.js](http://hplgit.github.io/scipro-primer/slides/looplist/html/looplist-reveal-beige.html)
-(HTML5) style, or the more traditional [LaTeX Beamer](http://hplgit.github.io/scipro-primer/slides/looplist/pdf/looplist-beamer.pdf)
+the book.  Here are examples in the [reveal.js](http://doconce.github.io/scipro-primer/slides/looplist/html/looplist-reveal-beige.html)
+(HTML5) style, or the more traditional [LaTeX Beamer](http://doconce.github.io/scipro-primer/slides/looplist/pdf/looplist-beamer.pdf)
 style, and even the modern [IPython notebook](http://nbviewer.ipython.org/url/hplgit.github.io/scipro-primer/slides/looplist/ipynb/looplist.ipynb)
 tool, which allows for interactive experimentation and annotation.
 
@@ -152,24 +152,24 @@ These documents are under development...
 
 
 
- * Tutorial: [Sphinx](http://hplgit.github.io/doconce/doc/pub/tutorial/html/index.html),
-   [HTML](http://hplgit.github.io/doconce/doc/pub/tutorial/tutorial.html),
-   [PDF](http://hplgit.github.io/doconce/doc/pub/tutorial/tutorial.pdf)
- * Manual: [Sphinx](http://hplgit.github.io/doconce/doc/pub/manual/html/index.html),
-   [HTML](http://hplgit.github.io/doconce/doc/pub/manual/manual.html),
-   [PDF](http://hplgit.github.io/doconce/doc/pub/manual/manual.pdf)
- * Quick Reference: [Sphinx](http://hplgit.github.io/doconce/doc/pub/quickref/html/index.html),
-   [HTML](http://hplgit.github.io/doconce/doc/pub/quickref/quickref.html),
-   [PDF](http://hplgit.github.io/doconce/doc/pub/quickref/quickref.pdf)
- * Troubleshooting and FAQ: [Sphinx](http://hplgit.github.io/doconce/doc/pub/trouble/html/index.html),
-   [HTML](http://hplgit.github.io/doconce/doc/pub/trouble/trouble.html),
-   [PDF](http://hplgit.github.io/doconce/doc/pub/trouble/trouble.pdf)
+ * Tutorial: [Sphinx](http://doconce.github.io/doconce/doc/pub/tutorial/html/index.html),
+   [HTML](http://doconce.github.io/doconce/doc/pub/tutorial/tutorial.html),
+   [PDF](http://doconce.github.io/doconce/doc/pub/tutorial/tutorial.pdf)
+ * Manual: [Sphinx](http://doconce.github.io/doconce/doc/pub/manual/html/index.html),
+   [HTML](http://doconce.github.io/doconce/doc/pub/manual/manual.html),
+   [PDF](http://doconce.github.io/doconce/doc/pub/manual/manual.pdf)
+ * Quick Reference: [Sphinx](http://doconce.github.io/doconce/doc/pub/quickref/html/index.html),
+   [HTML](http://doconce.github.io/doconce/doc/pub/quickref/quickref.html),
+   [PDF](http://doconce.github.io/doconce/doc/pub/quickref/quickref.pdf)
+ * Troubleshooting and FAQ: [Sphinx](http://doconce.github.io/doconce/doc/pub/trouble/html/index.html),
+   [HTML](http://doconce.github.io/doconce/doc/pub/trouble/trouble.html),
+   [PDF](http://doconce.github.io/doconce/doc/pub/trouble/trouble.pdf)
 
 The tutorial presents the basic syntax and the most fundamental
 elements of a scientific document, while the manual has accumulated
 all the different features available. The most efficient way to get
-started is to look at the [report demo](http://hplgit.github.io/teamods/writing_reports/index.html) and study
-the [source code](http://hplgit.github.io/teamods/writing_reports/_static/report.do.txt.html)
+started is to look at the [report demo](http://doconce.github.io/teamods/writing_reports/index.html) and study
+the [source code](http://doconce.github.io/teamods/writing_reports/_static/report.do.txt.html)
 (it has all the basic elements such as title, author, abstract, table
 of contents, headings, comments, inline mathematical formulas,
 single/multiple equations, with and without numbering, labels,
@@ -218,9 +218,9 @@ BibTeX format:
 @misc{DocOnce,
   title = {{DocOnce} markup language},
   author = {H. P. Langtangen},
-  url = {https://github.com/hplgit/doconce},
+  url = {https://github.com/doconce/doconce},
   key = {DocOnce},
-  note = {\url{https://github.com/hplgit/doconce}},
+  note = {\url{https://github.com/doconce/doconce}},
 }
 ```
 
@@ -232,9 +232,9 @@ Publish format:
 ** {DocOnce} markup language
    key:       DocOnce
    author:    H. P. Langtangen
-   url:       https://github.com/hplgit/doconce
+   url:       https://github.com/doconce/doconce
    status:    published
    sortkey:   DocOnce
-   note:      \url{https://github.com/hplgit/doconce}
+   note:      \url{https://github.com/doconce/doconce}
 ```
 
