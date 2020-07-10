@@ -7,8 +7,9 @@
 ### News
 
 Here are some of the most recent features and enhancements in DocOnce:
+ * July 2020: Alessandro Marin at the [Centre for Computing in Science Education](http://www.mn.uio.no/ccse/english/) at the University of Oslo, assumes the role of principal maintainer.
  * MathJax, which is used to render LaTeX formulae in HTML, has shut down their CDN (Content Delivery Network) which serves the JavaScript files. DocOnce has been updated to use a new CDN. For the time being, the old URL redirects to the new CDN, and old DocOnce documents still display LaTeX correctly. However, at some point in the future, documents created before July 2017 will cease to display LaTeX formulae properly. **It is therefore recommended to rerun DocOnce on HTML documents which contain LaTeX formulae.**
- * On 10 October 2016, Hans Petter Langtangen, creator of DocOnce, [passed away](https://www.simula.no/news/hans-petter-langtangen-1962-2016). Alessandro Marin, supported by the [Centre for Computing in Science Education](http://www.mn.uio.no/ccse/english/) at the University of Oslo, will assume the role of principal maintainer.
+ * On 10 October 2016, Hans Petter Langtangen, creator of DocOnce, [passed away](https://www.simula.no/news/hans-petter-langtangen-1962-2016). Kristian Gregorius Hustad, supported by the [Centre for Computing in Science Education](http://www.mn.uio.no/ccse/english/) at the University of Oslo, will assume the role of principal maintainer.
  * Language support for Basque has been added. Thanks to Josu M. Igartua for providing the translation.
  * DocOnce supports Python 3.
  * Kristian Gregorius Hustad has made support for TikZ figures
