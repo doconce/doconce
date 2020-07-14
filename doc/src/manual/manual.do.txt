@@ -2666,7 +2666,6 @@ directives is always typeset at the end of the exercise.
 Here goes a full solution of the entire exercise, if solutions to
 subexercises are not appropraite.
 |esol
-|ec
 !ec
 
 === Exercise versus Problem and Project ===
@@ -4268,7 +4267,7 @@ We have
 |bt
 \[ 1 + 1 = 2 \]
 |et
-|!eu-example
+|eu-example
 !ec
 The convention for this type of examples is to have a title,
 and the title line
