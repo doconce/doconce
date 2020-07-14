@@ -38,8 +38,17 @@ def help_format():
         if sys.argv[2] in opts:
             ind = opts.index(sys.argv[2])
             command_line_options = [command_line_options[ind]]
-    # Print help
-    for opt, help in command_line_options:
+    help_print_options(command_line_options)
+
+def help_print_options(cmdline_opts, template = "\033[1m{0:35}\033[0m \033[94m{1:10}\033[0m"):
+    """Print help
+
+    Print formatted command options
+
+    :param cmdline_opts: Command-line options
+    :param str template: Optional template for print
+    """
+    for opt, help in cmdline_opts:
         if opt.endswith('='):
             opt += '...'
         print(template.format(opt, help))
@@ -85,20 +94,29 @@ def get_config():
 
 doconce_config = get_config()
 
-def option(name, default=None):
-    """
-    Return value of command-line option with the given name.
-    If name ends with a = (as in ``--name=value``), return the value,
-    otherwise return True or False whether the option ``--name``
-    is found or not. If value of `default` is returned
-    in case the option was not found.
+def option(name, default=None, option_list = _legal_command_line_options):
+    """Return options specified in command-line
+
+    Return value of command-line option formatted as ``--name``.
+    If name ends with a = (as in --language=``value``), return the value
+    or `default` in case the option was not specified.
+    If name does not end with a = (as in ``--help``), return True or False whether
+    the option ``--name`` is found or not.
+    Abort if the option ``--name`` is not valid, ie not present in ``option_list``.
+
+
+    :param str name: filename to be read
+    :param str default: optional encoding string. Usually the encoding variable in globals.py
+    :param list[str] option_list: optional list of command options. Default is _legal_command_line_options from globals._registered_command_line_options
+    :return: string with the text read
+    :rtype: str|boolean
     """
     # Note: Do not use fancy command-line parsers as much functionality
     # is dependent on command-line info (preprocessor options for instance)
     # that is not compatible with simple options( --name).
 
     option_name = '--' + name
-    if not option_name in _legal_command_line_options:
+    if not option_name in option_list:
         errwarn('test for illegal option: ' + option_name)
         _abort()
 
@@ -108,8 +126,8 @@ def option(name, default=None):
         if arg.startswith('--'):
             if '=' in arg:
                 arg = arg.split('=')[0] + '='
-            if arg not in _legal_command_line_options and \
-              ('--' + arg[2:].replace('-', '_')) in _legal_command_line_options:
+            if arg not in option_list and \
+              ('--' + arg[2:].replace('-', '_')) in option_list:
                 errwarn('found option %s, should be %s' %
                         (arg, '--' + arg[2:].replace('-', '_')))
                 _abort()
@@ -139,16 +157,28 @@ def option(name, default=None):
 
     return value
 
-def check_command_line_options(option_start):
-    # Error handling: check if all command-line options are of known types
-    for arg in sys.argv[option_start:]:
-        arg_user = arg
+def check_command_line_options(option_start, option_list=_legal_command_line_options):
+    """Check command-line options
+
+    Error handling: check if all command-line options starting with --
+    are legal. If not, show a message with the wrong option. This
+    function does not abort the program.
+
+    :param int option_start: start index of options to check in sys.argv
+    :return: True if all command-line options are legal, False otherwise
+    :rtype: boolean
+    """
+    #
+    for arg_user in sys.argv[option_start:]:
+        arg = arg_user
         if '=' in arg:
             arg = arg.split('=')[0] + '='
         if arg[:2] == '--':
-            if not arg in _legal_command_line_options:
-                print('*** warning: unrecognized command-line option')
+            if not arg in option_list:
+                errwarn('*** warning: unrecognized command-line option')
                 print('    ' + arg_user)
+                return False
+    return True
 
 
 def misc_option(name, default=None):
@@ -170,6 +200,10 @@ def misc_option(name, default=None):
     return value
 
 def _abort():
+    """Abort the program's execution
+
+    Print a general error and call sys.exit(1)
+    """
     if '--no_abort' in sys.argv:
         errwarn('avoided abortion because of --no-abort')
     else:
@@ -177,11 +211,17 @@ def _abort():
         sys.exit(1)
 
 def system(cmd, abort_on_failure=True, verbose=False, failure_info=''):
-    """
-    Run OS command cmd.
+    """Run OS commands.
+
     If abort_on_failure: abort when cmd gives failure and print
     command and failure_info (to explain what the command does).
-    If verbose: print cmd.
+
+    :param str cmd:
+    :param bool abort_on_failure: abort when cmd gives failure
+    :param bool verbose: print command run. Also triggered by DocOnce's --verbose option
+    :param str failure_info: message to print when cmd gives failure
+    :return: failure code from os.system()
+    :rtype: int
     """
     if verbose or '--verbose' in sys.argv:
         print('running ' + cmd)
