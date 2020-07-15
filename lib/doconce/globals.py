@@ -1,6 +1,7 @@
 # Variables to be shared across modules
 
 dofile_basename = None
+filename = None
 
 encoding = ''
 

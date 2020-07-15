@@ -889,6 +889,15 @@ def syntax_check(filestr, format):
             errwarn('*** warning: found reference "%s %s" with unexpected word "%s" in front\n' % (orig_prefix, ref, orig_prefix),)
             errwarn('    (expected Section/Chapter/Figure %s, or could it be a reference to an equation, but missing parenthesis in (%s)?)' % (ref, ref))
 
+    # Check for Exercises/Problems/Projects with wrong header
+    exer_heading_pattern = r'^(=======) *\{?(Exercise|Problem|Project)\}?:\s*(?P<title>[^ =-].+?) *======='
+    cexer = re.compile(exer_heading_pattern, re.MULTILINE)
+    ma = cexer.search(filestr)
+    if ma:
+        errwarn('*** warning: found exercises in section headlines. You might want', end='\n')
+        errwarn('    to use subsections (i.e. 5 = signs):', end='\n')
+        errwarn(filestr[ma.start():ma.end()], end='\n', style='red')
+
     # Code/tex blocks cannot have a comment, table, figure, etc.
     # right before them in rst/sphinx
     constructions = {'comment': r'^\s*#.*?$',
@@ -1805,34 +1814,6 @@ def exercises(filestr, format, code_blocks, tex_blocks):
                     if not option('allow_refs_to_external_docs'):
                         _abort()  # will cause abort for split_html anyway
 
-            # Check if Exercise could be Problem: no refs to labels outside the Exercise
-            if 1:
-                _label_pattern = r'label\{(.+?)\}'
-                _ref_pattern = r'ref\{(.+?)\}'
-                _texblock_pattern = r'(\d+) ' + _MATH_BLOCK
-                labels = re.findall(_label_pattern, formatted_exercise)
-                refs   = re.findall(_ref_pattern, formatted_exercise)
-                texblocks_no = re.findall(_texblock_pattern, formatted_exercise)
-                for texblock in texblocks_no:
-                    texblock = int(texblock)
-                    labels += re.findall(_label_pattern, tex_blocks[texblock])
-                external_refs = []
-                for ref in refs:
-                    if ref not in labels:
-                        external_refs.append(ref)
-                if not external_refs and exer['type'] == 'Exercise':
-                    msg = '\n*** %s: %s' % (exer['type'], exer['title'])
-                    if 'label' in exer:
-                        msg += '\n    label{%s}' % exer['label']
-                    msg += '\n    could be Problem (no refs beyond the exercise itself)'
-                    errwarn(msg)
-                if external_refs and exer['type'] in ('Problem', 'Project'):
-                    msg = '\n*** %s: %s' % (exer['type'], exer['title'])
-                    if 'label' in exer:
-                        msg += '\n    label{%s}' % exer['label']
-                    msg += '\n    should be Exercise since it has refs to other parts (?) of the document:\n    ' + ', '.join(external_refs)
-                    errwarn(msg)
-
             # Be ready for next iteration
             inside_exer = False
             exer_end = False
@@ -1949,7 +1930,7 @@ def exercises(filestr, format, code_blocks, tex_blocks):
         # (recall that we write to pprint-formatted string!)
 
         # Dump this all_exer data structure to file
-        exer_filename = filename.replace('.do.txt', '')
+        exer_filename = globals.filename.replace('.do.txt', '')
         exer_filename = '.%s.exerinfo' % exer_filename
         f = open(exer_filename, 'w')
         f.write(("# Information about all exercises in the file %s.\n"
@@ -1957,7 +1938,7 @@ def exercises(filestr, format, code_blocks, tex_blocks):
                  "#\n"
                  "# f = open('%s', 'r')\n"
                  "# exer = eval(f.read())\n"
-                 "#\n" % (filename, exer_filename)))
+                 "#\n" % (globals.filename, exer_filename)))
         f.write(all_exer_str)
         f.close()
         errwarn('found info about %d exercises' % (len(all_exer)))
@@ -2080,8 +2061,8 @@ def extract_individual_standalone_exercises(
         _abort()
 
     import zipfile
-    filename = globals.dofile_basename + '_exercises.zip'
-    archive = zipfile.ZipFile(filename, mode='w')
+    globals.filename = globals.dofile_basename + '_exercises.zip'
+    archive = zipfile.ZipFile(globals.filename, mode='w')
     exer_filename = option('exercises_in_zip_filename=', 'logical')
 
     # Text for index file with list of exercise files
@@ -2204,7 +2185,7 @@ def extract_individual_standalone_exercises(
     path = os.path.join('standalone_exercises', name)
     archive.writestr(path, make_text)
     archive.close()
-    errwarn('standalone exercises in ' + filename)
+    errwarn('standalone exercises in ' + globals.filename)
 
 
 def parse_keyword(keyword, format):
@@ -2887,8 +2868,8 @@ def handle_figures(filestr, format):
     search_extensions = FIGURE_EXT[format]['search']
     convert_extensions = FIGURE_EXT[format]['convert']
 
-    figfiles = [filename.strip()
-                for filename, options, caption in c.findall(filestr)]
+    figfiles = [fname.strip()
+                for fname, options, caption in c.findall(filestr)]
     figfiles = set(figfiles)   # remove multiple occurences
 
     # Prefix figure paths if user has requested it
@@ -2905,8 +2886,8 @@ def handle_figures(filestr, format):
                                  flags=re.MULTILINE)
     # Prefix movies also
     movie_pattern = INLINE_TAGS['movie']
-    movie_files = [filename.strip()
-                   for filename, options, caption in
+    movie_files = [fname.strip()
+                   for fname, options, caption in
                    re.findall(movie_pattern, filestr, flags=re.MULTILINE)]
     movie_prefix = option('movie_prefix=')
     if movie_prefix is not None:
@@ -2920,8 +2901,8 @@ def handle_figures(filestr, format):
                                  flags=re.MULTILINE)
 
     # Find new filenames
-    figfiles = [filename.strip()
-             for filename, options, caption in c.findall(filestr)]
+    figfiles = [fname.strip()
+             for fname, options, caption in c.findall(filestr)]
     figfiles = set(figfiles)   # remove multiple occurences
 
     for figfile in figfiles:
@@ -5359,8 +5340,6 @@ def format_driver():
 
     # oneline is inactive (doesn't work well yet)
 
-    global filename #TODO: moving this global to globals.py and carry out extensive testing
-
     if option('help') or '-h' in sys.argv:
         from .misc import help_format
         help_format()
@@ -5371,7 +5350,7 @@ def format_driver():
 
     try:
         format = sys.argv[1]
-        filename = sys.argv[2]
+        globals.filename = sys.argv[2]
         del sys.argv[1:3]
         from . import common
         common.format = format
@@ -5412,20 +5391,20 @@ def format_driver():
 
     debugpr('\n\n******* output format: %s *******\n\n' % format)
 
-    dirname, basename, ext, filename = parse_doconce_filename(filename)
+    dirname, basename, ext, globals.filename = parse_doconce_filename(globals.filename)
     globals.dofile_basename = basename
 
     _rmdolog()     # always start with clean log file with errors
 
-    #errwarn('\n----- doconce format %s %s' % (format, filename))
+    #errwarn('\n----- doconce format %s %s' % (format, globals.filename))
     preprocessor_options = [arg for arg in sys.argv[1:]
                             if not arg.startswith('--')]
-    filename_preprocessed = preprocess(filename, format, preprocessor_options)
+    filename_preprocessed = preprocess(globals.filename, format, preprocessor_options)
     out_filename, bg_session = file2file(filename_preprocessed, format, basename)
 
     if filename_preprocessed.startswith('__') and not option('debug'):
         os.remove(filename_preprocessed)  # clean up
-    #errwarn('----- successful run: %s filtered to %s\n' % (filename, out_filename))
+    #errwarn('----- successful run: %s filtered to %s\n' % (globals.filename, out_filename))
     errwarn('output in ' + os.path.join(dirname, out_filename))
     return bg_session
 
