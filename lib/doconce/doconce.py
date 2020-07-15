@@ -1778,34 +1778,6 @@ def exercises(filestr, format, code_blocks, tex_blocks):
                     if not option('allow_refs_to_external_docs'):
                         _abort()  # will cause abort for split_html anyway
 
-            # Check if Exercise could be Problem: no refs to labels outside the Exercise
-            if 1:
-                _label_pattern = r'label\{(.+?)\}'
-                _ref_pattern = r'ref\{(.+?)\}'
-                _texblock_pattern = r'(\d+) ' + _MATH_BLOCK
-                labels = re.findall(_label_pattern, formatted_exercise)
-                refs   = re.findall(_ref_pattern, formatted_exercise)
-                texblocks_no = re.findall(_texblock_pattern, formatted_exercise)
-                for texblock in texblocks_no:
-                    texblock = int(texblock)
-                    labels += re.findall(_label_pattern, tex_blocks[texblock])
-                external_refs = []
-                for ref in refs:
-                    if ref not in labels:
-                        external_refs.append(ref)
-                if not external_refs and exer['type'] == 'Exercise':
-                    msg = '\n*** %s: %s' % (exer['type'], exer['title'])
-                    if 'label' in exer:
-                        msg += '\n    label{%s}' % exer['label']
-                    msg += '\n    could be Problem (no refs beyond the exercise itself)'
-                    errwarn(msg)
-                if external_refs and exer['type'] in ('Problem', 'Project'):
-                    msg = '\n*** %s: %s' % (exer['type'], exer['title'])
-                    if 'label' in exer:
-                        msg += '\n    label{%s}' % exer['label']
-                    msg += '\n    should be Exercise since it has refs to other parts (?) of the document:\n    ' + ', '.join(external_refs)
-                    errwarn(msg)
-
             # Be ready for next iteration
             inside_exer = False
             exer_end = False
