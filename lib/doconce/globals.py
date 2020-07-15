@@ -1,6 +1,7 @@
 # Variables to be shared across modules
 
 dofile_basename = None
+filename = None
 
 encoding = ''
 
@@ -22,6 +23,21 @@ doconce_envirs = ['c', 't',                # verbatim and tex blocks
             ]
 
 main_content_char = '-'
+
+# Python colors and styling for printing
+style = {
+    'green': '\033[92m',
+    'red': '\033[91m',
+    'bold': '\033[1m',
+    'underline': '\033[4m',
+    'ybackground': '\033[33m',
+    'black': '\033[30m',
+    'yellow': '\033[33m',
+    'magenta': '\033[35',
+    'white': '\033[37m',
+    'blue': '\033[94m',
+    '_end': '\033[0m'
+}
 
 # Regular expressions for inline tags:
 inline_tag_begin = r"""(?P<begin>(^|[(\s~>{!-]|^__|&[mn]dash;))"""

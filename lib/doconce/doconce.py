@@ -19,7 +19,11 @@ except ImportError:
     OrderedDict = dict
 
 def debugpr(heading='', text=''):
-    """Add `heading` and `text` to the log/debug file."""
+    """Add `heading` and `text` to the log/debug file.
+
+    :param str heading: heading to be added
+    :param str text: text to be added
+    """
     if option('debug'):
         if globals.encoding:
             globals._log = codecs.open('_doconce_debugging.log','a', globals.encoding)
@@ -32,16 +36,23 @@ def debugpr(heading='', text=''):
         globals._log.close()
 
 def _rmdolog():
+    """Remove the .dolog file
+    """
     logfilename = globals.dofile_basename + '.dolog'
     if os.path.isfile(logfilename):
         os.remove(logfilename)
 
-def errwarn(msg, newline=True):
-    """Function for reporting errors and warnings to screen and file."""
-    if newline:
-        print(msg)
+def errwarn(msg, end='\n', style=''):
+    """Function for reporting errors and warnings to screen and file.
+
+    :param str msg: text message
+    :param str end: string appended after the last value, default a newline
+    :param str style: style msg with color or formatting
+    """
+    if style:
+        print(globals.style[style] + msg + globals.style['_end'], end=end)
     else:
-        print(msg, end=' ')
+        print(msg, end=end)
     if globals.dofile_basename is None:
         return
     logfilename = globals.dofile_basename + '.dlog'
@@ -51,7 +62,7 @@ def errwarn(msg, newline=True):
     else:
         err = open(logfilename, mode)
     err.write(msg)
-    if newline:
+    if end == '\n':
         err.write('\n')
 
 from .common import *
@@ -93,10 +104,15 @@ def encode_error_message(exception, text, print_length=40):
         #raise Exception
         _abort()
 
-def markdown2doconce(filestr, format=None, ipynb_mode=False):
-    """
-    Look for Markdown (and Extended Markdown) syntax in the file (filestr)
+def markdown2doconce(filestr_in, format=None, ipynb_mode=False):
+    """Look for Markdown (and Extended Markdown) syntax in the file (filestr)
     and transform the text to valid DocOnce format.
+
+    :param str filestr: file content
+    :param str format: output format
+    :param bool ipynb_mode: default is False
+    :return: the converted filestr_in
+    :rtype: str
     """
     #md2doconce "preprocessor" --markdown --write_doconce_from_markdown=myfile.do.txt (for debugging the translation from markdown-inspired doconce)
     #check https://stackedit.io/
@@ -109,6 +125,7 @@ def markdown2doconce(filestr, format=None, ipynb_mode=False):
     * Headlines with underline instead of #
     * labels (?) a la {#label}
     """
+    filestr = filestr_in
     lines = filestr.splitlines()
     # Headings: must have # at the beginning of the line and blank before
     # and after
@@ -299,12 +316,19 @@ def markdown2doconce(filestr, format=None, ipynb_mode=False):
     filestr = re.sub(r'\n\n\n+!b([ct])', r'\n\n!b\g<1>', filestr)
     return filestr
 
-def fix(filestr, format, verbose=0):
-    """Fix issues with the text (correct wrong syntax)."""
+def fix(filestr_in, format, verbose=0):
+    """Fix issues with the text (correct wrong syntax).
+
+    :param str filestr: file content
+    :param str format: output format
+    :param bool verbose: boolean
+    :return: a fixed version of filestr_in
+    """
     # Fix a special case:
     # `!bc`, `!bt`, `!ec`, and `!et` at the beginning
     # of a line gives wrong consistency checks for plaintext format,
     # so we avoid having these at the beginning of a line.
+    filestr = filestr_in
     if format == 'plain':
         for directive in 'bc', 'ec', 'bt', 'et':
             # could test for bsol, bhint, etc. as well...
@@ -378,7 +402,11 @@ def fix(filestr, format, verbose=0):
 
 
 def syntax_check(filestr, format):
-    """Check for common errors in the doconce syntax."""
+    """Check for common errors in the doconce syntax.
+
+    :param str filestr: file content
+    :param str format: output format
+    """
 
     # Check that we don't have multiple labels
     # (gives error if we have an example in !bc and then rendered label
@@ -386,7 +414,7 @@ def syntax_check(filestr, format):
     labels = re.findall('label\{(.+?)\}', filestr)
     multiple_labels = list(set([label for label in labels if labels.count(label) > 1]))
     if multiple_labels:
-        errwarn('*** error: found duplicate labels:')
+        errwarn('*** error: found multiple labels:')
         errwarn('    ' + ' '.join(multiple_labels))
         _abort()
     # Consistency of implemented environments
@@ -429,7 +457,9 @@ def syntax_check(filestr, format):
             errwarn('\n*** error: %s is not at the beginning of a line' %
                     (m.group(2)))
             errwarn('    surrounding text:')
-            errwarn(filestr[m.start()-100:m.end()+100] + '\n')
+            errwarn(filestr[m.start() - 100:m.start()], end='')
+            errwarn(filestr[m.start():m.end()], end='', style='red')
+            errwarn(filestr[m.end():m.end() + 100], end='\n\n')
             if m.group(1).strip() == '':
                 errwarn('set %s at the beginning of the line' % m.group(2))
             else:
@@ -740,15 +770,13 @@ def syntax_check(filestr, format):
         errwarn('    run the generated script tmp_missing_labels.sh\n    to search for these missing labels!')
 
     if found_problem and not option('allow_refs_to_external_docs'):
-        errwarn("""
-Causes of missing labels:
-1: label is defined in another document. Use generalized references
-   ref[][][], or use --allow_refs_to_external_docs (to ignore this error)
-   (if generalized reference and this error occur: syntax of generalized
-   reference is wrong!)
-2: preprocessor if-else has left the label out
-3: forgotten to define the label
-""")
+        errwarn(("Causes of missing labels:\n"
+                 "1: label is defined in another document. Use generalized references\n"
+                 "   ref[][][], or use --allow_refs_to_external_docs (to ignore this error)\n"
+                 "   (if generalized reference and this error occur: syntax of generalized\n"
+                 "   reference is wrong!)\n"
+                 "2: preprocessor if-else has left the label out\n"
+                 "3: forgotten to define the label\n"))
         _abort()
 
     # Quotes or inline verbatim is not allowed inside emphasize and bold:
@@ -860,6 +888,15 @@ Causes of missing labels:
         if not prefix.lower() in prefixes:
             errwarn('*** warning: found reference "%s %s" with unexpected word "%s" in front\n' % (orig_prefix, ref, orig_prefix),)
             errwarn('    (expected Section/Chapter/Figure %s, or could it be a reference to an equation, but missing parenthesis in (%s)?)' % (ref, ref))
+
+    # Check for Exercises/Problems/Projects with wrong header
+    exer_heading_pattern = r'^(=======) *\{?(Exercise|Problem|Project)\}?:\s*(?P<title>[^ =-].+?) *======='
+    cexer = re.compile(exer_heading_pattern, re.MULTILINE)
+    ma = cexer.search(filestr)
+    if ma:
+        errwarn('*** warning: found exercises in section headlines. You might want', end='\n')
+        errwarn('    to use subsections (i.e. 5 = signs):', end='\n')
+        errwarn(filestr[ma.start():ma.end()], end='\n', style='red')
 
     # Code/tex blocks cannot have a comment, table, figure, etc.
     # right before them in rst/sphinx
@@ -1011,9 +1048,8 @@ Causes of missing labels:
         ma = cauthor.search(filestr)
         if md or mt or ma:
             if not (md and mt and ma):
-                errwarn("""
-*** error: latex format requires TITLE, AUTHOR and DATE to be
-    specified if one of them is present.""")
+                errwarn(("*** error: latex format requires TITLE, AUTHOR and DATE to be\n"
+                         "specified if one of them is present.\n"))
                 if not md:
                     errwarn('    DATE is missing')
                 if not mt:
@@ -1235,7 +1271,7 @@ def insert_code_from_file(filestr, format):
             #errwarn(index, words)
             if index == -1 and len(words) < 3:
                 # no from/to regex, read the whole file:
-                errwarn('copy complete file %s' % filename, newline=False)
+                errwarn('copy complete file %s' % filename, end=' ')
                 complete_file = True
                 code = codefile.read().rstrip()
 
@@ -1341,7 +1377,7 @@ def insert_code_from_file(filestr, format):
                         errwarn('"From" and "to" regex match at the same line - empty text.')
                     print()
                     _abort()
-                errwarn(' lines %d-%d' % (from_line, to_line), newline=False)
+                errwarn(' lines %d-%d' % (from_line, to_line), end=' ')
             codefile.close()
 
             try:
@@ -1894,17 +1930,15 @@ def exercises(filestr, format, code_blocks, tex_blocks):
         # (recall that we write to pprint-formatted string!)
 
         # Dump this all_exer data structure to file
-        exer_filename = filename.replace('.do.txt', '')
+        exer_filename = globals.filename.replace('.do.txt', '')
         exer_filename = '.%s.exerinfo' % exer_filename
         f = open(exer_filename, 'w')
-        f.write("""
-# Information about all exercises in the file %s.
-# The information can be loaded into a Python list of dicts by
-#
-# f = open('%s', 'r')
-# exer = eval(f.read())
-#
-""" % (filename, exer_filename))
+        f.write(("# Information about all exercises in the file %s.\n"
+                 "# The information can be loaded into a Python list of dicts by\n"
+                 "#\n"
+                 "# f = open('%s', 'r')\n"
+                 "# exer = eval(f.read())\n"
+                 "#\n" % (globals.filename, exer_filename)))
         f.write(all_exer_str)
         f.close()
         errwarn('found info about %d exercises' % (len(all_exer)))
@@ -1929,7 +1963,7 @@ def exercises(filestr, format, code_blocks, tex_blocks):
             if not option('examples_as_exercises'):
                 errwarn('    If the block is inside an Example, use --examples_as_exercises')
             for block in blocks:
-                errwarn(block)
+                errwarn(block, end='\n', style='red')
             _abort()
         # Find single occurences (syntax error)
         if not found_pairs:
@@ -2027,21 +2061,18 @@ def extract_individual_standalone_exercises(
         _abort()
 
     import zipfile
-    filename = globals.dofile_basename + '_exercises.zip'
-    archive = zipfile.ZipFile(filename, mode='w')
+    globals.filename = globals.dofile_basename + '_exercises.zip'
+    archive = zipfile.ZipFile(globals.filename, mode='w')
     exer_filename = option('exercises_in_zip_filename=', 'logical')
 
     # Text for index file with list of exercise files
-    index_text = """TITLE: List of stand-alone files with exercises
-
-# Edit FILE_EXTENSIONS to the type of documents that will
-# be listed in the this index
-<%
-FILE_EXTENSIONS = ['.tex', '.ipynb']
-#FILE_EXTENSIONS = ['.tex', '.ipynb', '.do.txt', '.html']
-%>
-
-"""
+    index_text = ("TITLE: List of stand-alone files with exercises\n\n"
+                  "# Edit FILE_EXTENSIONS to the type of documents that will\n"
+                  "# be listed in the this index\n"
+                  "<%\n"
+                  "FILE_EXTENSIONS = ['.tex', '.ipynb']\n"
+                  "#FILE_EXTENSIONS = ['.tex', '.ipynb', '.do.txt', '.html']\n"
+                  "%>\n\n")
     chapter_prev = None
 
     for i, sa in enumerate(exers):
@@ -2066,13 +2097,13 @@ FILE_EXTENSIONS = ['.tex', '.ipynb']
         if logical_name is not None:
             replacement += '\n# Logical name of exercise: %s\n' % logical_name
         if external_references:
-            replacement += """
-# This document contains references to a parent document (../%s).
-# These references will work for latex (using the xr package and
-# a compiled parent document (with ../%s.aux file), but other formats
-# will have missing references.
-# Externaldocuments: ../%s
-""" % (globals.dofile_basename, globals.dofile_basename, globals.dofile_basename)
+            replacement += (
+                    "# This document contains references to a parent document (../%s).\n"
+                    "# These references will work for latex (using the xr package and\n"
+                    "# a compiled parent document (with ../%s.aux file), but other formats\n"
+                    "# will have missing references.\n"
+                    "# Externaldocuments: ../%s\n" %
+                    (globals.dofile_basename, globals.dofile_basename, globals.dofile_basename))
 
         # At this stage {Exercise}: has the {} removed
         sa = re.sub(
@@ -2124,47 +2155,37 @@ FILE_EXTENSIONS = ['.tex', '.ipynb']
             chapter_prev = all_exer[i]['chapter_title']
 
         name = name.replace('.do.txt', '')
-        index_text += """%% for EXT in FILE_EXTENSIONS:
-"`%s${EXT}`": "%s${EXT}"
-%% endfor
- <linebreak>
-
-""" % (name, name)
-
+        index_text += ("%% for EXT in FILE_EXTENSIONS:\n"
+                   "`%s${EXT}`\": \"%s${EXT}\n"
+                   "%% endfor\n"
+                   "<linebreak>\n\n" % (name, name))
     name = 'index.do.txt'
     path = os.path.join('standalone_exercises', name)
     archive.writestr(path, index_text)
 
-    make_text = """
-#!/usr/bin/env python
-# Compile all stand-alone exercises to latex and ipynb
-# (Must first unzip archive)
-
-import glob, os
-
-dofiles = glob.glob('*.do.txt')
-dofiles.remove('index.do.txt')   # compile to html only
-
-for dofile in dofiles:
-    cmd = 'doconce format pdflatex %s --latex_code_style=vrb --figure_prefix=../ --movie_prefix=../' % dofile
-    os.system(cmd)
-    # Edit .tex file and remove doconce-specific things
-    cmd = 'doconce subst "%% #.+" "" %s.tex' % dofile[:-7]  # preprocess
-    os.system(cmd)
-    cmd = 'doconce subst "%%.*" "" %s.tex' % dofile[:-7]
-
-    cmd = 'doconce format ipynb %s --figure_prefix=../  --movie_prefix=../' % dofile
-    os.system(cmd)
-
-# Edit FILE_EXTENSIONS to adjust what kind of files that is listed in index.html
-cmd = 'doconce format html index --html_style=bootstrap'
-os.system(cmd)
-"""
+    make_text = ("#!/usr/bin/env python\n"
+                 "# Compile all stand-alone exercises to latex and ipynb\n"
+                 "# (Must first unzip archive)\n\n"
+                 "import glob, os\n\n"
+                 "dofiles = glob.glob('*.do.txt')\n"
+                 "dofiles.remove('index.do.txt')   # compile to html only\n\n"
+                 "for dofile in dofiles:\n"
+                 "    cmd = 'doconce format pdflatex %s --latex_code_style=vrb --figure_prefix=../ --movie_prefix=../' % dofile\n"
+                 "    os.system(cmd)\n"
+                 "    # Edit .tex file and remove doconce-specific things\n"
+                 "    cmd = 'doconce subst \"%% #.+\" \"\" %s.tex' % dofile[:-7]  # preprocess\n"
+                 "    os.system(cmd)\n"
+                 "    cmd = 'doconce subst \"%%.*\" \"\" %s.tex' % dofile[:-7]\n\n"
+                 "    cmd = 'doconce format ipynb %s --figure_prefix=../  --movie_prefix=../' % dofile\n"
+                 "    os.system(cmd)\n\n"
+                 "# Edit FILE_EXTENSIONS to adjust what kind of files that is listed in index.html\n"
+                 "cmd = 'doconce format html index --html_style=bootstrap'\n"
+                 "os.system(cmd)\n")
     name = 'make.py'
     path = os.path.join('standalone_exercises', name)
     archive.writestr(path, make_text)
     archive.close()
-    errwarn('standalone exercises in ' + filename)
+    errwarn('standalone exercises in ' + globals.filename)
 
 
 def parse_keyword(keyword, format):
@@ -2847,8 +2868,8 @@ def handle_figures(filestr, format):
     search_extensions = FIGURE_EXT[format]['search']
     convert_extensions = FIGURE_EXT[format]['convert']
 
-    figfiles = [filename.strip()
-                for filename, options, caption in c.findall(filestr)]
+    figfiles = [fname.strip()
+                for fname, options, caption in c.findall(filestr)]
     figfiles = set(figfiles)   # remove multiple occurences
 
     # Prefix figure paths if user has requested it
@@ -2865,8 +2886,8 @@ def handle_figures(filestr, format):
                                  flags=re.MULTILINE)
     # Prefix movies also
     movie_pattern = INLINE_TAGS['movie']
-    movie_files = [filename.strip()
-                   for filename, options, caption in
+    movie_files = [fname.strip()
+                   for fname, options, caption in
                    re.findall(movie_pattern, filestr, flags=re.MULTILINE)]
     movie_prefix = option('movie_prefix=')
     if movie_prefix is not None:
@@ -2880,8 +2901,8 @@ def handle_figures(filestr, format):
                                  flags=re.MULTILINE)
 
     # Find new filenames
-    figfiles = [filename.strip()
-             for filename, options, caption in c.findall(filestr)]
+    figfiles = [fname.strip()
+             for fname, options, caption in c.findall(filestr)]
     figfiles = set(figfiles)   # remove multiple occurences
 
     for figfile in figfiles:
@@ -3015,12 +3036,11 @@ def handle_figures(filestr, format):
                                 cmd = 'echo'  # do nothing, file exists
 
                             if e in ('.ps', '.eps', '.pdf') and \
-                               ext in ('.png', '.jpg', '.jpeg', '.gif'):
-                                errwarn("""\
-*** warning: need to convert from %s to %s
-using ImageMagick's convert program, but the result will
-be loss of quality. Generate a proper %s file (if possible).""" %
-                                (figfile, converted_file, converted_file))
+                                    ext in ('.png', '.jpg', '.jpeg', '.gif'):
+                                errwarn(("*** warning: need to convert from %s to %s\n"
+                                         "using ImageMagick's convert program, but the result will\n"
+                                         "be loss of quality. Generate a proper %s file (if possible).\n" %
+                                         (figfile, converted_file, converted_file)))
                         if not tikz_fig:
                             failure = os.system(cmd)
                         if not failure:
@@ -3831,19 +3851,15 @@ def extract_quizzes(filestr, format):
             try:
                 data[-1]['choices'][i-1].append(explanation.strip())
             except IndexError:
-                errwarn("""
-*** error: quiz question
-"%s"
-has choices
-%s
-Something is wrong with the matching of choices and explanations
-(compare the list above with the source code of the quiz).
-This is a bug or wrong quiz syntax.
-
-The raw code of this quiz at this stage of processing reads
-
-%s
-""" % (data[-1]['question'], data[-1]['choices'], quiz))
+                errwarn(('*** error: quiz question\n'
+                    '"%s"\n'
+                    'has choices\n'
+                    '%s\n'
+                    'Something is wrong with the matching of choices and explanations\n'
+                    '(compare the list above with the source code of the quiz).\n'
+                    'This is a bug or wrong quiz syntax.\n\n'
+                    'The raw code of this quiz at this stage of processing reads\n\n'
+                    '%s\n' % (data[-1]['question'], data[-1]['choices'], quiz)))
                 _abort()
 
     return data, quizzes, filestr
@@ -4111,10 +4127,18 @@ def subst_class_func_mod(filestr, format):
 
 
 def file2file(in_filename, format, basename):
-    """
+    """Read, transform, and write a doconce file
+
     Perform the transformation of a doconce file, stored in in_filename,
     to a given format (html, latex, etc.), written to out_filename (returned).
     This is the principal function in the module.
+
+    :param str in_filename: path to DocOnce file
+    :param str format: supported format (html, latex, etc.)
+    :param str basename: basename for the output file
+    :return: out_filename, session object
+    :rtype: Tuple[Union[str, int], Optional[Any]]
+
     """
     if in_filename.startswith('__'):
         errwarn('Translating preprocessed doconce text in ' + in_filename +
@@ -4150,18 +4174,11 @@ def read_file(in_filename, _encoding = None):
 
     Read text from file using an optional encoding
 
-    Parameters
-    ----------
-
-    in_filename : str
-        filename to be read
-    _encoding : str, optional
-        encoding string. Usually the encoding variable in globals.py
-
-    Returns
-    ----------
-    str
-        The text read"""
+    :param str in_filename: filename to be read
+    :param str _encoding: optional encoding string. Usually the encoding variable in globals.py
+    :return: the text read
+    :rtype: str
+    """
     # if trouble with encoding:
     # Unix> doconce guess_encoding myfile.do.txt
     # Unix> doconce change_encoding latin1 utf-8 myfile.do.txt
@@ -4194,18 +4211,9 @@ def write_file(text, out_filename, _encoding = ''):
 
     Write string to file using an ooptional encoding
 
-    Parameters
-    ----------
-    text : str
-        Text string to be written
-    out_filename : str
-        Output filename
-    _encoding : str, optional
-        Encoding string. Usually the encoding variable in globals.py
-
-    Returns
-    ----------
-    None
+    :param str text: Text string to be written
+    :param str out_filename: Output filename
+    :param str _encoding : Optional encoding string. Usually the encoding variable in globals.py
     """
     if _encoding:
         f = codecs.open(out_filename, 'w', _encoding)
@@ -4276,7 +4284,17 @@ def doconce2format4docstrings(filestr, format):
 
 global _t0, _t1
 
-def doconce2format(filestr, format):
+def doconce2format(filestr_in, format):
+    """Convert string to desired format
+
+    Convert the string content of a file to different formats.
+    Called by format_drive() > file2file()
+
+    :param str filestr:
+    :param format:
+    :return: tuple with modified filestr, bokeh.client session
+    :rtype: Tuple[Union[str, bytes, list], Optional[Any]]
+    """
     global _t0, _t1
     _t0 = _t1 = time.time()
     verbose = int(option('verbose=', 0))
@@ -4301,6 +4319,7 @@ def doconce2format(filestr, format):
 
     report_progress('finished preprocessors')
 
+    filestr = filestr_in
     if option('syntax_check=', 'on') == 'on':
         filestr = fix(filestr, format, verbose=1)
         syntax_check(filestr, format)
@@ -4801,15 +4820,22 @@ def doconce2format(filestr, format):
     return filestr, bg_session
 
 
-def preprocess(filename, format, preprocessor_options=[]):
-    """
+def preprocess(filename_in, format, preprocessor_options=[]):
+    """Preprocess a DocOnce file
+
     Run the preprocess and mako programs on filename and return the name
     of the resulting file. The preprocessor_options list contains
     the preprocessor options given on the command line.
     In addition, the preprocessor option FORMAT (=format) is
     always defined.
+
+    :param str filename_in: patht to a DocOnce file
+    :param str format: output format
+    :param list[str] preprocessor_options: preprocessor options given on the command line
+    :return: resultfile
+    :rtype: str
     """
-    orig_filename = filename
+    orig_filename = filename_in
 
     device = None
     # Is DEVICE set as command-line option?
@@ -4821,9 +4847,9 @@ def preprocess(filename, format, preprocessor_options=[]):
     if device is None:
         device = 'paper' if option('device=', '') == 'paper' else 'screen'
 
-    f = open(filename, 'r'); filestr = f.read(); f.close()
+    f = open(filename_in, 'r'); filestr = f.read(); f.close()
     if filestr.strip() == '':
-        errwarn('*** error: empty file ' + filename)
+        errwarn('*** error: empty file ' + filename_in)
         _abort()
 
     # Standardize newlines
@@ -4914,15 +4940,16 @@ def preprocess(filename, format, preprocessor_options=[]):
             # No, this fails if value=input or something defined in python
             # Work with just strings and use key='eval(something)' instead
 
-    resultfile = 'tmp_preprocess__' + filename
-    resultfile2 = 'tmp_mako__' + filename
+    resultfile = 'tmp_preprocess__' + filename_in
+    resultfile2 = 'tmp_mako__' + filename_in
 
     filestr_without_code, code_blocks, code_block_types, tex_blocks = \
                           remove_code_and_tex(filestr, format)
 
     preprocess_commands = r'^#\s*#(if|define|include)'
     if re.search(preprocess_commands, filestr_without_code, re.MULTILINE):
-        debugpr('Found use of %d preprocess directives # #if|define|include in file %s' % (len(re.findall(preprocess_commands, filestr_without_code, flags=re.MULTILINE)), filename))
+        debugpr('Found use of %d preprocess directives # #if|define|include in file %s' %
+                (len(re.findall(preprocess_commands, filestr_without_code, flags=re.MULTILINE)), filename_in))
 
         preprocessor = 'preprocess'
         preprocess_options = ' '.join(preprocess_options)
@@ -4940,12 +4967,10 @@ def preprocess(filename, format, preprocessor_options=[]):
         try:
             import preprocess
         except ImportError:
-            errwarn("""\
-%s makes use of preprocess directives and therefore requires
-the preprocess program to be installed (see code.google.com/p/preprocess).
-On Debian systems, preprocess can be installed through the
-preprocess package (sudo apt-get install preprocess).
-""" % filename)
+            errwarn(("%s makes use of preprocess directives and therefore requires\n"
+                     "the preprocess program to be installed (see code.google.com/p/preprocess)\n"
+                     "On Debian systems, preprocess can be installed through the\n"
+                     "preprocess package (sudo apt-get install preprocess).\n" % filename_in))
             _abort()
         def version_compare(a, b):
             """
@@ -4977,10 +5002,10 @@ preprocess package (sudo apt-get install preprocess).
 
         if option('no_preprocess'):
             errwarn('Found preprocess-like statements, but --no_preprocess prevents running preprocess')
-            shutil.copy(filename, resultfile)  # just copy
+            shutil.copy(filename_in, resultfile)  # just copy
         else:
             cmd = 'preprocess -DFORMAT=%s -DDEVICE=%s %s %s > %s' % \
-                  (format, device, preprocess_options, filename, resultfile)
+                  (format, device, preprocess_options, filename_in, resultfile)
             errwarn('running ' + cmd)
             try:
                 output = subprocess.check_output(cmd, shell=True,
@@ -5063,29 +5088,25 @@ preprocess package (sudo apt-get install preprocess).
                 if not ok_word:
                     errwarn('\n\n*** warning: detected problem with the code block\n---------------------------')
                     errwarn(code_block)
-                    errwarn('''---------------------------
-The above code block contains "%s" on the *beginning of a line*.
-Such lines cause problems for the mako preprocessor
-since it thinks this is a mako statement.
-''' % (m.group(0)))
+                    errwarn(('---------------------------\n'
+                    'The above code block contains "%s" on the *beginning of a line*.\n'
+                    'Such lines cause problems for the mako preprocessor\n'
+                    'since it thinks this is a mako statement.\n' % (m.group(0))))
                     print()
                     mako_problems = True
         if mako_problems:
-            errwarn('''\
-Use %% in the code block(s) above to fix the problem with % at the
-*very* beginning of lines (column 1), otherwise (in case of blanks
-first on the line) use the construction ${'%'}, or put the code in
-a file that is included with @@@CODE filename, or drop mako instructions
-or variables and rely on preprocess only in the preprocessing step.
-Including --no_mako on the command line avoids running mako.
-(If you have % in code, you can also see if it is possible to move
-the % char away from the beginning of the line.)
-
-mako is not run because of lines starting with %,
-fix the lines as described or remove the mako statements.
-''')
+            errwarn(("Use %% in the code block(s) above to fix the problem with % at the\n"
+                "*very* beginning of lines (column 1), otherwise (in case of blanks\n"
+                "first on the line) use the construction ${'%'}, or put the code in\n"
+                "a file that is included with @@@CODE filename, or drop mako instructions\n"
+                "or variables and rely on preprocess only in the preprocessing step.\n"
+                "Including --no_mako on the command line avoids running mako.\n"
+                "(If you have % in code, you can also see if it is possible to move\n"
+                "the % char away from the beginning of the line.)\n\n"
+                "mako is not run because of lines starting with %,\n"
+                "fix the lines as described or remove the mako statements.\n"))
             _abort()
-            return filename if preprocessor is None else resultfile
+            return filename_in if preprocessor is None else resultfile
 
         # Check if LaTeX math has ${...} constructions that cause problems
         # for mako
@@ -5104,10 +5125,9 @@ fix the lines as described or remove the mako statements.
                     break
                 else:
                     suggestion = 'or make a newcommand'
-                errwarn("""\
-*** error: potential problem with the math formula
-           $%s$
-    since ${ can confuse Mako - rewrite %s""" % (formula, suggestion))
+                errwarn(("*** error: potential problem with the math formula\n"
+                         "           $%s$\n"
+                         "    since ${ can confuse Mako - rewrite %s\n" % (formula, suggestion)))
                 if formula.startswith('{\\cal'):
                     errwarn(r'Here: use \mathcal{...} in %s instead of {\cal ...}' % formula)
                 _abort()
@@ -5125,31 +5145,25 @@ fix the lines as described or remove the mako statements.
 
         if preprocessor is not None:  # already found preprocess commands?
             # The output is in resultfile, mako is run on that
-            filename = resultfile
+            filename_in = resultfile
         preprocessor = 'mako'
 
         try:
             import mako
         except ImportError:
-            errwarn("""\
-%s makes use of mako directives and therefore requires mako
-to be installed (www.makotemplates.org).
-
-If you have pip installed, do
-
-   pip install mako
-
-On Debian (incl. Ubuntu) systems, you can alternatively do
-
-   sudo apt-get install python-mako
-""" % filename)
+            errwarn(("%s makes use of mako directives and therefore requires mako\n"
+                "to be installed (www.makotemplates.org).\n\n"
+                "If you have pip installed, do\n\n"
+                "   pip install mako\n\n"
+                "On Debian (incl. Ubuntu) systems, you can alternatively do\n\n"
+                 "   sudo apt-get install python-mako\n" % filename_in))
             _abort()
 
-        errwarn('running mako on ' + filename + ' to make ' + resultfile2)
+        errwarn('running mako on ' + filename_in + ' to make ' + resultfile2)
         # add a space after \\ at the end of lines (otherwise mako
         # eats one of the backslashes in tex blocks)
         # same for a single \ before newline
-        f = open(filename, 'r')
+        f = open(filename_in, 'r')
         filestr = f.read()
         f.close()
         filestr = filestr.replace('\\\\\n', '\\\\ \n')
@@ -5179,7 +5193,7 @@ On Debian (incl. Ubuntu) systems, you can alternatively do
                             strict_undefined=strict_undefined)
         except Exception as e:
             errwarn('*** mako error: ' + str(type(e)).split("'")[1])
-            errwarn('    ' + str(e))
+            errwarn('   ' + str(e))
             if isinstance(e, mako.exceptions.SyntaxException):
                 import platform
                 errwarn('This could indicate that the mako template code is not compatible with the version of Python currently used by DocOnce and mako, which is Python %s' % platform.python_version())
@@ -5258,7 +5272,7 @@ On Debian (incl. Ubuntu) systems, you can alternatively do
 
     if preprocessor is None:
         # no preprocessor syntax detected
-        resultfile = filename
+        resultfile = filename_in
     else:
         debugpr('The file after running preprocess and/or mako:', filestr)
 
@@ -5266,28 +5280,18 @@ On Debian (incl. Ubuntu) systems, you can alternatively do
 
 
 
-def parse_doconce_filename(filename):
+def parse_doconce_filename(filename_in):
     """Parse the DocOnce filename. Abort if the file is not found
 
-    Parameters
-    ----------
-    filename : str
-        Filename. The DocOnce extensions '.do.txt' can be omitted
-
-    Returns
-    ----------
-    dirname : str
-        The output directory
-    basename : str
-        The output file's basename
-    ext : str
-        The output file's format
-    filename :str
-        The output file's filename"""
-    dirname, basename = os.path.split(filename)
+    :param str filename_in: Filename. The DocOnce extensions '.do.txt' can be omitted
+    :return: (dirname, basename, extension, filename) tuple
+    :rtype: (str, str, str, str)
+    """
+    filename_out = filename_in
+    dirname, basename = os.path.split(filename_out)
     if dirname:
         os.chdir(dirname)
-        filename = basename
+        filename_out = basename
         # errwarn('*** doconce format now works in directory %s' % dirname)
         # cannot call errwarn before globals.dofile_basename is initialized
         # print instead
@@ -5299,8 +5303,8 @@ def parse_doconce_filename(filename):
     if ext == '':
         found = False
         for ext in legal_extensions:
-            filename = basename + ext
-            if os.path.isfile(filename):
+            filename_out = basename + ext
+            if os.path.isfile(filename_out):
                 found = True
                 break
         if not found:
@@ -5309,22 +5313,21 @@ def parse_doconce_filename(filename):
             _abort()
     else:
         # Given extension
-        if not os.path.isfile(filename):
-            print('*** error: file %s does not exist' % filename)
+        if not os.path.isfile(filename_out):
+            print('*** error: file %s does not exist' % filename_out)
             _abort()
         if ext == '.txt':
-            if filename.endswith('.do.txt'):
-                basename = filename[:-7]
+            if filename_out.endswith('.do.txt'):
+                basename = filename_out[:-7]
             else: # just .txt
-                basename = filename[:-4]
+                basename = filename_out[:-4]
         elif ext == '.do':
-            basename = filename[:-3]
+            basename = filename_out[:-3]
         else:
             print('*** error: illegal file extension %s' % ext)
             print('    must be %s' % ' or '.join(legal_extensions))
             _abort()
-
-    return dirname, basename, ext, filename
+    return dirname, basename, ext, filename_out
 
 
 def format_driver():
@@ -5337,8 +5340,6 @@ def format_driver():
 
     # oneline is inactive (doesn't work well yet)
 
-    global filename #TODO: moving this global to globals.py and carry out extensive testing
-
     if option('help') or '-h' in sys.argv:
         from .misc import help_format
         help_format()
@@ -5349,7 +5350,7 @@ def format_driver():
 
     try:
         format = sys.argv[1]
-        filename = sys.argv[2]
+        globals.filename = sys.argv[2]
         del sys.argv[1:3]
         from . import common
         common.format = format
@@ -5390,20 +5391,20 @@ def format_driver():
 
     debugpr('\n\n******* output format: %s *******\n\n' % format)
 
-    dirname, basename, ext, filename = parse_doconce_filename(filename)
+    dirname, basename, ext, globals.filename = parse_doconce_filename(globals.filename)
     globals.dofile_basename = basename
 
     _rmdolog()     # always start with clean log file with errors
 
-    #errwarn('\n----- doconce format %s %s' % (format, filename))
+    #errwarn('\n----- doconce format %s %s' % (format, globals.filename))
     preprocessor_options = [arg for arg in sys.argv[1:]
                             if not arg.startswith('--')]
-    filename_preprocessed = preprocess(filename, format, preprocessor_options)
+    filename_preprocessed = preprocess(globals.filename, format, preprocessor_options)
     out_filename, bg_session = file2file(filename_preprocessed, format, basename)
 
     if filename_preprocessed.startswith('__') and not option('debug'):
         os.remove(filename_preprocessed)  # clean up
-    #errwarn('----- successful run: %s filtered to %s\n' % (filename, out_filename))
+    #errwarn('----- successful run: %s filtered to %s\n' % (globals.filename, out_filename))
     errwarn('output in ' + os.path.join(dirname, out_filename))
     return bg_session
 
@@ -5454,8 +5455,8 @@ def doconce_format(format, dotext, compile=False,
         if outfile.endswith('.rst') and format == 'rst':
             pass
     if cleanup:
-        for filename in glob.glob(filename_stem + '.*'):
-            os.remove(filename)
+        for fname in glob.glob(filename_stem + '.*'):
+            os.remove(fname)
     return text
 
 
