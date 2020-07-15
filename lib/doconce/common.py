@@ -1085,116 +1085,116 @@ def doconce_exercise_output(
         import string
         for i, subex in enumerate(exer['subex']):
             letter = string.ascii_lowercase[i]
-            s += '\n__%s)__\n' % letter
-
             if subex['text']:
+                s += '\n__%s)__\n' % letter
                 s += subex['text'] + '\n'
-                for i, hint in enumerate(subex['hints']):
-                    if len(subex['hints']) == 1 and i == 0:
-                        hint_header_ = hint_header
+
+            for i, hint in enumerate(subex['hints']):
+                if len(subex['hints']) == 1 and i == 0:
+                    hint_header_ = hint_header
+                else:
+                    hint_header_ = hint_header.replace(
+                        'Hint.', 'Hint %d.' % (i + 1))
+                if exer['type'] != 'Example':
+                    s += '\n# ' + envir_delimiter_lines['hint'][0] + '\n'
+                s += '\n' + hint_header_ + '\n' + hint + '\n'
+                if exer['type'] != 'Example':
+                    s += '\n# ' + envir_delimiter_lines['hint'][1] + '\n'
+
+            if subex['file']:
+                if len(subex['file']) == 1:
+                    Filename = globals.locale_dict[language]['Filename']
+                    s += '%s: `%s`' % (Filename, subex['file'][0]) + '.\n'
+                else:
+                    Filenames = globals.locale_dict[language]['Filenames']
+                    s += '%s: %s' % (Filenames, ', '.join(
+                        ['`%s`' % f for f in subex['file']]) + '.\n')
+
+            if subex['ans_docend']:
+                # Similar to 'solution' above, but do not write solutions to main text
+                if exer['type'] != 'Example':
+                    sol += '\n# ' + envir_delimiter_lines['ans_docend'][0] + '\n'
+                # Write subex letter and 'Answer.' in bold on the same line
+                sol += '__%s) ' % letter
+                sol += answer_header[2:] + '\n' + subex['ans_docend'] + '\n'
+                if exer['type'] != 'Example':
+                    sol += '# ' + envir_delimiter_lines['ans_docend'][1] + '\n'
+
+            if subex['sol_docend']:
+                # Similar to 'solution' above, but do not write solutions to main text
+                if exer['type'] != 'Example':
+                    sol += '\n# ' + envir_delimiter_lines['sol_docend'][0] + '\n'
+                # Make sure we have a sentence after the heading
+                if solution_header.endswith('===') and \
+                        re.search(r'^\d+ %s' % _CODE_BLOCK, subex['sol_docend'].lstrip()):
+                    errwarn('\nwarning: open the solution in exercise "%s" with a line of\ntext before the code! (Now "Code:" is inserted)' %
+                        exer['title'] + '\n')
+                    sol += '\nCode:\n'
+                # Write subex letter and 'Solution.' in bold on the same line
+                sol += '__%s) ' % letter
+                sol += solution_header[2:] + '\n' + subex['sol_docend'] + '\n'
+                if solution_style == 'admon':
+                    sol += '!enotice\n\n'
+                elif solution_style == 'quote':
+                    sol += '!equote\n\n'
+                if exer['type'] != 'Example':
+                    sol += '# ' + envir_delimiter_lines['sol_docend'][1] + '\n'
+
+            if subex['answer']:
+                s += '\n'
+                if exer['type'] == 'Example':
+                    s += answer_header + '\n' + subex['answer'] + '\n'
+                else:
+                    s += '\n# ' + envir_delimiter_lines['ans'][0] + '\n'
+                    s += answer_header + '\n' + subex['answer'] + '\n'
+                    s += '# ' + envir_delimiter_lines['ans'][1] + '\n'
+                    if option('answers_at_end'):
+                        # Write subex letter and 'Answer.' in bold on the same line
+                        sol += '\n__%s) ' % letter
+                        sol += answer_header[2:] + '\n' + subex['answer'] + '\n'
                     else:
-                        hint_header_ = hint_header.replace(
-                            'Hint.', 'Hint %d.' % (i + 1))
-                    if exer['type'] != 'Example':
-                        s += '\n# ' + envir_delimiter_lines['hint'][0] + '\n'
-                    s += '\n' + hint_header_ + '\n' + hint + '\n'
-                    if exer['type'] != 'Example':
-                        s += '\n# ' + envir_delimiter_lines['hint'][1] + '\n'
+                        sol += '\n# ' + envir_delimiter_lines['ans_at_end'][0] + '\n'
+                        sol += answer_header + '\n' + subex['answer'] + '\n'
+                        sol += '# ' + envir_delimiter_lines['ans_at_end'][1] + '\n'
 
-                if subex['file']:
-                    if len(subex['file']) == 1:
-                        Filename = globals.locale_dict[language]['Filename']
-                        s += '%s: `%s`' % (Filename, subex['file'][0]) + '.\n'
-                    else:
-                        Filenames = globals.locale_dict[language]['Filenames']
-                        s += '%s: %s' % (Filenames, ', '.join(
-                            ['`%s`' % f for f in subex['file']]) + '.\n')
+            if subex['solution']:
+                s += '\n'
+                # Leave out begin-end solution comments if example since we want to
+                # avoid marking such sections for deletion triggered by --without_solutions
+                if exer['type'] != 'Example':
+                    s += '\n# ' + envir_delimiter_lines['sol'][0] + '\n'
+                    sol += '\n# ' + envir_delimiter_lines['sol_at_end'][0] + '\n'
+                if solution_style == 'paragraph':
+                    s += solution_header + '\n'
+                elif solution_style == 'admon':
+                    s += '\n!bnotice %s.\n\n' % Solution
+                    sol += '\n!bnotice %s.\n\n' % Solution
+                elif solution_style == 'quote':
+                    s += '\n!bquote\n' + solution_header + '\n'
+                    sol += '\n!bquote\n' + solution_header + '\n'
+                # Make sure we have a sentence after the heading
+                if solution_header.endswith('===') and \
+                        re.search(r'^\d+ %s' % _CODE_BLOCK, subex['solution'].lstrip()):
+                    errwarn('\nwarning: open the solution in exercise "%s" with a line of\ntext before the code! (Now "Code:" is inserted)' %
+                        exer['title'] + '\n')
+                    s += 'Code:\n'
+                    sol += '\nCode:\n'
+                s += subex['solution'] + '\n'
+                # Write subex letter and 'Solution.' in bold on the same line
+                sol += '__%s) ' % letter
+                sol += solution_header[2:] + '\n' + subex['solution'] + '\n'
+                if solution_style == 'admon':
+                    s += '!enotice\n\n'
+                    sol += '!enotice\n\n'
+                elif solution_style == 'quote':
+                    s += '!equote\n\n'
+                    sol += '!equote\n\n'
+                if exer['type'] != 'Example':
+                    s += '# ' + envir_delimiter_lines['sol'][1] + '\n'
+                    sol += '# ' + envir_delimiter_lines['sol_at_end'][1] + '\n'
 
-                if subex['ans_docend']:
-                    # Similar to 'solution' above, but do not write solutions to main text
-                    if exer['type'] != 'Example':
-                        sol += '\n# ' + envir_delimiter_lines['ans_docend'][0] + '\n'
-                    # Write subex letter and 'Answer.' in bold on the same line
-                    sol += '__%s) ' % letter
-                    sol += answer_header[2:] + '\n' + subex['ans_docend'] + '\n'
-                    if exer['type'] != 'Example':
-                        sol += '# ' + envir_delimiter_lines['ans_docend'][1] + '\n'
-
-                if subex['sol_docend']:
-                    # Similar to 'solution' above, but do not write solutions to main text
-                    if exer['type'] != 'Example':
-                        sol += '\n# ' + envir_delimiter_lines['sol_docend'][0] + '\n'
-                    # Make sure we have a sentence after the heading
-                    if solution_header.endswith('===') and \
-                            re.search(r'^\d+ %s' % _CODE_BLOCK, subex['sol_docend'].lstrip()):
-                        errwarn('\nwarning: open the solution in exercise "%s" with a line of\ntext before the code! (Now "Code:" is inserted)' %
-                            exer['title'] + '\n')
-                        sol += '\nCode:\n'
-                    # Write subex letter and 'Solution.' in bold on the same line
-                    sol += '__%s) ' % letter
-                    sol += solution_header[2:] + '\n' + subex['sol_docend'] + '\n'
-                    if solution_style == 'admon':
-                        sol += '!enotice\n\n'
-                    elif solution_style == 'quote':
-                        sol += '!equote\n\n'
-                    if exer['type'] != 'Example':
-                        sol += '# ' + envir_delimiter_lines['sol_docend'][1] + '\n'
-
-                if subex['answer']:
-                    s += '\n'
-                    if exer['type'] == 'Example':
-                        s += answer_header + '\n' + subex['answer'] + '\n'
-                    else:
-                        s += '\n# ' + envir_delimiter_lines['ans'][0] + '\n'
-                        s += answer_header + '\n' + subex['answer'] + '\n'
-                        s += '# ' + envir_delimiter_lines['ans'][1] + '\n'
-                        if option('answers_at_end'):
-                            # Write subex letter and 'Answer.' in bold on the same line
-                            sol += '\n__%s) ' % letter
-                            sol += answer_header[2:] + '\n' + subex['answer'] + '\n'
-                        else:
-                            sol += '\n# ' + envir_delimiter_lines['ans_at_end'][0] + '\n'
-                            sol += answer_header + '\n' + subex['answer'] + '\n'
-                            sol += '# ' + envir_delimiter_lines['ans_at_end'][1] + '\n'
-
-                if subex['solution']:
-                    s += '\n'
-                    # Leave out begin-end solution comments if example since we want to
-                    # avoid marking such sections for deletion triggered by --without_solutions
-                    if exer['type'] != 'Example':
-                        s += '\n# ' + envir_delimiter_lines['sol'][0] + '\n'
-                        sol += '\n# ' + envir_delimiter_lines['sol_at_end'][0] + '\n'
-                    if solution_style == 'paragraph':
-                        s += solution_header + '\n'
-                    elif solution_style == 'admon':
-                        s += '\n!bnotice %s.\n\n' % Solution
-                        sol += '\n!bnotice %s.\n\n' % Solution
-                    elif solution_style == 'quote':
-                        s += '\n!bquote\n' + solution_header + '\n'
-                        sol += '\n!bquote\n' + solution_header + '\n'
-                    # Make sure we have a sentence after the heading
-                    if solution_header.endswith('===') and \
-                            re.search(r'^\d+ %s' % _CODE_BLOCK, subex['solution'].lstrip()):
-                        errwarn('\nwarning: open the solution in exercise "%s" with a line of\ntext before the code! (Now "Code:" is inserted)' %
-                            exer['title'] + '\n')
-                        s += 'Code:\n'
-                        sol += '\nCode:\n'
-                    s += subex['solution'] + '\n'
-                    # Write subex letter and 'Solution.' in bold on the same line
-                    sol += '__%s) ' % letter
-                    sol += solution_header[2:] + '\n' + subex['solution'] + '\n'
-                    if solution_style == 'admon':
-                        s += '!enotice\n\n'
-                        sol += '!enotice\n\n'
-                    elif solution_style == 'quote':
-                        s += '!equote\n\n'
-                        sol += '!equote\n\n'
-                    if exer['type'] != 'Example':
-                        s += '# ' + envir_delimiter_lines['sol'][1] + '\n'
-                        sol += '# ' + envir_delimiter_lines['sol_at_end'][1] + '\n'
-
-                if 'aftertext' in subex:
-                    s += subex['aftertext']
+            if 'aftertext' in subex:
+                s += subex['aftertext']
 
 
     if exer['file']:

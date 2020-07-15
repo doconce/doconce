@@ -415,7 +415,7 @@ def syntax_check(filestr, format):
     multiple_labels = list(set([label for label in labels if labels.count(label) > 1]))
     if multiple_labels:
         errwarn('*** error: found multiple labels:')
-        errwarn('    ' + ' '.join(multiple_labels))
+        errwarn('    ' + ' '.join(multiple_labels), end='\n', style='red')
         _abort()
     # Consistency of implemented environments
     user_defined_envirs = list(set(re.findall(r'^!b(u-[^ ]+)', filestr, flags=re.MULTILINE)))
@@ -1304,7 +1304,7 @@ def insert_code_from_file(filestr, format):
                         ('after' if fromto == 'from-to:' else 'from',
                          from_,
                          ('"' + to_ + '"') if to_ != '' else 'end of file',
-                         filename), newline=False)
+                         filename), end=' ')
                 # Note that from_ and to_ are regular expressions
                 # and to_ might be empty
                 cfrom = re.compile(from_)
@@ -1667,7 +1667,7 @@ def exercises(filestr, format, code_blocks, tex_blocks):
                 subex = dict(text=[], hints=[], answer=[],
                              sol_docend=[], ans_docend=[],
                              solution=[], file=None, aftertext=[])
-            elif line.startswith(subex_pattern_end):
+            elif line.startswith(subex_pattern_end): #end of subex
                 inside_subex = False
                 subex['text'] = '\n'.join(subex['text']).strip()
                 subex['answer'] = '\n'.join(subex['answer']).strip()
@@ -1767,13 +1767,15 @@ def exercises(filestr, format, code_blocks, tex_blocks):
         # 2) !split, or 3) end of file
         if line_no == len(lines) - 1:  # last line?
             exer_end = True
-        elif inside_exer and lines[line_no+1].startswith('!split'):
-            exer_end = True
-        elif inside_exer and lines[line_no+1].startswith('====='):
-            exer_end = True
-        elif inside_exer and option('sections_down') and lines[line_no+1].startswith('==='):
-            exer_end = True
+        elif inside_exer:
+            if lines[line_no+1].startswith('!split'):
+                exer_end = True
+            elif lines[line_no+1].startswith('====='):
+                exer_end = True
+            elif option('sections_down') and lines[line_no+1].startswith('==='):
+                exer_end = True
 
+        # End of exercise: format strings in exer structure
         if exer and exer_end:
             exer['text'] = '\n'.join(exer['text']).strip()
             exer['answer'] = '\n'.join(exer['answer']).strip()
