@@ -415,7 +415,7 @@ def syntax_check(filestr, format):
     multiple_labels = list(set([label for label in labels if labels.count(label) > 1]))
     if multiple_labels:
         errwarn('*** error: found multiple labels:')
-        errwarn('    ' + ' '.join(multiple_labels))
+        errwarn('    ' + ' '.join(multiple_labels), end='\n', style='red')
         _abort()
     # Consistency of implemented environments
     user_defined_envirs = list(set(re.findall(r'^!b(u-[^ ]+)', filestr, flags=re.MULTILINE)))
@@ -1304,7 +1304,7 @@ def insert_code_from_file(filestr, format):
                         ('after' if fromto == 'from-to:' else 'from',
                          from_,
                          ('"' + to_ + '"') if to_ != '' else 'end of file',
-                         filename), newline=False)
+                         filename), end=' ')
                 # Note that from_ and to_ are regular expressions
                 # and to_ might be empty
                 cfrom = re.compile(from_)
