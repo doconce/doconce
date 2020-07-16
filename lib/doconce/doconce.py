@@ -1667,7 +1667,7 @@ def exercises(filestr, format, code_blocks, tex_blocks):
                 subex = dict(text=[], hints=[], answer=[],
                              sol_docend=[], ans_docend=[],
                              solution=[], file=None, aftertext=[])
-            elif line.startswith(subex_pattern_end):
+            elif line.startswith(subex_pattern_end): #end of subex
                 inside_subex = False
                 subex['text'] = '\n'.join(subex['text']).strip()
                 subex['answer'] = '\n'.join(subex['answer']).strip()
@@ -1767,13 +1767,15 @@ def exercises(filestr, format, code_blocks, tex_blocks):
         # 2) !split, or 3) end of file
         if line_no == len(lines) - 1:  # last line?
             exer_end = True
-        elif inside_exer and lines[line_no+1].startswith('!split'):
-            exer_end = True
-        elif inside_exer and lines[line_no+1].startswith('====='):
-            exer_end = True
-        elif inside_exer and option('sections_down') and lines[line_no+1].startswith('==='):
-            exer_end = True
+        elif inside_exer:
+            if lines[line_no+1].startswith('!split'):
+                exer_end = True
+            elif lines[line_no+1].startswith('====='):
+                exer_end = True
+            elif option('sections_down') and lines[line_no+1].startswith('==='):
+                exer_end = True
 
+        # End of exercise: format strings in exer structure
         if exer and exer_end:
             exer['text'] = '\n'.join(exer['text']).strip()
             exer['answer'] = '\n'.join(exer['answer']).strip()
