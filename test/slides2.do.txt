@@ -343,9 +343,9 @@ which is rendered as
 !bt
 \begin{align}
 \frac{\partial u}{\partial t} &= \nabla^2 u,
-label{a:eq}\\
+label{_a:eq}\\
 \nabla\cdot\pmb{v} & = 0
-label{b:eq}
+label{_b:eq}
 \end{align}
 !et
 
@@ -459,7 +459,7 @@ Solutions/answers can easily be left out of the document.
 Last page gets rendered as follows:
 
 ===== Problem: Flip a Coin =====
-label{demo:ex:1}
+label{_demo:ex:1}
 files = flip_coin.py, flip_coin.pdf
 solutions = mysol.txt, mysol_flip_coin.py
 keywords = random numbers; Monte Carlo simulation
