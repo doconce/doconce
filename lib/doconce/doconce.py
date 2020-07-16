@@ -412,10 +412,10 @@ def syntax_check(filestr, format):
     # (gives error if we have an example in !bc and then rendered label
     # afterwards...)
     labels = re.findall('label\{(.+?)\}', filestr)
-    multiple_labels = list(set([label for label in labels if labels.count(label) > 1]))
-    if multiple_labels:
-        errwarn('*** error: found multiple labels:')
-        errwarn('    ' + ' '.join(multiple_labels), end='\n', style='red')
+    duplicate_labels = list(set([label for label in labels if labels.count(label) > 1]))
+    if duplicate_labels:
+        errwarn('*** error: found duplicate labels:')
+        errwarn('    ' + ' '.join(duplicate_labels), end='\n', style='red')
         _abort()
     # Consistency of implemented environments
     user_defined_envirs = list(set(re.findall(r'^!b(u-[^ ]+)', filestr, flags=re.MULTILINE)))
@@ -818,7 +818,11 @@ def syntax_check(filestr, format):
             errwarn('\n    typeset these words with `inline verbatim` or escape with backslash')
             m = re.search(underscore_word_pattern, filestr2)
             if m:
-                errwarn('    First word appears here:\n' + filestr2[m.start()-50:m.start()+60])
+                #errwarn('    First word appears here:\n' + filestr2[m.start()-50:m.start()+60])
+                errwarn('    First word appears here:',end='\n')
+                errwarn(filestr2[m.start() - 50:m.start()], end='')
+                errwarn(filestr2[m.start():m.end()], end='', style='red')
+                errwarn(filestr2[m.end():m.end() + 50], end='\n\n')
 
 
     # Check that headings have consistent use of = signs
@@ -1377,7 +1381,7 @@ def insert_code_from_file(filestr, format):
                         errwarn('"From" and "to" regex match at the same line - empty text.')
                     print()
                     _abort()
-                errwarn(' lines %d-%d' % (from_line, to_line), end=' ')
+                errwarn('lines %d-%d' % (from_line, to_line), end=' ')
             codefile.close()
 
             try:

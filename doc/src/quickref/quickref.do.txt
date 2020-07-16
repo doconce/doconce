@@ -643,7 +643,7 @@ Figures and movies have almost equal syntax:
 !bc
 FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. label{some:fig:label}
 
-MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. label{some:fig:label}
+MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. 
 
 !ec
 Note three important syntax details:

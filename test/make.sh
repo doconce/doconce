@@ -546,5 +546,7 @@ doconce format pdflatex tmp2
 echo
 echo "When we reach this point in the script,"
 echo "it is clearly a successful run of all tests!"
+echo "Check the generated test.v file with e.g.: "
+echo "meld test.r test.v"
 echo "To remove untracked files run: "
 echo "git clean -f -d"

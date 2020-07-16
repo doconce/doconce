@@ -39,7 +39,7 @@ An equation with number,
 looks like
 
 !bt
-\begin{equation} u(t)=e^{-at} label{eq1a}\end{equation}
+\begin{equation} u(t)=e^{-at} label{_eq1a}\end{equation}
 !et
 Maybe this multi-line version is what we actually prefer to write:
 
@@ -55,10 +55,10 @@ The result is the same:
 
 !bt
 \begin{equation}
-u(t)=e^{-at} label{eq1b}
+u(t)=e^{-at} label{_eq1b}
 \end{equation}
 !et
-We can refer to this equation through its label `eq1b`: (ref{eq1b}).
+We can refer to this equation through its label `eq1b`: (ref{_eq1b}).
 
 
 ===== Test 3: Multiple, aligned equations without label and number =====
@@ -103,12 +103,12 @@ Result:
 !bt
 \begin{align}
 u(t)&=e^{-at}
-label{eq2b}\\
+label{_eq2b}\\
 v(t) - 1 &= \frac{du}{dt}
-label{eq3b}
+label{_eq3b}
 \end{align}
 !et
-We can refer to the last equations as the system (ref{eq2b})-(ref{eq3b}).
+We can refer to the last equations as the system (ref{_eq2b})-(ref{_eq3b}).
 
 # #if FORMAT == "sphinx"
 !bwarning Note: align/alignat environments with labels are anti-aligned in sphinx!
@@ -147,9 +147,9 @@ we had used the `align*` environment):
 
         \begin{align}
         u(t)&=e^{-at}
-        \label{eq2b}\\
+        \label{_eq2b}\\
         v(t) - 1 &= \frac{du}{dt}
-        \label{eq3b}
+        \label{_eq3b}
         \end{align}
 # #endif
 
@@ -338,11 +338,11 @@ which results in
 
 !bt
 \begin{eqnarray}
-u(t)&=& e^{-at} label{eq2c}\\
-v(t) - 1 &=& \frac{du}{dt} label{eq3c}
+u(t)&=& e^{-at} label{_eq2c}\\
+v(t) - 1 &=& \frac{du}{dt} label{_eq3c}
 \end{eqnarray}
 !et
-Can we refer to the last equations as the system (ref{eq2c})-(ref{eq3c})
+Can we refer to the last equations as the system (ref{_eq2c})-(ref{_eq3c})
 in the ${FORMAT} format?
 # #if FORMAT == "sphinx"
 No, unfortunately not. Sphinx cannot deal with equation numbers in
@@ -372,11 +372,11 @@ gets rendered as
 \int_a^b f(x)dx = \sum_{j=0}^{n} \frac{1}{2} h(f(a+jh) +
 f(a+(j+1)h)) \\
 =\frac{h}{2}f(a) + \frac{h}{2}f(b) + \sum_{j=1}^n f(a+jh)
-label{multiline:eq1}
+label{_multiline:eq1}
 \end{multline}
 !et
 and we can hopefully refer to the Trapezoidal rule
-as the formula (ref{multiline:eq1}).
+as the formula (ref{_multiline:eq1}).
 
 # #if FORMAT == "sphinx"
 This equation will not render in sphinx unless we remove the `multiline`
@@ -604,7 +604,7 @@ v_3 \\
 v_4
 \end{pmatrix}
 + \cdots
-label{mymatrixeq}\\
+label{_mymatrixeq}\\
 \begin{pmatrix}
 C_5 + C_6 & -C_6 & 0 & 0 \\
 -C_6 & C_6 & 0 & 0 \\
