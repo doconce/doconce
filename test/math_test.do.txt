@@ -147,9 +147,9 @@ we had used the `align*` environment):
 
         \begin{align}
         u(t)&=e^{-at}
-        \label{_eq2b}\\
+        \label{__eq2b}\\
         v(t) - 1 &= \frac{du}{dt}
-        \label{_eq3b}
+        \label{__eq3b}
         \end{align}
 # #endif
 
