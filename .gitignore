@@ -40,12 +40,14 @@ temp*
 __pycache__
 _minted-*
 # doconce:
+*.dlog
 .*_html_file_collection
 .*.exerinfo
 .*.copyright
 sphinx-rootdir
 Trash
 private
+test
 venv
 lib/DocOnce.egg-info/
 # dependencies:
