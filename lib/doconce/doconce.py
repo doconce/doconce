@@ -70,8 +70,6 @@ from .misc import option, which, _abort
 from . import html, latex, pdflatex, rst, sphinx, st, epytext, gwiki, mwiki, cwiki, pandoc, ipynb, matlabnb
 from . import plaintext as plain
 
-admons = 'notice', 'summary', 'warning', 'question', 'block'
-
 main_content_begin = globals.main_content_char*19 + ' main content ' + \
                      globals.main_content_char*22
 main_content_end = globals.main_content_char*19 + ' end of main content ' + \
@@ -2566,7 +2564,7 @@ def typeset_envirs(filestr, format):
                 # Just indent the block
                 def subst(m):
                     return indent_lines(m.group(1), format, ' '*4) + '\n'
-            elif envir in admons + ('hint', 'remarks'):
+            elif envir in globals.admons + ('hint', 'remarks'):
                 # Just a plain paragraph with paragraph heading
                 def subst(m):
                     title = m.group(1).strip()

@@ -2571,7 +2571,6 @@ def html_quote(block, format, text_size='normal'):
 </blockquote>
 """ % (indent_lines(block, format, ' '*4, trailing_newline=False))
 
-admons = 'notice', 'summary', 'warning', 'question', 'block'
 global admon_css_vars        # set in define
 global html_admon_style      # set below
 
@@ -2589,7 +2588,7 @@ if html_admon_style is None:
     else:
         html_admon_style = 'gray'
 
-for _admon in admons:
+for _admon in globals.admons:
     # _Admon is constructed at import time, used as default title, but
     # will always be in English because of the early construction
     _Admon = globals.locale_dict[globals.locale_dict['language']].get(_admon, _admon).capitalize()  # upper first char
@@ -2605,11 +2604,6 @@ def html_%(_admon)s(block, format, title='%(_Admon)s', text_size='normal'):
     # Blocks without explicit title should have empty title
     if title == 'Block':  # block admon has no default title
         title = ''
-
-    if title and (title[-1] not in ('.', ':', '!', '?')) and \
-       html_admon_style != 'bootstrap_panel':
-        # Make sure the title ends with puncuation
-        title += '.'
 
     # Make pygments background equal to admon background for colored admons?
     keep_pygm_bg = option('keep_pygments_html_bg')
@@ -2967,7 +2961,7 @@ def define(FILENAME_EXTENSION,
         for tp in ('yellow', 'apricot', 'gray'):
             admon_css_vars[tp]['boundary'] = html_admon_bd_color
 
-    for a in admons:
+    for a in globals.admons:
         if a != 'block':
             admon_css_vars['yellow']['icon_' + a]  = 'small_yellow_%s.png' % a
             admon_css_vars['apricot']['icon_' + a] = 'small_yellow_%s.png' % a
@@ -3001,7 +2995,7 @@ def define(FILENAME_EXTENSION,
             admon_styles2)
 
     # Need to add admon_styles? (html_admon_style is global)
-    for admon in admons:
+    for admon in globals.admons:
         if '!b'+admon in filestr and '!e'+admon in filestr:
             if html_admon_style == 'colors':
                 css += (admon_styles1 % admon_css_vars[html_admon_style])
