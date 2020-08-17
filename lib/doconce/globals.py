@@ -43,6 +43,9 @@ style = {
 inline_tag_begin = r"""(?P<begin>(^|[(\s~>{!-]|^__|&[mn]dash;))"""
 inline_tag_end = r"""(?P<end>($|[.,?!;:)<}!'\s~\[<&;-]))"""
 
+# Admonitions
+admons = 'notice', 'summary', 'warning', 'question', 'block'
+
 # Support for non-English languages (not really implemented yet)
 locale_dict = dict(
     language='English',  # language to be used

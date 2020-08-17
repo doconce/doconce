@@ -542,9 +542,8 @@ def latex_code(filestr, code_blocks, code_block_types,
             admon_envir_mapping = dict([pair.split('-') for pair in code_envir_transform.split(',')])
     lines = filestr.splitlines()
     inside_admon = False
-    admons = 'notice', 'summary', 'warning', 'question', 'block'
     for i in range(len(lines)):
-        for admon in admons:
+        for admon in globals.admons:
             if lines[i].startswith('!b' + admon):
                 inside_admon = True
             if lines[i].startswith('!e' + admon):
@@ -636,9 +635,8 @@ def latex_code(filestr, code_blocks, code_block_types,
         # to be block envirs.)
 
         # Generate admon automatically name by name
-        admons = 'notice', 'summary', 'warning', 'question', 'block'
-        #Admons = [admon[0].upper() + admon[1:] for admon in admons]
-        for admon in admons:
+        #Admons = [admon[0].upper() + admon[1:] for admon in globals.admons]
+        for admon in globals.admons:
             # First admons without title
             pattern = r'!b%s *\n' % admon
             filestr = re.sub(pattern, r'\\begin{block}{%s}\n' %
@@ -2340,8 +2338,7 @@ def get_admon_figname(admon_tp, admon_name):
             return None
 
 # Generate Python functions for admons
-admons = 'notice', 'summary', 'warning', 'question', 'block'
-for _admon in admons:
+for _admon in globals.admons:
     _Admon = globals.locale_dict[globals.locale_dict['language']].get(_admon, _admon).capitalize()
     _title_period = '' if option('latex_admon_title_no_period') else '.'
     text = r"""
@@ -3719,7 +3716,7 @@ justified,
 
 
     # Admonitions
-    if re.search(r'^!b(%s)' % '|'.join(admons), filestr, flags=re.MULTILINE):
+    if re.search(r'^!b(%s)' % '|'.join(globals.admons), filestr, flags=re.MULTILINE):
         # Found one !b... command for an admonition
 
         # default colors
@@ -3745,7 +3742,7 @@ justified,
         # Multiple admon colors specified?
         multiple_colors = False
         if latex_admon_color is not None:
-            for a in admons:
+            for a in globals.admons:
                 if a+':' in latex_admon_color:
                     multiple_colors = True
                     break
@@ -3764,9 +3761,9 @@ justified,
                     errwarn('    ' + latex_admon_color)
                     errwarn('    split wrt ; and : ' + latex_admon_colors)
                     _abort()
-            admons_found = {a: False for a in admons}
+            admons_found = {a: False for a in globals.admons}
             for a, c in latex_admon_colors:
-                if a not in admons:
+                if a not in globals.admons:
                     errwarn('*** error: wrong syntax in --latex_admon_color=%s' % latex_admon_color)
                     errwarn('    %s is not an admonition name' % a)
                     _abort()
@@ -3774,7 +3771,7 @@ justified,
             for a in admons_found:
                 if not a:
                     errwarn('*** error in --latex_admon_color syntax: all admon types must be specified!')
-                    errwarn('    ' + ', '.join(admons))
+                    errwarn('    ' + ', '.join(globals.admons))
                     errwarn('    missing ' + a)
                     _abort()
             try:
@@ -3785,10 +3782,10 @@ justified,
         elif latex_admon_color is not None and \
              not latex_admon_color.endswith('style'):
             try:
-                latex_admon_colors = [[a, eval(latex_admon_color)] for a in admons]
+                latex_admon_colors = [[a, eval(latex_admon_color)] for a in globals.admons]
             except SyntaxError:
                 # eval(latex_admon_color) did not work, treat it as valid color
-                latex_admon_colors = [[a, latex_admon_color] for a in admons]
+                latex_admon_colors = [[a, latex_admon_color] for a in globals.admons]
         admon_styles = 'colors1', 'colors2', 'mdfbox', 'graybox2', 'grayicon', 'yellowicon', 'tcb', 'vbar'
         admon_color = {style: {} for style in admon_styles}
 
@@ -3807,7 +3804,7 @@ justified,
                     #block=_gray2,
                     block=yellow1,
                     )
-            for admon in admons:
+            for admon in globals.admons:
                 admon_color['mdfbox'][admon] = gray1
                 admon_color['graybox2'][admon] = gray2
                 admon_color['grayicon'][admon] = gray3
@@ -3871,7 +3868,7 @@ justified,
         INTRO['latex'] += '\n' + packages + '\n\n% --- begin definitions of admonition environments ---\n'
 
         for style in admon_styles:
-            for admon in admons:
+            for admon in globals.admons:
                 color = admon_color[style][admon]
                 if isinstance(color, (tuple,list)):
                     rgb = ','.join([str(cl) for cl in color])
@@ -3945,7 +3942,7 @@ justified,
         #"""
 
         # Define environments depending on the admon type
-        for admon in admons:
+        for admon in globals.admons:
             Admon = admon.upper()[0] + admon[1:]
 
             # Figure files are copied when necessary
