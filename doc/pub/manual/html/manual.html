@@ -459,7 +459,7 @@
 <dd class="field-odd"><p>Hans Petter Langtangen, Kristian Gregorius Hustad</p>
 </dd>
 <dt class="field-even">Date</dt>
-<dd class="field-even"><p>Jul 14, 2020</p>
+<dd class="field-even"><p>Aug 25, 2020</p>
 </dd>
 </dl>
 <div class="admonition warning">
@@ -1019,11 +1019,11 @@ as stand-alone document, you have to do that from the subdirectory for
 that section. The path to a common directory for figures may then be
 like <code class="docutils literal notranslate"><span class="pre">../fig/myfig.png</span></code>, while for the master document in the parent
 directory, the corresponding path is <code class="docutils literal notranslate"><span class="pre">fig/myfig.png</span></code>.</p>
-<p>The simplest way out of this problem is to use the <code class="docutils literal notranslate"><span class="pre">--fig_prefix=</span></code>
+<p>The simplest way out of this problem is to use the <code class="docutils literal notranslate"><span class="pre">--figure_prefix=</span></code>
 command-line option to set a path prefix for the figure filename.
 When compiling a section in a subdirectory one sets
-<code class="docutils literal notranslate"><span class="pre">--fig_prefix=../fig</span></code> while in the parent directory one needs
-<code class="docutils literal notranslate"><span class="pre">--fig_prefix=fig</span></code> to compile the master document.
+<code class="docutils literal notranslate"><span class="pre">--figure_prefix=../fig</span></code> while in the parent directory one needs
+<code class="docutils literal notranslate"><span class="pre">--figure_prefix=fig</span></code> to compile the master document.
 In the DocOnce source file one has <code class="docutils literal notranslate"><span class="pre">FIGURE:</span> <span class="pre">[myfig,</span> <span class="pre">width=...]</span></code>.</p>
 <p>A more manual method is to introduce a Mako variable <code class="docutils literal notranslate"><span class="pre">FIGPREFIX</span></code>
 that is set on the command line as part of the <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">format</span></code> command.

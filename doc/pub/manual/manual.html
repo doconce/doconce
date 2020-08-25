@@ -759,14 +759,14 @@ $$
 <center>[3] <b>Centre for Computing in Science Education, University of Oslo</b></center>
 <br>
 <p>
-<center><h4>Jul 14, 2020</h4></center> <!-- date -->
+<center><h4>Aug 25, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <!-- lines beginning with # are doconce comment lines -->
 <!-- (documents can also have mako comment lines) -->
 
 <p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>Warning.</b>
+<div class="alert alert-block alert-danger alert-text-normal"><b>Warning</b>
 Some parts of this manual may be outdated. Please create an issue at <a href="https://github.com/doconce/doconce" target="_self"><tt>https://github.com/doconce/doconce</tt></a> to report errors.
 </div>
 
@@ -1468,7 +1468,7 @@ file, and if not, the given file is converted to a proper format
 (using ImageMagick's <code>convert</code> utility).
 
 <p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>Warning.</b>
+<div class="alert alert-block alert-danger alert-text-normal"><b>Warning</b>
 Note the comma
 between the filename and the figure size specifications and
 that there should be no space around the = sign. This syntax must
@@ -1594,7 +1594,7 @@ LaTeX <code>figure</code> environment and become floating objects whose placemen
 is up to LaTeX do decide).
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Tip: use linebreak to insert space around inline figures.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Tip: use linebreak to insert space around inline figures</b>
 Sometimes inline figures (<code>FIGURE</code> line without caption) get squeezed
 into the text. You can add vertical space in LaTeX and HTML by
 inserting several lines with <code>&lt;linebreak&gt;</code>.
@@ -1651,11 +1651,11 @@ like <code>../fig/myfig.png</code>, while for the master document in the parent
 directory, the corresponding path is <code>fig/myfig.png</code>.
 
 <p>
-The simplest way out of this problem is to use the <code>--fig_prefix=</code>
+The simplest way out of this problem is to use the <code>--figure_prefix=</code>
 command-line option to set a path prefix for the figure filename.
 When compiling a section in a subdirectory one sets
-<code>--fig_prefix=../fig</code> while in the parent directory one needs
-<code>--fig_prefix=fig</code> to compile the master document.
+<code>--figure_prefix=../fig</code> while in the parent directory one needs
+<code>--figure_prefix=fig</code> to compile the master document.
 In the DocOnce source file one has <code>FIGURE: [myfig, width=...]</code>.
 
 <p>
@@ -1823,7 +1823,7 @@ other versions of the figure (<code>myfig.png</code>, for instance, see the box
 below) where such options may be useful for some formats.
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Make alternatives to Bokeh plots.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Make alternatives to Bokeh plots</b>
 Note that Bokeh plots have only meaning when DocOnce translates the
 document to HTML. For other formats, one needs to supply figure files
 that those formats can accept (PNG, PDF, etc.).
@@ -1844,7 +1844,7 @@ counterpart in a static PNG or PDF plot.
 
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Tip: reduce the size of Bokeh HTML files.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Tip: reduce the size of Bokeh HTML files</b>
 When making Bokeh plots in Python programs, we recommend to use
 the <code>mode='cdn'</code> option in the call <code>output_file</code>. This argument leads
 to links to Bokeh tools in the resulting HTML file. Without the argument,
@@ -2103,7 +2103,7 @@ if (!!(window.safari)) {
 </script>
 
 <p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>Important.</b>
+<div class="alert alert-block alert-danger alert-text-normal"><b>Important</b>
 Movies will not work properly in <code>sphinx</code> format unless they are located
 in a directory (tree) with a name starting with <code>mov</code>. Make it a habit
 to place figures in <code>fig-X</code> and movies in <code>mov-X</code> directories, where <code>X</code>
@@ -2123,7 +2123,7 @@ Providing a movie in Ogg, MP4, <em>and</em> WebM format is therefore the safest
 way to ensure that the movie can be played in any browser on any device.
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Notice.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Notice</b>
 If you specify a movie in Ogg or WebM format and it also exists in
 MP4 format, the MP4 format will be loaded first. To avoid having
 alternative movie formats in HTML, use the <code>--no_mp4_webm_ogg_alternatives</code>
@@ -3628,7 +3628,7 @@ function faster_http___doconce_github_io_animate_doc_pub_mov_animate_frames_fram
 <img src="http://doconce.github.io/animate/doc/pub/mov-animate/frames/frame_0000.png" name="name_http___doconce_github_io_animate_doc_pub_mov_animate_frames_frame_0000" border=2/>
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Recommendations.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Recommendations</b>
 It is challenging to write robust DocOnce code with movies.
 The recommended formats in HTML are MP4, WebM, and Ogg. One should
 preferably make all three. These also works in reST and Sphinx.
@@ -3956,7 +3956,7 @@ vertical rules in LaTeX tables (they are ignored for other formats):
 <span style="color: #BA2121">|--------------------------------|</span>
 </pre></div>
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Notice.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Notice</b>
 
 <ul>
  <li> Not all formats offer alignment of heading or entries
@@ -4156,7 +4156,7 @@ m-dash (as in m&mdash;dash), and horizontal rule can be specified (below).
 <hr>
 
 <p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>Limitation of inline tagging.</b>
+<div class="alert alert-block alert-danger alert-text-normal"><b>Limitation of inline tagging</b>
 Since DocOnce applies regular expressions to recognize inline tagging,
 there might be cases where the tags are not correctly interpreted
 and translated. Fortunately, most such pitfalls are easily circumvented.
@@ -4225,7 +4225,7 @@ the <code>ptex2tex</code> program (but not <code>doconce pretex</code>))
 will have problems with inline verbatim text that is split over two lines.
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Notice.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Notice</b>
 Watch out for mixing backticks and asterisk (i.e., verbatim and
 emphasized code): the DocOnce interpreter is not very smart in
 detecting such errors. A missing backtick will also quickly create
@@ -4603,7 +4603,7 @@ color boxes.
 <h2 id="___sec50" class="anchor">Inline Comments for Editing </h2>
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Notice.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Notice</b>
 The inline editing syntax in DocOnce was implemented before the invention
 of <a href="https://github.com/CriticMarkup/CriticMarkup-toolkit" target="_self">CriticMarkup</a>.
 Now it would make sense to use the CriticMarkup syntax and associated
@@ -4729,7 +4729,7 @@ Both constructions can be used to either force a linebreak or add
 vertical space.
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Tip on using forced linebreaks.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Tip on using forced linebreaks</b>
 The <code>&lt;linebreak&gt;</code> tag is often useful in slides to avoid overfull
 lines in bullet lists, portion such lines into separate lines,
 or to insert vertical
@@ -5037,7 +5037,7 @@ in the <code>.tex</code> output file. It is a good habit to place
 the <code>Externaldocument</code> comment after the title, author, and date.
 
 <p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>External documents must be recently compiled.</b>
+<div class="alert alert-block alert-danger alert-text-normal"><b>External documents must be recently compiled</b>
 When compiling DocOnce documents with generalized references
 to <code>latex</code> or <code>pdflatex</code>,
 all documents listed in
@@ -5239,7 +5239,7 @@ a book that exist as stand-alone documents.
 <!-- <code>\&lt;a name=&quot;eqs:g1&quot;&gt;&lt;/a&gt;</code> and <code>\&lt;a name=&quot;eqs:g4&quot;&gt;&lt;/a&gt;</code> -->
 
 <p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>References to equations.</b>
+<div class="alert alert-block alert-danger alert-text-normal"><b>References to equations</b>
 Generalized references to equations work well in LaTeX, but
 not in other formats as one cannot resolve the equation number
 in the external document. It is then better to write different
@@ -5266,7 +5266,7 @@ as shown above.
 
 
 <p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>Limited support.</b>
+<div class="alert alert-block alert-danger alert-text-normal"><b>Limited support</b>
 The <code>doconce ref_external</code> tool cannot correctly handle references
 to a range of sections like
 
@@ -5402,7 +5402,7 @@ have links to local files, so a complete URL on the form
 <code>http://...</code> must be used.
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Tip.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Tip</b>
 Use <code>doconce ref_external</code> to get an overview of the external
 references in a file. Very often you want to rewrite the text
 to reduce the amount of external referencing. Remember then
@@ -5559,7 +5559,7 @@ write all answers and solutions to exercises to a separate section in the end of
 The commands <code>!anshide</code> and <code>!solhide</code> can be used to hide from the main text answers and solutions, respectively, until the <code>!ansoff</code> and <code>!soloff</code> commands are encountered. Similarly, the <code>!ansdocend</code> and <code>!soldocend</code> commands move answers and solutions to the end of the book.
 
 <p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>Avoid headings in solutions.</b>
+<div class="alert alert-block alert-danger alert-text-normal"><b>Avoid headings in solutions</b>
 Headings in solutions in exercises will
 appear in table of contents, but if
 solutions are left out of the document (using the
@@ -5571,7 +5571,7 @@ headings</em> (double underscores) if you feel the need for headings.
 
 
 <p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>Avoid numbered equations in solutions.</b>
+<div class="alert alert-block alert-danger alert-text-normal"><b>Avoid numbered equations in solutions</b>
 Numbered equations in solutions will influence the global numbering of
 equations in a document (unless exercises always come at the end of
 chapters). If you compile versions of the document with and without
@@ -6485,7 +6485,7 @@ which gets rendered as
 3.001 1.198
 </pre></div>
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Tip: let code lines be shorter than 67 characters.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Tip: let code lines be shorter than 67 characters</b>
 Most output formats from DocOnce will get nice-looking code
 environments if you keep the length of lines in source code
 below or equal to 67 characters.
@@ -6622,7 +6622,7 @@ The typeset result of this block becomes
 <span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&#39;Testing f:&#39;</span>, f(pi, <span style="color: #666666">0</span>))
 </pre></div>
 <p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>Tip.</b>
+<div class="alert alert-block alert-danger alert-text-normal"><b>Tip</b>
 The enclosing <code>!ec</code> tag of verbatim computer code blocks must
 be followed by a newline.  A common error in list environments is to
 forget to indent the plain text surrounding the code blocks. In
@@ -7158,7 +7158,7 @@ in the running text. Here is an example:
 <span style="color: #008000; font-weight: bold">\newcommand</span><span style="color: #008000">{</span><span style="color: #008000; font-weight: bold">\Q</span><span style="color: #008000">}{</span><span style="color: #008000; font-weight: bold">\pmb</span><span style="color: #008000">{</span>Q<span style="color: #008000">}}</span>
 </pre></div>
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Notice.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Notice</b>
 If you desire a newcommand for the running text, using a Mako function
 (written in plain Python) is much more flexible. See
 the section <a href="#manual:mako">Mako Programming</a>.
@@ -7292,7 +7292,7 @@ environments for examples, tables, code snippets, theorems, lemmas, etc.
 One can also use Mako functions to implement enviroments.</p>
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Use the preprocessor to tailor output.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Use the preprocessor to tailor output</b>
 If you really need special LaTeX constructs in the LaTeX output
 from DocOnce, you may use use preprocessor if-tests on
 the format (typically <code>#if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)</code>) to
@@ -7476,25 +7476,25 @@ marking different parts of the text
 The above DocOnce code is in the present format rendered as
 
 <p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>Warning.</b>
+<div class="alert alert-block alert-danger alert-text-normal"><b>Warning</b>
 Here is a warning!
 </div>
 
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Notice.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Notice</b>
 This is a notice box with default title.
 </div>
 
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Hint.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Hint</b>
 A <em>Hint</em> or <em>Tip</em> box can, e.g., use the <code>notice</code> box.
 </div>
 
 
 <p>
-<div class="alert alert-block alert-info alert-text-normal"><b>Question.</b>
+<div class="alert alert-block alert-info alert-text-normal"><b>Question</b>
 How many admonition types are there in DocOnce?
 </div>
 
@@ -7507,7 +7507,7 @@ but may feature a title. It is often used in slides.
 
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Going deeper.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Going deeper</b>
 This is text meant to provide more details. The box has the
 layout of the notice box, but a custom title, here <em>Going deeper</em>.
 </div>
@@ -7517,7 +7517,7 @@ layout of the notice box, but a custom title, here <em>Going deeper</em>.
 Finally some summary:
 
 <p>
-<div class="alert alert-block alert-warning alert-text-normal"><b>Summary.</b>
+<div class="alert alert-block alert-warning alert-text-normal"><b>Summary</b>
 The main message is to utilize the admonition styles for
 marking different parts of the text
 </div>
@@ -7920,7 +7920,7 @@ function allows you to work with native LaTeX example environments, while
 there is a neat alternative solution for all other formats.
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Enumerated environments.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Enumerated environments</b>
 It is also possible to make enumerated environments such that their `ref`s use numbers
 instead of section headings in HTML format (just like Figures do). This mimics LaTeX
 behaviour on theorem-style environments. See the example in <a href="https://github.com/doconce/doconce/blob/master/doc/src/userdef_envirs/enumerated_envs" target="_self">DocOnce repository</a>.
@@ -8046,7 +8046,7 @@ need to reside in the same directory, but make sure you add them to
 your version control system).
 
 <p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>Importing big BibTeX databases may imply a lot of work.</b>
+<div class="alert alert-block alert-danger alert-text-normal"><b>Importing big BibTeX databases may imply a lot of work</b>
 If your BibTeX database does not confirm to the strict BibTeX syntax
 required by Publish (entry names must be in lower case, their values
 must be surrounded by curly braces), you will get error messages.
@@ -8061,7 +8061,7 @@ to automate many of the edits.
 <h2 id="___sec111" class="anchor">Requirements to input data </h2>
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Notice.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Notice</b>
 Note that Publish only accepts BibTeX files where the keys (author,
 title, etc.) are in lower case and where the data are enclosed in
 curly braces. You may need to edit your BibTeX files to meet this
@@ -8296,7 +8296,7 @@ More advanced use of mako can include Python code that may automate
 the writing of parts of the document.
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>On the type of a Mako variable from the command line.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>On the type of a Mako variable from the command line</b>
 You define Mako variables as in this example:
 
 <p>
@@ -8319,7 +8319,7 @@ in a very flexible and fine-tuned way.
 
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Advanced setting of Mako variables.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Advanced setting of Mako variables</b>
 Mako variables can also be run through <code>eval</code> before being
 sent to Mako. For example,
 
@@ -9039,7 +9039,7 @@ are to be compiled. For more demanding tasks, use Mako, which resembles
 a real programming language.
 
 <p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>Warning.</b>
+<div class="alert alert-block alert-danger alert-text-normal"><b>Warning</b>
 Unfortunately, the combination of Mako and LaTeX mathematics may
 lead to problems because Mako applies syntax like <code>${var}</code> to extract
 variables or call functions, while LaTeX mathematics sometimes applies
@@ -9190,7 +9190,7 @@ this setup for having the code external to the DocOnce document is
 very effective.
 
 <p>
-<div class="alert alert-block alert-warning alert-text-normal"><b>Things to remember when programming Mako.</b>
+<div class="alert alert-block alert-warning alert-text-normal"><b>Things to remember when programming Mako</b>
 
 <ul>
  <li> Do not use continuation character (backslash) in Python code.</li>
@@ -9493,7 +9493,7 @@ Note that for other formats than LaTeX and HTML we just return a link to
 the figure.
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Notice.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Notice</b>
 A corresponding solution
 for Sphinx will not work because inline figures in Sphinx has
 a syntax with pipe symbols ('|') that interfere with the
@@ -9572,7 +9572,7 @@ process after DocOnce has created the output file. We show the Mako
 solution here.
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Tip.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Tip</b>
 A pure Python function Mako is easiest to develop in a separate
 Python program file because Python has better error messages
 than Mako. Also, Python has debugging facilities that make the
@@ -9716,7 +9716,7 @@ filestr <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;
 <span style="color: #408080; font-style: italic"># write filestr back to manual.rst</span>
 </pre></div>
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Recommendation.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Recommendation</b>
 This latter way of inserting specialized native text after DocOnce
 has generated the output file is easier than using Mako and usually
 also safer.
@@ -9724,7 +9724,7 @@ also safer.
 
 
 <p>
-<div class="alert alert-block alert-warning alert-text-normal"><b>Lesson Learned.</b>
+<div class="alert alert-block alert-warning alert-text-normal"><b>Lesson Learned</b>
 The above examples show different techniques for extending the
 DocOnce capabilities. The ideas are not restricted to DocOnce: using
 Mako as a preprocessing step or inserting &quot;magic&quot; lines that you
@@ -10544,7 +10544,7 @@ a <a href="http://doconce-report-demo.blogspot.no/" target="_self">scientific re
 for demonstrations of blog posts at <code>blogspot.no</code>.
 
 <p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>Warning.</b>
+<div class="alert alert-block alert-danger alert-text-normal"><b>Warning</b>
 The comment field after the blog post does not recognize MathJax (LaTeX)
 mathematics or code with indentation. However, using a MathJax
 bookmarklet, e.g., at <a href="http://checkmyworking.com/misc/mathjax-bookmarklet/" target="_self"><tt>http://checkmyworking.com/misc/mathjax-bookmarklet/</tt></a>, one can get the mathematics properly rendered. The comment fields are
@@ -10553,7 +10553,7 @@ not suitable for computer code, though, as HTML tags are not allowed.
 
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Notice.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Notice</b>
 Figure files must be uploaded to some web site and the local filenames name must
 be replaced by the relevant URL. This is usually done by using the
 <code>--figure_prefix=http://project.github.io/...</code> option to give some URL
@@ -10813,7 +10813,7 @@ be advantageous to go via LaTeX.
 <h1 id="do2any:latex" class="anchor">LaTeX</h1>
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Notice.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Notice</b>
 XeLaTeX and pdfLaTeX are used very much in the same way as standard
 LaTeX. The minor differences are described in separate sections
 of the documentation of the DocOnce to LaTeX translation.
@@ -10902,7 +10902,7 @@ either the <code>ptex2tex</code> program or DocOnce's (simplified) version of it
 <code>doconce ptex2tex</code>.
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Inline verbatim tries to use <code>texttt</code> and not <code>Verb</code> if possible.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Inline verbatim tries to use <code>texttt</code> and not <code>Verb</code> if possible</b>
 Inline verbatim
 code, typeset with backticks in DocOnce, is translated to
 
@@ -11685,7 +11685,7 @@ In each edit-and-watch cycle do
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Terminal&gt; rm mydoc.rst; python automake_sphinx.py
 </pre></div>
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Tip.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Tip</b>
 If you are new
 to Sphinx and end up producing quite some Sphinx documents, you are encouraged
 to read the Sphinx documentation and study the <code>automake_sphinx.py</code>
@@ -11791,7 +11791,7 @@ It is recommended to leave the variables <code>latex_documents</code>, <code>man
 and <code>texinfo_documents</code> as empty lists: <code>[]</code> in a tailored <code>conf.py</code> file.
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Tip: Error messages from <code>conf.py</code>.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Tip: Error messages from <code>conf.py</code></b>
 When you have edited a <code>conf.py</code> file and supplied it as part of
 a <code>doconce sphinx_dir</code> command through the <code>conf.py=myconf.py</code> option, it is
 a danger that <code>python automake_sphinx.py</code> will abort with an error
@@ -12836,7 +12836,7 @@ LaTeX, and work further on the document in this format.
 <h2 id="___sec241" class="anchor">Typesetting of Function Arguments, Return Values, and Variables </h2>
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Note.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Note</b>
 This text is somewhat outdated.
 Now DocOnce supports NumPy-style docstrings. DocOnce can also do
 automatic references to Python documentation, say the `math`
@@ -12915,7 +12915,7 @@ other formats than Sphinx can take advantage of such references
 <h1 id="___sec242" class="anchor">References </h1>
 
 <p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>Note.</b>
+<div class="alert alert-block alert-danger alert-text-normal"><b>Note</b>
 The references below are just for illustrating and testing citation
 syntax and not references for explaining parts of the text.
 </div>
