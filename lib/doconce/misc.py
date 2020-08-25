@@ -2218,11 +2218,10 @@ def split_html():
         # file and can crank up the font in the browser once and for all.
         if re.search(r"""<link href=["']http.+?solarized.*?\.css""", filestr):
             filestr = filestr.replace(r'<style type="text/css">',
-                                      """<style type="text/css">
-body, td {font-size: 140%;}
-h1 {font-size: 200%;}
-h2 {font-size: 180%;}
-""")
+                                      ("<style type=\"text/css\">\n"
+                                       "body, td {font-size: 140%;}\n"
+                                       "h1 {font-size: 200%;}\n"
+                                       "h2 {font-size: 180%;}"))
         '''
 
         f = open(filename, 'w')

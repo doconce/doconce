@@ -145,7 +145,7 @@ system doconce split_rst testdoc
 #Hack: because doconce sphinx_dir ony works the second time (after an error), trigger that error by creating a bogus conf.py in ./
 touch conf.py 
 system doconce sphinx_dir dirname='sphinx-testdoc' version=0.1 theme=agni testdoc
-cp automake_sphinx.py automake_sphinx_testdoc.py
+cp automake_sphinx.py automake_sphinx_testdoc.py 
 system python automake_sphinx.py
 cp sphinx-testdoc/conf.py testdoc_sphinx_conf.py
 cp sphinx-testdoc/index.rst testdoc_sphinx_index.rst
