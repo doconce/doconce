@@ -1659,7 +1659,7 @@ def sphinx_dir():
              "        text = text.replace(r'.src = \"mov', '.src = \"_static/mov')\n"
              "        # Fix admonition style\n"
              "        text = text.replace('</head>', '''\n"
-             "       <style type=\"text/css\">\n"
+             "       <style type=\"text/css\">\\n"
              "         div.admonition {\n"
              "           background-color: whiteSmoke;\n"
              "           border: 1px solid #bababa;\n"
