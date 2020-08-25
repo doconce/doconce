@@ -1594,7 +1594,7 @@ and this one as Project ref{exer:you}.
 
 ======= References =======
 
-#BIBFILE: papers.pub
+BIBFILE: papers.pub
 
 
 ======= Appendix: Just for testing; part I =======
