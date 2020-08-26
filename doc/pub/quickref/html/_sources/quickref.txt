@@ -188,7 +188,6 @@ paragraph      ``__Heading.__``               (2 ``_``)
 abstract       ``__Abstract.__`` Running text...                
 appendix       ``======= Appendix: heading =======`` (7 ``=``)  
 appendix       ``===== Appendix: heading =====`` (5 ``=``)      
-exercise       ``======= Exercise: heading =======`` (7 ``=``)  
 exercise       ``===== Exercise: heading =====`` (5 ``=``)      
 =============  ===============================================  
 
@@ -196,7 +195,7 @@ Note that abstracts are recognized by starting with ``__Abstract.__`` or
 ``__Summary.__`` at the beginning of a line and ending with three or
 more ``=`` signs of the next heading.
 
-The ``Exercise:`` keyword kan be substituted by ``Problem:`` or ``Project:``.
+The ``Exercise:`` keyword can be substituted by ``Problem:`` or ``Project:``.
 A recommended convention is that an exercise is tied to the text,
 a problem can stand on its own, and a project is a comprehensive
 problem.
