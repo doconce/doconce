@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
-#export PS4='+ l.${LINENO}: ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
+export PS4='+ l.${LINENO}: ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 # NOTE: There are many doconce errors arising when compiling this manual
 # because it describes doconce syntax in the text, and this syntax is
 # not in the right context for all the syntax checks in doconce.

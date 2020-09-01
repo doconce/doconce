@@ -2490,8 +2490,11 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to
 \index{verbatim\_text@\texttt{\rm\smaller verbatim\_text and more}}
 !ec
 Everything related to the index simply becomes invisible in plain
-text, Epytext, StructuredText, HTML, and wiki formats.  Note: `idx`
-commands should be inserted outside paragraphs and admonitions,
+text, Epytext, StructuredText, HTML, and wiki formats.  
+
+
+!bnotice Note: 
+`idx` commands should be inserted outside paragraphs and admonitions,
 not in between the
 text as this may cause some strange behaviour of reST and
 Sphinx formatting.  As a recommended rule, index items are naturally
@@ -2501,6 +2504,7 @@ paragraph one a separate line (and not in between the text or between
 the paragraph heading and the text body, although this works fine if
 LaTeX is the output format). For paragraphs with `===` heading,
 the index keywords should be placed above the heading.
+!enotice
 
 The keywords in the index are automatically placed in a meta
 tag in `html` output such that search engines can make use of the them.
@@ -4798,7 +4802,7 @@ major reasons to adopt DocOnce.
 
 !split
 ===== Splitting Documents into Smaller Pieces =====
-
+label{splitting documents}
 idx{splitting documents}
 idx{multi-page documents}
 
@@ -4806,9 +4810,17 @@ Long documents are conveniently split into smaller DocOnce files.
 However, there must be a master document including all the pieces,
 otherwise references to sections and the index will not work properly.
 The master document is preferably a file just containing a set of
-preprocessor include statements of the form `#include "file.do.txt"`.
+preprocessor include statements of the form `# #include "file.do.txt"`.
 The preprocessor will put together all the pieces so that DocOnce
 sees a long file with the complete text.
+
+@@@CODE _mako_include.do.txt
+
+The first example implies that all lines in the file chapter10.do.txt are copied into the master document. The second line has a fromto: directive, which implies copying all lines in the exercises.do.txt file included between the matches of two regular expressions (in the example `===== Exercise: 1 =====` and `===== Concluding `=====`).
+
+
+
+Two regular expressions, separated by the @ sign, define the "from" and "to" lines. The "from" line is included in the verbatim block, while the "to" line is not. In the example above, we copy code from the line matching `===== Exercise: 1 =====` and the section/subsection with title `Concluding` (the word `Concluding` surrounded by space and 5 to 7 equal signs).
 
 # #ifdef DEPRECATED
 For reST and Sphinx documents it is a point to have
@@ -4818,7 +4830,7 @@ should not run DocOnce on the individual `.do.txt` files, because then
 references and index entries are not treated correctly. Instead,
 run DocOnce on the master file and invoke the script `doconce split_rst`
 to split the long, complete `.rst` into pieces. This process requires
-that each `#include "file.do.txt` line in the master file is preceded by a
+that each `# #include "file.do.txt` line in the master file is preceded by a
 ``marker line'' having the syntax `#>>>>>> part: file >>>>>>`, where
 `file` is the filename without extension. The number of greater than
 signs is not important, but it has to be a comment line and it has
@@ -5421,7 +5433,7 @@ idx{`mako` programming}
 
 The "Mako": "http://docs.makotemplates.org/" templating engine is used
 as preprocessor for DocOnce documents, but the "Preprocess": "http://code.google.com/p/preprocess" is run prior to Mako and is recommended for
-including other files via `# #include "filename"`. Preprocess is also
+including other files via `# #include "filename"` (see section ref{splitting documents}). Preprocess is also
 sufficient for if-else tests to steer which parts of the text that
 are to be compiled. For more demanding tasks, use Mako, which resembles
 a real programming language.
