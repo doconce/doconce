@@ -1,0 +1,5 @@
+## Include another file
+# #include "../chapter10/chapter10.do.txt"
+
+## Include parts of another file
+# #include "../chapter10/exercises/exercises.do.txt" fromto: ===== Exercise: 1 =====@={5,7}\sConcluding\s={5,7}

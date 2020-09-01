@@ -244,7 +244,10 @@ in.collapse+a.btn.showdetails:before { content:'Hide details'; }
               ('LaTeX Bibliography Style', 2, None, '___sec116'),
               ('Preprocessing and Postprocessing', 1, None, '___sec117'),
               ('The Preprocess and Mako Preprocessors', 2, None, '___sec118'),
-              ('Splitting Documents into Smaller Pieces', 2, None, '___sec119'),
+              ('Splitting Documents into Smaller Pieces',
+               2,
+               'splitting documents',
+               'splitting documents'),
               ('Writing Slides', 1, None, '___sec120'),
               ('Overview', 2, None, '___sec121'),
               ('Slide Types', 3, None, '___sec122'),
@@ -597,7 +600,7 @@ $$
      <!-- navigation toc: --> <li><a href="#___sec116" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;LaTeX Bibliography Style</a></li>
      <!-- navigation toc: --> <li><a href="#___sec117" style="font-size: 80%;"><b>Preprocessing and Postprocessing</b></a></li>
      <!-- navigation toc: --> <li><a href="#___sec118" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The Preprocess and Mako Preprocessors</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec119" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Splitting Documents into Smaller Pieces</a></li>
+     <!-- navigation toc: --> <li><a href="#splitting documents" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Splitting Documents into Smaller Pieces</a></li>
      <!-- navigation toc: --> <li><a href="#___sec120" style="font-size: 80%;"><b>Writing Slides</b></a></li>
      <!-- navigation toc: --> <li><a href="#___sec121" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Overview</a></li>
      <!-- navigation toc: --> <li><a href="#___sec122" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slide Types</a></li>
@@ -759,7 +762,7 @@ $$
 <center>[3] <b>Centre for Computing in Science Education, University of Oslo</b></center>
 <br>
 <p>
-<center><h4>Aug 26, 2020</h4></center> <!-- date -->
+<center><h4>Sep 1, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <!-- lines beginning with # are doconce comment lines -->
@@ -948,7 +951,7 @@ DocOnce has been used as writing platform for several books:
 &nbsp; &nbsp; &nbsp; <a href="#___sec116"> LaTeX Bibliography Style </a><br>
 <a href="#___sec117"> Preprocessing and Postprocessing </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#___sec118"> The Preprocess and Mako Preprocessors </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec119"> Splitting Documents into Smaller Pieces </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#splitting documents"> Splitting Documents into Smaller Pieces </a><br>
 <a href="#___sec120"> Writing Slides </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#___sec121"> Overview </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#___sec124"> Slide Elements </a><br>
@@ -5450,8 +5453,11 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to
 </pre></div>
 <p>
 Everything related to the index simply becomes invisible in plain
-text, Epytext, StructuredText, HTML, and wiki formats.  Note: <code>idx</code>
-commands should be inserted outside paragraphs and admonitions,
+text, Epytext, StructuredText, HTML, and wiki formats.
+
+<p>
+<div class="alert alert-block alert-success alert-text-normal"><b>Note:</b>
+<code>idx</code> commands should be inserted outside paragraphs and admonitions,
 not in between the
 text as this may cause some strange behaviour of reST and
 Sphinx formatting.  As a recommended rule, index items are naturally
@@ -5461,6 +5467,8 @@ paragraph one a separate line (and not in between the text or between
 the paragraph heading and the text body, although this works fine if
 LaTeX is the output format). For paragraphs with <code>===</code> heading,
 the index keywords should be placed above the heading.
+</div>
+
 
 <p>
 The keywords in the index are automatically placed in a meta
@@ -8382,16 +8390,31 @@ major reasons to adopt DocOnce.
 <p>
 <!-- !split -->
 
-<h2 id="___sec119" class="anchor">Splitting Documents into Smaller Pieces </h2>
+<h2 id="splitting documents" class="anchor">Splitting Documents into Smaller Pieces</h2>
 
 <p>
 Long documents are conveniently split into smaller DocOnce files.
 However, there must be a master document including all the pieces,
 otherwise references to sections and the index will not work properly.
 The master document is preferably a file just containing a set of
-preprocessor include statements of the form <code>#include &quot;file.do.txt&quot;</code>.
+preprocessor include statements of the form <code># #include &quot;file.do.txt&quot;</code>.
 The preprocessor will put together all the pieces so that DocOnce
 sees a long file with the complete text.
+
+<p>
+
+<!-- code=doconce (!bc do) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">## Include another file</span>
+<span style="color: #408080; font-style: italic"># #include &quot;../chapter10/chapter10.do.txt&quot;</span>
+
+<span style="color: #408080; font-style: italic">## Include parts of another file</span>
+<span style="color: #408080; font-style: italic"># #include &quot;../chapter10/exercises/exercises.do.txt&quot; fromto: ===== Exercise: 1 =====@={5,7}\sConcluding\s={5,7}</span>
+</pre></div>
+<p>
+The first example implies that all lines in the file chapter10.do.txt are copied into the master document. The second line has a fromto: directive, which implies copying all lines in the exercises.do.txt file included between the matches of two regular expressions (in the example <code>===== Exercise: 1 =====</code> and `===== Concluding <code>=====</code>).
+
+<p>
+Two regular expressions, separated by the @ sign, define the "from" and "to" lines. The "from" line is included in the verbatim block, while the "to" line is not. In the example above, we copy code from the line matching <code>===== Exercise: 1 =====</code> and the section/subsection with title <code>Concluding</code> (the word <code>Concluding</code> surrounded by space and 5 to 7 equal signs).
 
 <p>
 For web documents it is often desired to split long pages into shorter
@@ -9033,7 +9056,7 @@ There is a package for the <a href="https://atom.io/" target="_self">Atom editor
 <p>
 The <a href="http://docs.makotemplates.org/" target="_self">Mako</a> templating engine is used
 as preprocessor for DocOnce documents, but the <a href="http://code.google.com/p/preprocess" target="_self">Preprocess</a> is run prior to Mako and is recommended for
-including other files via <code># #include &quot;filename&quot;</code>. Preprocess is also
+including other files via <code># #include &quot;filename&quot;</code> (see the section <a href="#splitting documents">Splitting Documents into Smaller Pieces</a>). Preprocess is also
 sufficient for if-else tests to steer which parts of the text that
 are to be compiled. For more demanding tasks, use Mako, which resembles
 a real programming language.

@@ -459,7 +459,7 @@
 <dd class="field-odd"><p>Hans Petter Langtangen, Kristian Gregorius Hustad</p>
 </dd>
 <dt class="field-even">Date</dt>
-<dd class="field-even"><p>Aug 26, 2020</p>
+<dd class="field-even"><p>Sep 1, 2020</p>
 </dd>
 </dl>
 <div class="admonition warning">
@@ -4169,8 +4169,10 @@ surround verbatim text, which is correctly transformed in a LaTeX setting to</p>
 </pre></div>
 </div>
 <p>Everything related to the index simply becomes invisible in plain
-text, Epytext, StructuredText, HTML, and wiki formats.  Note: <code class="docutils literal notranslate"><span class="pre">idx</span></code>
-commands should be inserted outside paragraphs and admonitions,
+text, Epytext, StructuredText, HTML, and wiki formats.</p>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">idx</span></code> commands should be inserted outside paragraphs and admonitions,
 not in between the
 text as this may cause some strange behaviour of reST and
 Sphinx formatting.  As a recommended rule, index items are naturally
@@ -4180,6 +4182,7 @@ paragraph one a separate line (and not in between the text or between
 the paragraph heading and the text body, although this works fine if
 LaTeX is the output format). For paragraphs with <code class="docutils literal notranslate"><span class="pre">===</span></code> heading,
 the index keywords should be placed above the heading.</p>
+</div>
 <p>The keywords in the index are automatically placed in a meta
 tag in <code class="docutils literal notranslate"><span class="pre">html</span></code> output such that search engines can make use of the them.</p>
 <p>SIAM has developed a very useful document on <a class="reference external" href="http://www.siam.org/books/authors/indexguidelines.pdf">how to create an
@@ -6365,14 +6368,23 @@ major reasons to adopt DocOnce.</p>
 </div>
 </div>
 <div class="section" id="splitting-documents-into-smaller-pieces">
-<h3>Splitting Documents into Smaller Pieces<a class="headerlink" href="#splitting-documents-into-smaller-pieces" title="Permalink to this headline">¶</a></h3>
+<span id="splitting-documents"></span><h3>Splitting Documents into Smaller Pieces<a class="headerlink" href="#splitting-documents-into-smaller-pieces" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="index-133"></span><p id="index-134">Long documents are conveniently split into smaller DocOnce files.
 However, there must be a master document including all the pieces,
 otherwise references to sections and the index will not work properly.
 The master document is preferably a file just containing a set of
-preprocessor include statements of the form <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;file.do.txt&quot;</span></code>.
+preprocessor include statements of the form <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">#include</span> <span class="pre">&quot;file.do.txt&quot;</span></code>.
 The preprocessor will put together all the pieces so that DocOnce
 sees a long file with the complete text.</p>
+<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="c">## Include another file</span>
+<span class="c"># #include &quot;../chapter10/chapter10.do.txt&quot;</span>
+
+<span class="c">## Include parts of another file</span>
+<span class="c"># #include &quot;../chapter10/exercises/exercises.do.txt&quot; fromto: ===== Exercise: 1 =====@={5,7}\sConcluding\s={5,7}</span>
+</pre></div>
+</div>
+<p>The first example implies that all lines in the file chapter10.do.txt are copied into the master document. The second line has a fromto: directive, which implies copying all lines in the exercises.do.txt file included between the matches of two regular expressions (in the example <code class="docutils literal notranslate"><span class="pre">=====</span> <span class="pre">Exercise:</span> <span class="pre">1</span> <span class="pre">=====</span></code> and <cite>===== Concluding ``=====`</cite>).</p>
+<p>Two regular expressions, separated by the &#64; sign, define the &quot;from&quot; and &quot;to&quot; lines. The &quot;from&quot; line is included in the verbatim block, while the &quot;to&quot; line is not. In the example above, we copy code from the line matching <code class="docutils literal notranslate"><span class="pre">=====</span> <span class="pre">Exercise:</span> <span class="pre">1</span> <span class="pre">=====</span></code> and the section/subsection with title <code class="docutils literal notranslate"><span class="pre">Concluding</span></code> (the word <code class="docutils literal notranslate"><span class="pre">Concluding</span></code> surrounded by space and 5 to 7 equal signs).</p>
 <p>For web documents it is often desired to split long pages into shorter
 ones. This is done by the DocOnce command <code class="docutils literal notranslate"><span class="pre">!split</span></code> placed at the
 beginning of a line. The <code class="docutils literal notranslate"><span class="pre">!split</span></code> commands works with output in
@@ -6936,7 +6948,7 @@ DocOnce and saving much typing!</p>
 <span id="manual-mako"></span><h2>Mako Programming<a class="headerlink" href="#mako-programming" title="Permalink to this headline">¶</a></h2>
 <p id="index-151">The <a class="reference external" href="http://docs.makotemplates.org/">Mako</a> templating engine is used
 as preprocessor for DocOnce documents, but the <a class="reference external" href="http://code.google.com/p/preprocess">Preprocess</a> is run prior to Mako and is recommended for
-including other files via <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">#include</span> <span class="pre">&quot;filename&quot;</span></code>. Preprocess is also
+including other files via <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">#include</span> <span class="pre">&quot;filename&quot;</span></code> (see the section <a class="reference internal" href="#splitting-documents"><span class="std std-ref">Splitting Documents into Smaller Pieces</span></a>). Preprocess is also
 sufficient for if-else tests to steer which parts of the text that
 are to be compiled. For more demanding tasks, use Mako, which resembles
 a real programming language.</p>
