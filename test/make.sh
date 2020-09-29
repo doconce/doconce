@@ -41,6 +41,8 @@ system doconce spellcheck -d .dict4spell.txt _testdoc.do.txt
 ex="--examples_as_exercises"
 rawgit="--html_raw_github_url=raw.github"
 
+system doconce jupyter html testdoc $ex --allow_refs_to_external_docs
+
 system doconce format html testdoc --wordpress  $ex --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80 --figure_prefix="https://raw.github.com/hplgit/doconce/master/test/" --movie_prefix="https://raw.github.com/hplgit/doconce/master/test/" --html_links_in_new_window --cite_doconce $rawgit
 
 cp testdoc.html testdoc_wordpress.html

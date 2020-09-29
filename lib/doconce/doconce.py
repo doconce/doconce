@@ -4808,12 +4808,12 @@ def doconce2format(filestr_in, format):
             filestr = process_envir(
                 filestr, envir, format, action='remove',
                 reason='(because of the command-line option --%s)\n' % option_name)
-    # Remove exercise answers and solution written by --answers_at_end and/or --solutions_at_end
+    # Remove exercise answers and solutions written by --answers_at_end and/or --solutions_at_end
     # in the end of the document unless --solutions_at_end and/or --answers_at_end are used
     cmd2option = dict(sol_at_end = 'solutions_at_end', ans_at_end = 'answers_at_end')
     for envir in 'ans_at_end', 'sol_at_end':
         option_name = cmd2option[envir]
-        if not option(option_name):
+        if not option(option_name) and format is not 'ipynb': #TODO: format is not 'ipynb' was used to avoid errors. is it necessary?
             filestr = process_envir(filestr, envir, format, action='remove',
                     reason='(because the command-line option --%s was not used)' % option_name)
     debugpr('The file after potential removal of solutions, answers, hints, etc.:', filestr)
