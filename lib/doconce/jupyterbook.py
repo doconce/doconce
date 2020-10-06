@@ -272,8 +272,6 @@ def titles_to_chunks(chunks, title_list, sep, sep2=None, chapter_formatter='%02d
     # Process each chunk: detect and write title in the header of a chapter/section
     for i, chunk in enumerate(chunks):
         title = ''
-        if i < len(title_list):
-            title = title_list[i]
         # Try to get any title from headers in each chunk
         if title == '':
             chunk, title = create_title(chunk, sep, tags)
@@ -283,6 +281,11 @@ def titles_to_chunks(chunks, title_list, sep, sep2=None, chapter_formatter='%02d
         # Set default title
         if title == '':
             title = chapter_formatter % (i + 1) + globals.dofile_basename
+        # Use title from the titles files.
+        if i < len(title_list):
+            title = title_list[i]
+        # Write to title list and chunk
+        # NB: create_title above removed any detected title from chunk, thus avoiding duplicate titles
         title_list_out[i] = title
         chunk = '=' * 9 + ' ' + title + ' ' + '=' * 9 + '\n' + chunk
         chunks[i] = chunk
