@@ -106,7 +106,7 @@ def option(name, default=None, option_list = _legal_command_line_options):
 
 
     :param str name: filename to be read
-    :param str default: optional encoding string. Usually the encoding variable in globals.py
+    :param any default: optional encoding string. Usually the encoding variable in globals.py
     :param list[str] option_list: optional list of command options. Default is _legal_command_line_options from globals._registered_command_line_options
     :return: string with the text read
     :rtype: str|boolean
