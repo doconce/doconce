@@ -87,9 +87,9 @@ Both directories contain a make.sh file for creating various formats.
 '''
 from __future__ import absolute_import
 
-__version__ = '1.5.1'
+__version__ = '1.5.2'
 version = __version__
-__author__ = 'Hans Petter Langtangen', 'Johannes H. Ring', 'Kristian Gregorius Hustad'
+__author__ = 'Hans Petter Langtangen', 'Alessandro Marin', 'Johannes H. Ring', 'Kristian Gregorius Hustad'
 author = __author__
 
 __acknowledgments__ = ''

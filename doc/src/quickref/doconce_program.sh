@@ -1,4 +1,4 @@
-DocOnce version 1.5.1 (from /home/amarin/doconce/venv/lib/python3.6/site-packages/DocOnce-1.5.1-py3.6.egg/doconce)
+DocOnce version 1.5.2 (from /home/amarin/doconce/venv/lib/python3.6/site-packages/DocOnce-1.5.2-py3.6.egg/doconce)
 Usage: doconce command [optional arguments]
 commands: help format find subst replace remove spellcheck apply_inline_edits capitalize change_encoding clean combine_images csv2table diff expand_commands expand_mako extract_exercises find_nonascii_chars fix_bibtex4publish gitdiff grab grep guess_encoding gwiki_figsubst html2doconce html_colorbullets jupyterbook include_map insertdocstr ipynb2doconce latex2doconce latex_dislikes latex_exercise_toc latex_footer latex_header latex_problems latin2html lightclean linkchecker list_fig_src_files list_labels makefile md2html md2latex old2new_format ptex2tex pygmentize ref_external remove_exercise_answers remove_inline_comments replace_from_file slides_beamer slides_html slides_markdown sphinx_dir sphinxfix_localURLs split_html split_rst teamod
 
