@@ -25,7 +25,7 @@ The Bootstrap styles in DocOnce offer the following special features:
    (or even only chapters) present.
  * Admonitions, which come in two versions:
    * `alert`, with a colored background, often with the famous
-     admonition colores from the original Bootstrap theme
+     admonition colors from the original Bootstrap theme
    * `panel`, with a colored heading but otherwise white background for
      the content.
  * Jumbotron, which is explained and illustrated in all the demos
