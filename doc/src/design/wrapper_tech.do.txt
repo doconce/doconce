@@ -17,14 +17,14 @@ and using *HTML templates*. The present note explains the details.
  o There might be many pages, often developing dynamically over time,
    linked to a potentially large number of files (images, computer codes,
    lecture notes, exercises, etc.).
-   This author also has a lot of mathematics and computer code
+   You also have a lot of mathematics and computer code
    in these pages.
  o You will (of course) have full version control of the files with the
    core content and publish the latest version of all files with one command.
  o However, the web pages should appear with a prescribed look and feel
    because your host institution requires so.
  o The look and feel is automatically obtained if you write your
-   web pages with particular web-based tools, but this tedious and
+   web pages with particular web-based tools, but this is tedious and
    boring, happens without version control, has no support for
    nicely typeset mathematics and computer code, and most
    importantly: the approach does not scale with a lot of files!
@@ -35,7 +35,7 @@ and using *HTML templates*. The present note explains the details.
 
 In short, you would like to write something close to standard LaTeX,
 but get it published on the web with your institution's look and
-feel. This document tells you how to do that and minimize the fuzz
+feel. This document tells you how to do that and minimize the fuss
 with layouts.
 
 
@@ -148,11 +148,11 @@ The page is rendered with the "default HTML style": "mydoc_plain_pygmentized.htm
 
 FIGURE: [fig/plain_html.png, width=900]
 
-===== Step 4: Find some web page and make a template =====
+===== Step 4: Find a web page design and make a template =====
 
 When you see a design of a web page that you would like to adopt,
 view the source code (all browsers have a menu choice for doing this)
-and store it on file. To proceed you need to know some basic HTML.
+and store it to file. To proceed you need to know some basic HTML.
 
  o Identify where the main body of text is. Remove this text and
    insert `%(main)s` instead. This is a tag that will be replaced
@@ -181,9 +181,9 @@ and store it on file. To proceed you need to know some basic HTML.
    great advantage of showing a *complete URL* to the file that may
    have a relative path in the HTML code.
 
-As example, we took the source code of the GitHub "minimal" theme
+For example, we took the source code of the GitHub "minimal" theme
 and implemented the points above. Some of the elements in the
-downloaded page are conveniently replaced by some indicating text
+downloaded page are conveniently replaced by indicating text
 that we will fill out when we finalize the layout of our web site.
 
 !bc htmlpro
@@ -328,7 +328,7 @@ Here is "the result": "mydoc_uio.html".
 
 FIGURE: [fig/uio_html.png, width=900]
 
-It really looks that we are inside the Vortex web system at the
+It really looks like we are inside the Vortex web system at the
 University of Oslo and all the links to *Student Life*, *People*,
 etc. work.
 
@@ -386,7 +386,7 @@ FIGURE: [fig/vagrant_html.png, width=900]
 
 ======= Summary =======
 
-We have seen have to write web pages in a text-like format, with full
+We have seen how to write web pages in a text-like format, with full
 support of LaTeX mathematics and nicely typeset (pygmentized) computer code.
 These pages can easily be embedded in various fancy HTML styles by
 simply grabbing a web page with the desired style and editing it as
@@ -394,6 +394,6 @@ explained to make an *HTML template*. DocOnce can then embed our plain
 text in the template.
 
 However, embedding DocOnce documents in fancy web pages is just *one*
-technique to achive nice web designs. DocOnce features Bootstrap and
+technique to achieve nice web designs. DocOnce features Bootstrap and
 Sphinx HTML styles, which offer a lot of different designs, see our
 "Bootstrap demo": "http://doconce.github.io/doconce/doc/pub/bootstrap/index.html" and our extensive "report demo": "http://doconce.github.com/teamods/writing_reports/index.html".
