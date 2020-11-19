@@ -6805,7 +6805,7 @@ Bibliography (References)
 
 .. index:: Publish (for bibliography)
 
-DocOnce applies the software tool `Publish <https://bitbucket.org/logg/publish>`__ to handle the bibliography in a
+DocOnce applies the software tool `Publish <https://github.com/doconce/publish>`__ to handle the bibliography in a
 document. With Publish it is easy to import BibTeX data and maintain a
 database in a clean, self-explanatory textual format. From the Publish
 format it is easy to go BibTeX and reST or straightforward DocOnce
@@ -6817,14 +6817,14 @@ Installing Publish is trivial: either do
 .. code-block:: text
 
     Terminal> pip install -e \
-       hg+https://bitbucket.org/logg/publish#egg=publish#egg=publish
+       git+https://github.com/doconce/publish#egg=publish
 
 or checkout the code on
-`bitbucket.org <https://bitbucket.org/logg/publish>`__:
+`github.com <https://github.com/doconce/publish>`__:
 
 .. code-block:: text
 
-    Terminal> hg clone https://bitbucket.org/logg/publish
+    Terminal> git clone https://github.com/doconce/publish
     Terminal> cd publish
     Terminal> python setup.py install
 
@@ -12234,13 +12234,13 @@ this extra software if you make active use of preprocessors.
 Bibliography
 ~~~~~~~~~~~~
 
-The Python package `Publish <https://bitbucket.org/logg/publish>`__ is needed if you use a bibliography
+The Python package `Publish <https://github.com/doconce/publish>`__ is needed if you use a bibliography
 in your document (``cite`` commands and a ``BIBFILE:`` specification).
 The installation is done by
 
 .. code-block:: text
 
-    pip install -e hg+https://bitbucket.org/logg/publish#egg=publish
+    pip install -e git+https://github.com/doconce/publish#egg=publish
 
 Image file handling
 ~~~~~~~~~~~~~~~~~~~

@@ -4500,7 +4500,7 @@ idx{reference list}
 idx{Publish (for bibliography)}
 
 DocOnce applies the software tool "Publish":
-"https://bitbucket.org/logg/publish" to handle the bibliography in a
+"https://github.com/doconce/publish" to handle the bibliography in a
 document. With Publish it is easy to import BibTeX data and maintain a
 database in a clean, self-explanatory textual format. From the Publish
 format it is easy to go BibTeX and reST or straightforward DocOnce
@@ -4511,13 +4511,13 @@ Installing Publish is trivial: either do
 
 !bc sys
 Terminal> pip install -e \
-   hg+https://bitbucket.org/logg/publish#egg=publish#egg=publish
+   git+https://github.com/doconce/publish#egg=publish
 !ec
 or checkout the code on
-"`bitbucket.org`": "https://bitbucket.org/logg/publish":
+"`github.com`": "https://github.com/doconce/publish":
 
 !bc sys
-Terminal> hg clone https://bitbucket.org/logg/publish
+Terminal> hg clone https://github.com/doconce/publish
 Terminal> cd publish
 Terminal> python setup.py install
 !ec

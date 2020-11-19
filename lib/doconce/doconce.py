@@ -3324,7 +3324,7 @@ def handle_index_and_bib(filestr, format):
            which('publish') is None:
         errwarn('*** error: you have citations and specified a BIBFILE, but')
         errwarn('    publish (needed to treat the BIBFILE) is not installed.')
-        errwarn('    Download publish from https://bitbucket.org/logg/publish,')
+        errwarn('    Download publish from https://github.com/doconce/publish,')
         errwarn('    do cd publish; python setup.py install')
         _abort()
     # Check that citations are correct

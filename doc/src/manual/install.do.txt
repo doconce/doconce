@@ -126,12 +126,12 @@ this extra software if you make active use of preprocessors.
 === Bibliography ===
 
 The Python package "Publish":
-"https://bitbucket.org/logg/publish" is needed if you use a bibliography
+"https://github.com/doconce/publish" is needed if you use a bibliography
 in your document (`cite` commands and a `BIBFILE:` specification).
 The installation is done by
 
 !bc sys
-pip install -e hg+https://bitbucket.org/logg/publish#egg=publish
+pip install -e git+https://github.com/doconce/publish#egg=publish
 !ec
 
 === Image file handling ===

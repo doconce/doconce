@@ -463,7 +463,7 @@ BIBFILE: papers.pub
 !ec
 
 DocOnce applies "Publish":
-"https://bitbucket.org/logg/publish" for specifying bibliographies because
+"https://github.com/doconce/publish" for specifying bibliographies because
 this tool has more functionality than BibTeX, but any BibTeX database can
 be automatically converted to the simple Publish format.
 

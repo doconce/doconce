@@ -44,7 +44,7 @@ libxml2-dev
 libxslt1-dev
 zlib1g-dev
 pip install lxml
-pip install -e hg+https://bitbucket.org/logg/publish#egg=publish
+pip install -e git+https://github.com/doconce/publish#egg=publish
 
 # Sphinx (with additional third/party themes)
 pip install sphinx  # installs pygments and docutils too
