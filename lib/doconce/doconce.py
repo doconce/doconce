@@ -4748,6 +4748,12 @@ def doconce2format(filestr_in, format):
     # newcommands files are inserted)
     filestr = bm2boldsymbol(filestr, format)
 
+    # Allow escaping of labels and references, which useful in e.g. the DocOnce
+    # manual where labels or references are inside code examples (the !bc !ec commands)
+    if 'label\{' in filestr or 'ref\{' in filestr:
+        filestr = filestr.replace('label\{', 'label{')
+        filestr = filestr.replace('ref\{', 'ref{')
+
     # Next step: replace environments starting with | (instead of !)
     # by ! (for illustration of doconce syntax inside !bc/!ec directives).
     # Enough to consider |bc, |ec, |bt, and |et since all other environments
