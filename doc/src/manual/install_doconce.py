@@ -80,7 +80,7 @@ system('sudo apt-get -y install libxml2-dev')
 system('sudo apt-get -y install libxslt1-dev')
 system('sudo apt-get -y install zlib1g-dev')
 system('pip install lxml')
-system('pip install -e hg+https://bitbucket.org/logg/publish#egg=publish')
+system('pip install -e git+https://github.com/doconce/publish#egg=publish')
 
 # Sphinx (with additional third/party themes)
 system('pip install sphinx')

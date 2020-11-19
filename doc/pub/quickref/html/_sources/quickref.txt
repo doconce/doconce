@@ -1095,7 +1095,7 @@ by comma:
 
 The bibliography is specified by a line ``BIBFILE: papers.pub``,
 where ``papers.pub`` is a publication database in the
-`Publish <https://bitbucket.org/logg/publish>`__ format.
+`Publish <https://github.com/doconce/publish>`__ format.
 BibTeX ``.bib`` files can easily be combined to a Publish database
 (which DocOnce needs to create bibliographies in other formats
 than LaTeX).

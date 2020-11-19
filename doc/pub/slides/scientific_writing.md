@@ -851,7 +851,7 @@ FIGURE: [fig/myfile, width=600] My figure. \label{mysec:fig:myfig}
 BIBFILE: papers.pub
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The `papers.pub` file must be in [Publish](https://bitbucket.org/logg/publish)
+The `papers.pub` file must be in [Publish](https://github.com/doconce/publish)
 format (easy to make from BibTeX).
 
 <!-- !split -->
@@ -1311,7 +1311,7 @@ doconce format plain  doconcefile  # plain, untagged text for email
  * Do not use *algorithm* environments, use simple list formatting instead
  * Avoid math in section headings
  * Use `pdflatex` or `xetex`
- * Use BibTeX (can easily be converted to [publish](https://bitbucket.org/logg/publish) used by DocOnce)
+ * Use BibTeX (can easily be converted to [publish](https://github.com/doconce/publish) used by DocOnce)
  * Use `\href` for links (and insert links frequently)
  * Use the `bm` package for boldface $\boldsymbol{u}$
  * Place all newcommands in a separate file, with one definition per line

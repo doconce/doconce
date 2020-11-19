@@ -74,7 +74,7 @@ apt_install libxml2-dev
 apt_install libxslt1-dev
 apt_install zlib1g-dev
 pip_install lxml
-pip_install --exists-action i -e hg+https://bitbucket.org/logg/publish#egg=publish
+pip_install --exists-action i -e git+https://github.com/doconce/publish#egg=publish
 
 # Sphinx (with additional third/party themes)
 pip_install sphinx

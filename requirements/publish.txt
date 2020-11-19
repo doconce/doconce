@@ -1,4 +1,4 @@
 future
 lxml
 python-Levenshtein
-hg+https://bitbucket.org/logg/publish#egg=publish
+git+https://github.com/doconce/publish#egg=publish
