@@ -590,7 +590,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
             errwarn('*** error: could not import IPython.nbformat.v3!')
             errwarn('    set --ipynb_version=4 or leave out --ipynb_version=3')
             _abort()
-    elif nb_version == 4:
+    elif nb_version in (4, 5):
         try:
             from nbformat.v4 import (
                 new_code_cell, new_markdown_cell, new_notebook)
