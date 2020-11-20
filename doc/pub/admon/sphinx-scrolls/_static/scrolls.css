@@ -4,7 +4,7 @@
  *
  * Sphinx stylesheet -- scrolls theme.
  *
- * :copyright: Copyright 2007-2015 by the Sphinx team, see AUTHORS.
+ * :copyright: Copyright 2007-2020 by the Sphinx team, see AUTHORS.
  * :license: BSD, see LICENSE for details.
  *
  */
@@ -98,6 +98,7 @@ h1.heading span {
 }
 
 #contentwrapper {
+    min-width: 0;
     max-width: 680px;
     padding: 0 18px 20px 18px;
     margin: 0 auto 0 auto;
@@ -187,7 +188,7 @@ a:hover {
 }
 
 pre {
-    background: #ededed url(metal.png);
+    background-image: url(metal.png);
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     padding: 5px;
@@ -299,12 +300,19 @@ table.genindextable td {
     width: 50%;
 }
 
-table.indextable dl dd {
+table.indextable ul {
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
     font-size: 11px;
 }
 
-table.indextable dl dd a {
+table.indextable ul a {
     color: #000;
+}
+
+table.indextable > tbody > tr > td > ul {
+    padding-left: 0em;
 }
 
 div.modindex-jumpbox {
@@ -317,6 +325,11 @@ div.modindex-jumpbox {
 table.modindextable {
     width: 100%;
     border: none;
+}
+
+table.modindextable td {
+    padding: 2px;
+    border-collapse: collapse;
 }
 
 table.modindextable img.toggler {
@@ -470,4 +483,14 @@ div.figure p.caption span.caption-number {
 }
 
 div.figure p.caption span.caption-text {
+}
+
+/* math display */
+
+div.math p {
+    text-align: center;
+}
+
+span.eqno {
+    float: right;
 }

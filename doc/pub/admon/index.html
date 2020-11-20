@@ -1,20 +1,40 @@
 <!--
 Automatically generated HTML file from DocOnce source
-(https://github.com/hplgit/doconce/)
+(https://github.com/doconce/doconce/)
 -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Demonstration of admonition styles in DocOnce">
 
 <title>Demonstration of admonition styles in DocOnce</title>
 
 <!-- Bootstrap style: bootstrap -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- not necessary
-<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 -->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
 
 
 </head>
@@ -40,6 +60,7 @@ end of tocinfo -->
     </button>
     <a class="navbar-brand" href="index.html">Demonstration of admonition styles in DocOnce</a>
   </div>
+
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
@@ -80,7 +101,7 @@ end of tocinfo -->
 
 <br>
 <p>
-<center><h4>Oct 5, 2015</h4></center> <!-- date -->
+<center><h4>Nov 20, 2020</h4></center> <!-- date -->
 <br>
 <p>
 The documents below are generated from a common <a href="admon.do.txt.html" target="_blank">DocOnce source</a>.
@@ -88,7 +109,7 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 </div> <!-- end jumbotron -->
 
-<h1 id="___sec0">LaTeX </h1>
+<h1 id="___sec0" class="anchor">LaTeX </h1>
 
 <p>
 --latex_admon=<a href="admon_mdfbox_blue.pdf" target="_blank">mdfbox</a> with blue sections and matching admon colors
@@ -99,7 +120,7 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format pdflatex admon --latex_code_style=lst --latex_admon=mdfbox --latex_admon_color=bluestyle --latex_section_headings=blue
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format pdflatex admon --latex_code_style=lst --latex_admon=mdfbox --latex_admon_color=bluestyle --latex_section_headings=blue
 </pre></div>
 <p>
 --latex_admon=<a href="admon_mdfbox.pdf" target="_blank">mdfbox</a>
@@ -107,7 +128,7 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format pdflatex admon --latex_code_style=lst --latex_admon=mdfbox
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format pdflatex admon --latex_code_style=lst --latex_admon=mdfbox
 </pre></div>
 <p>
 --latex_admon=<a href="admon_graybox2.pdf" target="_blank">graybox2</a>
@@ -115,7 +136,7 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format pdflatex admon --latex_code_style=lst --latex_admon=graybox2
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format pdflatex admon --latex_code_style=lst --latex_admon=graybox2
 </pre></div>
 <p>
 --latex_admon=<a href="admon_grayicon.pdf" target="_blank">grayicon</a>
@@ -123,7 +144,7 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format pdflatex admon --latex_code_style=lst --latex_admon=grayicon
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format pdflatex admon --latex_code_style=lst --latex_admon=grayicon
 </pre></div>
 <p>
 --latex_admon=<a href="admon_yellowicon.pdf" target="_blank">yellowicon</a>
@@ -131,7 +152,7 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format pdflatex admon --latex_code_style=lst --latex_admon=yellowicon
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format pdflatex admon --latex_code_style=lst --latex_admon=yellowicon
 </pre></div>
 <p>
 --latex_admon=<a href="admon_colors1.pdf" target="_blank">colors1</a>
@@ -139,7 +160,7 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format pdflatex admon --latex_code_style=lst --latex_admon=colors1
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format pdflatex admon --latex_code_style=lst --latex_admon=colors1
 </pre></div>
 <p>
 --latex_admon=<a href="admon_colors2.pdf" target="_blank">colors2</a>
@@ -147,7 +168,7 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format pdflatex admon --latex_code_style=lst --latex_admon=colors2
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format pdflatex admon --latex_code_style=lst --latex_admon=colors2
 </pre></div>
 <p>
 --latex_admon=<a href="admon_paragraph-footnotesize.pdf" target="_blank">paragraph-footnotesize</a>
@@ -155,7 +176,7 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format pdflatex admon --latex_code_style=lst --latex_admon=paragraph-footnotesize
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format pdflatex admon --latex_code_style=lst --latex_admon=paragraph-footnotesize
 </pre></div>
 <p>
 --latex_admon=<a href="admon_paragraph.pdf" target="_blank">paragraph</a>
@@ -163,10 +184,10 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format pdflatex admon --latex_code_style=lst --latex_admon=paragraph
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format pdflatex admon --latex_code_style=lst --latex_admon=paragraph
 </pre></div>
 
-<h1 id="___sec1">HTML </h1>
+<h1 id="___sec1" class="anchor">HTML </h1>
 
 <p>
 --html_admon=<a href="admon_gray.html" target="_blank">gray</a>
@@ -174,7 +195,7 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format html admon --html_style=blueish --html_admon=gray --html_box_shadow
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format html admon --html_style=blueish --html_admon=gray --html_box_shadow
 </pre></div>
 <p>
 --html_admon=<a href="admon_yellow.html" target="_blank">yellow</a>
@@ -182,7 +203,7 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format html admon --html_style=blueish --html_admon=yellow --html_box_shadow
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format html admon --html_style=blueish --html_admon=yellow --html_box_shadow
 </pre></div>
 <p>
 --html_admon=<a href="admon_apricot.html" target="_blank">apricot</a>
@@ -190,7 +211,7 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format html admon --html_style=blueish --html_admon=apricot --html_box_shadow
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format html admon --html_style=blueish --html_admon=apricot --html_box_shadow
 </pre></div>
 <p>
 --html_admon=<a href="admon_lyx.html" target="_blank">lyx</a>
@@ -198,7 +219,7 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format html admon --html_style=blueish --html_admon=lyx --html_box_shadow
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format html admon --html_style=blueish --html_admon=lyx --html_box_shadow
 </pre></div>
 <p>
 --html_admon=<a href="admon_colors.html" target="_blank">colors</a>
@@ -206,7 +227,7 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format html admon --html_style=blueish --html_admon=colors --html_box_shadow
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format html admon --html_style=blueish --html_admon=colors --html_box_shadow
 </pre></div>
 <p>
 --html_admon=<a href="admon_paragraph.html" target="_blank">paragraph</a>
@@ -214,7 +235,7 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format html admon --html_style=blueish --html_admon=paragraph --html_box_shadow
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format html admon --html_style=blueish --html_admon=paragraph --html_box_shadow
 </pre></div>
 <p>
 --html_admon=<a href="admon_paragraph-small.html" target="_blank">paragraph-small</a>
@@ -222,7 +243,7 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format html admon --html_style=blueish --html_admon=paragraph-small --html_box_shadow
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format html admon --html_style=blueish --html_admon=paragraph-small --html_box_shadow
 </pre></div>
 <p>
 --html_admon=<a href="admon_bootstrap_panel.html" target="_blank">bootstrap_panel</a>
@@ -230,7 +251,7 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format html admon --html_style=bootswatch_readable --html_admon=bootstrap_panel
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format html admon --html_style=bootswatch_readable --html_admon=bootstrap_panel
 </pre></div>
 <p>
 --html_admon=<a href="admon_bootstrap_alert.html" target="_blank">bootstrap_alert</a>
@@ -238,37 +259,35 @@ The documents below are generated from a common <a href="admon.do.txt.html" targ
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format html admon --html_style=bootswatch_readable --html_admon=bootstrap_alert
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format html admon --html_style=bootswatch_readable --html_admon=bootstrap_alert
 </pre></div>
 
-<h1 id="___sec2">IPython notebook </h1>
-
-<p>
---ipynb_admon=<a href="http://nbviewer.ipython.org/url/hplgit.github.io/doconce/doc/pub/admon/admon_quote.ipynb" target="_blank">quote</a>
+<h1 id="___sec2" class="anchor">IPython notebook </h1>
+--ipynb_admon=<a href="http://nbviewer.jupyter.org/url/doconce.github.io/doconce/doc/pub/admon/admon_quote.ipynb" target="_blank">quote</a>
 
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format ipynb admon --ipynb_admon=quote
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format ipynb admon --ipynb_admon=quote
 </pre></div>
 <p>
---ipynb_admon=<a href="http://nbviewer.ipython.org/url/hplgit.github.io/doconce/doc/pub/admon/admon_paragraph.ipynb" target="_blank">paragraph</a>
+--ipynb_admon=<a href="http://nbviewer.jupyter.org/url/doconce.github.io/doconce/doc/pub/admon/admon_paragraph.ipynb" target="_blank">paragraph</a>
 
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format ipynb admon --ipynb_admon=paragraph
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format ipynb admon --ipynb_admon=paragraph
 </pre></div>
 <p>
---ipynb_admon=<a href="http://nbviewer.ipython.org/url/hplgit.github.io/doconce/doc/pub/admon/admon_hrule.ipynb" target="_blank">hrule</a>
+--ipynb_admon=<a href="http://nbviewer.jupyter.org/url/doconce.github.io/doconce/doc/pub/admon/admon_hrule.ipynb" target="_blank">hrule</a>
 
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format ipynb admon --ipynb_admon=hrule
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format ipynb admon --ipynb_admon=hrule
 </pre></div>
 
-<h1 id="___sec3">Sphinx </h1>
+<h1 id="___sec3" class="anchor">Sphinx </h1>
 
 <p>
 The admon layout depends on the Sphinx theme:
@@ -281,7 +300,7 @@ The admon layout depends on the Sphinx theme:
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format sphin admon
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format sphin admon
 Terminal&gt; doconce sphinx_dir theme=scrolls admon
 Terminal&gt; python automake_sphinx.py
 </pre></div>
@@ -291,8 +310,8 @@ Terminal&gt; python automake_sphinx.py
 
 </div>  <!-- end container -->
 <!-- include javascript, jQuery *first* -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap footer
 <footer>

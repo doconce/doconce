@@ -1,11 +1,12 @@
 <!--
 Automatically generated HTML file from DocOnce source
-(https://github.com/hplgit/doconce/)
+(https://github.com/doconce/doconce/)
 -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Demo of admonition styles in DocOnce">
 
 <title>Demo of admonition styles in DocOnce</title>
@@ -89,7 +90,7 @@ MathJax.Hub.Config({
 
 <br>
 <p>
-<center><h4>Oct 5, 2015</h4></center> <!-- date -->
+<center><h4>Nov 20, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <b>Summary.</b> This note demonstrates how admonitions look like in the output format
@@ -103,7 +104,7 @@ Key options when compiling this document were
 <p>
 
 <!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">--html_style=blueish --html_admon=lyx --html_box_shadow
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>--html_style=blueish --html_admon=lyx --html_box_shadow
 </pre></div>
 <p>
 Here is the warning admon:
@@ -113,7 +114,7 @@ Here is the warning admon:
 <table width="95%" border="0">
 <tr>
 <td width="25" align="center" valign="top">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/lyx_warning.png" hspace="5" alt="warning"></td>
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/lyx_warning.png" hspace="5" alt="warning"></td>
 <th align="left" valign="middle"><b>Division by zero is illegal!</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
@@ -122,7 +123,7 @@ Here is the warning admon:
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; python -c &#39;print 4/0&#39;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; python -c &#39;print 4/0&#39;
 Traceback (most recent call last):
   File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;
 ZeroDivisionError: integer division or modulo by zero
@@ -147,8 +148,8 @@ Question admon (without title).
 <table width="95%" border="0">
 <tr>
 <td width="25" align="center" valign="top">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/lyx_question.png" hspace="5" alt="question"></td>
-<th align="left" valign="middle"><b>Question.</b></th>
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/lyx_question.png" hspace="5" alt="question"></td>
+<th align="left" valign="middle"><b>Question</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
 <div class="alert-text-normal">What are the admon options for <code>doconce format html</code>?
@@ -168,8 +169,8 @@ Summary admon:
 <table width="95%" border="0">
 <tr>
 <td width="25" align="center" valign="top">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/lyx_summary.png" hspace="5" alt="summary"></td>
-<th align="left" valign="middle"><b>Summary.</b></th>
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/lyx_summary.png" hspace="5" alt="summary"></td>
+<th align="left" valign="middle"><b>Summary</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
 <div class="alert-text-normal">The most popular methods for solving algebraic equations
@@ -201,7 +202,7 @@ Here is a <em>notice admon</em>:
 <table width="95%" border="0">
 <tr>
 <td width="25" align="center" valign="top">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/lyx_notice.png" hspace="5" alt="notice"></td>
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/lyx_notice.png" hspace="5" alt="notice"></td>
 <th align="left" valign="middle"><b>Tip: follow well-established conventions for variable names!</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
@@ -215,7 +216,26 @@ as in <code>ProblemClass</code>.</div>
 
 
 <p>
-The four main admons are warning, notice, question, and summary.
+The four main admons are warning, notice, question, and summary, but you
+may introduce other boxes by utilizing the title, as explained below.
+
+<p>
+
+<table width="95%" border="0">
+<tr>
+<td width="25" align="center" valign="top">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/lyx_notice.png" hspace="5" alt="notice"></td>
+<th align="left" valign="middle"><b>The title of the box is fully customizable</b></th>
+</tr>
+<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
+<div class="alert-text-normal">This means that if you want
+different types of boxes, e.g. a <em>detour</em> box and a <em>tip</em> box, you can just
+open introduce the convention that detour applies the summary box and
+starts with 'Detour:' in the title, while the notice box is used for
+tip boxes and as a title starting with 'Tip:'.</div>
+</p></td></tr>
+</table>
+
 
 <h1 id="___sec1">The block, quote and plain box environment </h1>
 
@@ -236,7 +256,7 @@ DocOnce features a <code>block</code> environment with or without title.
 <p>
 
 <table width="95%" border="0">
-<tr><th align="left" valign="middle"><b>Block with title.</b></th>
+<tr><th align="left" valign="middle"><b>Block with title</b></th>
 </tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td> <td align="left" valign="top"><p>
 <div class="alert-text-normal">Blocks can contain text, math, code, figures, movies.</div>

@@ -6,19 +6,36 @@ Automatically generated HTML file from DocOnce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Wrapping Plain HTML Files in Fancy Design Templates">
 
 <title>Wrapping Plain HTML Files in Fancy Design Templates</title>
 
 <!-- Bootstrap style: bootswatch_readable -->
-<link href="http://netdna.bootstrapcdn.com/bootswatch/3.1.1/readable/bootstrap.min.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/readable/bootstrap.min.css" rel="stylesheet">
 <!-- not necessary
-<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 -->
 
 <style type="text/css">
 /* Let inline verbatim have the same color as the surroundings */
 code { color: inherit; background-color: transparent; }
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:64px;      /* fixed header height for style bootswatch_readable */
+  margin:-64px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -26,25 +43,25 @@ code { color: inherit; background-color: transparent; }
 
 <!-- tocinfo
 {'highest level': 0,
- 'sections': [(' Example on a problem setting ', 0, None, '___sec0'),
-              (' Solution ', 0, None, '___sec1'),
-              (' Step 1: Use DocOnce to generate text ', 2, None, '___sec2'),
-              (' Step 2: Write the core text ', 2, None, '___sec3'),
-              (' Step 3: Inspect the HTML page ', 2, None, '___sec4'),
-              (' Step 4: Find some web page and make a template ',
+ 'sections': [('Example on a problem setting', 0, None, '___sec0'),
+              ('Solution', 0, None, '___sec1'),
+              ('Step 1: Use DocOnce to generate text', 2, None, '___sec2'),
+              ('Step 2: Write the core text', 2, None, '___sec3'),
+              ('Step 3: Inspect the HTML page', 2, None, '___sec4'),
+              ('Step 4: Find a web page design and make a template',
                2,
                None,
                '___sec5'),
-              (' Step 5: Embed your HTML document in the template ',
+              ('Step 5: Embed your HTML document in the template',
                2,
                None,
                '___sec6'),
-              (' Making a template from Vortex pages at the University of Oslo ',
+              ('Making a template from Vortex pages at the University of Oslo',
                1,
                None,
                '___sec7'),
-              (' Using the Vagrant template ', 1, None, '___sec8'),
-              (' Summary ', 1, None, '___sec9')]}
+              ('Using the Vagrant template', 1, None, '___sec8'),
+              ('Summary', 1, None, '___sec9')]}
 end of tocinfo -->
 
 <body>
@@ -60,6 +77,7 @@ end of tocinfo -->
     </button>
     <a class="navbar-brand" href="wrapper_tech.html">Wrapping Plain HTML Files in Fancy Design Templates</a>
   </div>
+
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
@@ -70,7 +88,7 @@ end of tocinfo -->
      <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 1: Use DocOnce to generate text</a></li>
      <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 2: Write the core text</a></li>
      <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 3: Inspect the HTML page</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 4: Find some web page and make a template</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 4: Find a web page design and make a template</a></li>
      <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 5: Embed your HTML document in the template</a></li>
      <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Making a template from Vortex pages at the University of Oslo</a></li>
      <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Using the Vagrant template</a></li>
@@ -101,14 +119,15 @@ end of tocinfo -->
 <b>Hans Petter Langtangen</b> [1, 2]
 </center>
 
-
 <p>
 <!-- institution(s) -->
 
 <center>[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b></center>
 <center>[2] <b>Department of Informatics, University of Oslo</b></center>
+<br>
 <p>
-<center><h4>Mar 15, 2015</h4></center> <!-- date -->
+<center><h4>Nov 18, 2020</h4></center> <!-- date -->
+<br>
 <p>
 <b>Summary.</b> You want to write your web pages as simple text, but at the same time you
 need the design and layout to be compatible with a given look-and-feel standard.
@@ -116,12 +135,9 @@ This is easy to accomplish by writing the HTML pages in plain DocOnce text
 and using <em>HTML templates</em>. The present note explains the details.
 
 <p>
-
-
-
 </div> <!-- end jumbotron -->
 
-<h1 id="___sec0">Example on a problem setting </h1> <!-- chapter heading -->
+<center><h1 id="___sec0" class="anchor">Example on a problem setting </h1></center> <!-- chapter heading -->
 
 <ol>
 <li> You need to write web pages, say for a course, and want to have
@@ -130,14 +146,14 @@ and using <em>HTML templates</em>. The present note explains the details.
 <li> There might be many pages, often developing dynamically over time,
    linked to a potentially large number of files (images, computer codes,
    lecture notes, exercises, etc.).
-   This author also has a lot of mathematics and computer code
+   You also have a lot of mathematics and computer code
    in these pages.</li>
 <li> You will (of course) have full version control of the files with the
    core content and publish the latest version of all files with one command.</li>
 <li> However, the web pages should appear with a prescribed look and feel
    because your host institution requires so.</li>
 <li> The look and feel is automatically obtained if you write your
-   web pages with particular web-based tools, but this tedious and
+   web pages with particular web-based tools, but this is tedious and
    boring, happens without version control, has no support for
    nicely typeset mathematics and computer code, and most
    importantly: the approach does not scale with a lot of files!</li>
@@ -149,15 +165,17 @@ and using <em>HTML templates</em>. The present note explains the details.
 
 In short, you would like to write something close to standard LaTeX,
 but get it published on the web with your institution's look and
-feel. This document tells you how to do that and minimize the fuzz
+feel. This document tells you how to do that and minimize the fuss
 with layouts.
 
-<h1 id="___sec1">Solution </h1> <!-- chapter heading -->
+<p>
 
-<h2 id="___sec2">Step 1: Use DocOnce to generate text </h2>
+<center><h1 id="___sec1" class="anchor">Solution </h1></center> <!-- chapter heading -->
+
+<h2 id="___sec2" class="anchor">Step 1: Use DocOnce to generate text </h2>
 
 <p>
-We shall in this document use <a href="https://github.com/hplgit/doconce" target="_self">DocOnce</a>
+We shall in this document use <a href="https://github.com/doconce/doconce" target="_self">DocOnce</a>
 for writing the core text. DocOnce looks like plain text, with just a
 few tags for enabling full LaTeX mathematics and nicely typeset
 computer code. From DocOnce you can go to plain LaTeX, pdfLaTeX,
@@ -167,7 +185,7 @@ have code and math, it is easy to go to MS Word, XML, DocBook, and
 numerous other formats too.) From a DocOnce text it is also trivial
 to generate slides.
 
-<h2 id="___sec3">Step 2: Write the core text </h2>
+<h2 id="___sec3" class="anchor">Step 2: Write the core text </h2>
 
 <p>
 Write the core text, here an <a href="mydoc_plain_pygmentized.html" target="_self">exercise with some math and code</a> stored in a file <code>mydoc.do.txt</code>:
@@ -175,7 +193,7 @@ Write the core text, here an <a href="mydoc_plain_pygmentized.html" target="_sel
 <p>
 
 <!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">DATE: today
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>DATE: today
 
 ======= Solve the world&#39;s simplest differential equation =======
 
@@ -206,7 +224,8 @@ u^{n+1} = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}u^n,
 !et
 Here, $n=0,1,\ldots,N-1$.
 
-<b>Hint.</b>\n
+<b>Hint.</b>
+
 Set up the Forward Euler, Backward Euler, and the Crank-Nicolson (or
 Midpoint) schemes first. Then generalize to the $\theta$-rule above.
 
@@ -216,7 +235,7 @@ Midpoint) schemes first. Then generalize to the $\theta$-rule above.
 
 The numerical method is implemented in a Python function
 `solver` (found in the &quot;`decay_mod`&quot;:
-&quot;https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py&quot; module):
+&quot;https://github.com/doconce/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py&quot; module):
 
 !bc pycod
 from numpy import linspace, zeros
@@ -252,7 +271,7 @@ commented out (<code>#TITLE:</code>), no HTML header and footer are generated,
 which is important when embedding the HTML code in a template file
 later.
 
-<h2 id="___sec4">Step 3: Inspect the HTML page </h2>
+<h2 id="___sec4" class="anchor">Step 3: Inspect the HTML page </h2>
 
 <p>
 Check the default layout of your HTML page by translating the
@@ -261,21 +280,21 @@ DocOnce file to HTML:
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">doconce format html mydoc
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>doconce format html mydoc
 google-chrome mydoc.html
 </pre></div>
 <p>
 The page is rendered with the <a href="mydoc_plain_pygmentized.html" target="_self">default HTML style</a> as seen in the figure below (or <a href="mydoc_plain.html" target="_self">in the file itself</a>):
 
 <p>
-<center><p><img src="fig/plain_html.png" align="bottom" width=900></p></center>
+<br /><br /><center><p><img src="fig/plain_html.png" align="bottom" width=900></p></center><br /><br />
 
-<h2 id="___sec5">Step 4: Find some web page and make a template </h2>
+<h2 id="___sec5" class="anchor">Step 4: Find a web page design and make a template </h2>
 
 <p>
 When you see a design of a web page that you would like to adopt,
 view the source code (all browsers have a menu choice for doing this)
-and store it on file. To proceed you need to know some basic HTML.
+and store it to file. To proceed you need to know some basic HTML.
 
 <ol>
 <li> Identify where the main body of text is. Remove this text and
@@ -302,56 +321,56 @@ and store it on file. To proceed you need to know some basic HTML.
    have a relative path in the HTML code.</li>
 </ol>
 
-As example, we took the source code of the GitHub "minimal" theme
+For example, we took the source code of the GitHub "minimal" theme
 and implemented the points above. Some of the elements in the
-downloaded page are conveniently replaced by some indicating text
+downloaded page are conveniently replaced by indicating text
 that we will fill out when we finalize the layout of our web site.
 
 <p>
 
 <!-- code=html (!bc htmlpro) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">&lt;!doctype html&gt;</span>
-<span style="color: #008000; font-weight: bold">&lt;html&gt;</span>
-  <span style="color: #008000; font-weight: bold">&lt;head&gt;</span>
-    <span style="color: #008000; font-weight: bold">&lt;meta</span> <span style="color: #7D9029">charset=</span><span style="color: #BA2121">&quot;utf-8&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
-    <span style="color: #008000; font-weight: bold">&lt;meta</span> <span style="color: #7D9029">http-equiv=</span><span style="color: #BA2121">&quot;X-UA-Compatible&quot;</span> <span style="color: #7D9029">content=</span><span style="color: #BA2121">&quot;chrome=1&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span><span style="color: #BC7A00">&lt;!doctype html&gt;</span>
+&lt;<span style="color: #008000; font-weight: bold">html</span>&gt;
+  &lt;<span style="color: #008000; font-weight: bold">head</span>&gt;
+    &lt;<span style="color: #008000; font-weight: bold">meta</span> <span style="color: #7D9029">charset</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;utf-8&quot;</span>&gt;
+    &lt;<span style="color: #008000; font-weight: bold">meta</span> <span style="color: #7D9029">http-equiv</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;X-UA-Compatible&quot;</span> <span style="color: #7D9029">content</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;chrome=1&quot;</span>&gt;
 
-    <span style="color: #008000; font-weight: bold">&lt;title&gt;</span>%(title)s<span style="color: #008000; font-weight: bold">&lt;/title&gt;</span>
+    &lt;<span style="color: #008000; font-weight: bold">title</span>&gt;%(title)s&lt;/<span style="color: #008000; font-weight: bold">title</span>&gt;
 
-    <span style="color: #008000; font-weight: bold">&lt;link</span> <span style="color: #7D9029">rel=</span><span style="color: #BA2121">&quot;stylesheet&quot;</span> <span style="color: #7D9029">href=</span><span style="color: #BA2121">&quot;css/styles.css&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
-    <span style="color: #008000; font-weight: bold">&lt;meta</span> <span style="color: #7D9029">name=</span><span style="color: #BA2121">&quot;viewport&quot;</span>
-     <span style="color: #7D9029">content=</span><span style="color: #BA2121">&quot;width=device-width, initial-scale=1, user-scalable=no&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
-  <span style="color: #008000; font-weight: bold">&lt;/head&gt;</span>
-  <span style="color: #008000; font-weight: bold">&lt;body&gt;</span>
-    <span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">class=</span><span style="color: #BA2121">&quot;wrapper&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
-      <span style="color: #008000; font-weight: bold">&lt;header&gt;</span>
-        <span style="color: #008000; font-weight: bold">&lt;h1&gt;</span>Main Permanent Header<span style="color: #008000; font-weight: bold">&lt;/h1&gt;</span>
-        <span style="color: #008000; font-weight: bold">&lt;p&gt;</span>Permanent SubHeader<span style="color: #008000; font-weight: bold">&lt;/p&gt;</span>
+    &lt;<span style="color: #008000; font-weight: bold">link</span> <span style="color: #7D9029">rel</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;stylesheet&quot;</span> <span style="color: #7D9029">href</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;css/styles.css&quot;</span>&gt;
+    &lt;<span style="color: #008000; font-weight: bold">meta</span> <span style="color: #7D9029">name</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;viewport&quot;</span>
+     <span style="color: #7D9029">content</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;width=device-width, initial-scale=1, user-scalable=no&quot;</span>&gt;
+  &lt;/<span style="color: #008000; font-weight: bold">head</span>&gt;
+  &lt;<span style="color: #008000; font-weight: bold">body</span>&gt;
+    &lt;<span style="color: #008000; font-weight: bold">div</span> <span style="color: #7D9029">class</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;wrapper&quot;</span>&gt;
+      &lt;<span style="color: #008000; font-weight: bold">header</span>&gt;
+        &lt;<span style="color: #008000; font-weight: bold">h1</span>&gt;Main Permanent Header&lt;/<span style="color: #008000; font-weight: bold">h1</span>&gt;
+        &lt;<span style="color: #008000; font-weight: bold">p</span>&gt;Permanent SubHeader&lt;/<span style="color: #008000; font-weight: bold">p</span>&gt;
 
         <span style="color: #408080; font-style: italic">&lt;!-- picture below the heading on the left --&gt;</span>
-	<span style="color: #008000; font-weight: bold">&lt;img</span> <span style="color: #7D9029">src=</span><span style="color: #BA2121">&quot;...&quot;</span> <span style="color: #7D9029">width=</span><span style="color: #BA2121">220</span><span style="color: #008000; font-weight: bold">&gt;</span>
+	&lt;<span style="color: #008000; font-weight: bold">img</span> <span style="color: #7D9029">src</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;...&quot;</span> <span style="color: #7D9029">width</span><span style="color: #666666">=</span><span style="color: #BA2121">220</span>&gt;
 
-      <span style="color: #008000; font-weight: bold">&lt;/header&gt;</span>
+      &lt;/<span style="color: #008000; font-weight: bold">header</span>&gt;
 
       <span style="color: #408080; font-style: italic">&lt;!-- Here goes the main page ---&gt;</span>
-      <span style="color: #008000; font-weight: bold">&lt;section&gt;</span>
+      &lt;<span style="color: #008000; font-weight: bold">section</span>&gt;
 
 %(main)s
 
-      <span style="color: #008000; font-weight: bold">&lt;/section&gt;</span>
+      &lt;/<span style="color: #008000; font-weight: bold">section</span>&gt;
 
-      <span style="color: #008000; font-weight: bold">&lt;footer&gt;</span>
-        <span style="color: #008000; font-weight: bold">&lt;p&gt;</span>This project is maintained by ...<span style="color: #008000; font-weight: bold">&lt;/p&gt;</span>
-        <span style="color: #008000; font-weight: bold">&lt;p&gt;&lt;small&gt;</span>Hosted on GitHub Pages <span style="color: #999999; font-weight: bold">&amp;mdash;</span> Theme by
-        <span style="color: #008000; font-weight: bold">&lt;a</span> <span style="color: #7D9029">href=</span><span style="color: #BA2121">&quot;https://github.com/orderedlist&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>orderedlist<span style="color: #008000; font-weight: bold">&lt;/a&gt;</span>
-        <span style="color: #008000; font-weight: bold">&lt;/small&gt;&lt;/p&gt;</span>
-      <span style="color: #008000; font-weight: bold">&lt;/footer&gt;</span>
+      &lt;<span style="color: #008000; font-weight: bold">footer</span>&gt;
+        &lt;<span style="color: #008000; font-weight: bold">p</span>&gt;This project is maintained by ...&lt;/<span style="color: #008000; font-weight: bold">p</span>&gt;
+        &lt;<span style="color: #008000; font-weight: bold">p</span>&gt;&lt;<span style="color: #008000; font-weight: bold">small</span>&gt;Hosted on GitHub Pages <span style="color: #999999; font-weight: bold">&amp;mdash;</span> Theme by
+        &lt;<span style="color: #008000; font-weight: bold">a</span> <span style="color: #7D9029">href</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;https://github.com/orderedlist&quot;</span>&gt;orderedlist&lt;/<span style="color: #008000; font-weight: bold">a</span>&gt;
+        &lt;/<span style="color: #008000; font-weight: bold">small</span>&gt;&lt;/<span style="color: #008000; font-weight: bold">p</span>&gt;
+      &lt;/<span style="color: #008000; font-weight: bold">footer</span>&gt;
 
-    <span style="color: #008000; font-weight: bold">&lt;/div&gt;</span>
-    <span style="color: #008000; font-weight: bold">&lt;script </span><span style="color: #7D9029">src=</span><span style="color: #BA2121">&quot;js/scale.fix.js&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;/script&gt;</span>
+    &lt;/<span style="color: #008000; font-weight: bold">div</span>&gt;
+    &lt;<span style="color: #008000; font-weight: bold">script</span> <span style="color: #7D9029">src</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;js/scale.fix.js&quot;</span>&gt;&lt;/<span style="color: #008000; font-weight: bold">script</span>&gt;
 
-  <span style="color: #008000; font-weight: bold">&lt;/body&gt;</span>
-<span style="color: #008000; font-weight: bold">&lt;/html&gt;</span>
+  &lt;/<span style="color: #008000; font-weight: bold">body</span>&gt;
+&lt;/<span style="color: #008000; font-weight: bold">html</span>&gt;
 </pre></div>
 <p>
 Note that the template requires
@@ -372,9 +391,9 @@ application we customize the template:
    <code>Differential Equations</code>.</li>
 </ul>
 
-DocOnce features a <a href="https://github.com/hplgit/doconce/blob/master/bundled/html_styles/style_github_minimal/template_github_minimal.html" target="_self">GitHub minimal template</a> that you can adapt to your own purposes.
+DocOnce features a <a href="https://github.com/doconce/doconce/blob/master/bundled/html_styles/style_github_minimal/template_github_minimal.html" target="_self">GitHub minimal template</a> that you can adapt to your own purposes.
 
-<h2 id="___sec6">Step 5: Embed your HTML document in the template </h2>
+<h2 id="___sec6" class="anchor">Step 5: Embed your HTML document in the template </h2>
 
 <p>
 We can now use DocOnce to insert our document <code>mydoc.html</code>,
@@ -385,7 +404,7 @@ is used as example. We run
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">doconce format html mydoc --html_template=template_minimal.html
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>doconce format html mydoc --html_template=template_minimal.html
 </pre></div>
 <p>
 The result is a file <a href="mydoc_github_pygmentized.html" target="_self"><tt>mydoc.html</tt></a> where
@@ -399,13 +418,13 @@ The result is a file <a href="mydoc_github_pygmentized.html" target="_self"><tt>
 Here is the <a href="mydoc_github.html" target="_self">visual result</a>:
 
 <p>
-<center><p><img src="fig/github_html.png" align="bottom" width=900></p></center>
+<br /><br /><center><p><img src="fig/github_html.png" align="bottom" width=900></p></center><br /><br />
 
 <p>
 The original text file <code>mydoc.do.txt</code> has now been transformed
 to a web page with fancy design!
 
-<h1 id="___sec7">Making a template from Vortex pages at the University of Oslo </h1>
+<h1 id="___sec7" class="anchor">Making a template from Vortex pages at the University of Oslo </h1>
 
 <p>
 As another example, we want to make web pages that has the
@@ -417,7 +436,7 @@ is huge. Here is a glimpse:
 <p>
 
 <!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">    &lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; media=&quot;all&quot; href=&quot;/vrtx/decorating/resources/dist/style/style.css&quot; /&gt;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>    &lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; media=&quot;all&quot; href=&quot;/vrtx/decorating/resources/dist/style/style.css&quot; /&gt;
     &lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; media=&quot;all&quot; href=&quot;/vrtx/decorating/resources/dist/www.uio.no/logos-eng/logos.css&quot; /&gt;
     &lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; media=&quot;print&quot; href=&quot;/vrtx/decorating/resources/dist/style/print.css&quot; /&gt;
     &lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; media=&quot;handheld&quot; href=&quot;/vrtx/decorating/resources/dist/style/handheld.css&quot;/&gt;
@@ -464,16 +483,16 @@ as a template:
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">doconce format html mydoc --html_template=mynewcoursetemplate.html
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>doconce format html mydoc --html_template=mynewcoursetemplate.html
 </pre></div>
 <p>
 Here is <a href="mydoc_uio.html" target="_self">the result</a>.
 
 <p>
-<center><p><img src="fig/uio_html.png" align="bottom" width=900></p></center>
+<br /><br /><center><p><img src="fig/uio_html.png" align="bottom" width=900></p></center><br /><br />
 
 <p>
-It really looks that we are inside the Vortex web system at the
+It really looks like we are inside the Vortex web system at the
 University of Oslo and all the links to <em>Student Life</em>, <em>People</em>,
 etc. work.
 
@@ -484,24 +503,24 @@ is stored in XML files.  It is somewhat remarkable that the HTML
 rendered from these XML files can be copied so easily and used as
 templates for web documents anywhere else.
 
-<h1 id="___sec8">Using the Vagrant template </h1>
+<h1 id="___sec8" class="anchor">Using the Vagrant template </h1>
 
 <p>
 Besides the GitHub "minimal" theme, DocOnce comes with a template
-<a href="https://github.com/hplgit/doconce/blob/master/bundled/html_styles/style_vagrant/template_vagrant.html" target="_self"><tt>template_vagrant.html</tt></a>
+<a href="https://github.com/doconce/doconce/blob/master/bundled/html_styles/style_vagrant/template_vagrant.html" target="_self"><tt>template_vagrant.html</tt></a>
 adopted from
 the style in the original documentation of the <a href="http://docs.vagrantup.com/v1/docs/getting-started/index.html" target="_self">Vagrant</a> virtual machine
 tool.
 
 <p>
-<center><p><img src="fig/vagrant_web.png" align="bottom" width=900></p></center>
+<br /><br /><center><p><img src="fig/vagrant_web.png" align="bottom" width=900></p></center><br /><br />
 
 <p>
 This template is easy to adopt to a particular set
 of web pages. The plain template looks as
 
 <p>
-<center><p><img src="fig/template_vagrant.png" align="bottom" width=900></p></center>
+<br /><br /><center><p><img src="fig/template_vagrant.png" align="bottom" width=900></p></center><br /><br />
 
 <p>
 There are several elements in the template:
@@ -531,7 +550,7 @@ done by
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">doconce format html mydoc.do.txt --html_style=bootstrap \
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>doconce format html mydoc.do.txt --html_style=bootstrap \
         --html_template=template_vagrant.html
 </pre></div>
 <p>
@@ -539,12 +558,12 @@ The resulting <a href="mydoc_vagrant_pygmentized.html" target="_self">HTML file<
 a <a href="mydoc_vagrant.html" target="_self">nice look</a>:
 
 <p>
-<center><p><img src="fig/vagrant_html.png" align="bottom" width=900></p></center>
+<br /><br /><center><p><img src="fig/vagrant_html.png" align="bottom" width=900></p></center><br /><br />
 
-<h1 id="___sec9">Summary </h1>
+<h1 id="___sec9" class="anchor">Summary </h1>
 
 <p>
-We have seen have to write web pages in a text-like format, with full
+We have seen how to write web pages in a text-like format, with full
 support of LaTeX mathematics and nicely typeset (pygmentized) computer code.
 These pages can easily be embedded in various fancy HTML styles by
 simply grabbing a web page with the desired style and editing it as
@@ -553,16 +572,16 @@ text in the template.
 
 <p>
 However, embedding DocOnce documents in fancy web pages is just <em>one</em>
-technique to achive nice web designs. DocOnce features Bootstrap and
+technique to achieve nice web designs. DocOnce features Bootstrap and
 Sphinx HTML styles, which offer a lot of different designs, see our
-<a href="http://hplgit.github.io/doconce/doc/pub/bootstrap/index.html" target="_self">Bootstrap demo</a> and our extensive <a href="http://hplgit.github.com/teamods/writing_reports/index.html" target="_self">report demo</a>.
+<a href="http://doconce.github.io/doconce/doc/pub/bootstrap/index.html" target="_self">Bootstrap demo</a> and our extensive <a href="http://doconce.github.com/teamods/writing_reports/index.html" target="_self">report demo</a>.
 
 <!-- ------------------- end of main content --------------- -->
 
 </div>  <!-- end container -->
 <!-- include javascript, jQuery *first* -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap footer
 <footer>

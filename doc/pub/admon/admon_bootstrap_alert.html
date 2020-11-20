@@ -1,20 +1,40 @@
 <!--
 Automatically generated HTML file from DocOnce source
-(https://github.com/hplgit/doconce/)
+(https://github.com/doconce/doconce/)
 -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Demo of admonition styles in DocOnce">
 
 <title>Demo of admonition styles in DocOnce</title>
 
 <!-- Bootstrap style: bootswatch_readable -->
-<link href="http://netdna.bootstrapcdn.com/bootswatch/3.1.1/readable/bootstrap.min.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/readable/bootstrap.min.css" rel="stylesheet">
 <!-- not necessary
-<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 -->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:64px;      /* fixed header height for style bootswatch_readable */
+  margin:-64px 0 0; /* negative fixed header height */
+}
+</style>
 
 
 </head>
@@ -57,6 +77,7 @@ MathJax.Hub.Config({
     </button>
     <a class="navbar-brand" href="admon_bootstrap_alert.html">Demo of admonition styles in DocOnce</a>
   </div>
+
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
@@ -95,7 +116,7 @@ MathJax.Hub.Config({
 
 <br>
 <p>
-<center><h4>Oct 5, 2015</h4></center> <!-- date -->
+<center><h4>Nov 20, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <b>Summary.</b> This note demonstrates how admonitions look like in the output format
@@ -104,7 +125,7 @@ MathJax.Hub.Config({
 <p>
 </div> <!-- end jumbotron -->
 
-<h1 id="___sec0">The four main types of admonitions </h1>
+<h1 id="___sec0" class="anchor">The four main types of admonitions </h1>
 
 <p>
 Key options when compiling this document were
@@ -112,7 +133,7 @@ Key options when compiling this document were
 <p>
 
 <!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">--html_style=bootswatch_readable --html_admon=bootstrap_alert
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>--html_style=bootswatch_readable --html_admon=bootstrap_alert
 </pre></div>
 <p>
 Here is the warning admon:
@@ -124,7 +145,7 @@ Most math systems will give fatal errors if you divide by zero.
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%">Terminal&gt; python -c &#39;print 4/0&#39;
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; python -c &#39;print 4/0&#39;
 Traceback (most recent call last):
   File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;
 ZeroDivisionError: integer division or modulo by zero
@@ -144,7 +165,7 @@ by \( f'(x) \).
 Question admon (without title).
 
 <p>
-<div class="alert alert-block alert-info alert-text-normal"><b>Question.</b>
+<div class="alert alert-block alert-info alert-text-normal"><b>Question</b>
 What are the admon options for <code>doconce format html</code>?
 
 <p>
@@ -157,7 +178,7 @@ What are the admon options for <code>doconce format html</code>?
 Summary admon:
 
 <p>
-<div class="alert alert-block alert-warning alert-text-normal"><b>Summary.</b>
+<div class="alert alert-block alert-warning alert-text-normal"><b>Summary</b>
 The most popular methods for solving algebraic equations
 
 $$ f(x) = 0 $$
@@ -192,9 +213,20 @@ as in <code>ProblemClass</code>.
 
 
 <p>
-The four main admons are warning, notice, question, and summary.
+The four main admons are warning, notice, question, and summary, but you
+may introduce other boxes by utilizing the title, as explained below.
 
-<h1 id="___sec1">The block, quote and plain box environment </h1>
+<p>
+<div class="alert alert-block alert-success alert-text-normal"><b>The title of the box is fully customizable</b>
+This means that if you want
+different types of boxes, e.g. a <em>detour</em> box and a <em>tip</em> box, you can just
+open introduce the convention that detour applies the summary box and
+starts with 'Detour:' in the title, while the notice box is used for
+tip boxes and as a title starting with 'Tip:'.
+</div>
+
+
+<h1 id="___sec1" class="anchor">The block, quote and plain box environment </h1>
 
 <p>
 DocOnce features a <code>block</code> environment with or without title.
@@ -206,7 +238,7 @@ Blocks are often used in slides to frame a collection of things.
 
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Block with title.</b>
+<div class="alert alert-block alert-success alert-text-normal"><b>Block with title</b>
 Blocks can contain text, math, code, figures, movies.
 </div>
 
@@ -245,8 +277,8 @@ $$ E = mc^2 $$
 
 </div>  <!-- end container -->
 <!-- include javascript, jQuery *first* -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap footer
 <footer>
