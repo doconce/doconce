@@ -12,11 +12,11 @@ The title, optionally with authors, date, table of contents, abstract
 and/or a short introduction is typeset using the Jumbotron environment
 from Bootstrap, resulting in large fonts on a gray background.
 
-If a `!split` command is used before the first section heading or
-`TOC: on` instruction, a button with `Read...` and a link to the next
+If a `!split` command is used before the first section heading or the
+`TOC: on` instruction is provided, a button with `Read...` and a link to the next
 page is inserted if the document is split using `doconce split_html`.
-This construction results in a short Bootstrap main page that has
-become very popular on web.  The `--html_bootstrap_jumbotron=value`
+This construction results in a short Bootstrap main page, which has
+become very popular on the web.  The `--html_bootstrap_jumbotron=value`
 option can be used to adjust the jumbotron: `value` can be `on`
 (default), `off` (to turn the gray background and large fonts off), or
 `h2` (to replace the large font in the document title by a smaller
@@ -91,14 +91,14 @@ are some additional features:
    intro/abstract, and an optional button for reading more (on the
    next page.
  * Possibility to define a local grid of elements in the document to
-   align admons, figures, code, or other elements horisontally.
+   align admons, figures, code, or other elements horizontally.
  * Other layouts of admons [^admons].
  * Footnotes feature a tooltip functionality such that hovering the mouse
    over the footnote brings up a little window with the footnote
    (try it on the footnote after *admons* right above!).
 
 !bnotice Quick generation of websites
-To make a typical website with Bootstrap layout and different type of
+To make a typical website with Bootstrap layout and different types of
 pages for different things, just
 
  * write a main document in DocOnce, insert a `!split` before the first section

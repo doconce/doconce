@@ -45,6 +45,9 @@ cp admon.ipynb admon_${admon_style}.ipynb
 done
 
 doconce format sphinx admon --sphinx_keep_splits "OPTIONS=None"
+# Problem reproducible after: `git clean -fd && rm -rf sphinx-testdoc`
+#Hack: because doconce sphinx_dir ony works the second time (after an error), trigger that error by creating a bogus conf.py in ./
+touch conf.py
 doconce sphinx_dir theme=default admon
 python automake_sphinx.py
 cd sphinx-rootdir
