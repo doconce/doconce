@@ -106,7 +106,7 @@ different types of boxes, e.g. a *detour* box and a *tip* box, you can just
 open introduce the convention that detour applies the summary box and
 starts with 'Detour:' in the title, while the notice box is used for
 tip boxes and as a title starting with 'Tip:'.
-
+!enotice
 
 ======= The block, quote and plain box environment =======
 
