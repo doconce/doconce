@@ -41,9 +41,8 @@ Terminal> doconce format html admon --html_style=bootswatch_readable --html_admo
 % endfor
 
 ======= IPython notebook =======
-
 % for style in ipynb_admons.split():
---ipynb_admon="${style}": "http://nbviewer.ipython.org/url/hplgit.github.io/doconce/doc/pub/admon/admon_${style}.ipynb"
+--ipynb_admon="${style}": "http://nbviewer.jupyter.org/url/doconce.github.io/doconce/doc/pub/admon/admon_${style}.ipynb"
 
 !bc sys
 Terminal> doconce format ipynb admon --ipynb_admon=${style}
