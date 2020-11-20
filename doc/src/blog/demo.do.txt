@@ -47,9 +47,9 @@ Here is some simple mathematics:
 |bt
 \begin{align}
 f(x) &= \frac{1}{1 + x^2},
-label{eq:f}\\
+label\{eq:f}\\
 f'(x) & =-\frac{2x}{(1+x^2)^2}
-label{eq:df}
+label\{eq:df}
 \end{align}
 |et
 which can be implemented in a computer code:
@@ -58,7 +58,7 @@ which can be implemented in a computer code:
 
 A plot of the function $f(x)$
 # #if FORMAT in ("html", "latex", "pdflatex")
-defined in (ref{eq:f})
+defined in (ref\{eq:f})
 # #endif
 appears below.
 
@@ -67,7 +67,7 @@ FIGURE: [https://raw.github.com/doconce/doconce/master/doc/src/blog/f_plot.png, 
 Here is the derivative $f'(x)$ (with figure caption and label, which enables
 referring to the figure later):
 
-FIGURE: [https://raw.github.com/doconce/doconce/master/doc/src/blog/df_plot.png, width=400] The derivative of Runge's function. label{fig:Runge:dfdx}
+FIGURE: [https://raw.github.com/doconce/doconce/master/doc/src/blog/df_plot.png, width=400] The derivative of Runge's function. label\{fig:Runge:dfdx}
 
 Movies can also be embedded:
 
