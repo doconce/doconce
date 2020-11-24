@@ -1,19 +1,20 @@
 <!--
 Automatically generated HTML file from DocOnce source
-(https://github.com/hplgit/doconce/)
+(https://github.com/doconce/doconce/)
 -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Demo of the Bootstrap style">
 
 <title>Demo of the Bootstrap style</title>
 
 <!-- Bootstrap style: bootstrap -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- not necessary
-<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 -->
 
 <style type="text/css">
@@ -30,7 +31,7 @@ Automatically generated HTML file from DocOnce source
 .anchor::before {
   content:"";
   display:block;
-  height:50px; /* fixed header height*/
+  height:50px;      /* fixed header height for style bootstrap */
   margin:-50px 0 0; /* negative fixed header height */
 }
 </style>
@@ -40,7 +41,8 @@ Automatically generated HTML file from DocOnce source
 
 <!-- tocinfo
 {'highest level': 0,
- 'sections': [('More details on writing DocOnce documents with Bootstrap layout',
+ 'sections': [('More details on writing DocOnce documents with Bootstrap '
+               'layout',
                0,
                None,
                '___sec0'),
@@ -129,7 +131,7 @@ documents. To get the <code>journal</code> Bootswatch style, for instance, run
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Terminal&gt; doconce format html mydoc --html_style=bootswatch_journal
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format html mydoc --html_style=bootswatch_journal
 </pre></div>
 <p>
 The title, optionally with authors, date, table of contents, abstract
@@ -137,11 +139,11 @@ and/or a short introduction is typeset using the Jumbotron environment
 from Bootstrap, resulting in large fonts on a gray background.
 
 <p>
-If a <code>!split</code> command is used before the first section heading or
-<code>TOC: on</code> instruction, a button with <code>Read...</code> and a link to the next
+If a <code>!split</code> command is used before the first section heading or the
+<code>TOC: on</code> instruction is provided, a button with <code>Read...</code> and a link to the next
 page is inserted if the document is split using <code>doconce split_html</code>.
-This construction results in a short Bootstrap main page that has
-become very popular on web.  The <code>--html_bootstrap_jumbotron=value</code>
+This construction results in a short Bootstrap main page, which has
+become very popular on the web.  The <code>--html_bootstrap_jumbotron=value</code>
 option can be used to adjust the jumbotron: <code>value</code> can be <code>on</code>
 (default), <code>off</code> (to turn the gray background and large fonts off), or
 <code>h2</code> (to replace the large font in the document title by a smaller
@@ -171,8 +173,8 @@ font).
 
 </div>  <!-- end container -->
 <!-- include javascript, jQuery *first* -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap footer
 <footer>

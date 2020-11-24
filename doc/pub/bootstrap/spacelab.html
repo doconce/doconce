@@ -1,19 +1,20 @@
 <!--
 Automatically generated HTML file from DocOnce source
-(https://github.com/hplgit/doconce/)
+(https://github.com/doconce/doconce/)
 -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Demo of the Bootstrap style">
 
 <title>Demo of the Bootstrap style</title>
 
 <!-- Bootstrap style: bootswatch_spacelab -->
-<link href="http://netdna.bootstrapcdn.com/bootswatch/3.1.1/spacelab/bootstrap.min.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/spacelab/bootstrap.min.css" rel="stylesheet">
 <!-- not necessary
-<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 -->
 
 <style type="text/css">
@@ -34,7 +35,7 @@ pre { color: inherit; background-color: transparent; }
 .anchor::before {
   content:"";
   display:block;
-  height:45px; /* fixed header height*/
+  height:50px;      /* fixed header height for style bootswatch_spacelab */
   margin:-50px 0 0; /* negative fixed header height */
 }
 </style>
@@ -44,7 +45,8 @@ pre { color: inherit; background-color: transparent; }
 
 <!-- tocinfo
 {'highest level': 0,
- 'sections': [('More details on writing DocOnce documents with Bootstrap layout',
+ 'sections': [('More details on writing DocOnce documents with Bootstrap '
+               'layout',
                0,
                None,
                '___sec0'),
@@ -132,7 +134,7 @@ documents. To get the <code>journal</code> Bootswatch style, for instance, run
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Terminal&gt; doconce format html mydoc --html_style=bootswatch_journal
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format html mydoc --html_style=bootswatch_journal
 </pre></div>
 <p>
 The title, optionally with authors, date, table of contents, abstract
@@ -140,11 +142,11 @@ and/or a short introduction is typeset using the Jumbotron environment
 from Bootstrap, resulting in large fonts on a gray background.
 
 <p>
-If a <code>!split</code> command is used before the first section heading or
-<code>TOC: on</code> instruction, a button with <code>Read...</code> and a link to the next
+If a <code>!split</code> command is used before the first section heading or the
+<code>TOC: on</code> instruction is provided, a button with <code>Read...</code> and a link to the next
 page is inserted if the document is split using <code>doconce split_html</code>.
-This construction results in a short Bootstrap main page that has
-become very popular on web.  The <code>--html_bootstrap_jumbotron=value</code>
+This construction results in a short Bootstrap main page, which has
+become very popular on the web.  The <code>--html_bootstrap_jumbotron=value</code>
 option can be used to adjust the jumbotron: <code>value</code> can be <code>on</code>
 (default), <code>off</code> (to turn the gray background and large fonts off), or
 <code>h2</code> (to replace the large font in the document title by a smaller
@@ -176,7 +178,7 @@ page number is seen.
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Terminal&gt; doconce format html mydoc --html_style=bootstrap_bluegray
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format html mydoc --html_style=bootstrap_bluegray
 Terminal&gt; doconce split_html mydoc --pagination
 </pre></div>
 <p>
@@ -247,7 +249,7 @@ are some additional features:
    intro/abstract, and an optional button for reading more (on the
    next page.</li>
  <li> Possibility to define a local grid of elements in the document to
-   align admons, figures, code, or other elements horisontally.</li>
+   align admons, figures, code, or other elements horizontally.</li>
  <li> Other layouts of admons <button type="button" class="btn btn-primary btn-xs" rel="tooltip" data-placement="top" title="&quot;Admon&quot; is a short form for admonition: a box that highlights some text, e.g., as extra material or as particularly important material. DocOnce supports different types of admonitions: notice, question, summary, and warning. These can have an optional title, and some admonition styles will also include an icon image. In addition, there is a block admonition without any icon, but with an optional title."><a href="#def_footnote_1" id="link_footnote_1" style="color: white">1</a></button>.</li>
  <li> Footnotes feature a tooltip functionality such that hovering the mouse
    over the footnote brings up a little window with the footnote
@@ -260,7 +262,7 @@ are some additional features:
   </div>
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-To make a typical website with Bootstrap layout and different type of
+To make a typical website with Bootstrap layout and different types of
 pages for different things, just
 
 <ul>
@@ -296,7 +298,7 @@ Typical commands for producing Bootstrap or Bootswatch layouts are
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Terminal&gt; doconce format html mydoc --html_style=bootstrap
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format html mydoc --html_style=bootstrap
 Terminal&gt; doconce format html mydoc --html_style=bootswatch
 Terminal&gt; doconce format html mydoc --html_style=bootstrap --admon_style=bootstrap_panel
 Terminal&gt; doconce format html mydoc --html_style=bootswatch_superhero --admon_style=bootstrap_panel
@@ -315,7 +317,7 @@ Below are some examples on admons.
 <p>
 
 <!-- code=ipy (!bc ipy) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000080; font-weight: bold">In [1]: </span><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span><span style="color: #000080; font-weight: bold">In [1]: </span><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 
 <span style="color: #000080; font-weight: bold">In [2]: </span>x <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">0</span>, <span style="color: #666666">4*</span>np<span style="color: #666666">.</span>pi, <span style="color: #666666">11</span>)
 
@@ -412,7 +414,7 @@ the following syntax in case of a 1x3 grid:
 <p>
 
 <!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span># begin-grid-area
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span># begin-grid-area
 
 !bslidecell 00
 ...
@@ -453,7 +455,7 @@ be lost because it appears outside the slidecell environments:
 <p>
 
 <!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span># begin-grid-area
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span># begin-grid-area
 
 !bslidecell 00
 ...
@@ -518,7 +520,7 @@ The Python implementation reads
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">math</span> <span style="color: #008000; font-weight: bold">import</span> exp, sin
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">math</span> <span style="color: #008000; font-weight: bold">import</span> exp, sin
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">f</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> exp(<span style="color: #666666">-</span>a<span style="color: #666666">*</span>x)<span style="color: #666666">*</span>sin(w<span style="color: #666666">*</span>x)
@@ -538,10 +540,10 @@ With a main program
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>a <span style="color: #666666">=</span> <span style="color: #666666">1</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>a <span style="color: #666666">=</span> <span style="color: #666666">1</span>
 <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">math</span> <span style="color: #008000; font-weight: bold">import</span> pi
 w <span style="color: #666666">=</span> pi
-<span style="color: #008000; font-weight: bold">print</span> f(<span style="color: #666666">0</span>)
+<span style="color: #008000">print</span> f(<span style="color: #666666">0</span>)
 </pre></div>
 <p>
 we can run the program:
@@ -549,7 +551,7 @@ we can run the program:
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Terminal&gt; python prog.py
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; python prog.py
 0
 </pre></div>
 <p>
@@ -596,7 +598,7 @@ The Python implementation reads
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">math</span> <span style="color: #008000; font-weight: bold">import</span> exp, sin
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">math</span> <span style="color: #008000; font-weight: bold">import</span> exp, sin
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">f</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> exp(<span style="color: #666666">-</span>a<span style="color: #666666">*</span>x)<span style="color: #666666">*</span>sin(w<span style="color: #666666">*</span>x)
@@ -622,10 +624,10 @@ With a main program
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>a <span style="color: #666666">=</span> <span style="color: #666666">1</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>a <span style="color: #666666">=</span> <span style="color: #666666">1</span>
 <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">math</span> <span style="color: #008000; font-weight: bold">import</span> pi
 w <span style="color: #666666">=</span> pi
-<span style="color: #008000; font-weight: bold">print</span> f(<span style="color: #666666">0</span>)
+<span style="color: #008000">print</span> f(<span style="color: #666666">0</span>)
 </pre></div>
 <p>
 we can run the program:
@@ -633,7 +635,7 @@ we can run the program:
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Terminal&gt; python prog.py
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; python prog.py
 0
 </pre></div>
 <p>
@@ -648,8 +650,8 @@ we can run the program:
 
 </div>  <!-- end container -->
 <!-- include javascript, jQuery *first* -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap footer
 <footer>
