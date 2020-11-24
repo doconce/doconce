@@ -14,7 +14,7 @@ doconce format html mydoc.do.txt --html_template=github_template/template_github
 pygmentize -f html -O full,style=emacs -o mydoc_github_pygmentized.html -l html mydoc.html
 pygmentize -f html -O full,style=emacs -o template_github_minimal_pygmentized.html -l html github_template/template_github_minimal.html
 cp mydoc.html $pub/mydoc_github.html
-cp -r github_template mydoc_github_pygmentized.html $pub/
+cp -r mydoc_github_pygmentized.html $pub/
 
 # Utilize the template made from 5620.html
 doconce format html mydoc.do.txt --html_template=uio/template_5620.html

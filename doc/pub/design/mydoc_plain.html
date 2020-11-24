@@ -1,11 +1,12 @@
 <!--
 Automatically generated HTML file from DocOnce source
-(https://github.com/hplgit/doconce/)
+(https://github.com/doconce/doconce/)
 -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title></title>
 
@@ -41,14 +42,14 @@ div { text-align: justify; text-justify: inter-word; }
 
 <!-- tocinfo
 {'highest level': 1,
- 'sections': [(" Solve the world's simplest differential equation ",
+ 'sections': [("Solve the world's simplest differential equation",
                1,
                None,
                '___sec0'),
-              (' Mathematical problem ', 2, None, '___sec1'),
-              (' Numerical solution method ', 2, None, '___sec2'),
-              (' Implementation ', 2, None, '___sec3'),
-              (' Numerical experiments ', 2, None, '___sec4')]}
+              ('Mathematical problem', 2, None, '___sec1'),
+              ('Numerical solution method', 2, None, '___sec2'),
+              ('Implementation', 2, None, '___sec3'),
+              ('Numerical experiments', 2, None, '___sec4')]}
 end of tocinfo -->
 
 <body>
@@ -73,7 +74,8 @@ MathJax.Hub.Config({
 <!-- ------------------- main content ---------------------- -->
 
 <p>
-<center><h4>Mar 15, 2015</h4></center> <!-- date -->
+<center><h4>Nov 23, 2020</h4></center> <!-- date -->
+<br>
 
 <h1 id="___sec0">Solve the world's simplest differential equation </h1>
 
@@ -107,7 +109,8 @@ $$
 Here, \( n=0,1,\ldots,N-1 \).
 
 <p>
-<b>Hint.</b>\n
+<b>Hint.</b>
+
 Set up the Forward Euler, Backward Euler, and the Crank-Nicolson (or
 Midpoint) schemes first. Then generalize to the \( \theta \)-rule above.
 
@@ -117,12 +120,12 @@ Midpoint) schemes first. Then generalize to the \( \theta \)-rule above.
 
 <p>
 The numerical method is implemented in a Python function
-<code>solver</code> (found in the <a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py" target="_self"><tt>decay_mod</tt></a> module):
+<code>solver</code> (found in the <a href="https://github.com/doconce/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py" target="_self"><tt>decay_mod</tt></a> module):
 
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">import</span> linspace, zeros
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">import</span> linspace, zeros
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">solver</span>(I, a, T, dt, theta):
     <span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Solve u&#39;=-a*u, u(0)=I, for t in (0,T] with steps of dt.&quot;&quot;&quot;</span>
