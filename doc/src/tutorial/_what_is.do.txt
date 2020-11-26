@@ -20,18 +20,18 @@ Here are some DocOnce features:
     LaTeX mathematics*, where the output is desired in different formats
     such as LaTeX, pdfLaTeX, Sphinx, HTML,
     MediaWiki, blogger.com, and wordpress.com.
-    A piece of DocOnce text can enter (e.g.) a classical
+    A piece of DocOnce text can be included in a classical
     science book, an ebook, a web document, and a blog post.
   * DocOnce offers a range of HTML designs, including many
     Bootstrap and Sphinx styles and "solarized color schemes": "http://ethanschoonover.com/solarized".
     A special feature is the many styles for admonitions (boxes for
     warning, notice, question, etc.) in HTML and LaTeX.
-  * DocOnce targets in particular large book projects where many different
+  * DocOnce targets large book projects where many different
     pieces of text and software can be assembled in different ways
     and published in different formats for different devices
     (see "example": "http://hplgit.github.io/setup4book-doconce/doc/web/index.html").
   * DocOnce enables authors who write for many types of media
-    (blog posts, wikis, LaTeX manuscripts, Sphinx, HTML) to use a common
+    (blog posts, wikis, LaTeX manuscripts, Sphinx, HTML) using a common
     source language such that lots of different pieces can easily be
     brought together later to form a coherent (big) document.
   * DocOnce has good support for copying computer code
@@ -49,9 +49,9 @@ Here are some DocOnce features:
     LaTeX and HTML.
   * Compared to the related tools Sphinx and Markdown, DocOnce
     allows more types of equations (especially systems of
-    equations with references), has more flexible
-    inclusion of source code, integrates preprocessors, has
-    special support for exercises, and produces
+    equations with references). It has more flexible
+    inclusion of source code, integration of preprocessors and
+    special support for exercises. Finally, it produces
     cleaner LaTeX and HTML output.
 
 # #ifdef EXTRA
@@ -63,28 +63,28 @@ DocOnce was particularly written for the following sample applications:
     (see "example": "http://hplgit.github.io/setup4book-doconce/doc/web/index.html").
   * Software documentation, primarily Python doc strings, which one wants
     to appear as plain untagged text for viewing in Pydoc, as reStructuredText
-    for use with Sphinx, as wiki text when publishing the software at
-    web sites, and as LaTeX integrated in, e.g., a thesis.
+    for use with Sphinx, as wiki text when publishing the software on
+    web sites, and as LaTeX integrated in a large document, such as a thesis.
 
-  * Quick memos, which start as plain text in email, then some small
-    amount of DocOnce tagging is added, before the memos can appear as
+  * Quick memos, which start as plain text in email, can be enhanced with a little
+  DocOnce tagging to have them appear as
     Sphinx web pages, MS Word documents, or in wikis.
 # #endif
 
 __History.__ The DocOnce development started in 2006 at a time when
-most popular markup languages used quite some tagging (LaTeX,
+most popular markup languages used lots of tagging (LaTeX,
 reStructuredText, HTML).  Later, almost untagged markup languages
 became popular, especially "Markdown":
 "http://daringfireball.net/projects/markdown/" and its sisters
 "MultiMarkdown": "http://fletcherpenney.net/multimarkdown/",
-"Pandoc-extended Markdown":"http://johnmacfarlane.net/pandoc/", and
-"Markua": "https://leanpub.com/markua/".  DocOnce looks much like
-Markdown and is in particular close to the functionality and nature of
+"Pandoc-extended Markdown": "http://johnmacfarlane.net/pandoc/", and
+"Markua": "https://leanpub.com/markua/".  DocOnce looks like
+Markdown, and is close in functionality and nature to
 MultiMarkdown. The advantage of DocOnce, however, is a series of
 features for supporting both small and large documents (books in
 particular) with much mathematics and computer code. While Markdown
 tools are heavily geared toward HTML, DocOnce has strong support for
-LaTeX since this is the dominating format for books and articles
+LaTeX since this is the dominate format for books and articles
 on mathematical subjects.
 DocOnce can also output Sphinx (not supported by Pandoc or
 MultiMarkdown), a format that is very attractive for presenting
@@ -97,7 +97,7 @@ __Disclaimer.__ DocOnce applies *text transformations*, mostly via
 regular expressions. This is not a fool-proof method of translation
 compared to real parsing. Moreover, the possibility for tweaking the
 layout in the DocOnce document is obviously limited (at least compared
-to LaTeX and HTML) since the text can go to all sorts of markup
+to LaTeX and HTML) since the text can be converted to all sorts of markup
 languages. This disadvantage can be quite easily compensated, however,
 by clever use of the programmable Mako preprocessor used by DocOnce
 and by automatic editing of the generated output (e.g., via regular
