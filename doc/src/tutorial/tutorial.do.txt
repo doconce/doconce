@@ -9,15 +9,15 @@ DATE: today
    to choose the typesetting format? That is, to choose between plain
    (email-like) text, wiki, Word/OpenOffice, LaTeX, HTML,
    reStructuredText, Sphinx, XML, etc.  Would it be convenient to
-   start with some very simple text-like format that easily converts
+   start with some very simple text that can easily be converted
    to the formats listed above, and then at some later stage
-   eventually go with a particular format?
- * Do you need to write documents in varying formats but find it
+   go with a particular format?
+ * Do you need to write documents in different formats but find it
    difficult to remember all the typesetting details of various
    formats like "LaTeX":"http://refcards.com/docs/silvermanj/amslatex/LaTeXRefCard.v2.0.pdf", "HTML":"http://www.htmlcodetutorial.com/", "reStructuredText":"http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html", "Sphinx":"http://sphinx.pocoo.org/contents.html", and "wiki":"http://code.google.com/p/support/wiki/WikiSyntax"? Would it be convenient
    to generate the typesetting details of a particular format from a
    very simple text-like format with minimal tagging?
- * Do you have the same information scattered around in different
+ * Do you have the same information scattered in different
    documents in different typesetting formats? Would it be a good idea
    to write things once, in one format, stored in one place, and
    include it anywhere?
@@ -29,20 +29,20 @@ If any of these questions are of interest, you should keep on reading.
 
  * Strong support for texts with much math and code.
  * Same source can produce a variety of output formats:
-   * "traditional LaTeX B/W documents for printing": "http://doconce.github.com/teamods/writing_reports/_static/report_4printing.pdf"
-   * "color LaTeX PDF documents": "http://doconce.github.com/teamods/writing_reports/_static/report.pdf"
-   * "color LaTeX PDF documents for viewing on small phones": "http://doconce.github.com/teamods/writing_reports/_static/report_4phone.pdf"
-   * "Sphinx HTML documents with 20+ different designs": "http://doconce.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal1/report.html"
-   * "Plain HTML": "http://doconce.github.com/teamods/writing_reports/_static/report.html", "Boostrap HTML": "http://doconce.github.com/teamods/writing_reports/_static/report_bootstrap_bluegray.html", or with a "template": "http://doconce.github.com/teamods/writing_reports/_static/report_vagrant.html", or with "another template": "http://doconce.github.com/teamods/writing_reports/_static/report_github_minimal.html", or "solarized HTML": "http://doconce.github.com/teamods/writing_reports/_static/report_solarized3_light.html"
+   * "traditional LaTeX B/W documents for printing": "http://doconce.github.io/teamods/writing_reports/_static/report_4printing.pdf"
+   * "color LaTeX PDF documents": "http://doconce.github.io/teamods/writing_reports/_static/report.pdf"
+   * "color LaTeX PDF documents for viewing on small phones": "http://doconce.github.io/teamods/writing_reports/_static/report_4phone.pdf"
+   * "Sphinx HTML documents with 20+ different designs": "http://doconce.github.io/teamods/writing_reports/_static/sphinx-fenics_minimal1/report.html"
+   * "Plain HTML": "http://doconce.github.io/teamods/writing_reports/_static/report.html", "Boostrap HTML": "http://doconce.github.io/teamods/writing_reports/_static/report_bootstrap_bluegray.html", or with a "template": "http://doconce.github.io/teamods/writing_reports/_static/report_vagrant.html", or with "another template": "http://doconce.github.io/teamods/writing_reports/_static/report_github_minimal.html", or "solarized HTML": "http://doconce.github.io/teamods/writing_reports/_static/report_solarized3_light.html"
    * HTML for "Google": "http://doconce-report-demo.blogspot.no/" or "Wordpress": "http://doconcereportdemo.wordpress.com/" blog posts
    * "MediaWiki": "http://doconcedemo.shoutwiki.com/wiki/DocOnce_demo_page" (Wikipedia, Wikibooks, etc)
    * Markdown for further processing by Pandoc to a lot of formats
-   * "IPython notebook": "http://nbviewer.ipython.org/url/hplgit.github.com/teamods/writing_reports/_static/report.ipynb"
+   * "Jupyter notebook": "https://nbviewer.jupyter.org/url/hplgit.github.com/teamods/writing_reports/_static/report.ipynb"
    * Other formats include plain untagged text (for email),
      Creole wiki (for Bitbucket wikis), Google wiki (for Googlecode),
      and reStructuredText.
  * There is an exercise environment with many advanced features
-   such as subexercises and solutions. The document can be compiled
+   such as subexercises, hints and solutions. The document can be compiled
    with or without solutions.
  * With a preprocessor, Preprocess or Mako, one can include other
    documents (files), large portions of text can be defined in or out
@@ -55,9 +55,6 @@ If any of these questions are of interest, you should keep on reading.
    YouTube and Vimeo videos are automatically embedded in web documents.
  * Running text can quickly be edited to slide formats (reveal.js and deck.js,
    based on HTML5+CSS3).
- * Special exercise environments with support for hints, answers,
-   subexercises, etc.
- * Automatic inline embedding of YouTube and Vimeo movies.
  * Good support for admonitions in various LaTeX and HTML styles
    for warnings, questions, hints, remarks, summaries, etc.
 
@@ -116,7 +113,7 @@ not look fresh and modern on tablets and phones or big computer
 screens. For the latter type of media you need HTML-based documents
 with strong support for nice layouts. Tools like Sphinx, Markdown, or
 plain HTML with Bootstrap are then more appropriate than LaTeX, but
-involves a very different syntax.  DocOnce lets you write one text in
+these involve a very different syntax.  DocOnce lets you write text in
 one place and then generate the most appropriate language for the
 media you want to target.  DocOnce also has many extra features for
 supporting large documents with much code and mathematics, not found
@@ -135,8 +132,8 @@ Here is an example of some simple text written in the DocOnce format:
 
 === Finally a Subsubection Heading ===
 
-You can also have paragraphs with a paragraph heading surrounded
-by double underscores are the beginning of a line.
+You can also have paragraphs with a bolded paragraph heading. This is
+achieved by surrounding the heading with double underscores at the beginning of a line.
 
 __This is a paragraph heading.__
 And here comes the text.
@@ -174,7 +171,7 @@ __Hyperlinks.__
 URLs with a link word are possible, as in "hpl": "http://folk.uio.no/hpl".
 If the word is just URL, the URL itself becomes the link name,
 as in URL: "tutorial.do.txt". DocOnce distinguishes between paper
-and screen output. In traditional paper output, in PDF generated from LaTeX
+and screen output. In in PDF generated from LaTeX
 generated from DocOnce, the URLs of links appear as footnotes.
 With screen output, all links are clickable hyperlinks, except in
 the plain text format which does not support hyperlinks.
@@ -262,8 +259,8 @@ __Hyperlinks.__
 URLs with a link word are possible, as in "hpl": "http://folk.uio.no/hpl".
 If the word is just URL, the URL itself becomes the link name,
 as in URL: "tutorial.do.txt". DocOnce distinguishes between paper
-and screen output. In traditional paper output, in PDF generated from LaTeX
-generated from DocOnce, the URLs of links appear as footnotes.
+and screen output. In traditional paper output, PDF generated from LaTeX
+and DocOnce, the URLs of links appear as footnotes.
 With screen output, all links are clickable hyperlinks, except in
 the plain text format which does not support hyperlinks.
 
@@ -334,7 +331,7 @@ The result looks like this:
 {\partial v\over\partial t} &= \nabla\cdot(q(u)\nabla v) + g
 \end{align}
 !et
-Of course, such blocks only looks nice in formats with support
+Of course, such blocks only look nice in formats with support
 for LaTeX mathematics
 (this includes `latex`, `pdflatex`, `html`, `sphinx`, `ipynb`, `pandoc`,
 and `mwiki`). Simpler
@@ -383,11 +380,11 @@ A code block must come after some plain sentence (at least for successful
 output to `sphinx`, `rst`, and formats close to plain text),
 not directly after a section/paragraph heading or a table.
 
-Blocks of computer code has *named environments*, such as *pycod*. The *py*
+Blocks of computer code have *named environments*, such as *pycod*. The *py*
 stands for Python and *cod* indicates a code snippet that cannot be run
 without more code. Another example is *fpro*, *f* for Fortran and *pro* for
 a complete program that will run as it stands. There is support for
-code in C, C++, Fortran, Java, Python, Perl, Ruby, JavaScript, HTML, and LaTeX,
+code in C, C++, Fortran, Java, Python, Perl, Ruby, JavaScript, HTML, and LaTeX.
 
 # Note: the @@@CODE command starts in column 2 below such that we fool
 # DocOnce to drop copying the file...
@@ -406,9 +403,9 @@ duplicated in the documentation (important for the principle of
 avoiding copying information!) and once the software is updated, the
 next compilation of the document is up-to-date.
 
-__Inclusion of files.__ Another DocOnce document or any file can be
+__Inclusion of files.__ Another DocOnce document (or any file) can be
 included by writing `# #include "mynote.do.txt"` at the beginning of a
-line.  DocOnce documents have extension `do.txt`. The `do` part stands
+line.  DocOnce documents have a `do.txt` extension. The `do` part stands
 for `doconce`, while the trailing `.txt` denotes a text document so
 that editors gives you plain text editing capabilities.
 
@@ -452,7 +449,7 @@ Equation (ref{mysec:eq:Dudt}) is important in a number
 of contexts, see cite{Larsen_et_al_2002,Johnson_Friedman_2010a}.
 Also, cite{Miller_2000} supports such a view.
 
-As see in Figure ref{mysec:fig:myfig}, the key equation
+As seen in Figure ref{mysec:fig:myfig}, the key equation
 features large, smooth regions *and* abrupt changes.
 
 FIGURE: [fig/myfile, width=600 frac=0.9] My figure. label{mysec:fig:myfig}
@@ -469,7 +466,6 @@ be automatically converted to the simple Publish format.
 
 For further details on functionality and
 syntax we refer to the "DocOnce manual": "http://doconce.github.io/doconce/doc/pub/manual/html/".
-
 
 ======= From DocOnce to Other Formats =======
 label{doconce2formats}
@@ -554,8 +550,8 @@ Several popular slide formats are supported:
 
 Our "short scientific report":
 "http://doconce.github.io/teamods/writing_reports/index.html" is a good
-starting point for seeing how DocOnce documents are written and get a
-demonstration of the vast choice of output formats and settings that
+starting point to see how DocOnce documents are written and the vast choice
+of output formats and settings that
 are available.
 
 There is also a demo of different "slide formats":
