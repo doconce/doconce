@@ -8,6 +8,7 @@ pdflatex $name
 doconce format html $name
 
 doconce format sphinx $name
+touch conf.py
 doconce sphinx_dir $name
 python automake_sphinx.py
 

@@ -32,6 +32,7 @@ EOF
 
 # Sphinx
 system doconce format sphinx $name $options
+touch conf.py
 theme=alabaster
 theme=cbc
 system doconce sphinx_dir theme=$theme dirname=${name}-${theme} $name
