@@ -1,4 +1,4 @@
-TITLE: DocOnce Description
+TITLE: DocOnce Manual
 AUTHOR: Hans Petter Langtangen {copyright} at Center for Biomedical Computing, Simula Research Laboratory & Department of Informatics, University of Oslo
 AUTHOR: Kristian Gregorius Hustad {copyright} at Centre for Computing in Science Education, University of Oslo & Department of Informatics, University of Oslo
 DATE: today
@@ -44,7 +44,6 @@ TOC: on
 
 !split
 ===== Demos and Documentation =====
-
 idx{demos}
 
 !bwarning This guide is for the experienced DocOnce writer!
@@ -72,7 +71,7 @@ sensitive to whitespace and require a monospace font in the text editor.)
 !ewarning
 
 !bnotice Tip: Read the FAQ!
-A lot of tips and problems have over the years been collected in the
+Over the years, a lot of tips and problems have been collected in the
 Troubleshooting and FAQ document, available in
 "Sphinx": "http://doconce.github.io/doconce/doc/pub/trouble/html/index.html",
 "HTML": "http://doconce.github.io/doconce/doc/pub/trouble/trouble.html", and
@@ -99,7 +98,7 @@ One can compare this source with the output in
 and
 "PDF": "http://doconce.github.io/doconce/doc/pub/tutorial/tutorial.pdf".
 The `make.sh` script in the same directory
-tells in detail how the various versions were compiled.
+shows in detail how the various versions were compiled.
 
 The DocOnce source of the current manual is also found at the GitHub repository
 for DocOnce, in the file
@@ -125,7 +124,7 @@ sections, subsections, paragraphs, figures, movies, lists, etc.
 
 
 ===== Heading with title and author(s) =====
-
+idx{keywords!TITLE} idx{keywords!AUTHOR} idx{keywords!DATE}
 idx{`TITLE` keyword} idx{`AUTHOR` keyword} idx{`DATE` keyword}
 idx{author!email}
 idx{author!institution}
@@ -133,8 +132,8 @@ idx{author!institution}
 # Note: AUTHOR: must here be indented one space to avoid
 # interpretation as author
 
-Lines starting with `TITLE:`, `AUTHOR:`, and `DATE:` are optional and used
-to identify a title of the document, the authors, and the date. The
+Lines starting with `TITLE:`, `AUTHOR:`, and `DATE:` are optional and are used
+to identify the title of the document, the authors, and the date. The
 title is treated as the rest of the line, so is the date, but the
 author text consists of the name and associated institution(s) with
 the syntax
@@ -143,7 +142,7 @@ the syntax
 !ec
 The `at` with surrounding spaces
 is essential for adding information about institution(s)
-to the author name, and the `and` with surrounding spaces is
+to the author name, and the `and` (ampersand) with surrounding spaces is
 essential as delimiter between different institutions.
 An email address can optionally be included, using the syntax
 !bc
@@ -162,7 +161,7 @@ line.  Here is an example:
 !ec
 Note how one can specify a single institution, multiple institutions
 (with `&` as separator between institutions),
-and no institution. In some formats (including `rst` and `sphinx`)
+or no institution. In some formats (including `rst` and `sphinx`)
 only the author names appear. Some formats have
 ``intelligence'' in listing authors and institutions, e.g., the plain text
 format:
@@ -182,7 +181,6 @@ The current date can be specified as `today`.
 
 ===== Copyright =====
 label{copyright}
-
 idx{copyright syntax}
 
 A copyright notice can be given as part of the `AUTHOR:` command.
@@ -192,7 +190,7 @@ The syntax is
 {copyright,year1-year2|license}
 !ec
 where `year1-year2` represents the year(s) and `license` represents
-the type of license (e.g., Creative Commons license) if that apply.
+the type of license (e.g., Creative Commons license) if that applies.
 The year and license parts can be left out. In that case, the current
 year is used, and no license appears.
 Note that *the year and the license must be identical in all copyright
@@ -266,7 +264,6 @@ The output becomes ``Copyright 2015, Digital Company, Analog Company. Released u
 
 
 ===== Table of contents =====
-
 idx{`TOC` keyword}
 idx{table of contents}
 idx{toc depth}
@@ -287,7 +284,9 @@ for the `doconce sphinx_dir` command (and not `doconce format`).
 
 !split
 ===== Section headings =====
-idx{headlines} idx{section headings} idx{headings}
+idx{headlines}
+idx{section headings}
+idx{headings}
 
 Section headings are recognized by being surrounded by equal signs (=) or
 underscores before and after the text of the headline. Different
@@ -295,16 +294,16 @@ section levels are recognized by the associated number of underscores
 or equal signs (=):
 
    * 9 `=` characters for chapters
-   * 7 for sections
-   * 5 for subsections
-   * 3 for subsubsections
+   * 7 `=` characters for sections
+   * 5 `=` characters for subsections
+   * 3 `=` characters for subsubsections
    * 2 *underscores* (only! - it looks best) for paragraphs
      (paragraph heading will be inlined)
 
 Headings can be surrounded by as many blanks as desired, but the
-first `=` must start in column 1 and there must one blank
+first `=` must start in column 1 and there must be one blank (space)
 on each side of the heading, between the heading and the `=` signs.
-Here are examples on headings:
+Here are examples of headings:
 
 !bc do
 ======= Example on a Section Heading =======
@@ -337,7 +336,7 @@ but the text *must* be followed by a
 Everything up to the first heading, table of contents, or date is
 taken as the abstract.  For articles, the abstract is placed after the
 date, but before the table of contents or the first ordinary
-heading. For books one may insert the abstract before the date to make
+heading. For books one may insert the abstract before the date to make it
 appear on the first page.
 
 Here are examples on an abstract and some type of ending
@@ -381,14 +380,15 @@ is used - all other formats just leave the heading as it is written.
 
 
 !split
-===== Figures =====
 
+===== Figures =====
+idx{figures}
 # Note: need extra blank after FIGURE and MOVIE in !bc environments
 # because doconce treats !ec as part of the caption and moves the
 # !ec up to the caption line
 
-idx{`FIGURE` keyword}
-
+idx{keywords!FIGURE}
+idx{figures!FIGURE keyword}
 === Basic syntax ===
 
 Figures are recognized by the special line syntax
@@ -422,6 +422,7 @@ are used for output in the formats `html`, `rst`, `sphinx`, while
 the frac specification is used for `latex` and `pdflatex` to specify
 the width of the image as a fraction of the text width.
 
+idx{figures!placement}
 === Figure Placement ===
 
 In web formats (`html`, `sphinx`, `ipynb`, `matlabnb`, wikis), the `FIGURE:` command is replaced by
@@ -441,14 +442,15 @@ command as possible. One can autoedit the `.tex` file and modify the
 Terminal> doconce replace '{figure}[!ht]' '{figure}[t]' mydoc.tex
 !ec
 The above command will change all `[!ht]` options to `[t]` (top).
-A specific figure can also be edited, using the fact that the label
-is printed at the same line as `\begin{figure}`:
+Given that the label
+is printed at the same line as `\begin{figure}`,
+a specific figure can be edited:
 
 !bc sys
 Terminal> doconce subst '{figure}[!ht] .+my:fig' \
           '{figure}[!h] % my:fig' mydoc.tex
 !ec
-Of greater influence than options like `[ht]`, `[h]`, etc., is the
+Of greater influence than options like `[ht]`, `[h]`, etc. is the
 LaTeX code found in the preamble:
 
 !bc latexcod
@@ -464,6 +466,7 @@ LaTeX code found in the preamble:
 !ec
 These values can be manipulated to fine-tune how LaTeX places figures.
 
+idx{figures!references}
 === Figure References ===
 
 Suppose we have the DocOnce code
@@ -485,19 +488,20 @@ becomes `in Figure~\vref{myfig}`, which reads
 present page where the reference is done, the page reference is
 left out, and one can read just ``in Figure 5''.
 
-Sphinx applies the caption as name of the figure, so the reference
+Sphinx applies the caption as the name of the figure, so the reference
 reads ``... in Figure Results for .'', and the caption/name is a link
 to the figure. Note that Sphinx strips off the mathematics from
 the caption. In HTML, figures are given numbers, so the reference
 reads ``... in Figure 3'', with the figure number as a link to the
 place in the document where the `FIGURE:` command was located.
-The IPython notebook format makes a Markdown link: `... in [Figure](#myfig)`,
+The IPython/Jupyter notebook format makes a Markdown link: `... in [Figure](#myfig)`,
 where `myfig` is an anchor such one can click on `Figure`.
 The plain text format displays the reference as ``... in Figure ref{myfig}.''.
 Wiki formats show ``... in Figure myfig.''. So to summarize, figure
-references work best in LaTeX, HTML, and Sphinx. Other formats
-should avoid figure references with labels.
+references work best in LaTeX, HTML, and Sphinx. When using other formats,
+figure references with labels should be avoided.
 
+idx{figures!inline}
 === Inline Figures ===
 
 The figure caption is optional. If omitted, the figure appears ``inline''
@@ -517,9 +521,7 @@ inserting several lines with `<linebreak>`.
 
 FIGURE:[fig/wave1D, width=400] A wave. label{fig:viz}
 
-idx{`--figure_prefix=`}
-idx{FIGPREFIX}
-
+idx{figures!format}
 === Choosing the Figure Format ===
 
 For each output format, there is a preference for the type of graphics file
@@ -543,9 +545,12 @@ for the various formats:
  * `sphinx`: `.png`, `.gif`, `.jpg`, `.jpeg`
  * `pandoc`: `.png`, `.gif`, `.jpg`, `.jpeg`, `.tif`, `.tiff`, `.pdf`
 
-Other formats, which can display graphics, will prefer `.png` files.
+Other formats that can display graphics will prefer `.png` files.
 
 
+idx{figures!FIGPREFIX}
+idx{`mako`!`FIGPREFIX`}
+idx{`--figure_prefix=`}
 === Handling Variable Figure Paths ===
 
 Figure files are usually located in some directory. Sometimes one needs to
@@ -555,7 +560,7 @@ DocOnce file that includes different sections whose DocOnce source files
 are located in different directories. If you want to compile a section
 as stand-alone document, you have to do that from the subdirectory for
 that section. The path to a common directory for figures may then be
-like `../fig/myfig.png`, while for the master document in the parent
+`../fig/myfig.png`, while for the master document in the parent
 directory, the corresponding path is `fig/myfig.png`.
 
 The simplest way out of this problem is to use the `--figure_prefix=`
@@ -568,17 +573,15 @@ In the DocOnce source file one has `FIGURE: [myfig, width=...]`.
 A more manual method is to introduce a Mako variable `FIGPREFIX`
 that is set on the command line as part of the `doconce format` command.
 The `FIGPREFIX` variable holds a prefix for the path to the figure.
-In our example one writes
+In our example one would write
 
 !bc do
 FIGURE: [${FIGPREFIX}/myfig, width=500 frac=0.8] caption label{my:fig}
 !ec
 and set `FIGPREFIX=../fig` after the `doconce format ...` command if
-one compiles a section, while `FIGPREFIX=fig` is the appropriate
-value of the path when compiling the master document.
+one compiles a section, or set `FIGPREFIX=fig` if compiling the master document.
 
-idx{subfigures}
-
+idx{figures!subfigures}
 === Figures with Subfigures ===
 
 Combining several image files into one, in a table fashion, can be done by the
@@ -615,8 +618,8 @@ This command will combine `fig1.pdf`, `fig2.pdf`, `fig3.pdf`, and
 result in `fig.pdf`. By just changing the `pdf` option to `png`,
 the same will happen with
 `fig1.png`, `fig2.png`, `fig3.png`, and
-`fig4.png`, resulting in `fig.png`. The tool employs the technique
-above for PNG and PDF files to produce ultimate quality of the combined
+`fig4.png`, resulting in `fig.png`. The tool employs the above technique
+for PNG and PDF files to produce ultimate quality of the combined
 image.
 
 One can also run `doconce combine_images` with filenames with extension,
@@ -625,13 +628,14 @@ e.g.,
 !bc sys
 Terminal> doconce combine_images myfig1.png myfig2.png fig2.png
 !ec
-Here, `myfig1,png` and `myfig2.png` are placed next to each other in
+Here, `myfig1.png` and `myfig2.png` are placed next to each other in
 a new figure file `fig2.png`.
 
+idx{figures!sidecaption}
 === Sidecaption in LaTeX and HTML ===
 
 The figure caption can be placed on the (right) side of figures by
-using the `sidecap` feature as figure option, e.g.,
+using the `sidecap` feature as a figure option, e.g.,
 `FIGURE: [myfig, width=500 frac=0.5 sidecap=True]`. The generated
 `latex` and `pdflatex` output then uses the `sidecap` package and
 the `SCfigure` environment to typeset the figure. Remember to
@@ -640,6 +644,7 @@ for instance). A table is used for typesetting a figure with
 sidecaption in HTML, and a low `width` value is recommended.
 The `sidecap=True` figure option has no impact on other formats.
 
+idx{figures!Tikz}
 === TikZ Figures ===
 
 Many LaTeX writers are dependent upon TikZ figures, and these can be
@@ -648,7 +653,7 @@ used in DocOnce documents, see the "demo document":
 
 === Plot Files in LaTeX ===
 
-Users who applies Matplotlib to make figures get plots with fonts that
+Users who use Matplotlib to make figures get plots with fonts that
 differ from the rest of a LaTeX document.
 A "blog post": "http://bkanuka.com/articles/native-latex-plots/" describes
 techniques for overcoming this problem. The plotfile is then a `.pgf`
@@ -659,13 +664,13 @@ are included by a simple `\input{file.pgf}`. If no `.pgf` file is found,
 the `pdflatex` output format will apply `.pdf`, `.png`, or `.jpg` file,
 in that order of preference.
 
-idx{Bokeh interactive plots}
 
+idx{figures!Bokeh} idx{Bokeh}
 === Interactive Bokeh Plots for HTML ===
 
 Fancy interactive plots for data exploration can be made with the
 "Bokeh": "http://bokeh.pydata.org/en/latest/" library. Such plots
-reside in an HTML file. DocOnce will for the HTML output format detect
+reside in an HTML file. For the HTML output format, DocOnce will detect
 files of this type and use the HTML code in the file to embed the
 plot(s) in the generated output document.
 
@@ -674,7 +679,7 @@ the horizontal axes are coupled to each other. Panning the graph in one
 plot automatically moves all the other graphs. In this way, one can
 scroll through a long time series simultaneously for many plots.
 # #if FORMAT == 'html'
-Grap one graph below, move
+Grab one graph below, move
 into the future with the mouse, and watch the other graphs follow!
 
 FIGURE: [fig/bokeh_demo, width=800 frac=1]
@@ -690,9 +695,12 @@ is in `myfig.html`, write
 !bc do
 FIGURE: [myfig] caption
 !ec
+
 Options like `width` are ignored for Bokeh plots, unless you have
-other versions of the figure (`myfig.png`, for instance, see the box
+other versions of the figure (`myfig.png`, for instance; see the box
 below) where such options may be useful for some formats.
+
+idx{Bokeh!alternatives}
 
 !bnotice Make alternatives to Bokeh plots
 Note that Bokeh plots have only meaning when DocOnce translates the
@@ -700,9 +708,9 @@ document to HTML. For other formats, one needs to supply figure files
 that those formats can accept (PNG, PDF, etc.).
 
 Suppose you have made a Bokeh
-plot in `myfig.html`. Either you have to embed the `FIGURE` command
-inside a preprocessor test that the `FORMAT == 'html'` or you must
-provide alternatives like `myfig.png`. A Bokeh plot will often have a
+plot in `myfig.html`. You either have to embed the `FIGURE` command
+inside a preprocessor test to ensure `FORMAT == 'html'`, or you have to
+provide alternatives to the Bokeh plot like `myfig.png`. A Bokeh plot will often have a
 save button that can be used to save the plot to PNG format.
 This can be used for Sphinx, wikis, and pdfLaTeX (although the latter would
 appreciate real vector graphics in a PDF plot).
@@ -711,11 +719,13 @@ The plot example above is so advanced that there is no natural
 counterpart in a static PNG or PDF plot.
 !enotice
 
+idx{Bokeh!reduce size}
+
 !bnotice Tip: reduce the size of Bokeh HTML files
 When making Bokeh plots in Python programs, we recommend to use
 the `mode='cdn'` option in the call `output_file`. This argument leads
 to links to Bokeh tools in the resulting HTML file. Without the argument,
-Bokeh embeds long HTML code for its tools into the file.
+Bokeh embeds lots of HTML code for its tools into the file.
 DocOnce issues a warning in this case and recommends the `mode` argument.
 
 Note that with `mode='cdn'` the HTML code for the plot requires Internet
@@ -730,10 +740,11 @@ can be made by the code below ("download file":
 
 @@@CODE bokeh_demo.py
 
+idx{Bokeh!converting from matplotlib}
 === Converting Matplotlib Plots to Bokeh ===
 
-Most Python users apply Matplotlib to create line drawings.
-Bokeh has a conversion utility from Matplotlib to Bokeh that
+Most Python users use Matplotlib to create line drawings.
+Bokeh has a conversion utility that converts Matplotlib plots to Bokeh plots, and it
 works well for standard curve plots. The script below demonstrates
 how to generate a plot in Matplotlib and convert it to a Bokeh `tmp.html`
 file.
@@ -751,8 +762,8 @@ FIGURE: [fig/mpl2bokeh] Example on Bokeh figure generated by Matplotlib.
 
 !split
 ===== Movies =====
-
 idx{`MOVIE` keyword}
+idx{keywords!MOVIE}
 
 Movies/videos are inserted using the `MOVIE:` keyword. This
 feature works well for the `latex`, `html`, `rst`, and `sphinx` formats.
@@ -763,7 +774,7 @@ in the box *Recommendations* below.
 
 === The Basic Command ===
 
-As with `FIGURE`, the `MOVIE` command expands just *one line* and is of
+As with `FIGURE`, the `MOVIE` command spans just *one line* and is of
 the form
 
 !bc do
@@ -774,6 +785,8 @@ Note that there must be a blank line after every `MOVIE:` command.
 The width and height parameters are not required, but leaving them out
 may lead to movie sizes you do not want.
 
+idx{movies!.ogg example}
+
 Here is a movie in the Ogg format:
 
 MOVIE: [mov/wave.ogg, width=600] A movie in Ogg format.
@@ -781,16 +794,21 @@ MOVIE: [mov/wave.ogg, width=600] A movie in Ogg format.
 realized by the command
 
 !bc do
-MOVIE: [mov/wave.igg, width=600] A movie in Ogg format.
+MOVIE: [mov/wave.ogg, width=600] A movie in Ogg format.
 !ec
 
-A URL works too as movie address:
+A URL also works an an input to `MOVIE: `:
+
+idx{movies!url example}
 
 !bc do
 MOVIE: [http://doconce.github.io/animate/doc/pub/mov-animate/demo.ogg] Ogg movie in cyberspace.
 !ec
 
 MOVIE: [http://doconce.github.io/animate/doc/pub/mov-animate/demo.ogg] Ogg movie in cyberspace.
+
+idx{movies!in sphinx}
+idx{Sphinx!movies}
 
 !bwarning Important
 Movies will not work properly in `sphinx` format unless they are located
@@ -800,14 +818,17 @@ is a short logical name for the current document (or let the names of
 the directories be just `fig` and `mov`).
 !ewarning
 
+idx{movies!in html}
 === MP4, WebM, and Ogg Movies in HTML ===
 
 If a movie is in Ogg, MP4, or WebM format, and the output format is `html`,
-DocOnce will check if the movie file is also in the other formats among
-Ogg, MP4, and WebM, and include these as well such that the movie has
+DocOnce will check if the movie file is also available in other formats
+(Ogg, MP4, and WebM) and include these such that the movie has
 backup formats in case the browser does not support a particular format.
 Providing a movie in Ogg, MP4, *and* WebM format is therefore the safest
 way to ensure that the movie can be played in any browser on any device.
+
+idx{`--no_mp4_webm_ogg_alternatives`}
 
 !bnotice
 If you specify a movie in Ogg or WebM format and it also exists in
@@ -816,6 +837,8 @@ alternative movie formats in HTML, use the `--no_mp4_webm_ogg_alternatives`
 command-line option when running `doconce format`.
 !enotice
 
+idx{movies!in html}
+idx{movies!in LaTeX}
 === Movie Handling in Various Formats ===
 
 Movies are easiest shown in the HTML format.
@@ -836,12 +859,14 @@ movies via the option `-latex_movie=...`. Proper values are listed below.
    for movies.
  o `movie15`: the old `movie15` package is used.
 
+idx{`--prefix_movie`}
+
 !bnotice Where to put the movie file for a PDF document?
 A major concern when using the default (`href`) link to a movie
-in a PDF document, is where to store the movie file. If your
+in a PDF document is where to store the movie file. If your
 document is in a repository at GitHub or Bitbucket, one can
 use this address for the movie file. However, for the HTML and
-Sphinx formats, we would like to use some short, local address
+Sphinx formats, we would like to a short local address
 `mov/mymovie.ogg`. For LaTeX PDF we can then use the command-line
 option `--prefix_movie=` to prefix the local address with the
 proper address in the repository in the cloud. Suppose the `mov`
@@ -880,19 +905,21 @@ Ogg files, but DocOnce has not yet implemented robust schemes for
 anything but LaTeX, HTML, and Sphinx output.
 
 
+idx{movies!YouTube}
+idx{movies!Vimeo}
 === YouTube and Vimeo Movies ===
 
-Many publish their scientific movies on YouTube or Vimeo, and DocOnce recognizes
+Many researchers publish their scientific movies on YouTube or Vimeo, and DocOnce recognizes
 YouTube and Vimeo URLs as movies. When the output from DocOnce
 is an HTML file, the movie will
-be embedded, otherwise a URL to the YouTube or Vimeo page is inserted.
+be embedded, otherwise a URL to the YouTube or Vimeo page will be inserted.
 You should equip the `MOVIE:` command with the right width and height
 of *embedded* YouTube and Vimeo movies. The recipe goes as follows:
 
- o click on *Share* (and on YouTube then *Embed*)
+ o click on *Share* (on YouTube, you then have to click *Embed*)
  o note the height and width of the embedded movie
 
-A typical `MOVIE` command with a YouTube movie is then
+A typical `MOVIE` command with a YouTube or Vimeo movie is then
 
 !bc do
 MOVIE: [http://www.youtube.com/watch?v=sI2uCHH3qIM, width=420 height=315]
@@ -900,6 +927,8 @@ MOVIE: [http://www.youtube.com/watch?v=sI2uCHH3qIM, width=420 height=315]
 MOVIE: [http://vimeo.com/55562330, width=500 height=278] CFD.
 !ec
 
+idx{animation}
+idx{figures!animation}
 === Animation Based on Filename Generators ===
 
 It is possible to define a movie from a set of files, usually plot files,
@@ -915,7 +944,7 @@ JavaScript code to show the frames in sequence.
 LaTeX employs the `animate` package for the same purpose.
 Other formats generates a file (`movie_playerX.py`, where `X` is a number)
 containing the HTML code with JavaScript to show and control the animation.
-The DocOnce document has a link to this movie viewer.
+The generated DocOnce document will have a link to this movie viewer.
 
 There is an alternative syntax to the Unix wildcard notation:
 
@@ -943,7 +972,7 @@ The recommended formats in HTML are MP4, WebM, and Ogg. One should
 preferably make all three. These also works in reST and Sphinx.
 
 The filename generation works very well in LaTeX, while true movie formats
-pose big challenges. On Linux systems, the `media9`
+pose big challenges. On Linux systems, `media9`
 does not work well because a proper Flash player for embedding in
 the PDF file is not always available. The `movie15` package also leads
 to problems because Acrobat Reader depends on an external player to
@@ -958,13 +987,15 @@ To have really robust code, use filename generators and not movie files.
 MOVIE: [../experiments/frame_*.png]
 !ec
 
+idx{`mako`!`HTMLMOVIE`}
+
 One can write flexible DocOnce code and decide at run time
 if HTML output should have movie files or filename generators.
 A relevant snippet using Mako and a user-defined variable
 `HTMLMOVIE` is
 
 !bc do
-% FORMAT in ("latex", "pdflatex") or HTMLMOVIE == "files":
+% if FORMAT in ("latex", "pdflatex") or HTMLMOVIE == "files":
 MOVIE: [../experiments/frame_*.png]
 
 % else:
@@ -973,8 +1004,8 @@ MOVIE: [../experiments/movie.ogg]
 % endif
 !ec
 With the `-DHTMLMOVIE=files` flag, animation of individual files will
-be performed, while any other value than `files` leads to
-use of the `movie.ogg` in all but LaTeX formats. In HTML one will try
+be performed, while any other value than `files` will lead to the
+use of `movie.ogg` in all but LaTeX formats. For HTML, `docconce` will try
 to load `movie.mp4` (if it exists) and then `movie.webm` (if it exists)
 and then finally `movie.ogg`.
 
@@ -995,7 +1026,9 @@ in a script:
 doconce subst ',loop]{2}( .+: f000)' ',loop{12}\g<1>' mydoc.do.txt
 !ec
 
-Sometimes it is desired to use true movies in web formats and a figure
+idx{`preprocess` tests}
+
+Sometimes it is desired to use a movie in web formats and a figure
 in LaTeX, e.g., a figure with four snapshots from the movie combined
 into a single figure file with `doconce combine_images`. A preprocessor
 test is appropriate for this:
@@ -1011,6 +1044,9 @@ MOVIE: [mymov] caption
 
 % endif
 !ec
+
+idx{`mako`movie function}
+
 If you encounter a large number of such if-else statements, it is
 advantageous to write a Mako function in Python:
 
@@ -1024,7 +1060,7 @@ def figmov(figfile, movfile, caption):
 % endif
 %>
 !ec
-The one can avoid if-else tests in the running code and instead write just
+One can avoid if-else tests in the running code and instead write just
 
 !bc do
 ${figmov('myfig', 'mymov', 'caption')}
@@ -1034,20 +1070,22 @@ to insert a movie or figure file, depending on the output format.
 
 !split
 ===== Copying Computer Code from Source Files =====
+idx{verbatim text}
+idx{directives!@@@CODE}
 
 Another type of special lines starts with `@@@CODE` and enables copying
 of computer code from a file directly into a verbatim environment, see
 Section ref{sec:verbatim:blocks} below.
 
 ===== Inserting the Output from Operating System Commands =====
+idx{programs!running}
+idx{programs!output from}
+idx{directives!@@@OSCMD}
 
-idx{running programs}
-idx{output from programs}
-
-When DocOnce is used to document computer program and results from
-computer code it is important to ensure that the document contains
+When DocOnce is used to document computer programs and results from
+computer code, it is important to ensure the document contains
 the latest version of the code and the corresponding output.
-The former is handled by the `@@@CODE` directive, while the latter
+The code is handled by the `@@@CODE` directive, while the output
 has its own directive `@@@OSCMD`. The syntax reads
 
 !bc do
@@ -1067,6 +1105,8 @@ Hello,
 World!
 !ec
 
+idx{`--os_prompt=`}
+
 There is a command-line option `--os_prompt=` that can be used to
 set the (terminal) prompt that prefixes the command:
 
@@ -1076,11 +1116,10 @@ set the (terminal) prompt that prefixes the command:
 
 !split
 ===== Comments =====
-
-idx{comment lines}
+idx{comments!not visible}
 
 Comments intended to be (sometimes) visible in the output document and
-read by readers are known as *inline comments* in DocOnce and
+read by readers are known as *inline comments* in DocOnce. These are
 described in Section ref{inline:tagging}.
 
 Here we address comments in the DocOnce source file that are not
@@ -1097,6 +1136,11 @@ Such comment lines may have some side effects in the `rst` and `sphinx`
 formats because following lines are taken as part of the comment if
 there is not a blank line after the comment.
 
+idx{comments!mako}
+idx{`mako`!`comments`}
+idx{`mako`!`<%doc>`}
+idx{`mako`!`</%doc>`}
+
 The Mako preprocessor supports comments that are filtered out *before*
 DocOnce starts translating the document. Such comments are very valuable
 as they will never interfere with the output format and they are only
@@ -1108,15 +1152,15 @@ If you need a lot of comments in the DocOnce file, consider using
 Mako comments instead of the single hash, unless you want the
 comments to be in the source code of the output document.
 
+idx{`preprocess` comments}
+
 To comment out or remove large sections, consider using the Preprocess
 preprocessor and an if-else block with a variable that is undefined
 (typically something like a test `# #ifdef EXTRA` in Preprocess, or
 the Mako equivalent `% if EXTRA:`).
 
-
 !split
 ===== Tables =====
-
 idx{tables}
 
 === Basic Syntax ===
@@ -1144,6 +1188,11 @@ is built up of pipe symbols and dashes:
 |--------------------------------|
 
 !ec
+
+idx{`--latex_table_format=`}
+idx{`--latex_colored_table_rows=`}
+idx{`--latex_table_row_sep=`}
+idx{LaTeX!tables}
 
  * The pipes and column values do not need to be aligned (but why write
    the DocOnce source in an ugly way?).
@@ -1205,6 +1254,8 @@ vertical rules in LaTeX tables (they are ignored for other formats):
 
 !ec
 
+idx{preprocess!tables}
+
 !bnotice
  * Not all formats offer alignment of heading or entries
    in tables (`rst` and `sphinx` are examples).
@@ -1214,6 +1265,8 @@ vertical rules in LaTeX tables (they are ignored for other formats):
    the format and insert format-specific code for tables.
 !enotice
 
+idx{tables!.csv}
+idx{`doconce` commands!`cvs2table`}
 === Quick way of creating tables ===
 
 It takes some efforts to put the pipes and dashes correctly in the
@@ -1257,7 +1310,7 @@ one can easily include this file by `# #include "mytable.do.txt"` in the
 DocOnce source file. This is an efficient method for generating
 DocOnce tables directly from data.
 
-
+idx{`--tables2csv`}
 === Tables from DocOnce to CSV Data Files ===
 
 The command-line option `--tables2csv` (to `doconce format`) makes
@@ -1266,11 +1319,7 @@ DocOnce dump each table to CSV format in a file `table_X.csv`, where
 tables from DocOnce documents into spreadsheet programs for further
 analysis.
 
-idx{`doconce` commands!`cvs2table`}
-
-
 ===== Lists =====
-
 idx{lists}
 idx{itemized lists}
 idx{lists!unordered}
@@ -1368,8 +1417,6 @@ The result becomes
      if there are multiple
      lines)
 
-
-
 !bwarning No indentation - except in lists!
 DocOnce syntax is sensitive to whitespace!
 No lines should be indented, only lines belonging to lists.
@@ -1378,11 +1425,10 @@ Also note that extra whitespace after ``item'' indicators (`*`, `o`, or `-`)
 in lists may give strange behavior.
 !ewarning
 
-
-
 !split
 ======= Inline Tagging =======
 label{inline:tagging}
+idx{inline tagging}
 
 DocOnce supports tags for *emphasized phrases*, _boldface phrases_,
 and `verbatim text` (also called type writer text, for inline code),
@@ -1392,7 +1438,7 @@ color{blue}{colored words},
 plus LaTeX/TeX inline mathematics, such as $\nu = \sin(x)$|$v = sin(x)$.
 Links are easy to define, either with a "text": "http://google.com" or
 just a plain URL: "http://google.com".
-Also a non-breaking space (to avoid linebreak), linebreak,<linebreak>
+Also a non-breaking space `~` (to avoid linebreak), linebreak,<linebreak>
 m-dash (as in m---dash), and horizontal rule can be specified (below).
 
 -------
@@ -1406,8 +1452,9 @@ examples.
 !ewarning
 
 ===== Emphasized Words =====
-
-idx{inline tagging} idx{emphasized words} idx{boldface words}
+idx{emphasized words} idx{boldface words}
+idx{inline tagging!boldface}
+idx{inline tagging!emphasis (italic)}
 
 Emphasized text is typeset inside a pair of asterisk, and there should
 be no spaces between an asterisk and the emphasized text, as in
@@ -1429,6 +1476,9 @@ the text will not be recognized as boldface or emphasize).
 
 Colored text is formatted as
 
+idx{inline tagging!color}
+idx{colored text}
+
 !bc do
 some text color{red}{more text in red}
 !ec
@@ -1437,8 +1487,10 @@ The current output format does not support colors, however.
 # #endif
 
 ===== Inline Verbatim Text =====
-
+idx{inline tagging!verbatim text}
+idx{inline tagging!typewriter text}
 idx{inline verbatim text}
+idx{typewriter text}
 idx{verbatim text, inline}
 
 Verbatim text, typically used for short inline code,
@@ -1468,9 +1520,9 @@ DocOnce source and the output.
 !enotice
 
 ===== Links to Web Addresses =====
-
 idx{links}
 idx{hyperlinks}
+idx{inline tagging!hyperlinks}
 
 Web addresses with links are typeset as
 
@@ -1495,8 +1547,9 @@ with a leading space and a trailing space, comma, semi-colon, or question
 mark (but not period!) becomes a link with the web address as link text.)
 
 ===== Links to Mail Addresses =====
+idx{inline tagging!emails}
 
-Links that launches a mail to a specified address is written as
+Links that launch an e-mail to a specified address are written as
 ordinary URLs, typically as
 
 !bc do
@@ -1508,6 +1561,7 @@ which appears as Send "mail": "mailto:yourusername@example.com" to
 "`yourusername@example.com`": "mailto:yourusername@example.com".
 
 ===== Links to Local Files =====
+idx{inline tagging!local files}
 
 Links to files ending in `.txt`, `.html`, `.pdf`, `.py`, `.f`,
 `.f77`, `.f90`, `.f95`, `.sh`, `.csh`, `.ksh`, `.zsh`,
@@ -1517,26 +1571,28 @@ setup:
 !bc do
 see the "DocOnce Manual": "manual.do.txt".
 !ec
-which appears as see the "DocOnce Manual": "manual.do.txt".
+which appears as the "DocOnce Manual": "manual.do.txt".
 However, linking to local files like this needs caution:
 
   * In the `html` format the links work well if the files are
     supplied with the `.html` with the same relative location.
   * In the `latex` and `pdflatex` formats, such links in PDF files
-    will unless the `.tex` file has a full URL specified through
+    will not work unless the `.tex` file has a full URL specified through
     a `\hyperbaseurl` command and the linked files are located correctly
     relative to this URL. Otherwise full URL must be used in links.
   * In the `sphinx` format, links to local files do not work unless the
     files reside in a `_static` directory (a warning is issued about this).
 
-As a consequence, we strongly recommend that one copies the relevant
-files to a `_static` or `_static-name` directory and makes links to
+Thus, we strongly recommend to copy the relevant
+files to a `_static` or `_static-name` directory and make links to
 files in this directory only (`name` is the nickname of the DocOnce
 document, usually the name of the parent directory or main document).
 Other links to files should use the full URL. If DocOnce is used
 for HTML output only, then plain links to local files work fine.
 
-If you want a link to a local source code file and have it
+idx{`pygmentize`}
+
+If you want a link to a local source code file and want to have it
 viewed in the browser rather than being downloaded, we recommend
 to transform the source code file to HTML format by running
 `pygmentize`, e.g.,
@@ -1577,11 +1633,9 @@ resulting in the link URL: "manual.html".
 #`_static` directory - links in the `.rst` files are automatically
 #adjusted.)
 
-idx{quotation syntax}
-
 ===== Quotes =====
-
-idx{quotation}
+idx{quotation!syntax}
+idx{inline tagging!quotation}
 
 Quotations employ either the emphasized font or double quotation marks.
 In the latter case, one should not use the character `"` but rather
@@ -1591,7 +1645,7 @@ quotes:
 !bc do
 This is a sentence with ``words to be quoted''.
 !ec
-To candidates for find double quotes that should be transferred to the above
+To find double quotes that should be transferred to the above
 type of quotation (which is a common mistake),
 one can run a regular expression search like
 
@@ -1603,11 +1657,11 @@ This search may give many false hits as double quotes are frequently
 used in computer code and preprocessor instructions (URLs and hyperlinks
 should not give hits in the above regular expressions).
 
-idx{non-breaking space}
 
 ===== Non-Breaking Space =====
-
-idx{non-breaking space} idx{nbsp}
+idx{inline tagging!non-breaking space}
+idx{non-breaking space}
+idx{nbsp}
 
 The non-breaking space character is tilde:
 
@@ -1617,7 +1671,7 @@ which is an example that requires a "non-breaking space character":
 "http://en.wikipedia.org/wiki/Non-breaking_space": 7.4~km is traveled
 in~$7.4/5.5\approx 1.345$~s. (Computer code, where the tilde has a
 meaning, as in `y = ~x`, is not affected. The non-breaking character only
-works between characters, numbers, and the math dollar sign.)
+works between characters, numbers and the math dollar sign.)
 !ec
 This is rendered as
 
@@ -1627,12 +1681,11 @@ which is an example that requires a "non-breaking space character":
 "http://en.wikipedia.org/wiki/Non-breaking_space": 7.4~km is traveled
 in~$7.4/5.5\approx 1.345$~s. (Computer code, where the tilde has a
 meaning, as in `y = ~x`, is not affected. The non-breaking character only
-works between characters, numbers, and the math dollar sign.)
+works between characters, numbers and the math dollar sign.)
 !equote
 
-
 ===== Horizontal rule =====
-
+idx{inline tagging!horizontal rule}
 idx{horizontal rule}
 
 A horizontal rule for separating content vertically, like this:
@@ -1642,11 +1695,11 @@ A horizontal rule for separating content vertically, like this:
 is typeset as four or more hyphens on a single line:
 
 !bc do
----------
+--------
 !ec
 
 ===== Em-dash =====
-
+idx{inline tagging!m-dash}
 idx{m-dash} idx{em-dash}
 
 The `latex`, `pdflatex`, `sphinx`, `html`, `pandoc`, and
@@ -1670,7 +1723,7 @@ The associated DocOnce source reads
 !ec
 
 ===== En-dash =====
-
+idx{inline tagging!n-dash}
 idx{n-dash} idx{em-dash}
 
 The en-dash constists of two hyphens, as in `--`, and can be used instead
@@ -1689,8 +1742,9 @@ the raw double hyphen.
 # The m- and n-dashes are processed in doconce.py
 
 ===== Ampersand =====
-
+idx{inline tagging!ampersand}
 idx{ampersand}
+idx{`--no_ampersand_quote`}
 
 An ampersand, as in Guns & Roses or Texas A & M, is written as a
 plain `&` *with space(s) on both sides*. Single upper case letters on each
@@ -1704,8 +1758,8 @@ the command-line option `--no_ampersand_quote` for `doconce format` turns
 off the ampersand treatment for all formats.
 
 ===== Footnotes =====
-
 idx{footnotes}
+idx{inline tagging!footnotes}
 
 Typesetting of footnotes employs a common email or Extended Markdown syntax:
 
@@ -1755,7 +1809,7 @@ A new paragraph marks the end of a footnote.
 case of spaces.
 
 ===== Inline Comments =====
-
+idx{inline tagging!comments}
 idx{inline comments}
 idx{comments, inline}
 
@@ -1764,7 +1818,7 @@ DocOnce also supports inline comments in the text:
 !bc do
 [name: comment]
 !ec
-where `name` is (e.g.) the name of the author of the comment, and `comment` is a
+where `name` is the name of the author of the comment, and `comment` is a
 plain text text. Note that *there must be a space after the colon*,
 otherwise the comment is not recognized. The name can contain upper and lower
 case characters, digits, single quote, `+` and `-`, as well
@@ -1773,6 +1827,10 @@ as space. Next is an example.
 can span
 several lines,
 if desired.]
+
+idx{`--skip_inline_comments`}
+idx{`doconce` commands! `remove_inline_comments`}
+idx{`--latex_todonotes`}
 
 The name and comment are visible in the output unless `doconce format`
 is run with a command-line argument `--skip_inline_comments`
@@ -1789,7 +1847,6 @@ apply the `todonotespackage` to typeset the comments in very visible
 color boxes.
 
 ===== Inline Comments for Editing =====
-
 idx{track changes}
 idx{inline comments for editing}
 
@@ -1816,10 +1873,10 @@ The following syntax is supported:
 [edit: some text -> some replacement for text]
 [name: some text -> some replacement for text]
 !ec
-That is, one can add, delete, and replace text, and adding or deleting
-a comma, period, or semicolon leads to special typesetting where
-such a small edit is highlighted. Below
-is an example of a text with inline editing.
+That is, one can add, delete, and replace text, and add or delete
+a comma, period, or semicolon. Special typesetting will highlight these
+edits. Below
+is an example of text with inline editing.
 
 Originally, we have the text
 
@@ -1829,7 +1886,7 @@ $Q>0$. There are three, fundamental, basic property of $Q$.
 !ec
 Then, some reader wants to change this text and explicitly demonstrate
 what is deleted, added, and replaced (as when using track changes
-in Microsoft Word). The use of the `add`, `del`, and replacement
+in Microsoft Word or LibreOffice Writer). The use of the `add`, `del`, and replacement
 construction with `->` may look as follows.
 
 !bc do
@@ -1856,15 +1913,17 @@ readable as edit instructions.)
 
 idx{`doconce` commands!`apply_edit_comments`}
 
-The editing implied by the edit comments can be implemented in the DocOnce
+The editing suggested by the edit comments can be implemented in the DocOnce
 file by the command
+
+idx{`doconce` commands!`apply_edit_comments`}
 
 !bc sys
 Terminal> doconce apply_edit_comments mydoc.do.txt
 !ec
 
 ===== Forced Line Breaks =====
-
+idx{inline tagging!line breaks}
 idx{linebreak}
 idx{citations}
 idx{`cite`}
@@ -1909,14 +1968,14 @@ the line.
 !enotice
 
 ===== Inline Mathematics =====
-
+idx{inline tagging!mathematics}
 idx{inline mathematics}
 idx{formulas (math)}
 idx{mathematical formulas}
 
 Inline mathematics is written as in LaTeX, i.e., inside dollar signs.
 Many formats leave this syntax as it is (including the two dollar signs),
-hence nice math formatting is only obtained in LaTeX, HTML, MediaWiki,
+so nice math formatting is only obtained in LaTeX, HTML, MediaWiki,
 and Sphinx (Epytext has some inline math support that is utilized).
 
 The following text
@@ -1951,6 +2010,7 @@ are vectors of length $n$|$n$."
 
 !split
 ===== Cross-Referencing =====
+idx{inline tagging!cross-referencing}
 idx{cross referencing} idx{labels} idx{references} idx{`ref` (label reference)}
 
 References and labels are supported. The syntax is simple:
@@ -1970,7 +2030,7 @@ will become invisible, except those in math environments.  (In the
 the `label` and `ref` commands are first translated to the proper
 reST commands by `doconce format`.) In the `html`, `ipynb`, and wiki formats,
 labels become anchors and references become links,
-and with LaTeX `label` and `ref` are just equipped with backslashes so
+and with LaTeX `label` and `ref` are updated with backslashes so
 these commands work as usual in LaTeX.
 
 Since references to sections appear differently in different formats, we
@@ -2022,12 +2082,12 @@ must feature parentheses and look like
 
 !ewarning
 
-
-
 Hyperlinks to files or web addresses are handled as explained
 in Section ref{inline:tagging}.
 
 idx{`refaux` (label reference)}
+idx{`--replace_ref_by_latex_auxno=`}
+idx{inline tagging!refaux}
 
 References to equations and sections in other documents can be done
 by the *generalized cross-referencing* syntax explained in the next
@@ -2048,7 +2108,6 @@ the `.aux` file will be replaced. In any case, the
 
 ===== Generalized Cross-Referencing =====
 label{manual:genrefs}
-
 idx{citations}
 idx{`cite`}
 idx{citations, generalized}
@@ -2056,7 +2115,7 @@ idx{generalized citations}
 idx{cross-document referencing}
 idx{`ref` (generalized reference)}
 
-Sometimes a series of individual documents may be assembled to one
+Sometimes a series of individual documents may be assembled into one
 large document, typically a book.
 In the book one wants to make cross references between chapters
 and sections, while these become references to external documents
@@ -2098,7 +2157,7 @@ be changed if `file2.aux` is recently compiled
 
 === Generalized References ===
 
-DocOnce mimics a generalization of the LaTeX functionality in the
+DocOnce mimics the LaTeX functionality in the
 `xr` package such that one can refer to external documents in
 other formats than LaTeX (HTML, Sphinx, IPython notebooks, wikis, etc.).
 This feature is called a *generalized reference* and involves
@@ -2146,8 +2205,9 @@ the document "Mathematical Equations":
 !ec
 
 For the reference to a label in an external document
-to work in the LaTeX case it is required to list this
-document in the DocOnce file as
+to work with LaTeX, the document must be listed in the DocOnce file as
+
+idx{comments `Externaldocuments`}
 
 !bc do
 # Externaldocuments: file2
@@ -2171,14 +2231,13 @@ such that their `.aux` files *are available and updated*.
 
 Note that cleaning (`doconce clean`)
 of the directory holding an external document will destroy the
-`.aux` file, and `latex` or `pdflatex` may then complain that
+`.aux` file. Thus, `latex` or `pdflatex` may complain that
 a file listed as `\externaldocument{}` has no `.aux` file.
-This is just a warning - the result is question marks in the
+This is just a warning - question marks will appear in the
 PDF document.
 !ewarning
 
 idx{`refch` (generalized chapter reference)}
-
 === Generalized References to Chapters ===
 
 A reference to a chapter in a book becomes just
@@ -2208,6 +2267,8 @@ Such references to
 chapters or complete documents are very much like the previously
 generalized references, but written with `refch` instead
 of `ref`:
+
+idx{inline tagging!refch}
 
 !bc do
 refch[internal][cite][external]
@@ -2239,6 +2300,7 @@ format is `latex` or `pdflatex`. In all other cases the result becomes
 the document "Some Equations": "http://some.net/someeqs/"].
 !ec
 
+idx{inline tagging!refaux}
 === Generalized References to LaTeX Documents ===
 
 It is difficult in the `[external]` part of the generalized reference to
@@ -2284,6 +2346,7 @@ in cite{Langtangen_2045}], we realize that...
 !ec
 
 
+idx{`doconce` commands!`ref_external`}
 === Tool for Generating Generalized References ===
 
 The `doconce ref_external` command will read all the labels in the
@@ -2325,6 +2388,8 @@ Generalized references to equations work well in LaTeX, but
 not in other formats as one cannot resolve the equation number
 in the external document. It is then better to write different
 text using the `FORMAT` variable in Mako:
+
+idx{`mako`!`FORMAT`}
 
 !bc do
 % if FORMAT in ("pdflatex", "latex"):
@@ -2450,7 +2515,7 @@ cite{DocOnce:test}], DocOnce documents may include tables.
 !equote
 
 Note that LaTeX cannot
-have links to local files, so a complete URL on the form
+have links to local files, so a complete URL in the form
 `http://...` must be used.
 
 !bnotice Tip
@@ -2466,14 +2531,17 @@ or Mako preprocessors.
 !bnotice Splitting documents into smaller parts is easy!
 The generalized references and the `doconce ref_external` are great
 tools for splitting an existing document into smaller parts, say one
-chapter into two or one book into two books. Such a split will normally
+chapter into two, or one book into two books. Such a split will normally
 create a lot of difficulties with cross-document referencing (unless
-you just write directly in LaTeX with the `xr` packcage).
+you just write directly in LaTeX with the `xr` package).
 !enotice
 
 !split
+
 ===== Index =====
 idx{index}
+idx{inline tagging!idx}
+idx{inline tagging!index}
 
 An index can be created for the `latex`, `rst`, and `sphinx` formats
 by the `idx` keyword, following a LaTeX-inspired syntax:
@@ -2497,7 +2565,7 @@ text, Epytext, StructuredText, HTML, and wiki formats.
 `idx` commands should be inserted outside paragraphs and admonitions,
 not in between the
 text as this may cause some strange behaviour of reST and
-Sphinx formatting.  As a recommended rule, index items are naturally
+Sphinx formatting.  It is recommended that index items be
 placed right after section headings, before the text begins, while
 index items related to a paragraph should be placed above the
 paragraph one a separate line (and not in between the text or between
@@ -2510,13 +2578,13 @@ The keywords in the index are automatically placed in a meta
 tag in `html` output such that search engines can make use of the them.
 
 SIAM has developed a very useful document on "how to create an
-effective index": "http://www.siam.org/books/authors/indexguidelines.pdf"
-in a book.
-
+effective index": "http://www.siam.org/books/authors/indexguidelines.pdf".
 
 ===== Emojis =====
+idx{inline tagging!emojis}
 idx{emojis}
 idx{smileys}
+idx{`--no_emoji`}
 
 Emojis are specified by syntax like `:sweat_smile:`, followed by
 whitespace (blank or newline) before and after.
@@ -2528,13 +2596,10 @@ All other formats will just print the raw emoji name (like `:sweat_smile:`).
 The command-line option `--no_emoji` removes all emojis from the output so
 you can get serious in a second.
 
-
-
-
 !split
+
 ======= Exercises, Problems, Projects, and Examples =======
 label{manual:exercises}
-
 idx{exercise environment}
 idx{problem environment}
 idx{project environment}
@@ -2542,14 +2607,13 @@ idx{example environment}
 
 DocOnce has special support for four types of ``exercises'', named
 *exercise*, *problem*, *project*, or *example*.
-These are all typeset as special kind of
-subsections. Such subsections start with a subsection
-headline surrounded by 5 `=` characters, and last up to the
+These are all typeset as special subsections that start with a subsection
+headline surrounded by 5 `=` characters. These subsections continue until the
 next headline or the end of the file. The headline itself must
 consists of the word *Exercise*, *Problem*, *Project*, or *Example*, followed
 by a colon and a title of the exercise, problem, or project.
 
-===== Examples on Exercise Syntax =====
+===== Exercise Syntax Examples =====
 
 === Elements in an Exercise ===
 
@@ -2563,7 +2627,7 @@ label{proj:moondist}
 file=earth2moon.pdf
 solution=eart2moon_sol.do.txt
 
-Here goes the running text of the project....
+The running text of the project goes here....
 
 !ec
 DocOnce will recognize the exercise, problem, project, or example *title*,
@@ -2583,11 +2647,14 @@ The `file=` or `files=` command accepts a comma-separated list of filenames.
 Sometimes it is appropriate to skip the file extension and just give
 a filestem, as in `file=earth2moon`.
 
-
 === Solutions ===
+idx{`--without_answers`}
+idx{`--without_solutions`}
+idx{`--answers_at_end`}
+idx{`--solution_at_end`}
 
-The solution environment with `!bsol` and `!esol` allows inline
-solution as an alternative to the `solution=...` directive mentioned
+The solution environment that can be created with `!bsol` and `!esol` allows inline
+solutions as an alternative to the `solution=...` directive mentioned
 above (which requires that the solution is in a separate file). Comment
 lines are inserted so that the beginning and end of answers and
 solutions can be identified and removed if desired. It seems that
@@ -2597,13 +2664,13 @@ The command line options `--without_answers` and `--without_solutions`
 turn off output of answers and solutions, respectively, except for
 examples.
 The command line options `--answers_at_end` and `--solutions_at_end`
-write all answers and solutions to exercises to a separate section in the end of the document, respectively. Combine with `--without_answers` and `--without_solutions` to remove answers and solutions from the main text. 
+write all answers and solutions to exercises to a separate section in the end of the document, respectively. These can be combinee with `--without_answers` and `--without_solutions` to remove answers and solutions from the main text.
 
 The commands `!anshide` and `!solhide` can be used to hide from the main text answers and solutions, respectively, until the `!ansoff` and `!soloff` commands are encountered. Similarly, the `!ansdocend` and `!soldocend` commands move answers and solutions to the end of the book. 
 
 !bwarning Avoid headings in solutions
 Headings in solutions in exercises will
-appear in table of contents, but if
+appear in the table of contents, but if
 solutions are left out of the document (using the
 `--without_solutions` option), the table of contents will be wrong
 and contain non-existing headings from the solution parts.
@@ -2618,8 +2685,6 @@ chapters). If you compile versions of the document with and without
 solutions, the equation numbering may differ between the versions and may
 cause confusion among readers.
 !ewarning
-
-
 
 === Example ===
 
@@ -2668,7 +2733,7 @@ directives is always typeset at the end of the exercise.
 
 |bsol
 Here goes a full solution of the entire exercise, if solutions to
-subexercises are not appropraite.
+subexercises are not appropriate.
 |esol
 !ec
 
@@ -2682,7 +2747,7 @@ Recommended rules for using the different ``exercise'' types goes as follows:
     that they make sense on their own, separated from the rest of the document.
   * Projects are larger problems that also make sense on their own.
   * Examples are exercises, problems, or projects, but with full solutions
-    not typeset with `!bsol` and `!esol` but as running text
+    not typeset with `!bsol` and `!esol` but as running text.
 
 Authors may use `Exercise` everywhere or make use of the convention
 in the first three points.
@@ -2696,7 +2761,10 @@ or `Example:`. By enclosing the keyword in braces, as in
 !bc do
 ===== {Problem}: Find a solution to a problem =====
 !ec
-the keyword is marked for being left out of the heading, resulting in
+
+idx{`--section_numbering`}
+
+The keyword is marked for being left out of the heading, resulting in
 the heading ``Find a solution to a problem''. In this case, there is
 no numbering of exercises, problems, projects, or examples, so
 `--section_numbering=on` for numbering *all* sections in the document
@@ -2715,11 +2783,11 @@ text.
 ===== Typesetting of Exercises =====
 
 Tailored formatting of exercises in special output formats can make
-use of the elements in an exercise.  For example, one can imagine web
+use of the elements in an exercise. For example, one can imagine web
 formats where the hints are displayed one by one when needed and where
 the result file can be uploaded. One can also think of mechanisms for
 downloading the solution file if the result file meets certain
-criteria.  DocOnce does not yet generate such functionality in any
+criteria. DocOnce does not yet generate such functionality in any
 output format, but this is an intended future feature to be
 implemented.
 
@@ -2738,6 +2806,8 @@ works well in all formats (i.e., no double `Problem Problem` appears).
 
 === Remark on Typesetting of Examples ===
 
+idx{`--examples_as_exercises`}
+
 Examples are *not* typeset similarly to exercises unless one adds the
 command-line option `--examples_as_exercises`. That is, without this
 option, any heading and starting with `Example:` makes DocOnce treat
@@ -2755,14 +2825,16 @@ until the next subsection.
 If you use the `--examples_as_exercises`, any subsection starting with
 `Example:` will get a number for the example, and this number corresponds
 to a counter that is shared with Exercise, Problem, and Project.
-This may work well if you look at Example, Exercise, Problem, and Project
-as much of the same thing, basically Example is then an Exercise with
+This works well if you consider Example, Exercise, Problem, and Project
+to be similar. In this way, Example is an Exercise with a
 solution. However, the same numbering of examples and exercises
 may look quite odd too, so be careful with the
 `--examples_as_exercises` option.
 !ewarning
 
 ===== List of Exercises, Problems, and Projects =====
+
+idx{`--list_of_exercises`}
 
 DocOnce also supports listing all exercises, problems, and projects
 with corresponding page numbers.
@@ -2783,9 +2855,10 @@ command).
 
 idx{short title (in sections)}
 
+idx{`doconce` commands!`latex_exercise_toc`}
 There is also a command `doconce latex_exercise_toc` that makes a special
-table of contents of the exercises. It truncates too long exercise headings,
-but by inserting `# Short title: Shorter title` right after the heading,
+table of contents of the exercises. It truncates exercise headings that are too long.
+However, by inserting `# Short title: Shorter title` right after the heading,
 the `Shorter title` will be used as title. Usually, this option is used
 if the automatic truncation of the title of the exercise fails (truncation
 in the middle of a formula, for instance).
@@ -2822,6 +2895,9 @@ the exercise text.
 Equations can be given explicit numbers, completely governed by the writer.
 The following equation is given the number `11.5.3` and a label `myeq`:
 
+idx{equation tagging}
+idx{tagging equation}
+
 !bc
 |bt
 \[ 1 + 1 = 2 \tag{11.5.3}
@@ -2835,20 +2911,21 @@ assign appropriate numbers in the `tag` command.
 ===== Typesetting of solutions to exercises =====
 label{manual:exercises:solutions:typesetting}
 
-There is an option `--exercise_solution=` option for controling the
+There is a `--exercise_solution=` option for controlling the
 typesetting of solutions. Three values are legal: `paragraph` means that
 the solution just gets a paragraph heading, `admon` means that
 the solution is typeset within a notice admonition environment (`!bnotice`),
-while `quote` means typesetting within a quote environment.
+while `quote` means the solution is typeset within a quote environment.
 
+idx{`--html_admon=`}
 __Suggestion for HTML Bootstrap.__
 If your choice is `--exercise_solution=admon`, and you want the
 Boostrap HTML output format, use `--html_admon=bootstrap_panel`.  It
 makes the solutions stand out nicely in the text.
 
 __Suggestion for LaTeX.__
-Sometimes the standard admons are not so suitable for typesetting
-solutions because they may have a background color, or they may be too
+Sometimes the standard admons are not suitable for typesetting
+solutions because they have a background color, or they are too
 eye catching. Here is a trick for LaTeX output where we 1) change the
 admon environment in solutions from notice to question type, 2) change
 the parameters in the question admon so there is no catchy background
@@ -2872,6 +2949,7 @@ doconce replace 'end{notice_mdfboxadmon} % title: Solution.' \
 Change number 2 is done with a regular expression edit that replaces
 the complete definition of question admons:
 
+idx{`doconce` command!`subst`}
 !bc shcod
 doconce subst -s '% "question" admon.+?question_mdfboxmdframed\}' \
     '% "question" admon
@@ -2895,6 +2973,8 @@ doconce subst -s '% "question" admon.+?question_mdfboxmdframed\}' \
 ]{question_mdfboxmdframed}' mydoc.tex
 !ec
 
+idx{`--latex_admon_envir_map=`}
+
 Change number 3 involves mapping `pycod` and `pypro` environments inside
 admons to `pycod2` and `pypro2` and define these environments by the
 simpler listing style `greenblue`, which does not have any background
@@ -2905,6 +2985,8 @@ Section ref{manual:admon}. For this purpose one employs the `--latex_admon_envir
 Here is a possible command (that employs a blue background for
 all boxes, except `pypro` that gets a frame to indicate ``program'' and
 `sys` and `dat` that get a completely different typesetting):
+
+idx{`--latex_code_style=`}
 
 !bc shcod
 doconce format pdflatex mydoc \
@@ -2942,7 +3024,7 @@ far beyond what DocOnce itself can output!
 Some prefer exercises scattered around, while others prefer them in
 separate sections. DocOnce has its richest functionality if you
 *collect exercises in a separate section* (usually called `Exercises`).
-See the section above why exercises scattered around might cause problems.
+The above section explains why exercises scattered around might cause problems.
 # #endif
 
 ===== Extracting Selected Exercises in a Separate Document =====
@@ -2951,6 +3033,7 @@ idx{`doconce` commands!`extract_exercises`}
 
 The command
 
+idx{`--filter=`}
 !bc sys
 Terminal> doconce extract_exercises tmp_mako__mydoc.do.txt --filter=key1;key2
 !ec
@@ -2962,13 +3045,14 @@ exercises suitable for the IPython/Jupyter notebook and run the command
 with `--filter=ipynb`. Without `--filter=`, the `extract_exercises` utility
 extracts all exercises such that one can publish this document separately,
 with or without solutions and/or short answers.
-By ``exercise'' we here mean all exercises, problems,
-and projects.
+By ``exercise'' we mean all exercises, problems, and projects.
 
 The numbering of the exercises in the new document follows the numbering
 in the original document[^exer-numbering], but you must use the
-`--exercise_numbering=chapter` option in addition if
-you want a chapter-based numbering when extracting exercises from a book.
+`--exercise_numbering=chapter` option if
+you want chapter-based numbering when extracting exercises from a book.
+
+idx{`--examples_as_exercises`}
 
 It is also possible to extract examples along with exercises: just add
 `--examples_as_exercises` (to extract the examples only, equip them with
@@ -2981,10 +3065,12 @@ extracted exercises and remove the comment line that contains the
 
 __Note:__ Instead of having all filtered exercises in one document, you
 may (especially for notebooks) want stand-alone documents for each
-exercise, see the next section.
+exercise; see the next section.
 
 ===== Extracting Exercises as Stand-Alone Documents =====
 label{exercises:standalone}
+
+idx{`--exercises_in_zip`}
 
 It is sometimes convenient to publish exercises from a larger document
 as *individual documents*.
@@ -2995,8 +3081,8 @@ The zip archive also contains a script `make.py` for translating the
 `.do.txt` files to various formats. In university courses it may be
 attractive to give the students `.tex` with the exercise text such that
 the students can fill in the answers and extend the text to a report.
-Or one may distribute the exercises as IPython/Jupyter Notebook files
-and let the students fill in answers in the notebooks. This approach
+Or one can distribute the exercises as IPython/Jupyter Notebook files
+and let the students enter their answers in the notebooks. This approach
 can be combined with "`nbgrader`": "https://github.com/jupyter/nbgrader"
 for automatic grading.
 
@@ -3004,11 +3090,14 @@ The zip archive also contains a file `index.do.txt` with a list of all
 the exercise files that can be published on the Internet and used for
 download of the exercises. The `index.do.txt` file contains a variable
 `FILE_EXTENSIONS` for the type of formats the exercises are available
-in. The user must edit `make.py` accordingly so the right set of
-formats are compiled as desired.
+in. The user must edit `make.py` accordingly so the desired set of
+formats are compiled.
 
-__Note:__ Unzipping the archive packs out the files in a subdirectory
-`standalone_exercises`. For figure and movie references to work one
+idx{`--figure_prefix=`}
+idx{`--movie_prefix=`}
+
+__Note:__ Unzipping the archive unpacks the files into a subdirectory
+called `standalone_exercises`. For figure and movie references to work, one
 needs the `--figure_prefix=../` and `--movie_prefix=../` options.
 If the exercise files are distributed to students, make sure figure
 files are also available (check by compiling the exercises!).
@@ -3018,13 +3107,15 @@ Exercises with references to sections in the running text of the
 original document cause trouble when the exercises are compiled as
 stand-alone documents. For LaTeX this may work if the original document
 is compiled in the parent directory of `standalone_exercises` and
-the corresponding `.aux` file is available (the exercise will in such
-cases make use of the `# Externaldocuments:` command in the file and
+the corresponding `.aux` file is available (in such
+cases the exercise will make use of the `# Externaldocuments:` command in the file and
 use the `xr` package for cross-referencing between documents).
-All other formats will face problems with references to the original
+All other formats will have problems with references to the original
 parent document. When missing references are encountered, a comment about
 the issue is inserted in the exercise file.
 !ewarning
+
+idx{`--exercises_in_zip_filename=`}
 
 __Naming of Exercise Files.__
 The option `--exercises_in_zip_filename=X` can be used to determine the
@@ -3038,7 +3129,7 @@ depending on the option
 
 ===== Example of an Exercise =====
 
-The next section show the typesetting of the following exercise.
+The next section shows the typesetting of the following exercise.
 For output in HTML with various Bootstrap styles, hints and answers
 appear as unfolded sections - one must click to open the text.
 
@@ -3161,7 +3252,6 @@ multiple-choice question (quiz), and final remark - combined with
 mathematics and computer code.
 |eremarks
 !ec
-
 
 ===== Exercise: Compute integrals =====
 label{doconce:manual:exercise:ex}
@@ -3359,6 +3449,8 @@ not intended for being shown in the text, one can use the `Xhid`
 argument to `!bc`, where `hid` indicates a hidden snippet. It becomes
 executable in live code environments but is otherwise not shown.
 
+idx{`--latex_code_style=`}
+
 All these definitions of the arguments after `!bc` can be redefined
 in command-line arguments for the `--latex_code_style=` option,
 the `.ptex2tex.cfg` configuration file for `ptex2tex`, and in
@@ -3389,7 +3481,7 @@ idx{`sphinx code-blocks:`}
 
 === Customizing Code Environments Types for Sphinx ===
 
-The argument after `!bc` can in case of Sphinx output be mapped onto
+The argument after `!bc` can in case of Sphinx output be mapped to
 any valid Pygments language for typesetting of the verbatim block by
 Pygments, if you do not want to rely on the defaults. This mapping
 takes place in an optional comment to be inserted in the DocOnce
@@ -3500,7 +3592,6 @@ example above, we copy code from the line matching `subroutine test`
 matching `C END1` (C followed by 5 blanks and then the text END1). The
 final line with the ``to'' text is not included in the verbatim block.
 
-
 One can also specify the code environment explicitly rather than relying
 on the file extension:
 
@@ -3566,7 +3657,7 @@ Remark for those familiar with `ptex2tex`: The from-to
 syntax is slightly different from that used in `ptex2tex`. When
 transforming DocOnce to LaTeX, one first transforms the document to a
 `.p.tex` file to be treated by `ptex2tex` or `doconce ptex2tex`.
-However, note that the `@@@CODE` line
+However, the `@@@CODE` line
 is always interpreted by DocOnce first.
 
 Remark for those familiar with the `listings` package in LaTeX: the
@@ -3576,6 +3667,8 @@ above works with regular expressions which are much less sensitive
 to edits of the source code file than the line numbers.
 Moreover, copy of code from file works in DocOnce across formats
 (HTML, Sphinx, Markdown, etc.).
+
+dix{command-line options!`--latex_code_style=`}
 
 The `--code_prefix=text` option adds a path `text` to the filename specified
 in the `@@@CODE` command. For example
@@ -3588,6 +3681,8 @@ and `--code_prefix=http://some.place.net`, the file
 !bc
 http://some.place.net/src/myfile.py
 !ec
+
+idx{`--code_skip_until=`}
 will be included. If source files have a header with author, email, etc.,
 one can remove this header by the option `'--code_skip_until=# ---'`.
 The lines up to and including (the first) `# ---` will then be excluded.
@@ -3596,7 +3691,7 @@ The lines up to and including (the first) `# ---` will then be excluded.
 The copying of code from file will search for the first occurrence of
 the ``from'' regular expression and then continue up to the first
 occurrence of the ``to'' expression. This means a non-greedy regular
-expression. A to make the expression greedy is
+expression. To make the expression greedy is
 to insert a comment statement as the ``to'' expression to make a
 special end of the snippet to be copied. For example, you have the
 code
@@ -3723,8 +3818,8 @@ idx{Calibre}
 === ePub and Mobi ===
 
 Conversion to the ePub and Mobi formats, popular for reading on Kindle
-devices, can go via HTML and the "Calibre":
-"http://calibre-ebook.com/" tools. On Debian/GNU Linux, install
+devices, can be accomplished via HTML and "Calibre":
+"http://calibre-ebook.com/". On Debian/GNU Linux, install
 `sudo apt-get install calibre`, and run (e.g.)
 
 !bc sys
@@ -3735,28 +3830,28 @@ Terminal> calibre mydoc.epub  # view ebook
 !ec
 Unfortunately, it seems that HTML and PDF documents with
 mathematics cannot be converted to ePub by Calibre (PDF
-looks strange, MathJax is not used to render formulas in HTML).
+looks strange because MathJax is not used to render formulas in HTML).
 For documents with mathematics, `ebook-convert` is a fine tool, but
-blocks of computer code may need reformatting in terms of shorter lines.
+blocks of computer code may need to be reformatted into shorter lines.
 
 Pandoc is another program that can generate ePub (not tested).  The
-ePub3 format supports mathematics via MathML.  Some dicussions of this
-topic appear in URL:
+ePub3 format supports mathematics via MathML. Dicussion on this
+topic appears in URL:
 "http://tex.stackexchange.com/questions/1551/use-latex-to-produce-epub". The
 "LaTeXML": "http://dlmf.nist.gov/LaTeXML/" program can convert LaTeX
-to XML and XHTML and can be a good starting point for further
+to XML and XHTML and is a good starting point for further
 conversion to ePub, but the plain `latexml` fails miserably on LaTeX
 documents generated from DocOnce (the present manual to be precise).
 
-Sphinx is seemingly good support for compiling the document to
+Sphinx has support for compiling documents to
 the ePub and MOBI formats, but this author has not yet tried it out.
 One should definitely test Sphinx along with `ebookmaker.py` (see next
-paragraph) if the ePub or MOBI is a requested format.
+paragraph) if ePub or MOBI formats are desired.
 
 What has been successfully used to convert DocOnce documents with
 mathematics and code to ePub is
-the `ebookmaker.py` script (use this "fork": "https://github.com/doconce/ebookmaker" by the author for a version of this script that actually works).
-HTML, in particular with Bootstrap styles, translates well to ePub by
+the `ebookmaker.py` script (use this "fork": "https://github.com/doconce/ebookmaker" by the author for a version that actually works).
+HTML, in particular with Bootstrap styles, to ePub is properly handled by
 this script. The script requires a JSON file describing the content of
 the book. A typical file for a DocOnce document `mydoc.do.txt` that
 is translated to HTML and split into a series of files `._mydoc*.html`
@@ -3807,7 +3902,7 @@ Just edit this file, save it as `mydoc.json` and run
 idx{Kindle}
 
 If you want to read your DocOnce document on Kindle, sending the PDF
-file to the email address for the device seems to be a satisfactory option.
+file to the email address for the device seems to work.
 
 
 === Apple iBook Format ===
@@ -3816,7 +3911,7 @@ A converter to iBooks would be nice. In theory, ePub documents can be
 imported and converted to iBooks in the iBooks Author application, but
 ePub files created by `ebookmaker.py` do not translate well.
 The `.iba` files of iBooks documents can be unzipped and the
-XML code for the book is available in `index.xml`. However, the XML
+XML code for the book made available in `index.xml`. However, the XML
 is undocumented and must be manipulated and filled with the contents
 of a DocOnce document, e.g., by first translating DocOnce to HTML,
 and then using BeautifulSoup to get an XHTML version of the HTML
@@ -3825,6 +3920,7 @@ iBook. See also other "ideas": "http://christian-fries.de/blog/files/2012-10-iBo
 
 === Dealing with Mathematics in Formats without LaTeX Math Support ===
 
+idx{`mako`}
 If the document targets formats with and without support of LaTeX
 mathematics, one can use the preprocessor to typeset the mathematics
 in two versions. After `#if FORMAT in ("latex", "pdflatex", "html",
@@ -3851,11 +3947,11 @@ alternatively:
 
 If you have LaTeX mathematics written in DocOnce, it is fairly easy
 to generate PNG images of all mathematical formulas and equations for
-use with PowerPoint or OpenOffice presentations.
+use with PowerPoint or LibreOffice presentations.
 
   o Make a Sphinx version of the DocOnce file.
   o Go to the Sphinx directory and load the `conf.py` file into
-    a browser.
+    a text editor.
   o Search for ``math'' and comment out the
     `'sphinx.ext.mathjax'` (enabled by default) and
     `'matplotlib.sphinxext.mathmpl'` (disabled by default)
@@ -3863,8 +3959,8 @@ use with PowerPoint or OpenOffice presentations.
     This is the package that generates small PNG pictures
     of the mathematics.
   o Uncomment the line with `pngmath_dvipng_args =` and
-    set the PNG resolution to `-D 200` when the purpose is to
-    generate mathematics pictures for slides.
+    set the PNG resolution to `-D 200` when
+    generating mathematics pictures for slides.
   o Run `make html`.
   o Look at the HTML source file in the `_build/html`
     directory: all mathematics are in `img` tags with `src=`
@@ -3899,14 +3995,14 @@ The newcommands must be defined by the standard LaTeX command
 !bc latexcod
 \newcommand{name}{definition}
 !ec
-in a separate file with name
+in a separate file named
 `newcommands*.tex`. Use of `\def` is ignored. Each newcommand
 definition *must* appear on a single line.
 
 Newcommands in a file with name
 `newcommand_replace.tex` are expanded when DocOnce is translated to
 other formats, except for LaTeX (since LaTeX performs the expansion
-itself).  Newcommands in files with names `newcommands.tex` and
+itself). Newcommands in files named `newcommands.tex` and
 `newcommands_keep.tex` are kept unaltered when DocOnce text is
 translated to other formats, except for the Sphinx format. (Since Sphinx
 understands LaTeX math, but not newcommands if the Sphinx output is
@@ -3953,14 +4049,15 @@ in the current format.
 
 idx{algorithms}
 
-DocOnce has no support for typesetting of algorithms, while LaTeX
-has quite sophisticated support. LaTeX writes need some strategy with
-dealing with algorithms in DocOnce: they should be sophisticated
+DocOnce has no support for the typesetting of algorithms, while LaTeX
+has quite sophisticated support. LaTeX writers need a strategy to
+deal with algorithms in DocOnce: they should be sophisticated
 when the output is in LaTeX and they should be readable when the
 output is in other formats that have no native support for
 algorithms.
 
-The simplest solution is to use the preprocessor (Preprocess or Mako)
+idx{`mako`}
+The simplest solution is to use one of the preprocessors (Preprocess or Mako)
 to allow different solutions for different formats.
 There are basically three typesetting styles available: LaTeX
 algorithm environments, pseudo code in a verbatim block, and
@@ -3994,14 +4091,19 @@ idx{notice admon}
 idx{summary admon}
 idx{question admon}
 idx{block admon}
+idx{admon!warning}
+idx{admon!notice}
+idx{admon!summary}
+idx{admon!question}
+idx{admon!block}
 
 DocOnce offers strong support for admonition environments, such
 as warning boxes, notification boxes, question boxes,
 and summary boxes. The boxes normally have an icon, a heading,
 and may also have a background color. A special box, the block,
-has never any icon and can be used when an icon would be disturbing
+never has an icon and can be used when an icon would be distracting
 or misleading. The variety of admonitions and their many typesetting
-styles are available through a "demo": "http://doconce.github.io/doconce/doc/pub/admon/index.html".
+styles can be seen in this "demo": "http://doconce.github.io/doconce/doc/pub/admon/index.html".
 
 === Examples on Admonition Types ===
 
@@ -4009,10 +4111,10 @@ The following admonition environments are available:
 `block`, `warning`, `notice`, `question`, and `summary`.
 The box is defined by begin and end tags such as `!bnotice` and `!enotice`.
 The title of the box is fully customizable. This means that if you want
-different types of boxes, e.g. a *detour* box and a *tip* box, you can just
-open introduce the convention that detour applies the summary box and
+different types of boxes, e.g. a *detour* box and a *tip* box, you can
+introduce the convention that detour applies the summary box and
 starts with 'Detour:' in the title, while the notice box is used for
-tip boxes and as a title starting with 'Tip:'.
+tip boxes and has a title starting with 'Tip:'.
 
 Here are a few examples:
 
@@ -4034,7 +4136,7 @@ How many admonition types are there in DocOnce?
 |equestion
 
 |bblock This is a block.
-A block never has any icon. A block has never any icon,
+A block never has any icon. A block never has an icon,
 but may feature a title. It is often used in slides.
 |eblock
 
@@ -4050,7 +4152,7 @@ The main message is to utilize the admonition styles for
 marking different parts of the text
 |esummary
 !ec
-The above DocOnce code is in the present format rendered as
+The above DocOnce code rendered as
 
 !bwarning
 Here is a warning!
@@ -4069,7 +4171,7 @@ How many admonition types are there in DocOnce?
 !equestion
 
 !bblock This is a block.
-A block never has any icon. A block has never any icon,
+A block never has any icon. A block never has icon,
 but may feature a title. It is often used in slides.
 !eblock
 
@@ -4089,9 +4191,8 @@ marking different parts of the text
 The layout of admonitions depend on the format.  In the `rst` and
 `sphinx` formats one applies the native admonitions, but in `sphinx`
 the `automake_sphinx.py` script manipulates the HTML file to set a
-gray background for all admonitions.  In `html`, `latex` and
-`pdflatex` there is quite some functionality to control the layout of
-admonitions.
+gray background for all admonitions.  There is lots of functionality to control the layout of
+admonitions in `html`, `latex` and `pdflatex`.
 
 idx{admonition layout}
 idx{HTML admonitions}
@@ -4100,6 +4201,9 @@ idx{HTML admonitions}
 
 The command-line argument `--html_admon` sets the admonition style
 for the `html` format (see "demo": "http://doconce.github.io/doconce/doc/pub/admon/index.html"):
+
+idx{`--html_admon=`}
+idx{`--html_style=`}
 
  * `--html_admon=gray` for
    icons with gray background and small font,
@@ -4122,6 +4226,10 @@ for the `html` format (see "demo": "http://doconce.github.io/doconce/doc/pub/adm
    is `small` or `large` (or a number less than 100 or grater than 100,
    resp.). The admon text is then typeset with a small or large font.
 
+idx{`--html_admon_bg_color=`}
+idx{`--html_admon_bd_color=`}
+idx{`--pygments_html_style=`}
+
 The options `--html_admon_bg_color=...` and `--html_admon_bd_color=...`
 can be used to override the default background and boundary frame colors
 of the admon styles (respectively). These options have only effect
@@ -4137,6 +4245,8 @@ Some recommended combinations for admonitions in HTML are
 idx{LaTeX admonitions}
 
 === Layout of Admonitions in LaTeX ===
+
+idx{`--latex_admon=`}
 
 In `latex` and `pdflatex`, the type of admonition style is set by
 the command-line option `--latex_admon=`.
@@ -4158,11 +4268,13 @@ Several values are available (see "demo": "http://doconce.github.io/doconce/doc/
    admon, which has a different look with horizontal rules only,
    and for A4 format, the summary box is half of the text width and
    wrapped with running text around (if it does not contain verbatim text,
-   in that case the standard `graybox2` style is used). This small
+   the standard `graybox2` style is used). This small
    summary box is effective in proposals to disperse small paragraphs
    of key points around.
  * `grayicon` has icons and a light gray background.
  * `yellowicon` has icons and a light yellow background.
+
+idx{`--latex_admon_color=`}
 
 There is also an option `--latex_admon_color=...` that can be used
 to override the default color. Values are either saturated colors
@@ -4185,24 +4297,28 @@ doconce replace 'linecolor=black,' 'linecolor=darkblue,' mydoc.tex
 doconce subst 'frametitlebackgroundcolor=.*?,' 'frametitlebackgroundcolor=blue!5 mydoc.tex
 !ec
 
-Admonition titles without a period, exclamation mark, or colon at the end
-will by default get a period at the end. For some LaTeX admonitions
+idx{`--latex_admon_title_no_period`}
+
+By default, admonition titles without a period, exclamation mark, or colon at the end
+will get a period at the end. For some LaTeX admonitions
 (e.g., `mdfbox`), it may be natural to view the title with a heading
 *without* any period. The command-line option `--latex_admon_title_no_period`
 avoids appending a period.
 
 === LaTeX code Environments Inside Admonitions ===
 
-Sometimes one sets a special background color in the admonitions, and
-colored code blocks, which look fine in the running text, may then
-have inappropriate colors inside admonitions. The option
+idx{`--latex_admon_envir_map=`}
+
+Sometimes one sets a special background color in the admonitions and
+colored code blocks that look fine in the running text, but that may be
+ inappropriate inside admonitions. The option
 `--latex_admon_envir_map=...` is used to map an environment (usually
 for code) to a new style inside admonitions. Specifying a number,
 say 2, as in `--latex_admon_envir_map=2`, appends the number
 to all environments inside admonitions, so `!bc pycod` becomes
 effectively `!bc pycod2`.
-One can then in `doconce ptex2tex` (or in the `ptex2tex` configuration
-file) specify the typesetting
+Then,in `doconce ptex2tex` (or in the `ptex2tex` configuration
+file), one can then specify the typesetting
 of the `pycod2` environment.
 Otherwise the specification must be a mapping for each envir
 that should be changed inside the admons:
@@ -4250,7 +4366,8 @@ label{manual:userdef:envir}
 
 LaTeX writers are often fond of their favorite environments and think
 that formats like DocOnce, Markdown, and HTML are primitive without
-these favorite environments. DocOnce, however, offers *user-defined* environments with begin and end tags, as typical in LaTeX. This section explains
+these environments. DocOnce, however, offers *user-defined* environments
+with begin and end tags, just like LaTeX. This section explains
 how to define such user-defined environments.
 
 __Remark.__
@@ -4277,7 +4394,7 @@ The convention for this type of examples is to have a title,
 and the title line
 may feature `label=xxx`, where we can use `xxx` as a label for the
 example.
-The example environment above is in the present output format
+The example environment above is (in the present output format)
 typeset like this:
 
 !bu-example Addition label=ex:math:1p1
@@ -4325,7 +4442,7 @@ The other keys are the names of the environments. For each environment,
 we use a function to format the code for a specific output format.
 The `do` key is a default DocOnce formatting, expressed in
 DocOnce syntax and applied if the output format is not present among
-the other keys. The LaTeX output is here defined by the function
+the other keys. The LaTeX output is defined by the function
 `example`:
 
 !bc pycod
@@ -4365,7 +4482,7 @@ an integer `counter` that counts the number of the current environment
 (1, 2, and so on, which can be used for reference as an alternative to
 the label), and the `format` string holding the user's output format.
 In the present case,
-we add the label inside the example environment if we have a  label
+we add the label inside the example environment if we have a label
 in the title, and we typeset the title in the emphasize font.
 Otherwise, we rely on the standard `example` (or `newtheorem`)
 LaTeX environment.
@@ -4385,6 +4502,10 @@ def do_example(text, titleline, counter, format):
     s += '\n%s\n\n' % text
     return s
 !ec
+
+idx{`mako`}
+idx{examples}
+idx{`mako`!`refex` for examples}
 
 We quickly encounter a problem when referring to a specific example.
 In LaTeX, we want to write `Example ref{label}`, using the label
@@ -4410,9 +4531,9 @@ We can then write something like
 ${refex('ex:test:1p1', capital=True)} demonstrates how to do 1+1.
 That is, the calculation 1+1 appears in ${refex('ex:test:1p1')}.
 !ec
-Note that we distinguish between `capital=True`, which means that the
-example reference opens a sentence, and `capital=False`, which refers
-to a reference later in the sentence. In HTML we see the difference:
+Note that we distinguish between `capital=True`, where the
+example reference opens a sentence, and `capital=False`, where the
+reference appears later in the sentence. In HTML we see the difference:
 
 !bc
 The example in the section
@@ -4503,8 +4624,8 @@ DocOnce applies the software tool "Publish":
 "https://github.com/doconce/publish" to handle the bibliography in a
 document. With Publish it is easy to import BibTeX data and maintain a
 database in a clean, self-explanatory textual format. From the Publish
-format it is easy to go BibTeX and reST or straightforward DocOnce
-typesetting (and from there to HTML, plain text, wiki formats, and so
+format it is easy to generate BibTeX and reST, or apply straightforward DocOnce
+typesetting (and from there generate HTML, plain text, wiki formats, and so
 on).
 
 Installing Publish is trivial: either do
@@ -4526,6 +4647,7 @@ Terminal> python setup.py install
 
 idx{BibTeX}
 idx{bibliography, database}
+idx{`publish`}
 
 Many scientists have their bibliographic data in the BibTex format. Here we
 assume that you have two files, `refs1.bib` and `refs2.bib`. These can
@@ -4536,21 +4658,22 @@ by the commands
 publish import refs1.bib
 publish import refs2.bib
 !ec
-During import, Publish may ask you for accepting the name of new
+During import, Publish may ask you to accept the name of new
 institutions or journals. Publish already have a database of journals
-and institutions/departments, but when you add new, you also get
+and institutions/departments, but when you add new ones, you also get
 a file `venues.list` (in the current working directory) which will be used
 for future imports in this directory. Make sure you store `publish.pub`
 and `venues.list` along with your DocOnce document files (they do not
 need to reside in the same directory, but make sure you add them to
 your version control system).
 
-!bwarning Importing big BibTeX databases may imply a lot of work
-If your BibTeX database does not confirm to the strict BibTeX syntax
+!bwarning Importing big BibTeX databases may represent a lot of work.
+You will get error messages if your BibTeX database does not comply to
+the strict BibTeX syntax
 required by Publish (entry names must be in lower case, their values
-must be surrounded by curly braces), you will get error messages.
+must be surrounded by curly braces).
 Publish will also check the names of all journals and detect duplicate
-entries. For databases automatically created by some of the modern
+entries. For databases automatically created by a modern
 web tools for references, the BibTeX file may need a lot of
 edits before it can be accepted by Publish. Consider using a script
 to automate many of the edits.
@@ -4565,15 +4688,19 @@ curly braces. You may need to edit your BibTeX files to meet this
 demand.
 !enotice
 
+idx{`doconce` commands!`fix_bibtex4publish`}
+
 The utility `doconce fix_bibtex4publish file.bib` fixes several known
 issues with BibTeX files such that Publish has a better chance of
 accepting the entries. Run this utility first, then run Publish,
-respond to any requirements that Publish spits out, remove `papers.pub`
+respond to any requirements Publish spits out, remove `papers.pub`
 if it exists, and run the import statements again.
 
 Although references are visible as numbers only in the
-output, it is recommended to have apply a nice, consistent
+output, it is recommended to apply a nice, consistent
 typesetting of your keys. It is suggested to use the following scheme:
+
+idx{`publish`!reference `keys`}
 
 !bc do
 Langtangen_2003a          # single author
@@ -4585,15 +4712,18 @@ authors and year.
 
 ===== Adding new references to the database =====
 
-When you get some new BibTeX references you simply put them in
-a file, say `refs3.pub` and run the `publish import refs3.pub` command
+idx{`publish`!`import`}
+
+When you get new BibTeX references, simply put them in
+a file, say `refs3.pub` and run `publish import refs3.pub` command
 to update the database. You may also consider editing the `papers.pub`
 file directly when adding new references.
 
 ===== Exporting the database =====
 
-Export of everything in the database to
-BibTeX is done by
+idx{`publish`!`export`}
+
+Exporting everything in the database to BibTeX is done by
 
 !bc sys
 publish export mybibtexfile.bib
@@ -4638,17 +4768,20 @@ corresponding LaTeX version of the command with a backslash; in reST
 and Sphinx the citations becomes links, with the citation keys as
 names; in HTML the citations are numbered from 1, 2, and so forth
 according to their appearance, and the numbers appear as links; while
-in other formats the citations are simply the keys inside square
+in other formats the citations are the keys inside square
 brackets and the corresponding references are listed in the order they
 are cited.
 
 ===== Specifying the Publish database =====
 
+idx{`BIBFILE:`}
+idx{`publish`!`BIBFILE`}
+
 The specification of the Publish database file in the DocOnce document
 is done one a line containing `BIBFILE: papers.pub` (you may give
 the database file another name and store it in another directory).
 The references will be inserted at the place where this command appears.
-Before the command you will often want to have a headline with
+Before the command you may want to have a headline with
 ``References'', ``Bibliography'', or similar.
 Here is an example:
 
@@ -4669,18 +4802,19 @@ idx{LaTeX bibliographic styles}
 The bibliography style is ``plain'' in LaTeX output. To change this, just
 edit the `.p.tex` file. For example,
 
+idx{`doconce` commands!`replace`}
 !bc sys
 doconce format latex mydoc
 doconce replace 'bibliographystyle{plain}' 'bibliographystyle{abbrev}' mydoc.p.tex
 !ec
-
-
 
 !split
 ======= Preprocessing and Postprocessing =======
 
 idx{split command}
 idx{`!split`}
+idx{preprocessing}
+idx{postprocessing}
 
 DocOnce allows preprocessor commands for, e.g., including files,
 leaving out text, or inserting special text depending on the format.
@@ -4718,21 +4852,25 @@ DocOnce will detect if preprocess or Mako commands are used and run
 the relevant preprocessor prior to translating the DocOnce source to a
 specific format.
 
+idx{`mako`!`FORMAT`}
+
 The preprocess and mako programs always have the variable `FORMAT`
-defined as the desired output format of DocOnce (`html`, `latex`,
+defined and indicates the desired output format of DocOnce (`html`, `latex`,
 `plain`, `rst`, `sphinx`, `epydoc`, `st`).  It is then easy to test on
 the value of `FORMAT` and take different actions for different
 formats. Below is an example:
 
 @@@CODE _format_specific1.do.txt envir=cc
 
+idx{`--device=`}
+
 A variable `DEVICE` is also defined. It equals `screen` by default,
 but the command-line argument `--device=paper` can set `DEVICE` to
 `paper` (or another value). Testing on `DEVICE` inside the document
-makes it possible to test if the output is on paper media, a screen,
+makes it possible to test if the output is on paper media, screen,
 or a particular device.
 
-Other user-defined variables for the preprocessor can be set at
+Other user-defined variables for the preprocessor can be set on
 the command line as explained in Section ref{doconce2formats}.
 
 More advanced use of mako can include Python code that may automate
@@ -4741,6 +4879,8 @@ the writing of parts of the document.
 !bnotice On the type of a Mako variable from the command line
 You define Mako variables as in this example:
 
+idx{`mako`!`variables`}
+
 !bc sys
 Terminal> doconce format html mydoc LANG=C NO=4 COMMENTS=False
 !ec
@@ -4748,13 +4888,15 @@ The variable `LANG` gets the value `'C'` as a Python string
 inside the document. All values are treated as strings, except
 if the value is `True` or `False` or if it is an integer.
 Therefore, `NO` becomes the integer `4` and you can test
-like `% if NO > 4:`. The variable `COMMENTS` gets
+for this like `% if NO > 4:`. The variable `COMMENTS` gets
 the boolean value `False` and `% if not COMMENT:` is a positive
-test. With Mako such variables set on the command-line
+test. With Mako variables set on the command-line
 you can easily leave out portions
 of the document or choose between different versions of the text
 in a very flexible and fine-tuned way.
 !enotice
+
+idx{`mako`!`eval`}
 
 !bnotice Advanced setting of Mako variables
 Mako variables can also be run through `eval` before being
@@ -4810,7 +4952,7 @@ Long documents are conveniently split into smaller DocOnce files.
 However, there must be a master document including all the pieces,
 otherwise references to sections and the index will not work properly.
 The master document is preferably a file just containing a set of
-preprocessor include statements of the form `# #include "file.do.txt"`.
+preprocessor `include` statements of the form `# #include "file.do.txt"`.
 The preprocessor will put together all the pieces so that DocOnce
 sees a long file with the complete text.
 
@@ -4818,16 +4960,16 @@ sees a long file with the complete text.
 
 The first example implies that all lines in the file chapter10.do.txt are copied into the master document. The second line has a fromto: directive, which implies copying all lines in the exercises.do.txt file included between the matches of two regular expressions (in the example `===== Exercise: 1 =====` and `===== Concluding `=====`).
 
-
-
 Two regular expressions, separated by the @ sign, define the "from" and "to" lines. The "from" line is included in the verbatim block, while the "to" line is not. In the example above, we copy code from the line matching `===== Exercise: 1 =====` and the section/subsection with title `Concluding` (the word `Concluding` surrounded by space and 5 to 7 equal signs).
 
+idx{`doconce`commands!`split_rst`}
+
 # #ifdef DEPRECATED
-For reST and Sphinx documents it is a point to have
-separate `.rst` files and an index file listing the various `.rst`
+For reST and Sphinx documents, one must have
+separate `.rst` files and an index file listing the various `.rst` files
 that build up the document. To generate the various `.rst` files one
-should not run DocOnce on the individual `.do.txt` files, because then
-references and index entries are not treated correctly. Instead,
+should not run DocOnce on the individual `.do.txt` files because the
+references and index entries will not be treated correctly. Instead,
 run DocOnce on the master file and invoke the script `doconce split_rst`
 to split the long, complete `.rst` into pieces. This process requires
 that each `# #include "file.do.txt` line in the master file is preceded by a
@@ -4861,6 +5003,9 @@ else
   cd ..
 fi
 !ec
+
+idx{`doconce`commands!`sphinx_dir`}
+
 The autogenerated `automake_sphinx.sh` file (by `doconce sphinx_dir`)
 is compatible with a master `.rst` file split into pieces as long as
 the complete set of pieces in correct order is given to `doconce sphinx_dir`.
@@ -4868,11 +5013,15 @@ This set is the output of `doconce split_rst`, which we catch in a
 variable `files` above.
 # #endif
 
+idx{`doconce` commands!`split_html`}
+idx{`doconce` commands!`split_rst`}
+idx{`doconce` commands!`split_beamer`}
+
 For web documents it is often desired to split long pages into shorter
 ones. This is done by the DocOnce command `!split` placed at the
 beginning of a line. The `!split` commands works with output in
 `html`, `rst`, `sphinx`, `latex`, and `pdflatex`. The `!split` command
-are normally placed before section headings. It is very actively used
+is normally placed before section headings. It is used often
 when writing slides with DocOnce. The `doconce format` command does not
 recognize `!split` instructions: one needs to run `doconce split_*`
 as a postprocess, where the `*` means `html`, `rst`, or `beamer`.
@@ -4908,6 +5057,9 @@ equations with labels are given numbers.
 The HTML documents have by default very simple navigation buttons for
 the previous and next document. These buttons are customizable:
 
+idx{`--nav_buttons`}
+
+
 !bc sys
 Terminal> doconce split_html mydoc.html --nav_buttons=X
 !ec
@@ -4916,6 +5068,8 @@ buttons), `gray1`, `gray2`, `bigblue`, `blue`, or `green` as
 shown here, respectively (from left to right):
 
 FIGURE: [fig/nav_buttons.png, width=300 frac=0.6]
+
+idx{`--html_theme=`}
 
 However, if `--html_theme=` is set any theme starting
 with `bootstrap` or `bootswatch`, the navigation buttons are ignored,
@@ -4946,7 +5100,7 @@ directory, the whole Sphinx document exists in a complete version
 in the compiled directory (usually `sphinx-rootdir/_build/html`) and
 can easily be moved around.
 
-
+idx{`doconce` commands!`slides_beamer`}
 __Split and LaTeX.__
 LaTeX Beamer slides generated from DocOnce source also apply `!split` to
 indicate the start of individual slides. However, the split is
@@ -4965,7 +5119,7 @@ idx{Markdown slides}
 It is a potentially fast procedure to make slides from large amounts
 of DocOnce text, in particular for condensing material for
 lectures or for providing the slide set as an overview or study
-guide.  The slides can either be ordinary, separate slides - or just a
+guide. The slides can be ordinary separate slides or a
 document with much briefer text and emphasis on bullet lists, figures,
 mathematical formulas, admonitions, etc.
 
@@ -4975,6 +5129,8 @@ mathematical formulas, admonitions, etc.
 # list below for how to describe the command with pre- and postfix.
 
 Points to consider (just sketches...):
+
+idx{`--keep_pygments_html_bg`}
 
  * Only some pygments styles are suited for a particular reveal.js/deck.js
    theme
@@ -5000,6 +5156,7 @@ Points to consider (just sketches...):
    (Short titles for sections in ordinary text files are not supported.)
 
 idx{short title (for slides)}
+idx{slides!short tiles}
 
 !split
 ===== Overview =====
@@ -5011,7 +5168,7 @@ slides to be presented through a web browser, and classical
 LaTeX Beamer slides. A "comprehensive demo": "http://doconce.github.io/doconce/doc/pub/slides/demo/index.html" shows the range of possible
 layouts.
 
-The following specific types of output is supported:
+The following types of output are supported:
 
  * LaTeX:
   * "Beamer slides": "http://en.wikibooks.org/wiki/LaTeX/Presentations"
@@ -5032,7 +5189,7 @@ the elements within each slide are necessary to produce effective
 slide sets:
 
  * Use a section heading (7 `=`) for dividing a presentation into parts.
-   There can be text of figure(s) after the heading to illustrate
+   There can be text or figure(s) after the heading to illustrate
    the part.
  * Use a subsection heading as slide heading (5 `=`).
  * Limit the amount of running text (as always).
@@ -5217,6 +5374,10 @@ Not yet written...
 
 Just a very preliminary sketch of commands:
 
+idx{`--pygments_html_style=`}
+idx{`--keep_pygments_html_bg`}
+idx{`--html_slide_theme=`}
+
 !bc sys
 Terminal> doconce format html myslides \
           --pygments_html_style=native --keep_pygments_html_bg
@@ -5226,10 +5387,12 @@ Terminal> doconce slides_html myslides reveal \
 
 === Potential Problems ===
 
- * Some newer Firefox does not show rounded corners of the
-   admonition boxes, e.g., notice and warning (tested on Ubuntu)
+idx{`doconce` commands!`subst`}
+
+ * Some newer versions of Firefox do not show the rounded corners of
+    admonition boxes, e.g., notice and warning (tested on Ubuntu)
  * DocOnce performs some adjustments of the spacing around
-   equations. More edits (automate with `doconce subst`) might be needed.
+   equations. More edits (automated with `doconce subst`) might be needed.
 
 ===== LaTeX Beamer Slides =====
 
@@ -5242,14 +5405,14 @@ for simple layout and
 "`shadow`": "http://doconce.github.io/teamods/doconce/demo/demo_blue_shadow.pdf"
 for shadowed boxes and more visual structure in the slides.
 
-=== Pop of list items and blocks ===
+=== Pop list items and blocks ===
 
 The `!bpop` and `!epop` directives have the following effect in
 Beamer slides:
 
  * If `!bpop` comes right before the beginning of a list, each list
    item is popped up, one at a time.
- * Otherwise, the rest of the slide, or the text until the next `!bpop`
+ * Otherwise, the rest of the slide or the text until the next `!bpop`
    pops up all at once.
 
 === Compilation ===
@@ -5271,6 +5434,10 @@ A demo directory with files is "`locale`": "https://github.com/doconce/doconce/t
 in Norwegian. To compile, one must supply the options
 `--encoding=utf-8 --language=Norwegian`:
 
+idx{`--html_style=`}
+idx{`----encoding=`}
+idx{`--language`}
+
 !bc sys
 Terminal> doconce format html norsk \
           --html_style=bootstrap_FlatUI \
@@ -5284,7 +5451,7 @@ Terminal> doconce format html norsk \
 
 DocOnce does not aim to support sophisticated typesetting, simply because
 sophisticated typesetting usually depend quite strongly on the particular
-output format chosen. When a particular feature needed is not supported
+output format chosen. When a particular feature is not supported
 by DocOnce, it is recommended to hardcode that feature for a particular
 format and use the if-else construction of the preprocessor. For example,
 if a sophisticated table is desired in LaTeX output, do something like
@@ -5292,14 +5459,14 @@ if a sophisticated table is desired in LaTeX output, do something like
 @@@CODE _format_specific2.do.txt envir=ccq
 
 Similarly, if certain adjustments are needed, like
-pagebreaks in LaTeX, hardcode that in the DocOnce format (and recall
+pagebreaks in LaTeX, hardcode it in the DocOnce format (and recall
 that this is really LaTeX dependent - pagebreaks are not
 relevant HTML formats).
 
 Instead of inserting special code in the DocOnce document, one can
-alternatively script editing of the output from DocOnce. That is,
-we develop a Python or Bash script that runs the translation of
-a DocOnce document to a ready document in another format. Inside this
+script editing of the output from DocOnce. That is,
+develop a Python or Bash script that runs the translation of
+a DocOnce document to a document in another format. Inside this
 script, we may edit and fine-tune the output from DocOnce.
 
 
@@ -5414,9 +5581,9 @@ many keyboard shortcuts are defined:
 |  Ctrl+c help   | print this table                      |
 |--------------------------------------------------------|
 
-Typing `Ctrl+c help` prints the above table in Emacs. Try out
-the different shortcuts and see how handy they are in learning
-DocOnce and saving much typing!
+Typing `Ctrl+c help` prints the above table in Emacs. Try
+the different shortcuts and see how handy they are to learn
+DocOnce and reduce on the amount of typing!
 
 
 ===== Atom Syntax Highlighting for DocOnce =====
@@ -5430,12 +5597,13 @@ There is a package for the "Atom editor" : "https://atom.io/" available at URL: 
 label{manual:mako}
 
 idx{`mako` programming}
+idx{`mako`}
 
 The "Mako": "http://docs.makotemplates.org/" templating engine is used
-as preprocessor for DocOnce documents, but the "Preprocess": "http://code.google.com/p/preprocess" is run prior to Mako and is recommended for
-including other files via `# #include "filename"` (see section ref{splitting documents}). Preprocess is also
-sufficient for if-else tests to steer which parts of the text that
-are to be compiled. For more demanding tasks, use Mako, which resembles
+as a preprocessor for DocOnce documents. However, "Preprocess": "http://code.google.com/p/preprocess"
+runs prior to Mako and should be used to include other files via `# #include "filename"` (see section ref{splitting documents}). Preprocess is
+sufficient for if-else tests to steer which parts of the text are to be compiled.
+For more demanding tasks, use Mako, which resembles
 a real programming language.
 
 !bwarning
@@ -5444,7 +5612,7 @@ lead to problems because Mako applies syntax like `${var}` to extract
 variables or call functions, while LaTeX mathematics sometimes applies
 the same syntax, e.g., `${\cal O}(\Delta x^2)$` which looks like a
 Mako function call. This problem can give rise to strange error
-messages from Mako, usually that a variable is not defined.
+messages from Mako (usually that a variable is not defined).
 The solution is to avoid such Mako-style syntax when writing
 LaTeX mathematics, e.g., by defining newcommands if it is otherwise
 problematic.
@@ -5506,7 +5674,7 @@ comment in Mako.
 ===== Debugging Python code in Mako =====
 label{mako:py:debugging}
 
-Although it is easy to put in Python code inside `<%` and `%>` directives,
+Although it is easy to put Python code inside `<%` and `%>` directives,
 it may quickly become a nightmare to debug the Python code. If Mako
 reports a syntax error in the Python code, it is recommended to debug
 the Python code outside of Mako. That is, copy all Python code to a
@@ -5531,7 +5699,7 @@ file and run it. The recommended way is to use Preprocess to copy
 all the text in the `.py` files into a single file, named (say) `all_code.p.py`:
 
 @@@CODE _all_code.p.py
-Note that after including the `.py` files one can insert calls to functions,
+Note that after including the `.py` files, one can insert calls to functions,
 print variables, etc., as desired to debug and experiment.
 
 Run Preprocess on `all_code.p.py` to produce an ordinary Python file
@@ -5543,9 +5711,8 @@ Run Preprocess on `all_code.p.py` to produce an ordinary Python file
 preprocess all_code.p.py > all_code.py
 python all_code.py
 !ec
-Especially when the Python code in Mako grows and becomes non-trivial,
-this setup for having the code external to the DocOnce document is
-very effective.
+This setup for having the code external to the DocOnce document is
+very effective, especially when the Python code in Mako grows and becomes non-trivial.
 
 !bsummary Things to remember when programming Mako
 
@@ -5653,7 +5820,7 @@ for the symbol in `${nomenclature(r"...", ....`
 required).
 
 Here is
-the resulting DocOnce after mako is run (found in `tmp_mako__mydoc.do.txt` if
+the resulting DocOnce document after mako is run (found in `tmp_mako__mydoc.do.txt` if
 `mydoc.do.txt` is the file above):
 
 !bc do
@@ -5769,9 +5936,9 @@ What if you want a table of thumbnail figures with hyperlinks?
 
 === Solution for LaTeX and HTML ===
 
-We first restrict the attention to LaTeX and HTML. In those cases
+We first restrict our attention to LaTeX and HTML. In those cases
 we can create an ordinary table and insert a call to a Mako
-function in cells in the table to return the proper LaTeX or
+function table cells to return the proper LaTeX or
 HTML code for displaying a figure.
 
 The Mako call syntax in a cell is decided to be
@@ -5814,10 +5981,10 @@ the figure.
 
 !bnotice
 A corresponding solution
-for Sphinx will not work because inline figures in Sphinx has
+for Sphinx will not work because inline figures in Sphinx have
 a syntax with pipe symbols ('|') that interfere with the
 column separator in tables in DocOnce. Returning the HTML
-code in case of Sphinx will just display that HTML code
+code in the case of Sphinx will just display that HTML code
 in the cells, not the rendered HTML code. A solution that
 includes Sphinx is provided later.
 !enotice
@@ -5902,7 +6069,7 @@ process after DocOnce has created the output file. We show the Mako
 solution here.
 
 !bnotice Tip
-A pure Python function Mako is easiest to develop in a separate
+A pure Mako Python function is easiest to develop in a separate
 Python program file because Python has better error messages
 than Mako. Also, Python has debugging facilities that make the
 development of the code much more efficient than writing in Mako.
@@ -6078,8 +6245,8 @@ label{manual:theorem:envir}
 DocOnce supports only basic formatting elements (headings, paragraphs,
 lists, etc.), while LaTeX users are used to fancy environments for, e.g.,
 theorems. A flexible strategy is to typeset theorems
-using paragraph headings, which will look satisfactorily in all
-formats, but add comment lines that can be replaced by LaTeX environments
+using paragraph headings, which will look acceptable in all
+formats; but one should add comment lines that can be replaced by LaTeX environments
 via `doconce replace`. Theorems can be numbered using a variable in Mako.
 Here is an example on raw DocOnce code:
 
@@ -6187,17 +6354,20 @@ computer code.
 ===== Tools for Writing DocOnce Documents =====
 
  * Emacs (with the modest DocOnce syntax highlighting), Vim, Gedit, etc.
+ * "Atom editor" : "https://atom.io/"
  * "TeXMaker": "http://www.xm1math.net/texmaker/" and "Kile": "http://kile.sourceforge.net/" can in theory be adapted to handle DocOnce compilation and maybe even DocOnce constructs.
 
 
 
 ===== Debugging =====
 
+idx{debugging}
+
 Given a problem, extract a small portion of text surrounding the
 problematic area and debug that small piece of text. DocOnce does a
 series of transformations of the text. The effect of each of these
 transformation steps are dumped to a logfile, named
-`_doconce_debugging.log`, if the to `doconce format` after the filename
+`_doconce_debugging.log`, if the command line argument to `doconce format` after the filename
 is `debug`. The logfile is intended for the developers of DocOnce, but
 may still give some idea of what is wrong.  The section ``Basic Parsing
 Ideas'' explains how the DocOnce text is transformed into a specific
@@ -6212,9 +6382,9 @@ format, and you need to know these steps to make use of the logfile.
 !split
 # #include "install.do.txt"
 
-
-
 ======= Basic Parsing Ideas =======
+
+idx{parsing}
 
 # avoid list here since we have code in between (never a good idea)
 
@@ -6222,11 +6392,11 @@ The (parts of) files with computer code to be directly included in
 the document are first copied into verbatim blocks.
 
 All verbatim and TeX blocks are removed and stored elsewhere
-to ensure that no formatting rules are not applied to these blocks.
+to ensure that formatting rules are not applied to these blocks.
 
 The text is examined line by line for typesetting of lists, as well as
-handling of blank lines and comment lines.  List parsing needs some
-awareness of the context.  Each line is interpreted by a regular
+handling of blank lines and comment lines. List parsing needs
+awareness of the context. Each line is interpreted by a regular
 expression
 
 !bc do
@@ -6234,7 +6404,7 @@ expression
 !ec
 
 That is, a possible indent (which we measure), an optional list
-item identifier, optional space, optional words ended by colon,
+item identifier, an optional space, optional words ended by colon,
 and optional text. All lines are of this form. However, some
 ordinary (non-list) lines may contain a colon, and then the keyword
 and text group must be added to get the line contents. Otherwise,
@@ -6252,17 +6422,20 @@ It is important to keep the DocOnce format and parsing simple.  When a
 new format is needed and this format is not obtained by a simple edit
 of the definition of existing formats, it might be better to convert
 the document to reST and then to XML, parse the XML and
-write out in the new format.  When the DocOnce format is not
-sufficient to getting the layout you want, it is suggested to filter
+write it out to the new format.  When the DocOnce format is not
+sufficient for getting the layout you want, it is suggested to filter
 the document to another, more complex format, say reST or
 LaTeX, and work further on the document in this format.
 
-
 ===== Typesetting of Function Arguments, Return Values, and Variables =====
+
+idx{typesetting!function arguments}
+idx{typesetting!return values}
+idx{typesetting!variables}
 
 !bnotice Note
 This text is somewhat outdated.
-Now DocOnce supports NumPy-style docstrings. DocOnce can also do
+DocOnce now supports NumPy-style docstrings. DocOnce can also do
 automatic references to Python documentation, say the :mod:`math`
 module, but the link only works in case of Sphinx output.
 Typical syntax is
@@ -6271,6 +6444,8 @@ Typical syntax is
 With :mod:`numpy` and the :func:`scipy.io.loadmat` function in
 the :mod:`scipy.io` module, we can ...
 !ec
+
+
 In case of ambiguous names, say a local `math` module, one can
 use `python`, `numpy`, `scipy`, and `mpl` (matplotlib) as prefix
 (as defined in `conf.py`, generated by the `doconce sphinx_dir`):
@@ -6278,7 +6453,9 @@ use `python`, `numpy`, `scipy`, and `mpl` (matplotlib) as prefix
 !bc do
 With :func:`python:math.sin` instead of :func:`math.sin` ...
 !ec
-(More info in the Sphinx API doc by the author - under development.)
+(More information can be found in the Sphinx API document written by the author - under development.)
+
+idx{`mako`}
 
 A Mako function can provide greater flexibility such that
 other formats than Sphinx can take advantage of such references
@@ -6287,11 +6464,11 @@ other formats than Sphinx can take advantage of such references
 
 
 !bquote
-As part of comments (or doc strings) in computer code one often wishes
-to explain what a function takes of arguments and what the return
-values are. Similarly, it is desired to document class, instance, and
+In the comments (or doc strings) of computer code, one often wants
+to explain what a function takes as arguments and what the return
+values are. Similarly, it is often desired to document classes, instances, and
 module variables.  Such arguments/variables can be typeset as
-description lists of the form listed below and *placed at the end of
+description lists in the form shown below and *placed at the end of
 the doc string*. Note that `argument`, `keyword argument`, `return`,
 `instance variable`, `class variable`, and `module variable` are the
 only legal keywords (descriptions) for the description list in this
