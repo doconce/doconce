@@ -882,9 +882,7 @@ def latex_code(filestr, code_blocks, code_block_types,
 
     # Add pgf package if we have pgf or tikz files
     if re.search(r'input\{.+\.pgf\}', filestr):
-        filestr = re.sub(r'usepackage(.*?){graphicx}',
-                         'usepackage\g<1>{graphicx}\n\\usepackage{pgf}',
-                         filestr)
+        filestr = re.sub(r'usepackage(.*?){graphicx}', 'usepackage\g<1>{graphicx}\n\\usepackage{pgf}',filestr)
     if re.search(r'input\{.+\.tikz\}', filestr):
         tikz_libs_str = ''
         pgfplots_libs_str = ''
@@ -2152,12 +2150,12 @@ def latex_ref_and_label(section_label2title, format, filestr):
 
     return filestr
 
-def latex_index_bib(filestr, index, citations, pubfile, pubdata):
+def latex_index_bib(filestr, indices, citations, pubfile, pubdata):
     # About latex technologies for bib:
     # http://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib
     # May consider moving to biblatex if it is compatible enough.
 
-    #errwarn('index:', index)
+    #errwarn('indices:', indices)
     #errwarn('citations:', citations)
     filestr = filestr.replace('cite{', r'\cite{')
     filestr = filestr.replace('cite[', r'\cite[')
@@ -2167,34 +2165,39 @@ def latex_index_bib(filestr, index, citations, pubfile, pubdata):
 
     margin_index = option('latex_index_in_margin')
 
-    for word in index:
-        pattern = 'idx{%s}' % word
-        if '`' in word:
-            # Verbatim typesetting (cannot use \Verb!...! in index)
-            # Replace first `...` with texttt and ensure right sorting
-            word = re.sub(r'^(.*?)`([^`]+?)`(.*)$',  # subst first `...`
-            fix_latex_command_regex(r'\g<1>\g<2>@\g<1>{\rm\texttt{\g<2>}}\g<3>',
-                                    application='replacement'), word)
-            # Subst remaining `...`
-            word = re.sub(r'`(.+?)`',  # subst first `...`
-            fix_latex_command_regex(r'{\rm\texttt{\g<1>}}',
-                                    application='replacement'), word)
-            # fix underscores:
-            word = word.replace('_', r'\_')
-
-            # fix %
-            word = word.replace('%', r'\%')
-
-        replacement = r'\index{%s}' % word
-
+    for index in indices:
+        pattern = 'idx{%s}' % index
+        # Loop in each index, which can contain a main and a sub entry
+        entries = []
+        for i, word in enumerate(index.split('!')):
+            if '`' in word:
+                # Verbatim typesetting (cannot use \Verb!...! in an index)
+                # Replace the first string within backticks `...` with texttt and ensure right sorting
+                pattern_replacement = r'\g<1>\g<2>@\g<1>{\rm\texttt{\g<2>}}\g<3>'
+                if i==1: #subentry
+                    pattern_replacement = r'\g<1>\g<2>@{\rm\texttt{\g<2>}}\g<3>'
+                pattern_replacement = fix_latex_command_regex(pattern_replacement, application='replacement')
+                word = re.sub(r'^(.*?)`([^`]+?)`(.*)$', pattern_replacement, word)
+                # Subst the remaining strings between backticks `...`
+                pattern_replacement = r'{\rm\texttt{\g<1>}}'
+                pattern_replacement = fix_latex_command_regex(pattern_replacement, application='replacement')
+                word = re.sub(r'`(.+?)`', pattern_replacement, word)
+                # fix underscores:
+                word = word.replace('_', r'\_')
+                # fix %
+                word = word.replace('%', r'\%')
+            entries.append(word)
+        # Join main- and sub-entry
+        index_out = '!'.join(entries)
+        # Wrap in \index{}
+        replacement = r'\index{%s}' % index_out
         if margin_index:
-            if '!' in word:
+            if '!' in index_out:
                 word = word.replace('!', ': ')
-            margin = word.split('@')[-1] if '@' in word else word
+            margin = word.split('@')[-1] if '@' in index_out else index_out
             replacement += r'\marginpar{\footnotesize %s}' % margin
 
         filestr = filestr.replace(pattern, replacement)
-
 
     if pubfile is not None:
         # Always produce a new bibtex file
