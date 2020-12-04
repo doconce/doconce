@@ -81,9 +81,9 @@ pip_install sphinx
 
 pip_install alabaster
 pip_install sphinx_rtd_theme
-pip_install --exists-action i -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme
+pip_install cloud_sptheme
 pip_install --exists-action i -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme
-pip_install --exists-action i -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized
+pip_install sphinxjp.themes.solarized
 pip_install --exists-action i -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs
 pip_install --exists-action i -e git+https://github.com/kriskda/sphinx-sagecell#egg=sphinx-sagecell
 # tinkerer has several themes: minimal5, modern5, flat, dark, responsive
@@ -95,7 +95,7 @@ pip_install paver
 pip_install cogapp
 
 #pip install -e git+https://bitbucket.org/sanguineturtle/pygments-ipython-console#egg=pygments-ipython-console
-pip_install --exists-action i -e git+https://bitbucket.org/doconce/pygments-ipython-console#egg=pygments-ipython-console
+pip_install --exists-action i -e git+https://github.com/doconce/pygments-ipython-console#egg=pygments-ipython-console
 pip_install --exists-action i -e git+https://github.com/doconce/pygments-doconce#egg=pygments-doconce
 
 # XHTML
