@@ -5,10 +5,10 @@
 <html lang="1.0">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DocOnce Quick Reference &#8212; _ Hans Petter Langtangen, H. P. Langtangen, Kaare Dump and A. Dummy Author documentation</title>
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -55,7 +55,7 @@
 <dd class="field-odd"><p>Hans Petter Langtangen</p>
 </dd>
 <dt class="field-even">Date</dt>
-<dd class="field-even"><p>Nov 19, 2020</p>
+<dd class="field-even"><p>Dec 4, 2020</p>
 </dd>
 </dl>
 <p><strong>WARNING: This quick reference is very incomplete!</strong></p>
@@ -680,8 +680,8 @@ will be much more flexible and powerful).</p>
 </div>
 <div class="section" id="writing-guidelines-especially-for-latex-users">
 <span id="manual-latex-guide"></span><h2>Writing Guidelines (Especially for LaTeX Users!)<a class="headerlink" href="#writing-guidelines-especially-for-latex-users" title="Permalink to this headline">¶</a></h2>
-<p>LaTeX writers often have their own writing habits with use of their
-own favorite LaTeX packages. DocOnce is a much simpler format and
+<p>LaTeX writers often have their own writing habits and have preferred
+LaTeX packages. DocOnce is a simpler format and
 corresponds to writing in quite plain LaTeX and making the ascii text
 look nice (be careful with the use of white space!). This means that
 although DocOnce has borrowed a lot from LaTeX, there are a few points
@@ -689,19 +689,19 @@ LaTeX writers should pay attention to. Experience shows that these
 points are so important that we list them <em>before</em> we list typical
 DocOnce syntax!</p>
 <p>Any LaTeX syntax in mathematical formulas is accepted when DocOnce
-translates the text to LaTeX, but if output in the <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>, <code class="docutils literal notranslate"><span class="pre">pandoc</span></code>,
-<code class="docutils literal notranslate"><span class="pre">mwiki</span></code>, <code class="docutils literal notranslate"><span class="pre">html</span></code>, or <code class="docutils literal notranslate"><span class="pre">ipynb</span></code> formats is also important, one should
-follow the rules below.</p>
+translates the text to LaTeX, but the following rules should be
+followed when transalting the text to <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>, <code class="docutils literal notranslate"><span class="pre">pandoc</span></code>,
+<code class="docutils literal notranslate"><span class="pre">mwiki</span></code>, <code class="docutils literal notranslate"><span class="pre">html</span></code>, or <code class="docutils literal notranslate"><span class="pre">ipynb</span></code> formats.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>AMS LaTeX mathematics is supported, also for the <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>,
 and <code class="docutils literal notranslate"><span class="pre">ipynb</span></code> formats.</p></li>
 <li><p>If you want LaTeX math blocks to work with <code class="docutils literal notranslate"><span class="pre">latex</span></code>, <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>,
-<code class="docutils literal notranslate"><span class="pre">markdown</span></code>, and <code class="docutils literal notranslate"><span class="pre">ipynb</span></code>, it is recommended to use only
+<code class="docutils literal notranslate"><span class="pre">markdown</span></code>, and <code class="docutils literal notranslate"><span class="pre">ipynb</span></code>, only use
 the following equation environments: <code class="docutils literal notranslate"><span class="pre">\[</span> <span class="pre">...</span> <span class="pre">\]</span></code>,
 <code class="docutils literal notranslate"><span class="pre">equation*</span></code>, <code class="docutils literal notranslate"><span class="pre">equation</span></code>, <code class="docutils literal notranslate"><span class="pre">align*</span></code>, <code class="docutils literal notranslate"><span class="pre">align</span></code>. <code class="docutils literal notranslate"><span class="pre">alignat*</span></code>, <code class="docutils literal notranslate"><span class="pre">alignat</span></code>.
 Other environments, such as <code class="docutils literal notranslate"><span class="pre">split</span></code>, <code class="docutils literal notranslate"><span class="pre">multiline</span></code>, <code class="docutils literal notranslate"><span class="pre">gather</span></code> are
-supported in modern MathJax in HTML and Sphinx, but may face
+supported in modern MathJax in HTML and Sphinx, but may have
 rendering problems (to a larger extent than <code class="docutils literal notranslate"><span class="pre">equation</span></code> and <code class="docutils literal notranslate"><span class="pre">align</span></code>).
 DocOnce performs extensions to <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>, <code class="docutils literal notranslate"><span class="pre">ipynb</span></code>,
 and other formats such that
@@ -734,16 +734,16 @@ and movies.</p></li>
 Sphinx format. Avoid inline mathematics since Sphinx will strip it
 away in the figure reference.
 (Many writing styles encourage rich captions that
-explains everything about the figure, but this will work well
+explains everything about the figure; this work well
 only in the HTML and LaTeX formats.)</p></li>
 <li><p>You cannot use <code class="docutils literal notranslate"><span class="pre">subfigure</span></code> to combine several image files in one
-figure, but you can combine the files to one file using
+figure, but you can combine the files into one file using
 the <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">combine_images</span></code> tool. Refer to individual image files
 in the caption or text by (e.g.) &quot;left&quot; and &quot;right&quot;, or
 &quot;upper left&quot;, &quot;lower right&quot;, etc.</p></li>
 <li><p>Footnotes can be used as usual in LaTeX, but some HTML formats are not
 able to display mathematics or inline verbatim or other formatted
-code (emphasis, boldface, color) in footnotes - have that in mind.</p></li>
+code (emphasis, boldface, color) in footnotes - keep that in mind.</p></li>
 <li><p>Use plain <code class="docutils literal notranslate"><span class="pre">cite</span></code> for references (e.g., <code class="docutils literal notranslate"><span class="pre">\citeauthor</span></code> has no counterpart
 in DocOnce). The bibliography must be prepared in the Publish format,
 but import from (clean) BibTeX is possible.</p></li>
@@ -755,7 +755,7 @@ for boldface in mathematics.</p></li>
 can be indented. The <code class="docutils literal notranslate"><span class="pre">\begin{}</span></code> and <code class="docutils literal notranslate"><span class="pre">\end{}</span></code> directives should start
 in column 1.</p></li>
 <li><p>If you depend on various LaTeX environments for your writings, you have
-to give up these, or implement <em>user-defined environments</em> in DocOnce.
+to give these up, or implement <em>user-defined environments</em> in DocOnce.
 For instance, examples are normally typeset as subsections in DocOnce,
 but can also utilize a user-defined example environment.
 Learn about the exercise support in DocOnce for typesetting
@@ -774,7 +774,7 @@ that may later become part of this document (or migrated out of this document).<
 within <code class="docutils literal notranslate"><span class="pre">!bu-name</span></code> and <code class="docutils literal notranslate"><span class="pre">!eu-name</span></code> directives, it is possible to
 label any type of text and refer to it. For example, one can have
 environments for examples, tables, code snippets, theorems, lemmas, etc.
-One can also use Mako functions to implement enviroments.</p>
+One can also use Mako functions to implement environments.</p>
 </dd>
 </dl>
 <div class="admonition-use-the-preprocessor-to-tailor-output admonition">
@@ -785,22 +785,22 @@ the format (typically <code class="docutils literal notranslate"><span class="pr
 include such special LaTeX code. With an else clause you can easily
 create corresponding constructions for other formats. This way
 of using Preprocess or Mako
-allows advanced LaTeX features, or HTML features for the HTML formats,
-and thereby fine tuning of the resulting
+allows you to use advanced LaTeX features (or HTML features for the HTML formats)
+to fine tune the resulting
 document. More tuning can be done by automatic editing of the
 output file (e.g., <code class="docutils literal notranslate"><span class="pre">.tex</span></code> or <code class="docutils literal notranslate"><span class="pre">.html</span></code>) produced by DocOnce using
 your own scripts or the <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">replace</span></code> and <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">subst</span></code> commands.</p>
 </div>
 <div class="admonition-autotranslation-of-latex-to-doconce admonition">
 <p class="admonition-title">Autotranslation of LaTeX to DocOnce</p>
-<p>The tool <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">latex2doconce</span></code> may help you translating LaTeX files
+<p>The tool <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">latex2doconce</span></code> may help you translate LaTeX files
 to DocOnce syntax. However, if you use computer code in floating
 list environments, special packages for typesetting algorithms,
 example environments, <code class="docutils literal notranslate"><span class="pre">subfigure</span></code> in figures,
 or a lot of newcommands in the running text, there will be need for
 a lot of manual edits and adjustments.</p>
-<p>For examples, figure environments can be translated by the program
-<code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">latex2doconce</span></code> only if the label is inside the caption and
+<p>For examples, figure environments can only be translated by
+<code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">latex2doconce</span></code> if the label is inside the caption and
 the figure is typeset like</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>
   <span class="k">\centering</span>
@@ -809,12 +809,12 @@ the figure is typeset like</p>
 <span class="k">\end</span><span class="nb">{</span>figure<span class="nb">}</span>
 </pre></div>
 </div>
-<p>If the LaTeX is consistent with respect to placement of the label, a
+<p>If the LaTeX text is consistent with respect to the placement of the label, a
 simple script can autoedit the label inside the caption, but many
 LaTeX writers put the label at different places in different figures,
 and then it becomes more difficult to autoedit figures and translate
 them to the DocOnce <code class="docutils literal notranslate"><span class="pre">FIGURE:</span></code> syntax.</p>
-<p>Tables are hard to interpret and translate, because the headings and
+<p>Tables are hard to interpret and translate because headings and
 caption can be typeset in many different ways. The type of table
 that is recognized looks like</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>table<span class="nb">}</span>
