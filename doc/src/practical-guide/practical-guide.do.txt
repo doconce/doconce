@@ -12,7 +12,7 @@ This guide attempts to give an introduction to DocOnce by example. The reader is
 
 ===== What is DocOnce? =====
 !bquote
-DocOnce is a modestly tagged (Markdown-like) markup language targeting scientific reports, software documentation, books, blog posts, and slides involving much math and code in the text. From DocOnce source you can generate LaTeX, Sphinx, HTML, Jupyter notebooks, Markdown, and other formats. This means that you from a single source can get the most up-to-date publishing technologies for paper, tablets, and phones.
+DocOnce is a modestly tagged (Markdown-like) markup language targeting scientific reports, software documentation, books, blog posts, and slides involving much math and code in the text. From DocOnce source you can generate LaTeX, Sphinx, HTML, Jupyter notebooks, Markdown, and other formats. This means that from a single source you can get the most up-to-date publishing technologies for paper, tablets, and phones.
 !equote
 
 [kgh: Elaborate]
@@ -43,17 +43,17 @@ pip install --upgrade .
 ===== What does a minimal document look like? =====
 @@@CODE examples/example1.do.txt
 
-A document should start with specifying the title, author(s) and date of the document. Each author is specified on a separate line on the following form:
+A document should start by specifying the title, author(s) and date. Each author is specified on a separate line in the following form:
 
 !bc do
 AUTHOR: <name> [Email: <email_address>] [at <institution> [& <other institution>]*]
 !ec
 
 !bnotice
-Words enclosed by `<` and `>` should be replaced by an actual value. Words enclosed in `[` and `]` are optional, and `*` means the prepending expression can be repeated 0 or more times. For instance, it is used above to specify that an author can have more than two institutions.
+Words enclosed by `<` and `>` should be replaced by an actual value. Words enclosed in `[` and `]` are optional, and `*` means the prepending expression can be repeated 0 or more times. For instance, `*` is used above to specify that an author can have more than two institutions.
 !enotice
 
-The date can be set to `today`, in which case Doconce will replace it with the current date, or any other text string.
+The date can be set to `today`, in which case DocOnce will insert the current date, or any other text string.
 !bc do
 DATE: The end of days
 !ec
@@ -96,7 +96,7 @@ This renders as:
 -----
 
 ===== Formulae =====
-Similar to LaTeX, both inline mathematics and blocks of mathematics are supported. The formula syntax is indentical to LaTeX.
+Similar to LaTeX, both inline mathematics and blocks of mathematics are supported. The formula syntax is identical to LaTeX.
 
 Inline mathematics must be enclosed in `$` signs.
 
