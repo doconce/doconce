@@ -1,2 +1,2 @@
-git+https://bitbucket.org/hplbit/pygments-ipython-console#egg=pygments-ipython-console
-git+https://github.com/hplgit/pygments-doconce#egg=pygments-doconce
+git+https://github.com/doconce/pygments-ipython-console#egg=pygments-ipython-console
+git+https://github.com/doconce/pygments-doconce#egg=pygments-doconce
