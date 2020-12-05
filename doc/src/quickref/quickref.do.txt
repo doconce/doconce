@@ -7,9 +7,9 @@ _WARNING: This quick reference is very incomplete!_
 
 __Mission.__ Enable writing documentation with much mathematics and
 computer code *once, in one place* and include it in traditional LaTeX
-books, thesis, and reports, and without extra efforts also make
-professionally looking web versions with Sphinx or HTML. Other outlets
-include Google's `blogger.com`, Wikipedia/Wikibooks, IPython
+books, thesis, and reports, and, without extra efforts, also make
+professional looking web versions with Sphinx or HTML. Other outlets
+include Google's `blogger.com`, Wikipedia/Wikibooks, IPython/Jupyter
 notebooks, plus a wide variety of other formats for documents without
 mathematics and code.
 
@@ -232,7 +232,7 @@ space around in sentences---this way, or in quotes:
 *Premature optimization is the root of all evil.*--- Donald Knuth.
 
 The en-dash consists of two hyphens, either with blanks on both sides -- for
-something in the middle of a sentenc -- or in number ranges like 240--249.
+something in the middle of a sentence -- or in number ranges like 240--249.
 LaTeX writes are used to and fond of en-dash.
 
 An ampersand, as in Guns & Roses or Texas A & M, is written as a
@@ -503,20 +503,20 @@ The second line copies from the first line matching the *regular
 expression* `doconce clean` up to, but not including, the line
 matching the *regular expression* `^doconce split_rst`.
 The third line behaves as the second, but the line matching
-the first regular expression is not copied (this construction often
+the first regular expression is not copied (this construction is often
 used for copying text between begin-end comment pair in the file).
 
 The copied lines from file are in this example put inside `!bc shpro`
 and `!ec` directives, if a complete file is copied, while the
 directives become `!bc shcod` and `!ec` when a code snippet is copied
-from file. In general, for a filename extension `.X`, the environment
+from a file. In general, for a filename extension `.X`, the environment
 becomes `!bc Xpro` or `!bc Xcod` for a complete program or snippet,
 respectively. The enivorments (`Xcod` and `Xpro`) are only active for
-`latex`, `pdflatex`, html`, and `sphinx` outout.  The fourth line
+`latex`, `pdflatex`, html`, and `sphinx` output.  The fourth line
 above specifies the code environment explicitly (`envir=shpro`) such
 that it indicates a complete shell program (`shpro`) even if we copy a
 part of the file (here from `name=` until the end of the file).
-Copying a part will by default lead to `!bc shcod`, which indicates a
+Copying a part of a file will by default lead to `!bc shcod`, which indicates a
 code snippet that normally needs more code to run properly.
 
 The `--code_prefix=text` option adds a path `text` to the filename specified
@@ -536,12 +536,12 @@ The lines up to and including (the first) `# ---` will then be excluded.
 
 Important warnings:
 
- * A code block must come after some plain sentence (at least for successful
+ * A code block must come after a plain sentence (at least for successful
    output in reStructredText), not directly after a section/paragraph heading,
    table, comment, figure, or movie.
- * Verbatim code blocks inside lists can be ugly typeset in some
-   output formats. A more robust approach is to replace the list by
-   paragraphs with headings.
+ * Verbatim code blocks inside lists can be ugly when typeset in some
+   output formats. A more robust approach is to replace the list with
+   paragraphs that include headings.
 
 ===== LaTeX Mathematics =====
 
@@ -650,7 +650,7 @@ Note three important syntax details:
   o A mandatory comma after the figure/movie filename,
   o no comments between `width`, `height`, and `frac` and no spaces
     around the `=` characters,
-  o all of the command must appear on a single line,
+  o all of the commands must appear on a single line,
   o there must be a blank line after the command.
 
 The figure file can be listed without extension. DocOnce will then find
@@ -772,7 +772,7 @@ ref{name}
 !ec
 again with no backslash before `ref`.
 
-Use labels for sections and equations only, and preceed the reference
+Use labels for sections and equations only, and precede the reference
 by "Section" or "Chapter", or in case of an equation, surround the
 reference by parenthesis.
 
@@ -888,7 +888,7 @@ file=ellipse_area.pdf
 solution=ellipse_area1_sol.pdf
 
 Derive an expression for the area of an ellipse by integrating
-the area under a curve that defines half of the allipse.
+the area under a curve that defines half of the ellipse.
 Show each step in the mathematical derivation.
 
 |bhint
@@ -963,7 +963,7 @@ Here goes a full solution of the whole exercise.
 !ec
 By default, answers, solutions, and hints are typeset as paragraphs.
 The command-line arguments `--without_answers` and `--without_solutions`
-turn off output of answers and solutions, respectively, except for examples. The command line options `--answers_at_end` and `--solutions_at_end` write all answers and solutions to exercises to a separate section in the end of the document, respectively. Combine with `--without_answers` and `--without_solutions` to remove answers and solutions from the main text. 
+turn off output of answers and solutions, respectively, except for examples. The command line options `--answers_at_end` and `--solutions_at_end` write all answers and solutions to exercises to a separate section at the end of the document, respectively. Combine with `--without_answers` and `--without_solutions` to remove answers and solutions from the main text.
 
 The commands `!anshide` and `!solhide` can be used to hide from the main text answers and solutions, respectively, until the `!ansoff` and `!soloff` commands are encountered. Similarly, the `!ansdocend` and `!soldocend` commands move answers and solutions to the end of the book. 
 
