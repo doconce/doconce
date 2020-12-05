@@ -169,7 +169,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Informatics, University of Oslo</b></center>
 <br>
 <p>
-<center><h4>Dec 4, 2020</h4></center> <!-- date -->
+<center><h4>Dec 5, 2020</h4></center> <!-- date -->
 <br>
 <p>
 </div> <!-- end jumbotron -->
@@ -209,9 +209,9 @@ MathJax.Hub.Config({
 <b>Mission.</b>
 Enable writing documentation with much mathematics and
 computer code <em>once, in one place</em> and include it in traditional LaTeX
-books, thesis, and reports, and without extra efforts also make
-professionally looking web versions with Sphinx or HTML. Other outlets
-include Google's <code>blogger.com</code>, Wikipedia/Wikibooks, IPython
+books, thesis, and reports, and, without extra efforts, also make
+professional looking web versions with Sphinx or HTML. Other outlets
+include Google's <code>blogger.com</code>, Wikipedia/Wikibooks, IPython/Jupyter
 notebooks, plus a wide variety of other formats for documents without
 mathematics and code.
 
@@ -491,7 +491,7 @@ space around in sentences&mdash;this way, or in quotes:
 
 <p>
 The en-dash consists of two hyphens, either with blanks on both sides &ndash; for
-something in the middle of a sentenc &ndash; or in number ranges like 240&ndash;249.
+something in the middle of a sentence &ndash; or in number ranges like 240&ndash;249.
 LaTeX writes are used to and fond of en-dash.
 
 <p>
@@ -824,21 +824,21 @@ The second line copies from the first line matching the <em>regular
 expression</em> <code>doconce clean</code> up to, but not including, the line
 matching the <em>regular expression</em> <code>^doconce split_rst</code>.
 The third line behaves as the second, but the line matching
-the first regular expression is not copied (this construction often
+the first regular expression is not copied (this construction is often
 used for copying text between begin-end comment pair in the file).
 
 <p>
 The copied lines from file are in this example put inside <code>!bc shpro</code>
 and <code>!ec</code> directives, if a complete file is copied, while the
 directives become <code>!bc shcod</code> and <code>!ec</code> when a code snippet is copied
-from file. In general, for a filename extension <code>.X</code>, the environment
+from a file. In general, for a filename extension <code>.X</code>, the environment
 becomes <code>!bc Xpro</code> or <code>!bc Xcod</code> for a complete program or snippet,
 respectively. The enivorments (<code>Xcod</code> and <code>Xpro</code>) are only active for
-<code>latex</code>, <code>pdflatex</code>, html`, and <code>sphinx</code> outout.  The fourth line
+<code>latex</code>, <code>pdflatex</code>, html`, and <code>sphinx</code> output.  The fourth line
 above specifies the code environment explicitly (<code>envir=shpro</code>) such
 that it indicates a complete shell program (<code>shpro</code>) even if we copy a
 part of the file (here from <code>name=</code> until the end of the file).
-Copying a part will by default lead to <code>!bc shcod</code>, which indicates a
+Copying a part of a file will by default lead to <code>!bc shcod</code>, which indicates a
 code snippet that normally needs more code to run properly.
 
 <p>
@@ -865,12 +865,12 @@ The lines up to and including (the first) <code># ---</code> will then be exclud
 Important warnings:
 
 <ul>
- <li> A code block must come after some plain sentence (at least for successful
+ <li> A code block must come after a plain sentence (at least for successful
    output in reStructredText), not directly after a section/paragraph heading,
    table, comment, figure, or movie.</li>
- <li> Verbatim code blocks inside lists can be ugly typeset in some
-   output formats. A more robust approach is to replace the list by
-   paragraphs with headings.</li>
+ <li> Verbatim code blocks inside lists can be ugly when typeset in some
+   output formats. A more robust approach is to replace the list with
+   paragraphs that include headings.</li>
 </ul>
 
 <h2 id="___sec10" class="anchor">LaTeX Mathematics </h2>
@@ -1165,7 +1165,7 @@ Note three important syntax details:
  <li> A mandatory comma after the figure/movie filename,</li>
  <li> no comments between <code>width</code>, <code>height</code>, and <code>frac</code> and no spaces
     around the <code>=</code> characters,</li>
- <li> all of the command must appear on a single line,</li>
+ <li> all of the commands must appear on a single line,</li>
  <li> there must be a blank line after the command.</li>
 </ol>
 
@@ -1313,7 +1313,7 @@ A reference to the label <code>name</code> is written as
 again with no backslash before <code>ref</code>.
 
 <p>
-Use labels for sections and equations only, and preceed the reference
+Use labels for sections and equations only, and precede the reference
 by "Section" or "Chapter", or in case of an equation, surround the
 reference by parenthesis.
 
@@ -1411,7 +1411,7 @@ list of capabilities:
 
 <p>
 <!-- begin verbatim block  shpro-->
-<pre><code>DocOnce version 1.5.2 (from /home/amarin/doconce/venv/lib/python3.6/site-packages/DocOnce-1.5.2-py3.6.egg/doconce)
+<pre><code>DocOnce version 1.5.2 (from /home/martin/anaconda3/envs/doconce/lib/python3.6/site-packages/DocOnce-1.5.2-py3.6.egg/doconce)
 Usage: doconce command [optional arguments]
 commands: help format find subst replace remove spellcheck apply_inline_edits capitalize change_encoding clean combine_images csv2table diff expand_commands expand_mako extract_exercises find_nonascii_chars fix_bibtex4publish gitdiff grab grep guess_encoding gwiki_figsubst html2doconce html_colorbullets jupyterbook include_map insertdocstr ipynb2doconce latex2doconce latex_dislikes latex_exercise_toc latex_footer latex_header latex_problems latin2html lightclean linkchecker list_fig_src_files list_labels makefile md2html md2latex old2new_format ptex2tex pygmentize ref_external remove_exercise_answers remove_inline_comments replace_from_file slides_beamer slides_html slides_markdown sphinx_dir sphinxfix_localURLs split_html split_rst teamod
 
@@ -1613,7 +1613,7 @@ file=ellipse_area.pdf
 solution=ellipse_area1_sol.pdf
 
 Derive an expression for the area of an ellipse by integrating
-the area under a curve that defines half of the allipse.
+the area under a curve that defines half of the ellipse.
 Show each step in the mathematical derivation.
 
 !bhint
@@ -1694,7 +1694,7 @@ Here goes a full solution of the whole exercise.
 <!-- end verbatim block -->
 By default, answers, solutions, and hints are typeset as paragraphs.
 The command-line arguments <code>--without_answers</code> and <code>--without_solutions</code>
-turn off output of answers and solutions, respectively, except for examples. The command line options <code>--answers_at_end</code> and <code>--solutions_at_end</code> write all answers and solutions to exercises to a separate section in the end of the document, respectively. Combine with <code>--without_answers</code> and <code>--without_solutions</code> to remove answers and solutions from the main text.
+turn off output of answers and solutions, respectively, except for examples. The command line options <code>--answers_at_end</code> and <code>--solutions_at_end</code> write all answers and solutions to exercises to a separate section at the end of the document, respectively. Combine with <code>--without_answers</code> and <code>--without_solutions</code> to remove answers and solutions from the main text.
 
 <p>
 The commands <code>!anshide</code> and <code>!solhide</code> can be used to hide from the main text answers and solutions, respectively, until the <code>!ansoff</code> and <code>!soloff</code> commands are encountered. Similarly, the <code>!ansdocend</code> and <code>!soldocend</code> commands move answers and solutions to the end of the book.

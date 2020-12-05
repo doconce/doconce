@@ -55,16 +55,16 @@
 <dd class="field-odd"><p>Hans Petter Langtangen</p>
 </dd>
 <dt class="field-even">Date</dt>
-<dd class="field-even"><p>Dec 4, 2020</p>
+<dd class="field-even"><p>Dec 5, 2020</p>
 </dd>
 </dl>
 <p><strong>WARNING: This quick reference is very incomplete!</strong></p>
 <p><strong>Mission.</strong>
 Enable writing documentation with much mathematics and
 computer code <em>once, in one place</em> and include it in traditional LaTeX
-books, thesis, and reports, and without extra efforts also make
-professionally looking web versions with Sphinx or HTML. Other outlets
-include Google's <code class="docutils literal notranslate"><span class="pre">blogger.com</span></code>, Wikipedia/Wikibooks, IPython
+books, thesis, and reports, and, without extra efforts, also make
+professional looking web versions with Sphinx or HTML. Other outlets
+include Google's <code class="docutils literal notranslate"><span class="pre">blogger.com</span></code>, Wikipedia/Wikibooks, IPython/Jupyter
 notebooks, plus a wide variety of other formats for documents without
 mathematics and code.</p>
 <div class="section" id="supported-formats">
@@ -323,7 +323,7 @@ space around in sentences---this way, or in quotes:
 space around in sentences---this way, or in quotes:
 <em>Premature optimization is the root of all evil.</em>--- Donald Knuth.</p>
 <p>The en-dash consists of two hyphens, either with blanks on both sides - for
-something in the middle of a sentenc - or in number ranges like 240 - 249.
+something in the middle of a sentence - or in number ranges like 240 - 249.
 LaTeX writes are used to and fond of en-dash.</p>
 <p>An ampersand, as in Guns &amp; Roses or Texas A&amp;M, is written as a
 plain <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> <em>with space(s) on both sides</em>. Single upper case letters on each
@@ -582,19 +582,19 @@ The second line copies from the first line matching the <em>regular
 expression</em> <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">clean</span></code> up to, but not including, the line
 matching the <em>regular expression</em> <code class="docutils literal notranslate"><span class="pre">^doconce</span> <span class="pre">split_rst</span></code>.
 The third line behaves as the second, but the line matching
-the first regular expression is not copied (this construction often
+the first regular expression is not copied (this construction is often
 used for copying text between begin-end comment pair in the file).</p>
 <p>The copied lines from file are in this example put inside <code class="docutils literal notranslate"><span class="pre">!bc</span> <span class="pre">shpro</span></code>
 and <code class="docutils literal notranslate"><span class="pre">!ec</span></code> directives, if a complete file is copied, while the
 directives become <code class="docutils literal notranslate"><span class="pre">!bc</span> <span class="pre">shcod</span></code> and <code class="docutils literal notranslate"><span class="pre">!ec</span></code> when a code snippet is copied
-from file. In general, for a filename extension <code class="docutils literal notranslate"><span class="pre">.X</span></code>, the environment
+from a file. In general, for a filename extension <code class="docutils literal notranslate"><span class="pre">.X</span></code>, the environment
 becomes <code class="docutils literal notranslate"><span class="pre">!bc</span> <span class="pre">Xpro</span></code> or <code class="docutils literal notranslate"><span class="pre">!bc</span> <span class="pre">Xcod</span></code> for a complete program or snippet,
 respectively. The enivorments (<code class="docutils literal notranslate"><span class="pre">Xcod</span></code> and <code class="docutils literal notranslate"><span class="pre">Xpro</span></code>) are only active for
-<code class="docutils literal notranslate"><span class="pre">latex</span></code>, <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code>, html`, and <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> outout.  The fourth line
+<code class="docutils literal notranslate"><span class="pre">latex</span></code>, <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code>, html`, and <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> output.  The fourth line
 above specifies the code environment explicitly (<code class="docutils literal notranslate"><span class="pre">envir=shpro</span></code>) such
 that it indicates a complete shell program (<code class="docutils literal notranslate"><span class="pre">shpro</span></code>) even if we copy a
 part of the file (here from <code class="docutils literal notranslate"><span class="pre">name=</span></code> until the end of the file).
-Copying a part will by default lead to <code class="docutils literal notranslate"><span class="pre">!bc</span> <span class="pre">shcod</span></code>, which indicates a
+Copying a part of a file will by default lead to <code class="docutils literal notranslate"><span class="pre">!bc</span> <span class="pre">shcod</span></code>, which indicates a
 code snippet that normally needs more code to run properly.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">--code_prefix=text</span></code> option adds a path <code class="docutils literal notranslate"><span class="pre">text</span></code> to the filename specified
 in the <code class="docutils literal notranslate"><span class="pre">&#64;&#64;&#64;CODE</span></code> command (URLs work). For example</p>
@@ -611,12 +611,12 @@ The lines up to and including (the first) <code class="docutils literal notransl
 <p>Important warnings:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>A code block must come after some plain sentence (at least for successful
+<li><p>A code block must come after a plain sentence (at least for successful
 output in reStructredText), not directly after a section/paragraph heading,
 table, comment, figure, or movie.</p></li>
-<li><p>Verbatim code blocks inside lists can be ugly typeset in some
-output formats. A more robust approach is to replace the list by
-paragraphs with headings.</p></li>
+<li><p>Verbatim code blocks inside lists can be ugly when typeset in some
+output formats. A more robust approach is to replace the list with
+paragraphs that include headings.</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -868,7 +868,7 @@ MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must 
 <li><p>A mandatory comma after the figure/movie filename,</p></li>
 <li><p>no comments between <code class="docutils literal notranslate"><span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">height</span></code>, and <code class="docutils literal notranslate"><span class="pre">frac</span></code> and no spaces
 around the <code class="docutils literal notranslate"><span class="pre">=</span></code> characters,</p></li>
-<li><p>all of the command must appear on a single line,</p></li>
+<li><p>all of the commands must appear on a single line,</p></li>
 <li><p>there must be a blank line after the command.</p></li>
 </ol>
 </div></blockquote>
@@ -977,7 +977,7 @@ as some hierarchical name, using a delimiter like <code class="docutils literal 
 </pre></div>
 </div>
 <p>again with no backslash before <code class="docutils literal notranslate"><span class="pre">ref</span></code>.</p>
-<p>Use labels for sections and equations only, and preceed the reference
+<p>Use labels for sections and equations only, and precede the reference
 by &quot;Section&quot; or &quot;Chapter&quot;, or in case of an equation, surround the
 reference by parenthesis.</p>
 </div>
@@ -1057,7 +1057,7 @@ forthcoming text. The index is only produced for the <code class="docutils liter
 <p>The <code class="docutils literal notranslate"><span class="pre">doconce</span></code> program can be used for a number of purposes besides
 transforming a <code class="docutils literal notranslate"><span class="pre">.do.txt</span></code> file to some format. Here is the
 list of capabilities:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>DocOnce version <span class="m">1</span>.5.2 <span class="o">(</span>from /home/amarin/doconce/venv/lib/python3.6/site-packages/DocOnce-1.5.2-py3.6.egg/doconce<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>DocOnce version <span class="m">1</span>.5.2 <span class="o">(</span>from /home/martin/anaconda3/envs/doconce/lib/python3.6/site-packages/DocOnce-1.5.2-py3.6.egg/doconce<span class="o">)</span>
 Usage: doconce <span class="nb">command</span> <span class="o">[</span>optional arguments<span class="o">]</span>
 commands: <span class="nb">help</span> format find subst replace remove spellcheck apply_inline_edits capitalize change_encoding clean combine_images csv2table diff expand_commands expand_mako extract_exercises find_nonascii_chars fix_bibtex4publish gitdiff grab grep guess_encoding gwiki_figsubst html2doconce html_colorbullets jupyterbook include_map insertdocstr ipynb2doconce latex2doconce latex_dislikes latex_exercise_toc latex_footer latex_header latex_problems latin2html lightclean linkchecker list_fig_src_files list_labels makefile md2html md2latex old2new_format ptex2tex pygmentize ref_external remove_exercise_answers remove_inline_comments replace_from_file slides_beamer slides_html slides_markdown sphinx_dir sphinxfix_localURLs split_html split_rst teamod
 
@@ -1257,7 +1257,7 @@ file=ellipse_area.pdf
 solution=ellipse_area1_sol.pdf
 
 Derive an expression for the area of an ellipse by integrating
-the area under a curve that defines half of the allipse.
+the area under a curve that defines half of the ellipse.
 Show each step in the mathematical derivation.
 
 !bhint
@@ -1329,7 +1329,7 @@ Here goes a full solution of the whole exercise.
 </div>
 <p>By default, answers, solutions, and hints are typeset as paragraphs.
 The command-line arguments <code class="docutils literal notranslate"><span class="pre">--without_answers</span></code> and <code class="docutils literal notranslate"><span class="pre">--without_solutions</span></code>
-turn off output of answers and solutions, respectively, except for examples. The command line options <code class="docutils literal notranslate"><span class="pre">--answers_at_end</span></code> and <code class="docutils literal notranslate"><span class="pre">--solutions_at_end</span></code> write all answers and solutions to exercises to a separate section in the end of the document, respectively. Combine with <code class="docutils literal notranslate"><span class="pre">--without_answers</span></code> and <code class="docutils literal notranslate"><span class="pre">--without_solutions</span></code> to remove answers and solutions from the main text.</p>
+turn off output of answers and solutions, respectively, except for examples. The command line options <code class="docutils literal notranslate"><span class="pre">--answers_at_end</span></code> and <code class="docutils literal notranslate"><span class="pre">--solutions_at_end</span></code> write all answers and solutions to exercises to a separate section at the end of the document, respectively. Combine with <code class="docutils literal notranslate"><span class="pre">--without_answers</span></code> and <code class="docutils literal notranslate"><span class="pre">--without_solutions</span></code> to remove answers and solutions from the main text.</p>
 <p>The commands <code class="docutils literal notranslate"><span class="pre">!anshide</span></code> and <code class="docutils literal notranslate"><span class="pre">!solhide</span></code> can be used to hide from the main text answers and solutions, respectively, until the <code class="docutils literal notranslate"><span class="pre">!ansoff</span></code> and <code class="docutils literal notranslate"><span class="pre">!soloff</span></code> commands are encountered. Similarly, the <code class="docutils literal notranslate"><span class="pre">!ansdocend</span></code> and <code class="docutils literal notranslate"><span class="pre">!soldocend</span></code> commands move answers and solutions to the end of the book.</p>
 </div>
 <div class="section" id="environments">
