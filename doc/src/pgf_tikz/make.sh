@@ -18,6 +18,9 @@ options="--encoding=utf-8 --figure_prefix=fig"
 system doconce format html $name --html_style=bootstrap_bluegray --html_links_in_new_window $options
 
 # Sphinx
+# Problem reproducible after: `git clean -fd && rm -rf sphinx-testdoc`
+#Hack: because doconce sphinx_dir ony works the second time (after an error), trigger that error by creating a bogus conf.py in ./
+touch conf.py
 system doconce format sphinx $name --html_links_in_new_window $options
 theme=alabaster
 theme=cbc
