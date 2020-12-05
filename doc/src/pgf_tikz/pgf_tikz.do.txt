@@ -8,15 +8,15 @@ Quick demo of how to make figures with TikZ in DocOnce.
 ======= Ideas =======
 
 "TikZ": "http://www.math.uni-leipzig.de/~hellmund/LaTeX/pgf-tut.pdf"
-is a very strong tool for making figures in LaTeX. DocOnce supports
-such figures: if a figure file `myfig` exists in a version
-`myfig.tikz`, DocOnce will, in case of `latex` or `pdflatex` output,
-utilize the `myfig.tikz` figure directly. The problem is what do to
-with other output formats. In `html` format one can use a
-corresponding SVG version of the figure, and for other formats, one
-needs a plain PNG file.  DocOnce will automatically create such
-versions of the figure and store them along with `myfig.tikz`, as is
-done when other figure formats need automatic conversion.
+is a useful tool for making figures in LaTeX, and DocOnce supports
+these figures. If a figure file `myfig` exists in a version
+`myfig.tikz`, DocOnce will, for `latex` or `pdflatex` output,
+use the `myfig.tikz` figure directly. The problem is what do to
+with other output formats? In `html` format one can use a
+corresponding SVG version of the figure; for other formats, one
+needs a plain PNG file.  DocOnce will automatically create these figure
+versions and store them with the `myfig.tikz` figure, as is
+done when other figure formats are automatically generated.
 
 ======= A modest beginning =======
 
@@ -27,9 +27,8 @@ The most fundamental shape is the line in Figure ref{line}. See the
 "https://github.com/doconce/doconce/blob/master/doc/src/pgf_tikz/fig/line.tikz"
 for how this TikZ figure is defined in LaTeX as a file `line.tikz`
 (and included in DocOnce through `FIGURE: [line, width=500] caption`).  Such
-lines can be combined to form other shapes, e.g., a square
-as in Figure ref{square}, but that figure was created directly by
-the "`rectangle`":
+lines can be combined to form other shapes, e.g., a square. However, Figure ref{square}
+was created using the "`rectangle`":
 "https://github.com/doconce/doconce/blob/master/doc/src/pgf_tikz/fig/square.tikz"
 TikZ command.
 
@@ -52,7 +51,7 @@ FIGURE: [circle] This circle is drawn in blue with a dashed line.
 
 FIGURE: [maze, width=400] A "maze": "https://github.com/doconce/doconce/blob/master/doc/src/pgf_tikz/fig/maze.tikz" can be drawn by combining rectangle elements.
 
-FIGURE: [graph] TikZ is quite well suited to draw "graphs": "https://github.com/doconce/doconce/blob/master/doc/src/pgf_tikz/fig/graph.tikz".
+FIGURE: [graph] TikZ is well suited to draw "graphs": "https://github.com/doconce/doconce/blob/master/doc/src/pgf_tikz/fig/graph.tikz".
 
 
 ======= Plotting functions =======
