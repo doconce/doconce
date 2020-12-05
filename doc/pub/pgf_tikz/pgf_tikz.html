@@ -6,15 +6,16 @@ Automatically generated HTML file from DocOnce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Testing PGF and TikZ support in DocOnce">
 
 <title>Testing PGF and TikZ support in DocOnce</title>
 
 <!-- Bootstrap style: bootstrap_bluegray -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_styles/style_bootstrap/css/bootstrap_bluegray.css" rel="stylesheet">
 <!-- not necessary
-<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 -->
 
 <style type="text/css">
@@ -41,10 +42,10 @@ Automatically generated HTML file from DocOnce source
 
 <!-- tocinfo
 {'highest level': 1,
- 'sections': [(u'Ideas', 1, None, '___sec0'),
-              (u'A modest beginning', 1, None, '___sec1'),
-              (u'More advanced figures', 1, None, '___sec2'),
-              (u'Plotting functions', 1, None, '___sec3')]}
+ 'sections': [('Ideas', 1, None, '___sec0'),
+              ('A modest beginning', 1, None, '___sec1'),
+              ('More advanced figures', 1, None, '___sec2'),
+              ('Plotting functions', 1, None, '___sec3')]}
 end of tocinfo -->
 
 <body>
@@ -101,7 +102,7 @@ end of tocinfo -->
 
 <br>
 <p>
-<center><h4>Aug 5, 2016</h4></center> <!-- date -->
+<center><h4>Dec 5, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <b>Summary.</b> Quick demo of how to make figures with TikZ in DocOnce.
@@ -113,15 +114,15 @@ end of tocinfo -->
 
 <p>
 <a href="http://www.math.uni-leipzig.de/~hellmund/LaTeX/pgf-tut.pdf" target="_blank">TikZ</a>
-is a very strong tool for making figures in LaTeX. DocOnce supports
-such figures: if a figure file <code>myfig</code> exists in a version
-<code>myfig.tikz</code>, DocOnce will, in case of <code>latex</code> or <code>pdflatex</code> output,
-utilize the <code>myfig.tikz</code> figure directly. The problem is what do to
-with other output formats. In <code>html</code> format one can use a
-corresponding SVG version of the figure, and for other formats, one
-needs a plain PNG file.  DocOnce will automatically create such
-versions of the figure and store them along with <code>myfig.tikz</code>, as is
-done when other figure formats need automatic conversion.
+is a useful tool for making figures in LaTeX, and DocOnce supports
+these figures. If a figure file <code>myfig</code> exists in a version
+<code>myfig.tikz</code>, DocOnce will, for <code>latex</code> or <code>pdflatex</code> output,
+use the <code>myfig.tikz</code> figure directly. The problem is what do to
+with other output formats? In <code>html</code> format one can use a
+corresponding SVG version of the figure; for other formats, one
+needs a plain PNG file.  DocOnce will automatically create these figure
+versions and store them with the <code>myfig.tikz</code> figure, as is
+done when other figure formats are automatically generated.
 
 <h1 id="___sec1" class="anchor">A modest beginning </h1>
 
@@ -129,46 +130,45 @@ done when other figure formats need automatic conversion.
 <center> <!-- figure label: --> <div id="line"></div> <!-- FIGURE -->
 <hr class="figure">
 <center><p class="caption">Figure 1:  This shape is commonly referred to as a <em>straight line</em>.  <!-- caption label: line --> </p></center>
-<p><img src="fig/line.png" align="bottom" width=500></p>
+<p><img src="fig/line_tikzrender.svg" align="bottom" width=500></p>
 </center>
 
 <p>
 The most fundamental shape is the line in Figure <a href="#line">1</a>. See the
-<a href="https://github.com/hplgit/doconce/blob/master/doc/src/pgf_tikz/fig/line.tikz" target="_blank">source code</a>
+<a href="https://github.com/doconce/doconce/blob/master/doc/src/pgf_tikz/fig/line.tikz" target="_blank">source code</a>
 for how this TikZ figure is defined in LaTeX as a file <code>line.tikz</code>
 (and included in DocOnce through <code>FIGURE: [line, width=500] caption</code>).  Such
-lines can be combined to form other shapes, e.g., a square
-as in Figure <a href="#square">2</a>, but that figure was created directly by
-the <a href="https://github.com/hplgit/doconce/blob/master/doc/src/pgf_tikz/fig/square.tikz" target="_blank"><tt>rectangle</tt></a>
+lines can be combined to form other shapes, e.g., a square. However, Figure <a href="#square">2</a>
+was created using the <a href="https://github.com/doconce/doconce/blob/master/doc/src/pgf_tikz/fig/square.tikz" target="_blank"><tt>rectangle</tt></a>
 TikZ command.
 
 <p>
 <center> <!-- figure label: --> <div id="square"></div> <!-- FIGURE -->
 <hr class="figure">
 <center><p class="caption">Figure 2:  This square is formed by four straight lines.  <!-- caption label: square --> </p></center>
-<p><img src="fig/square.png" align="bottom" width=300></p>
+<p><img src="fig/square_tikzrender.svg" align="bottom" width=300></p>
 </center>
 
 <p>
-A <a href="https://github.com/hplgit/doconce/blob/master/doc/src/pgf_tikz/fig/grid.tikz" target="_blank">grid</a>
+A <a href="https://github.com/doconce/doconce/blob/master/doc/src/pgf_tikz/fig/grid.tikz" target="_blank">grid</a>
 can also be easily made.
 
 <p>
 <center>  <!-- FIGURE -->
 <hr class="figure">
 <center><p class="caption">Figure 3:  This is a grid with 5 x 5 cells </p></center>
-<p><img src="fig/grid.png" align="bottom" width=300></p>
+<p><img src="fig/grid_tikzrender.svg" align="bottom" width=300></p>
 </center>
 
 <p>
 A circle, however, cannot be formed by a finite number of straight lines.
-It requires <a href="https://github.com/hplgit/doconce/blob/master/doc/src/pgf_tikz/fig/circle.tikz" target="_blank">special code</a>.
+It requires <a href="https://github.com/doconce/doconce/blob/master/doc/src/pgf_tikz/fig/circle.tikz" target="_blank">special code</a>.
 
 <p>
 <center>  <!-- FIGURE -->
 <hr class="figure">
 <center><p class="caption">Figure 4:  This circle is drawn in blue with a dashed line. </p></center>
-<p><img src="fig/circle.png" align="bottom" ></p>
+<p><img src="fig/circle_tikzrender.svg" align="bottom" ></p>
 </center>
 
 <h1 id="___sec2" class="anchor">More advanced figures </h1>
@@ -176,15 +176,15 @@ It requires <a href="https://github.com/hplgit/doconce/blob/master/doc/src/pgf_t
 <p>
 <center>  <!-- FIGURE -->
 <hr class="figure">
-<center><p class="caption">Figure 5:  A <a href="https://github.com/hplgit/doconce/blob/master/doc/src/pgf_tikz/fig/maze.tikz" target="_blank">maze</a> can be drawn by combining rectangle elements. </p></center>
-<p><img src="fig/maze.png" align="bottom" width=400></p>
+<center><p class="caption">Figure 5:  A <a href="https://github.com/doconce/doconce/blob/master/doc/src/pgf_tikz/fig/maze.tikz" target="_blank">maze</a> can be drawn by combining rectangle elements. </p></center>
+<p><img src="fig/maze_tikzrender.svg" align="bottom" width=400></p>
 </center>
 
 <p>
 <center>  <!-- FIGURE -->
 <hr class="figure">
-<center><p class="caption">Figure 6:  TikZ is quite well suited to draw <a href="https://github.com/hplgit/doconce/blob/master/doc/src/pgf_tikz/fig/graph.tikz" target="_blank">graphs</a>. </p></center>
-<p><img src="fig/graph.png" align="bottom" ></p>
+<center><p class="caption">Figure 6:  TikZ is well suited to draw <a href="https://github.com/doconce/doconce/blob/master/doc/src/pgf_tikz/fig/graph.tikz" target="_blank">graphs</a>. </p></center>
+<p><img src="fig/graph_tikzrender.svg" align="bottom" ></p>
 </center>
 
 <h1 id="___sec3" class="anchor">Plotting functions </h1>
@@ -193,27 +193,27 @@ It requires <a href="https://github.com/hplgit/doconce/blob/master/doc/src/pgf_t
 TikZ can be used to plot functions. The next figure will be inlined.
 
 <p>
-<br /><br /><center><p><img src="fig/plot1.png" align="bottom" width=600></p></center><br /><br />
+<br /><br /><center><p><img src="fig/plot1_tikzrender.svg" align="bottom" width=600></p></center><br /><br />
 
 <p>
-See the <a href="https://github.com/hplgit/doconce/blob/master/doc/src/pgf_tikz/fig/plot1.tikz" target="_blank">source code</a> for how you make this figure.
+See the <a href="https://github.com/doconce/doconce/blob/master/doc/src/pgf_tikz/fig/plot1.tikz" target="_blank">source code</a> for how you make this figure.
 
 <p>
 <center>  <!-- FIGURE -->
 <hr class="figure">
 <center><p class="caption">Figure 7:  The functions can even be labeled! </p></center>
-<p><img src="fig/plot2.png" align="bottom" width=500></p>
+<p><img src="fig/plot2_tikzrender.svg" align="bottom" width=500></p>
 </center>
 
 <p>
-All details are in the <a href="https://github.com/hplgit/doconce/blob/master/doc/src/pgf_tikz/fig/plot2.tikz" target="_blank">source code</a>.
+All details are in the <a href="https://github.com/doconce/doconce/blob/master/doc/src/pgf_tikz/fig/plot2.tikz" target="_blank">source code</a>.
 
 <!-- ------------------- end of main content --------------- -->
 
 </div>  <!-- end container -->
 <!-- include javascript, jQuery *first* -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap footer
 <footer>
