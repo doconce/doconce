@@ -3,6 +3,7 @@ sh -x clean.sh  # important to clean first to avoid wrong ._*.rst files
 name=quiz
 
 # Sphinx
+touch conf.py
 doconce format sphinx $name
 doconce split_rst $name
 doconce sphinx_dir dirname=sphinx theme=default $name
