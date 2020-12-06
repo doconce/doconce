@@ -611,7 +611,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
         if (block_tp == 'text' or block_tp == 'math') and block != '' and block != '<!--  -->':
             if nb_version == 3:
                 nb.cells.append(new_text_cell(u'markdown', source=block))
-            elif nb_version == 4:
+            elif nb_version in (4, 5):
                 cells.append(new_markdown_cell(source=block))
             mdstr.append(('markdown', block))
         elif block_tp == 'cell' and block != '' and block != []:
@@ -624,7 +624,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
                                 input=block_,
                                 prompt_number=prompt_number,
                                 collapsed=False))
-                        elif nb_version == 4:
+                        elif nb_version in (4, 5):
                             cells.append(new_code_cell(
                                 source=block_,
                                 execution_count=prompt_number,
@@ -639,7 +639,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
                             input=block,
                             prompt_number=prompt_number,
                             collapsed=False))
-                    elif nb_version == 4:
+                    elif nb_version in (4, 5):
                         cells.append(new_code_cell(
                             source=block,
                             execution_count=prompt_number,
@@ -650,7 +650,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
             block = block.rstrip()
             if nb_version == 3:
                 print("WARNING: Output not implemented for nbformat v3.")
-            elif nb_version == 4:
+            elif nb_version in (4, 5):
                 outputs = [
                     {
                         "data": {
@@ -681,7 +681,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
             if nb_version == 3:
                 nb.cells.append(new_code_cell(
                     input=block, prompt_number=prompt_number, collapsed=True))
-            elif nb_version == 4:
+            elif nb_version in (4, 5):
                 cells.append(new_code_cell(
                     source=block,
                     execution_count=prompt_number,
@@ -720,7 +720,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
 
         # Convert nb to json format
         filestr = nbjson.writes(nb)
-    elif nb_version == 4:
+    elif nb_version in (4, 5):
         nb = new_notebook(cells=cells)
         try:
             from nbformat import writes
