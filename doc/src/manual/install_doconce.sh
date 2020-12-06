@@ -55,13 +55,12 @@ apt_install python-setuptools
 pip_install setuptools
 apt_install python-pdftools
 pip_install ipython
+pip_install jupyter
 pip_install tornado
 pip_install pyzmq
 pip_install traitlets
 pip_install pickleshare
 pip_install jsonschema
-# If problems with IPython.nbformat.v4: clone ipython and run setup.py
-# to get the latest version
 
 # Preprocessors
 pip_install future
