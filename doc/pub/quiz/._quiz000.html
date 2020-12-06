@@ -1,24 +1,41 @@
 <!--
 Automatically generated HTML file from DocOnce source
-(https://github.com/hplgit/doconce/)
+(https://github.com/doconce/doconce/)
 -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="A Software Tool for Typesetting Quizzes">
 
 <title>A Software Tool for Typesetting Quizzes</title>
 
 <!-- Bootstrap style: bootstrap -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- not necessary
-<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 -->
 
 <style type="text/css">
 /* Let inline verbatim have the same color as the surroundings */
 code { color: inherit; background-color: transparent; }
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 
 /*
 in.collapse+a.btn.showdetails:before { content:'Hide details'; }
@@ -31,39 +48,33 @@ in.collapse+a.btn.showdetails:before { content:'Hide details'; }
 
 <!-- tocinfo
 {'highest level': 1,
- 'sections': [(' A pure text quiz ', 1, None, '___sec0'),
-              (' Question and choices ', 2, None, '___sec1'),
-              (' Explanations of choices ', 2, None, '___sec2'),
-              (' Typesetting ', 2, None, '___sec3'),
-              (' Quiz inside admonitions ', 2, None, '___sec4'),
-              (' Typesetting of mathematics and computer code ',
+ 'sections': [('A pure text quiz', 1, None, '___sec0'),
+              ('Question and choices', 2, None, '___sec1'),
+              ('Explanations of choices', 2, None, '___sec2'),
+              ('Typesetting', 2, None, '___sec3'),
+              ('Quiz inside admonitions', 2, None, '___sec4'),
+              ('Typesetting of mathematics and computer code',
                1,
                None,
                '___sec5'),
-              (' Mathematics ', 2, 'sec:math', 'sec:math'),
-              (' Simple example ', 3, None, '___sec7'),
-              (' A more complicated example ', 3, None, '___sec8'),
-              (' Computer code ', 2, None, '___sec9'),
-              (' Example: Putting it all together ', 2, None, '___sec10'),
-              (' Specification in HTML ', 2, None, '___sec11'),
-              (' The Python data structure for quizzes ',
-               1,
-               None,
-               '___sec12'),
-              (' Translating the quiz format to HTML or PDF ',
+              ('Mathematics', 2, 'sec:math', 'sec:math'),
+              ('Simple example', 3, None, '___sec7'),
+              ('A more complicated example', 3, None, '___sec8'),
+              ('Computer code', 2, None, '___sec9'),
+              ('Example: Putting it all together', 2, None, '___sec10'),
+              ('Specification in HTML', 2, None, '___sec11'),
+              ('The Python data structure for quizzes', 1, None, '___sec12'),
+              ('Translating the quiz format to HTML or PDF',
                1,
                None,
                '___sec13'),
-              (' HTML ', 2, None, '___sec14'),
-              (' Plain HTML ', 3, None, '___sec15'),
-              (' Bootstrap HTML ', 3, None, '___sec16'),
-              (' Multiple page HTML document ', 3, None, '___sec17'),
-              (' Setting the question and choice prefix ',
-               3,
-               None,
-               '___sec18'),
-              (' LaTeX ', 2, None, '___sec19'),
-              (' Sphinx ', 2, None, '___sec20')]}
+              ('HTML', 2, None, '___sec14'),
+              ('Plain HTML', 3, None, '___sec15'),
+              ('Bootstrap HTML', 3, None, '___sec16'),
+              ('Multiple page HTML document', 3, None, '___sec17'),
+              ('Setting the question and choice prefix', 3, None, '___sec18'),
+              ('LaTeX', 2, None, '___sec19'),
+              ('Sphinx', 2, None, '___sec20')]}
 end of tocinfo -->
 
 <body>
@@ -95,6 +106,7 @@ MathJax.Hub.Config({
     </button>
     <a class="navbar-brand" href="quiz.html">A Software Tool for Typesetting Quizzes</a>
   </div>
+
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
@@ -107,12 +119,18 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._quiz001.html#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Quiz inside admonitions</a></li>
      <!-- navigation toc: --> <li><a href="._quiz002.html#___sec5" style="font-size: 80%;"><b>Typesetting of mathematics and computer code</b></a></li>
      <!-- navigation toc: --> <li><a href="._quiz002.html#sec:math" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Mathematics</a></li>
+     <!-- navigation toc: --> <li><a href="._quiz002.html#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple example</a></li>
+     <!-- navigation toc: --> <li><a href="._quiz002.html#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A more complicated example</a></li>
      <!-- navigation toc: --> <li><a href="._quiz002.html#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Computer code</a></li>
      <!-- navigation toc: --> <li><a href="._quiz002.html#___sec10" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Example: Putting it all together</a></li>
      <!-- navigation toc: --> <li><a href="._quiz003.html#___sec11" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Specification in HTML</a></li>
      <!-- navigation toc: --> <li><a href="._quiz004.html#___sec12" style="font-size: 80%;"><b>The Python data structure for quizzes</b></a></li>
      <!-- navigation toc: --> <li><a href="._quiz005.html#___sec13" style="font-size: 80%;"><b>Translating the quiz format to HTML or PDF</b></a></li>
      <!-- navigation toc: --> <li><a href="._quiz005.html#___sec14" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;HTML</a></li>
+     <!-- navigation toc: --> <li><a href="._quiz005.html#___sec15" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plain HTML</a></li>
+     <!-- navigation toc: --> <li><a href="._quiz005.html#___sec16" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bootstrap HTML</a></li>
+     <!-- navigation toc: --> <li><a href="._quiz005.html#___sec17" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Multiple page HTML document</a></li>
+     <!-- navigation toc: --> <li><a href="._quiz005.html#___sec18" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Setting the question and choice prefix</a></li>
      <!-- navigation toc: --> <li><a href="._quiz005.html#___sec19" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;LaTeX</a></li>
      <!-- navigation toc: --> <li><a href="._quiz005.html#___sec20" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Sphinx</a></li>
 
@@ -142,14 +160,15 @@ MathJax.Hub.Config({
 <b>Hans Petter Langtangen</b> [1, 2]
 </center>
 
-
 <p>
 <!-- institution(s) -->
 
 <center>[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b></center>
 <center>[2] <b>Department of Informatics, University of Oslo</b></center>
+<br>
 <p>
-<center><h4>Mar 30, 2015</h4></center> <!-- date -->
+<center><h4>Dec 6, 2020</h4></center> <!-- date -->
+<br>
 <p>
 <b>Summary.</b> This note describes a system for writing quizzes
 (multiple-choice questions) in a compact text format with support
@@ -171,6 +190,7 @@ services a la Kahoot, JotForm, and Google forms.
 <p>
 <!-- navigation buttons at the bottom of the page -->
 <ul class="pager">
+
   <li class="next">
     <a href="._quiz001.html">Next &rarr;</a>
   </li>
@@ -179,8 +199,8 @@ services a la Kahoot, JotForm, and Google forms.
 
 </div>  <!-- end container -->
 <!-- include javascript, jQuery *first* -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap footer
 <footer>

@@ -1,24 +1,41 @@
 <!--
 Automatically generated HTML file from DocOnce source
-(https://github.com/hplgit/doconce/)
+(https://github.com/doconce/doconce/)
 -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="A Software Tool for Typesetting Quizzes">
 
 <title>A Software Tool for Typesetting Quizzes</title>
 
 <!-- Bootstrap style: bootstrap -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- not necessary
-<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 -->
 
 <style type="text/css">
 /* Let inline verbatim have the same color as the surroundings */
 code { color: inherit; background-color: transparent; }
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 
 /*
 in.collapse+a.btn.showdetails:before { content:'Hide details'; }
@@ -31,39 +48,33 @@ in.collapse+a.btn.showdetails:before { content:'Hide details'; }
 
 <!-- tocinfo
 {'highest level': 1,
- 'sections': [(' A pure text quiz ', 1, None, '___sec0'),
-              (' Question and choices ', 2, None, '___sec1'),
-              (' Explanations of choices ', 2, None, '___sec2'),
-              (' Typesetting ', 2, None, '___sec3'),
-              (' Quiz inside admonitions ', 2, None, '___sec4'),
-              (' Typesetting of mathematics and computer code ',
+ 'sections': [('A pure text quiz', 1, None, '___sec0'),
+              ('Question and choices', 2, None, '___sec1'),
+              ('Explanations of choices', 2, None, '___sec2'),
+              ('Typesetting', 2, None, '___sec3'),
+              ('Quiz inside admonitions', 2, None, '___sec4'),
+              ('Typesetting of mathematics and computer code',
                1,
                None,
                '___sec5'),
-              (' Mathematics ', 2, 'sec:math', 'sec:math'),
-              (' Simple example ', 3, None, '___sec7'),
-              (' A more complicated example ', 3, None, '___sec8'),
-              (' Computer code ', 2, None, '___sec9'),
-              (' Example: Putting it all together ', 2, None, '___sec10'),
-              (' Specification in HTML ', 2, None, '___sec11'),
-              (' The Python data structure for quizzes ',
-               1,
-               None,
-               '___sec12'),
-              (' Translating the quiz format to HTML or PDF ',
+              ('Mathematics', 2, 'sec:math', 'sec:math'),
+              ('Simple example', 3, None, '___sec7'),
+              ('A more complicated example', 3, None, '___sec8'),
+              ('Computer code', 2, None, '___sec9'),
+              ('Example: Putting it all together', 2, None, '___sec10'),
+              ('Specification in HTML', 2, None, '___sec11'),
+              ('The Python data structure for quizzes', 1, None, '___sec12'),
+              ('Translating the quiz format to HTML or PDF',
                1,
                None,
                '___sec13'),
-              (' HTML ', 2, None, '___sec14'),
-              (' Plain HTML ', 3, None, '___sec15'),
-              (' Bootstrap HTML ', 3, None, '___sec16'),
-              (' Multiple page HTML document ', 3, None, '___sec17'),
-              (' Setting the question and choice prefix ',
-               3,
-               None,
-               '___sec18'),
-              (' LaTeX ', 2, None, '___sec19'),
-              (' Sphinx ', 2, None, '___sec20')]}
+              ('HTML', 2, None, '___sec14'),
+              ('Plain HTML', 3, None, '___sec15'),
+              ('Bootstrap HTML', 3, None, '___sec16'),
+              ('Multiple page HTML document', 3, None, '___sec17'),
+              ('Setting the question and choice prefix', 3, None, '___sec18'),
+              ('LaTeX', 2, None, '___sec19'),
+              ('Sphinx', 2, None, '___sec20')]}
 end of tocinfo -->
 
 <body>
@@ -95,6 +106,7 @@ MathJax.Hub.Config({
     </button>
     <a class="navbar-brand" href="quiz.html">A Software Tool for Typesetting Quizzes</a>
   </div>
+
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
@@ -107,12 +119,18 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._quiz001.html#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Quiz inside admonitions</a></li>
      <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;"><b>Typesetting of mathematics and computer code</b></a></li>
      <!-- navigation toc: --> <li><a href="#sec:math" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Mathematics</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple example</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A more complicated example</a></li>
      <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Computer code</a></li>
      <!-- navigation toc: --> <li><a href="#___sec10" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Example: Putting it all together</a></li>
      <!-- navigation toc: --> <li><a href="._quiz003.html#___sec11" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Specification in HTML</a></li>
      <!-- navigation toc: --> <li><a href="._quiz004.html#___sec12" style="font-size: 80%;"><b>The Python data structure for quizzes</b></a></li>
      <!-- navigation toc: --> <li><a href="._quiz005.html#___sec13" style="font-size: 80%;"><b>Translating the quiz format to HTML or PDF</b></a></li>
      <!-- navigation toc: --> <li><a href="._quiz005.html#___sec14" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;HTML</a></li>
+     <!-- navigation toc: --> <li><a href="._quiz005.html#___sec15" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plain HTML</a></li>
+     <!-- navigation toc: --> <li><a href="._quiz005.html#___sec16" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bootstrap HTML</a></li>
+     <!-- navigation toc: --> <li><a href="._quiz005.html#___sec17" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Multiple page HTML document</a></li>
+     <!-- navigation toc: --> <li><a href="._quiz005.html#___sec18" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Setting the question and choice prefix</a></li>
      <!-- navigation toc: --> <li><a href="._quiz005.html#___sec19" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;LaTeX</a></li>
      <!-- navigation toc: --> <li><a href="._quiz005.html#___sec20" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Sphinx</a></li>
 
@@ -130,16 +148,16 @@ MathJax.Hub.Config({
 <a name="part0002"></a>
 <!-- !split -->
 
-<h1 id="___sec5">Typesetting of mathematics and computer code </h1>
+<h1 id="___sec5" class="anchor">Typesetting of mathematics and computer code </h1>
 
-<h2 id="sec:math">Mathematics</h2>
+<h2 id="sec:math" class="anchor">Mathematics</h2>
 
 <p>
 Typesetting of mathematics in a quiz follows a restricted LaTeX syntax. Inline
 formulas appear inside dollar signs, while separate equations
 appear inside <code>!bt</code> (&quot;begin TeX&quot;) and <code>!et</code> (&quot;end TeX&quot;) tags.
 
-<h3 id="___sec7">Simple example </h3>
+<h3 id="___sec7" class="anchor">Simple example </h3>
 
 <p>
 <!-- begin quiz -->
@@ -149,12 +167,14 @@ appear inside <code>!bt</code> (&quot;begin TeX&quot;) and <code>!et</code> (&qu
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_6_1" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 1:</b>
+ data-target="#quiz_id_6_A" style="font-size: 80%;"></a>
+<a href="#quiz_id_6_A" data-toggle="collapse">
+&nbsp;<b>Choice A:</b>
 5.
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_6_1">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/incorrect.gif">
+<p><div class="collapse" id="quiz_id_6_A">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
 Good attempt, especially when referring to the following story.
 
 <p>
@@ -171,29 +191,33 @@ Good attempt, especially when referring to the following story.
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_6_2" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 2:</b>
+ data-target="#quiz_id_6_B" style="font-size: 80%;"></a>
+<a href="#quiz_id_6_B" data-toggle="collapse">
+&nbsp;<b>Choice B:</b>
 4.
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_6_2">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/correct.gif">
+<p><div class="collapse" id="quiz_id_6_B">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/correct.gif">
 Seems trivial, but once upon a time...
 
 <p>
-<center><p><img src="fig/1p1.gif" align="bottom" width=140></p></center>
+<br /><br /><center><p><img src="fig/1p1.gif" align="bottom" width=140></p></center><br /><br />
 </div></p>
 </div>
 </p>
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_6_3" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 3:</b>
+ data-target="#quiz_id_6_C" style="font-size: 80%;"></a>
+<a href="#quiz_id_6_C" data-toggle="collapse">
+&nbsp;<b>Choice C:</b>
 The computation does not make sense when \( a \) and \( b \) are given without
 units.
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_6_3">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/incorrect.gif">
+<p><div class="collapse" id="quiz_id_6_C">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
 It is indeed possible to add pure numbers without any units.
 </div></p>
 </div>
@@ -207,7 +231,7 @@ The source code for defining the above quiz reads
 <p>
 
 <!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bquiz
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>!bquiz
 Q: Compute the result of $a+b$ in the case $a=2$ and $b=2$.
 
 Cw: 5.
@@ -234,7 +258,7 @@ E: It is indeed possible to add pure numbers without any units.
 !equiz
 </pre></div>
 <p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>Only a subset of all LaTeX equation environments is supported!</b>
+<div class="alert alert-block alert-danger alert-text-normal"><b>Only a subset of all LaTeX equation environments are supported!</b>
 To make sure blocks with equations come out correctly in different
 output formats (LaTeX, HTML, Sphinx, Markdown), only four types
 of standard LaTeX equation environments should be used:
@@ -252,7 +276,7 @@ standard LaTeX math typesetting works (like <code>\alpha</code>, <code>\mbox{...
 </div>
 
 
-<h3 id="___sec8">A more complicated example </h3>
+<h3 id="___sec8" class="anchor">A more complicated example </h3>
 
 <p>
 <!-- This example does not come out right with --runestone. -->
@@ -267,7 +291,8 @@ standard LaTeX math typesetting works (like <code>\alpha</code>, <code>\mbox{...
 $$
 \begin{equation}
 \nabla\cdot\boldsymbol{u} = 0
-\tag{3}
+label{cont:eq}
+\tag{1}
 \end{equation}
 $$
 
@@ -275,14 +300,16 @@ is famous in physics. Select the wrong assertion(s):</p>
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_7_1" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 1:</b>
+ data-target="#quiz_id_7_A" style="font-size: 80%;"></a>
+<a href="#quiz_id_7_A" data-toggle="collapse">
+&nbsp;<b>Choice A:</b>
 The equation tells that the net outflow of something with
 velocity \( \boldsymbol{u} \) in region is zero.
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_7_1">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/incorrect.gif">
-This is right: integrating <a href="._quiz003.html#mjx-eqn-3">(3)</a> over an arbitrary domain
+<p><div class="collapse" id="quiz_id_7_A">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
+This is right: integrating (ref{cont:eq}) over an arbitrary domain
 \( \Omega \) and using Gauss' divergence theorem, we get the surface integral
 
 $$ \int_{\partial\Omega}\boldsymbol{u}\cdot\boldsymbol{n}dS=0,$$
@@ -296,12 +323,14 @@ time unit if \( \boldsymbol{u} \) is velocity.
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_7_2" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 2:</b>
+ data-target="#quiz_id_7_B" style="font-size: 80%;"></a>
+<a href="#quiz_id_7_B" data-toggle="collapse">
+&nbsp;<b>Choice B:</b>
 The equation tells that the vector field \( \boldsymbol{u} \) is divergence free.
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_7_2">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/incorrect.gif">
+<p><div class="collapse" id="quiz_id_7_B">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
 Yes, <em>divergence free</em> is often used as synonym for <em>zero divergence</em>,
 and \( \nabla\cdot\boldsymbol{u} \) is the divergence of a vector field \( \boldsymbol{u} \).
 </div></p>
@@ -310,13 +339,15 @@ and \( \nabla\cdot\boldsymbol{u} \) is the divergence of a vector field \( \bold
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_7_3" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 3:</b>
+ data-target="#quiz_id_7_C" style="font-size: 80%;"></a>
+<a href="#quiz_id_7_C" data-toggle="collapse">
+&nbsp;<b>Choice C:</b>
 The equation implies that there exists a vector potential \( \boldsymbol{A} \)
 such that \( \boldsymbol{u}=\nabla\times\boldsymbol{A} \).
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_7_3">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/incorrect.gif">
+<p><div class="collapse" id="quiz_id_7_C">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
 Yes, this is an important result in vector calculus that is much
 used in electromagnetics.
 </div></p>
@@ -325,12 +356,14 @@ used in electromagnetics.
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_7_4" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 4:</b>
+ data-target="#quiz_id_7_D" style="font-size: 80%;"></a>
+<a href="#quiz_id_7_D" data-toggle="collapse">
+&nbsp;<b>Choice D:</b>
 The equation implies \( \nabla\times\boldsymbol{u}=0 \).
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_7_4">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/correct.gif">
+<p><div class="collapse" id="quiz_id_7_D">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/correct.gif">
 No, only if \( \boldsymbol{u}=\nabla\phi \), for some scalar potential \( \phi \),
 we have \( \nabla\times\boldsymbol{u}=0 \).
 </div></p>
@@ -339,12 +372,14 @@ we have \( \nabla\times\boldsymbol{u}=0 \).
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_7_5" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 5:</b>
+ data-target="#quiz_id_7_E" style="font-size: 80%;"></a>
+<a href="#quiz_id_7_E" data-toggle="collapse">
+&nbsp;<b>Choice E:</b>
 The equation implies that \( \boldsymbol{u} \) must be a constant vector field.
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_7_5">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/correct.gif">
+<p><div class="collapse" id="quiz_id_7_E">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/correct.gif">
 No, it is the <em>sum</em> of derivatives of different components of \( \boldsymbol{u} \)
 that is zero. Only in one dimension, where \( \boldsymbol{u}=u_x\boldsymbol{i} \)
 and consequently \( \nabla\cdot\boldsymbol{u}=du/dx \), the vector field must be constant.
@@ -379,7 +414,7 @@ Now we present the complete code for the quiz above:
 <p>
 
 <!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bquiz
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>!bquiz
 Q: The equation
 
 !bt
@@ -395,7 +430,7 @@ L: div:assert
 
 Cw: The equation tells that the net outflow of something with
 velocity $\boldsymbol{u}$ in region is zero.
-E: This is right: integrating <a href="._quiz003.html#mjx-eqn-3">(3)</a> over an arbitrary domain
+E: This is right: integrating (ref{cont:eq}) over an arbitrary domain
 $\Omega$ and using Gauss&#39; divergence theorem, we get the surface integral
 
 !bt
@@ -425,7 +460,7 @@ and consequently $\nabla\cdot\boldsymbol{u}=du/dx$, the vector field must be con
 !equiz
 </pre></div>
 
-<h2 id="___sec9">Computer code </h2>
+<h2 id="___sec9" class="anchor">Computer code </h2>
 
 <p>
 Inline computer code (variables, expressions, statements) are
@@ -454,19 +489,21 @@ element is <code>0</code>. Is the following code then what we need?
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span>
 mylist <span style="color: #666666">=</span> numpy<span style="color: #666666">.</span>zeros(n)
 </pre></div>
 <p></p>
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_8_1" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 1:</b>
+ data-target="#quiz_id_8_A" style="font-size: 80%;"></a>
+<a href="#quiz_id_8_A" data-toggle="collapse">
+&nbsp;<b>Choice A:</b>
 Yes.
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_8_1">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/incorrect.gif">
+<p><div class="collapse" id="quiz_id_8_A">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
 Not exactly: <code>numpy.zeros</code> creates an array of zeros, not a list.
 </div></p>
 </div>
@@ -474,20 +511,22 @@ Not exactly: <code>numpy.zeros</code> creates an array of zeros, not a list.
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_8_2" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 2:</b>
+ data-target="#quiz_id_8_B" style="font-size: 80%;"></a>
+<a href="#quiz_id_8_B" data-toggle="collapse">
+&nbsp;<b>Choice B:</b>
 Yes, provided we write <code>np</code> instead of <code>numpy</code>:
 
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 mylist <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(n)
 </pre></div>
 <p>
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_8_2">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/incorrect.gif">
+<p><div class="collapse" id="quiz_id_8_B">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
 No, this is fully equivalent to the original code, so <code>mylist</code> becomes
 an array, not a list.
 </div></p>
@@ -496,12 +535,14 @@ an array, not a list.
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_8_3" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 3:</b>
+ data-target="#quiz_id_8_C" style="font-size: 80%;"></a>
+<a href="#quiz_id_8_C" data-toggle="collapse">
+&nbsp;<b>Choice C:</b>
 No.
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_8_3">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/correct.gif">
+<p><div class="collapse" id="quiz_id_8_C">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/correct.gif">
 One would need to do <code>mylist = [0]*n</code> or <code>numpy.zeros(n).tolist()</code>.
 </div></p>
 </div>
@@ -512,7 +553,7 @@ One would need to do <code>mylist = [0]*n</code> or <code>numpy.zeros(n).tolist(
 <p>
 
 <!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">!bquiz
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>!bquiz
 Q: We want to create a Python list object of length `n` where each
 element is `0`. Is the following code then what we need?
 
@@ -551,8 +592,7 @@ E: One would need to do `mylist = [0]*n` or `numpy.zeros(n).tolist()`.
  <li> <code>Cr</code>: right (correct) choice</li>
  <li> <code>Cw</code>: wrong (incorrect) choice</li>
  <li> <code>Cr [prefix]</code>: right (correct) choice with prefix (defaults to <em>Choice X</em>,
-   where <em>X</em> is the choice number in HTML, and to an upper case letter in
-   LaTeX)</li>
+   where <em>X</em> is an upper case letter)</li>
  <li> <code>Cw [prefix]</code>: wrong (incorrect) choice with prefix</li>
  <li> <code>E</code>: explanation of last choice</li>
  <li> <code>K</code>: keywords</li>
@@ -563,7 +603,7 @@ E: One would need to do `mylist = [0]*n` or `numpy.zeros(n).tolist()`.
 </div>
 
 
-<h2 id="___sec10">Example: Putting it all together </h2>
+<h2 id="___sec10" class="anchor">Example: Putting it all together </h2>
 
 <p>
 <!-- begin quiz -->
@@ -572,7 +612,7 @@ E: One would need to do `mylist = [0]*n` or `numpy.zeros(n).tolist()`.
 <b>Question:</b> <p>
 
 <!-- code=python (!bc pypro) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">math</span> <span style="color: #008000; font-weight: bold">import</span> sin
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">math</span> <span style="color: #008000; font-weight: bold">import</span> sin
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">D</span>(u, t, dt<span style="color: #666666">=1E-5</span>):
     <span style="color: #008000; font-weight: bold">return</span> (u(t <span style="color: #666666">+</span> dt) <span style="color: #666666">-</span> u(t <span style="color: #666666">-</span> dt))<span style="color: #666666">/</span>(<span style="color: #666666">2*</span>dt)
@@ -581,11 +621,11 @@ E: One would need to do `mylist = [0]*n` or `numpy.zeros(n).tolist()`.
     <span style="color: #BA2121">&quot;A quadratic function.&quot;</span>
     <span style="color: #008000; font-weight: bold">return</span> t<span style="color: #666666">^2</span>
 
-<span style="color: #008000; font-weight: bold">print</span> D(u, t<span style="color: #666666">=4</span>),
-<span style="color: #008000; font-weight: bold">print</span> D(<span style="color: #008000; font-weight: bold">lambda</span> x: <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">2*</span>x, <span style="color: #666666">2</span>)
+<span style="color: #008000">print</span> D(u, t<span style="color: #666666">=4</span>),
+<span style="color: #008000">print</span> D(<span style="color: #008000; font-weight: bold">lambda</span> x: <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">2*</span>x, <span style="color: #666666">2</span>)
 </pre></div>
 <p>
-The purpose of this program is to differentiate the two mathematical
+The purpose of the above program is to differentiate the two mathematical
 functions
 
 $$
@@ -595,17 +635,19 @@ f(x) &= 2x.
 \end{align*}
 $$
 
-Determine which of the following assertions that is <b>wrong</b>.</p>
+Determine which of the following assertions is <b>wrong</b>.</p>
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_9_1" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 1:</b>
+ data-target="#quiz_id_9_A" style="font-size: 80%;"></a>
+<a href="#quiz_id_9_A" data-toggle="collapse">
+&nbsp;<b>Choice A:</b>
 In Python, the syntax for \( t^2 \) is <code>t**2</code>, not <code>t^2</code>, so the
 <code>u</code> function contains an error.
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_9_1">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/incorrect.gif">
+<p><div class="collapse" id="quiz_id_9_A">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
 True. However, <code>t^2</code> will work for integer <code>t</code> in Python,
 but the computation is nonsense in this case since \( u(t) \) is
 supposed to be \( t^2 \).
@@ -615,12 +657,14 @@ supposed to be \( t^2 \).
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_9_2" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 2:</b>
+ data-target="#quiz_id_9_B" style="font-size: 80%;"></a>
+<a href="#quiz_id_9_B" data-toggle="collapse">
+&nbsp;<b>Choice B:</b>
 The string in the <code>u</code> function is a valid doc string.
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_9_2">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/incorrect.gif">
+<p><div class="collapse" id="quiz_id_9_B">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
 Yes, a doc string can be any string after the function heading. It can
 have single quotes <code>'...'</code>, double quotes <code>&quot;...&quot;</code>,
 triple single quotes <code>'''...'''</code>, or triple double quotes <code>&quot;&quot;&quot;...&quot;&quot;&quot;</code>.
@@ -632,13 +676,15 @@ allow the string to span multiple lines.
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_9_3" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 3:</b>
+ data-target="#quiz_id_9_C" style="font-size: 80%;"></a>
+<a href="#quiz_id_9_C" data-toggle="collapse">
+&nbsp;<b>Choice C:</b>
 The output from the program is on a single line, despite two <code>print</code>
 statements.
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_9_3">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/incorrect.gif">
+<p><div class="collapse" id="quiz_id_9_C">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
 Yes, because of the comma after the first <code>print</code> statement: it suppresses
 the newline character that is normally appended to <code>print</code> statements in
 Python.
@@ -648,13 +694,15 @@ Python.
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_9_4" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 4:</b>
+ data-target="#quiz_id_9_D" style="font-size: 80%;"></a>
+<a href="#quiz_id_9_D" data-toggle="collapse">
+&nbsp;<b>Choice D:</b>
 One cannot use <code>u</code> both inside the <code>D</code> function and in the
 outer calling code (the main program).
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_9_4">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/correct.gif">
+<p><div class="collapse" id="quiz_id_9_D">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/correct.gif">
 Yes, you can, because the <code>u</code> argument in the <code>D</code> function (holding
 a function) is a <em>local</em> variable inside the <code>D</code> function. The <code>u</code> in
 the calling code is <em>global</em> variable, holding a function object.
@@ -670,21 +718,23 @@ coding.
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_9_5" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 5:</b>
+ data-target="#quiz_id_9_E" style="font-size: 80%;"></a>
+<a href="#quiz_id_9_E" data-toggle="collapse">
+&nbsp;<b>Choice E:</b>
 The call <code>D(lambda x: return 2*x, 2)</code> is equivalent to defining
 
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">f</span>(x):
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">f</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">2*</span>x
 </pre></div>
 <p>
 and then calling <code>D(f, 2)</code>.
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_9_5">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/incorrect.gif">
+<p><div class="collapse" id="quiz_id_9_E">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
 <code>f(x)</code> is defined as a lambda function, which is a short-hand for
 defining functions as an expression, in a function call as here, or
 in the right-hand side of an assignment, e.g.,
@@ -692,7 +742,7 @@ in the right-hand side of an assignment, e.g.,
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">f <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">lambda</span> x: <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">2*</span>x
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>f <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">lambda</span> x: <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">2*</span>x
 </pre></div>
 <p>
 </div></p>
@@ -701,12 +751,14 @@ in the right-hand side of an assignment, e.g.,
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_9_6" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 6:</b>
+ data-target="#quiz_id_9_F" style="font-size: 80%;"></a>
+<a href="#quiz_id_9_F" data-toggle="collapse">
+&nbsp;<b>Choice F:</b>
 There is danger of integer division in the <code>D</code> function.
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_9_6">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/incorrect.gif">
+<p><div class="collapse" id="quiz_id_9_F">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
 True, here is an example: <code>D(lambda t: t, dt=1)</code>. We get
 <code>(t+1 - t-1)/(2*1)</code>, which for any integer <code>t</code> gives <code>int/int</code>
 and hence integer division.
@@ -716,13 +768,15 @@ and hence integer division.
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_9_7" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 7:</b>
+ data-target="#quiz_id_9_G" style="font-size: 80%;"></a>
+<a href="#quiz_id_9_G" data-toggle="collapse">
+&nbsp;<b>Choice G:</b>
 The <code>D</code> function computes an approximate derivative of the
 function <code>u(t)</code>.
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_9_7">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/incorrect.gif">
+<p><div class="collapse" id="quiz_id_9_G">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
 Yes, <code>D</code> applies a widely used finite difference approximation
 formula to the derivative.
 </div></p>
@@ -731,13 +785,15 @@ formula to the derivative.
 
 <p>
 <a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
- data-target="#quiz_id_9_8" style="font-size: 80%;"></a>
-&nbsp;<b>Choice 8:</b>
-Both calls to <code>D</code> results in the exact derivative, provided we
+ data-target="#quiz_id_9_H" style="font-size: 80%;"></a>
+<a href="#quiz_id_9_H" data-toggle="collapse">
+&nbsp;<b>Choice H:</b>
+Both calls to <code>D</code> result in the exact derivative, provided we
 replace <code>t^2</code> by <code>t**2</code>.
+</a>
 <div class="collapse-group">
-<p><div class="collapse" id="quiz_id_9_8">
-<img src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/incorrect.gif">
+<p><div class="collapse" id="quiz_id_9_H">
+<img src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
 Yes, the finite difference approximation used in <code>D</code> is exact
 for quadratic polynomials!
 </div></p>
@@ -750,9 +806,11 @@ for quadratic polynomials!
 <p>
 <!-- navigation buttons at the bottom of the page -->
 <ul class="pager">
+
   <li class="previous">
     <a href="._quiz001.html">&larr; Prev</a>
   </li>
+
   <li class="next">
     <a href="._quiz003.html">Next &rarr;</a>
   </li>
@@ -761,8 +819,8 @@ for quadratic polynomials!
 
 </div>  <!-- end container -->
 <!-- include javascript, jQuery *first* -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap footer
 <footer>
