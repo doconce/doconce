@@ -1,24 +1,41 @@
 <!--
 Automatically generated HTML file from DocOnce source
-(https://github.com/hplgit/doconce/)
+(https://github.com/doconce/doconce/)
 -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="A Software Tool for Typesetting Quizzes">
 
 <title>A Software Tool for Typesetting Quizzes</title>
 
 <!-- Bootstrap style: bootstrap -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- not necessary
-<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 -->
 
 <style type="text/css">
 /* Let inline verbatim have the same color as the surroundings */
 code { color: inherit; background-color: transparent; }
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 
 /*
 in.collapse+a.btn.showdetails:before { content:'Hide details'; }
@@ -31,39 +48,33 @@ in.collapse+a.btn.showdetails:before { content:'Hide details'; }
 
 <!-- tocinfo
 {'highest level': 1,
- 'sections': [(' A pure text quiz ', 1, None, '___sec0'),
-              (' Question and choices ', 2, None, '___sec1'),
-              (' Explanations of choices ', 2, None, '___sec2'),
-              (' Typesetting ', 2, None, '___sec3'),
-              (' Quiz inside admonitions ', 2, None, '___sec4'),
-              (' Typesetting of mathematics and computer code ',
+ 'sections': [('A pure text quiz', 1, None, '___sec0'),
+              ('Question and choices', 2, None, '___sec1'),
+              ('Explanations of choices', 2, None, '___sec2'),
+              ('Typesetting', 2, None, '___sec3'),
+              ('Quiz inside admonitions', 2, None, '___sec4'),
+              ('Typesetting of mathematics and computer code',
                1,
                None,
                '___sec5'),
-              (' Mathematics ', 2, 'sec:math', 'sec:math'),
-              (' Simple example ', 3, None, '___sec7'),
-              (' A more complicated example ', 3, None, '___sec8'),
-              (' Computer code ', 2, None, '___sec9'),
-              (' Example: Putting it all together ', 2, None, '___sec10'),
-              (' Specification in HTML ', 2, None, '___sec11'),
-              (' The Python data structure for quizzes ',
-               1,
-               None,
-               '___sec12'),
-              (' Translating the quiz format to HTML or PDF ',
+              ('Mathematics', 2, 'sec:math', 'sec:math'),
+              ('Simple example', 3, None, '___sec7'),
+              ('A more complicated example', 3, None, '___sec8'),
+              ('Computer code', 2, None, '___sec9'),
+              ('Example: Putting it all together', 2, None, '___sec10'),
+              ('Specification in HTML', 2, None, '___sec11'),
+              ('The Python data structure for quizzes', 1, None, '___sec12'),
+              ('Translating the quiz format to HTML or PDF',
                1,
                None,
                '___sec13'),
-              (' HTML ', 2, None, '___sec14'),
-              (' Plain HTML ', 3, None, '___sec15'),
-              (' Bootstrap HTML ', 3, None, '___sec16'),
-              (' Multiple page HTML document ', 3, None, '___sec17'),
-              (' Setting the question and choice prefix ',
-               3,
-               None,
-               '___sec18'),
-              (' LaTeX ', 2, None, '___sec19'),
-              (' Sphinx ', 2, None, '___sec20')]}
+              ('HTML', 2, None, '___sec14'),
+              ('Plain HTML', 3, None, '___sec15'),
+              ('Bootstrap HTML', 3, None, '___sec16'),
+              ('Multiple page HTML document', 3, None, '___sec17'),
+              ('Setting the question and choice prefix', 3, None, '___sec18'),
+              ('LaTeX', 2, None, '___sec19'),
+              ('Sphinx', 2, None, '___sec20')]}
 end of tocinfo -->
 
 <body>
@@ -95,6 +106,7 @@ MathJax.Hub.Config({
     </button>
     <a class="navbar-brand" href="quiz.html">A Software Tool for Typesetting Quizzes</a>
   </div>
+
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
@@ -107,12 +119,18 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._quiz001.html#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Quiz inside admonitions</a></li>
      <!-- navigation toc: --> <li><a href="._quiz002.html#___sec5" style="font-size: 80%;"><b>Typesetting of mathematics and computer code</b></a></li>
      <!-- navigation toc: --> <li><a href="._quiz002.html#sec:math" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Mathematics</a></li>
+     <!-- navigation toc: --> <li><a href="._quiz002.html#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple example</a></li>
+     <!-- navigation toc: --> <li><a href="._quiz002.html#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A more complicated example</a></li>
      <!-- navigation toc: --> <li><a href="._quiz002.html#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Computer code</a></li>
      <!-- navigation toc: --> <li><a href="._quiz002.html#___sec10" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Example: Putting it all together</a></li>
      <!-- navigation toc: --> <li><a href="._quiz003.html#___sec11" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Specification in HTML</a></li>
      <!-- navigation toc: --> <li><a href="._quiz004.html#___sec12" style="font-size: 80%;"><b>The Python data structure for quizzes</b></a></li>
      <!-- navigation toc: --> <li><a href="#___sec13" style="font-size: 80%;"><b>Translating the quiz format to HTML or PDF</b></a></li>
      <!-- navigation toc: --> <li><a href="#___sec14" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;HTML</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec15" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plain HTML</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec16" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bootstrap HTML</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec17" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Multiple page HTML document</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec18" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Setting the question and choice prefix</a></li>
      <!-- navigation toc: --> <li><a href="#___sec19" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;LaTeX</a></li>
      <!-- navigation toc: --> <li><a href="#___sec20" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Sphinx</a></li>
 
@@ -130,19 +148,19 @@ MathJax.Hub.Config({
 <a name="part0005"></a>
 <!-- !split -->
 
-<h1 id="___sec13">Translating the quiz format to HTML or PDF </h1>
+<h1 id="___sec13" class="anchor">Translating the quiz format to HTML or PDF </h1>
 
 <p>
 The program <code>doconce</code> must be run to interpret the quiz format, translate
 it to LaTeX, HTML, or other formats, and produce the Python representation
 of the collection of quizzes in a document. Let the name of the
 document with quiz specifications and optional text be <code>myquiz.do.txt</code>.
-Documents to play around with are <a href="https://github.com/hplgit/doconce/tree/master/doc/src/quiz/pure_quiz.do.txt" target="_self"><tt>pure_quiz.do.txt</tt></a> or
-<a href="https://github.com/hplgit/doconce/tree/master/doc/src/quiz/quiz.do.txt" target="_self">the present document</a>.
+Documents to play around with are <a href="https://github.com/doconce/doconce/tree/master/doc/src/quiz/pure_quiz.do.txt" target="_self"><tt>pure_quiz.do.txt</tt></a> or
+<a href="https://github.com/doconce/doconce/tree/master/doc/src/quiz/quiz.do.txt" target="_self">the present document</a>.
 
-<h2 id="___sec14">HTML </h2>
+<h2 id="___sec14" class="anchor">HTML </h2>
 
-<h3 id="___sec15">Plain HTML </h3>
+<h3 id="___sec15" class="anchor">Plain HTML </h3>
 
 <p>
 A simple HTML rendering of quizzes is done by
@@ -150,12 +168,12 @@ A simple HTML rendering of quizzes is done by
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format html myquiz
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format html myquiz
 </pre></div>
 <p>
 The result <code>myquiz.html</code> can be loaded into a browser.
 
-<h3 id="___sec16">Bootstrap HTML </h3>
+<h3 id="___sec16" class="anchor">Bootstrap HTML </h3>
 
 <p>
 A more sophisticated rendering is offered if a Bootstrap HTML style
@@ -164,7 +182,7 @@ is adopted,
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format html myquiz --html_style=bootstrap
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format html myquiz --html_style=bootstrap
 </pre></div>
 <p>
 Other variations of this class of styles are <code>bootswatch</code>, and
@@ -174,13 +192,13 @@ Other variations of this class of styles are <code>bootswatch</code>, and
 <p>
 The Bootstrap-based styles have a striking red color for inline computer
 code, which can be avoided by giving the option <code>--html_code_style=inherit</code>
-(see the documentation of <a href="http://hplgit.github.io/doconce/doc/pub/bootstrap/index.html" target="_self">DocOnce and Bootstrap</a> for details and examples).
+(see the documentation of <a href="http://doconce.github.io/doconce/doc/pub/bootstrap/index.html" target="_self">DocOnce and Bootstrap</a> for details and examples).
 
 <p>
 By default, there is a horizontal rule enclosing each quiz in the HTML format.
 This can be turned off by the option <code>--quiz_horizontal_rule=off</code>.
 
-<h3 id="___sec17">Multiple page HTML document </h3>
+<h3 id="___sec17" class="anchor">Multiple page HTML document </h3>
 
 <p>
 By inserting <code>!split</code> before headings in a DocOnce document, one can run
@@ -188,7 +206,7 @@ By inserting <code>!split</code> before headings in a DocOnce document, one can 
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce split_html myquiz.html
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce split_html myquiz.html
 </pre></div>
 <p>
 to create a multi-page document with navigation arrows. Bootstrap styles
@@ -196,15 +214,15 @@ will also have a <em>Contents</em> pull-down menu to the right in the top bar.
 Without the <code>split_html</code> command (and <code>!split</code> instructions in the document),
 all quizzes will be in one HTML page.
 
-<h3 id="___sec18">Setting the question and choice prefix </h3>
+<h3 id="___sec18" class="anchor">Setting the question and choice prefix </h3>
 
 <p>
 The prefix before a question is <code>Question:</code> and before a choice is <code>Choice X</code>,
-where <code>X</code> is a number. To set a different prefix, see the
+where <code>X</code> is an upper case letter. To set a different prefix, see the
 <code>--quiz_question_prefix</code> and <code>--quiz_choice_prefix</code> commands
 when running <code>doconce format --help</code>.
 
-<h2 id="___sec19">LaTeX </h2>
+<h2 id="___sec19" class="anchor">LaTeX </h2>
 
 <p>
 The standard command to produce a LaTeX document is
@@ -212,7 +230,7 @@ The standard command to produce a LaTeX document is
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format pdflatex myquiz \ 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format pdflatex myquiz \ 
           --without_answers --without_solutions \ 
           --latex_code_style=pyg
 </pre></div>
@@ -227,7 +245,7 @@ The next step is to compile the document:
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; pdflatex -shell-escape myquiz
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; pdflatex -shell-escape myquiz
 </pre></div>
 <p>
 to produce a PDF <code>myquiz.pdf</code>.
@@ -235,7 +253,7 @@ Here, we use the <code>pyg</code> (Pygments, LaTeX package <code>minted</code>) 
 for code blocks, which requires the <code>-shell-escape</code> option when running
 <code>pdflatex</code>.
 
-<h2 id="___sec20">Sphinx </h2>
+<h2 id="___sec20" class="anchor">Sphinx </h2>
 
 <p>
 A typical session for creating a Sphinx document is
@@ -243,7 +261,7 @@ A typical session for creating a Sphinx document is
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format sphinx myquiz
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format sphinx myquiz
 Terminal&gt; doconce split_rst myquiz
 Terminal&gt; doconce sphinx_dir dirname=sphinx theme=default myquiz
 Terminal&gt; python automake_sphinx.py
@@ -257,7 +275,7 @@ support of quizzes. A RunestoneInteractive version is created by
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; doconce format sphinx myquiz --runestone
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span>Terminal&gt; doconce format sphinx myquiz --runestone
 Terminal&gt; doconce split_rst myquiz
 Terminal&gt; doconce sphinx_dir dirname=sphinx theme=default myquiz
 Terminal&gt; python automake_sphinx.py --runestone
@@ -268,6 +286,7 @@ Terminal&gt; python automake_sphinx.py --runestone
 <p>
 <!-- navigation buttons at the bottom of the page -->
 <ul class="pager">
+
   <li class="previous">
     <a href="._quiz004.html">&larr; Prev</a>
   </li>
@@ -276,8 +295,8 @@ Terminal&gt; python automake_sphinx.py --runestone
 
 </div>  <!-- end container -->
 <!-- include javascript, jQuery *first* -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap footer
 <footer>

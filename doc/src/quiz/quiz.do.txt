@@ -95,7 +95,7 @@ Cw: New York
 
 ===== Explanations of choices =====
 
-Sometimes it is desireable to give some explanation why certain choices
+Sometimes it is desirable to give some explanation why certain choices
 are wrong (or right).
 % if FORMAT == 'html':
 % if BOOSTRAP:
@@ -355,7 +355,7 @@ E: It is indeed possible to add pure numbers without any units.
 |equiz
 !ec
 
-!bwarning Only a subset of all LaTeX equation environments is supported!
+!bwarning Only a subset of all LaTeX equation environments are supported!
 To make sure blocks with equations come out correctly in different
 output formats (LaTeX, HTML, Sphinx, Markdown), only four types
 of standard LaTeX equation environments should be used:
@@ -381,7 +381,7 @@ Q: The equation
 !bt
 \begin{equation}
 \nabla\cdot\bm{u} = 0
-label{cont:eq}
+label\{cont:eq}
 \end{equation}
 !et
 is famous in physics. Select the wrong assertion(s):
@@ -391,7 +391,7 @@ L: div:assert
 
 Cw: The equation tells that the net outflow of something with
 velocity $\bm{u}$ in region is zero.
-E: This is right: integrating (ref{cont:eq}) over an arbitrary domain
+E: This is right: integrating (ref\{cont:eq}) over an arbitrary domain
 $\Omega$ and using Gauss' divergence theorem, we get the surface integral
 
 !bt
@@ -445,7 +445,7 @@ Q: The equation
 |bt
 \begin{equation}
 \nabla\cdot\bm{u} = 0
-label{cont:eq}
+label\{cont:eq}
 \end{equation}
 |et
 is famous in physics. Select the wrong assertion(s):
@@ -455,7 +455,7 @@ L: div:assert
 
 Cw: The equation tells that the net outflow of something with
 velocity $\bm{u}$ in region is zero.
-E: This is right: integrating (ref{cont:eq}) over an arbitrary domain
+E: This is right: integrating (ref\{cont:eq}) over an arbitrary domain
 $\Omega$ and using Gauss' divergence theorem, we get the surface integral
 
 |bt
@@ -608,7 +608,7 @@ u(t) &= t^2,\\
 f(x) &= 2x.
 \end{align*}
 !et
-Determine which of the following assertions that is _wrong_.
+Determine which of the following assertions is _wrong_.
 
 K: Python programming; debugging; lambda functions; finding errors
 
@@ -779,8 +779,8 @@ of the question, the choices, and the explanations.
 The HTML specification of a quiz is not a meaningful HTML code for
 displaying the quiz in a browser, it is just an application of the
 HTML language to specify information and have full control of
-the typesetting details. Some program must interpret the
-HTML above and typset questions, choices, and explanations adequately.
+the typesetting details. Another program must interpret the
+HTML above and typeset questions, choices, and explanations appropriately.
 !ewarning
 
 
@@ -868,7 +868,7 @@ ote>'],
   'question': u'Compute the result of \\( a+b \\) in the case \\( a=2 \\) and \\( b=2 \\).'},
 !ec
 
-Computer code gets typeset by nice colors by default (using the Pygments
+Computer code gets typeset with nice colors by default (using the Pygments
 package):
 
 !bc pycod
