@@ -61,13 +61,12 @@ system('sudo apt-get -y install python-setuptools')
 system('pip install setuptools')
 system('sudo apt-get -y install python-pdftools')
 system('pip install ipython')
+system('pip install jupyter')
 system('pip install tornado')
 system('pip install pyzmq')
 system('pip install traitlets')
 system('pip install pickleshare')
 system('pip install jsonschema')
-# If problems with IPython.nbformat.v4: clone ipython and run setup.py
-# to get the latest version
 
 # Preprocessors
 system('pip install future')
