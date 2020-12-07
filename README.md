@@ -1,87 +1,32 @@
 > DocOnce is a modestly tagged (Markdown-like) markup language targeting scientific reports, software documentation, books, blog posts, and slides involving much math and code in the text. From DocOnce source you can generate LaTeX, Sphinx, HTML, IPython notebooks, Markdown, MediaWiki, and other formats. This means that you from a single source can get the most up-to-date publishing technologies for paper, tablets, and phones.
 
 
+### Documentation
 
+ * Tutorial: [Sphinx](http://doconce.github.io/doconce/doc/pub/tutorial/html/index.html),
+   [HTML](http://doconce.github.io/doconce/doc/pub/tutorial/tutorial.html),
+   [PDF](http://doconce.github.io/doconce/doc/pub/tutorial/tutorial.pdf)
+ * Manual: [Sphinx](http://doconce.github.io/doconce/doc/pub/manual/html/index.html),
+   [HTML](http://doconce.github.io/doconce/doc/pub/manual/manual.html),
+   [PDF](http://doconce.github.io/doconce/doc/pub/manual/manual.pdf)
+ * Quick Reference: [Sphinx](http://doconce.github.io/doconce/doc/pub/quickref/html/index.html),
+   [HTML](http://doconce.github.io/doconce/doc/pub/quickref/quickref.html),
+   [PDF](http://doconce.github.io/doconce/doc/pub/quickref/quickref.pdf)
+ * Troubleshooting and FAQ: [Sphinx](http://doconce.github.io/doconce/doc/pub/trouble/html/index.html),
+   [HTML](http://doconce.github.io/doconce/doc/pub/trouble/trouble.html),
+   [PDF](http://doconce.github.io/doconce/doc/pub/trouble/trouble.pdf)
 
-
-### News
-
-Here are some of the most recent features and enhancements in DocOnce:
- * July 2020: Alessandro Marin at the [Centre for Computing in Science Education](http://www.mn.uio.no/ccse/english/) at the University of Oslo, assumes the role of principal maintainer.
- * MathJax, which is used to render LaTeX formulae in HTML, has shut down their CDN (Content Delivery Network) which serves the JavaScript files. DocOnce has been updated to use a new CDN. For the time being, the old URL redirects to the new CDN, and old DocOnce documents still display LaTeX correctly. However, at some point in the future, documents created before July 2017 will cease to display LaTeX formulae properly. **It is therefore recommended to rerun DocOnce on HTML documents which contain LaTeX formulae.**
- * On 10 October 2016, Hans Petter Langtangen, creator of DocOnce, [passed away](https://www.simula.no/news/hans-petter-langtangen-1962-2016). Kristian Gregorius Hustad, supported by the [Centre for Computing in Science Education](http://www.mn.uio.no/ccse/english/) at the University of Oslo, will assume the role of principal maintainer.
- * Language support for Basque has been added. Thanks to Josu M. Igartua for providing the translation.
- * DocOnce supports Python 3.
- * Kristian Gregorius Hustad has made support for TikZ figures
-   in DocOnce. This means that you can use TikZ (popular among LaTeX writers)
-   to make a figure. The TikZ code will be used directly in `latex` or
-   `pdflatex` output, while an SVG version is made for HTML and a PNG is made
-   for all other formats. (This feature is still being developed. Please create
-   an issue if your TikZ figure isn't displayed properly.)
- * Thanks to support from Mirco Meiners and Kristian Gregorius Hustad,
-   DocOnce now supports documents in foreign languages, at the moment
-   Norwegian and German. (Expect the code to still be a bit unstable as
-   these features are being tested and used.)
- * It is easy to overlook the many warnings and non-fatal errors from
-   DocOnce when compiling a document. Now all comments from DocOnce for
-   a document `mydoc.do.txt` are collected in `mydoc.dlog` for
-   careful inspection.
-
-Here are some recent books written in DocOnce:
-
-<!-- <img src="doc/src/manual/fig/doconce_books.jpg" width=600> -->
-![](doc/src/manual/fig/doconce_books.jpg)
-
-### Installation
-
-DocOnce is a pure Python package and can be installed with `pip`.
-
-
-```
-Terminal> sudo pip install --upgrade git+https://github.com/doconce/preprocess
-Terminal> sudo pip install --upgrade .
-```
-
-*Notice.* 
-If you first installed DocOnce prior to February 2017, you must remove the old installation before upgrading. See instructions in [issue #110](https://github.com/hplgit/doconce/issues/110).
-
-
-However, DocOnce has *a lot* of dependencies, depending on what type of
-formats you want to work with and how advanced constructions that are
-used in the text.
-
-With Anaconda it is trivial to install DocOnce and all
-dependencies by
-
-
-```
-Terminal> conda config --add channels conda-forge
-Terminal> conda install doconce
-```
-
-*Warning.* 
-As of March 2017, a few dependencies have yet to be added to the `conda-forge` channel, but most formats should work fine.
-
-
-
-
-On Debian/Ubuntu it is fairly straightforward
-to get the packages you need. Basically, you can run a [Bash script](https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.sh) or an equivalent [Python script](https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.py). Such a script installs
-a very comprehensive bundle of software. You can read the
-[Installation Guide](http://doconce.github.io/doconce/doc/pub/manual/html/manual.html#installation-of-doconce-and-its-dependencies) to get a more
-detailed description of what is needed of software for various purposes.
-For HTML output, for example, you can usually get away with just installing
-the pure DocOnce source (and perhaps the preprocessors if you use them).
-
-*Install from GitHub repo, not from Debian.* 
-Although DocOnce is in Debian, do not run `sudo apt-get install python-doconce`
-as this gives a very old version of DocOnce that is out of sync with the
-documentation. Instead, clone the DocOnce GitHub repo as shown above
-and run `pip install` or use `conda install`.
-
-
-
-
+The tutorial presents the basic syntax and the most fundamental
+elements of a scientific document, while the manual has accumulated
+all the different features available. The most efficient way to get
+started is to look at the [report demo](http://doconce.github.io/teamods/writing_reports/index.html) and study
+the [source code](http://doconce.github.io/teamods/writing_reports/_static/report.do.txt.html)
+(it has all the basic elements such as title, author, abstract, table
+of contents, headings, comments, inline mathematical formulas,
+single/multiple equations, with and without numbering, labels,
+cross-references to sections and equations, bullet lists, enumerated
+lists, copying of computer code from files, inline computer code,
+index entries, figures, tables, and admonitions).
 
 
 ### Highlights
@@ -109,6 +54,58 @@ independently of the book, thus lowering the barrier of writing books
 (see [example](https://github.com/hplgit/setup4book-doconce)).
 
 
+
+### News
+
+Here are some of the most recent features and enhancements in DocOnce:
+ * October 2020: DocOnce can now produce content files for [Jupyter Book](https://jupyterbook.org/intro.html). 
+ * July 2020: Alessandro Marin at the [Centre for Computing in Science Education](http://www.mn.uio.no/ccse/english/) at the University of Oslo, assumes the role of developer and principal maintainer.
+ * On 10 October 2016, Hans Petter Langtangen, creator of DocOnce, [passed away](https://www.simula.no/news/hans-petter-langtangen-1962-2016). Kristian Gregorius Hustad, supported by the [Centre for Computing in Science Education](http://www.mn.uio.no/ccse/english/) at the University of Oslo, will assume the role of principal maintainer.
+
+Here are some recent books written in DocOnce:
+
+<!-- <img src="doc/src/manual/fig/doconce_books.jpg" width=600> -->
+![](doc/src/manual/fig/doconce_books.jpg)
+
+### Installation
+
+DocOnce is a pure Python package and can be installed with `pip`.
+
+
+```
+Terminal> pip install --upgrade git+https://github.com/doconce/preprocess
+Terminal> pip install --upgrade .
+```
+
+*Notice.* 
+If you first installed DocOnce prior to February 2017, you must remove the old installation before upgrading. See instructions in [issue #110](https://github.com/hplgit/doconce/issues/110).
+
+
+However, DocOnce has *a lot* of dependencies, depending on what type of
+formats you want to work with and how advanced constructions that are
+used in the text.
+
+With Anaconda it is trivial to install DocOnce and all dependencies by
+
+```
+Terminal> conda config --add channels conda-forge
+Terminal> conda install doconce
+```
+
+*Warning.* 
+As of March 2017, a few dependencies have yet to be added to the `conda-forge` channel, but most formats should work fine.
+
+
+
+
+On Debian/Ubuntu it is fairly straightforward to get the packages you need. You can run a 
+[Python script](https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.py) or an equivalent [Bash script](https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.sh). 
+Such a script installs a very comprehensive bundle of software. You can read the [Installation Guide](http://doconce.github.io/doconce/doc/pub/manual/html/manual.html#installation-of-doconce-and-its-dependencies) to get a more
+detailed description of what is needed of software for various purposes.
+For HTML output, for example, you can usually get away with just installing
+the pure DocOnce source (and perhaps the preprocessors if you use them).
+
+
 ### Demo
 
 A [short scientific report](http://doconce.github.io/teamods/writing_reports/index.html)
@@ -128,10 +125,10 @@ DocOnce has support for *responsive* HTML documents with design and
 functionality based on Bootstrap styles.  A [Bootstrap demo](http://doconce.github.io/doconce/doc/pub/bootstrap/index.html)
 illustrates the many possibilities for colors and layouts.
 
-DocOnce also has support for exercises in [quiz format](http://doconce.github.io/doconce/doc/pub/quiz/quiz.html). Pure quiz
-files can be *automatically uploaded* to [Kahoot!](https://getkahoot.com) online quiz games operated through smart
-phones (with the aid of [quiztools](https://github.com/doconce/quiztools) for DocOnce to Kahoot!
-translation).
+DocOnce also has support for exercises in [quiz format](http://doconce.github.io/doconce/doc/pub/quiz/quiz.html). Pure quiz files can be *automatically uploaded* to 
+[Kahoot!](https://getkahoot.com) online quiz games operated through smart
+phones (with the aid of [quiztools](https://github.com/doconce/quiztools) 
+for DocOnce to Kahoot! translation).
 
 
 
@@ -146,45 +143,15 @@ the book.  Here are examples in the [reveal.js](http://doconce.github.io/scipro-
 style, and even the modern [IPython notebook](http://nbviewer.ipython.org/url/hplgit.github.io/scipro-primer/slides/looplist/ipynb/looplist.ipynb)
 tool, which allows for interactive experimentation and annotation.
 
-### Documentation
-
-*Warning.* 
-These documents are under development...
-
-
-
- * Tutorial: [Sphinx](http://doconce.github.io/doconce/doc/pub/tutorial/html/index.html),
-   [HTML](http://doconce.github.io/doconce/doc/pub/tutorial/tutorial.html),
-   [PDF](http://doconce.github.io/doconce/doc/pub/tutorial/tutorial.pdf)
- * Manual: [Sphinx](http://doconce.github.io/doconce/doc/pub/manual/html/index.html),
-   [HTML](http://doconce.github.io/doconce/doc/pub/manual/manual.html),
-   [PDF](http://doconce.github.io/doconce/doc/pub/manual/manual.pdf)
- * Quick Reference: [Sphinx](http://doconce.github.io/doconce/doc/pub/quickref/html/index.html),
-   [HTML](http://doconce.github.io/doconce/doc/pub/quickref/quickref.html),
-   [PDF](http://doconce.github.io/doconce/doc/pub/quickref/quickref.pdf)
- * Troubleshooting and FAQ: [Sphinx](http://doconce.github.io/doconce/doc/pub/trouble/html/index.html),
-   [HTML](http://doconce.github.io/doconce/doc/pub/trouble/trouble.html),
-   [PDF](http://doconce.github.io/doconce/doc/pub/trouble/trouble.pdf)
-
-The tutorial presents the basic syntax and the most fundamental
-elements of a scientific document, while the manual has accumulated
-all the different features available. The most efficient way to get
-started is to look at the [report demo](http://doconce.github.io/teamods/writing_reports/index.html) and study
-the [source code](http://doconce.github.io/teamods/writing_reports/_static/report.do.txt.html)
-(it has all the basic elements such as title, author, abstract, table
-of contents, headings, comments, inline mathematical formulas,
-single/multiple equations, with and without numbering, labels,
-cross-references to sections and equations, bullet lists, enumerated
-lists, copying of computer code from files, inline computer code,
-index entries, figures, tables, and admonitions).
 
 ### License
 
 DocOnce is licensed under the BSD license, see the included `LICENSE` file.
 
-### Author
+### Authors
 
-DocOnce is written by Hans Petter Langtangen ([hpl@simula.no](mailto:hpl@simula.no)) 2006-2016. A lot of people have contributed to testing the software and suggesting improvements.
+DocOnce was originally written by Hans Petter Langtangen at [hpl@simula.no](mailto:hpl@simula.no) in 2006-2016. Alessandro Marin ([email address](mailto:alessandro.marin@fys.uio.no)) has assumed in 2020 the role of developer and principal maintainer. A lot of people have contributed to testing the software and suggesting improvements. 
+
 
 ### How to cite
 
