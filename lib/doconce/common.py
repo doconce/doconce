@@ -1288,7 +1288,7 @@ def has_custom_pygments_lexer(name):
             errwarn('*** warning: !bc ipy used for IPython sessions, but')
             errwarn('    ipython is not supported for syntax highlighting!')
             errwarn('    install:')
-            errwarn('    git clone https://hplbit@bitbucket.org/hplbit/pygments-ipython-console.git; cd pygments-ipython-console; python setup.py install')
+            errwarn('    git clone https://github.com/doconce/pygments-ipython-console.git; cd pygments-ipython-console; python setup.py install')
             errwarn(str(e))
             return False
     if name == 'doconce':
@@ -1298,9 +1298,9 @@ def has_custom_pygments_lexer(name):
             errwarn('*** warning: !bc do used for DocOnce code, but')
             errwarn('    not supported for syntax highlighting!')
             errwarn('    install:')
-            errwarn('    pip install --exists-action i -e git+https://github.com/hplgit/pygments-doconce#egg=pygments-doconce')
+            errwarn('    pip install --exists-action i -e git+https://github.com/doconce/pygments-doconce#egg=pygments-doconce')
             errwarn('\n    or manually:')
-            errwarn('    git clone https://github.com/hplgit/pygments-doconce.git; cd pygments-doconce; python setup.py install')
+            errwarn('    git clone https://github.com/doconce/pygments-doconce.git; cd pygments-doconce; python setup.py install')
             errwarn(str(e))
             return False
     return True
