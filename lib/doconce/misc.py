@@ -374,7 +374,7 @@ def apply_inline_edits():
     try:
         filename = sys.argv[1]
     except IndexError:
-        print('Usage: doconce apply_inline_comments_edits myfile.do.txt')
+        print('Usage: doconce apply_inline_edits myfile.do.txt')
         _abort()
 
     if not os.path.isfile(filename):
@@ -400,7 +400,7 @@ def apply_inline_edits():
     f = open(filename, 'w')
     f.write(filestr)
     f.close()
-    print('inline comments removed in ' + filename)
+    print('inline edits applied in ' + filename)
 
 def latin2html():
     """
