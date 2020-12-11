@@ -120,6 +120,7 @@ All program examples in this ${CHAPTER} can be found as files in the
 folder "`src/plot`": "${src_path}/plot".
 
 ======= Arrays in Python programs =======
+label{sec:plot:arraycomp}
 
 This section introduces array programming in Python, but first we
 create some lists and show how arrays differ from lists.
