@@ -3,7 +3,7 @@ Testing admons
 
 H. P. Langtangen
 
-Date: Dec 4, 2020
+Date: Dec 15, 2020
 
 Copyright 2020, H. P. Langtangen. Made with DocOnce
 
@@ -36,7 +36,7 @@ Here is a plain quote environment.
         proportional to the value of the issues at stake." 
         By way of corollary, it adds: 
         "That is why academic politics are so bitter." 
-        *Source*: wikipedia (http://en.wikipedia.org/wiki/Sayre's_law)
+        *Source*: wikipedia (https://en.wikipedia.org/wiki/Sayre's_law)
 
 
 Does quotes with title also work? No...cannot work in LaTeX and HTML

@@ -3,7 +3,7 @@ This directory contains the primary doconce tests.
 There are two types of tests:
 
  * unit tests in test_mintest.py
- * test.verify regression suite
+ * test.py regression suite
 
 The latter contains classical regression tests where text is
 generated in many files, these are concatenated, and then
@@ -19,7 +19,7 @@ by
 
 The very comprehensive suite in test.veryify is run by
 
-  python test.verify
+  python test.py
 
 A diff test.v test.r show differences of generated text
 (test.v) and reference data (test.r). Don't run this unless you have
@@ -32,10 +32,10 @@ play together. Also, test files are frequently changed to add new
 constructions, or test the effect of bug fixes, leading to a substantial
 evolution of the reference text. At least for a small project as
 DocOnce, this has turned out to be the most feasible testing approach.
-Basically, `python test.verify` is run and `test.v` is compared against
+Basically, `python test.py` is run and `test.v` is compared against
 `test.r` in a diff program, using the human eye (because many updates lead
 to significant changes in the diff that require a human to approve).
 
-Dependencies for the test problems run by test.verify are
+Dependencies for the test problems run by test.py are
 basically all software that DocOnce depends on, see
 installation instructions in ../doc/pub/manual/manual.html.

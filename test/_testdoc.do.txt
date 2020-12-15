@@ -84,13 +84,13 @@ even when lines begin with
 _bold words_ and
 `verbatim words` in
 color{red}{red color}, and
-"links": "http://google.com" as well as math:
+"links": "https://google.com" as well as math:
 $1+1=2$.
 
 Test also that *emphasize*
 at the end of line, and _bold_
 works, as well as color{blue}{color}
-and "links2": "http://google.com"
+and "links2": "https://google.com"
 and `verbatim`
 as well.
 # #endif
@@ -451,7 +451,7 @@ They are used in different flavors, now in
  * even with math $\nabla^2u$[^math1]
  * and code `h[i] += 1`[^code]
    (*must* have space between inline code and footnote!)
- * and "links": "http://google.com"[^google-search]
+ * and "links": "https://google.com"[^google-search]
 
 which gives flexibility in writing.
 This is the third[^example-of-the-third-footnote] example.
@@ -474,9 +474,9 @@ used above.
 
 !bnotice Non-breaking space character
 This paragraph aims to test "non-breaking space character":
-"http://en.wikipedia.org/wiki/Non-breaking_space", and a typical
+"https://en.wikipedia.org/wiki/Non-breaking_space", and a typical
 example where this is needed is in physical units: 7.4~km is traveled
-in~$7.4/5.5\approx 1.345$~s.  Also check that a~"link": "http://google.com"~is
+in~$7.4/5.5\approx 1.345$~s.  Also check that a~"link": "https://google.com"~is
 not broken across lines (drag the browser window to test this).
 (On the other hand, the tilde is used in
 computer code, e.g., as in `[~x for x in y]` or in `y=~x`, and should
@@ -513,12 +513,12 @@ as well as math with subscript as in $t_{i+1}$. label{myfig}
 
 Test URL as figure name:
 
-FIGURE: [https://raw.github.com/hplgit/doconce/master/doc/src/blog/f_plot.png, width=500 frac=0.8]
+FIGURE: [https://raw.github.com/doconce/doconce/master/doc/src/blog/f_plot.png, width=500 frac=0.8]
 
 # #if FORMAT in ("html", "sphinx")
 Test SVG figure:
 
-FIGURE: [http://openclipart.org/people/jpneok/junebug.svg, width=200]
+FIGURE: [https://openclipart.org/people/jpneok/junebug.svg, width=200]
 # #endif
 
 # Test wikimedia type of files that otherwise reside in subdirs
@@ -1037,16 +1037,16 @@ This environment is used to highlight something:
 ===== URLs =====
 label{subsubsec:ex}
 
-Testing of URLs: hpl's home page "hpl":"http://folk.uio.no/hpl", or
-the entire URL if desired, "URL": "http://folk.uio.no/hpl".  Here is a
+Testing of URLs: hpl's home page "hpl":"https://folk.uio.no/hpl", or
+the entire URL if desired, "URL": "https://folk.uio.no/hpl".  Here is a
 plain file link "URL": "testdoc.do.txt", or "url":"testdoc.do.txt", or
 URL: "testdoc.do.txt" or url : "testdoc.do.txt" or "a link with
 newline": "testdoc.do.txt". Can test spaces with the link with word
-too: "hpl": "http://folk.uio.no/hpl" or "hpl" :
-"http://folk.uio.no/hpl". Also `file:///` works: "link to a
+too: "hpl": "https://folk.uio.no/hpl" or "hpl" :
+"https://folk.uio.no/hpl". Also `file:///` works: "link to a
 file":"file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" is
 fine to have. Moreover, ``loose'' URLs work, i.e., no quotes, just
-the plain URL as in http://folk.uio.no/hpl, if followed by space, comma,
+the plain URL as in https://folk.uio.no/hpl, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
 
@@ -1054,33 +1054,33 @@ Mail addresses can also be used: "`hpl@simula.no`": "mailto:hpl@simula.no", or j
 
 Here are some tough tests of URLs, especially for the `latex` format:
 "Newton-Cotes":
-"http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" formulas
+"https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" formulas
 and a "good book":
-"http://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1". Need to test
+"https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1". Need to test
 Newton-Cotes with percentage in URL too:
-URL: "http://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas"
-and URL: "http://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae" which has a shebang.
+URL: "https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas"
+and URL: "https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae" which has a shebang.
 
 For the `--device=paper` option it is important to test that URLs with
 monospace font link text get a footnote
 (unless the `--latex_no_program_footnotelink`
 is used), as in this reference to
 "`decay_mod`":
-"https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py", "`ball1.py`": "http://tinyurl.com/pwyasaa/formulas.ball1.py",
-and "`ball2.py`": "http://tinyurl.com/pwyasaa/formulas.ball2.py".
+"https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py", "`ball1.py`": "https://tinyurl.com/pwyasaa/formulas.ball1.py",
+and "`ball2.py`": "https://tinyurl.com/pwyasaa/formulas.ball2.py".
 
 
 # Comments should be inserted outside paragraphs (because in the rst
 # format extra blanks make a paragraph break).
 
-# Note that when there is no http: or file:, it can be a file link
+# Note that when there is no https: or file:, it can be a file link
 # if the link name is URL, url, "URL", or "url". Such files should,
 # if rst output is desired, but placed in a `_static*` folder.
 
 More tough tests: repeated URLs whose footnotes when using the
 `--device=paper` option must be correct. We have
-"google": "http://google.com", "google": "http://google.com", and
-"google": "http://google.com", which should result in exactly three
+"google": "https://google.com", "google": "https://google.com", and
+"google": "https://google.com", which should result in exactly three
 footnotes.
 
 
@@ -1664,7 +1664,7 @@ to have changes documented and to
 ensure that every computer and person involved in the project
 have the latest updates of the files.
 Greg Wilson' excellent "Script for Introduction to Version Control":
-"http://software-carpentry.org/2010/07/script-for-introduction-to-version-control/" provides a more detailed motivation why you will benefit greatly
+"https://software-carpentry.org/2010/07/script-for-introduction-to-version-control/" provides a more detailed motivation why you will benefit greatly
 from using version control systems.
 
 !bsummary
@@ -1687,7 +1687,7 @@ recommend you to use such sites for all serious programming and
 scientific writing work - and all other important files.
 
 The simplest services for hosting project files are "Dropbox":
-"http://dropbox.com" and "Google Drive": "http://drive.google.com".
+"https://dropbox.com" and "Google Drive": "https://drive.google.com".
 It is very easy to get started with these systems, and they allow you
 to share files among laptops and mobile units with as many users as
 you want. The systems offer a kind of version control in that the
@@ -1743,7 +1743,7 @@ programming and scientific writing work - and all other important
 files.
 
 The simplest services for hosting project files is Dropbox. [mp:
-Simply go to URL:"http://dropbox.com" and watch the video. It explains
+Simply go to URL:"https://dropbox.com" and watch the video. It explains
 how files, like `myfile.py`, perhaps containing much math, like
 $\partial u/\partial t$, are easily communicated between machines.] It
 is very easy to get started with Dropbox, and it allows you to share

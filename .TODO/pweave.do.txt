@@ -1,5 +1,5 @@
 DocOnce documents could be filtered to "Pweave":
-"http://mpastell.com/pweave/docs.html".
+"https://mpastell.com/pweave/docs.html".
 
 A first approach is a Python program with comments *written in DocOnce
 syntax*. A command `doconce pweave myprog.py` could transform the

@@ -55,7 +55,7 @@ Specifically, our text has
 HTML and MathJax are sufficient technologies for doing everything we want.
 If MathJax cannot be supported by a service, the next best solution is to
 automatically generate LaTeX mathematics through a service like
-URL: "http://latex.codecogs.com/png.latex?". Though possible, this
+URL: "https://latex.codecogs.com/png.latex?". Though possible, this
 is something we want to avoid.
 
 
@@ -101,11 +101,11 @@ manually or automatically be uploaded to a Google form.
 
  * "Example on generating a form in JavaScript": "https://developers.google.com/apps-script/reference/forms/"
  * "Video instruction on generating forms from programs": "https://developers.google.com/events/io/sessions/327782631"
- * "Create a self-grading quiz": "http://www.techrepublic.com/blog/google-in-the-enterprise/use-google-forms-to-create-a-self-grading-quiz/"
+ * "Create a self-grading quiz": "https://www.techrepublic.com/blog/google-in-the-enterprise/use-google-forms-to-create-a-self-grading-quiz/"
  * "Cool example": "https://sites.google.com/site/mrswilsonstechclasses/technology-class-homework"
  * Apps Scripts tutorials: "example 1": "https://sites.google.com/site/appsscripttutorial/miscellaneous/creating-form-elements-dynamically-using-google-apps-script-gas", "example 2": "https://sites.google.com/site/appsscripttutorial/case-studies/case-study-2", "example 3": "https://sites.google.com/site/appsscripttutorial/user-interface/check-box"
- * "Video on getting mathematics into Google forms": "http://www.youtube.com/watch?v=G-kpc8zS-Do" (`urllib.quote` can quote URL calls with arguments, also see URL: "'http://latex.codecogs.com/" for turning LaTeX math into PNG images)
- * "Math in Google forms": "http://news.dessci.com/2013/06/for-quick-math-assessments-use-mathtype-with-google-forms.html" (seems to be an interactive tool...?)
+ * "Video on getting mathematics into Google forms": "https://www.youtube.com/watch?v=G-kpc8zS-Do" (`urllib.quote` can quote URL calls with arguments, also see URL: "'https://latex.codecogs.com/" for turning LaTeX math into PNG images)
+ * "Math in Google forms": "https://news.dessci.com/2013/06/for-quick-math-assessments-use-mathtype-with-google-forms.html" (seems to be an interactive tool...?)
 
 !bwarning
 Googling seems to indicate that there is no support for MathJax
@@ -118,21 +118,21 @@ There is a "technical explanation": "https://groups.google.com/forum/#!topic/mat
 
 ===== SurveyGizmo =====
 
- * One can upload surveys in the form of "pure text or HTML to SurveyGizmo": "http://www.surveygizmo.com/survey-software-features/import-surveys-from-word/". If this supports MathJax and nicely typeset code is an open question. See also "import from Word": "http://surveygizmo.helpgizmo.com/help/article/link/import-from-word".
+ * One can upload surveys in the form of "pure text or HTML to SurveyGizmo": "https://www.surveygizmo.com/survey-software-features/import-surveys-from-word/". If this supports MathJax and nicely typeset code is an open question. See also "import from Word": "https://surveygizmo.helpgizmo.com/help/article/link/import-from-word".
  * SurveyGizmo also offers "scripting":
-   "http://surveygizmoscript.helpgizmo.com/help" and a "REST API":
-   "http://apisurveygizmo.helpgizmo.com/help". However, generating surveys
+   "https://surveygizmoscript.helpgizmo.com/help" and a "REST API":
+   "https://apisurveygizmo.helpgizmo.com/help". However, generating surveys
    via manual import of a text file seems much easier.
  * Math in SurveyGizmo is limited to using
    "MathType":
-   "http://www.dessci.com/en/products/mathtype/works_with.asp#!target=surveygizmo" interactively on Windows...maybe it can be automated?
- * SurveyGizmo is used for "quizzes in teaching": "http://www.surveygizmo.com/survey-blog/customer-innovations-educators-use-online-surveys-for-student-tests-and-quizzes/".
+   "https://www.dessci.com/en/products/mathtype/works_with.asp#!target=surveygizmo" interactively on Windows...maybe it can be automated?
+ * SurveyGizmo is used for "quizzes in teaching": "https://www.surveygizmo.com/survey-blog/customer-innovations-educators-use-online-surveys-for-student-tests-and-quizzes/".
 
 ===== JotForm =====
 
- * Easy "communication via Dropbox": "http://www.jotform.com/dropbox/".
- * Has an  "API": "http://api.jotform.com/docs/".
- * Can "ask questions": "http://api.jotform.com/docs#contact" to the developers.
+ * Easy "communication via Dropbox": "https://www.jotform.com/dropbox/".
+ * Has an  "API": "https://api.jotform.com/docs/".
+ * Can "ask questions": "https://api.jotform.com/docs#contact" to the developers.
  * Has a "Python API": "https://github.com/jotform/jotform-api-python" too.
  * JotForm now has a MathJax widget, see the Widget section
    in their form builder.
@@ -151,11 +151,11 @@ There is a "technical explanation": "https://groups.google.com/forum/#!topic/mat
 
 ===== ClassMarker =====
 
- * "ClassMarker": "http://www.classmarker.com" is aimed student tests and exams.
- * Questions can be "imported from file": "http://www.classmarker.com/online-testing/manual/#importquestions". See also "these FAQ instructions": "http://www.classmarker.com/online-testing/faq/?query=multiplechoice#results".
+ * "ClassMarker": "https://www.classmarker.com" is aimed student tests and exams.
+ * Questions can be "imported from file": "https://www.classmarker.com/online-testing/manual/#importquestions". See also "these FAQ instructions": "https://www.classmarker.com/online-testing/faq/?query=multiplechoice#results".
    The import file can use "BBCode": "https://raw.github.com/doconce/doconce/master/.TODO/BBCode4ClassMarker_import.png" to format the plain text. Indentation of the text in the import file will be preserved so Python code can be shown, but *without monospace font*.
- * Classmarker has an "API": "http://www.classmarker.com/online-testing/api/developers/". Communication reaveals that *ClassMarker allows you to import questions at present, but you cannot use our API to remotely add questions.* They also said, *We do not at present all external css formatting sorry. This is something we will be looking at in the future, but I cannot give you an idea on when this may be at this stage sorry.* The API seems to be for analyzing results.
- * There is a "manual": "http://www.classmarker.com/online-testing/manual/".
+ * Classmarker has an "API": "https://www.classmarker.com/online-testing/api/developers/". Communication reaveals that *ClassMarker allows you to import questions at present, but you cannot use our API to remotely add questions.* They also said, *We do not at present all external css formatting sorry. This is something we will be looking at in the future, but I cannot give you an idea on when this may be at this stage sorry.* The API seems to be for analyzing results.
+ * There is a "manual": "https://www.classmarker.com/online-testing/manual/".
  * No support for MathJax.
  * No support for HTML of security reasons.
 
@@ -164,13 +164,13 @@ This seems to be a good site for tests without code and math.
 
 ===== WordPress Quiz Master Next =====
 
-URL: "http://wordpress.org/plugins/quiz-master-next/"
-Might be able to "import quizzes": "http://wordpress.org/support/topic/importfunction". WordPress has some limited LaTeX support.
+URL: "https://wordpress.org/plugins/quiz-master-next/"
+Might be able to "import quizzes": "https://wordpress.org/support/topic/importfunction". WordPress has some limited LaTeX support.
 
 ===== Wufoo =====
 
-Lots of "features": "http://www.wufoo.com/features/", including a
-"REST API": "http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Wufoo-REST-API-V3" and a "Python API": "https://github.com/wufoo/pyfoo".
+Lots of "features": "https://www.wufoo.com/features/", including a
+"REST API": "https://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Wufoo-REST-API-V3" and a "Python API": "https://github.com/wufoo/pyfoo".
 Here is an example "using Python to create forms and integrate them on a web site": "https://www.wufoo.com/2011/11/14/create-and-grade-quizzes-with-a-little-wufoo-python-and-django/".
 
 !bwarning
@@ -203,7 +203,7 @@ and there is no MathJax support.
 
 ===== SurveyMonkey =====
 
-This tool "cannot be automated": "http://help.surveymonkey.com/articles/en_US/kb/Can-I-upload-a-survey-created-in-another-file-or-import-responses". Does not seem to be candidate.
+This tool "cannot be automated": "https://help.surveymonkey.com/articles/en_US/kb/Can-I-upload-a-survey-created-in-another-file-or-import-responses". Does not seem to be candidate.
 
 ===== Home-made solution with JavaScript =====
 
@@ -213,11 +213,11 @@ results, just feedback to the student.
 
 Some useful links for further development:
 
- * "Basic example with jQuery": "http://www.hungrypiranha.org/make-a-website/html-quiz" (seems to be a way to go)
- * "jQuery.Survey": "http://flesler.webs.com/jQuery.Survey/", see
+ * "Basic example with jQuery": "https://www.hungrypiranha.org/make-a-website/html-quiz" (seems to be a way to go)
+ * "jQuery.Survey": "https://flesler.webs.com/jQuery.Survey/", see
    "GitHub repo": "https://github.com/jdarling/jQuery.Survey" for use.
    Seems as a small project.
- * "More info on JavaScript for surveys": "http://www.jensbits.com/2010/01/29/pop-up-survey-with-jquery-ui-dialog/"
+ * "More info on JavaScript for surveys": "https://www.jensbits.com/2010/01/29/pop-up-survey-with-jquery-ui-dialog/"
  * "Another JavaScript quiz example": "https://www.inkling.com/read/javascript-jquery-david-sawyer-mcfarland-2nd/chapter-3/tutorial-a-simple-quiz"
 
 Can relatively easily combine these JavaScript solutions with a database
@@ -226,11 +226,11 @@ login and in a common database...
 
 ===== Links =====
 
- * "Basic quiz with HTML and simple JavaScript": "http://www.hungrypiranha.org/make-a-website/html-quiz"
- * "How to make good questionnairs": "http://www.mathsisfun.com/data/survey-questionnaire.html"
- * "The best ways to create online tests": "http://larryferlazzo.edublogs.org/2008/05/22/the-best-ways-to-create-online-tests/"
- * "The best websites for creating online learning games": "http://larryferlazzo.edublogs.org/2008/04/21/the-best-websites-for-creating-online-learning-games/"
- * "Flask example": "http://runnable.com/UhuV5GjYJPplAABa/quiz-flask-session-example-for-python-and-sessions"
+ * "Basic quiz with HTML and simple JavaScript": "https://www.hungrypiranha.org/make-a-website/html-quiz"
+ * "How to make good questionnairs": "https://www.mathsisfun.com/data/survey-questionnaire.html"
+ * "The best ways to create online tests": "https://larryferlazzo.edublogs.org/2008/05/22/the-best-ways-to-create-online-tests/"
+ * "The best websites for creating online learning games": "https://larryferlazzo.edublogs.org/2008/04/21/the-best-websites-for-creating-online-learning-games/"
+ * "Flask example": "https://runnable.com/UhuV5GjYJPplAABa/quiz-flask-session-example-for-python-and-sessions"
 
 ===== Suggested Python data structure =====
 

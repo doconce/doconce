@@ -158,14 +158,14 @@ based on HTML and vice versa.
 !split
 ===== DocOnce demo =====
 
-URL: "http://hplgit.github.com/teamods/writing_reports/"
+URL: "https://hplgit.github.com/teamods/writing_reports/"
 
- * LaTeX-based PDF "for screen": "http://hplgit.github.com/teamods/writing_reports/_static/report.pdf", "for printing": "http://hplgit.github.com/teamods/writing_reports/_static/report_4printing.pdf", "for phone": "http://hplgit.github.com/teamods/writing_reports/_static/report_4phone.pdf"
- * "Plain HTML": "http://hplgit.github.com/teamods/writing_reports/_static/report_do.html" or with a "template": "http://hplgit.github.com/teamods/writing_reports/_static/report_vagrant.html" or "another template": "http://hplgit.github.com/teamods/writing_reports/_static/report_github_minimal.html" or "solarized": "http://hplgit.github.com/teamods/writing_reports/_static/report_solarized.html"
- * Sphinx: "agni": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-agni/index.html", "pyramid": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-pyramid/report.html", "classy": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-classy/report.html", "fenics": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html", "redcloud": "http://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html"
- * HTML for "Google": "http://doconce-report-demo.blogspot.no/" or "Wordpress": "http://doconcereportdemo.wordpress.com/" blog posts
- * "MediaWiki": "http://doconcedemo.shoutwiki.com/wiki/DocOnce_demo_page" (Wikipedia, Wikibooks, etc)
- * DocOnce "source code": "http://hplgit.github.com/teamods/writing_reports/_static/report.do.txt.html" and "manual": "http://hplgit.github.io/doconce/doc/src/pub/manual/html/manual.html"
+ * LaTeX-based PDF "for screen": "https://hplgit.github.com/teamods/writing_reports/_static/report.pdf", "for printing": "https://hplgit.github.com/teamods/writing_reports/_static/report_4printing.pdf", "for phone": "https://hplgit.github.com/teamods/writing_reports/_static/report_4phone.pdf"
+ * "Plain HTML": "https://hplgit.github.com/teamods/writing_reports/_static/report_do.html" or with a "template": "https://hplgit.github.com/teamods/writing_reports/_static/report_vagrant.html" or "another template": "https://hplgit.github.com/teamods/writing_reports/_static/report_github_minimal.html" or "solarized": "https://hplgit.github.com/teamods/writing_reports/_static/report_solarized.html"
+ * Sphinx: "agni": "https://hplgit.github.com/teamods/writing_reports/_static/sphinx-agni/index.html", "pyramid": "https://hplgit.github.com/teamods/writing_reports/_static/sphinx-pyramid/report.html", "classy": "https://hplgit.github.com/teamods/writing_reports/_static/sphinx-classy/report.html", "fenics": "https://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html", "redcloud": "https://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html"
+ * HTML for "Google": "https://doconce-report-demo.blogspot.no/" or "Wordpress": "https://doconcereportdemo.wordpress.com/" blog posts
+ * "MediaWiki": "https://doconcedemo.shoutwiki.com/wiki/DocOnce_demo_page" (Wikipedia, Wikibooks, etc)
+ * DocOnce "source code": "https://hplgit.github.com/teamods/writing_reports/_static/report.do.txt.html" and "manual": "https://hplgit.github.io/doconce/doc/src/pub/manual/html/manual.html"
 
 
 !split
@@ -308,11 +308,11 @@ FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
 Movies are also supported:
 
 !bc
-MOVIE: [http://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
+MOVIE: [https://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
 !ec
 and rendered as
 
-MOVIE: [http://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
+MOVIE: [https://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
 
 !split
 ===== DocOnce: math =====
@@ -401,7 +401,7 @@ forth (`c` for C, `cpp` for C++, `sh` for Unix shells, `m` for Matlab).
 label{slide:pot}
 
 With `!bc pyoptpro` or a file `*.pyopt`, the code applies the
-"Online Python Tutor": "http://pythontutor.com" for displaying
+"Online Python Tutor": "https://pythontutor.com" for displaying
 program flow and state of variables:
 
 @@@CODE ../doc/src/slides/src/solver.pyopt

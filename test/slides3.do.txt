@@ -124,7 +124,7 @@ Numerical scheme:
 
 ===== Forward Euler explained =====
 
-MOVIE: [http://youtu.be/PtJrPEIHNJw, width=640 height=480]
+MOVIE: [https://youtu.be/PtJrPEIHNJw, width=640 height=480]
 
 # #endif
 

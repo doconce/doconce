@@ -45,7 +45,7 @@ FIGURE: [fig-wavebc/plug_Gaussian.png, width=600] label{fig1}
 
 === Check YouTube videos ===
 
-We must be able to embed a video from "YouTube": "http://youtube.com":
+We must be able to embed a video from "YouTube": "https://youtube.com":
 
 MOVIE: [https://www.youtube.com/watch?v=1j_HxD4iLn8]
 

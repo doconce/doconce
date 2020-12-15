@@ -51,8 +51,8 @@ system doconce format html testdoc --wordpress  $ex --html_exercise_icon=questio
 
 cp testdoc.html testdoc_wordpress.html
 
-system doconce format html testdoc --without_answers --without_solutions $ex -DSOMEVAR --html_exercise_icon=default --solutions_at_end --html_share=http://cyber.space.com/specials,twitter,print,google+,facebook,linkedin $rawgit
-system doconce format html testdoc --without_answers --without_solutions $ex --html_exercise_icon=default --answers_at_end --solutions_at_end --html_share=http://cyber.space.com/specials,twitter,print,google+,facebook,linkedin $rawgit
+system doconce format html testdoc --without_answers --without_solutions $ex -DSOMEVAR --html_exercise_icon=default --solutions_at_end --html_share=https://cyber.space.com/specials,twitter,print,google+,facebook,linkedin $rawgit
+system doconce format html testdoc --without_answers --without_solutions $ex --html_exercise_icon=default --answers_at_end --solutions_at_end --html_share=https://cyber.space.com/specials,twitter,print,google+,facebook,linkedin $rawgit
 
 system doconce split_html testdoc.html --method=space10
 cp testdoc.html testdoc_no_solutions.html
@@ -368,7 +368,7 @@ cp admon.html admon_apricot.html
 system doconce format html admon --html_style=bootstrap --pygments_html_style=default --html_template=template_vagrant.html --cite_doconce $rawgit
 cp admon.html admon_vagrant.html
 
-system doconce format html admon --html_style=bootstrap --pygments_html_style=default --html_admon=bootstrap_alert --cite_doconce "--html_bootstrap_navbar_links=Google|http://google.com;DocOnce formats|http://hplgit.github.io/teamods/writing_reports/index.html" $rawgit
+system doconce format html admon --html_style=bootstrap --pygments_html_style=default --html_admon=bootstrap_alert --cite_doconce "--html_bootstrap_navbar_links=Google|https://google.com;DocOnce formats|https://hplgit.github.io/teamods/writing_reports/index.html" $rawgit
 cp admon.html admon_bootstrap_alert.html
 doconce split_html admon_bootstrap_alert.html --pagination --nav_button=top+bottom
 
@@ -555,4 +555,4 @@ echo "it is clearly a successful run of all tests!"
 echo "Check the generated test.v file with e.g.: "
 echo "meld test.r test.v"
 echo "To remove untracked files run: "
-echo "git clean -f -d"
+echo "cd .. & git clean -f -d"

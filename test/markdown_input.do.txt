@@ -140,4 +140,4 @@ $$
 \Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
 $$
 
-  [1]: http://math.stackexchange.com/
+  [1]: https://math.stackexchange.com/
