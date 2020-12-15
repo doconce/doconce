@@ -751,7 +751,7 @@ def html_movie(plotfiles, interval_ms=300, width=800, height=600,
         and limits for the numbers. An example is ``frame%0d.png:0->92``,
         which means ``frame00.png``, ``frame01.png``, ..., ``frame92.png``.
         This specification of `plotfiles` also allows URLs, e.g.,
-        ``http://mysite.net/files/frames/frame_%04d.png:0->320``.
+        ``https://mysite.net/files/frames/frame_%04d.png:0->320``.
 
     If `casename` is None, a casename based on the full relative path of the
     first plotfile is used as tag in the variables in the javascript code
@@ -784,7 +784,7 @@ def html_movie(plotfiles, interval_ms=300, width=800, height=600,
     a template from Alan McIntyre.
     """
     # Alternative method:
-    # http://stackoverflow.com/questions/9486961/animated-image-with-javascript
+    # https://stackoverflow.com/questions/9486961/animated-image-with-javascript
 
     # Start with expanding plotfiles if it is a filename generator
     if not isinstance(plotfiles, (tuple,list)):
@@ -795,7 +795,7 @@ def html_movie(plotfiles, interval_ms=300, width=800, height=600,
         if '*' in filename_generator:
             # frame_*.png
             if filename_generator.startswith('http'):
-                raise ValueError('Filename generator %s cannot contain *; must be like http://some.net/files/frame_%%04d.png:0->120' % filename_generator)
+                raise ValueError('Filename generator %s cannot contain *; must be like https://some.net/files/frame_%%04d.png:0->120' % filename_generator)
 
             plotfiles = glob.glob(filename_generator)
             if not plotfiles:
@@ -804,7 +804,7 @@ def html_movie(plotfiles, interval_ms=300, width=800, height=600,
             plotfiles.sort()
         elif '->' in filename_generator:
             # frame_%04d.png:0->120
-            # http://some.net/files/frame_%04d.png:0->120
+            # https://some.net/files/frame_%04d.png:0->120
             p = filename_generator.split(':')
             filename = ':'.join(p[:-1])
             if not re.search(r'%0?\d+', filename):
@@ -944,7 +944,7 @@ def html_movie_embed_wmp(moviefile, width=400, height=400):
     text = """
 <object id="MediaPlayer1" width="180" height="200"
 classid="CLSID:22D6F312-B0F6-11D0-94AB-0080C74C7E95"
-codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701"
+codebase="https://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701"
 standby="Loading Microsoft Windows Media Player components..."
 type="application/x-oleobject" align="middle">
 <param name="FileName" value="%(moviefile)s">
@@ -952,7 +952,7 @@ type="application/x-oleobject" align="middle">
 <param name="DefaultFrame" value="mainFrame">
 <param name="autostart" value="false">
 <embed type="application/x-mplayer2"
-pluginspage = "http://www.microsoft.com/Windows/MediaPlayer/"
+pluginspage = "https://www.microsoft.com/Windows/MediaPlayer/"
 src="%(moviefile)s"
 autostart="false"
 align="middle"
@@ -965,7 +965,7 @@ showstatusbar="true">
 </object>
 <!--
 <a href="%(moviefile)s"><font size="2">Download movie file</font></a>
-<a href="http://www.microsoft.com/windows/windowsmedia/mp10/default.aspx">
+<a href="https://www.microsoft.com/windows/windowsmedia/mp10/default.aspx">
 <font size="1">Download Windows Media Player</font></a></p>
 -->
 <!--
@@ -984,12 +984,12 @@ def html_movie_embed_qt(moviefile, width=400, height=400):
     """Return HTML for embedding a moviefile (QuickTime code)."""
     text = """
 <object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B"
-codebase="http://www.apple.com/qtactivex/qtplugin.cab"
+codebase="https://www.apple.com/qtactivex/qtplugin.cab"
 width="%(width)s" height="%(height)s" >
 <param name="src" value="%(moviefile)s" >
 <param name="autoplay" value="false" >
 <embed src="%(moviefile)s"
-pluginspage="http://www.apple.com/quicktime/download"
+pluginspage="https://www.apple.com/quicktime/download"
 width="%(width)s" height="%(height)s" autoplay="false">
 </embed>
 </object>

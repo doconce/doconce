@@ -642,7 +642,7 @@ def define(FILENAME_EXTENSION,
         'verbatim':  r'\g<begin>``\g<subst>``\g<end>',
         'label':     r'\g<subst>',  # should be improved, rst has cross ref
         'reference': r'\g<subst>',
-        #colortext cannot employ pure HTML code. Recipe: http://stackoverflow.com/questions/4669689/how-to-use-color-in-text-with-restructured-text-rst2html-py-or-how-to-insert-h (this is too comprehensive). Use bold instead.
+        #colortext cannot employ pure HTML code. Recipe: https://stackoverflow.com/questions/4669689/how-to-use-color-in-text-with-restructured-text-rst2html-py-or-how-to-insert-h (this is too comprehensive). Use bold instead.
         #'colortext': r'<font color="\g<color>">\g<text></font>',
         'colortext': r'**\g<text>**',
         # Use anonymous hyperlink references to avoid warnings if the link
@@ -731,7 +731,7 @@ def define(FILENAME_EXTENSION,
    (https://github.com/hplgit/doconce/)
 
 """
-    # http://stackoverflow.com/questions/11830242/non-breaking-space
+    # https://stackoverflow.com/questions/11830242/non-breaking-space
     from .common import INLINE_TAGS
     if re.search(INLINE_TAGS['non-breaking-space'], filestr):
         nbsp = """

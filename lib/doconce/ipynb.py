@@ -3,7 +3,7 @@ from builtins import str
 from builtins import range
 import re, sys, shutil, os
 from .common import default_movie, plain_exercise, table_analysis, \
-     insert_code_and_tex, indent_lines, bibliography
+     insert_code_and_tex, indent_lines, bibliography, fix_ref_section_chapter
 from .html import html_movie, html_table
 from .pandoc import pandoc_ref_and_label, pandoc_index_bib, pandoc_quote, \
      language2pandoc, pandoc_quiz
@@ -16,6 +16,7 @@ figure_encountered = False
 movie_encountered = False
 figure_files = []
 movie_files = []
+figure_labels = {}
 html_encountered = False
 
 def ipynb_author(authors_and_institutions, auth2index,
@@ -81,6 +82,8 @@ def ipynb_figure(m):
     if not filename.startswith('http'):
         figure_files.append(filename)
 
+    figure_number = len(figure_labels) + 1
+
     # Extract optional label in caption
     label = None
     pattern = r' *label\{(.+?)\}'
@@ -88,6 +91,7 @@ def ipynb_figure(m):
     if m:
         label = m.group(1).strip()
         caption = re.sub(pattern, '', caption)
+        figure_labels[label] = figure_number
 
     display_method = option('ipynb_figure=', 'imgtag')
     if display_method == 'md':
@@ -107,11 +111,10 @@ def ipynb_figure(m):
         for tag in 'bold', 'emphasize', 'verbatim':
             caption = re.sub(INLINE_TAGS[tag], INLINE_TAGS_SUBST['html'][tag],
                              caption, flags=re.MULTILINE)
-        text += """
-<p>%s</p>
-<img src="%s" %s>
-
-""" % (caption, filename, opts)
+        text += (
+            '<img src="{filename}" {opts}>'
+            '<p style="font-size: 0.9em"><i>Figure {figure_number}: {caption}</i></p>'
+        ).format(filename=filename, opts=opts, caption=caption, figure_number=figure_number)
     elif display_method == 'Image':
         # Image object
         # NOTE: This code will normally not work because it inserts a verbatim
@@ -203,9 +206,9 @@ def ipynb_movie(m):
             if caption:
                 text += '\nprint("%s" % caption)'
         else:
-            # see http://nbviewer.ipython.org/github/ipython/ipython/blob/1.x/examples/notebooks/Part%205%20-%20Rich%20Display%20System.ipynb
-            # http://stackoverflow.com/questions/18019477/how-can-i-play-a-local-video-in-my-ipython-notebook
-            # http://python.6.x6.nabble.com/IPython-User-embedding-non-YouTube-movies-in-the-IPython-notebook-td5024035.html
+            # see https://nbviewer.ipython.org/github/ipython/ipython/blob/1.x/examples/notebooks/Part%205%20-%20Rich%20Display%20System.ipynb
+            # https://stackoverflow.com/questions/18019477/how-can-i-play-a-local-video-in-my-ipython-notebook
+            # https://python.6.x6.nabble.com/IPython-User-embedding-non-YouTube-movies-in-the-IPython-notebook-td5024035.html
             # Just support .mp4, .ogg, and.webm
             stem, ext = os.path.splitext(filename)
             if ext not in ('.mp4', '.ogg', '.webm'):
@@ -218,12 +221,11 @@ def ipynb_movie(m):
                 file_open = 'import urllib\nvideo = urllib.urlopen("%s").read()' % filename
             else:
                 file_open = 'video = open("%s", "rb").read()' % filename
-            text += """
-%s
-from base64 import b64encode
-video_encoded = b64encode(video)
-video_tag = '<video controls loop alt="%s" height="%s" width="%s" src="data:video/%s;base64,{0}">'.format(video_encoded)
-""" % (file_open, filename, height, width, ext[1:])
+            text += ('%s'
+                     'from base64 import b64encode'
+                     'video_encoded = b64encode(video)'
+                     'video_tag = \'<video controls loop alt="%s" height="%s" width="%s" src="data:video/%s;base64,{0}">\'.format(video_encoded)'
+                     ) % (file_open, filename, height, width, ext[1:])
             if not filename.startswith('http'):
                 movie_files.append(filename)
             if not html_encountered:
@@ -248,6 +250,8 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     if newcommands:
         filestr = newcommands + filestr
     """
+    if option("execute"):
+        from . import jupyter_execution
     # Fix pandoc citations to normal internal links: [[key]](#key)
     filestr = re.sub(r'\[@(.+?)\]', r'[[\g<1>]](#\g<1>)', filestr)
 
@@ -441,6 +445,8 @@ def ipynb_code(filestr, code_blocks, code_block_types,
                 code_blocks[i] = '\n'.join(lines)
                 code_blocks[i] = indent_lines(code_blocks[i], format)
                 ipynb_code_tp[i] = 'markdown'
+        elif tp.endswith("-e"):
+            ipynb_code_tp[i] = 'execute_hidden'
         elif tp.endswith('hid'):
             ipynb_code_tp[i] = 'cell_hidden'
         elif tp.endswith('out'):
@@ -502,6 +508,8 @@ def ipynb_code(filestr, code_blocks, code_block_types,
             idx = int(m.group(1))
             if ipynb_code_tp[idx] == 'cell':
                 notebook_blocks[i] = ['cell', notebook_blocks[i]]
+            elif ipynb_code_tp[idx] == 'execute_hidden':
+                notebook_blocks[i] = ['execute_hidden', notebook_blocks[i]]
             elif ipynb_code_tp[idx] == 'cell_hidden':
                 notebook_blocks[i] = ['cell_hidden', notebook_blocks[i]]
             elif ipynb_code_tp[idx] == 'cell_output':
@@ -539,11 +547,11 @@ def ipynb_code(filestr, code_blocks, code_block_types,
             envir = m.group(1)
             if envir not in ('equation', 'equation*', 'align*', 'align',
                              'array'):
-                errwarn("""\
-*** warning: latex envir \\begin{%s} does not work well in Markdown.
-    Stick to \\[ ... \\], equation, equation*, align, or align*
-    environments in math environments.
-""" % envir)
+                errwarn(
+                    ('\n*** warning: latex envir \\begin{%s} does not work well in Markdown.'
+                    '    Stick to \\[ ... \\], equation, equation*, align, or align*'
+                    '    environments in math environments.') % envir)
+
         eq_type = 'heading'  # or '$$'
         eq_type = '$$'
         # Markdown: add $$ on each side of the equation
@@ -592,13 +600,11 @@ def ipynb_code(filestr, code_blocks, code_block_types,
             _abort()
     elif nb_version in (4, 5):
         try:
-            from nbformat.v4 import (
-                new_code_cell, new_markdown_cell, new_notebook)
+            from nbformat.v4 import new_code_cell, new_markdown_cell, new_notebook, new_output
         except ImportError:
             # Try old style
             try:
-                from IPython.nbformat.v4 import (
-                    new_code_cell, new_markdown_cell, new_notebook)
+                from IPython.nbformat.v4 import new_code_cell, new_markdown_cell, new_notebook, new_output
             except ImportError:
                 errwarn('*** error: cannot do import nbformat.v4 or IPython.nbformat.v4')
                 errwarn('    make sure IPython notebook or Jupyter is installed correctly')
@@ -607,61 +613,71 @@ def ipynb_code(filestr, code_blocks, code_block_types,
 
     mdstr = []  # plain md format of the notebook
     prompt_number = 1
+
+    # Process some options
+    if option("execute"):
+        kernel_client = jupyter_execution.JupyterKernelClient()
+    metadata_md = {}
+    if option('ipynb_non_editable_text'):
+        metadata_md = dict(editable=False)
+    metadata_code = dict(collapsed=False, editable=True)
+    if option('ipynb_non_editable_code'):
+        metadata_code = dict(collapsed=False, editable=False)
+
     for block_tp, block in notebook_blocks:
         if (block_tp == 'text' or block_tp == 'math') and block != '' and block != '<!--  -->':
+            block = re.sub(r"caption\{(.*)\}", r"*Figure: \1*", block)
             if nb_version == 3:
                 nb.cells.append(new_text_cell(u'markdown', source=block))
             elif nb_version in (4, 5):
-                cells.append(new_markdown_cell(source=block))
+                cells.append(new_markdown_cell(source=block, metadata=metadata_md))
             mdstr.append(('markdown', block))
+        elif block_tp == "execute_hidden" and option("execute"):
+            if not isinstance(block, list):
+                block = [block]
+            for block_ in block:
+                outputs, execution_count = jupyter_execution.run_cell(kernel_client, block_)
         elif block_tp == 'cell' and block != '' and block != []:
-            if isinstance(block, list):
-                for block_ in block:
-                    block_ = block_.rstrip()
-                    if block_ != '':
-                        if nb_version == 3:
-                            nb.cells.append(new_code_cell(
-                                input=block_,
-                                prompt_number=prompt_number,
-                                collapsed=False))
-                        elif nb_version in (4, 5):
-                            cells.append(new_code_cell(
-                                source=block_,
-                                execution_count=prompt_number,
-                                metadata=dict(collapsed=False)))
-                        prompt_number += 1
-                        mdstr.append(('codecell', block_))
-            else:
-                block = block.rstrip()
-                if block != '':
-                    if nb_version == 3:
-                        nb.cells.append(new_code_cell(
-                            input=block,
-                            prompt_number=prompt_number,
-                            collapsed=False))
-                    elif nb_version in (4, 5):
-                        cells.append(new_code_cell(
-                            source=block,
-                            execution_count=prompt_number,
-                            metadata=dict(collapsed=False)))
-                    prompt_number += 1
-                    mdstr.append(('codecell', block))
-        elif block_tp == 'cell_output' and block != '':
+            if not isinstance(block, list):
+                block = [block]
+            for block_ in block:
+                block_ = block_.rstrip()
+                if block_ == '': continue
+                if nb_version == 3:
+                    cell = new_code_cell(
+                        input=block_,
+                        # prompt_number=prompt_number,
+                        collapsed=False)
+                    nb.cells.append(cell)
+                elif nb_version in (4, 5):
+                    cell = new_code_cell(
+                        source=block_,
+                        # execution_count=prompt_number,
+                        metadata=metadata_code
+                    )
+                    cells.append(cell)
+                    if option("execute"):
+                        outputs, execution_count = jupyter_execution.run_cell(kernel_client, block_)
+                        cell.outputs = outputs
+                        if execution_count:
+                            cell["execution_count"] = execution_count
+                prompt_number += 1
+                mdstr.append(('codecell', block_))
+        elif block_tp == 'cell_output' and block != '' and not option("ignore_output"):
             block = block.rstrip()
             if nb_version == 3:
                 print("WARNING: Output not implemented for nbformat v3.")
             elif nb_version in (4, 5):
                 outputs = [
-                    {
-                        "data": {
+                    new_output(
+                        output_type="execute_result",
+                        data={
                             "text/plain": [
                                 block
                             ]
                         },
-                        "execution_count": prompt_number-1,
-                        "metadata": {},
-                        "output_type": "execute_result"
-                    }
+                        execution_count=prompt_number-1
+                    )
                 ]
                 previous_cell = cells[-1]
                 if previous_cell.cell_type == "code":
@@ -779,29 +795,33 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     filestr_end = re.sub(r'   \{\n    "cell_type": .+?\n   \},\n', '', filestr,
                          flags=re.DOTALL)
     filestr = filestr.replace(filestr_end, json_markdown(filestr_end))
-    filestr = """{
- "metadata": {
-  "name": "SOME NAME"
- },
- "nbformat": 3,
- "nbformat_minor": 0,
- "worksheets": [
-  {
-   "cells": [
-""" + filestr.rstrip() + '\n'+ \
-    json_pycode('', final_prompt_no+1, 'python').rstrip()[:-1] + """
-   ],
-   "metadata": {}
-  }
- ]
-}"""
+    filestr = ('{'
+               '  "metadata": {'
+               '    "name": "SOME NAME"'
+               '  },'
+               '  "nbformat": 3,'
+               '  "nbformat_minor": 0,'
+               '  "worksheets": ['
+               '    {'
+               '      "cells": [') + \
+              filestr.rstrip() + '\n'+ \
+              json_pycode('', final_prompt_no+1, 'python').rstrip()[:-1] + \
+              (''
+               '        ],'
+               '      "metadata": {}'
+               '    }'
+               '  ]'
+               '}')
     '''
+    if option("execute"):
+        jupyter_execution.stop(kernel_client)
+
     return filestr
 
 def ipynb_index_bib(filestr, index, citations, pubfile, pubdata):
     # ipynb has support for latex-style bibliography.
     # Quite some code here is copy from latex_index_bib
-    # http://nbviewer.ipython.org/github/ipython/nbconvert-examples/blob/master/citations/Tutorial.ipynb
+    # https://nbviewer.ipython.org/github/ipython/nbconvert-examples/blob/master/citations/Tutorial.ipynb
     if citations:
         from .common import cite_with_multiple_args2multiple_cites
         filestr = cite_with_multiple_args2multiple_cites(filestr)
@@ -826,14 +846,14 @@ def ipynb_index_bib(filestr, index, citations, pubfile, pubdata):
 
         bibstyle = option('latex_bibstyle=', 'plain')
         from .latex import fix_latex_command_regex
-        bibtext = fix_latex_command_regex(r"""
-((*- extends 'latex_article.tplx' -*))
-
-((* block bibliography *))
-\bibliographystyle{%s}
-\bibliography{%s}
-((* endblock bibliography *))
-""" % (bibstyle, bibtexfile[:-4]), application='replacement')
+        bibtext = fix_latex_command_regex(r(
+            "((*- extends 'latex_article.tplx' -*))"
+            ''
+            '((* block bibliography *))'
+            '\bibliographystyle{%s}'
+            '\bibliography{%s}'
+            '((* endblock bibliography *))'
+        ) % (bibstyle, bibtexfile[:-4]), application='replacement')
         filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr,
                          flags=re.MULTILINE)
 
@@ -870,6 +890,54 @@ def ipynb_index_bib_latex_plain(filestr, index, citations, pubfile, pubdata):
     filestr = re.sub(r'label\{(.+?)\}', '<div id="\g<1>"></div>', filestr)
 
     return filestr
+
+
+def ipynb_ref_and_label(section_label2title, format, filestr):
+    filestr = fix_ref_section_chapter(filestr, format)
+
+    # Replace all references to sections. Pandoc needs a coding of
+    # the section header as link. (Not using this anymore.)
+    def title2pandoc(title):
+        # https://johnmacfarlane.net/pandoc/README.html
+        for c in ('?', ';', ':'):
+            title = title.replace(c, '')
+        title = title.replace(' ', '-').strip()
+        start = 0
+        for i in range(len(title)):
+            if title[i].isalpha():
+                start = i
+        title = title[start:]
+        title = title.lower()
+        if not title:
+            title = 'section'
+        return title
+
+    for label in section_label2title:
+        filestr = filestr.replace('ref{%s}' % label,
+                  '[%s](#%s)' % (section_label2title[label],
+                                 label))
+
+    # TODO Consider handling the case where a figure label is used
+    # but not referenced as "figure ref{label}"
+
+    pattern = r'([Ff]igure|[Mm]ovie)\s+ref\{(.+?)\}'
+    for m in re.finditer(pattern, filestr):
+        label = m.group(2).strip()
+        try:
+            figure_number = figure_labels[label]
+            replace_pattern = r'([Ff]igure|[Mm]ovie)\s+ref\{' + label + r'\}'
+            replace_string = '[\g<1> {figure_number}](#{label})'.format(
+            figure_number=figure_number,
+            label=label
+            )
+            filestr = re.sub(replace_pattern, replace_string, filestr)
+        except KeyError:
+            errwarn("*** warning: Missing figure label '{}'".format(label))
+
+    # Remaining ref{} (should protect \eqref)
+    filestr = re.sub(r'ref\{(.+?)\}', '[\g<1>](#\g<1>)', filestr)
+    return filestr
+
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,

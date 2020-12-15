@@ -459,7 +459,7 @@ def gwiki_figsubst():
         URLstem = sys.argv[2]
     except IndexError:
         print('Usage: %s wikifile URL-stem' % sys.argv[0])
-        print('Ex:    %s somefile.gwiki http://code.google.com/p/myproject/trunk/doc/somedir' % sys.argv[0])
+        print('Ex:    %s somefile.gwiki https://code.google.com/p/myproject/trunk/doc/somedir' % sys.argv[0])
         _abort()
 
     if not os.path.isfile(gwikifile):
@@ -1414,7 +1414,7 @@ def ptex2tex():
                                 leftmargin = arg.split('=')[1]
                         for lang in envir2pygments:
                             # mathescape can be used with minted and lstlisting
-                            # see http://tex.stackexchange.com/questions/149710/how-to-write-math-symbols-in-a-verbatim, minted can only have math in comments within the code
+                            # see https://tex.stackexchange.com/questions/149710/how-to-write-math-symbols-in-a-verbatim, minted can only have math in comments within the code
                             # but mathescape make problems with bash and $#
                             # (can perhaps be fixed with escapechar=... but
                             # I haven't found out)
@@ -1527,7 +1527,7 @@ def ptex2tex():
            output_filename)
     system(cmd, failure_info="""
 preprocess failed or is not installed;
-download preprocess from http://code.google.com/p/preprocess""")
+download preprocess from https://code.google.com/p/preprocess""")
 
     # Mimic ptex2tex by replacing all code environments by
     # a plain verbatim command
@@ -1605,7 +1605,7 @@ download preprocess from http://code.google.com/p/preprocess""")
 requires the pygments package to be installed. On Debian/Ubuntu: run
 Terminal> sudo apt-get install python-pygments
 Or
-Terminal> hg clone http://bitbucket.org/birkenfeld/pygments-main pygments
+Terminal> hg clone https://bitbucket.org/birkenfeld/pygments-main pygments
 Terminal> cd pygments; python setup.py install
 """)
             _abort()
@@ -2068,7 +2068,7 @@ def _usage_html_colorbullets():
 
 def html_colorbullets():
     # A much better implementation, avoiding tables, is given
-    # here: http://www.eng.buffalo.edu/webguide/Bullet_Lists.html
+    # here: https://www.eng.buffalo.edu/webguide/Bullet_Lists.html
     """
     Replace unordered lists by a table, in order to replace
     ``<li>`` tags (and the default bullets) by
@@ -2105,10 +2105,10 @@ def html_colorbullets():
                 line = line.replace('<li>', """</tr><p><tr><td valign='top'><img src="BULLET"></td><td>""")
                 if level == 1:
                     #image_filename = html_imagefile(red_bullet)
-                    image_filename = 'http://hplgit.github.io/doconce/bundled/html_images/' + red_bullet
+                    image_filename = 'https://hplgit.github.io/doconce/bundled/html_images/' + red_bullet
                 elif level >= 2:
                     #image_filename = html_imagefile(green_bullet)
-                    image_filename = 'http://hplgit.github.io/doconce/bundled/html_images/' + green_bullet
+                    image_filename = 'https://hplgit.github.io/doconce/bundled/html_images/' + green_bullet
                 line = line.replace('BULLET', image_filename)
             f.write(line + '\n')
         f.close()
@@ -2199,7 +2199,7 @@ def split_html():
         filestr = filestr.replace(
             '<!-- !split -->',
             '<!-- !split -->' + '<br><br><br><br><br><br><img src="%s"><br><br>'
-            % 'http://hplgit.github.io/doconce/bundled/html_images/colorline.png')
+            % 'https://hplgit.github.io/doconce/bundled/html_images/colorline.png')
     else:
         header, parts, footer = get_header_parts_footer(filename, "html")
         parts = tablify(parts, "html")
@@ -2297,24 +2297,24 @@ def slides_html():
     Split html file into slides and typeset slides using
     various tools. Use !split command as slide separator.
     """
-    # Overview: http://www.impressivewebs.com/html-slidedeck-toolkits/
-    # Overview: http://www.sitepoint.com/5-free-html5-presentation-systems/
-    # x http://leaverou.github.com/CSSS/
-    # x http://lab.hakim.se/reveal-js/ (easy and fancy)
-    # x http://paulrouget.com/dzslides/ (easy and fancy, Keynote like)
-    # http://imakewebthings.com/deck.js/ (also easy)
-    # http://code.google.com/p/html5slides/ (also easy)
-    # http://slides.seld.be/?file=2010-05-30+Example.html#1 (also easy)
-    # http://www.w3.org/Talks/Tools/Slidy2/#(1) (also easy)
-    # http://johnpolacek.github.com/scrolldeck.js/ (inspired by reveal.js)
-    # http://meyerweb.com/eric/tools/s5/ (easy)
+    # Overview: https://www.impressivewebs.com/html-slidedeck-toolkits/
+    # Overview: https://www.sitepoint.com/5-free-html5-presentation-systems/
+    # x https://leaverou.github.com/CSSS/
+    # x https://lab.hakim.se/reveal-js/ (easy and fancy)
+    # x https://paulrouget.com/dzslides/ (easy and fancy, Keynote like)
+    # https://imakewebthings.com/deck.js/ (also easy)
+    # https://code.google.com/p/html5slides/ (also easy)
+    # https://slides.seld.be/?file=2010-05-30+Example.html#1 (also easy)
+    # https://www.w3.org/Talks/Tools/Slidy2/#(1) (also easy)
+    # https://johnpolacek.github.com/scrolldeck.js/ (inspired by reveal.js)
+    # https://meyerweb.com/eric/tools/s5/ (easy)
     # https://github.com/mbostock/stack (very easy)
     # https://github.com/markdalgleish/fathom
-    # http://shama.github.com/jmpress.js/#/home  # jQuery version of impress
+    # https://shama.github.com/jmpress.js/#/home  # jQuery version of impress
     # https://github.com/bartaz/impress.js/
 
     # Fancy and instructive demo:
-    # http://yihui.name/slides/2011-r-dev-lessons.html
+    # https://yihui.name/slides/2011-r-dev-lessons.html
     # (view the source code)
 
     # pandoc can make dzslides and embeds all javascript (no other files needed)
@@ -2691,8 +2691,8 @@ def doconce_split_html(header, parts, footer, basename, filename, slides=False):
             html.add_to_file_collection(next_button_filename, filename, 'a')
     else:
         if prev_button:
-            prev_button_filename = 'http://hplgit.github.io/doconce/bundled/html_images/%s.png' % prev_button
-            next_button_filename = 'http://hplgit.github.io/doconce/bundled/html_images/%s.png' % next_button
+            prev_button_filename = 'https://hplgit.github.io/doconce/bundled/html_images/%s.png' % prev_button
+            next_button_filename = 'https://hplgit.github.io/doconce/bundled/html_images/%s.png' % next_button
 
 
     # Fix internal links to point to the right splitted file
@@ -2787,7 +2787,7 @@ def doconce_split_html(header, parts, footer, basename, filename, slides=False):
     # MathJax cannot refer to labels in other HTML files.
     # We generate tag number for each label, in the right numbering
     # and use tags to refer to equations.
-    # Info on http://stackoverflow.com/questions/16339000/how-to-refer-to-an-equation-in-a-different-page-with-mathjax
+    # Info on https://stackoverflow.com/questions/16339000/how-to-refer-to-an-equation-in-a-different-page-with-mathjax
     # Tags are numbered globally, but chapter by chapter if book
     labels = []  # Hold all new tag labels in a list (not list of list as parts_label)
     for part_labels in parts_label:
@@ -2883,7 +2883,7 @@ def doconce_split_html(header, parts, footer, basename, filename, slides=False):
             if local_navigation_pics:
                 header_part_line_filename = html_imagefile(header_part_line)
             else:
-                header_part_line_filename = 'http://hplgit.github.io/doconce/bundled/html_images/%s.png' % header_part_line
+                header_part_line_filename = 'https://hplgit.github.io/doconce/bundled/html_images/%s.png' % header_part_line
             lines.append(r"""
 <p><br><img src="%s"><p><br><p>
 """ % header_part_line_filename)
@@ -3069,7 +3069,7 @@ def generate_html5_slides(header, parts, footer, basename, filename,
             pop=('fragment', 'li'),
             notes='<aside class="notes">\n<!-- click "s" to activate -->\n\\g<1>\n</aside>\n',
             head_header="""
-<!-- reveal.js: http://lab.hakim.se/reveal-js/ -->
+<!-- reveal.js: https://lab.hakim.se/reveal-js/ -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -3132,10 +3132,10 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
      .reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
      /*.reveal .alert li {margin-top: 1em}*/
      .reveal .alert-block p+p {margin-top:5px}
-     /*.reveal .alert-notice { background-image: url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_notice.png); }
-     .reveal .alert-summary  { background-image:url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_summary.png); }
-     .reveal .alert-warning { background-image: url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_warning.png); }
-     .reveal .alert-question {background-image:url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_question.png); } */
+     /*.reveal .alert-notice { background-image: url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_notice.png); }
+     .reveal .alert-summary  { background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_summary.png); }
+     .reveal .alert-warning { background-image: url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_warning.png); }
+     .reveal .alert-question {background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_question.png); } */
 
 </style>
 
@@ -3301,7 +3301,7 @@ Reveal.initialize({
             pop=('delayed', 'li'),
             notes='<p class="presenter-notes">\n<!-- press "Ctrl+P" or "Shift+P" to activate -->\n\\g<1>\n</p>\n',
             head_header="""
-<!-- CSSS: http://leaverou.github.com/CSSS/ -->
+<!-- CSSS: https://leaverou.github.com/CSSS/ -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <link href="csss/slideshow.css" rel="stylesheet" />
@@ -3342,10 +3342,10 @@ for(var i=0; i<cssControls.length; i++) {
             slide_envir_end='</section>',
             #notes='<div role="note">\n\g<1>\n</div>',
             pop=('incremental', 'ul', 'ol'),
-            notes='<details>\n<!-- use onstage shell to activate: invoke http://hplgit.github.io/doconce/bundled/dzslides/shells/onstage.html -->\n\\g<1>\n</details>\n',
-            #notes='<div role="note">\n<!-- use onstage shell to activate: invoke http://hplgit.github.io/doconce/bundled/dzslides/shells/onstage.html -->\n\\g<1>\n</div>\n',
+            notes='<details>\n<!-- use onstage shell to activate: invoke https://hplgit.github.io/doconce/bundled/dzslides/shells/onstage.html -->\n\\g<1>\n</details>\n',
+            #notes='<div role="note">\n<!-- use onstage shell to activate: invoke https://hplgit.github.io/doconce/bundled/dzslides/shells/onstage.html -->\n\\g<1>\n</div>\n',
             head_header="""
-<!-- dzslides: http://paulrouget.com/dzslides/ -->
+<!-- dzslides: https://paulrouget.com/dzslides/ -->
 
 <!-- One section is one slide -->
 """,
@@ -3361,8 +3361,8 @@ a slight modification of the original dzslides style,
 basically smaller fonts and left-adjusted titles.
 -->
 
-<!-- Maybe a font from http://www.google.com/webfonts ? -->
-<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
+<!-- Maybe a font from https://www.google.com/webfonts ? -->
+<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
 
 <style>
   html, .view body { background-color: black; counter-reset: slideidx; }
@@ -4119,10 +4119,10 @@ hr.figure { border: 0; width: 80%%; border-bottom: 1px solid #aaa}
  .slide .alert-block > p, .alert-block > ul {margin-bottom:0}
  /*.slide .alert li {margin-top: 1em}*/
  .deck .alert-block p+p {margin-top:5px}
- /*.slide .alert-notice { background-image: url(http://hplgit.github.io/doconce/bundled/html_images//small_gray_notice.png); }
- .slide .alert-summary  { background-image:url(http://hplgit.github.io/doconce/bundled/html_images//small_gray_summary.png); }
- .slide .alert-warning { background-image: url(http://hplgit.github.io/doconce/bundled/html_images//small_gray_warning.png); }
- .slide .alert-question {background-image:url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_question.png); } */
+ /*.slide .alert-notice { background-image: url(https://hplgit.github.io/doconce/bundled/html_images//small_gray_notice.png); }
+ .slide .alert-summary  { background-image:url(https://hplgit.github.io/doconce/bundled/html_images//small_gray_summary.png); }
+ .slide .alert-warning { background-image: url(https://hplgit.github.io/doconce/bundled/html_images//small_gray_warning.png); }
+ .slide .alert-question {background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_question.png); } */
 
 </style>
 
@@ -4216,12 +4216,12 @@ hr.figure { border: 0; width: 80%%; border-bottom: 1px solid #aaa}
             notes='<aside class="note">\n<!-- press "p" to activate -->\n\\g<1>\n</aside>\n',
             head_header="""
 <!-- Google HTML5 Slides:
-     http://code.google.com/p/html5slides/
+     https://code.google.com/p/html5slides/
 -->
 
 <meta charset='utf-8'>
 <script
-   src='http://html5slides.googlecode.com/svn/trunk/slides.js'>
+   src='https://html5slides.googlecode.com/svn/trunk/slides.js'>
 </script>
 
 </head>
@@ -4233,7 +4233,7 @@ hr.figure { border: 0; width: 80%%; border-bottom: 1px solid #aaa}
             body_header="""\
  <body style='display: none'>
 
-<!-- See http://code.google.com/p/html5slides/source/browse/trunk/styles.css
+<!-- See https://code.google.com/p/html5slides/source/browse/trunk/styles.css
      for definition of template-default and other styles -->
 
 <section class='slides layout-regular %(theme)s'>
@@ -4719,9 +4719,9 @@ def slides_markdown():
 <title>%(title)s</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <style type="text/css">
-   @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
-   @import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
-   @import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+   @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+   @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+   @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 
 body { font-family: 'Droid Serif'; }
 h1, h2, h3 {
@@ -4742,7 +4742,7 @@ h1, h2, h3 {
 %(main)s
 
 </textarea>
-<script src="http://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript">
+<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript">
 </script>
 <script type="text/javascript">
   var slideshow = remark.create();
@@ -9196,13 +9196,13 @@ def csv2table():
 
 # ------------ diff two files ----------------
 _diff_programs = {
-    'latexdiff': ('http://www.ctan.org/pkg/latexdiff', 'latexdiff'),
-    'pdiff': ('http://www.gnu.org/software/a2ps/ http://www.gnu.org/software/wdiff/', 'a2ps wdiff texlive-latex-extra texlive-latex-recommended'),
-    'kdiff3': ('http://www.gnu.org/software/wdiff/', 'kdiff3'),
-    'diffuse': ('http://diffuse.sourceforge.net/', 'diffuse'),
-    'xxdiff': ('http://xxdiff.sourceforge.net/local/', 'fldiff'),
-    'fldiff': ('http://packages.debian.org/sid/fldiff', 'fldiff'),
-    'meld': ('http://meldmerge.org/', 'meld'),
+    'latexdiff': ('https://www.ctan.org/pkg/latexdiff', 'latexdiff'),
+    'pdiff': ('https://www.gnu.org/software/a2ps/ https://www.gnu.org/software/wdiff/', 'a2ps wdiff texlive-latex-extra texlive-latex-recommended'),
+    'kdiff3': ('https://www.gnu.org/software/wdiff/', 'kdiff3'),
+    'diffuse': ('https://diffuse.sourceforge.net/', 'diffuse'),
+    'xxdiff': ('https://xxdiff.sourceforge.net/local/', 'fldiff'),
+    'fldiff': ('https://packages.debian.org/sid/fldiff', 'fldiff'),
+    'meld': ('https://meldmerge.org/', 'meld'),
     'tkdiff.tcl': ('https://sourceforge.net/projects/tkdiff/', 'not in Debian')
     }
 

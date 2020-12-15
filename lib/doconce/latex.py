@@ -4,6 +4,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 from __future__ import division
 from future import standard_library
+
 standard_library.install_aliases()
 from builtins import zip
 from builtins import str
@@ -11,15 +12,17 @@ from builtins import range
 from past.utils import old_div
 import os, subprocess, re, sys, glob, shutil, subprocess
 from .common import plain_exercise, table_analysis, \
-     _CODE_BLOCK, _MATH_BLOCK, doconce_exercise_output, indent_lines, \
-     online_python_tutor, envir_delimiter_lines, safe_join, \
-     insert_code_and_tex, is_file_or_url, chapter_pattern
+    _CODE_BLOCK, _MATH_BLOCK, doconce_exercise_output, indent_lines, \
+    online_python_tutor, envir_delimiter_lines, safe_join, \
+    insert_code_and_tex, is_file_or_url, chapter_pattern
 from .misc import option, _abort, replace_code_command
 from .doconce import errwarn, debugpr
 from doconce import globals
+
 additional_packages = ''  # comma-sep. list of packages for \usepackage{}
 
 include_numbering_of_exercises = True
+
 
 def underscore_in_code(m):
     """For pattern r'\\code\{(.*?)\}', insert \_ for _ in group 1."""
@@ -27,11 +30,12 @@ def underscore_in_code(m):
     text = text.replace('_', r'\_')
     return r'\code{%s}' % text
 
+
 def aux_label2number():
     """Interpret an .aux file and return dict label2number[label]=number."""
     auxfilename = option('replace_ref_by_latex_auxno=', None)
     if auxfilename is None:
-       return {}
+        return {}
 
     if not os.path.isfile(auxfilename):
         errwarn('*** error: --replace_ref_by_latex_auxno=%s, but file "%s" does not exist' % (auxfilename, auxfilename))
@@ -50,10 +54,11 @@ def aux_label2number():
             label2number[label] = no
     return label2number
 
+
 def get_bib_index_pages():
     """Find the page number for the Index and Bibliography from .aux file."""
     bib_page = idx_page = '9999'
-    #name = dofile_basename + '.aux'
+    # name = dofile_basename + '.aux'
     name = globals.dofile_basename
     if not os.path.isfile(name):
         return bib_page, idx_page
@@ -68,12 +73,13 @@ def get_bib_index_pages():
             idx_page = line.split('}{')[-2]
     return bib_page, idx_page
 
+
 # Mappings from DocOnce code environments to Pygments and lstlisting names
 envir2pyg = dict(
     pyshell='python',
     py='python', cy='cython', f='fortran',
     c='c', cpp='c++', cu='cuda', cuda='cuda', bash='bash', sh='bash', rst='rst',
-    m ='matlab', pl='perl', swig='c++',
+    m='matlab', pl='perl', swig='c++',
     latex='latex', html='html', js='js',
     java='java',
     xml='xml', rb='ruby', sys='console',
@@ -81,12 +87,12 @@ envir2pyg = dict(
     ipy='ipy', do='doconce',
     # pyopt and pysc are treated explicitly
     r='r', php='php',
-    )
+)
 envir2lst = dict(
     pyshell='Python',
     py='Python', cy='Python', f='Fortran',
     c='C', cpp='C++', bash='bash', sh='bash', rst='text',
-    m ='Matlab', pl='Perl', swig='C++',
+    m='Matlab', pl='Perl', swig='C++',
     latex='TeX', html='HTML', js='Java',
     java='Java',
     xml='XML', rb='Ruby', sys='bash',
@@ -94,12 +100,13 @@ envir2lst = dict(
     ipy='Python', do='text',
     # pyopt and pysc are treated explicitly
     r='r', php='php',
-    )
+)
 
-def latex_code_envir(
-    envir,
-    envir_spec,
-    ):
+
+def latex_code_envir(envir, envir_spec):
+    if envir_spec is None:
+        return '\\b' + envir, '\\e' + envir
+
     leftmargin = option('latex_code_leftmargin=', '2')
     bg_vpad = '_vpad' if option('latex_code_bg_vpad') else ''
 
@@ -112,14 +119,17 @@ def latex_code_envir(
     lst_style = 'style=simple,xleftmargin=%smm' % leftmargin
     vrb_style = 'numbers=none,fontsize=\\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=%smm' % leftmargin
     # mathescape can be used with minted and lstlisting
-    # see http://tex.stackexchange.com/questions/149710/how-to-write-math-symbols-in-a-verbatim, minted can only have math in comments within the code
+    # see https://tex.stackexchange.com/questions/149710/how-to-write-math-symbols-in-a-verbatim,
+    # minted can only have math in comments within the code
     # but mathescape make problems with bash and $#
     # (can perhaps be fixed with escapechar=... but I haven't found out)
     if not envir.startswith('sh'):
-        pyg_style = 'fontsize=\\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=%smm' % leftmargin
+        pyg_style = 'fontsize=\\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,' \
+                    'fontfamily=tt,xleftmargin=%smm' % leftmargin
     else:
         # Leave out mathescape for unix shell
-        pyg_style = 'fontsize=\\fontsize{9pt}{9pt},linenos=false,baselinestretch=1.0,fontfamily=tt,xleftmargin=%smm' % leftmargin
+        pyg_style = 'fontsize=\\fontsize{9pt}{9pt},linenos=false,baselinestretch=1.0,' \
+                    'fontfamily=tt,xleftmargin=%smm' % leftmargin
     if envir_spec[envir2]['style'] is not None:
         # Override default style
         if package == 'lst':
@@ -163,7 +173,7 @@ def latex_code_envir(
         end = '\\end{minted}'
     elif package == 'lst':
         if envir2lst.get(envir, 'text') == 'text':
-            begin = '\\begin{lstlisting}[language=Python,%s]' % (lst_style, )
+            begin = '\\begin{lstlisting}[language=Python,%s]' % (lst_style,)
         else:
             begin = '\\begin{lstlisting}[language=%s,%s]' % (envir2lst.get(envir, 'text'), lst_style)
         end = '\\end{lstlisting}'
@@ -176,7 +186,6 @@ def latex_code_envir(
         else:
             begin = '\\begin{%s}' % package
         end = '\\end{%s}' % package
-
 
     if background != 'white':
         if envir_tp == 'pro':
@@ -192,6 +201,7 @@ def latex_code_envir(
             else:
                 end = end + '\\end{cod%s}\n\\noindent' % bg_vpad
     return begin, end
+
 
 def interpret_latex_code_style():
     latex_code_style = option('latex_code_style=', None)
@@ -217,7 +227,10 @@ def interpret_latex_code_style():
             envir, pkg = pkg.split(':')
         return pkg, bg, style
 
-    legal_envirs = 'pro pypro cypro cpppro cudapro cudacod cupro cucod cpro fpro plpro shpro mpro cod pycod cycod cppcod ccod fcod plcod shcod mcod rst cppans pyans fans bashans swigans uflans sni dat dsni sys slin ipy pyshell rpy plin ver warn rule summ ccq cc ccl txt htmlcod htmlpro html rbpro rbcod rb xmlpro xmlcod xml latexpro latexcod latex default'.split()
+    legal_envirs = 'pro pypro pyout cypro cpppro cudapro cudacod cupro cucod cpro fpro plpro shpro mpro cod pycod ' \
+                   'cycod cppcod ccod fcod plcod shcod mcod rst cppans pyans fans bashans swigans uflans sni dat ' \
+                   'dsni sys slin ipy pyshell rpy plin ver warn rule summ ccq cc ccl txt htmlcod htmlpro html ' \
+                   'rbpro rbcod rb xmlpro xmlcod xml latexpro latexcod latex default'.split()
     d = {}
     if '@' not in latex_code_style:
         # Common definition for all languages
@@ -286,12 +299,12 @@ def latex_code_lstlisting(latex_code_style):
     # automatic settings - then admons with code gets the right sizes
     # etc if xleftmargin=xrightmargin=0mm
     styles = dict(
-       simple=r"""
+        simple=r"""
 \lstdefinestyle{simple}{
 commentstyle={},
 }
 """,
-       redblue=r"""
+        redblue=r"""
 \lstdefinestyle{redblue}{
 keywordstyle=\color{blue}\bfseries,
 commentstyle=\color{darkgreen},
@@ -299,7 +312,7 @@ stringstyle=\color{myteal},
 identifierstyle=\color{darkorange},
 }
 """,
-       greenblue=r"""
+        greenblue=r"""
 \lstdefinestyle{greenblue}{
 %keywordstyle=\color{black}\bfseries,
 keywordstyle=\color{black},
@@ -309,7 +322,7 @@ identifierstyle=\color{darkblue},
 %identifierstyle=\color{blue}\bfseries,
 }
 """,
-       yellow2_fb=r"""
+        yellow2_fb=r"""
 % Use this one without additional background color
 \lstdefinestyle{yellow2_fb}{         % approx same colors as in the FEniCS book
 frame=tb,                            % top+bottom frame
@@ -322,13 +335,13 @@ stringstyle=\color{string_red},
 identifierstyle=\color{darkorange},
 }
 """,
-       blue1=r"""
+        blue1=r"""
 % Use this one without additional background color
 \lstdefinestyle{blue1}{              % blue1 background for code snippets
 backgroundcolor=\color{cbg_blue1},
 }
 """,
-       blue1_bluegreen=r"""
+        blue1_bluegreen=r"""
 % Use this one without additional background color
 \lstdefinestyle{blue1_bluegreen}{    % blue1 background for code snippets
 backgroundcolor=\color{cbg_blue1},
@@ -360,7 +373,7 @@ stringstyle=\color{myteal},
 identifierstyle=\color{darkblue},
 }
 """,
-       gray=r"""
+        gray=r"""
 % Use this one without additional background color
 \lstdefinestyle{gray}{
 backgroundcolor=\color{cbg_gray},
@@ -402,12 +415,12 @@ stringstyle=\color{myteal},
 identifierstyle=\color{darkblue},
 }
 """,
-        )
+    )
     # Orange/pink for graycolor:
-    #keywordstyle=\color{keyword_pink}\bfseries,
-    #commentstyle=\color{comment_green}\slshape,
-    #stringstyle=\color{string_red},
-    #identifierstyle=\color{darkorange},
+    # keywordstyle=\color{keyword_pink}\bfseries,
+    # commentstyle=\color{comment_green}\slshape,
+    # stringstyle=\color{string_red},
+    # identifierstyle=\color{darkorange},
 
     # Just write styles for the ones that are requested
     requested_styles = re.findall(r'style=([A-Za-z0-9:_]+)[,\]]',
@@ -439,9 +452,11 @@ identifierstyle=\color{darkblue},
 
     return s
 
+
 def latex_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):
-
+    if option("execute"):
+        from . import jupyter_execution
     if option('latex_double_hyphen'):
         errwarn('*** warning: --latex_double_hyphen may lead to unwanted edits.')
         errwarn('             search for all -- in the .p.tex file and check.')
@@ -456,34 +471,34 @@ def latex_code(filestr, code_blocks, code_block_types,
             (r' +-$', ' --'),
             # single - at beginning of line
             (r'^ *- +', ' -- '),
-                   ]
+        ]
         for pattern, replacement in from_to:
             filestr = re.sub(pattern, replacement, filestr, flags=re.MULTILINE)
-
 
     # Note: cannot fix double quotes right here for it destroys
     # preprocess/mako code too. Instead we had to introduce the LaTeX
     # style for quotes: ``[A-Za-z][A-Za-z0-9 ]*?''
     # The re.sub are really dangerous with a lot of side effects. They
     # are still here as a warning of never adding such functionality!
-    #filestr = re.sub(r'([^\\])"([^"]+?)"', r"""\g<1>``\g<2>''""", filestr)
+    # filestr = re.sub(r'([^\\])"([^"]+?)"', r"""\g<1>``\g<2>''""", filestr)
     # Drop fixing of single quotes - it interferes with the double quotes fix,
     # and it might lead to strange results for the apostrophe!
-    #NO: filestr = re.sub(r"""'([^']+?)'""", r"""`\g<1>'""", filestr)
+    # NO: filestr = re.sub(r"""'([^']+?)'""", r"""`\g<1>'""", filestr)
 
     # Specify language to be used in \documentclass
     if globals.locale_dict[globals.locale_dict['language']]['latex package'] != 'english':
-        filestr = re.sub(r'(\\documentclass\[%?\n?)', r'\g<1>%s,' % globals.locale_dict[globals.locale_dict['language']]['latex package'], filestr)
+        filestr = re.sub(r'(\\documentclass\[%?\n?)', r'\g<1>%s,' %
+                         globals.locale_dict[globals.locale_dict['language']]['latex package'], filestr)
 
     # References to external documents (done before !bc blocks in
     # case such blocks explain the syntax of the external doc. feature)
     pattern = r'^%\s*[Ee]xternaldocuments?:\s*(.+)$'
     m = re.search(pattern, filestr, re.MULTILINE)
-    #filestr = re.sub(pattern, '', filestr, flags=re.MULTILINE)
+    # filestr = re.sub(pattern, '', filestr, flags=re.MULTILINE)
     if m:
         filepaths = m.group(1).split(',')
-        extdocs  = [r'\externaldocument{%s}' % name.strip()
-                    for name in filepaths]
+        extdocs = [r'\externaldocument{%s}' % name.strip()
+                   for name in filepaths]
         auxfiles = [r'\@addtofilelist{%s.aux}' % name.strip()
                     for name in filepaths]
         new_text = r"""
@@ -516,7 +531,8 @@ def latex_code(filestr, code_blocks, code_block_types,
                         errwarn('    The problem is that doconce+latex must be run on the document in %s' % name)
                         errwarn('    such that %s exists!' % name2)
                     else:
-                        errwarn('    The problem is that the directory %s does not exist (i.e., no DocOnce document found)' % name)
+                        errwarn('    The problem is that the directory %s does not exist (i.e., '
+                                'no DocOnce document found)' % name)
                         errwarn('    A quick fix is\n')
                         errwarn('      Terminal> mkdir -p %s' % name)
                         errwarn('      Terminal> touch %s.tex' % name)
@@ -561,7 +577,8 @@ def latex_code(filestr, code_blocks, code_block_types,
                         code_block_types[_block_no] = new_envir
                     else:
                         if _envir not in admon_envir_mapping:
-                            print('*** error: requested %s to be replaced by something else inside admons, but\n    envir %s is not defined as part of --latex_admon_envir_map=...' % (_envir, _envir))
+                            print('*** error: requested %s to be replaced by something else inside admons, but\n    '
+                                  'envir %s is not defined as part of --latex_admon_envir_map=...' % (_envir, _envir))
                             _abort()
                         new_envir = admon_envir_mapping[_envir]
                         lines[i] = lines[i].replace(_envir, new_envir)
@@ -572,7 +589,7 @@ def latex_code(filestr, code_blocks, code_block_types,
             words = lines[i].split()
             n = int(words[0])
             if len(words) >= 3 and words[2] == 'pyoptpro' and \
-                       not option('device=', '') == 'paper':
+                    not option('device=', '') == 'paper':
                 # Insert an Online Python Tutor link and add to lines[i]
                 post = '\n\\noindent\n(\\href{{%s}}{Visualize execution}) ' % \
                        online_python_tutor(code_blocks[n], return_tp='url')
@@ -581,7 +598,17 @@ def latex_code(filestr, code_blocks, code_block_types,
     filestr = safe_join(lines, '\n')
 
     # Check for misspellings
-    envirs = 'pro pypro cypro cpppro cpro fpro plpro shpro mpro cod pycod cycod cppcod ccod fcod plcod shcod mcod htmlcod htmlpro latexcod latexpro rstcod rstpro xmlcod xmlpro cppans pyans fans bashans swigans uflans sni dat dsni csv txt sys slin ipy rpy plin ver warn rule summ ccq cc ccl pyshell pyoptpro pyscpro ipy do'.split()
+    envirs = 'pro pypro pyout cypro cpppro cpro fpro plpro shpro mpro cod pycod cycod cppcod ccod fcod plcod shcod ' \
+             'mcod htmlcod htmlpro latexcod latexpro rstcod rstpro xmlcod xmlpro cppans pyans fans bashans swigans ' \
+             'uflans sni dat dsni csv txt sys slin ipy rpy plin ver warn rule summ ccq cc ccl pyshell ' \
+             'pyoptpro pyscpro ipy do'.split()
+
+    for i, envir in enumerate(code_block_types):
+        if envir.endswith("-t"):
+            code_block_types[i] = re.sub(r"-t$", "", envir)
+        if envir.endswith("-e"):
+            code_block_types[i] = re.sub(r"-e$", "", envir)
+
     # Add user's potential new envirs inside admons
     new_envirs = []
     for envir in envirs:
@@ -600,7 +627,8 @@ def latex_code(filestr, code_blocks, code_block_types,
     for envir in code_block_types:
         if envir and not envir.endswith('hid'):
             if envir not in envirs:
-                errwarn('Warning: found "!bc %s", but %s is not a standard predefined code environment' % (envir, envir))
+                errwarn('Warning: found "!bc %s", but %s is not a standard predefined '
+                        'code environment' % (envir, envir))
 
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
     if code_envir_transform is not None:
@@ -625,7 +653,7 @@ def latex_code(filestr, code_blocks, code_block_types,
     filestr = re.sub(appendix_pattern,
                      '\n\n\\\\appendix\n\n' + r'\\\g<1>{', filestr,  # the first
                      count=1)
-    filestr = re.sub(appendix_pattern, r'\\\g<1>{', filestr) # all others
+    filestr = re.sub(appendix_pattern, r'\\\g<1>{', filestr)  # all others
 
     # Replace all admon envirs by block envirs in case of beamer.
     if option('latex_title_layout=', '') == 'beamer':
@@ -635,7 +663,7 @@ def latex_code(filestr, code_blocks, code_block_types,
         # to be block envirs.)
 
         # Generate admon automatically name by name
-        #Admons = [admon[0].upper() + admon[1:] for admon in globals.admons]
+        # Admons = [admon[0].upper() + admon[1:] for admon in globals.admons]
         for admon in globals.admons:
             # First admons without title
             pattern = r'!b%s *\n' % admon
@@ -645,16 +673,16 @@ def latex_code(filestr, code_blocks, code_block_types,
             # Admons with title and fontsize spec.
             pattern = r'!b%s +\((.+?)\) +(.*)' % admon
             filestr = re.sub(pattern, lambda m: '\\begin{block}{%s }\n' %
-                             m.group(2) + ('\\footnotesize\n'
-                                           if m.group(1) == 'small'
-                                           else '\\large\n'), filestr)
+                                                m.group(2) + ('\\footnotesize\n'
+                                                              if m.group(1) == 'small'
+                                                              else '\\large\n'), filestr)
             # Admons with fontsize spec. and no title
             pattern = r'!b%s +\((.+?)\)' % admon
             filestr = re.sub(pattern, lambda m: '\\begin{block}{%s}\n' %
-                             ('' if admon == 'block' else
-                              admon[0].upper() + admon[1:]) +
-                             ('\\footnotesize\n' if m.group(1) == 'small'
-                              else '\\large\n'), filestr)
+                                                ('' if admon == 'block' else
+                                                 admon[0].upper() + admon[1:]) +
+                                                ('\\footnotesize\n' if m.group(1) == 'small'
+                                                 else '\\large\n'), filestr)
             # Admons with title
             pattern = r'!b%s +(.+)' % admon
             filestr = re.sub(pattern, r'\\begin{block}{\g<1> }', filestr)
@@ -671,9 +699,9 @@ def latex_code(filestr, code_blocks, code_block_types,
     if cr_text is not None:
         filestr = filestr.replace('Copyright COPYRIGHT_HOLDERS',
                                   cr_text)
-                                  #'Copyright ' + cr_text)
+        # 'Copyright ' + cr_text)
 
-    if not '% Mapping from exercise labels to numbers: label2numbers' in filestr: # Keep original exercise numbers from parent document?
+    if not '% Mapping from exercise labels to numbers: label2numbers' in filestr:  # Keep original exercise numbers from parent document?
 
         # Make sure exercises are surrounded by \begin{doconceexercise} and
         # \end{doconceexercise} with some exercise counter
@@ -683,12 +711,12 @@ def latex_code(filestr, code_blocks, code_block_types,
         else:
             exercise_pattern = r'subsection\*?\{(Exercise|Problem|Project) +([.\d]+)\s*: +(.+\})'
 
-        #comment_pattern = INLINE_TAGS_SUBST[format]['comment'] # only in doconce.py
+        # comment_pattern = INLINE_TAGS_SUBST[format]['comment'] # only in doconce.py
         comment_pattern = '%% %s'
         pattern = comment_pattern % envir_delimiter_lines['exercise'][0] + '\n'
 
         if latex_style in ('Springer_lnup', 'Springer_sv') and \
-            not option('exercises_as_subsections'):
+                not option('exercises_as_subsections'):
             replacement = pattern
         else:
             replacement = pattern + r"""\begin{doconceexercise}
@@ -698,10 +726,10 @@ def latex_code(filestr, code_blocks, code_block_types,
         filestr = filestr.replace(pattern, replacement)
         pattern = comment_pattern % envir_delimiter_lines['exercise'][1] + '\n'
         if latex_style == 'Springer_lnup' and \
-               not option('exercises_as_subsections'):
+                not option('exercises_as_subsections'):
             replacement = r'\end{exercise}' + '\n' + pattern
         elif latex_style == 'Springer_sv' and \
-                 not option('exercises_as_subsections'):
+                not option('exercises_as_subsections'):
             replacement = r'\end{prob}' + '\n' + pattern
         else:
             replacement = r'\end{doconceexercise}' + '\n' + pattern
@@ -712,44 +740,45 @@ def latex_code(filestr, code_blocks, code_block_types,
             # Make table of contents or list of exercises entry
             # (might have to add \phantomsection right before because
             # of the hyperref package?)
-    #        filestr, n = re.subn(exercise_pattern,
-    #                         r"""exercisesection{\g<1> \g<2>: \g<3>
-    # % table of contents with exercises:
-    #\\addcontentsline{toc}{subsection}{\g<2>: \g<3>
-    # % separate list of exercises:
-    #\\addcontentsline{loe}{doconceexercise}{\g<1> \g<2>: \g<3>
-    #""", filestr)
+            #        filestr, n = re.subn(exercise_pattern,
+            #                         r"""exercisesection{\g<1> \g<2>: \g<3>
+            # % table of contents with exercises:
+            # \\addcontentsline{toc}{subsection}{\g<2>: \g<3>
+            # % separate list of exercises:
+            # \\addcontentsline{loe}{doconceexercise}{\g<1> \g<2>: \g<3>
+            # """, filestr)
             exercise_headings = re.findall(exercise_pattern, filestr)
             if exercise_headings:
                 if option('latex_list_of_exercises=', 'none') == 'none':
                     if latex_style == 'Springer_lnup' and \
-                           not option('exercises_as_subsections'):
+                            not option('exercises_as_subsections'):
                         filestr = re.sub(exercise_pattern,
-            r"""begin{exercise}{\g<3>
-""", filestr)
+                                         r"""begin{exercise}{\g<3>
+                             """, filestr)
                     elif latex_style == 'Springer_sv' and \
-                           not option('exercises_as_subsections'):
+                            not option('exercises_as_subsections'):
                         filestr = re.sub(exercise_pattern,
-            r"""begin{prob}{\g<3>
-""", filestr)
+                                         r"""begin{prob}{\g<3>
+                             """, filestr)
                     else:
                         filestr = re.sub(exercise_pattern,
-            r"""exercisesection{\g<1> \\thedoconceexercisecounter: \g<3>
-""", filestr)
+                                         r"""exercisesection{\g<1> \\thedoconceexercisecounter: \g<3>
+                             """, filestr)
                 elif option('latex_list_of_exercises=', 'none') == 'toc':
                     filestr = re.sub(exercise_pattern,
-            r"""exercisesection{\g<1> \\thedoconceexercisecounter: \g<3>
-\\addcontentsline{toc}{subsection}{\\thedoconceexercisecounter: \g<3>
-""", filestr)
+                                     r"""exercisesection{\g<1> \\thedoconceexercisecounter: \g<3>
+                         \\addcontentsline{toc}{subsection}{\\thedoconceexercisecounter: \g<3>
+                         """, filestr)
                 elif option('latex_list_of_exercises=', 'none') == 'loe':
-                     filestr = re.sub(exercise_pattern,
-                     r"""exercisesection{\g<1> \\thedoconceexercisecounter: \g<3>
-\\addcontentsline{loe}{doconceexercise}{\g<1> \\thedoconceexercisecounter: \g<3>
-""", filestr)
+                    filestr = re.sub(exercise_pattern,
+                                     r"""exercisesection{\g<1> \\thedoconceexercisecounter: \g<3>
+                \\addcontentsline{loe}{doconceexercise}{\g<1> \\thedoconceexercisecounter: \g<3>
+                """, filestr)
                 # Treat {Exercise}/{Project}/{Problem}
                 # Pattern starts with --- begin exercise ... \subsection{
                 # but not \addcontentsline
-                exercise_pattern = r'^% --- begin exercise ---\n\\begin\{doconceexercise\}\n\\refstepcounter\{doconceexercisecounter\}\n\n\\subsection\{(.+?)$(?!\\addcont)'
+                exercise_pattern = r'^% --- begin exercise ---\n\\begin\{doconceexercise\}\n' \
+                                   r'\\refstepcounter\{doconceexercisecounter\}\n\n\\subsection\{(.+?)$(?!\\addcont)'
                 # No increment of exercise counter, but add to contents
                 replacement = r"""% --- begin exercise ---
 \begin{doconceexercise}
@@ -789,7 +818,7 @@ def latex_code(filestr, code_blocks, code_block_types,
                     # Here we take fragments normally found in a stylefile
                     # and put them in the .text file, which requires
                     # \makeatletter, \makeatother, etc, see
-                    # http://www.tex.ac.uk/cgi-bin/texfaq2html?label=atsigns
+                    # https://www.tex.ac.uk/cgi-bin/texfaq2html?label=atsigns
                     # Also, the name of the doconce exercise environment
                     # cannot be doconce:exercise (previous name), but
                     # must be doconceexercise because of the \l@... command
@@ -860,8 +889,8 @@ def latex_code(filestr, code_blocks, code_block_types,
         subex_header_postfix = option('latex_subex_header_postfix=', ')')
         # Default is a), b), but could be a:, b:, or a. b.
         filestr = re.sub(r'\\paragraph\{([a-z])\)\}',
-                     r'\\subex{\g<1>%s}' % subex_header_postfix,
-                     filestr)
+                         r'\\subex{\g<1>%s}' % subex_header_postfix,
+                         filestr)
 
     # Avoid Filename: as a new paragraph with indentation
     for filename in 'Filename', 'Filenames':
@@ -873,7 +902,7 @@ def latex_code(filestr, code_blocks, code_block_types,
     # Preface is normally an unnumbered section or chapter
     # (add \addcontentsline only if book style with chapters
     if chapters:
-        #contentsline = r'\n\markboth{\g<2>}{\g<2>}' # works only with Springer style
+        # contentsline = r'\n\markboth{\g<2>}{\g<2>}' # works only with Springer style
         contentsline = '\n' + r'\\addcontentsline{toc}{\g<1>}{\g<2>}'
     else:
         contentsline = ''
@@ -882,7 +911,9 @@ def latex_code(filestr, code_blocks, code_block_types,
 
     # Add pgf package if we have pgf or tikz files
     if re.search(r'input\{.+\.pgf\}', filestr):
-        filestr = re.sub(r'usepackage(.*?){graphicx}', 'usepackage\g<1>{graphicx}\n\\usepackage{pgf}',filestr)
+        filestr = re.sub(r'usepackage(.*?){graphicx}',
+                         'usepackage\g<1>{graphicx}\n\\usepackage{pgf}',
+                         filestr)
     if re.search(r'input\{.+\.tikz\}', filestr):
         tikz_libs_str = ''
         pgfplots_libs_str = ''
@@ -891,18 +922,18 @@ def latex_code(filestr, code_blocks, code_block_types,
             tikz_libs_str = '\n'.join([r'\\usetikzlibrary{%s}' % lib for lib in tikz_libs.split(',')]) + '\n'
         if option('pgfplots_libs='):
             pgfplots_libs = option('pgfplots_libs=')
-            pgfplots_libs_str = '\n'.join([r'\\usepgfplotslibrary{%s}' % lib for lib in pgfplots_libs.split(',')]) + '\n'
+            pgfplots_libs_str = '\n'.join(
+                [r'\\usepgfplotslibrary{%s}' % lib for lib in pgfplots_libs.split(',')]) + '\n'
         filestr = re.sub(r'usepackage(.*?){graphicx}',
                          r'usepackage\g<1>{graphicx}\n\\usepackage{pgfplots}\n'
-                         +pgfplots_libs_str
-                         +r'\\usepackage{tikz}\n'
-                         +tikz_libs_str,
+                         + pgfplots_libs_str
+                         + r'\\usepackage{tikz}\n'
+                         + tikz_libs_str,
                          filestr)
-
-
 
     # Fix % and # in link texts (-> \%, \# - % is otherwise a comment...)
     pattern = r'\\href\{\{(.+?)\}\}\{(.+?)\}'
+
     def subst(m):  # m is match object
         url = m.group(1).strip()
         text = m.group(2).strip()
@@ -910,6 +941,7 @@ def latex_code(filestr, code_blocks, code_block_types,
         text = re.sub(r'([^\\])\%', r'\g<1>\\%', text)
         text = re.sub(r'([^\\])\#', r'\g<1>\\#', text)
         return '\\href{{%s}}{%s}' % (url, text)
+
     filestr = re.sub(pattern, subst, filestr, flags=re.DOTALL)
 
     if option('device=', '') == 'paper':
@@ -924,8 +956,8 @@ def latex_code(filestr, code_blocks, code_block_types,
         def subst(m):  # m is match object
             url = m.group(1).strip()
             text = m.group(2).strip()
-            #errwarn('url:', url, 'text:', text)
-            #if not ('ftp:' in text or 'http' in text or '\\nolinkurl{' in text):
+            # errwarn('url:', url, 'text:', text)
+            # if not ('ftp:' in text or 'http' in text or '\\nolinkurl{' in text):
             if not ('ftp:' in text or 'http' in text):
                 # The link text does not display the URL so we include it
                 # in a footnote (\nolinkurl{} indicates URL: "...")
@@ -936,8 +968,8 @@ def latex_code(filestr, code_blocks, code_block_types,
                 # a bad thing since figures are floating)
 
                 cmd = '\\tufteurl{%s}' % texttt_url \
-                      if latex_style == 'tufte-book' else \
-                      '\\footnote{\\texttt{%s}}' % texttt_url
+                    if latex_style == 'tufte-book' else \
+                    '\\footnote{\\texttt{%s}}' % texttt_url
                 return_str = '\\href{{%s}}{%s}' % (url, text) + cmd
                 # See if we shall drop the footnote for programs
                 if text.startswith(r'\nolinkurl{') and no_footnote:
@@ -946,8 +978,9 @@ def latex_code(filestr, code_blocks, code_block_types,
                             return_str = '\\href{{%s}}{%s}' % (url, text)
                             break
                 return return_str
-            else: # no substitution, URL is in the link text
+            else:  # no substitution, URL is in the link text
                 return '\\href{{%s}}{%s}' % (url, text)
+
         filestr = re.sub(pattern, subst, filestr, flags=re.DOTALL)
 
     # \code{} in section headings and paragraph needs a \protect
@@ -1002,7 +1035,8 @@ def latex_code(filestr, code_blocks, code_block_types,
 
 %\linenumbers
 """, 1)
-        filestr = re.sub(r'^\bibliographystyle{.+?}', r'\bibliographystyle{elsarticle-num}', filestr, flags=re.MULTILINE)
+        filestr = re.sub(r'^\bibliographystyle{.+?}', r'\bibliographystyle{elsarticle-num}', filestr,
+                         flags=re.MULTILINE)
         # Remove date
         filestr = re.sub(r'\\begin\{center\} % date.+?\\end\{center\}', '',
                          filestr, flags=re.DOTALL)
@@ -1013,7 +1047,6 @@ def latex_code(filestr, code_blocks, code_block_types,
         # Remove date
         filestr = re.sub(r'\\begin\{center\} % date.+?\\end\{center\}', '',
                          filestr, flags=re.DOTALL)
-
 
     if option('section_numbering=', 'on') == 'off':
         filestr = filestr.replace('section{', 'section*{')
@@ -1039,6 +1072,19 @@ def latex_code(filestr, code_blocks, code_block_types,
 
     lines = filestr.splitlines()
     current_code_envir = None
+    current_code = ""
+
+    if option("execute"):
+        kernel_client = jupyter_execution.JupyterKernelClient()
+        # This enables PDF output as well as PNG for figures.
+        # We only use the PDF when available, but PNG should be added as fallback.
+        outputs, count = jupyter_execution.run_cell(
+            kernel_client,
+            "%matplotlib inline\n" +  # TODO consider removing this line, but it appears to be needed
+            "from IPython.display import set_matplotlib_formats\n" +
+            "set_matplotlib_formats('pdf', 'png')"
+        )
+
     for i in range(len(lines)):
         if lines[i].startswith('!bc'):
             words = lines[i].split()
@@ -1054,32 +1100,136 @@ def latex_code(filestr, code_blocks, code_block_types,
                 # current_code_envir is then set above
                 # There should have been checks for this in doconce.py
                 errwarn('*** error: mismatch between !bc and !ec')
-                errwarn('\n'.join(lines[i-3:i+4]))
+                errwarn('\n'.join(lines[i - 3:i + 4]))
                 _abort()
+            elif current_code_envir.endswith("out") and option("ignore_output"):
+                lines[i] = ""
+                continue
+            elif current_code_envir.endswith("-e"):
+                lines[i] = ""
+                continue
             if latex_code_style is None:
                 lines[i] = '\\b' + current_code_envir
             else:
-                begin, end = latex_code_envir(current_code_envir,
-                                              latex_code_style)
-                lines [i] = begin
-        if lines[i].startswith('!ec'):
+                begin, end = latex_code_envir(current_code_envir, latex_code_style)
+                lines[i] = begin
+        elif lines[i].startswith('!ec'):
             if current_code_envir is None:
                 # No envir set by previous !bc?
                 errwarn('*** error: mismatch between !bc and !ec')
                 errwarn('    found !ec without a preceding !bc at line')
-                errwarn('\n'.join(lines[i-8:i-1]))
+                errwarn('\n'.join(lines[i - 8:i - 1]))
                 errwarn('error line >>>', lines[i])
-                errwarn('\n'.join(lines[i+1:i+8]))
-                #errwarn('    check that every !bc matches !ec in the entire text:')
-                #errwarn(filestr)
+                errwarn('\n'.join(lines[i + 1:i + 8]))
+                # errwarn('    check that every !bc matches !ec in the entire text:')
+                # errwarn(filestr)
                 _abort()
-            if latex_code_style is None:
-                lines[i] = '\\e' + current_code_envir
+            # capture caption and label if exists
+            label = None
+            label_regex = re.compile(r"label\{(.*?)\}")
+            label_match = re.search(label_regex, lines[i + 1])
+            if label_match is not None:
+                label = label_match.group(1)
+                lines[i + 1] = re.sub(label_regex, "", lines[i + 1])
+
+            caption = None
+            caption_regex = re.compile(r"caption\{(.*?)\}")
+            caption_match = re.search(caption_regex, lines[i + 1])
+            if caption_match is not None:
+                caption = caption_match.group(1)
+                lines[i + 1] = re.sub(caption_regex, "", lines[i + 1])
+            begin, end = latex_code_envir(current_code_envir, latex_code_style)
+            if current_code_envir.endswith("out") and option("ignore_output"):
+                lines[i] = ""
+            elif current_code_envir.endswith("-e"):
+                if option("execute"):
+                    execution.run_cell(kernel_client, current_code)
+                lines[i] = ""
             else:
-                begin, end = latex_code_envir(current_code_envir,
-                                              latex_code_style)
-                lines [i] = end
+                lines[i] = end
+            if option("execute") and not current_code_envir.endswith("-t") and \
+                    not current_code_envir.endswith("out") and not current_code_envir.endswith("-e"):
+                outputs, execution_count = jupyter_execution.run_cell(kernel_client, current_code)
+                if len(outputs) > 0:
+                    ansi_escape = re.compile(r'\x1b[^m]*m')
+                    for output in outputs:
+                        begin, end = latex_code_envir(
+                            "pyout",
+                            latex_code_style
+                        )
+                        if "text" in output:
+                            text_output = ansi_escape.sub("", output["text"])
+                            lines[i] += "\n{}\n{}{}".format(
+                                begin,
+                                text_output,
+                                end
+                            )
+                        if "data" in output:
+                            data = output["data"]
+                            if "application/pdf" in data or "image/png" in data:
+                                if "application/pdf" in data:
+                                    img_data = data["application/pdf"]
+                                    suffix = ".pdf"
+                                else:
+                                    img_data = data["image/png"]
+                                    suffix = ".png"
+                                cache_folder = ".doconce_figure_cache"
+                                filename_stem = "{}/{}".format(cache_folder, str(uuid.uuid4()))
+                                if not os.path.exists(cache_folder):
+                                    os.makedirs(cache_folder)
+                                filename = "{}{}".format(filename_stem, suffix)
+                                g = open(filename, "wb")
+                                g.write(base64.decodebytes(bytes(img_data, encoding="utf-8")))
+                                g.close()
+
+                                caption_and_label = ""
+                                if caption is not None:
+                                    caption_and_label += (
+                                        "\\captionof{{figure}}{{{caption}}}\n"
+                                    ).format(caption=caption)
+                                if label is not None:
+                                    caption_and_label += (
+                                        "\\label{{{label}}}\n"
+                                    ).format(label=label)
+
+                                lines[i] += (
+                                    "\n"
+                                    "\\begin{{center}}\n"
+                                    "   \\includegraphics[width=0.8\\textwidth]{{{filename_stem}}}\n"
+                                    "   {caption_and_label}"
+                                    "\\end{{center}}\n"
+                                ).format(filename_stem=filename_stem, caption_and_label=caption_and_label)
+                            elif "text/plain" in data:  # add text only if no image
+                                text_output = ansi_escape.sub("", output["data"]["text/plain"])
+                                lines[i] += "\n{}\n{}{}".format(
+                                    begin,
+                                    text_output,
+                                    end
+                                )
+                        elif "traceback" in output:
+                            # TODO: convert ANSI escape chars to colors
+                            traceback = "\n".join(output["traceback"])
+                            traceback = ansi_escape.sub("", traceback)
+                            lines[i] += "\n{}\n{}{}".format(
+                                begin,
+                                traceback,
+                                end
+                            )
+
             current_code_envir = None
+            current_code = ""
+        else:
+            if current_code_envir is not None:
+                if current_code_envir.endswith("out") and option("ignore_output"):
+                    lines[i] = ""
+                    continue
+                current_code += lines[i] + "\n"
+                if current_code_envir.endswith("-e"):
+                    lines[i] = ""
+
+    if option("execute"):
+        jupyter_execution.stop(kernel_client)
+
     filestr = safe_join(lines, '\n')
 
     return filestr
@@ -1089,7 +1239,7 @@ def latex_figure(m):
     figure_method = 'includegraphics'  # alt: 'psfig'
     filename = m.group('filename')
     filename_stem, filename_ext = os.path.splitext(filename)
-    basename  = os.path.basename(filename)
+    basename = os.path.basename(filename)
     stem, ext = os.path.splitext(basename)
 
     # Figure on the web?
@@ -1102,12 +1252,14 @@ def latex_figure(m):
         if is_file_or_url(filename) != 'url':
             errwarn('*** error: cannot fetch latex figure %s on the net (no connection or invalid URL)' % filename)
             _abort()
-        import urllib.request, urllib.parse, urllib.error
-        urllib.request.urlretrieve(filename, basename)
+        import requests
+        r = requests.get(filename)
+        with open(basename, 'wb') as f:
+            f.write(r.content)
         filename = os.path.join(figdir, basename)
         os.chdir(this_dir)
 
-    #root, ext = os.path.splitext(filename)
+    # root, ext = os.path.splitext(filename)
     # doconce.py ensures that images are transformed to .ps or .eps
 
     # note that label{...} are substituted by \label{...} (inline
@@ -1207,7 +1359,7 @@ def latex_figure(m):
         verbatim_text_new.append(new_words)
     for from_, to_ in zip(verbatim_text, verbatim_text_new):
         caption = caption.replace(from_, to_)
-    #if sidecaption == 1:
+    # if sidecaption == 1:
     #    includeline='\sidecaption[t] ' + includeline
     if caption and latex_style == 'tufte-book':
         result = r"""
@@ -1265,8 +1417,9 @@ def latex_figure(m):
 
 \vspace{6mm}
 
-""" % (includeline) # <linebreak> will be substituted later
+""" % (includeline)  # <linebreak> will be substituted later
     return result
+
 
 def latex_movie(m):
     filename = m.group('filename')
@@ -1292,7 +1445,7 @@ def latex_movie(m):
 
         # URL to HTML viewer file must have absolute path in \href
         html_viewer_file_pattern = \
-             r'(.+?) `(.+?)`: load "`(.+?)`": "(.+?)" into a browser'
+            r'(.+?) `(.+?)`: load "`(.+?)`": "(.+?)" into a browser'
         m2 = re.search(html_viewer_file_pattern, text)
         if m2:
             html_viewer_file = m2.group(4)
@@ -1332,14 +1485,14 @@ modestbranding=1   %% no YouTube logo in control bar
     elif 'vimeo.com' in filename:
         # Can only provide a link to the Vimeo movie
         # Rename embedded files to ordinary Vimeo URL
-        filename = filename.replace('http://player.vimeo.com/video',
-                                    'http://vimeo.com')
+        filename = filename.replace('https://player.vimeo.com/video',
+                                    'https://vimeo.com')
         text += '"`%(filename)s`": "%(filename)s"' % vars()
     elif '*' in filename or '->' in filename:
         # Filename generator
         # frame_*.png
         # frame_%04d.png:0->120
-        # http://some.net/files/frame_%04d.png:0->120
+        # https://some.net/files/frame_%04d.png:0->120
         if filename.startswith('http'):
             # Cannot handle animation of frames on the web,
             # make a separate html file that can play the animation
@@ -1347,10 +1500,10 @@ modestbranding=1   %% no YouTube logo in control bar
         else:
             from . import DocWriter
             header, jscode, form, footer, frames = \
-                    DocWriter.html_movie(filename)
+                DocWriter.html_movie(filename)
             # Make a good estimate of the frame rate: it takes 30 secs
             # to run the animation: rate*30 = no of frames
-            framerate = int(old_div(len(frames),30.))
+            framerate = int(old_div(len(frames), 30.))
             commands = [r'\includegraphics[width=0.9\textwidth]{%s}' %
                         f for f in frames]
             commands = ('\n\\newframe\n').join(commands)
@@ -1366,7 +1519,7 @@ modestbranding=1   %% no YouTube logo in control bar
         # Local movie file or URL (all the methods below handle
         # either local files or URLs)
 
-        label = filename.replace('/', '').replace('.', '').replace('-','')
+        label = filename.replace('/', '').replace('.', '').replace('-', '')
         stem, ext = os.path.splitext(filename)
 
         if movie == 'multimedia':
@@ -1498,6 +1651,7 @@ Movie \arabic{doconce:movie:counter}: %s
     text += '\\end{doconce:movie}\n'
     return text
 
+
 def latex_linebreak(m):
     text = m.group('text')
     if text:
@@ -1506,12 +1660,13 @@ def latex_linebreak(m):
         # no text, use \vspace instead
         return '\n\n\\vspace{3mm}\n\n'
 
+
 def latex_footnotes(filestr, format, pattern_def, pattern_footnote):
     # Collect all footnote definitions in a dict (for insertion in \footnote{})
     footnotes = {name: text for name, text, dummy in
-                 re.findall(pattern_def, filestr, flags=re.MULTILINE|re.DOTALL)}
+                 re.findall(pattern_def, filestr, flags=re.MULTILINE | re.DOTALL)}
     # Remove definitions
-    filestr = re.sub(pattern_def, '', filestr, flags=re.MULTILINE|re.DOTALL)
+    filestr = re.sub(pattern_def, '', filestr, flags=re.MULTILINE | re.DOTALL)
 
     def subst_footnote(m):
         name = m.group('name')
@@ -1536,6 +1691,7 @@ def latex_footnotes(filestr, format, pattern_def, pattern_footnote):
     filestr = re.sub(pattern_footnote, subst_footnote, filestr)
     return filestr
 
+
 def latex_table(table):
     latex_table_format = option('latex_table_format=', 'quote')
     if latex_table_format == 'left':
@@ -1552,10 +1708,10 @@ def latex_table(table):
 
     column_width = table_analysis(table['rows'])
 
-    #ncolumns = max(len(row) for row in table['rows'])
+    # ncolumns = max(len(row) for row in table['rows'])
     ncolumns = len(column_width)
-    #import pprint; pprint.pprint(table)
-    column_spec = table.get('columns_align', 'c'*ncolumns)
+    # import pprint; pprint.pprint(table)
+    column_spec = table.get('columns_align', 'c' * ncolumns)
     column_spec = column_spec.replace('|', '')
     if len(column_spec) != ncolumns:  # (allow | separators)
         errwarn('Table has column alignment specification: %s, but %d columns'
@@ -1567,9 +1723,9 @@ def latex_table(table):
     # we do not support | in headings alignments (could be fixed,
     # by making column_spec not a string but a list so the
     # right elements are picked in the zip-based loop)
-    heading_spec = table.get('headings_align', 'c'*ncolumns)#.replace('|', '')
+    heading_spec = table.get('headings_align', 'c' * ncolumns)  # .replace('|', '')
     if len(heading_spec) != ncolumns:
-        errwarn('Table has headings alignment specification: %s, '\
+        errwarn('Table has headings alignment specification: %s, ' \
                 'but %d columns' % (heading_spec, ncolumns))
         errwarn('Table with rows')
         errwarn(table['rows'])
@@ -1596,8 +1752,8 @@ def latex_table(table):
         else:
             # check if this is a headline between two horizontal rules:
             if i == 1 and \
-               table['rows'][i-1] == ['horizontal rule'] and \
-               table['rows'][i+1] == ['horizontal rule']:
+                    table['rows'][i - 1] == ['horizontal rule'] and \
+                    table['rows'][i + 1] == ['horizontal rule']:
                 headline = True
                 # Empty column headings?
                 skip_headline = max([len(column.strip())
@@ -1616,7 +1772,7 @@ def latex_table(table):
                     for i in range(len(row)):
                         m = re.search(verbatim_pattern, row[i])
                         if m:
-                            #row[i] = re.sub(verbatim_pattern,
+                            # row[i] = re.sub(verbatim_pattern,
                             #                r'texttt{%s}' % m.group(1),
                             #                row[i])
                             # (\code translates to \Verb, which is allowed here)
@@ -1639,6 +1795,7 @@ def latex_table(table):
         s += '\n\\vspace{4mm}\n\n}\n'
     s += table_align[1] + '\n\n' + r'\noindent' + '\n'
     return s
+
 
 def latex_title(m):
     title = m.group('subst')
@@ -1677,7 +1834,7 @@ def latex_title(m):
 % ----------------- title -------------------------
 """
     if title_layout == "std" or \
-           latex_style in ('siamltex', 'siamltexmm', 'elsevier', 'Springer_sv', 'Springer_lnup'):
+            latex_style in ('siamltex', 'siamltexmm', 'elsevier', 'Springer_sv', 'Springer_lnup'):
         if section_headings in ("blue", "strongblue"):
             text += r"""
 \title%(short_title_cmd)s{{\color{seccolor} %(title)s}}
@@ -1746,9 +1903,9 @@ def latex_title(m):
 """ % vars()
     return text
 
+
 def latex_author(authors_and_institutions, auth2index,
                  inst2index, index2inst, auth2email):
-
     def email(author, prefix='', parenthesis=True):
         address = auth2email[author]
         if address is None:
@@ -1760,7 +1917,7 @@ def latex_author(authors_and_institutions, auth2index,
                 lp, rp = '', ''
             address = address.replace('_', r'\_')
             name, place = address.split('@')
-            #email_text = r'%s %s\texttt{%s} at \texttt{%s}%s' % (prefix, lp, name, place, rp)
+            # email_text = r'%s %s\texttt{%s} at \texttt{%s}%s' % (prefix, lp, name, place, rp)
             email_text = r'%s %s\texttt{%s@%s}%s' % \
                          (prefix, lp, name, place, rp)
         return email_text
@@ -1822,7 +1979,7 @@ def latex_author(authors_and_institutions, auth2index,
 {\Large\textsf{%s%s}}\\ [3mm]
 """ % (author, email_text)
         else:
-            for author in auth2index: # correct order of authors
+            for author in auth2index:  # correct order of authors
                 email_text = email(author)
                 text += r"""
 {\Large\textsf{%s${}^{%s}$%s}}\\ [3mm]
@@ -1843,7 +2000,7 @@ def latex_author(authors_and_institutions, auth2index,
 \author{%s}
 %% Short version of authors:
 %%\authorrunning{...}
-""" % (' and ' .join([author for author in auth2index]))
+""" % (' and '.join([author for author in auth2index]))
 
         text += r"\institute{"
         a_list = []
@@ -1869,7 +2026,7 @@ def latex_author(authors_and_institutions, auth2index,
         inst_command = []
         institutions = [index2inst[i] for i in index2inst]
         text += r'\institute{' + '\n\\and\n'.join(
-            [inst + r'\inst{%d}' % (i+1)
+            [inst + r'\inst{%d}' % (i + 1)
              for i, inst in enumerate(institutions)]) + '}'
     elif title_layout == 'doconce_heading' or latex_style == 'elsevier':
         if one_author_at_one_institution:
@@ -1887,7 +2044,7 @@ def latex_author(authors_and_institutions, auth2index,
 
     """ % (author, email_text)
         else:
-            for author in auth2index: # correct order of authors
+            for author in auth2index:  # correct order of authors
                 email_text = email(author)
                 if latex_style == 'elsevier':
                     institutions = ','.join(['inst'+str(i) for i in auth2index[author]])
@@ -1932,6 +2089,7 @@ def latex_author(authors_and_institutions, auth2index,
 """
     return text
 
+
 def latex_date(m):
     title_layout = option('latex_title_layout=', 'doconce_heading')
     latex_style = option('latex_style=', 'std')
@@ -1955,7 +2113,6 @@ def latex_date(m):
 %% --- begin date ---
 \ \\ [10mm]
 {\large\textsf{%(date)s}}
-
 \end{center}
 %% --- end date ---
 \vfill
@@ -1979,6 +2136,7 @@ def latex_date(m):
 \setpagesize
 """
     return text
+
 
 def latex_abstract(m):
     atype = m.group('type').strip().lower()
@@ -2034,6 +2192,7 @@ def latex_abstract(m):
     abstract += '\n%(rest)s' % vars()
     return abstract
 
+
 def latex_ref_and_label(section_label2title, format, filestr):
     # First, fix ref{} references (and make them fancy with pagenumber
     # if desired).
@@ -2069,7 +2228,7 @@ def latex_ref_and_label(section_label2title, format, filestr):
     _ref_pattern = r'\\v?ref\{(.+?)\}'
     print("Final all", _label_pattern)
     labels = re.findall(_label_pattern, filestr)
-    refs   = re.findall(_ref_pattern,   filestr)
+    refs = re.findall(_ref_pattern, filestr)
     external_refs = []
     for ref in refs:
         if ref not in labels:
@@ -2081,24 +2240,24 @@ def latex_ref_and_label(section_label2title, format, filestr):
 
     # perform a substitution of "LaTeX" (and ensure \LaTeX is not there):
     filestr = re.sub(fix_latex_command_regex(r'\LaTeX({})?',
-                               application='match'), 'LaTeX', filestr)
-    #filestr = re.sub('''([^"'`*_A-Za-z0-9-])LaTeX([^"'`*_A-Za-z0-9-])''',
+                                             application='match'), 'LaTeX', filestr)
+    # filestr = re.sub('''([^"'`*_A-Za-z0-9-])LaTeX([^"'`*_A-Za-z0-9-])''',
     #                 r'\g<1>{\LaTeX}\g<2>', filestr)
-    #filestr = re.sub(r'''([^"'`*/-])\bLaTeX\b([^"'`*/-])''',
+    # filestr = re.sub(r'''([^"'`*/-])\bLaTeX\b([^"'`*/-])''',
     #                 r'\g<1>{\LaTeX}\g<2>', filestr)
     # This one is not good enough for verbatim `LaTeX`:
-    #filestr = re.sub(r'\bLaTeX\b', r'{\LaTeX}', filestr)
+    # filestr = re.sub(r'\bLaTeX\b', r'{\LaTeX}', filestr)
     non_chars = '''"'`*/_-'''
     filestr = re.sub(r'''([^%s])\bLaTeX\b([^%s])''' % (non_chars, non_chars),
                      r'\g<1>{\\LaTeX}\g<2>', filestr)
     filestr = re.sub(r'''([^%s])\bpdfLaTeX\b([^%s])''' % (non_chars, non_chars),
                      fix_latex_command_regex(
-                     r'\g<1>\\textsc{pdf}{\\LaTeX}\g<2>',
-                     application='replacement'), filestr)
-    filestr = re.sub(r'''([^%s])\bBibTeX\b([^%s])'''% (non_chars, non_chars),
+                         r'\g<1>\\textsc{pdf}{\\LaTeX}\g<2>',
+                         application='replacement'), filestr)
+    filestr = re.sub(r'''([^%s])\bBibTeX\b([^%s])''' % (non_chars, non_chars),
                      fix_latex_command_regex(
-                     r'\g<1>\\textsc{Bib}\\negthinspace{\\TeX}\g<2>',
-                     application='replacement'), filestr)
+                         r'\g<1>\\textsc{Bib}\\negthinspace{\\TeX}\g<2>',
+                         application='replacement'), filestr)
     # Fix \idx{{\LaTeX}...} to \idx{LaTeX...} (otherwise all the
     # LaTeX index keywords appear at the beginning because of {)
     filestr = re.sub(r'idx\{\{\\LaTeX\}', r'idx{LaTeX', filestr)
@@ -2107,14 +2266,14 @@ def latex_ref_and_label(section_label2title, format, filestr):
 
     # handle & (Texas A&M -> Texas A{\&}M):
     # (NOTE: destroys URLs with & - and potentially align math envirs)
-    #filestr = re.sub(r'([A-Za-z])\s*&\s*([A-Za-z])', r'\g<1>{\&}\g<2>', filestr)
+    # filestr = re.sub(r'([A-Za-z])\s*&\s*([A-Za-z])', r'\g<1>{\&}\g<2>', filestr)
 
     # handle non-English characters:
     chars = {'æ': r'{\ae}', 'ø': r'{\o}', 'å': r'{\aa}',
              'Æ': r'{\AE}', 'Ø': r'{\O}', 'Å': r'{\AA}',
              }
     # Not implemented
-    #for c in chars:
+    # for c in chars:
     #    filestr, n = re.subn(c, chars[c], filestr)
     #    errwarn('%d subst of %s' % (n, c))
     #    #filestr = filestr.replace(c, chars[c])
@@ -2150,13 +2309,14 @@ def latex_ref_and_label(section_label2title, format, filestr):
 
     return filestr
 
+
 def latex_index_bib(filestr, indices, citations, pubfile, pubdata):
     # About latex technologies for bib:
-    # http://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib
+    # https://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib
     # May consider moving to biblatex if it is compatible enough.
 
-    #errwarn('indices:', indices)
-    #errwarn('citations:', citations)
+    # errwarn('indices:', indices)
+    # errwarn('citations:', citations)
     filestr = filestr.replace('cite{', r'\cite{')
     filestr = filestr.replace('cite[', r'\cite[')
     # Fix spaces after . inside cite[] and insert ~
@@ -2174,7 +2334,7 @@ def latex_index_bib(filestr, indices, citations, pubfile, pubdata):
                 # Verbatim typesetting (cannot use \Verb!...! in an index)
                 # Replace the first string within backticks `...` with texttt and ensure right sorting
                 pattern_replacement = r'\g<1>\g<2>@\g<1>{\rm\texttt{\g<2>}}\g<3>'
-                if i==1: #subentry
+                if i == 1:  # subentry
                     pattern_replacement = r'\g<1>\g<2>@{\rm\texttt{\g<2>}}\g<3>'
                 pattern_replacement = fix_latex_command_regex(pattern_replacement, application='replacement')
                 word = re.sub(r'^(.*?)`([^`]+?)`(.*)$', pattern_replacement, word)
@@ -2253,9 +2413,9 @@ def latex_exercise(exer):
     # list of exercises, etc.) is constructed in latex_code as
     # final fixes of the document.
     return doconce_exercise_output(
-           exer,
-           include_numbering=include_numbering_of_exercises,
-           include_type=include_numbering_of_exercises)
+        exer,
+        include_numbering=include_numbering_of_exercises,
+        include_type=include_numbering_of_exercises)
 
 
 def latex_box(block, format, text_size='normal'):
@@ -2274,14 +2434,17 @@ def latex_box(block, format, text_size='normal'):
 \fbox{\TheSbox}
 \end{center}""" % (block)
 
+
 def latex_quote(block, format, text_size='normal'):
     return r"""
 \begin{quote}
 %s
 \end{quote}
-""" % (block) # no indentation in case block has code
+""" % (block)  # no indentation in case block has code
+
 
 latexfigdir = 'latex_figs'
+
 
 def _get_admon_figs(filename):
     if filename is None:
@@ -2300,7 +2463,7 @@ def _get_admon_figs(filename):
         from . import doconce
         doconce_dir = os.path.dirname(doconce.__file__)
         doconce_datafile = os.path.join(doconce_dir, datafile)
-        #errwarn('copying admon figures from %s to subdirectory %s' % \)
+        # errwarn('copying admon figures from %s to subdirectory %s' % \)
         #      (doconce_datafile, latexfigdir)
         shutil.copy(doconce_datafile, os.curdir)
         import zipfile
@@ -2313,20 +2476,22 @@ def _get_admon_figs(filename):
     if not os.path.isfile(os.path.join(latexfigdir, filename)):
         shutil.copy(os.path.join(latexfigdir_all, filename), latexfigdir)
 
+
 _admon_latex_figs = dict(
     grayicon=dict(
         warning='small_gray_warning',
         question='small_gray_question2',  # 'small_gray_question3'
         notice='small_gray_notice',
         summary='small_gray_summary',
-        ),
+    ),
     yellowicon=dict(
         warning='small_yellow_warning',
         question='small_yellow_question',
         notice='small_yellow_notice',
         summary='small_yellow_summary',
-        ),
-    )
+    ),
+)
+
 
 def get_admon_figname(admon_tp, admon_name):
     if admon_tp in _admon_latex_figs:
@@ -2339,6 +2504,7 @@ def get_admon_figname(admon_tp, admon_name):
             return admon_name
         else:
             return None
+
 
 # Generate Python functions for admons
 for _admon in globals.admons:
@@ -2484,10 +2650,9 @@ def latex_%(_admon)s(text_block, format, title='%(_Admon)s', text_size='normal')
     exec(text)
 
 
-
 def _latex_admonition_old_does_not_work_with_verbatim(
-    admon, admon_name, figname, rgb):
-    if isinstance(rgb[0], (float,int)):
+        admon, admon_name, figname, rgb):
+    if isinstance(rgb[0], (float, int)):
         rgb = [str(v) for v in rgb]
     text = '''
 def latex_%s(block, format, title='%s'):
@@ -2511,8 +2676,9 @@ def latex_%s(block, format, title='%s'):
 ''' % (admon, admon_name, admon, admon, ', '.join(rgb), admon, latexfigdir, figname)
     return text
 
+
 # Dropped this since it cannot work with verbatim computer code
-#for _admon in ['warning', 'question', 'notice', 'summary']:
+# for _admon in ['warning', 'question', 'notice', 'summary']:
 #    exec(_latex_admonition(_admon, _admon.upper()[0] + _admon[1:],
 #                           _admon, _admon2rgb[_admon]))
 
@@ -2535,7 +2701,7 @@ def latex_inline_comment(m):
     https://github.com/CriticMarkup/CriticMarkup-toolkit
 
     Can use soul package to support corrections as part of comments:
-    http://texdoc.net/texmf-dist/doc/latex/soul/soul.pdf
+    https://texdoc.net/texmf-dist/doc/latex/soul/soul.pdf
 
     Typical commands:
     \newcommand{\replace}[2]{{\color{red}\text{\st{#1} #2}}}
@@ -2552,8 +2718,8 @@ def latex_inline_comment(m):
     Can have a doconce command for turning such correction comments
     into new, valid text (doing the corrections).
     """
-    #import textwrap
-    #caption_comment = textwrap.wrap(comment, width=60,
+    # import textwrap
+    # caption_comment = textwrap.wrap(comment, width=60,
     #                                break_long_words=False)[0]
     caption_comment = ' '.join(comment.split()[:4])  # for toc for todonotes
 
@@ -2571,7 +2737,7 @@ def latex_inline_comment(m):
         return r' \textcolor{red}{ (\textbf{edit %s}:) %s}' % (name[4:], comment)
     else:
         # Ordinary name
-        comment = ' '.join(comment.splitlines()) # '\s->\s' -> ' -> '
+        comment = ' '.join(comment.splitlines())  # '\s->\s' -> ' -> '
         if ' -> ' in comment:
             # Replacement
             if comment.count(' -> ') != 1:
@@ -2601,8 +2767,9 @@ def latex_inline_comment(m):
                 return r'\longinlinecomment{%s}{ %s }{ %s }' % \
                        (name, comment, caption_comment)
 
+
 def latex_quiz(quiz):
-    part_of_exercise = quiz.get('embedding', 'None') in ['exercise',]
+    part_of_exercise = quiz.get('embedding', 'None') in ['exercise', ]
     choice_tp = option('quiz_choice_prefix=', 'letter+checkbox')
     text = '\n\\begin{doconcequiz}\n\\refstepcounter{doconcequizcounter}\n'
     text += '\\label{%s}\n\n' % quiz.get('label', 'quiz:%d' % quiz['no'])
@@ -2613,14 +2780,14 @@ def latex_quiz(quiz):
     else:
         # no heading, avoid indent
         text += '\n\\noindent'
-    text += '\n' +  quiz['question']
+    text += '\n' + quiz['question']
     text += '\n\n\\vspace{2mm}\n\n'  # some space down to choices
     import string
     for i, choice in enumerate(quiz['choices']):
         if 'letter' in choice_tp:
             text += '\\textbf{%s}. ' % string.ascii_uppercase[i]
         elif 'number' in choice_tp:
-            text += '\\textbf{%s}. ' % str(i+1)
+            text += '\\textbf{%s}. ' % str(i + 1)
         if option('without_answers') and option('without_solutions'):
             if 'box' in choice_tp:
                 text += '$\Box$ '
@@ -2637,7 +2804,7 @@ def latex_quiz(quiz):
             correct = [string.ascii_uppercase[i] for i in correct]
         else:
             # keep number but add 1
-            correct = [str(i+1) for i in correct]
+            correct = [str(i + 1) for i in correct]
         correct = ', '.join(correct)
         text += r"""
 %% %s
@@ -2657,7 +2824,7 @@ def latex_quiz(quiz):
             if 'letter' in choice_tp:
                 solution += '\\textbf{%s}: ' % string.ascii_uppercase[i]
             else:
-                solution += '\\textbf{%s}: ' % str(i+1)
+                solution += '\\textbf{%s}: ' % str(i + 1)
             solution += choice[0].capitalize() + '. '
             if len(choice) == 3:
                 solution += choice[2]
@@ -2699,9 +2866,10 @@ def latex_quiz(quiz):
         for i, choice in enumerate(quiz['choices']):
     """
     '''
-    #text = fix_latex_command_regex(text, 'replacement') # only for re.sub
+    # text = fix_latex_command_regex(text, 'replacement') # only for re.sub
     # but that won't work in other formats
     return text
+
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -2799,19 +2967,19 @@ def define(FILENAME_EXTENSION,
     ending = '\n\n\\noindent\n'
     LIST['latex'] = {
         'itemize':
-        {'begin': r'\begin{itemize}' + '\n',
-         'item': r'\item', 'end': r'\end{itemize}' + ending},
+            {'begin': r'\begin{itemize}' + '\n',
+             'item': r'\item', 'end': r'\end{itemize}' + ending},
 
         'enumerate':
-        {'begin': r'\begin{enumerate}' + '\n', 'item': r'\item',
-         'end': r'\end{enumerate}' + ending},
+            {'begin': r'\begin{enumerate}' + '\n', 'item': r'\item',
+             'end': r'\end{enumerate}' + ending},
 
         'description':
-        {'begin': r'\begin{description}' + '\n', 'item': r'\item[%s]',
-         'end': r'\end{description}' + ending},
+            {'begin': r'\begin{description}' + '\n', 'item': r'\item[%s]',
+             'end': r'\end{description}' + ending},
 
         'separator': '\n',
-        }
+    }
 
     CODE['latex'] = latex_code
     ARGLIST['latex'] = {
@@ -2827,7 +2995,7 @@ def define(FILENAME_EXTENSION,
         'instance variable': r'instance variable',
         'class variable': r'class variable',
         'module variable': r'module variable',
-        }
+    }
 
     FIGURE_EXT['latex'] = {'search': ('.eps', '.ps'), 'convert': ('.eps',)}
 
@@ -2854,7 +3022,7 @@ def define(FILENAME_EXTENSION,
         errwarn('*** error: --latex_style=Springer_sv requires --latex_title_layout=std')
         _abort()
     if latex_style in ('Springer_sv', 'Springer_lnup') and \
-       option('latex_list_of_exercises=', 'none') != 'none':
+            option('latex_list_of_exercises=', 'none') != 'none':
         errwarn('*** error: --latex_style=%s requires --latex_list_of_exercises=none' % latex_style)
         _abort()
 
@@ -2863,13 +3031,13 @@ def define(FILENAME_EXTENSION,
         toc_part += r"""
 \tableofcontents
 """
-    if latex_style in  ('Springer_lncse', 'Springer_lnup'):
+    if latex_style in ('Springer_lncse', 'Springer_lnup'):
         toc_part += r"""
 \contentsline{chapter}{\refname}{%(bib_page)s}{chapter.Bib}
 \contentsline{chapter}{Index}{%(idx_page)s}{chapter.Index}
 """ % vars()
     if has_inline_comments and not option('skip_inline_comments') \
-        and option('latex_todonotes'):
+            and option('latex_todonotes'):
         toc_part += r"""
 \listoftodos[List of inline comments]
 """
@@ -2926,7 +3094,7 @@ def define(FILENAME_EXTENSION,
 % #ifdef PTEX2TEX_EXPLANATION
 %%
 %% The file follows the ptex2tex extended LaTeX format, see
-%% ptex2tex: http://code.google.com/p/ptex2tex/
+%% ptex2tex: https://code.google.com/p/ptex2tex/
 %%
 %% Run
 %%      ptex2tex myfile
@@ -2934,7 +3102,7 @@ def define(FILENAME_EXTENSION,
 %%      doconce ptex2tex myfile
 %%
 %% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
-%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% (The ptex2tex program: https://code.google.com/p/ptex2tex)
 %% Many preprocess options can be added to ptex2tex or doconce ptex2tex
 %%
 %%      ptex2tex -DMINTED myfile
@@ -3182,7 +3350,8 @@ justified,
 """
     # Inline comments with corrections?
     if '[del:' in filestr or '[add:' in filestr or '[,]' in filestr or \
-       re.search(r'''\[(?P<name>[ A-Za-z0-9_'+-]+?):(?P<space>\s+)(?P<correction>.*? -> .*?)\]''', filestr, flags=re.DOTALL|re.MULTILINE):
+            re.search(r'''\[(?P<name>[ A-Za-z0-9_'+-]+?):(?P<space>\s+)(?P<correction>.*? -> .*?)\]''', filestr,
+                      flags=re.DOTALL | re.MULTILINE):
         INTRO['latex'] += r"""
 % Tools for marking corrections
 \usepackage{soul}
@@ -3226,7 +3395,7 @@ justified,
             if '*' in filename or '->' in filename:
                 animated_files = True
             if '.mp4' in filename.lower() or '.flv' in filename.lower():
-                pass # ok, media9 can be used
+                pass  # ok, media9 can be used
             else:
                 non_flv_mp4_files = True
         if non_flv_mp4_files and movie == 'media9':
@@ -3308,7 +3477,7 @@ justified,
 """
             # Is a cod/pro background requested?
             # See also tcolorbox as an alternative for background
-            # colors: http://tex.stackexchange.com/questions/173850/problem-in-adding-a-background-color-in-a-minted-environment
+            # colors: https://tex.stackexchange.com/questions/173850/problem-in-adding-a-background-color-in-a-minted-environment
             pattern = '-(yellow|red|blue|gray)'
             if re.search(pattern, latex_code_style):
                 cod_pro_def = r"""
@@ -3364,7 +3533,7 @@ justified,
 """
                 if not '!bbox' in filestr:
                     if 'numbers' in str(latex_code_style) or \
-                       'linenos' in str(latex_code_style):
+                            'linenos' in str(latex_code_style):
                         fboxsep = '2mm'
                     else:
                         fboxsep = '-1.5mm'
@@ -3380,13 +3549,13 @@ justified,
                 # \unskip removes the skip, \medskip adds some, such that
                 # the skip below is smaller than the one above
                 # Use .ptex2tex.cfg to get the background box very tight
-#                INTRO['latex'] += r"""
-#% Alternative (\vskip with positive skip adds colored space)
-#%\newenvironment{cod}[1]{%
-#%   \def\FrameCommand{\colorbox{#1}}%
-#%   \MakeFramed{\FrameRestore}\vskip 0mm}%
-#% {\vskip 0mm\endMakeFramed}
-#"""
+                # INTRO['latex'] += r"""
+                #% Alternative (\vskip with positive skip adds colored space)
+                #%\newenvironment{cod}[1]{%
+                #%   \def\FrameCommand{\colorbox{#1}}%
+                #%   \MakeFramed{\FrameRestore}\vskip 0mm}%
+                #% {\vskip 0mm\endMakeFramed}
+                #"""
             INTRO['latex'] += '\n'
             if 'lst' in latex_code_style:
                 INTRO['latex'] += r'\usepackage{listingsutf8}' + '\n'
@@ -3394,14 +3563,14 @@ justified,
             if 'pyg' in latex_code_style:
                 INTRO['latex'] += r'\usepackage{minted}' + '\n'
                 pygm_style = option('minted_latex_style=', default='default')
-                legal_pygm_styles = 'monokai manni rrt perldoc borland colorful default murphy vs trac tango fruity autumn bw emacs vim pastie friendly native'.split()
+                legal_pygm_styles = 'monokai manni rrt perldoc borland colorful default murphy vs trac tango fruity ' \
+                                    'autumn bw emacs vim pastie friendly native'.split()
                 if pygm_style not in legal_pygm_styles:
                     errwarn('*** error: wrong minted style "%s"' % pygm_style)
                     errwarn('    must be among\n%s' % str(legal_pygm_styles)[1:-1])
                     _abort()
 
                 INTRO['latex'] += r'\usemintedstyle{%s}' % pygm_style + '\n'
-
 
     # Any verbatim construction? `word` or files=...
     m1 = re.search(INLINE_TAGS['verbatim'], filestr, flags=re.MULTILINE)
@@ -3556,8 +3725,12 @@ justified,
         if has_footnotes_with_verbatim:
             if 'usepackage{t2do}' in INTRO['latex'] or 'usepackage{t4do}' in INTRO['latex']:
                 errwarn('*** warning: footnotes with verbatim has strange typesetting with svmonodo/t2do/t4do styles')
-                INTRO['latex'] += '\n% Must use \\VerbatimFootnotes since there are footnotes with inline\n% verbatim text, but \\VerbatimFootnotes interfers\n%with svmonodo/t2do/t4do styles so that the footmisc package settings\n% do not work and the typesetting looks strange...'
-            INTRO['latex'] += '\n%\\VerbatimFootnotes must come after hyperref and footmisc packages\n\\VerbatimFootnotes\n'
+                INTRO['latex'] += '\n% Must use \\VerbatimFootnotes since there are footnotes with inline\n' \
+                                  '% verbatim text, but \\VerbatimFootnotes interfers\n%with svmonodo/t2do/t4do ' \
+                                  'styles so that the footmisc package settings\n% do not work and the ' \
+                                  'typesetting looks strange...'
+            INTRO['latex'] += '\n%\\VerbatimFootnotes must come after hyperref and footmisc packages\n' \
+                              '\\VerbatimFootnotes\n'
 
     if 'FIGURE:' in filestr:
         if latex_style not in ('Springer_sv', 'Springer_lnup'):
@@ -3713,10 +3886,10 @@ justified,
 
 """
         # Not necessary:
-        #filestr = re.sub('^(=====.+?=====\s+)', '% #ifdef FANCY_HEADER\n\\pagestyle{fancy}\n% #endif\n\n\g<1>', filestr, count=1, flags=re.MULTILINE)
+        # filestr = re.sub('^(=====.+?=====\s+)', '% #ifdef FANCY_HEADER\n\\pagestyle{fancy}\n% #endif\n\n\g<1>',
+        # filestr, count=1, flags=re.MULTILINE)
         # Can insert above if section_headings == "blue" and have a
         # blue typesetting of the section if that is not done automatically...
-
 
     # Admonitions
     if re.search(r'^!b(%s)' % '|'.join(globals.admons), filestr, flags=re.MULTILINE):
@@ -3733,7 +3906,7 @@ justified,
         # graybox2 color
         gray2 = (0.94, 0.94, 0.94)
         # grayicon color
-        gray3 = (0.91, 0.91, 0.91)   # lighter gray
+        gray3 = (0.91, 0.91, 0.91)  # lighter gray
         gray4 = 'black!25!white!25'
         red1 = 'red!10!white'
         green1 = 'darkgreen!20!white'
@@ -3746,13 +3919,13 @@ justified,
         multiple_colors = False
         if latex_admon_color is not None:
             for a in globals.admons:
-                if a+':' in latex_admon_color:
+                if a + ':' in latex_admon_color:
                     multiple_colors = True
                     break
         # Named admon color? Set corresponding values
         if latex_admon_color == 'colors1':
-           multiple_colors = True
-           latex_admon_color = 'warning:red1;notice:blue1;question:orange1;summary:green1;block:yellow1'
+            multiple_colors = True
+            latex_admon_color = 'warning:red1;notice:blue1;question:orange1;summary:green1;block:yellow1'
         if multiple_colors:
             # Syntax: --latex_admon_color=warning:(r,g,b);question:blue1
             latex_admon_colors = [c.split(':') for c in
@@ -3783,7 +3956,7 @@ justified,
                 # eval(c) did not work, treat c as valid color
                 pass
         elif latex_admon_color is not None and \
-             not latex_admon_color.endswith('style'):
+                not latex_admon_color.endswith('style'):
             try:
                 latex_admon_colors = [[a, eval(latex_admon_color)] for a in globals.admons]
             except SyntaxError:
@@ -3804,9 +3977,9 @@ justified,
                     question=yellow1,
                     notice=yellow1,
                     summary=yellow1,
-                    #block=_gray2,
+                    # block=_gray2,
                     block=yellow1,
-                    )
+                )
             for admon in globals.admons:
                 admon_color['mdfbox'][admon] = gray1
                 admon_color['graybox2'][admon] = gray2
@@ -3866,16 +4039,17 @@ justified,
 \let\@mpfootnotetext\textbookcls@mpfootnotetext
 \makeatother
 """
-        else: # mdfbox
+        else:  # mdfbox
             packages = r'\usepackage[framemethod=TikZ]{mdframed}'
         INTRO['latex'] += '\n' + packages + '\n\n% --- begin definitions of admonition environments ---\n'
 
         for style in admon_styles:
             for admon in globals.admons:
                 color = admon_color[style][admon]
-                if isinstance(color, (tuple,list)):
+                if isinstance(color, (tuple, list)):
                     rgb = ','.join([str(cl) for cl in color])
-                    admon_color[style][admon] = r'\definecolor{%(latex_admon)s_%(admon)s_background}{rgb}{%(rgb)s}' % vars()
+                    admon_color[style][
+                        admon] = r'\definecolor{%(latex_admon)s_%(admon)s_background}{rgb}{%(rgb)s}' % vars()
                 else:
                     admon_color[style][admon] = r'\colorlet{%(latex_admon)s_%(admon)s_background}{%(color)s}' % vars()
 
@@ -3940,9 +4114,9 @@ justified,
         elif latex_admon == 'paragraph':
             pass  # we use plain \paragraph for this
         #            INTRO['latex'] += r"""
-        #% Admonition style "paragraph" is just a plain paragraph
-        #\newenvironment{paragraphadmon}[1][]{\paragraph{#1}}{}
-        #"""
+        # % Admonition style "paragraph" is just a plain paragraph
+        # \newenvironment{paragraphadmon}[1][]{\paragraph{#1}}{}
+        # """
 
         # Define environments depending on the admon type
         for admon in globals.admons:
@@ -3950,7 +4124,8 @@ justified,
 
             # Figure files are copied when necessary
 
-            graphics_colors1 = r'\includegraphics[height=0.3in]{latex_figs/%s}\ \ \ ' % get_admon_figname('colors1', admon)
+            graphics_colors1 = r'\includegraphics[height=0.3in]{latex_figs/%s}\ \ \ ' % get_admon_figname('colors1',
+                                                                                                          admon)
             graphics_colors2 = r"""\begin{wrapfigure}{l}{0.07\textwidth}
 \vspace{-13pt}
 \includegraphics[width=0.07\textwidth]{latex_figs/%s}
@@ -3959,7 +4134,7 @@ justified,
             graphics_grayicon = r"""\begin{wrapfigure}{l}{0.07\textwidth}
 \vspace{-13pt}
 \includegraphics[width=0.07\textwidth]{latex_figs/%s}
-\end{wrapfigure}"""% get_admon_figname('grayicon', admon)
+\end{wrapfigure}""" % get_admon_figname('grayicon', admon)
 
             graphics_yellowicon = r"""\begin{wrapfigure}{l}{0.07\textwidth}
 \vspace{-13pt}
@@ -4129,17 +4304,20 @@ justified,
             # Let admon title background and border reflect the blue sections
             # unless a color is specified
             INTRO['latex'] = INTRO['latex'].replace('linecolor=black', r'linecolor=seccolor')
-            INTRO['latex'] = re.sub(r'frametitlebackgroundcolor=.*', r'frametitlebackgroundcolor=seccolor!20,', INTRO['latex'])
+            INTRO['latex'] = re.sub(r'frametitlebackgroundcolor=.*', r'frametitlebackgroundcolor=seccolor!20,',
+                                    INTRO['latex'])
             INTRO['latex'] = re.sub('colframe=.*', 'colframe=seccolor,', INTRO['latex'])
             INTRO['latex'] = re.sub('colbacktitle=.*', 'colbacktitle=seccolor!20,', INTRO['latex'])
         if latex_admon_color == 'bluestyle':
             INTRO['latex'] = INTRO['latex'].replace('linecolor=black', r'linecolor=darkblue')
-            INTRO['latex'] = re.sub(r'frametitlebackgroundcolor=.*', r'frametitlebackgroundcolor=blue!5,', INTRO['latex'])
+            INTRO['latex'] = re.sub(r'frametitlebackgroundcolor=.*', r'frametitlebackgroundcolor=blue!5,',
+                                    INTRO['latex'])
             INTRO['latex'] = re.sub('colframe=.*', 'colframe=darkblue,', INTRO['latex'])
             INTRO['latex'] = re.sub('colbacktitle=.*', 'colbacktitle=blue!5,', INTRO['latex'])
         elif latex_admon_color == 'yellowstyle':
             INTRO['latex'] = INTRO['latex'].replace('linecolor=black', r'linecolor=yellow!20')
-            INTRO['latex'] = re.sub(r'frametitlebackgroundcolor=.*', r'frametitlebackgroundcolor=yellow!5,', INTRO['latex'])
+            INTRO['latex'] = re.sub(r'frametitlebackgroundcolor=.*', r'frametitlebackgroundcolor=yellow!5,',
+                                    INTRO['latex'])
             INTRO['latex'] = re.sub('colframe=.*', 'colframe=yellow!20,', INTRO['latex'])
             INTRO['latex'] = re.sub('colbacktitle=.*', 'colbacktitle=yellow!5,', INTRO['latex'])
 
@@ -4155,7 +4333,7 @@ justified,
                 color1 = m.group(1)
                 intensity = int(m.group(2))
                 color2 = m.group(3)
-                intensity = min(int(intensity*2), 90)
+                intensity = min(int(intensity * 2), 90)
                 INTRO['latex'] = INTRO['latex'].replace(
                     'frametitlebackgroundcolor=mdfbox_%s_background,' % admon,
                     'frametitlebackgroundcolor=%s!%s!%s,' % (color1, intensity, color2))
@@ -4165,7 +4343,6 @@ justified,
 
     colored_table_rows = option('latex_colored_table_rows=', 'no')
 
-
     INTRO['latex'] += r"""
 % prevent orhpans and widows
 \clubpenalty = 10000
@@ -4173,7 +4350,7 @@ justified,
 """
     if section_headings != 'std':
         INTRO['latex'] += r"""
-% http://www.ctex.org/documents/packages/layout/titlesec.pdf
+% https://www.ctex.org/documents/packages/layout/titlesec.pdf
 \usepackage{titlesec}  % needed for colored section headings
 %\usepackage[compact]{titlesec}  % reduce the spacing around section headings
 """
@@ -4319,13 +4496,13 @@ justified,
 
     # pdflatex needs calc package for emojis
     if filestr[-1] != '\n':
-        filestr += '\n' # Add newline
+        filestr += '\n'  # Add newline
     if re.search(INLINE_TAGS['emoji'], filestr):
         if not ',calc' in INTRO['latex']:
             INTRO['latex'] += '\n\\usepackage{calc}\n'
 
     # Make exercise, problem and project counters
-    if not '# Mapping from exercise labels to numbers: label2numbers' in filestr: # Keep original exercise numbers from parent document?
+    if not '# Mapping from exercise labels to numbers: label2numbers' in filestr:  # Keep original exercise numbers from parent document?
         has_exer = False
         exer_envirs = ['Exercise', 'Problem', 'Project']
         exer_envirs = exer_envirs + ['{%s}' % e for e in exer_envirs]
@@ -4388,7 +4565,7 @@ justified,
 """
     if chapters and latex_style not in ("Koma_Script", "Springer_T2", "Springer_T4", "Springer_lnup", "Springer_sv"):
         # Follow advice from fancyhdr: redefine \cleardoublepage
-        # see http://www.tex.ac.uk/cgi-bin/texfaq2html?label=reallyblank
+        # see https://www.tex.ac.uk/cgi-bin/texfaq2html?label=reallyblank
         # (Koma has its own solution to the problem, svmono.cls has the command)
         INTRO['latex'] += r"""
 % Make sure blank even-numbered pages before new chapters are
@@ -4413,7 +4590,8 @@ justified,
 \makeindex
 """
     if title_layout != 'beamer':
-        INTRO['latex'] += '\\usepackage[totoc]{idxlayout}   % for index in the toc\n\\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc\n'
+        INTRO['latex'] += '\\usepackage[totoc]{idxlayout}   % for index in the toc\n\\usepackage[nottoc]{tocbibind}' \
+                          '  % for references/bibliography in the toc\n'
 
     INTRO['latex'] += r"""
 %-------------------- end preamble ----------------------
@@ -4455,12 +4633,12 @@ justified,
         if os.path.isfile(filename):
             INTRO['latex'] += r"""\input{%s}
 """ % (filename[:-4])
-            #errwarn('... found', filename)
-        #elif os.path.isfile(pfilename):
+            # errwarn('... found', filename)
+        # elif os.path.isfile(pfilename):
         #    errwarn('%s exists, but not %s - run ptex2tex first' % \)
         #    (pfilename, filename)
         else:
-            #errwarn('... did not find', filename)
+            # errwarn('... did not find', filename)
             pass
 
     OUTRO['latex'] = ''
@@ -4533,6 +4711,7 @@ justified,
 \end{document}
 % #endif
 """
+
 
 def fix_latex_command_regex(pattern, application='match'):
     """

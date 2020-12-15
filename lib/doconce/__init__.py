@@ -80,14 +80,14 @@ Documentation of DocOnce is found in
 
   * The more comprehensive documentation in doc/manual/manual.do.txt.
 
-  * There is web access to the tutorial (http://hplgit.github.io/doconce/doc/pub/tutorial/html/tutorial.html) the manual (http://hplgit.github.io/doconce/doc/pub/manual/html/manual.html)
+  * There is web access to the tutorial (https://hplgit.github.io/doconce/doc/pub/tutorial/html/tutorial.html) the manual (https://hplgit.github.io/doconce/doc/pub/manual/html/manual.html)
 
 Both directories contain a make.sh file for creating various formats.
 
 '''
 from __future__ import absolute_import
 
-__version__ = '1.5.2'
+__version__ = '1.5.3'
 version = __version__
 __author__ = 'Hans Petter Langtangen', 'Alessandro Marin', 'Johannes H. Ring', 'Kristian Gregorius Hustad'
 author = __author__

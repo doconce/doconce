@@ -1,7 +1,7 @@
 """
 MediaWiki translator, aimed at Wikipedia/WikiBooks type of web pages.
-Syntax defined by http://en.wikipedia.org/wiki/Help:Wiki_markup
-and http://en.wikipedia.org/wiki/Help:Displaying_a_formula.
+Syntax defined by https://en.wikipedia.org/wiki/Help:Wiki_markup
+and https://en.wikipedia.org/wiki/Help:Displaying_a_formula.
 The prefix m in the name mwiki distinguishes this translator from
 gwiki (googlecode wiki).
 
@@ -15,11 +15,11 @@ exercise (probably ok with the plain solution).
 GitHub wiki pages understand MediaWiki, see
 https://github.com/github/gollum
 
-The page http://en.wikibooks.org/wiki/Wikibooks:Sandbox is fine for
+The page https://en.wikibooks.org/wiki/Wikibooks:Sandbox is fine for
 short-lived experiments.
 
-http://shoutwiki.com can host MediaWiki pages.
-http://jumpwiki.com/wiki/Main_Page can also host MediaWiki pages, but
+https://shoutwiki.com can host MediaWiki pages.
+https://jumpwiki.com/wiki/Main_Page can also host MediaWiki pages, but
 there are troubles with align envirs and math (ugly typesetting and
 some strange indents).
 
@@ -79,7 +79,7 @@ def remove_labels(math_text):
 
 def mwiki_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):
-    # http://en.wikipedia.org/wiki/Help:Displaying_a_formula
+    # https://en.wikipedia.org/wiki/Help:Displaying_a_formula
     # MediaWiki math does not support labels in equations.
     # The enviros equation and \[ \] must be removed (not supported).
 
@@ -98,7 +98,7 @@ def mwiki_code(filestr, code_blocks, code_block_types,
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
 
     # Supported programming languages:
-    # http://www.mediawiki.org/wiki/Extension:SyntaxHighlight_GeSHi#Supported_languages
+    # https://www.mediawiki.org/wiki/Extension:SyntaxHighlight_GeSHi#Supported_languages
     envir2lang = dict(cod='python', pycod='python', cycod='python',
                       fcod='fortran', ccod='c', cppcod='cpp',
                       mcod='matlab', plcod='perl', shcod='bash',
@@ -164,7 +164,7 @@ def mwiki_figure(m):
         caption = '|' + caption  # add | for non-empty caption
     else:
         # Avoid filename as caption when caption is empty
-        # see http://www.mediawiki.org/wiki/Help:Images
+        # see https://www.mediawiki.org/wiki/Help:Images
         caption = '|<span title=""></span>'
     # keep label if it's there:
     caption = re.sub(r'label\{(.+?)\}', '(\g<1>)', caption)
@@ -192,7 +192,7 @@ def mwiki_figure(m):
         found_wikimedia = False
         orig_filename = filename
         # Check if the file exists and find the appropriate wikimedia name.
-        # http://en.wikipedia.org/w/api.php?action=query&titles=Image:filename&prop=imageinfo&format=xml
+        # https://en.wikipedia.org/w/api.php?action=query&titles=Image:filename&prop=imageinfo&format=xml
 
         # Skip directories - get the basename
         filename = os.path.basename(filename)
@@ -200,7 +200,7 @@ def mwiki_figure(m):
         prms = urllib.parse.urlencode({
             'action': 'query', 'titles': 'Image:' + filename,
             'prop': 'imageinfo', 'format': 'xml'})
-        url = 'http://en.wikipedia.org/w/api.php?' + prms
+        url = 'https://en.wikipedia.org/w/api.php?' + prms
         try:
             errwarn(' ...checking if %s is stored at en.wikipedia.org/w/api.php...' % filename)
             f = urllib.request.urlopen(url)
@@ -239,8 +239,8 @@ def mwiki_figure(m):
 
         if not found_wikimedia:
             errwarn(' ...for wikipedia/wikibooks you must upload image file %s to\n    common.wikimedia.org' % orig_filename)
-            # see http://commons.wikimedia.org/wiki/Commons:Upload
-            # and http://commons.wikimedia.org/wiki/Special:UploadWizard
+            # see https://commons.wikimedia.org/wiki/Commons:Upload
+            # and https://commons.wikimedia.org/wiki/Special:UploadWizard
             errwarn(' ...for now we use local file %s' % filename)
             # This is fine if we use github wiki
 

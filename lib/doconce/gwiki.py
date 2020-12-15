@@ -1,6 +1,6 @@
 """
 Google Code Wiki translator.
-Syntax defined by http://code.google.com/p/support/wiki/WikiSyntax
+Syntax defined by https://code.google.com/p/support/wiki/WikiSyntax
 Here called gwiki to make the dialect clear (g for google).
 """
 from __future__ import absolute_import
@@ -85,7 +85,7 @@ def gwiki_table(table):
     column_width = [c+2 for c in table_analysis(table['rows'])]
 
     # Does column and heading alignment matter?
-    # Not according to http://code.google.com/p/support/wiki/WikiSyntax#Tables
+    # Not according to https://code.google.com/p/support/wiki/WikiSyntax#Tables
     # but it is possible to use HTML code in gwiki (i.e., html_table)
     # (think this was tried without success...)
 

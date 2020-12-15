@@ -20,7 +20,7 @@ box_shadow = 'box-shadow: 8px 8px 5px #888888;'
 
 global _file_collection_filename
 
-# From http://service.real.com/help/library/guides/realone/ProductionGuide/HTML/htmfiles/colors.htm:
+# From https://service.real.com/help/library/guides/realone/ProductionGuide/HTML/htmfiles/colors.htm:
 color_table = [
 ('white', '#FFFFFF', 'rgb(255,255,255)'),
 ('silver', '#C0C0C0', 'rgb(192,192,192)'),
@@ -210,8 +210,8 @@ pre {
 css_blueish = """\
 /* blueish style */
 
-/* Color definitions:  http://www.december.com/html/spec/color0.html
-   CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+/* Color definitions:  https://www.december.com/html/spec/color0.html
+   CSS examples:       https://www.w3schools.com/css/css_examples.asp */
 
 body {
   margin-top: 1.0em;
@@ -236,8 +236,8 @@ css_blueish2 = """\
    (only effective if not pygments is used))
 */
 
-/* Color definitions:  http://www.december.com/html/spec/color0.html
-   CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+/* Color definitions:  https://www.december.com/html/spec/color0.html
+   CSS examples:       https://www.w3schools.com/css/css_examples.asp */
 
 body {
   margin-top: 1.0em;
@@ -289,7 +289,7 @@ hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 # Tactile theme from GitHub web page generator
 css_tactile = """
 /* Builds on
-   http://meyerweb.com/eric/tools/css/reset/
+   https://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
    Many changes for DocOnce by Hans Petter Langtangen.
@@ -453,7 +453,7 @@ footer a:hover {
 # too small margin bottom: h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
 
 css_rossant = """
-/* Style from http://cyrille.rossant.net/theme/css/styles.css */
+/* Style from https://cyrille.rossant.net/theme/css/styles.css */
 
 html, button, input, select, textarea {
     font-family: "Source Sans Pro", sans-serif;
@@ -552,7 +552,7 @@ display: inline;
             if 'facebook' in buttons:
                 s += """
     <!-- Facebook -->
-    <a href="http://www.facebook.com/sharer.php?u=%(url)s" target="_blank">
+    <a href="https://www.facebook.com/sharer.php?u=%(url)s" target="_blank">
         <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
     </a>
 """ % namespace
@@ -567,7 +567,7 @@ display: inline;
             if 'linkedin' in buttons:
                 s += """
     <!-- LinkedIn -->
-    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=%(url)s" target="_blank">
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%(url)s" target="_blank">
         <img src="https://simplesharebuttons.com/images/somacro/linkedin.png" alt="LinkedIn" />
     </a>
 """ % namespace
@@ -903,7 +903,7 @@ def embed_newcommands(filestr):
 def mathjax_header(filestr):
     newcommands = embed_newcommands(filestr)
     if option('siunits'):
-        siunitx1 = '\nMathJax.Ajax.config.path["siunitx"] = "http://rawgit.com/burnpanck/MathJax-siunitx/master/";'
+        siunitx1 = '\nMathJax.Ajax.config.path["siunitx"] = "https://rawgit.com/burnpanck/MathJax-siunitx/master/";'
         siunitx2 = ', "[siunitx]/siunitx.js"'
     else:
         siunitx1 = siunitx2 = ''
@@ -1571,7 +1571,7 @@ function show_hide_code%d(){
 
     # Add social media sharing buttons
     url = option('html_share=', None)
-    # --html_share=http://mysite.com/specials,twitter,facebook,linkedin
+    # --html_share=https://mysite.com/specials,twitter,facebook,linkedin
     if url is not None:
         if ',' in url:
             words = url.split(',')
@@ -1998,7 +1998,7 @@ def html_movie(m):
     if '*' in filename or '->' in filename:
         # frame_*.png
         # frame_%04d.png:0->120
-        # http://some.net/files/frame_%04d.png:0->120
+        # https://some.net/files/frame_%04d.png:0->120
         from . import DocWriter
         try:
             header, jscode, form, footer, frames = \
@@ -2015,7 +2015,7 @@ def html_movie(m):
         if not 'youtube.com/embed/' in filename:
             filename = filename.replace('watch?v=', '')
             filename = filename.replace('youtube.com/', 'youtube.com/embed/')
-            filename = filename.replace('http://youtube.com/', 'http://www.youtube.com/')
+            filename = filename.replace('https://youtube.com/', 'https://www.youtube.com/')
         # Make html for a local YouTube frame
         width = kwargs.get('width', 640)
         height = kwargs.get('height', 365)
@@ -2026,9 +2026,9 @@ def html_movie(m):
             text += """\n<p><em>%s</em></p>\n\n""" % caption
     elif 'vimeo.com' in filename:
         if not 'player.vimeo.com/video/' in filename:
-            if not filename.startswith('http://'):
-                filename = 'http://' + filename
-            filename = filename.replace('http://vimeo.com', 'http://player.vimeo.com/video')
+            if not filename.startswith('https://'):
+                filename = 'https://' + filename
+            filename = filename.replace('https://vimeo.com', 'https://player.vimeo.com/video')
         # Make html for a local Vimeo frame
         width = kwargs.get('width', 640)
         height = kwargs.get('height', 365)
@@ -2424,7 +2424,7 @@ def bootstrap_collapse(visible_text, collapsed_text,
                        id, button_text='', icon='pencil'):
     """Generate HTML Bootstrap code for a collapsing/unfolding text."""
     # icon types:
-    # http://www.w3schools.com/bootstrap/bootstrap_ref_comp_glyphs.asp
+    # https://www.w3schools.com/bootstrap/bootstrap_ref_comp_glyphs.asp
     text = """
 <p>
 <a class="glyphicon glyphicon-%(icon)s showdetails" data-toggle="collapse"
@@ -2540,7 +2540,7 @@ def html_quiz(quiz):
                     expl = 'Correct!'
                 else:
                     expl = 'Wrong!'
-            # Use collapse functionality, see http://jsfiddle.net/8cYFj/
+            # Use collapse functionality, see https://jsfiddle.net/8cYFj/
             visible_text = '&nbsp;<b>%s</b>\n%s' % (choice_prefix, choice[1])
             collapsed_text = '<img src="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%s.gif">\n%s' % ('correct' if choice[0] == 'right' else 'incorrect', expl)
             text += bootstrap_collapse(
@@ -3301,7 +3301,7 @@ Automatically generated HTML file from DocOnce source
 
 <!-- Bootstrap footer
 <footer>
-<a href="http://..."><img width="250" align=right src="http://..."></a>
+<a href="https://..."><img width="250" align=right src="https://..."></a>
 </footer>
 -->
 """

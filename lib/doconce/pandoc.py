@@ -1,5 +1,5 @@
 """
-See http://johnmacfarlane.net/pandoc/README.html
+See https://johnmacfarlane.net/pandoc/README.html
 for syntax.
 """
 from __future__ import absolute_import
@@ -305,7 +305,7 @@ def pandoc_ref_and_label(section_label2title, format, filestr):
     # Replace all references to sections. Pandoc needs a coding of
     # the section header as link. (Not using this anymore.)
     def title2pandoc(title):
-        # http://johnmacfarlane.net/pandoc/README.html
+        # https://johnmacfarlane.net/pandoc/README.html
         for c in ('?', ';', ':'):
             title = title.replace(c, '')
         title = title.replace(' ', '-').strip()
@@ -539,6 +539,6 @@ def define(FILENAME_EXTENSION,
         OUTRO['pandoc'] = """
 </xmp>
 
-<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+<script src="https://strapdownjs.com/v/0.2/strapdown.js"></script>
 </html>
 """

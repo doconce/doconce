@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from builtins import range
-# http://sphinx.pocoo.org/ext/math.html#
+# https://sphinx.pocoo.org/ext/math.html#
 
 # can reuse most of rst module:
 from .rst import *
@@ -1674,8 +1674,8 @@ def sphinx_dir():
              "        # Make a link for doconce citation in copyright\n"
              "        if '. Made with DocOnce' in text:\n"
              "            text = text.replace('. Made with DocOnce', '')\n"
-             "            text = text.replace('      Created using <a href=\"http://sphinx-doc.org/\">Sphinx', '      "
-             "Created using <a href=\"https://github.com/hplgit/doconce\">DocOnce</a> and <a href=\"http://sphinx-doc.org/\">Sphinx')\n"
+             "            text = text.replace('      Created using <a href=\"https://sphinx-doc.org/\">Sphinx', '      "
+             "Created using <a href=\"https://github.com/hplgit/doconce\">DocOnce</a> and <a href=\"https://sphinx-doc.org/\">Sphinx')\n"
              "        # Remove (1), (2), ... numberings in identical headings\n"
              "        headings_wno = re.findall(r'(?<=(\d|\"))>([^>]+?)          \((\d+)\)<', text)\n"
              "        for dummy, heading, no in headings_wno:\n"
@@ -1897,7 +1897,7 @@ def make_conf_py(themes, theme, title, short_title, copyright_,
                   "        additional_themes_url['sphinx_rtd_theme'] = 'pip install sphinx_rtd_theme'\n\n"
                   "tinker_themes = [\n"
                   "  'dark', 'flat', 'modern5', 'minimal5', 'responsive']\n"
-                  "# http://tinkerer.me/index.html\n"
+                  "# https://tinkerer.me/index.html\n"
                   "# See Preview Another Theme in the sidebar of the above URL\n"
                   "try:\n"
                   "    import tinkerer\n"
@@ -1913,13 +1913,13 @@ def make_conf_py(themes, theme, title, short_title, copyright_,
                        "#intersphinx_mapping = {}\n"
                        "# Example configuration for intersphinx for references to the\n"
                        "# the Sphinx documents for Python, NumPy, SciPy, Matplotlib.\n"
-                       "# (Domos in http://scipy-lectures.github.com, typically :mod:`scipy.io`\n"
+                       "# (Domos in https://scipy-lectures.github.com, typically :mod:`scipy.io`\n"
                        "# or :class:`numpy.ndarray` or :func:`math.asin`)\n"
                        "intersphinx_mapping = {\n"
-                       "    'python': ('http://docs.python.org/2.7', None),\n"
-                       "    'numpy': ('http://docs.scipy.org/doc/numpy', None),\n"
-                       "    'scipy': ('http://docs.scipy.org/doc/scipy/reference', None),\n"
-                       "    'mpl': ('http://matplotlib.org/', None),\n"
+                       "    'python': ('https://docs.python.org/2.7', None),\n"
+                       "    'numpy': ('https://docs.scipy.org/doc/numpy', None),\n"
+                       "    'scipy': ('https://docs.scipy.org/doc/scipy/reference', None),\n"
+                       "    'mpl': ('https://matplotlib.org/', None),\n"
                        "}\n")
 
     #'matplotlib.sphinxext.ipython_directive',
@@ -1927,7 +1927,7 @@ def make_conf_py(themes, theme, title, short_title, copyright_,
     # are now in IPython, but not installed as Python modules
 
     text = re.sub(r'extensions = .*?\]', extensions, text, flags=re.DOTALL)
-    html_theme_options = (r"# See http://sphinx.pocoo.org/theming.html for options\n"
+    html_theme_options = (r"# See https://sphinx.pocoo.org/theming.html for options\n"
                           r"if html_theme in ('default', 'classic'):\n"
                           r"    # pygments_style =\n"
                           r"    html_theme_options = {\n"
@@ -1975,7 +1975,7 @@ def make_conf_py(themes, theme, title, short_title, copyright_,
                           r"    if not on_rtd:\n"
                           r"        html_theme_path += [sphinx_rtd_theme.get_html_theme_path()]\n\n"
                           r"elif html_theme == 'sphinxdoc':\n"
-                          r"    # Doc: http://sphinx-doc.org/theming.html\n"
+                          r"    # Doc: https://sphinx-doc.org/theming.html\n"
                           r"    html_theme_options = {\n"
                           r"       'nosidebar': 'false',  # 'true'\n"
                           r"    }\n\n"
@@ -1988,7 +1988,7 @@ def make_conf_py(themes, theme, title, short_title, copyright_,
                           r"    if not 'sphinxjp.themecore' in extensions:\n"
                           r"        extensions += ['sphinxjp.themecore']\n\n"
                           r"elif html_theme == 'scrolls':\n"
-                          r"    # Doc: http://sphinx.pocoo.org/theming.html\n"
+                          r"    # Doc: https://sphinx.pocoo.org/theming.html\n"
                           r"    pass\n"
                           r"    #html_theme_options = {\n"
                           r"       #'headerbordercolor':,\n"
@@ -1998,36 +1998,36 @@ def make_conf_py(themes, theme, title, short_title, copyright_,
                           r"       #'admonitioncolor':\n"
                           r"    #}\n\n"
                           r"elif html_theme == 'agogo':\n"
-                          r"    # Doc: http://sphinx.pocoo.org/theming.html\n"
+                          r"    # Doc: https://sphinx.pocoo.org/theming.html\n"
                           r"    pass\n\n"
                           r"elif html_theme == 'nature':\n"
-                          r"    # Doc: http://sphinx.pocoo.org/theming.html\n"
+                          r"    # Doc: https://sphinx.pocoo.org/theming.html\n"
                           r"    html_theme_options = {\n"
                           r"       'nosidebar': 'false',  # 'true'\n"
                           r"    }\n\n"
                           r"elif html_theme == 'traditional':\n"
-                          r"    # Doc: http://sphinx.pocoo.org/theming.html\n"
+                          r"    # Doc: https://sphinx.pocoo.org/theming.html\n"
                           r"    html_theme_options = {\n"
                           r"       'nosidebar': 'false',  # 'true'\n"
                           r"    }\n\n"
                           r"elif html_theme == 'haiku':\n"
-                          r"    # Doc: http://sphinx.pocoo.org/theming.html\n"
+                          r"    # Doc: https://sphinx.pocoo.org/theming.html\n"
                           r"    html_theme_options = {\n"
                           r"       'nosidebar': 'false',  # 'true'\n"
                           r"    }\n\n"
                           r"elif html_theme == 'pyramid':\n"
-                          r"    # Doc: http://sphinx.pocoo.org/theming.html\n"
+                          r"    # Doc: https://sphinx.pocoo.org/theming.html\n"
                           r"    html_theme_options = {\n"
                           r"       'nosidebar': 'false',  # 'true'\n"
                           r"    }\n\n"
                           r"elif html_theme == 'bizstyle':\n"
-                          r"    # Doc: http://sphinx.pocoo.org/theming.html\n"
+                          r"    # Doc: https://sphinx.pocoo.org/theming.html\n"
                           r"    html_theme_options = {\n"
                           r"       'nosidebar': 'false',  # 'true'\n"
                           r"       'rightsidebar': 'false',  # 'true'\n"
                           r"    }\n\n"
                           r"elif html_theme == 'epub':\n"
-                          r"    # Doc: http://sphinx.pocoo.org/theming.html\n"
+                          r"    # Doc: https://sphinx.pocoo.org/theming.html\n"
                           r"    html_theme_options = {\n"
                           r"       'relbar1': 'true',\n"
                           r"       'footer': 'true',\n"
@@ -2052,13 +2052,13 @@ def make_conf_py(themes, theme, title, short_title, copyright_,
                           r"        # Location of link to source.\n"
                           r"        # Options are \"nav\" (default), \"footer\" or anything else to exclude.\n"
                           r"        'source_link_position': \"footer\",\n\n"
-                          r"        # Any Bootswatch theme (http://bootswatch.com/) can be used\n"
+                          r"        # Any Bootswatch theme (https://bootswatch.com/) can be used\n"
                           r"        #'bootswatch_theme': 'readable',\n\n"
                           r"        # A list of tuples containing pages or urls to link to.\n"
                           r"        # Valid tuples should be in the following forms:\n"
                           r"        #    (name, page)                 # a link to a page\n"
                           r"        #    (name, \"/aa/bb\", 1)          # a link to an arbitrary relative url\n"
-                          r"        #    (name, \"http://example.com\", True) # arbitrary absolute url\n"
+                          r"        #    (name, \"https://example.com\", True) # arbitrary absolute url\n"
                           r"        # Note the \"1\" or \"True\" value above as the third argument to indicate\n"
                           r"        # an arbitrary url.\n"
                           r"        #'navbar_links': [('PDF', '../mydoc.pdf', True), ('HTML', '../mydoc.html', True)],\n\n"
@@ -2093,7 +2093,7 @@ def make_conf_py(themes, theme, title, short_title, copyright_,
                   text, flags=re.MULTILINE)
     #text = re.sub('^# *html_theme_path = \[\]', html_theme_options,
 
-    # Examples on settings: http://pylit.berlios.de/conf.py.html
+    # Examples on settings: https://pylit.berlios.de/conf.py.html
 
     text = re.sub(r'# *html_use_index =.+', ("if html_theme == 'impressjs':\n"
                                              "    html_use_index = False\n"), text)
@@ -2129,8 +2129,8 @@ def make_conf_py(themes, theme, title, short_title, copyright_,
         f = open(os.path.join('_templates', 'layout.html'), 'w')
         f.write(("{% extends \"!layout.html\" %}\n"
                  "{% block linktags %}\n\n"
-                 "        <script src=\"http://sagecell.sagemath.org/static/jquery.min.js\"></script>\n"
-                 "        <script src=\"http://sagecell.sagemath.org/static/embedded_sagecell.js\"></script>\n\n"
+                 "        <script src=\"https://sagecell.sagemath.org/static/jquery.min.js\"></script>\n"
+                 "        <script src=\"https://sagecell.sagemath.org/static/embedded_sagecell.js\"></script>\n\n"
                  "        <script>sagecell.makeSagecell({inputLocation: \".sage\"});</script>\n\n"
                  "        <style type=\"text/css\">\n"
                  "                .sagecell .CodeMirror-scroll {\n"

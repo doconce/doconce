@@ -310,11 +310,11 @@ def _doconce_format_institution(paper):
 
 def _doconce_format_doi(doi):
     "Format DOI"
-    return '"doi: %s": "http://dx.doi.org/%s"' % (doi, doi)
+    return '"doi: %s": "https://dx.doi.org/%s"' % (doi, doi)
 
 def _doconce_format_arxiv(arxiv):
     "Format arXiv"
-    return '"arXiv: %s": "http://arxiv.org/abs/%s"' % (arxiv, arxiv)
+    return '"arXiv: %s": "https://arxiv.org/abs/%s"' % (arxiv, arxiv)
 
 def _doconce_format_url(url):
     "Format URL"
@@ -644,11 +644,11 @@ def _rst_format_institution(paper):
 
 def _rst_format_doi(doi):
     "Format DOI"
-    return '"doi: %s": "http://dx.doi.org/%s"' % (doi, doi)
+    return '"doi: %s": "https://dx.doi.org/%s"' % (doi, doi)
 
 def _rst_format_arxiv(arxiv):
     "Format arXiv"
-    return '"arXiv: %s": "http://arxiv.org/abs/%s"' % (arxiv, arxiv)
+    return '"arXiv: %s": "https://arxiv.org/abs/%s"' % (arxiv, arxiv)
 
 def _rst_format_url(url):
     "Format URL"
