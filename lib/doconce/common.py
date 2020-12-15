@@ -73,8 +73,8 @@ def internet_access(timeout=1):
         # Check google.com with numerical IP-address (which avoids
         # DNS loopup) and set timeout to 1 sec so this does not
         # take much time (google.com should respond quickly)
-       #response = urllib2.urlopen('http://8.8.8.8', timeout=timeout)
-       response = urllib.request.urlopen('http://vg.no', timeout=timeout)
+       #response = urllib2.urlopen('https://8.8.8.8', timeout=timeout)
+       response = urllib.request.urlopen('https://vg.no', timeout=timeout)
        return True
     except (urllib.error.URLError, socket.timeout) as err:
         pass
@@ -383,12 +383,12 @@ def online_python_tutor(code, return_tp='iframe'):
                                    'cumulative': 'false'})
         iframe = """\
 <iframe width="950" height="500" frameborder="0"
-        src="http://pythontutor.com/iframe-embed.html#code=%s&%s">
+        src="https://pythontutor.com/iframe-embed.html#code=%s&%s">
 </iframe>
 """ % (codestr, urlprm) # must treat code separately (urlencode adds chars)
         return iframe
     elif return_tp == 'url':
-        url = 'http://pythontutor.com/visualize.html#code=%s&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2&curInstr=0' % codestr
+        url = 'https://pythontutor.com/visualize.html#code=%s&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2&curInstr=0' % codestr
         url = url.replace('%', '\\%').replace('#', '\\#')
         return url
     else:
@@ -1507,7 +1507,7 @@ INLINE_TAGS = {
     'colortext':
     r'\bcolor\{(?P<color>[^}]+?)\}\{(?P<text>[^}]+)\}',
 
-    # http://some.where.org/mypage<link text>  # old outdated syntax
+    # https://some.where.org/mypage<link text>  # old outdated syntax
     'linkURL':
     r'%s(?P<url>https?://[^<\n]+)<(?P<link>[^>]+)>%s' % \
     (globals.inline_tag_begin, globals.inline_tag_end),

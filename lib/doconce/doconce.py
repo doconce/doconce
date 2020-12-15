@@ -1152,7 +1152,7 @@ def bm2boldsymbol(filestr, format):
         if r'\bm{' in filestr:
             errwarn(r'*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)')
             filestr = filestr.replace(r'\bm{', r'\boldsymbol{')
-            # See http://www.wikidot.com/doc:math
+            # See https://www.wikidot.com/doc:math
     return filestr
 
 def insert_code_from_file(filestr, format):

@@ -1,6 +1,6 @@
 """
 Creole Wiki (as used on bitbucket.org).
-See http://www.wikicreole.org/wiki/Creole1.0 for syntax.
+See https://www.wikicreole.org/wiki/Creole1.0 for syntax.
 """
 from __future__ import absolute_import
 from builtins import zip
