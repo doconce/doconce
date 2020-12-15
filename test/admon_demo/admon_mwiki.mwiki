@@ -1,7 +1,7 @@
 #TITLE (actually governed by the filename): Testing admons
 
 By '''H. P. Langtangen'''
-==== Dec 4, 2020 ====
+==== Dec 15, 2020 ====
 
 Copyright 2020, H. P. Langtangen. Made with DocOnce
 
@@ -41,7 +41,7 @@ Here is a plain quote environment.
 proportional to the value of the issues at stake." <br />
 By way of corollary, it adds: <br />
 "That is why academic politics are so bitter." <br />
-''Source'': [http://en.wikipedia.org/wiki/Sayre's_law wikipedia]
+''Source'': [https://en.wikipedia.org/wiki/Sayre's_law wikipedia]
 | textstyle = font-size: 90%;
 }}
 

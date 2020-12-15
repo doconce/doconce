@@ -39,7 +39,7 @@ Sayre's law states that
 proportional to the value of the issues at stake.'' <linebreak>
 By way of corollary, it adds: <linebreak>
 ``That is why academic politics are so bitter.'' <linebreak>
-*Source*: "wikipedia": "http://en.wikipedia.org/wiki/Sayre's_law"
+*Source*: "wikipedia": "https://en.wikipedia.org/wiki/Sayre's_law"
 !equote
 
 Does quotes with title also work? No...cannot work in LaTeX and HTML

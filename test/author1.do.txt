@@ -48,11 +48,11 @@ in a document:
 !bc
 As explained in
 ref[Section ref{subsec:ex}][in "Langtangen, 2012":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex"
+"https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex"
 cite{testdoc:12}][a "section":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex" in
+"https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex" in
 the document "A Document for Testing DocOnce":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html"
+"https://hplgit.github.io/doconce/test/demo_testdoc.html"
 cite{testdoc:12}], DocOnce documents may include tables.
 !ec
 With `latex` or `pdflatex` as output, this translates to
@@ -65,7 +65,7 @@ otherwise
 !bc
 As explained in
 Section ref{subsec:ex} in "Langtangen, 2012":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex"
+"https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex"
 cite{testdoc:12}, DocOnce documents may include tables.
 !ec
 In a format different from `latex` and `pdflatex`, the effective DocOnce
@@ -73,9 +73,9 @@ text becomes
 !bc
 As explained in
 a "section":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex" in
+"https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex" in
 the document "A Document for Testing DocOnce":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html"
+"https://hplgit.github.io/doconce/test/demo_testdoc.html"
 cite{testdoc:12}, DocOnce documents may include tables.
 !ec
 The rendered text in the current format `${FORMAT}` becomes
@@ -83,11 +83,11 @@ The rendered text in the current format `${FORMAT}` becomes
 !bquote
 As explained in
 ref[Section ref{subsec:ex}][in "Langtangen, 2012":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex"
+"https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex"
 cite{testdoc:12}][a "section":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex" in
+"https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex" in
 the document "A Document for Testing DocOnce":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html"
+"https://hplgit.github.io/doconce/test/demo_testdoc.html"
 cite{testdoc:12}], DocOnce documents may include tables.
 !equote
 
@@ -98,10 +98,10 @@ if the reference is internal in the DocOnce source, applies the
 !bc
 As explained in
 refch[Chapter ref{ch:testdoc}]["Langtangen, 2012":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html"
+"https://hplgit.github.io/doconce/test/demo_testdoc.html"
 cite{testdoc:12}][the document
 "A Document for Testing DocOnce":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html"
+"https://hplgit.github.io/doconce/test/demo_testdoc.html"
 cite{testdoc:12}], DocOnce documents may include tables.
 !ec
 The output now if `ch:testdoc` is not a label in the document,
@@ -110,7 +110,7 @@ becomes in the `latex` and `pdflatex` case
 !bc
 As explained in
 "Langtangen, 2012":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html"
+"https://hplgit.github.io/doconce/test/demo_testdoc.html"
 cite{testdoc:12}, DocOnce documents may include tables.
 !ec
 That is, the internal reference `Chapter ...` is omitted since
@@ -120,16 +120,16 @@ The resulting rendered text in the current format `${FORMAT}` becomes
 !bquote
 As explained in
 refch[Chapter ref{ch:testdoc}]["Langtangen, 2012":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html"
+"https://hplgit.github.io/doconce/test/demo_testdoc.html"
 cite{testdoc:12}][the document
 "A Document for Testing DocOnce":
-"http://hplgit.github.io/doconce/test/demo_testdoc.html"
+"https://hplgit.github.io/doconce/test/demo_testdoc.html"
 cite{testdoc:12}], DocOnce documents may include tables.
 !equote
 
 Note that LaTeX cannot
 have links to local files, so a complete URL on the form
-`http://...` must be used.
+`https://...` must be used.
 
 And here is another example with internal references only:
 

@@ -35,10 +35,10 @@ MOVIE: [../doc/src/manual/mov/wave_frames/frame_*.png, width=700 height=400] Ani
 Here is the same collection, but with images in cyberspace, given as URLs:
 
 !bc
-http://hplgit.github.io/animate/..../frame_%04d.png:80->129
+https://hplgit.github.io/animate/..../frame_%04d.png:80->129
 !ec
 
-MOVIE: [http://hplgit.github.io/animate/doc/pub/mov-animate/frames/frame_%04d.png:80->129] Taking images to animate from cyberspace.
+MOVIE: [https://hplgit.github.io/animate/doc/pub/mov-animate/frames/frame_%04d.png:80->129] Taking images to animate from cyberspace.
 
 The movie above in MPEG format, typeset in a box:
 
@@ -52,15 +52,15 @@ MOVIE: [../doc/src/manual/mov/wave.avi, width=700 height=400] 1D wave in AVI.
 
 Here is the same movie, but with a URL to GitHub:
 
-MOVIE: [http://hplgit.github.io/animate/doc/pub/mov-animate/demo.ogg]
+MOVIE: [https://hplgit.github.io/animate/doc/pub/mov-animate/demo.ogg]
 
 Here is a YouTube video:
 
-MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
+MOVIE: [https://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
 
 And a vimeo video:
 
-MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
+MOVIE: [https://vimeo.com/55562330, width=500 height=278] Vimeo movie.
 
 
 Finally, let us demonstrate referencing the movie ref{mov:wave}.

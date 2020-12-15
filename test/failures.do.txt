@@ -50,17 +50,17 @@ FIGURE: [../doc/manual/fig/wave1D, width=800] $a=50$
 Figure with hyperlink in caption creates problems with latex and --device=paper
 because the link becomes a footnote inside the caption.
 
-FIGURE: [../doc/manual/fig/wave1D, width=800] "Google": "http://google.com".
+FIGURE: [../doc/manual/fig/wave1D, width=800] "Google": "https://google.com".
 
 
-# http://hplgit.github.io/INF5620/doc/pub/mov-wave/pulse2_in_two_media/movie.webm
+# https://hplgit.github.io/INF5620/doc/pub/mov-wave/pulse2_in_two_media/movie.webm
 Movie/figure with nonexistent URL must give error messages.
 
-MOVIE: [http://hplgit.github.io/INF5620/doc/pub/mov-wave/pulse2_in_two_media/movie99x9.ogg, width=800] $a=50$
+MOVIE: [https://hplgit.github.io/INF5620/doc/pub/mov-wave/pulse2_in_two_media/movie99x9.ogg, width=800] $a=50$
 
-FIGURE: [http://hplgit.github.io/INF5620/doc/pub/fig-wave/pulse2_in_two_media99, width=800] $a=50$
+FIGURE: [https://hplgit.github.io/INF5620/doc/pub/fig-wave/pulse2_in_two_media99, width=800] $a=50$
 
-Links with mix of verbatim and plain text is not good: "`myfile.py` file": "http://some.where.net/myfile.py".
+Links with mix of verbatim and plain text is not good: "`myfile.py` file": "https://some.where.net/myfile.py".
 
 More text...
 # Comment before math is ok

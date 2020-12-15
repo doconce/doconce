@@ -6,7 +6,7 @@ AUTHOR: Hans Petter Langtangen at Center for Biomedical Computing, Simula Resear
 DATE: today
 
 <%
-src_path = 'http://some.where.net/doconce/test/software'
+src_path = 'https://some.where.net/doconce/test/software'
 %>
 
 
@@ -214,7 +214,7 @@ The following text lists some important functionality of NumPy arrays.
 A more comprehensive treatment is found in the excellent *NumPy
 Tutorial*, *NumPy User Guide*, *NumPy Reference*, *Guide to NumPy*,
 and *NumPy for MATLAB Users*, all accessible at "scipy.org":
-"http://scipy.org".
+"https://scipy.org".
 
 
 idx{`zeros` (from `numpy`)} idx{`np.zeros` function}

@@ -23,13 +23,13 @@ Here are some DocOnce features:
     A piece of DocOnce text can enter (e.g.) a classical
     science book, an ebook, a web document, and a blog post.
   * DocOnce offers a range of HTML designs, including many
-    Bootstrap and Sphinx styles and "solarized color schemes": "http://ethanschoonover.com/solarized".
+    Bootstrap and Sphinx styles and "solarized color schemes": "https://ethanschoonover.com/solarized".
     A special feature is the many styles for _admonitions_ (boxes for
     warning, notice, question, etc.) in HTML and LaTeX.
   * DocOnce targets in particular large book projects where many different
     pieces of text and software can be assembled in different ways
     and published in different formats for different devices
-    (see "example": "http://hplgit.github.io/setup4book-doconce/doc/web/index.html").
+    (see "example": "https://hplgit.github.io/setup4book-doconce/doc/web/index.html").
   * DocOnce enables authors who write for many times of media
     (blog posts, wikis, LaTeX manuscripts, Sphinx, HTML) to use a common
     source language such that lots of different pieces can easily be
@@ -66,7 +66,7 @@ FIGURE: [../doc/src/manual/fig/wave1D, width=300 frac=0.7] Figure with caption. 
 
 Here is a YouTube movie:
 
-MOVIE: [http://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
+MOVIE: [https://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
 
 MOVIE: [../doc/src/manual/mov/wave.webm, width=700 height=400] Movie on the hard disk: 1D wave motion.
 

@@ -94,7 +94,7 @@
 \RequirePackage{amsthm}              % for AMS theorems
 \RequirePackage{graphicx}
 \RequirePackage{booktabs}            % to get fancier tables
-\RequirePackage[lowtilde]{url}       % to typeset URLs, see http://www.latex-community.org/viewtopic.php?f=44&t=3663
+\RequirePackage[lowtilde]{url}       % to typeset URLs, see https://www.latex-community.org/viewtopic.php?f=44&t=3663
 \RequirePackage{algorithmic}         % defines algorithmic environment
 \ifthenelse{\boolean{biber}}{
 	\usepackage[
@@ -154,7 +154,7 @@
 
 \ifthenelse{\not{\boolean{framedtheorems}}}
 {
-% see http://www.tug.org.in/tutorial/src/mystyles.thm
+% see https://www.tug.org.in/tutorial/src/mystyles.thm
 % and http://web.mat.bham.ac.uk/R.W.Kaye/latex/thm.pdf
 	\newtheoremstyle{Theorem}{}{}{}{}{\bfseries}{}{\newline}{{\thmname{#1}\thmnumber{ #2}}\thmnote{ (#3)}}
 	\newtheoremstyle{Lemma}{}{}{}{}{\bfseries}{}{\newline}{{\thmname{#1}\thmnumber{ #2}}\thmnote{ (#3)}}
@@ -318,7 +318,7 @@ Some title head...
 \newenvironment{msc}%
 {{\sectfont MSC:}\ }{}
 
-\newcommand{\mscLink}[1]{\href{http://www.ams.org/mathscinet/msc/msc2010.html?t=#1}{#1}}
+\newcommand{\mscLink}[1]{\href{https://www.ams.org/mathscinet/msc/msc2010.html?t=#1}{#1}}
 
 %% Support for key words
 \newenvironment{keywords}%

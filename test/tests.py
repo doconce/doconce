@@ -29,9 +29,7 @@ system_output = []
 
 def add(filename, logfile):
     print('...adding file', filename)
-    logfile.write("""
-************** File: %s *****************
-""" % filename)
+    logfile.write("\n************** File: %s *****************\n" % filename)
     if not os.path.isfile(filename):
         logfile.write('NOT FOUND!')
     else:
@@ -75,19 +73,17 @@ def apply_regex(logfilename):
     text = re.sub(r'^ ?\d+\.$', '...rest of part of LaTeX line number...', text, flags=re.MULTILINE)
     text = re.sub(r'^(line|ine|ne) \d+\.$', '...rest of part of LaTeX line number...', text, flags=re.MULTILINE)
     text = re.sub(r'\(\/usr\/share\/.+\)', '', text)
-    log = open(logfilename, 'w')
-    log.write(text)
-    log.close()
     text = re.sub(r'\\usepackage{anslistings,fancyvrb} % (.*)', r'\\usepackage{fancyvrb,anslistings} % \1', text, re.MULTILINE)
-    text = re.sub('\.{3} checking existence of .*\n\s{4}found!\n', '', text, re.MULTILINE)
+    text = re.sub(r'\.{3} checking existence of .*\n\s{4}found!\n', '', text, re.MULTILINE)
     text = re.sub(r'<function html_verbatim at .*>', '<function html_verbatim at XXX>', text, re.MULTILINE)
     text = re.sub(r'figure file .*/(\w+):\n\s{4}can use .*/\1\.\w{3} for format.*\n', '', text, re.MULTILINE)
-    text = re.sub('\.{3}doconce translation: figures \d{1,3}\.\d s \(accumulated time: \d{1,3}\.\d\)', 
+    text = re.sub(r'\.{3}doconce translation: figures \d{1,3}\.\d s \(accumulated time: \d{1,3}\.\d\)', 
         '...doconce translation: figures XXX s (accumulated time: XXX)', text)
-    text = re.sub('\.{3}doconce format used \d{1,3}\.\d s','...doconce format used XXX s', text)
+    text = re.sub(r'\(.*pt too wide\)', r'\(XXXpt too wide\)', text, re.MULTILINE)
+    text = re.sub(r'\.{3}doconce format used \d{1,3}\.\d s','...doconce format used XXX s', text)
     text = re.sub(r'\*{3} warning: hyperlink to URL .* is to a local file,\nrecommended to be .*\n', '', text, re.MULTILINE)
-    text = re.sub('\.{3} checking existence of .*\n\s{4}found!', '', text, re.MULTILINE)
-    log = open(logfilename+'2', 'w')
+    text = re.sub(r'\.{3} checking existence of .*\n\s{4}found!', '', text, re.MULTILINE)
+    log = open(logfilename, 'w')
     log.write(text)
     log.close()
 

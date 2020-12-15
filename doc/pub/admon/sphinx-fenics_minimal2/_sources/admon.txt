@@ -130,7 +130,7 @@ Here is a quote environment (``quote``):
     
     | By way of corollary, it adds: 
     | "That is why academic politics are so bitter." 
-    | *Source*: `wikipedia <http://en.wikipedia.org/wiki/Sayre's_law>`__
+    | *Source*: `wikipedia <https://en.wikipedia.org/wiki/Sayre's_law>`__
 
 
 
