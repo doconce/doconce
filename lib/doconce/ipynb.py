@@ -1011,7 +1011,7 @@ def define(FILENAME_EXTENSION,
 
         'separator': '\n',
         }
-    CROSS_REFS['ipynb'] = pandoc_ref_and_label
+    CROSS_REFS['ipynb'] = ipynb_ref_and_label
 
     TABLE['ipynb'] = ipynb_table
     cite = option('ipynb_cite=', 'plain')
