@@ -9,6 +9,7 @@ standard_library.install_aliases()
 from builtins import zip
 from builtins import str
 from builtins import range
+from builtins import bytes
 from past.utils import old_div
 import os, subprocess, re, sys, glob, shutil, subprocess
 from .common import plain_exercise, table_analysis, \
@@ -18,7 +19,9 @@ from .common import plain_exercise, table_analysis, \
 from .misc import option, _abort, replace_code_command
 from .doconce import errwarn, debugpr
 from doconce import globals
-
+import base64
+import uuid
+import os
 additional_packages = ''  # comma-sep. list of packages for \usepackage{}
 
 include_numbering_of_exercises = True
