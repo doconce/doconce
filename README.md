@@ -29,6 +29,61 @@ lists, copying of computer code from files, inline computer code,
 index entries, figures, tables, and admonitions).
 
 
+### Installation
+
+DocOnce is a Python 3 package that can be installed with `pip` or `conda`. Refer to the [manual](https://doconce.github.io/doconce/doc/pub/manual/manual.html#install:doconce) for carrying out a comprehensive installation. 
+
+
+##### Preliminary steps
+* The `python -V` and `pip -V` commands should refer to Python 3.x. If not, you might want to try the `pip3` and `python3` commands.
+
+* Clone this repository using `git`: 
+```
+git clone https://github.com/doconce/doconce.git
+cd doconce
+```
+
+##### Installation using pip
+
+Install DocOnce and its dependencies:
+
+```
+pip install -r requirements.txt --user
+python setup.py install
+```
+
+##### Installation using conda
+
+Create a conda environment with `pip`:
+```
+conda create --name doconce python=3
+conda activate doconce
+conda install pip
+```
+
+Install DocOnce and its dependencies:
+```
+pip install -r requirements.txt
+python setup.py install
+```
+
+##### Installation in a Python virtual environment
+
+A Python virtual environment is an isolated environment for python projects, which makes this option the safest installation. 
+
+Create a virtual environment:
+```
+python -m venv venv
+. venv/bin/activate
+```
+
+Install DocOnce and its dependencies:
+```
+pip install -r requirements.txt
+python setup.py install
+```
+
+
 ### Highlights
 
 
