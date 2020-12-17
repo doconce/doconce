@@ -1146,7 +1146,7 @@ def latex_code(filestr, code_blocks, code_block_types,
                 lines[i] = ""
             elif current_code_envir.endswith("-e"):
                 if option("execute"):
-                    execution.run_cell(kernel_client, current_code)
+                    jupyter_execution.run_cell(kernel_client, current_code)
                 lines[i] = ""
             else:
                 lines[i] = end
