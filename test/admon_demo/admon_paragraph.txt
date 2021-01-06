@@ -3,9 +3,9 @@ Testing admons
 
 H. P. Langtangen
 
-Date: Dec 15, 2020
+Date: Jan 6, 2021
 
-Copyright 2020, H. P. Langtangen. Made with DocOnce
+Copyright 2021, H. P. Langtangen. Made with DocOnce
 
 # !split
 Introduction

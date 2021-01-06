@@ -76,7 +76,7 @@ jQuery.fn.highlightText = function(text, className) {
         var span;
         var isInSVG = jQuery(node).closest("body, svg, foreignObject").is("svg");
         if (isInSVG) {
-          span = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+          span = document.createElementNS("https://www.w3.org/2000/svg", "tspan");
         } else {
           span = document.createElement("span");
           span.className = className;
@@ -87,7 +87,7 @@ jQuery.fn.highlightText = function(text, className) {
           node.nextSibling));
         node.nodeValue = val.substr(0, pos);
         if (isInSVG) {
-          var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+          var rect = document.createElementNS("https://www.w3.org/2000/svg", "rect");
           var bbox = node.parentElement.getBBox();
           rect.x.baseVal.value = bbox.x;
           rect.y.baseVal.value = bbox.y;
@@ -285,9 +285,10 @@ var Documentation = {
   initOnKeyListeners: function() {
     $(document).keydown(function(event) {
       var activeElementType = document.activeElement.tagName;
-      // don't navigate when in search box or textarea
+      // don't navigate when in search box, textarea, dropdown or button
       if (activeElementType !== 'TEXTAREA' && activeElementType !== 'INPUT' && activeElementType !== 'SELECT'
-          && !event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey) {
+          && activeElementType !== 'BUTTON' && !event.altKey && !event.ctrlKey && !event.metaKey
+          && !event.shiftKey) {
         switch (event.keyCode) {
           case 37: // left
             var prevHref = $('link[rel="prev"]').prop('href');

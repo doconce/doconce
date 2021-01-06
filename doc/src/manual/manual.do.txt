@@ -4812,7 +4812,6 @@ doconce replace 'bibliographystyle{plain}' 'bibliographystyle{abbrev}' mydoc.p.t
 ======= Preprocessing and Postprocessing =======
 
 idx{split command}
-# idx{`!split`}
 idx{preprocessing}
 idx{postprocessing}
 
