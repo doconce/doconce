@@ -112,17 +112,21 @@ def jupyterbook():
     # sep :                 Divide the text in jupyter-book chapters, see --sep
     # chapters :            ['whole chapter 1', 'whole chapter 2', 'summary']
     # chapter_titles :      ['Chapter 1', 'Chapter 2', 'Summary']
+    # chapter_titles_auto : ['Header 1', 'Header 2', 'Last Header in DocOnce file']
     # chapter_fnames :      ['01_mybook', '02_mybook', '03_mybook']
     #
     # If sep_section is not empty, these variables become relevant
     # sep_section :         Subdivide the jupyter-book chapters in sections, see --sep_section
     # section_list :        [['subsection1','subsection2], ['subsection1'] , []]
     # section_title_list :  [['Subsection 1.1', 'Subsection 1.2'], ['Subsection 2.1'], []]
+    # section_title_list_auto:
+    #                       [['Subheader 1.1', 'Subheader 1.2'], ['Subheader 2.1'], ['Last Subheader in DocOnce file']]
     # section_fname_list :  [['01_01_mybook', '01_02_mybook'], ['02_01_mybook'], []]
 
     # Split the DocOnce file in jupyter-book chapters
     chapters = split_file(filestr, sep, INLINE_TAGS)
     section_list = [[]] * len(chapters)
+    section_title_list_auto = None
     # Extract all jupyter-book sections based on --sep_section
     if sep_section:
         for c, chap in enumerate(chapters):
@@ -140,20 +144,23 @@ def jupyterbook():
     chapter_titles, section_title_list = read_title_file(titles_opt, chapters, section_list)
 
     # Define a standard formatter for content filenames and default titles. '%02d_' will result in e.g. '03_mybook'
-    def formatter(_list):
+    def formatter(_list): 
         return '%0' + str(max(2, math.floor(math.log(len(_list) + 0.01, 10)) + 1)) + 'd_'
 
     # Extract and write titles to each jupyter-book chapter/section
     chapter_formatter = formatter(chapters)
-    chapters, chapter_titles = titles_to_chunks(chapters, chapter_titles, sep=sep,
+    chapters, chapter_titles, chapter_titles_auto = titles_to_chunks(chapters, chapter_titles, sep=sep,
                                                 chapter_formatter=chapter_formatter, tags=INLINE_TAGS)
     if sep_section:
+        # The following contains section titles extracted  automatically
+        section_title_list_auto = [[]] * len(section_title_list)
         for c, sections in enumerate(section_list):
             section_formatter = chapter_formatter % (c + 1) + formatter(sections)
-            section_list[c], section_titles = titles_to_chunks(sections, section_title_list[c],
+            section_list[c], section_titles, section_titles_auto = titles_to_chunks(sections, section_title_list[c],
                                                                sep=sep_section, sep2=sep,
                                                                chapter_formatter=section_formatter, tags=INLINE_TAGS)
             section_title_list[c] = section_titles
+            section_title_list_auto[c] = section_titles_auto
 
     # Print out the detected titles if --show_titles was used
     if show_titles_opt:
@@ -161,10 +168,11 @@ def jupyterbook():
             print('\n===== Titles detected using the %s separator:' % sep)
         else:
             print('\n===== Titles detected using the %s and %s separators:' % (sep, sep_section))
-        for c, ctitle in enumerate(chapter_titles):
+        for c, ctitle in enumerate(chapter_titles_auto):
             print(ctitle)
-            for stitle in section_title_list[c]:
-                print(stitle)
+            if sep_section:
+                for stitle in section_title_list_auto[c]:
+                    print(stitle)
         print('=====')
 
     # Create a markdown or ipynb for each jupyter-book chapter section
@@ -231,14 +239,15 @@ def read_title_file(titles_opt, chapters, section_list):
     :return: tuple with chapter and section titles
     :rtype: (list[str], list[list[str]])
     """
-    chapter_titles = [''] * len(chapters)
+    chapter_titles = []
     section_title_list = [[]] * len(chapters)
     if titles_opt is not 'auto':
+        chapter_titles = [''] * len(chapters)
         input_titles = read_to_list(titles_opt)
         for c in range(len(chapters)):
             chapter_titles[c] = input_titles.pop(0) if len(input_titles) else ''
             section = []
-            for s in range(len(section_list[c])):
+            for _ in range(len(section_list[c])):
                 section.append(input_titles.pop(0) if len(input_titles) else '')
             section_title_list[c] = section
         if len(input_titles):
@@ -257,39 +266,44 @@ def titles_to_chunks(chunks, title_list, sep, sep2=None, chapter_formatter='%02d
     03_mydoconcefile.
 
     :param list[str] chunks: list of text string
-    :param list[str] title_list: titles for the chunks
+    :param list[str] title_list: titles for the chunks. Empty if --titles is us
     :param str sep: separator: chapter|section|subsection
     :param str sep2: second separator in case the first fails: chapter|section|subsection
     :param dict tags: tag patterns, e.g. INLINE_TAGS from common.py
     :param str chapter_formatter: formatter for default filenames
-    :return: tuple with the chunks of text having a # header, and titles
-    :rtype: (list[str], list[str])
+    :return: tuple with the chunks of text having a # header, titles, titles detected
+    :rtype: (list[str], list[str], list[str])
     """
     title_list_out = title_list.copy()
     # title list can be empty (when --titles='auto')
     if not len(title_list_out):
         title_list_out = [''] * len(chunks)
+    title_list_detected = [''] * len(chunks)
     # Process each chunk: detect and write title in the header of a chapter/section
     for i, chunk in enumerate(chunks):
         title = ''
-        # Try to get any title from headers in each chunk
+        # Try to find and remove any title from headers in each chunk
         if title == '':
             chunk, title = create_title(chunk, sep, tags)
-        # Try the second optional separator
+        # Same, this time using the second optional separator
         if title == '' and sep2:
             chunk, title = create_title(chunk, sep2, tags)
         # Set default title
         if title == '':
             title = chapter_formatter % (i + 1) + globals.dofile_basename
-        # Use title from the titles files.
+        # Keep any detected title before overriding them with the file indicated in --titles
+        title_list_detected[i] = title
+        # Use title from the titles files. This gets skipped if there is no title file
         if i < len(title_list):
-            title = title_list[i]
+            # Skip any empty line in title file
+            if title_list[i]:
+                title = title_list[i]
         # Write to title list and chunk
         # NB: create_title above removed any detected title from chunk, thus avoiding duplicate titles
         title_list_out[i] = title
         chunk = '=' * 9 + ' ' + title + ' ' + '=' * 9 + '\n' + chunk
         chunks[i] = chunk
-    return chunks, title_list_out
+    return chunks, title_list_out, title_list_detected
 
 
 def create_title(chunk, sep, tags):
