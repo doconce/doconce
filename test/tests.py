@@ -43,7 +43,7 @@ def clean_and_make(append=True):
     if failure:
         raise OSError('Could not run clean.sh successfully')
     print('\n\nRunning make.sh...............................\nin', os.getcwd())
-    failure, output = subprocess.getstatusoutput('bash -x make.sh')
+    output, failure = subprocess.Popen(['bash -x make.sh'], shell=True, stdout=subprocess.PIPE).communicate()
     system_output.append(output)
     if failure:
         where = os.getcwd()
@@ -59,12 +59,12 @@ def apply_regex(logfilename, logfilenameout=None):
     log = open(logfilename, 'r')
     text = log.read()
     log.close()
-    text += '\n\n'.join(system_output)
+    text += '\n\n'.join(str(system_output))
     date = r'[A-Z][a-z][a-z], \d?\d [A-Z][a-z][a-z] \d\d\d\d \(\d\d:\d\d\)'
     text = re.sub(date, r'Jan 32, 2100', text)
     date = r'[A-Z][a-z][a-z] \d?\d, \d\d\d\d'
     text = re.sub(date, r'Jan 32, 2100', text)
-    text = re.sub(r'^DATE: .*? \(.+?\)$', r'DATE: Jan 32, 2100', text, flags=re.MULTILINE)
+    text = re.sub(r'^DATE: .*? \(.+?\)$', r'DATE: Jan 32, 2100', text)
     text = re.sub(r'\d+ bytes', r'', text)
     text = re.sub(r'in paragraph at lines .*', r'', text)
     text = re.sub(r'undefined on input line .*', r'', text)
@@ -72,21 +72,21 @@ def apply_regex(logfilename, logfilenameout=None):
     text = re.sub(r'Underfull \\vbox.*', r'', text)
     text = re.sub(r'Overfull \\vbox.*', r'', text)
     text = re.sub(r'LaTeX Warning: .+? on page.*', r'', text)
-    text = re.sub(r'^ ?\d+\.$', r'...rest of part of LaTeX line number...', text, flags=re.MULTILINE)
-    text = re.sub(r'^(line|ine|ne) \d+\.$', r'...rest of part of LaTeX line number...', text, flags=re.MULTILINE)
+    text = re.sub(r'^ ?\d+\.$', r'...rest of part of LaTeX line number...', text)
+    text = re.sub(r'^(line|ine|ne) \d+\.$', r'...rest of part of LaTeX line number...', text)
     text = re.sub(r'\(\/usr\/share\/.+\)', '', text)
-    text = re.sub(r'\\usepackage{anslistings,fancyvrb} % (.*)', r'\\usepackage{fancyvrb,anslistings} % \1', text, re.MULTILINE)
-    text = re.sub(r'\.{3} checking existence of .*\n\s{4}found!\n', r'', text, re.MULTILINE)
-    text = re.sub(r'<function html_verbatim at .*>', r'<function html_verbatim at XXX>', text, re.MULTILINE)
-    text = re.sub(r'20\d\d, Hans Petter', r'20XX, Hans Petter', text, re.MULTILINE)
-    text = re.sub(r'figure file .*/\n\s{4}can use .*for format.*\n', 
-        r'\n', text, re.MULTILINE)
+    text = re.sub(r'\\usepackage{anslistings,fancyvrb} % (.*)', r'\\usepackage{fancyvrb,anslistings} % \1', text)
+    text = re.sub(r'\.{3} checking existence of .*\n\s{4}found!\n', r'', text)
+    text = re.sub(r'<function html_verbatim at .*>', r'<function html_verbatim at XXX>', text)
+    text = re.sub(r'20\d\d, Hans Petter', r'20XX, Hans Petter', text)
+    text = re.sub(r'figure file .*\n\s+can use .*for format.*\n', 
+        r'\n', text)
     text = re.sub(r'\.{3}doconce translation: figures \d{1,3}\.\d s \(accumulated time: \d{1,3}\.\d\)', 
         r'...doconce translation: figures XXX s (accumulated time: XXX)', text)
-    text = re.sub(r'\(.*pt too wide\)', r'\(XXXpt too wide\)', text, re.MULTILINE)
+    text = re.sub(r'\(.*pt too wide\)', r'\(XXXpt too wide\)', text)
     text = re.sub(r'\.{3}doconce format used \d{1,3}\.\d s', r'...doconce format used XXX s', text)
-    text = re.sub(r'\*{3} warning: hyperlink to URL .* is to a local file,\n.*recommended to be .*\n', r'\n', text, re.MULTILINE)
-    text = re.sub(r'\.{3} checking existence of .*\n.*found!\n', r'\n', text, re.MULTILINE)
+    text = re.sub(r'\*{3} warning: hyperlink to URL .* is to a local file,\n.*recommended to be .*\n', r'\n', text)
+    text = re.sub(r'\.{3} checking existence of .*\n.*found!\n', r'\n', text)
     log = open(logfilenameout, 'w')
     log.write(text)
     log.close()
@@ -147,7 +147,7 @@ def run():
 
     os.chdir(thisdir)
     # test DocWriter:
-    failure, output = subprocess.getstatusoutput('python ../lib/doconce/DocWriter.py')
+    output, failure = subprocess.Popen(['python ../lib/doconce/DocWriter.py'], shell=True, stdout=subprocess.PIPE).communicate()
     files = 'tmp_DocOnce.do.txt', 'tmp_DocWriter.do.txt', 'tmp_DocWriter.html', \
             'tmp_HTML.html'
     for f in files:
