@@ -397,9 +397,6 @@ def create_toc_yml(chapter_paths, chapter_titles, dest='./', dest_toc='./', sect
         ctitle = escape_chars(chapter_titles[i])
         if ctitle:
             yml_text += yml_titledpage(relpath + cfroot, ctitle, numbered=False)
-            # Do not expand the subsections in the navigation bar
-            if i == 0:
-                yml_text += yml_expand_sections(False)
             # Write the sections
             if section_paths and len(section_paths[i]):
                 yml_text += yml_section(nesting_level=1)
@@ -477,10 +474,6 @@ def yml_nested_section(file, title, nesting_level=1):
            '%s    title: %s\n' % ('  ' * nesting_level, title)
 
 
-def yml_expand_sections(expand=False):
-    return '  expand_sections: %s\n' % str(expand).lower()
-
-
 def yml_part(part, *files):
     yml = "- part: %s\n  chapters:\n" % part
     for file in files:
@@ -496,6 +489,6 @@ def yml_header(header):
     return "- header: %s\n" % header
 
 
-def yml_chapter(file, title, sections, numbered='false', expand_sections=True):
-    return "- title: %s\n  file: %s\n  numbered: %s\n  expand_sections: %s\n  sections: %s\n" % \
-           (file, title, sections, numbered, str(expand_sections).lower())
+def yml_chapter(file, title, sections, numbered='false'):
+    return "- title: %s\n  file: %s\n  numbered: %s\n  sections: %s\n" % \
+           (title, file, numbered, sections)
