@@ -2026,7 +2026,9 @@ def html_movie(m):
             text += """\n<p><em>%s</em></p>\n\n""" % caption
     elif 'vimeo.com' in filename:
         if not 'player.vimeo.com/video/' in filename:
-            if not filename.startswith('https://'):
+            if filename.startswith('http://'):
+                filename = 'https://' + filename[7:]
+            if not filename.startswith('https://') :
                 filename = 'https://' + filename
             filename = filename.replace('https://vimeo.com', 'https://player.vimeo.com/video')
         # Make html for a local Vimeo frame
