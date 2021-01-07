@@ -179,8 +179,8 @@ def pandoc_code(filestr, code_blocks, code_block_types,
                 replacement = '\n```%s\n' % language2pandoc[key]
             else:
                 # pandoc-extended Markdown
-                replacement = '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.%s}\n' % language2pandoc[key]
-                #replacement = '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.%s ,numberLines}\n' % language2pandoc[key]  # enable line numbering
+                replacement = '\n~~~{.%s}\n' % language2pandoc[key]
+                #replacement = '\n~~~{.%s ,numberLines}\n' % language2pandoc[key]  # enable line numbering
             filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
                              replacement, filestr, flags=re.MULTILINE)
 
@@ -188,13 +188,13 @@ def pandoc_code(filestr, code_blocks, code_block_types,
         if github_md:
             replacement = '\n```'
         else:
-            replacement = '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+            replacement = '\n~~~'
         filestr = re.sub(r'^!bc.*$', replacement, filestr, flags=re.MULTILINE)
 
         if github_md:
             replacement = '```\n'
         else:
-            replacement = '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n'
+            replacement = '~~~\n'
         filestr = re.sub(r'^!ec\s*$', replacement, filestr, flags=re.MULTILINE)
     else:
         # Strict Markdown: just indented blocks
