@@ -1109,15 +1109,19 @@ Here is an equation without label using backslash-bracket environment:
 !bt
 \[ a = b + c \]
 !et
+
 or with number and label, as in (ref{my:eq1}), using the equation environment:
+
 !bt
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u label{my:eq1}
 \end{equation}
 !et
+
 We can refer to this equation by (ref{my:eq1}).
 
 Here is a system without equation numbers, using the align-asterisk environment:
+
 !bt
 \begin{align*}
 \pmb{a} &= \pmb{q}\times\pmb{n} \\
@@ -1128,11 +1132,13 @@ b &= \nabla^2 u + \nabla^4 v
 
 % if FORMAT in ('latex', 'pdflatex', 'sphinx', 'html', 'pandoc'):
 And here is a system of equations with labels in an align environment:
+
 !bt
 \begin{align}
 a &= q + 4 + 5+ 6 label{eq1} \\
 b &= \nabla^2 u + \nabla^4 x label{eq2}
 \end{align}
+
 !et
 We can refer to (ref{eq1})-(ref{eq2}). They are a bit simpler than
 the Navier--Stokes equations. And test LaTeX hyphen in `CG-2`.
@@ -1150,6 +1156,7 @@ b &= \nabla^2 u + \nabla^4 x & x\in\Omega label{eq2a}
 % if FORMAT in ("latex", "pdflatex"):
 Many of the next environments will fail in non-latex formats.
 Testing multiline:
+
 !bt
 \begin{multline}
 a = b = q + \\
@@ -1157,7 +1164,9 @@ a = b = q + \\
 label{multiline:eq1}
 \end{multline}
 !et
+
 Testing split:
+
 !bt
 \begin{equation}
 label{split:envir:eq}
