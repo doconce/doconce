@@ -1490,8 +1490,7 @@ function show_hide_code%d(){
         # etc which are the variables we can plug into the template.
         # The keywords list holds the names of these variables (can define
         # more than we actually use).
-        keywords = ['title', 'date', 'main', 'table_of_contents',
-                    ]
+        keywords = ['title', 'date', 'main', 'table_of_contents']
         for keyword in keywords:
             from_ = '%%(%s)s' % keyword
             to_ = '@@@%s@@@' % keyword.upper()
@@ -2284,19 +2283,21 @@ def html_ref_and_label(section_label2title, format, filestr):
         filestr = filestr.replace('ref{%s}' % label,
                                   '<a href="#%s">%s</a>' % (label, label))
 
-    # insert enumerated anchors in all section headings without label
-    # anchors, in case we want a table of contents with links to each section
+    # insert anchors in all section headings without label in case
+    # we want a table of contents with links to each section
     section_pattern = re.compile(r'^\s*(_{3,9}|={3,9})(.+?)(_{3,9}|={3,9})\s*$',
                                  re.MULTILINE)
     m = section_pattern.findall(filestr)
     for i in range(len(m)):
         heading1, title, heading2 = m[i]
+        newtitle = title
         if not '<a name="' in title:
-            newtitle = title + ' <a name="___sec%d"></a>' % i
-            # (Note: the <a name=""> anchor is replaced by id="" in html_code)
-            filestr = filestr.replace(heading1 + title + heading2,
-                                      heading1 + newtitle + heading2,
-                                      1) # count=1: only the first!
+            # Note: because filestr has already been encoded, first undo the deconding on the title
+            newtitle = title + ' <a name="%s"></a>' % string2href(html2latin(title))
+        # (Note: the <a name=""> anchor is replaced by id="" in html_code)
+        filestr = filestr.replace(heading1 + title + heading2,
+                                  heading1 + newtitle+ heading2,
+                                  1) # count=1: only the first!
 
     return filestr
 
@@ -2409,14 +2410,17 @@ def html_toc(sections, filestr):
     # (we add class="anchor" in the calling code the above heading, if necessary)
     for i in range(len(sections)):
         title, level, label = sections[i]
-        href = label if label is not None else '___sec%d' % i
+        if label is not None:
+            href = label
+        else:
+            href = string2href(title)
         indent = '&nbsp; '*(3*(level - level_min))
         if level <= toc_depth:
             s += indent + '<a href="#%s">%s</a>' % (href, title ) + '<br>\n'
         extended_sections.append((title.strip(), level, label, href))
     s += '</p>%s\n<p>\n' % hr
 
-    # Store for later use in navgation panels etc.
+    # Store for later use in navigation panels etc.
     global tocinfo
     tocinfo = {'sections': extended_sections, 'highest level': level_min}
 
@@ -3347,6 +3351,10 @@ def latin2html(text):
     starts the HTML file.
     (However, the method below shows how to cope with special
     European characters in general.)
+
+    :param str text: text to be converted to html
+    :return: html code
+    :rtype: str
     """
     # Only run this algorithm for plain ascii files, otherwise
     # text is unicode utf-8 which is easily shown without encoding
@@ -3362,8 +3370,47 @@ def latin2html(text):
             else:
                 text_new.append(c)
         except Exception as e:
-            errwarn(e)
             errwarn('character causing problems: ' + c)
             raise e.__class__('%s: character causing problems: %s' % \
                               (e.__class__.__name__, c))
     return ''.join(text_new)
+
+def html2latin(html):
+    """
+    Transform a HTML text with possible special characters to the
+    equivalent text with latin-1 characters. This is the opposite of
+    the latin2html function.
+    Note: A simpler method would be to use `import html; html.unescape(html)`
+
+    :param str html: html code
+    :return: text - conversion of html to latin text
+    :rtype: str
+    """
+    if not isinstance(html, str):
+        return html
+    unicode_chars = re.findall(r'(?:&#)(\d+)(?:;)', html)
+    unicode_chars = list(set(unicode_chars))
+    text = html
+    for u in unicode_chars:
+        try:
+            text = re.sub(r'&#'+u+';', chr(int(u)), text)
+        except Exception as e:
+            errwarn('unicode character causing problems: ' + '&#'+u+';')
+            raise e.__class__('%s: character causing problems: %s' % \
+                              (e.__class__.__name__, '&#'+u+';'))
+    return text
+
+
+def string2href(title=''):
+    """ Create strings that are safe to pass to href in anchors or other html tag properties
+
+    Given a header with a title e.g. " Section 1: what's this å? ", create a string e.g.
+    "section-1-what-s-this-&#229;" that can be safely passed to href in anchor links (<a href=.../>).
+
+    :param str title: title of the heading
+    :return: href
+    :rtype: str
+    """
+    href = re.sub('\W+', '-', title.lower())
+    href = latin2html(href)
+    return href.strip('-')

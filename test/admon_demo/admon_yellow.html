@@ -69,12 +69,15 @@ div { text-align: justify; text-justify: inter-word; }
 
 <!-- tocinfo
 {'highest level': 1,
- 'sections': [('Introduction', 1, None, '___sec0'),
-              ('Code', 2, None, '___sec1'),
-              ('Quotes and boxes', 2, None, '___sec2'),
-              ('Admonitions', 2, None, '___sec3'),
-              ('Going deeper environments', 2, None, '___sec4'),
-              ('The end', 2, None, '___sec5')]}
+ 'sections': [('Introduction', 1, None, 'introduction'),
+              ('Code', 2, None, 'code'),
+              ('Quotes and boxes', 2, None, 'quotes-and-boxes'),
+              ('Admonitions', 2, None, 'admonitions'),
+              ('Going deeper environments',
+               2,
+               None,
+               'going-deeper-environments'),
+              ('The end', 2, None, 'the-end')]}
 end of tocinfo -->
 
 <body>
@@ -114,16 +117,16 @@ MathJax.Hub.Config({
 
 <br>
 <p>
-<center><h4>Jan 7, 2021</h4></center> <!-- date -->
+<center><h4>Jan 22, 2021</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split -->
 
-<h1 id="___sec0">Introduction </h1>
+<h1 id="introduction">Introduction </h1>
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
 
-<h2 id="___sec1">Code </h2>
+<h2 id="code">Code </h2>
 
 <p>
 Need some code outside admons for color and font comparisons:
@@ -144,7 +147,7 @@ And some plain text verbatim:
 x=1.1 y=0.3 z=0.1
 </pre></div>
 
-<h2 id="___sec2">Quotes and boxes </h2>
+<h2 id="quotes-and-boxes">Quotes and boxes </h2>
 
 <p>
 Here is a plain quote environment.
@@ -231,7 +234,7 @@ Let's begin a new paragraph and show a box with code only:
 <!-- end box -->
 
 
-<h2 id="___sec3">Admonitions </h2>
+<h2 id="admonitions">Admonitions </h2>
 
 <p>
 Let us start with a plain warning environment.
@@ -412,7 +415,7 @@ And here comes some text with bad news.
 </div>
 
 
-<h2 id="___sec4">Going deeper environments </h2>
+<h2 id="going-deeper-environments">Going deeper environments </h2>
 
 <p>
 Here is a long notice environment with a custom title and much
@@ -508,7 +511,7 @@ And then we add a figure too.
 </div>
 
 
-<h2 id="___sec5">The end </h2>
+<h2 id="the-end">The end </h2>
 
 <p>
 A bit of text before the summary, which we now call "Concluding remarks,

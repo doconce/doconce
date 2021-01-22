@@ -112,56 +112,74 @@ $(function () {
                'table_of_contents',
                'table_of_contents'),
               ('Section 1', 1, 'sec1', 'sec1'),
-              ('Here is a list with subsubsection heading', 3, None, '___sec1'),
+              ('Here is a list with subsubsection heading',
+               3,
+               None,
+               'here-is-a-list-with-subsubsection-heading'),
               ('Subsection 1', 2, 'subsec1', 'subsec1'),
               ('Test Section reference at beginning of line and after a '
                'sentence',
                3,
                None,
-               '___sec3'),
-              ('Computer code', 3, None, '___sec4'),
-              ('Subsubsection heading before code', 3, None, '___sec5'),
-              ('Running OS commands', 3, None, '___sec6'),
-              ('Footnotes', 3, None, '___sec7'),
+               'test-section-reference-at-beginning-of-line-and-after-a-sentence'),
+              ('Computer code', 3, None, 'computer-code'),
+              ('Subsubsection heading before code',
+               3,
+               None,
+               'subsubsection-heading-before-code'),
+              ('Running OS commands', 3, None, 'running-os-commands'),
+              ('Footnotes', 3, None, 'footnotes'),
               ('Subsection 2: Testing figures', 2, 'subsec:ex', 'subsec:ex'),
               ('The $\\theta$ parameter (not $\\nabla$?)',
                2,
                'decay:sec:theta',
                'decay:sec:theta'),
-              ('Custom Environments', 2, None, '___sec10'),
+              ('Custom Environments', 2, None, 'custom-environments'),
               ('Tables', 2, 'subsec:table', 'subsec:table'),
               ('A test of verbatim words in heading with subscript $a_i$: '
                '`my_file_v1` and `my_file_v2`',
                2,
                None,
-               '___sec12'),
-              ('_Just bold_', 2, None, '___sec13'),
-              ('*Just emphasize*', 2, None, '___sec14'),
-              ('`Just verbatim`', 2, None, '___sec15'),
-              ('_Bold_ beginning', 2, None, '___sec16'),
-              ('*Emphasize* beginning', 2, None, '___sec17'),
-              ('`Verbatim` beginning', 2, None, '___sec18'),
-              ('Maybe _bold end_', 2, None, '___sec19'),
-              ('Maybe *emphasize end*', 2, None, '___sec20'),
-              ('Maybe `verbatim end`', 2, None, '___sec21'),
-              ('The middle has _bold_ word', 2, None, '___sec22'),
-              ('The middle has *emphasize* word', 2, None, '___sec23'),
-              ('The middle has `verbatim` word', 2, None, '___sec24'),
-              ('Bibliography test', 2, None, '___sec25'),
+               'a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2'),
+              ('_Just bold_', 2, None, '_just-bold_'),
+              ('*Just emphasize*', 2, None, 'just-emphasize'),
+              ('`Just verbatim`', 2, None, 'just-verbatim'),
+              ('_Bold_ beginning', 2, None, '_bold_-beginning'),
+              ('*Emphasize* beginning', 2, None, 'emphasize-beginning'),
+              ('`Verbatim` beginning', 2, None, 'verbatim-beginning'),
+              ('Maybe _bold end_', 2, None, 'maybe-_bold-end_'),
+              ('Maybe *emphasize end*', 2, None, 'maybe-emphasize-end'),
+              ('Maybe `verbatim end`', 2, None, 'maybe-verbatim-end'),
+              ('The middle has _bold_ word',
+               2,
+               None,
+               'the-middle-has-_bold_-word'),
+              ('The middle has *emphasize* word',
+               2,
+               None,
+               'the-middle-has-emphasize-word'),
+              ('The middle has `verbatim` word',
+               2,
+               None,
+               'the-middle-has-verbatim-word'),
+              ('Bibliography test', 2, None, 'bibliography-test'),
               ('Example 1: Examples can be typeset as exercises',
                2,
                'Example',
                'Example'),
-              ('User-defined environments', 2, None, '___sec27'),
+              ('User-defined environments',
+               2,
+               None,
+               'user-defined-environments'),
               ('Example 1: A test function', 2, 'ex:test:1p1', 'ex:test:1p1'),
               ('Example 2: Addition', 2, 'ex:math:1p1', 'ex:math:1p1'),
               ('URLs', 2, 'subsubsec:ex', 'subsubsec:ex'),
-              ('LaTeX Mathematics', 1, None, '___sec31'),
-              ('Exercises', 1, None, '___sec32'),
+              ('LaTeX Mathematics', 1, None, 'latex-mathematics'),
+              ('Exercises', 1, None, 'exercises'),
               ('Problem 2: Flip a Coin', 2, 'demo:ex:1', 'demo:ex:1'),
-              ('My remarks', 3, None, '___sec34'),
-              ('Remarks', 3, None, '___sec35'),
-              ('Not an exercise', 2, None, '___sec36'),
+              ('My remarks', 3, None, 'my-remarks'),
+              ('Remarks', 3, None, 'remarks'),
+              ('Not an exercise', 2, None, 'not-an-exercise'),
               ('Exercise 3: Test of plain text exercise',
                2,
                'my:exer1',
@@ -171,23 +189,29 @@ $(function () {
                2,
                'proj:circle1',
                'proj:circle1'),
-              ('Remarks', 3, None, '___sec40'),
+              ('Remarks', 3, None, 'remarks'),
               ('Exercise 6: Determine some Distance',
                2,
                'exer:dist',
                'exer:dist'),
-              ('Remarks', 3, None, '___sec42'),
+              ('Remarks', 3, None, 'remarks'),
               ('Some exercise without the "Exercise:" prefix',
                2,
                None,
-               '___sec43'),
+               'some-exercise-without-the-exercise-prefix'),
               ('Exercise 8: Solution of differential equation',
                2,
                'sec:this:exer:de',
                'sec:this:exer:de'),
-              ('Example 9: Just an example', 2, None, '___sec45'),
-              ('Here goes another section', 1, None, '___sec46'),
-              ('More Exercises', 1, None, '___sec47'),
+              ('Example 9: Just an example',
+               2,
+               None,
+               'example-9-just-an-example'),
+              ('Here goes another section',
+               1,
+               None,
+               'here-goes-another-section'),
+              ('More Exercises', 1, None, 'more-exercises'),
               ('Exercise 10: Make references to projects and problems',
                2,
                'exer:some:formula',
@@ -196,11 +220,17 @@ $(function () {
                2,
                'exer:you',
                'exer:you'),
-              ('References', 1, None, '___sec50'),
+              ('References', 1, None, 'references'),
               ('Appendix: Just for testing; part I', 1, 'app1', 'app1'),
-              ('A subsection within an appendix', 2, None, '___sec52'),
+              ('A subsection within an appendix',
+               2,
+               None,
+               'a-subsection-within-an-appendix'),
               ('Appendix: Just for testing; part II', 1, 'app2', 'app2'),
-              ('Appendix: Testing identical titles', 2, None, '___sec54'),
+              ('Appendix: Testing identical titles',
+               2,
+               None,
+               'appendix-testing-identical-titles'),
               ('Appendix: Testing identical titles',
                2,
                'test:title:id1',
@@ -209,12 +239,18 @@ $(function () {
                2,
                'test:title:id2',
                'test:title:id2'),
-              ('Appendix: Testing identical titles', 2, None, '___sec57'),
-              ('Appendix: Testing inline comments', 2, None, '___sec58'),
+              ('Appendix: Testing identical titles',
+               2,
+               None,
+               'appendix-testing-identical-titles'),
+              ('Appendix: Testing inline comments',
+               2,
+               None,
+               'appendix-testing-inline-comments'),
               ('Appendix: Testing headings ending with `verbatim inline`',
                2,
                None,
-               '___sec59')]}
+               'appendix-testing-headings-ending-with-verbatim-inline')]}
 end of tocinfo -->
 
 <body>
@@ -277,7 +313,7 @@ MathJax.Hub.Config({
 <center>[7] <b>Fourth Inst</b></center>
 <br>
 <p>
-<center><h4>Jan 7, 2021</h4></center> <!-- date -->
+<center><h4>Jan 22, 2021</h4></center> <!-- date -->
 <br>
 
 <h1 id="table_of_contents">Table of contents</h2>
@@ -287,52 +323,52 @@ MathJax.Hub.Config({
 &nbsp; &nbsp; &nbsp; <a href="#subsec1"> Subsection 1 </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#subsec:ex"> Subsection 2: Testing figures </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec10"> Custom Environments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#custom-environments"> Custom Environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#subsec:table"> Tables </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec12"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec13"> <b>Just bold</b> </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec14"> <em>Just emphasize</em> </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec15"> <code>Just verbatim</code> </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec16"> <b>Bold</b> beginning </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec17"> <em>Emphasize</em> beginning </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec18"> <code>Verbatim</code> beginning </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec19"> Maybe <b>bold end</b> </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec20"> Maybe <em>emphasize end</em> </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec21"> Maybe <code>verbatim end</code> </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec22"> The middle has <b>bold</b> word </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec23"> The middle has <em>emphasize</em> word </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec24"> The middle has <code>verbatim</code> word </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec25"> Bibliography test </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#_just-bold_"> <b>Just bold</b> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#just-emphasize"> <em>Just emphasize</em> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#just-verbatim"> <code>Just verbatim</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#_bold_-beginning"> <b>Bold</b> beginning </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#emphasize-beginning"> <em>Emphasize</em> beginning </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#verbatim-beginning"> <code>Verbatim</code> beginning </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#maybe-_bold-end_"> Maybe <b>bold end</b> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#maybe-emphasize-end"> Maybe <em>emphasize end</em> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#maybe-verbatim-end"> Maybe <code>verbatim end</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#the-middle-has-<b>bold</b>-word"> The middle has <b>bold</b> word </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#the-middle-has-emphasize-word"> The middle has <em>emphasize</em> word </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#the-middle-has-verbatim-word"> The middle has <code>verbatim</code> word </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#bibliography-test"> Bibliography test </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#Example"> Example 1: Examples can be typeset as exercises </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec27"> User-defined environments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#user-defined-environments"> User-defined environments </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#ex:test:1p1"> Example 1: A test function </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#ex:math:1p1"> Example 2: Addition </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#subsubsec:ex"> URLs </a><br>
-<a href="#___sec31"> LaTeX Mathematics </a><br>
-<a href="#___sec32"> Exercises </a><br>
+<a href="#latex-mathematics"> LaTeX Mathematics </a><br>
+<a href="#exercises"> Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#demo:ex:1"> Problem 2: Flip a Coin </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec36"> Not an exercise </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#not-an-exercise"> Not an exercise </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#my:exer1"> Exercise 3: Test of plain text exercise </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#demo:ex:2"> Project 4: Compute a Probability </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#proj:circle1"> Project 5: Explore Distributions of Random Circles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#exer:dist"> Exercise 6: Determine some Distance </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec43"> Some exercise without the "Exercise:" prefix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#some-exercise-without-the-exercise-prefix"> Some exercise without the "Exercise:" prefix </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#sec:this:exer:de"> Exercise 8: Solution of differential equation </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec45"> Example 9: Just an example </a><br>
-<a href="#___sec46"> Here goes another section </a><br>
-<a href="#___sec47"> More Exercises </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#example-9-just-an-example"> Example 9: Just an example </a><br>
+<a href="#here-goes-another-section"> Here goes another section </a><br>
+<a href="#more-exercises"> More Exercises </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#exer:some:formula"> Exercise 10: Make references to projects and problems </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#exer:you"> Project 11: References in a headings do not work well in html </a><br>
-<a href="#___sec50"> References </a><br>
+<a href="#references"> References </a><br>
 <a href="#app1"> Appendix: Just for testing; part I </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec52"> A subsection within an appendix </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#a-subsection-within-an-appendix"> A subsection within an appendix </a><br>
 <a href="#app2"> Appendix: Just for testing; part II </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec54"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#appendix-testing-identical-titles"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#test:title:id1"> Appendix: Testing identical titles </a><br>
 &nbsp; &nbsp; &nbsp; <a href="#test:title:id2"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec57"> Appendix: Testing identical titles </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec58"> Appendix: Testing inline comments </a><br>
-&nbsp; &nbsp; &nbsp; <a href="#___sec59"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#appendix-testing-identical-titles"> Appendix: Testing identical titles </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#appendix-testing-inline-comments"> Appendix: Testing inline comments </a><br>
+&nbsp; &nbsp; &nbsp; <a href="#appendix-testing-headings-ending-with-verbatim-inline"> Appendix: Testing headings ending with <code>verbatim inline</code> </a><br>
 </p>
 <p>
 <!-- !split -->
@@ -388,7 +424,7 @@ Here is a nested list:
   <li> item2</li>
 </ul>
 
-<h3 id="___sec1">Here is a list with subsubsection heading </h3>
+<h3 id="here-is-a-list-with-subsubsection-heading">Here is a list with subsubsection heading </h3>
 
 <ul>
   <li> item1</li>
@@ -443,7 +479,7 @@ the sections <a href="#subsec1">Subsection 1</a> and <a href="#subsubsec:ex">URL
 encourages you to do the tasks in <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.
  <a href="#app1">Appendix: Just for testing; part I</a> and <a href="#app2">Appendix: Just for testing; part II</a> are also nice elements.
 
-<h3 id="___sec3">Test Section reference at beginning of line and after a sentence </h3>
+<h3 id="test-section-reference-at-beginning-of-line-and-after-a-sentence">Test Section reference at beginning of line and after a sentence </h3>
 
 <p>
 The section <a href="#subsec1">Subsection 1</a> is fine.
@@ -452,7 +488,7 @@ The section <a href="#subsubsec:ex">URLs</a> too.
 <p>
 <!-- sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console -->
 
-<h3 id="___sec4">Computer code </h3>
+<h3 id="computer-code">Computer code </h3>
 
 <p>
 Let's do some copying from files too. First from subroutine up to the very end,
@@ -582,7 +618,7 @@ before code.
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span></pre></div></td><td class="code"><div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%;"><span></span><span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">sys</span>
 sys.path.insert(<span style="color: #B452CD">0</span>, os.pardir)
 </pre></div>
-</td></tr></table><h3 id="___sec5">Subsubsection heading before code </h3>
+</td></tr></table><h3 id="subsubsection-heading-before-code">Subsubsection heading before code </h3>
 
 <p>
 
@@ -969,7 +1005,7 @@ is the output format.
 But here some more running text is added which is not part of
 the previous blocks with line breaks.
 
-<h3 id="___sec6">Running OS commands </h3>
+<h3 id="running-os-commands">Running OS commands </h3>
 
 <p>
 
@@ -984,7 +1020,7 @@ output
 from
 Python.
 </pre></div>
-</td></tr></table><h3 id="___sec7">Footnotes </h3>
+</td></tr></table><h3 id="footnotes">Footnotes </h3>
 
 <p>
 Here is a test of footnotes [<a id="link_footnote_1" href="#def_footnote_1">1</a>], which are handy in text.
@@ -1272,7 +1308,7 @@ A \\ B
 
 Now we refer to \eqref{mymatrix:eq1}-\eqref{mymatrix:eq2}.
 
-<h2 id="___sec10">Custom Environments </h2>
+<h2 id="custom-environments">Custom Environments </h2>
 
 <p>
 Here is an attempt to create a theorem environment via Mako
@@ -1439,7 +1475,7 @@ and URLs.
 </tbody>
 </table>
 
-<h2 id="___sec12">A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </h2>
+<h2 id="a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2">A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </h2>
 
 <p>
 <b>Paragraph with verbatim and math: <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \( a_{i-1} \).</b>
@@ -1449,62 +1485,62 @@ some plain text on a new line.
 <p>
 <!-- Test various types of headlines -->
 
-<h2 id="___sec13"><b>Just bold</b> </h2>
+<h2 id="_just-bold_"><b>Just bold</b> </h2>
 
 <p>
 Some text.
 
-<h2 id="___sec14"><em>Just emphasize</em> </h2>
+<h2 id="just-emphasize"><em>Just emphasize</em> </h2>
 
 <p>
 Some text.
 
-<h2 id="___sec15"><code>Just verbatim</code> </h2>
+<h2 id="just-verbatim"><code>Just verbatim</code> </h2>
 
 <p>
 Some text.
 
-<h2 id="___sec16"><b>Bold</b> beginning </h2>
+<h2 id="_bold_-beginning"><b>Bold</b> beginning </h2>
 
 <p>
 Some text.
 
-<h2 id="___sec17"><em>Emphasize</em> beginning </h2>
+<h2 id="emphasize-beginning"><em>Emphasize</em> beginning </h2>
 
 <p>
 Some text.
 
-<h2 id="___sec18"><code>Verbatim</code> beginning </h2>
+<h2 id="verbatim-beginning"><code>Verbatim</code> beginning </h2>
 
 <p>
 Some text.
 
-<h2 id="___sec19">Maybe <b>bold end</b> </h2>
+<h2 id="maybe-_bold-end_">Maybe <b>bold end</b> </h2>
 
 <p>
 Some text.
 
-<h2 id="___sec20">Maybe <em>emphasize end</em> </h2>
+<h2 id="maybe-emphasize-end">Maybe <em>emphasize end</em> </h2>
 
 <p>
 Some text.
 
-<h2 id="___sec21">Maybe <code>verbatim end</code> </h2>
+<h2 id="maybe-verbatim-end">Maybe <code>verbatim end</code> </h2>
 
 <p>
 Some text.
 
-<h2 id="___sec22">The middle has <b>bold</b> word </h2>
+<h2 id="the-middle-has-<b>bold</b>-word">The middle has <b>bold</b> word </h2>
 
 <p>
 Some text.
 
-<h2 id="___sec23">The middle has <em>emphasize</em> word </h2>
+<h2 id="the-middle-has-emphasize-word">The middle has <em>emphasize</em> word </h2>
 
 <p>
 Some text.
 
-<h2 id="___sec24">The middle has <code>verbatim</code> word </h2>
+<h2 id="the-middle-has-verbatim-word">The middle has <code>verbatim</code> word </h2>
 
 <p>
 Some text.
@@ -1570,7 +1606,7 @@ More quotes to be tested for spellcheck:
 (&quot;with parenthesis&quot;), &quot;with newline&quot;
 and &quot;with comma&quot;, &quot;hyphen&quot;-wise, and &quot;period&quot;.
 
-<h2 id="___sec25">Bibliography test </h2>
+<h2 id="bibliography-test">Bibliography test </h2>
 
 <p>
 Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of
@@ -1639,7 +1675,7 @@ maybe over multiple doconce input lines.
 <p>
 <!-- --- end exercise --- -->
 
-<h2 id="___sec27">User-defined environments </h2>
+<h2 id="user-defined-environments">User-defined environments </h2>
 
 <p>
 The example in the section <a href="#ex:test:1p1">Example 1: A test function</a> demonstrates how to write a test function.
@@ -1753,23 +1789,27 @@ footnotes.
 <p>
 <!-- !split and check if these extra words are included properly in the comment -->
 
-<h1 id="___sec31">LaTeX Mathematics </h1>
+<h1 id="latex-mathematics">LaTeX Mathematics </h1>
 
 <p>
 Here is an equation without label using backslash-bracket environment:
 $$ a = b + c $$
 
+<p>
 or with number and label, as in \eqref{my:eq1}, using the equation environment:
+
 $$
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
 $$
 
+<p>
 We can refer to this equation by \eqref{my:eq1}.
 
 <p>
 Here is a system without equation numbers, using the align-asterisk environment:
+
 $$
 \begin{align*}
 \pmb{a} &= \pmb{q}\times\pmb{n} \\ 
@@ -1779,11 +1819,13 @@ $$
 
 <p>
 And here is a system of equations with labels in an align environment:
+
 $$
 \begin{align}
 a &= q + 4 + 5+ 6 \label{eq1} \\ 
 b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
+
 $$
 
 We can refer to \eqref{eq1}-\eqref{eq2}. They are a bit simpler than
@@ -1808,7 +1850,7 @@ Below, we have <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#dem
 as well as <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 11: References in a headings do not work well in html</a>, and in
 between there we have <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.
 
-<h1 id="___sec32">Exercises </h1>
+<h1 id="exercises">Exercises </h1>
 
 <p>
 <!-- --- begin exercise --- -->
@@ -1901,7 +1943,7 @@ Vectorize the code in a) using <code>numpy.sum</code>.
 In this latter subexercise, we have an
 example where the code is easy to read.
 
-<h3 id="___sec34">My remarks </h3>
+<h3 id="my-remarks">My remarks </h3>
 
 <p>
 Remarks with such a subsubsection is treated as more text
@@ -1917,7 +1959,7 @@ Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
 <p>
 <!-- Closing remarks for this Problem -->
 
-<h3 id="___sec35">Remarks </h3>
+<h3 id="remarks">Remarks </h3>
 
 <p>
 These are the exercise remarks, appearing at the very end.
@@ -1928,7 +1970,7 @@ These are the exercise remarks, appearing at the very end.
 <p>
 <!-- --- end exercise --- -->
 
-<h2 id="___sec36">Not an exercise </h2>
+<h2 id="not-an-exercise">Not an exercise </h2>
 
 <p>
 Should be possible to stick a normal section in the middle of many
@@ -2079,7 +2121,7 @@ Filename: <code>circles</code>.
 <p>
 <!-- Closing remarks for this Project -->
 
-<h3 id="___sec40">Remarks </h3>
+<h3 id="remarks">Remarks </h3>
 
 <p>
 At the very end of the exercise it may be appropriate to summarize
@@ -2206,7 +2248,7 @@ Test list in exercise:
 <!-- Closing remarks for this Exercise --></li>
 </ol>
 
-<h3 id="___sec42">Remarks </h3>
+<h3 id="remarks">Remarks </h3>
 
 <p>
 Some final closing remarks, e.g., summarizing the main findings
@@ -2219,7 +2261,7 @@ remarks will appear at the end of the typeset exercise.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="___sec43">Some exercise without the "Exercise:" prefix </h2>
+<h2 id="some-exercise-without-the-exercise-prefix">Some exercise without the "Exercise:" prefix </h2>
 
 <p>
 <!-- Another minimalistic exercise -->
@@ -2295,7 +2337,7 @@ for \( x \) or \( y \), not a function \( y(x) \).
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="___sec45">Example 9: Just an example </h2>
+<h2 id="example-9-just-an-example">Example 9: Just an example </h2>
 
 <p>
 <!-- This example needs the --examples_as_exercises option, otherwise -->
@@ -2312,12 +2354,12 @@ Oslo.
 <p>
 <!-- --- end exercise --- -->
 
-<h1 id="___sec46">Here goes another section </h1>
+<h1 id="here-goes-another-section">Here goes another section </h1>
 
 <p>
 With some text, before we continue with exercises.
 
-<h1 id="___sec47">More Exercises </h1>
+<h1 id="more-exercises">More Exercises </h1>
 
 <p>
 <!-- --- begin exercise --- -->
@@ -2357,7 +2399,7 @@ Filename: <code>selc_composed.pdf</code>.
 <p>
 <!-- --- end exercise --- -->
 
-<h1 id="___sec50">References </h1>
+<h1 id="references">References </h1>
 
 <p>
 <!-- begin bibliography -->
@@ -2490,7 +2532,7 @@ Filename: <code>selc_composed.pdf</code>.
 <p>
 This is the first appendix.
 
-<h2 id="___sec52">A subsection within an appendix </h2>
+<h2 id="a-subsection-within-an-appendix">A subsection within an appendix </h2>
 
 <p>
 Some text.
@@ -2500,7 +2542,7 @@ Some text.
 <p>
 This is more stuff for an appendix.
 
-<h2 id="___sec54">Appendix: Testing identical titles </h2>
+<h2 id="appendix-testing-identical-titles">Appendix: Testing identical titles </h2>
 
 <p>
 Without label.
@@ -2543,7 +2585,7 @@ Bergen
 <!-- end quiz -->
 
 
-<h2 id="___sec57">Appendix: Testing identical titles </h2>
+<h2 id="appendix-testing-identical-titles">Appendix: Testing identical titles </h2>
 
 <p>
 Without label.
@@ -2637,7 +2679,7 @@ detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
 
-<h2 id="___sec58">Appendix: Testing inline comments </h2>
+<h2 id="appendix-testing-inline-comments">Appendix: Testing inline comments </h2>
 
 <p>
 <!-- Names can be [ A-Za-z0-9_'+-]+ -->
@@ -2689,7 +2731,7 @@ Test references in a list:
  <li> <a href="#fig:impact">1</a></li>
 </ul>
 
-<h2 id="___sec59">Appendix: Testing headings ending with <code>verbatim inline</code> </h2>
+<h2 id="appendix-testing-headings-ending-with-verbatim-inline">Appendix: Testing headings ending with <code>verbatim inline</code> </h2>
 
 <p>
 The point here is to test 1) <code>verbatim</code> code in headings, and 2)
