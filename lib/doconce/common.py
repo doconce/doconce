@@ -1111,6 +1111,8 @@ def doconce_exercise_output(
                         ['`%s`' % f for f in subex['file']]) + '.\n')
 
             if subex['ans_docend']:
+                # Enforce label to avoid any confusion with the sub-exercise
+                sol += '\nlabel{ansatend:' + exer['title'].lower().replace(' ', '_').replace(' ', '_') + '}\n'
                 # Similar to 'solution' above, but do not write solutions to main text
                 if exer['type'] != 'Example':
                     sol += '\n# ' + envir_delimiter_lines['ans_docend'][0] + '\n'
@@ -1121,6 +1123,8 @@ def doconce_exercise_output(
                     sol += '# ' + envir_delimiter_lines['ans_docend'][1] + '\n'
 
             if subex['sol_docend']:
+                # Enforce label to avoid any confusion with the sub-exercise
+                sol += '\nlabel{solatend:' + exer['title'].lower().replace(' ', '_').replace(' ', '_') + '}\n'
                 # Similar to 'solution' above, but do not write solutions to main text
                 if exer['type'] != 'Example':
                     sol += '\n# ' + envir_delimiter_lines['sol_docend'][0] + '\n'

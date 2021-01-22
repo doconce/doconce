@@ -52,16 +52,19 @@ MathJax.Hub.Config({
 
 <title>This is a test of HTML templates</title>
 
-<h4>Date: Jan 7, 2021</h4>
+<h4>Date: Jan 22, 2021</h4>
 
 <!-- main body -->
 
 
 <!-- tocinfo
 {'highest level': 1,
- 'sections': [('This is a test of HTML templates', 2, None, '___sec0'),
-              ('This is a 7 heading', 1, None, '___sec1'),
-              ('This is a 5 heading', 2, None, '___sec2')]}
+ 'sections': [('This is a test of HTML templates',
+               2,
+               None,
+               'this-is-a-test-of-html-templates'),
+              ('This is a 7 heading', 1, None, 'this-is-a-7-heading'),
+              ('This is a 5 heading', 2, None, 'this-is-a-5-heading')]}
 end of tocinfo -->
 
 
@@ -71,13 +74,13 @@ end of tocinfo -->
 
 <br>
 
-<h2 id="___sec0">This is a test of HTML templates </h2>
+<h2 id="this-is-a-test-of-html-templates">This is a test of HTML templates </h2>
 
 <p>
 Note: When using HTML templates, the DocOnce file cannot have a title
 (to avoid generating a header). It should neither have an author.
 
-<h1 id="___sec1">This is a 7 heading </h1>
+<h1 id="this-is-a-7-heading">This is a 7 heading </h1>
 
 <p>
 Here is some code:
@@ -94,7 +97,7 @@ class Forward1(Diff):
 </code></pre>
 <!-- end verbatim block -->
 
-<h2 id="___sec2">This is a 5 heading </h2>
+<h2 id="this-is-a-5-heading">This is a 5 heading </h2>
 
 <p>
 The template can be any HTML file with header and footer and
