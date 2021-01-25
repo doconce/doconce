@@ -3,7 +3,7 @@ This directory contains the primary doconce tests.
 There are two types of tests:
 
  * unit tests in test_mintest.py
- * test.py regression suite
+ * tests.py regression suite
 
 The latter contains classical regression tests where text is
 generated in many files, these are concatenated, and then
@@ -19,7 +19,7 @@ by
 
 The very comprehensive suite in test.veryify is run by
 
-  python test.py
+  python tests.py
 
 A diff test.v test.r show differences of generated text
 (test.v) and reference data (test.r). Don't run this unless you have

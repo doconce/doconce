@@ -1,10 +1,9 @@
 #TITLE (actually governed by the filename): Testing admons
 
 By '''H. P. Langtangen'''
-==== Jan 22, 2021 ====
+==== Jan 25, 2021 ====
 
 Copyright 2021, H. P. Langtangen. Made with DocOnce
-
 
 
 
@@ -12,7 +11,6 @@ Copyright 2021, H. P. Langtangen. Made with DocOnce
 == Introduction ==
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
-
 
 ==== Code ====
 
@@ -49,7 +47,6 @@ By way of corollary, it adds: <br />
 
 Does quotes with title also work? No...cannot work in LaTeX and HTML
 and then it does not make sense to support it.
-
 
 A plain ''box'' is sometimes useful. Let's show it here for comparison
 with admons (especially the block admon has much in common with a box).
@@ -111,8 +108,6 @@ def some_code(x):
     return sin(x)*exp(1-x)
 </syntaxhighlight>
 }}
-
-
 
 
 
@@ -193,7 +188,6 @@ more comment-style text or text that really goes deeper or talks
 about fun facts that are not strictly necessary for the main flow
 of understanding.
 }}
-
 
 
 
@@ -376,10 +370,8 @@ class Forward3(Diff):
 </syntaxhighlight>
 And then we add a figure too.
 
-
 [[File:Wave1D.png|frame|400px|alt=Wave1D.png|<span title=""></span>]] <!-- not yet uploaded to common.wikimedia.org -->
 }}
-
 
 
 

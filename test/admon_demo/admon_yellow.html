@@ -103,56 +103,62 @@ MathJax.Hub.Config({
 
 
 
-<center><h1>Testing admons</h1></center>  <!-- document title -->
+<center>
+<h1>Testing admons</h1>
+</center>  <!-- document title -->
 
-<p>
+<p></p>
 <!-- author(s): H. P. Langtangen -->
 
 <center>
 <b>H. P. Langtangen</b> 
 </center>
 
-<p>
-<!-- institution(s) -->
+<p><!-- institution(s) --></p>
 
 <br>
-<p>
-<center><h4>Jan 22, 2021</h4></center> <!-- date -->
+<center>
+<h4>Jan 25, 2021</h4>
+</center> <!-- date -->
 <br>
-<p>
+<p></p>
 <!-- !split -->
-
 <h1 id="introduction">Introduction </h1>
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
 
+<p></p>
 <h2 id="code">Code </h2>
 
-<p>
+<p></p>
 Need some code outside admons for color and font comparisons:
 
-<p>
+<p></p>
+
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> sin(x)<span style="color: #666666">*</span>exp(<span style="color: #666666">1-</span>x)
 </pre></div>
-<p>
+
+<p></p>
 And some plain text verbatim:
 
-<p>
+<p></p>
+
 
 <!-- code=text typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span>x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 </pre></div>
 
+<p></p>
 <h2 id="quotes-and-boxes">Quotes and boxes </h2>
 
-<p>
+<p></p>
 Here is a plain quote environment.
 
-<p>
+<p></p>
 <blockquote>
     Sayre's law states that
     &quot;in any dispute the intensity of feeling is inversely
@@ -163,27 +169,30 @@ Here is a plain quote environment.
 </blockquote>
 
 
-<p>
+<p></p>
 Does quotes with title also work? No...cannot work in LaTeX and HTML
 and then it does not make sense to support it.
 
-<p>
+<p></p>
 A plain <em>box</em> is sometimes useful. Let's show it here for comparison
 with admons (especially the block admon has much in common with a box).
 The box is more aimed at framing a law or an equation.
 
-<p>
+<p></p>
 First a simple block with text, an equation, and a list:
 
-<p>
+<p></p>
 
 <!-- begin box -->
 <div style="width: 95%; padding: 10px; border: 1px solid #000; border-radius: 4px; box-shadow: 8px 8px 5px #888888;">
 A generic equation
 
+<p></p>
 $$ f(x) = 0 $$
 
 must be solved by a numerical method, such as
+
+<p></p>
 
 <ul>
  <li> Newton's method</li>
@@ -197,7 +206,7 @@ must be solved by a numerical method, such as
 Now test a box with equation only (note that this line continues the
 box, it is not a new paragraph):
 
-<p>
+<p></p>
 
 <!-- begin box -->
 <div style="width: 95%; padding: 10px; border: 1px solid #000; border-radius: 4px; box-shadow: 8px 8px 5px #888888;">
@@ -209,43 +218,45 @@ $$
 <!-- end box -->
 
 
-<p>
+<p></p>
 <b>Hint.</b>
 
 Newton's method requires a good start vector to converge fast.
 
 
 
-<p>
+<p></p>
 Let's begin a new paragraph and show a box with code only:
 
-<p>
+<p></p>
 
 <!-- begin box -->
 <div style="width: 95%; padding: 10px; border: 1px solid #000; border-radius: 4px; box-shadow: 8px 8px 5px #888888;">
-<p>
+
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> sin(x)<span style="color: #666666">*</span>exp(<span style="color: #666666">1-</span>x)
 </pre></div>
-<p>
 </div>
 <!-- end box -->
 
 
+<p></p>
 <h2 id="admonitions">Admonitions </h2>
 
-<p>
+<p></p>
 Let us start with a plain warning environment.
 
-<p>
+<p></p>
 <div class="alert alert-block alert-warning alert-text-normal">
 <b>Warning</b>
 <p>
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
+
+<p></p>
 
 <ul>
   <li> and a list</li>
@@ -262,40 +273,41 @@ And more and more text.
 </div>
 
 
-<p>
+<p></p>
 Test warning with title:
 
-<p>
+<p></p>
 <div class="alert alert-block alert-warning alert-text-large">
 <b>Title ending with math \( \sqrt{2}\approx 1.4 \)</b>
 <p>
 And here comes some text with bad news in larger font.
 
-<p>
+<p></p>
 Also some code:
 
-<p>
+<p></p>
+
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #fcf8e3"><pre style="line-height: 125%;"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">f</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> x
 </pre></div>
-<p>
+
 And a complete program
 
-<p>
+<p></p>
+
 
 <!-- code=python (!bc pypro) typeset with pygments style "default" -->
 <div class="highlight" style="background: #fcf8e3"><pre style="line-height: 125%;"><span></span><span style="color: #008000">print</span>(<span style="color: #BA2121">&quot;Hello, World!&quot;</span>)
 </pre></div>
-
 </div>
 
 
-<p>
+<p></p>
 Test warning with large title with math:
 
-<p>
+<p></p>
 <div class="alert alert-block alert-warning alert-text-large">
 <b>Watch out for \( \nabla\cdot\boldsymbol{u}=0 \) equations</b>
 <p>
@@ -304,10 +316,10 @@ of view.
 </div>
 
 
-<p>
+<p></p>
 Then we test a block, which is guaranteed to never have any admon icon.
 
-<p>
+<p></p>
 <div class="alert alert-block alert-block alert-text-small">
 <b>Block with title</b>
 <p>
@@ -320,7 +332,7 @@ of understanding.
 </div>
 
 
-<p>
+<p></p>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -329,17 +341,18 @@ and is useful when you want some admons with icon and some without.
 </div>
 
 
-<p>
+<p></p>
 <!-- Note that the final ! does not appear in Sphinx and reST since -->
 <!-- those formats automatically add : to the admonition title. -->
 
-<p>
+<p></p>
 <div class="alert alert-block alert-notice alert-text-illegal-size">
 <b>Note, eventually!</b>
 <p>
 Ah, we are soon close to the end (with illegal font size specification!).
 But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
 
+<p></p>
 $$
 \begin{align*}
 \theta &= q^2,\\
@@ -349,10 +362,10 @@ $$
 </div>
 
 
-<p>
+<p></p>
 <!-- Test one word with a number -->
 
-<p>
+<p></p>
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Point1</b>
 <p>
@@ -360,7 +373,7 @@ Ah, we are soon close to the end.
 </div>
 
 
-<p>
+<p></p>
 <div class="alert alert-block alert-question alert-text-normal">
 <b>Question</b>
 <p>
@@ -368,7 +381,7 @@ So, how many admonition environments does DocOnce support?
 </div>
 
 
-<p>
+<p></p>
 <div class="alert alert-block alert-question alert-text-normal">
 <b>Question</b>
 <p>
@@ -379,11 +392,13 @@ So, how many admonition environments does DocOnce support?
 </div>
 
 
-<p>
+<p></p>
 <div class="alert alert-block alert-warning alert-text-normal">
 <b>Tip</b>
 <p>
 It is of outmost important to
+
+<p></p>
 
 <ol>
 <li> stay cool</li>
@@ -392,7 +407,8 @@ It is of outmost important to
 
 Because here the thing is to do
 
-<p>
+<p></p>
+
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #fcf8e3"><pre style="line-height: 125%;"><span></span><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
@@ -400,14 +416,13 @@ Because here the thing is to do
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">grab</span>(url, filename):
     urllib<span style="color: #666666">.</span>urlretrieve(url, filename<span style="color: #666666">=</span>filename)
 </pre></div>
-
 </div>
 
 
-<p>
+<p></p>
 Next is a warning without a title ("none" implies no title).
 
-<p>
+<p></p>
 <div class="alert alert-block alert-warning alert-text-normal">
 <b></b>
 <p>
@@ -415,13 +430,14 @@ And here comes some text with bad news.
 </div>
 
 
+<p></p>
 <h2 id="going-deeper-environments">Going deeper environments </h2>
 
-<p>
+<p></p>
 Here is a long notice environment with a custom title and much
 text, math and code.
 
-<p>
+<p></p>
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Going deeper.</b>
 <p>
@@ -431,9 +447,10 @@ meaning, is what counts here. We need desperately to fill up the
 page in the hope that some admonitions will experience a page break,
 which the LaTeX environment should handle with ease.
 
-<p>
+<p></p>
 Let us start with some equations:
 
+<p></p>
 $$
 \begin{align*}
 \frac{Du}{dt} &= 0
@@ -443,11 +460,12 @@ $$
 \end{align*}
 $$
 
-<p>
+<p></p>
 The implementation of such complicated equations in computer
 code is task that this "Going deeper" environment targets.
 
-<p>
+<p></p>
+
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #fcf8e3"><pre style="line-height: 125%;"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
@@ -457,11 +475,12 @@ code is task that this "Going deeper" environment targets.
 half <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>
 x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 </pre></div>
-<p>
+
 And some more text that can help going into the next page.
 Longer computer code requires vertical space:
 
-<p>
+<p></p>
+
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #fcf8e3"><pre style="line-height: 125%;"><span></span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
@@ -503,22 +522,26 @@ Longer computer code requires vertical space:
         <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">-</span>(<span style="color: #666666">1./6</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">+</span> f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> <span style="color: #666666">0.5*</span>f(x) <span style="color: #666666">-</span> \
                 (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
 </pre></div>
-<p>
+
 And then we add a figure too.
 
-<p>
-<br /><br /><center><p><img src="../../doc/src/manual/fig/wave1D.png" align="bottom" width=400></p></center><br /><br />
+<p></p>
+<br /><br /><center>
+<p><img src="../../doc/src/manual/fig/wave1D.png" align="bottom" width=400></p>
+</center>
+<br /><br/>
 </div>
 
 
+<p></p>
 <h2 id="the-end">The end </h2>
 
-<p>
+<p></p>
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
 just because we can.
 
-<p>
+<p></p>
 <div class="alert alert-block alert-summary alert-text-normal">
 <b>Concluding remarks, for the novice</b>
 <p>
@@ -528,7 +551,7 @@ Titles should be optional.
 </div>
 
 
-<p>
+<p></p>
 <b>Remark.</b>
 The <code>remarks</code> and <code>hint</code> environments are not allowed outside
 exercises (and problems and projects too).
