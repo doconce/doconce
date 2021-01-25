@@ -22,22 +22,22 @@ global _file_collection_filename
 
 # From https://service.real.com/help/library/guides/realone/ProductionGuide/HTML/htmfiles/colors.htm:
 color_table = [
-('white', '#FFFFFF', 'rgb(255,255,255)'),
-('silver', '#C0C0C0', 'rgb(192,192,192)'),
-('gray', '#808080', 'rgb(128,128,128)'),
-('black', '#000000', 'rgb(0,0,0)'),
-('yellow', '#FFFF00', 'rgb(255,255,0)'),
-('fuchsia', '#FF00FF', 'rgb(255,0,255)'),
-('red', '#FF0000', 'rgb(255,0,0)'),
-('maroon', '#800000', 'rgb(128,0,0)'),
-('lime', '#00FF00', 'rgb(0,255,0)'),
-('olive', '#808000', 'rgb(128,128,0)'),
-('green', '#008000', 'rgb(0,128,0)'),
-('purple', '#800080', 'rgb(128,0,128)'),
-('aqua', '#00FFFF', 'rgb(0,255,255)'),
-('teal', '#008080', 'rgb(0,128,128)'),
-('blue', '#0000FF', 'rgb(0,0,255)'),
-('navy', '#000080', 'rgb(0,0,128)'),]
+    ('white', '#FFFFFF', 'rgb(255,255,255)'),
+    ('silver', '#C0C0C0', 'rgb(192,192,192)'),
+    ('gray', '#808080', 'rgb(128,128,128)'),
+    ('black', '#000000', 'rgb(0,0,0)'),
+    ('yellow', '#FFFF00', 'rgb(255,255,0)'),
+    ('fuchsia', '#FF00FF', 'rgb(255,0,255)'),
+    ('red', '#FF0000', 'rgb(255,0,0)'),
+    ('maroon', '#800000', 'rgb(128,0,0)'),
+    ('lime', '#00FF00', 'rgb(0,255,0)'),
+    ('olive', '#808000', 'rgb(128,128,0)'),
+    ('green', '#008000', 'rgb(0,128,0)'),
+    ('purple', '#800080', 'rgb(128,0,128)'),
+    ('aqua', '#00FFFF', 'rgb(0,255,255)'),
+    ('teal', '#008080', 'rgb(0,128,128)'),
+    ('blue', '#0000FF', 'rgb(0,0,255)'),
+    ('navy', '#000080', 'rgb(0,0,128)'),]
 
 
 
@@ -908,20 +908,18 @@ def mathjax_header(filestr):
     else:
         siunitx1 = siunitx2 = ''
 
-    mathjax_script_tag = """
-
-<script type="text/x-mathjax-config">%s
-MathJax.Hub.Config({
-  TeX: {
-     equationNumbers: {  autoNumber: "AMS"  },
-     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"%s]
-  }
-});
-</script>
-<script type="text/javascript" async
- src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-""" % (siunitx1, siunitx2)
+    mathjax_script_tag = ('\n\n'
+                          '<script type="text/x-mathjax-config">%s\n'
+                          'MathJax.Hub.Config({\n'
+                          '  TeX: {\n'
+                          '     equationNumbers: {  autoNumber: "AMS"  },\n'
+                          '     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"%s]\n'
+                          '  }\n'
+                          '});\n'
+                          '</script>\n'
+                          '<script type="text/javascript" async\n'
+                          ' src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">\n'
+                          '</script>\n') % (siunitx1, siunitx2)
     #<meta tag is valid only in html head anyway, so this was removed:
     #<!-- Fix slow MathJax rendering in IE8 -->
     #<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
@@ -942,40 +940,6 @@ def html_verbatim(m):
 def html_code(filestr, code_blocks, code_block_types,
               tex_blocks, format):
     """Replace code and LaTeX blocks by html environments."""
-
-    # The test below is not needed anymore: doconce tests valid
-    # refs and labels for all formats now
-    '''
-    # Do one fix before verbatim blocks are inserted
-    # (where ref{} and label{} constructions are to be as is)
-    allow_refs_to_external_docs = option('allow_refs_to_external_docs')
-    find_remaining_references = True
-    if find_remaining_references:
-        # Find remaining ref{...} that is not referring to labels in the
-        # document (everything should have been substituted, except eq.refs)
-        # leave out eq.ref, verbatim (<code>ref... etc)
-        remaining = re.findall('[^(>A-Za-z](ref\{.+?\})[^)<]', filestr)
-        if remaining:
-            errwarn('*** error: references to labels not defined in this document')
-            #errwarn('\n + '\n'.join(remaining))
-            index = 0
-            for r in remaining:
-                errwarn(r + ':')
-                index = filestr.find(r, index)  # search since last occurence
-                errwarn('   ' + filestr[index-35:index+35] + '\n---------------')
-                index += len(r)
-            errwarn("""
-Causes of missing labels:
-1: label is inside a generalized reference ref[][][],
-   use the --allow_refs_to_external_docs option to remove
-   the error message
-2: label is defined in another file
-3: preprocessor if-else has left the label out
-4: forgotten to define the label
-""")
-            if not allow_refs_to_external_docs:
-                _abort()
-    '''
 
     html_style = option('html_style=', '')
     pygm_style = option('pygments_html_style=', default=None)
@@ -1073,11 +1037,10 @@ Causes of missing labels:
         elif code_block_types[i].startswith('pyscpro'):
             # Wrap Sage Cell code around the code
             # https://github.com/sagemath/sagecell/blob/master/doc/embedding.rst
-            code_blocks[i] = """
-<div class="compute"><script type="text/x-sage">
-%s
-</script></div>
-""" % code_blocks[i]
+            code_blocks[i] = ('\n'
+                              '<div class="compute"><script type="text/x-sage">\n'
+                              '%s\n'
+                              '</script></div>\n') % code_blocks[i]
 
         elif pygm is not None:
             # Typeset with pygments
@@ -1108,17 +1071,16 @@ Causes of missing labels:
 
             if code_block_types[i].endswith('-h'):
                 # Embed some jquery JavaScript for a show/hide button
-                result = """
-<script type="text/javascript">
-function show_hide_code%d(){
-  $("#code%d").toggle();
-}
-</script>
-<button type="button" onclick="show_hide_code%d()">Show/hide code</button>
-<div id="code%d" style="display:none">
-%s
-</div>
-""" % (i, i, i, i, result)
+                result = ('\n'
+                          '<script type="text/javascript">\n'
+                          'function show_hide_code%d(){\n'
+                          '  $("#code%d").toggle();\n'
+                          '}\n'
+                          '</script>\n'
+                          '<button type="button" onclick="show_hide_code%d()">Show/hide code</button>\n'
+                          '<div id="code%d" style="display:none">\n'
+                          '%s\n'
+                          '</div>\n') % (i, i, i, i, result)
 
             result = '<!-- code=%s%s typeset with pygments style "%s" -->\n' % (language, '' if code_block_types[i] == '' else ' (!bc %s)' % code_block_types[i], pygm_style) + result
             # Fix ugly error boxes
@@ -1254,8 +1216,8 @@ function show_hide_code%d(){
 
     if pygm or needs_online_python_tutor:
         c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
-        filestr = c.sub(r'<p>\n\n', filestr)
-        filestr = re.sub(r'!ec\n', r'<p>\n', filestr)
+        filestr = c.sub(r'\n\n', filestr)
+        filestr = re.sub(r'!ec\n', r'\n', filestr)
         debugpr('After replacement of !bc and !ec (pygmentized code):', filestr)
     else:
         c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
@@ -1431,17 +1393,17 @@ function show_hide_code%d(){
             errwarn("""\
 *** warning: TITLE may look strange with a template -
              it is recommended to comment out the title: #TITLE:""")
-            pattern = r'<center><h1>(.+?)</h1></center>  <!-- document title -->'
+            pattern = r'<center>[\s]*<h1>(.+?)</h1>[\n]</center>  <!-- document title -->'
             m = re.search(pattern, filestr)
             if m:
                 title = m.group(1).strip()
 
         authors = '<!-- author(s):' in filestr
         if authors:
-            errwarn("""\
-*** warning: AUTHOR may look strange with a template -
-             it is recommended to comment out all authors: #AUTHOR.
-             Usually better to hardcode authors in a footer in the template.""")
+            errwarn(('\n'
+                     '*** warning: AUTHOR may look strange with a template -\n'
+                     ' it is recommended to comment out all authors: #AUTHOR.\n'
+                     ' Usually better to hardcode authors in a footer in the template.'))
 
         # Extract title
         if title == '':
@@ -1458,7 +1420,7 @@ function show_hide_code%d(){
                     title = m.group(1).strip()
 
         # Extract date
-        pattern = r'<center><h\d>(.+?)</h\d></center>\s*<!-- date -->'
+        pattern = r'<center>[\n]<h\d>(.+?)</h\d>[\n]</center>\s*<!-- date -->'
         m = re.search(pattern, filestr)
         if m:
             date = m.group(1).strip()
@@ -1533,9 +1495,13 @@ function show_hide_code%d(){
         jumbotron = option('html_bootstrap_jumbotron=', 'on')
         if jumbotron != 'off':
             # Fix jumbotron for title, author, date, toc, abstract, intro
-            pattern = r'(^<center><h1>[^\n]+</h1></center>[^\n]+document title.+?)(^<!-- !split -->|^<h[123] id="|^<center><h1 id="|^<div class="page-header">)'
+            pattern = r'(^<center>[\n]<h1>[^\n]+</h1>[\n]</center>' \
+                      r'[^\n]+document title.+?)' \
+                      r'(^<!-- !split -->|^<h[123] id="|^<center>[\n]<h1 id="|^<div class="page-header">)'
             # Exclude lists (not a good idea if they are part of the intro...)
-            #pattern = r'(^<center><h1>[^\n]+</h1></center>[^\n]+document title.+?)(^<!-- !split -->|^<h[123]>[^\n]+?<a name=[^\n]+?</h[123]>|^<div class="page-header">|<[uo]l>)'
+            #pattern = r'(^<center>[\n]<h1>[^\n]+</h1>[\n]</center>' \
+            #          r'[^\n]+document title.+?)' \
+            #          r'(^<!-- !split -->|^<h[123]>[^\n]+?<a name=[^\n]+?</h[123]>|^<div class="page-header">|<[uo]l>)'
             m = re.search(pattern, filestr, flags=re.DOTALL|re.MULTILINE)
             if m:
                 # If the user has a !split in the beginning, insert a button
@@ -1585,18 +1551,18 @@ function show_hide_code%d(){
     # Add links for Bokeh plots
     if 'Bokeh.logger.info(' in filestr:
         bokeh_version = '0.9.0'
-        head = """
-<!-- Tools for embedded Bokeh plots -->
-<link rel="stylesheet"
-      href="https://cdn.pydata.org/bokeh/release/bokeh-%(bokeh_version)s.min.css"
-      type="text/css" />
-<script type="text/javascript"
-	src="https://cdn.pydata.org/bokeh/release/bokeh-%(bokeh_version)s.min.js">
-</script>
-<script type="text/javascript">
-  Bokeh.set_log_level("info");
-</script>
-""" % vars()
+        head = ('\n'
+                '<!-- Tools for embedded Bokeh plots -->\n'
+                '<link rel="stylesheet"\n'
+                '      href="https://cdn.pydata.org/bokeh/release/bokeh-%(bokeh_version)s.min.css"\n'
+                '      type="text/css" />\n'
+                '<script type="text/javascript"\n'
+                '	src="https://cdn.pydata.org/bokeh/release/bokeh-%(bokeh_version)s.min.js">\n'
+                '</script>\n'
+                '<script type="text/javascript">\n'
+                '  Bokeh.set_log_level("info");\n'
+                '</script>\n'
+                ) % vars()
         filestr = re.sub(r'^</head>\n', head + '\n\n</head>\n',
                          filestr, flags=re.MULTILINE)
 
@@ -1630,8 +1596,8 @@ def html_remove_whitespace(filestr):
     pattern = r'<p>\s+(?=<p>|<p id=|<[hH]\d[^>]*>)'
     filestr = re.sub(pattern, '', filestr)
     # Extra blank before section heading
-    pattern = r'\s+(?=^<[hH]\d[^>]*>)'
-    filestr = re.sub(pattern, '\n\n', filestr, flags=re.MULTILINE)
+    pattern = r'(?<!center>)\s+(?=^<[hH]\d[^>]*>)'
+    filestr = re.sub(pattern, '\n', filestr, flags=re.MULTILINE)
     # Elimate <p> before equations $$ and before lists
     filestr = re.sub(r'<p>\s+(\$\$|<ul>|<ol>)', r'\g<1>', filestr)
     # Eliminate <p> after </h1>, </h2>, etc.
@@ -1798,35 +1764,33 @@ def html_figure(m):
        placement = option('html_figure_caption=', 'top')
        if sidecaption == 0:
            if placement == 'top':
-               s = """
-<center> %s <!-- FIGURE -->%s
-<center><p class="caption"> %s </p></center>
-<p>%s</p>%s
-</center>
-""" % (label, top_hr, caption, image, bottom_hr)
+               s = ("\n"
+                    "<center> %s <!-- FIGURE -->%s\n"
+                    '<center>\n<p class="caption"> %s </p>\n</center>\n'
+                    "<p>%s</p>%s\n"
+                    "</center>\n") % (label, top_hr, caption, image, bottom_hr)
            else:
-               s = """
-<center> %s <!-- FIGURE -->%s
-<p>%s</p>
-<center><p class="caption"> %s </p></center>%s
-</center>
-""" % (label, top_hr, image, caption, bottom_hr)
+               s = ("\n"
+                    "<center> %s <!-- FIGURE -->%s\n"
+                    "<p>%s</p>\n"
+                    '<center><p class="caption"> %s </p></center>%s\n'
+                    "</center>\n") % (label, top_hr, image, caption, bottom_hr)
        else:
            # sidecaption is implemented as table
-           s = """
-<center> %s <!-- FIGURE -->%s
-<table><tr>
-<td>%s</td>
-<td><p class="caption"> %s </p></td>
-</tr></table>%s
-</center>
-""" % (label, top_hr, image, caption, bottom_hr)
+           s = ("\n"
+                "<center> %s <!-- FIGURE -->%s\n"
+                "<table><tr>\n"
+                "<td>%s</td>\n"
+                '<td><p class="caption"> %s </p></td>\n'
+                "</tr></table>%s\n"
+                "</center>\n"
+                ) % (label, top_hr, image, caption, bottom_hr)
        return s
     else:
        # Just insert image file when no caption
        #s = '<center><p>%s</p></center>' % image # without <linebreak>
        # with two <linebreak>:
-       s = '<br /><br /><center><p>%s</p></center><br /><br />' % image
+       s = '<br /><br /><center>\n<p>%s</p>\n</center>\n<br /><br/>' % image
        return s
 
 
@@ -1909,11 +1873,11 @@ def html_table(table):
         #span = ncolumns+1
         # Base span on total width of all columns
         span = min(int(sum(column_width)/100.0*12), 12)
-        s = """
-<div class="row">
-  <div class="col-xs-%d">
-    <table class="table table-striped table-hover table-condensed">
-""" % span
+        s = ('\n'
+             '<div class="row">\n'
+             '  <div class="col-xs-%d">\n'
+             '    <table class="table table-striped table-hover table-condensed">\n'
+             ) % span
     else:
         s = '<table border="1">\n'
     for i, row in enumerate(table['rows']):
@@ -2018,9 +1982,9 @@ def html_movie(m):
         # Make html for a local YouTube frame
         width = kwargs.get('width', 640)
         height = kwargs.get('height', 365)
-        text = """
-<iframe width="%s" height="%s" src="%s" frameborder="0" allowfullscreen></iframe>
-""" % (width, height, filename)
+        text = ('\n'
+                '<iframe width="%s" height="%s" src="%s" frameborder="0" allowfullscreen></iframe>\n') \
+               % (width, height, filename)
         if caption:
             text += """\n<p><em>%s</em></p>\n\n""" % caption
     elif 'vimeo.com' in filename:
@@ -2033,9 +1997,9 @@ def html_movie(m):
         # Make html for a local Vimeo frame
         width = kwargs.get('width', 640)
         height = kwargs.get('height', 365)
-        text = """
-<iframe width="%s" height="%s" src="%s" frameborder="0" allowfullscreen></iframe>
-""" % (width, height, filename)
+        text = ('\n'
+                '<iframe width="%s" height="%s" src="%s" frameborder="0" allowfullscreen></iframe>\n'
+                ) % (width, height, filename)
         if caption:
             text += """\n<em>%s</em>\n\n""" % caption
     else:
@@ -2052,9 +2016,10 @@ def html_movie(m):
             # Use new HTML5 video tag
             autoplay = 'autoplay' if autoplay else ''
             sources3 = option('no_mp4_webm_ogg_alternatives', True)
-            text = """
-<div>
-<video %(autoplay)s loop controls width='%(width)s' height='%(height)s' preload='none'>""" % vars()
+            text = ("\n"
+                    "<div>\n"
+                    "<video %(autoplay)s loop controls width='%(width)s' height='%(height)s' preload='none'>") \
+                   % vars()
             ext2source_command = {
                 '.mp4': """
     <source src='%(stem)s.mp4'  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>""" % vars(),
@@ -2094,35 +2059,32 @@ def html_movie(m):
                     time.sleep(5)  # let the warning shine for a while
                     #_abort()
 
-            text += """
-</video>
-</div>
-<p><em>%(caption)s</em></p>
-""" % vars()
+            text += ("\n"
+                     "</video>\n"
+                     "</div>\n"
+                     "<p><em>%(caption)s</em></p>\n"
+                     ) % vars()
             #if not mp4_exists:
             if True:
                 # Seems that there is a problem with .mp4 movies as well...
-                text += """
-<!-- Issue warning if in a Safari browser -->
-<script language="javascript">
-if (!!(window.safari)) {
-  document.write("<div style=\\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\\"><p><font color=\\"red\\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
-</script>
-
-"""
+                text += ("\n"
+                         "<!-- Issue warning if in a Safari browser -->\n"
+                         '<script language="javascript">\n'
+                         "if (!!(window.safari)) {\n"
+                         '  document.write("<div style=\\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\\"><p><font color=\\"red\\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}\n'
+                         "</script>\n\n")
         elif ext in ('.mp3', '.m4a',):
             # Use HTML5 audio tag
-            text = """
-<audio src="%s"><p>Your browser does not support the audio element.</p>
-</audio>
-""" % filename
+            text = ('\n'
+                    '<audio src="%s"><p>Your browser does not support the audio element.</p>\n'
+                    '</audio>\n') % filename
         else:
             # Old HTML embed tag
             autoplay = 'true' if autoplay else 'false'
-            text = """
-<embed src="%s" %s autoplay="%s" loop="true"></embed>
-<p><em>%s</em></p>
-""" % (filename, ' '.join(options), autoplay, caption)
+            text = ('\n'
+                    '<embed src="%s" %s autoplay="%s" loop="true"></embed>\n'
+                    '<p><em>%s</em></p>\n'
+                    ) % (filename, ' '.join(options), autoplay, caption)
     return text
 
 def html_author(authors_and_institutions, auth2index,
@@ -2133,11 +2095,9 @@ def html_author(authors_and_institutions, auth2index,
     if len(authors) > 1:
         authors[-1] = 'and ' + authors[-1]
     authors = ', '.join(authors)
-    text = """
-
-<p>
-<!-- author(s): %s -->
-""" % authors
+    text = ("\n\n"
+            "<p></p>\n"
+            "<!-- author(s): %s -->\n") % authors
 
     def email(author):
         address = auth2email[author]
@@ -2157,17 +2117,17 @@ def html_author(authors_and_institutions, auth2index,
     if one_author_at_one_institution:
         # drop index
         author = list(auth2index.keys())[0]
-        text += '\n<center>\n<b>%s</b> %s\n</center>\n' % \
+        text += '\n<center>\n<b>%s</b> %s\n</center>\n\n' % \
             (author, email(author))
-        text += '\n\n<p>\n<!-- institution -->\n\n'
-        text += '<center><b>%s</b></center>\n' % (index2inst[1])
+        text += '\n\n<p><!-- institution --></p>\n\n'
+        text += '<center>\n<b>%s</b>\n</center>\n\n' % (index2inst[1])
     else:
         for author in auth2index:
-            text += '\n<center>\n<b>%s</b> %s%s\n</center>\n' % \
+            text += '\n<center>\n<b>%s</b> %s%s\n</center>\n\n' % \
                 (author, str(auth2index[author]), email(author))
-        text += '\n\n<p>\n<!-- institution(s) -->\n\n'
+        text += '\n\n<p><!-- institution(s) --></p>\n\n'
         for index in index2inst:
-            text += '<center>[%d] <b>%s</b></center>\n' % \
+            text += '<center>\n[%d] <b>%s</b>\n</center>\n\n' % \
                     (index, index2inst[index])
     text += '<br>\n\n'
     return text
@@ -2406,7 +2366,7 @@ def html_toc(sections, filestr):
             (toc, level_min, 'table_of_contents', 'table_of_contents'))
     #hr = '<hr>'
     hr = ''
-    s = '<h1 id="table_of_contents">%s</h2>\n\n%s\n<p>\n' % (toc, hr)
+    s = '<h1 id="table_of_contents">%s</h1>\n\n%s\n' % (toc, hr)
     # (we add class="anchor" in the calling code the above heading, if necessary)
     for i in range(len(sections)):
         title, level, label = sections[i]
@@ -2416,10 +2376,9 @@ def html_toc(sections, filestr):
             href = string2href(title)
         indent = '&nbsp; '*(3*(level - level_min))
         if level <= toc_depth:
-            s += indent + '<a href="#%s">%s</a>' % (href, title ) + '<br>\n'
+            s += indent + '<a href="#%s">%s</a>' % (href, title ) + '\n<br>\n'
         extended_sections.append((title.strip(), level, label, href))
-    s += '</p>%s\n<p>\n' % hr
-
+    #s += '<p>%s\n</p>\n' % hr
     # Store for later use in navigation panels etc.
     global tocinfo
     tocinfo = {'sections': extended_sections, 'highest level': level_min}
@@ -2431,20 +2390,19 @@ def bootstrap_collapse(visible_text, collapsed_text,
     """Generate HTML Bootstrap code for a collapsing/unfolding text."""
     # icon types:
     # https://www.w3schools.com/bootstrap/bootstrap_ref_comp_glyphs.asp
-    text = """
-<p>
-<a class="glyphicon glyphicon-%(icon)s showdetails" data-toggle="collapse"
- data-target="#%(id)s" style="font-size: 80%%;">%(button_text)s</a>
-<a href="#%(id)s" data-toggle="collapse">
-%(visible_text)s
-</a>
-<div class="collapse-group">
-<p><div class="collapse" id="%(id)s">
-%(collapsed_text)s
-</div></p>
-</div>
-</p>
-""" % vars()
+    text = ('\n'
+            '<p>\n'
+            '<a class="glyphicon glyphicon-%(icon)s showdetails" data-toggle="collapse"\n'
+            ' data-target="#%(id)s" style="font-size: 80%%;">%(button_text)s</a>\n'
+            '<a href="#%(id)s" data-toggle="collapse">\n'
+            '%(visible_text)s\n'
+            '</a>\n'
+            '<div class="collapse-group">\n'
+            '<p><div class="collapse" id="%(id)s">\n'
+            '%(collapsed_text)s\n'
+            '</div></p>\n'
+            '</div>\n'
+            '</p>\n') % vars()
     return text
 
 def html_inline_comment(m):
@@ -2631,7 +2589,7 @@ def html_%(_admon)s(block, format, title='%(_Admon)s', text_size='normal'):
   </div>""" %% title
             text += """
 <div class="panel-body">
-<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+<!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 %%s
 </div>
 </div>
@@ -2752,10 +2710,9 @@ def define(FILENAME_EXTENSION,
 
     # all arguments are dicts and accept in-place modifications (extensions)
 
-    FILENAME_EXTENSION['html'] = '.html'  # output file extension
-    BLANKLINE['html'] = '\n<p>\n'         # blank input line => new paragraph
-
-    INLINE_TAGS_SUBST['html'] = {         # from inline tags to HTML tags
+    FILENAME_EXTENSION['html'] = '.html'    # output file extension
+    BLANKLINE['html'] = '\n<p></p>\n'       # blank input line => new paragraph
+    INLINE_TAGS_SUBST['html'] = {           # from inline tags to HTML tags
         # keep math as is:
         'math':          r'\g<begin>\( \g<subst> \)\g<end>',
         #'math2':         r'\g<begin>\g<puretext>\g<end>',
@@ -2771,14 +2728,14 @@ def define(FILENAME_EXTENSION,
         'linkURL3v':     r'<a href="\g<url>" target="_self"><tt>\g<link></tt></a>',
         'plainURL':      r'<a href="\g<url>" target="_self"><tt>\g<url></tt></a>',
         'inlinecomment': html_inline_comment,
-        'chapter':       r'\n<center><h1>\g<subst></h1></center> <!-- chapter heading -->',
+        'chapter':       r'\n<center>\n<h1>\g<subst></h1>\n</center> <!-- chapter heading -->',
         'section':       r'\n<h1>\g<subst></h1>',
         'subsection':    r'\n<h2>\g<subst></h2>',
         'subsubsection': r'\n<h3>\g<subst></h3>\n',
         'paragraph':     r'<b>\g<subst></b>' + '\n',
         'abstract':      html_abstract,
-        'title':         r'\n\n<center><h1>\g<subst></h1></center>  <!-- document title -->\n',
-        'date':          r'<p>\n<center><h4>\g<subst></h4></center> <!-- date -->\n<br>',
+        'title':         r'\n\n<center>\n<h1>\g<subst></h1>\n</center>  <!-- document title -->\n',
+        'date':          r'<center>\n<h4>\g<subst></h4>\n</center> <!-- date -->\n<br>',
         'author':        html_author,
         'figure':        html_figure,
         'movie':         html_movie,

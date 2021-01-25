@@ -998,11 +998,6 @@ def sphinx_code_newmathlabels(filestr, format):
     return filestr
 
 
-#ALE
-# sphinx_dir must be defined in bin/doconce because it imports sphinx,
-# and in misc.py this is interpreted as the local doconce sphinx.py
-# file...
-
 def _usage_sphinx_dir():
     print("Usage: doconce sphinx_dir short-title=\"some short title\" version=0.1 theme=themename dirname=sphinx-rootdir "
           "toc_depth=2 intersphinx  doconcefile [--runestone]\n\n"

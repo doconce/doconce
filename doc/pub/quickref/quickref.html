@@ -159,59 +159,91 @@ MathJax.Hub.Config({
 
 
 <div class="jumbotron">
-<center><h1>DocOnce Quick Reference</h1></center>  <!-- document title -->
+<center>
+<h1>DocOnce Quick Reference</h1>
+</center>  <!-- document title -->
 
-<p>
+<p></p>
 <!-- author(s): Hans Petter Langtangen -->
 
 <center>
 <b>Hans Petter Langtangen</b> [1, 2]
 </center>
 
-<p>
-<!-- institution(s) -->
+<p><!-- institution(s) --></p>
 
-<center>[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b></center>
-<center>[2] <b>Department of Informatics, University of Oslo</b></center>
+<center>
+[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b>
+</center>
+
+<center>
+[2] <b>Department of Informatics, University of Oslo</b>
+</center>
+
 <br>
-<p>
-<center><h4>Jan 22, 2021</h4></center> <!-- date -->
+<center>
+<h4>Jan 25, 2021</h4>
+</center> <!-- date -->
 <br>
-<p>
+<p></p>
+
 </div> <!-- end jumbotron -->
+<h1 id="table_of_contents">Table of contents</h1>
 
-<h1 id="table_of_contents">Table of contents</h2>
+<p></p>
+<a href="#supported-formats"> Supported Formats </a>
+<br>
+<a href="#emacs-syntax-support"> Emacs syntax support </a>
+<br>
+<a href="#title-authors-and-date"> Title, Authors, and Date </a>
+<br>
+<a href="#copyright"> Copyright </a>
+<br>
+<a href="#quick:sections"> Section Types </a>
+<br>
+<a href="#inline-formatting"> Inline Formatting </a>
+<br>
+<a href="#lists"> Lists </a>
+<br>
+<a href="#comment-lines"> Comment lines </a>
+<br>
+<a href="#inline-comments"> Inline comments </a>
+<br>
+<a href="#verbatim-computer-code"> Verbatim/Computer Code </a>
+<br>
+<a href="#latex-mathematics"> LaTeX Mathematics </a>
+<br>
+<a href="#manual:latex:guide"> Writing Guidelines (Especially for LaTeX Users!) </a>
+<br>
+<a href="#hyperlinks"> Hyperlinks </a>
+<br>
+<a href="#figures-and-movies"> Figures and Movies </a>
+<br>
+<a href="#tables"> Tables </a>
+<br>
+<a href="#labels-and-references"> Labels and References </a>
+<br>
+<a href="#citations-and-bibliography"> Citations and Bibliography </a>
+<br>
+<a href="#generalized-references"> Generalized References </a>
+<br>
+<a href="#index-of-keywords"> Index of Keywords </a>
+<br>
+<a href="#capabilities-of-the-program-doconce"> Capabilities of The Program <code>doconce</code> </a>
+<br>
+<a href="#exercises"> Exercises </a>
+<br>
+<a href="#environments"> Environments </a>
+<br>
+<a href="#preprocessing"> Preprocessing </a>
+<br>
+<a href="#resources"> Resources </a>
+<br>
 
-<p>
-<a href="#supported-formats"> Supported Formats </a><br>
-<a href="#emacs-syntax-support"> Emacs syntax support </a><br>
-<a href="#title-authors-and-date"> Title, Authors, and Date </a><br>
-<a href="#copyright"> Copyright </a><br>
-<a href="#quick:sections"> Section Types </a><br>
-<a href="#inline-formatting"> Inline Formatting </a><br>
-<a href="#lists"> Lists </a><br>
-<a href="#comment-lines"> Comment lines </a><br>
-<a href="#inline-comments"> Inline comments </a><br>
-<a href="#verbatim-computer-code"> Verbatim/Computer Code </a><br>
-<a href="#latex-mathematics"> LaTeX Mathematics </a><br>
-<a href="#manual:latex:guide"> Writing Guidelines (Especially for LaTeX Users!) </a><br>
-<a href="#hyperlinks"> Hyperlinks </a><br>
-<a href="#figures-and-movies"> Figures and Movies </a><br>
-<a href="#tables"> Tables </a><br>
-<a href="#labels-and-references"> Labels and References </a><br>
-<a href="#citations-and-bibliography"> Citations and Bibliography </a><br>
-<a href="#generalized-references"> Generalized References </a><br>
-<a href="#index-of-keywords"> Index of Keywords </a><br>
-<a href="#capabilities-of-the-program-doconce"> Capabilities of The Program <code>doconce</code> </a><br>
-<a href="#exercises"> Exercises </a><br>
-<a href="#environments"> Environments </a><br>
-<a href="#preprocessing"> Preprocessing </a><br>
-<a href="#resources"> Resources </a><br>
-</p>
-<p>
+<p></p>
 <b>WARNING: This quick reference is very incomplete!</b>
 
-<p>
+<p></p>
 <b>Mission.</b>
 Enable writing documentation with much mathematics and
 computer code <em>once, in one place</em> and include it in traditional LaTeX
@@ -221,10 +253,13 @@ include Google's <code>blogger.com</code>, Wikipedia/Wikibooks, IPython/Jupyter
 notebooks, plus a wide variety of other formats for documents without
 mathematics and code.
 
+<p></p>
 <h2 id="supported-formats" class="anchor">Supported Formats </h2>
 
-<p>
+<p></p>
 DocOnce currently translates files to the following formats:
+
+<p></p>
 
 <ul>
  <li> LaTeX (format <code>latex</code> or <code>pdflatex</code>)</li>
@@ -247,26 +282,27 @@ formats are <code>latex</code>, <code>pdflatex</code>, <code>sphinx</code>, and 
 less extent <code>mwiki</code> and <code>pandoc</code>. The HTML format supports blog posts on
 Google and Wordpress.
 
-<p>
+<p></p>
 <div class="alert alert-block alert-danger alert-text-normal"><b>Use a text editor with monospace font!</b>
 Some DocOnce constructions are sensitive to whitespace,
 so you <em>must</em> use a text editor with monospace font.
 </div>
 
 
+<p></p>
 <h2 id="emacs-syntax-support" class="anchor">Emacs syntax support </h2>
 
-<p>
+<p></p>
 The file <a href="https://github.com/doconce/doconce/blob/master/misc/.doconce-mode.el" target="_self">.doconce-mode.el</a>
 in the DocOnce source distribution gives a "DocOnce Editing Mode" in
 Emacs. Store the raw version of the file in the home directory and add
 <code>(load-file &quot;~/.doconce-mode.el&quot;)</code> to the <code>.emacs</code> file.
 
-<p>
+<p></p>
 Besides syntax highlighting of DocOnce documents, this Emacs mode
 provides a lot of shortcuts for setting up many elements in a document:
 
-<p>
+<p></p>
 
 <div class="row">
   <div class="col-xs-8">
@@ -295,15 +331,15 @@ provides a lot of shortcuts for setting up many elements in a document:
     </table>
   </div> <!-- col-xs-8 -->
 </div> <!-- cell row -->
-
+<p></p>
 <h2 id="title-authors-and-date" class="anchor">Title, Authors, and Date </h2>
 
-<p>
+<p></p>
 A typical example of giving a title, a set of authors, a date,
 and an optional table of contents
 reads
 
-<p>
+<p></p>
 <!-- begin verbatim block  do-->
 <pre><code>TITLE: On an Ultimate Markup Language
 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory &amp; Dept. of Informatics, Univ. of Oslo
@@ -328,30 +364,31 @@ When more than one author belong to the
 same institution, make sure that the institution is specified in an identical
 way for each author.
 
-<p>
+<p></p>
 The date can be set as any text different from <code>today</code> if not the
 current date is wanted, e.g., <code>Feb 22, 2016</code>.
 
-<p>
+<p></p>
 The table of contents is removed by writing <code>TOC: off</code>.
 
+<p></p>
 <h2 id="copyright" class="anchor">Copyright </h2>
 
-<p>
+<p></p>
 <!-- Recall to ident AUTHOR commands to avoid interpretation -->
 
-<p>
+<p></p>
 Copyright for selected authors and/or institutions are easy to insert as part
 of the <code>AUTHOR</code> command. The copyright syntax is
 
-<p>
+<p></p>
 <!-- begin verbatim block  do-->
 <pre><code>{copyright,year1-year2|license}
 </code></pre>
 <!-- end verbatim block -->
 and can be placed after the author or after an institution, e.g.,
 
-<p>
+<p></p>
 <!-- begin verbatim block  do-->
 <pre><code> AUTHOR: name Email: somename@adr.net {copyright,2006-present} at inst1
  AUTHOR: name {copyright} at inst1 {copyright}
@@ -365,7 +402,7 @@ licenses: <code>CC BY</code> for Creative Commons Attribution 4.0 license,
 <code>CC BY-NC</code> for Creative Commons Attribution-NonCommercial 4.0 license.
 For example,
 
-<p>
+<p></p>
 <!-- begin verbatim block  do-->
 <pre><code> AUTHOR: name1 {copyright|CC BY} at institution1
  AUTHOR: name2 {copyright|CC BY} at institution2
@@ -374,9 +411,10 @@ For example,
 is a very common copyright for the present year with the Attribution license.
 The copyright must be identical for all authors and institutions.
 
+<p></p>
 <h2 id="quick:sections" class="anchor">Section Types</h2>
 
-<p>
+<p></p>
 
 <div class="row">
   <div class="col-xs-9">
@@ -398,50 +436,51 @@ The copyright must be identical for all authors and institutions.
     </table>
   </div> <!-- col-xs-9 -->
 </div> <!-- cell row -->
-<p>
+<p></p>
 Note that abstracts are recognized by starting with <code>__Abstract.__</code> or
 <code>__Summary.__</code> at the beginning of a line and ending with three or
 more <code>=</code> signs of the next heading.
 
-<p>
+<p></p>
 The <code>Exercise:</code> keyword can be substituted by <code>Problem:</code> or <code>Project:</code>.
 A recommended convention is that an exercise is tied to the text,
 a problem can stand on its own, and a project is a comprehensive
 problem.
 
+<p></p>
 <h2 id="inline-formatting" class="anchor">Inline Formatting </h2>
 
-<p>
+<p></p>
 Words surrounded by <code>*</code> are emphasized: <code>*emphasized words*</code> becomes
 <em>emphasized words</em>. Similarly, an underscore surrounds words that
 appear in boldface: <code>_boldface_</code> becomes <b>boldface</b>. Colored words
 are also possible: the text
 
-<p>
+<p></p>
 <!-- begin verbatim block -->
 <pre><code>`color{red}{two red words}`
 </code></pre>
 <!-- end verbatim block -->
 becomes <font color="red">two red words</font>.
 
-<p>
+<p></p>
 Quotations appear inside double backticks and double single quotes:
 
-<p>
+<p></p>
 <!-- begin verbatim block -->
 <pre><code>This is a sentence with ``words to be quoted''.
 </code></pre>
 <!-- end verbatim block -->
 
-<p>
+<p></p>
 A forced linebreak is specified by <code>&lt;linebreak&gt;</code> at the point where the
 linebreak in the output is wanted.
 
-<p>
+<p></p>
 Footnotes use a label in the text with the footnote text separate,
 preferably after the paragraph where the footnote appears:
 
-<p>
+<p></p>
 <!-- begin verbatim block -->
 <pre><code>Differentiating[^diff2] this equation leads
 to a new and much simpler equation.
@@ -453,35 +492,35 @@ Here comes a new paragraph...
 </code></pre>
 <!-- end verbatim block -->
 
-<p>
+<p></p>
 Non-breaking space is inserted using the tilde character as in LaTeX:
 
-<p>
+<p></p>
 <!-- begin verbatim block -->
 <pre><code>This distance corresponds to 7.5~km, which is traveled in $7.5/5$~s.
 </code></pre>
 <!-- end verbatim block -->
 
-<p>
+<p></p>
 A horizontal rule for separating content vertically, like this:
 
-<p>
+<p></p>
 <hr>
 
-<p>
+<p></p>
 is typeset as four or more hyphens on a single line:
 
-<p>
+<p></p>
 <!-- begin verbatim block -->
 <pre><code>---------
 </code></pre>
 <!-- end verbatim block -->
 
-<p>
+<p></p>
 The <code>latex</code>, <code>pdflatex</code>, <code>sphinx</code>, and <code>html</code> formats support em-dash,
 indicated by three hyphens: <code>---</code>. Here is an example:
 
-<p>
+<p></p>
 <!-- begin verbatim block -->
 <pre><code>The em-dash is used - without spaces - as alternative to hyphen with
 space around in sentences---this way, or in quotes:
@@ -490,17 +529,17 @@ space around in sentences---this way, or in quotes:
 <!-- end verbatim block -->
 This text is in the html rendered as
 
-<p>
+<p></p>
 The em-dash is used - without spaces - as alternative to hyphen with
 space around in sentences&mdash;this way, or in quotes:
 <em>Premature optimization is the root of all evil.</em>&mdash; Donald Knuth.
 
-<p>
+<p></p>
 The en-dash consists of two hyphens, either with blanks on both sides &ndash; for
 something in the middle of a sentence &ndash; or in number ranges like 240&ndash;249.
 LaTeX writes are used to and fond of en-dash.
 
-<p>
+<p></p>
 An ampersand, as in Guns &amp; Roses or Texas A&amp;M, is written as a
 plain <code>&</code> <em>with space(s) on both sides</em>. Single upper case letters on each
 side of <code>&</code>, as in <code>Texas A & M</code>, remove the spaces and result in
@@ -509,7 +548,7 @@ preserve the spaces: Guns &amp; Roses. Failing to have spaces before and
 after <code>&</code> will result in wrong typesetting of the ampersand in the <code>html</code>,
 <code>latex</code>, and <code>pdflatex</code> formats.
 
-<p>
+<p></p>
 Emojis, as defined in <a href="http://www.emoji-cheat-sheet.com" target="_self"><tt>http://www.emoji-cheat-sheet.com</tt></a>, can be
 inserted in the text, as (e.g.) <code>:dizzy_face:</code> with blank or newline
 before or after <img src="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/emoji/png/dizzy_face.png" width="22px" height="22px" align="center"> Only the <code>pdflatex</code>, <code>html</code>, and <code>pandoc</code> output
@@ -518,9 +557,10 @@ formats leave the textual specification in the document. The
 command-line option <code>--no_emoji</code> removes all emojis from the output
 document.
 
+<p></p>
 <h2 id="lists" class="anchor">Lists </h2>
 
-<p>
+<p></p>
 There are three types of lists: <em>bullet lists</em>, where each item starts
 with <code>*</code>, <em>enumeration lists</em>, where each item starts with <code>o</code> and gets
 consecutive numbers,
@@ -563,8 +603,10 @@ And finally a description list:
 <!-- end verbatim block -->
 The code above follows.
 
-<p>
+<p></p>
 Here is a bullet list:
+
+<p></p>
 
 <ul>
  <li> item1</li>
@@ -582,8 +624,10 @@ Note that sublists are consistently indented by one or more blanks as
 shown: bullets must exactly match and continuation lines must start
 right below the line above.
 
-<p>
+<p></p>
 Here is an enumeration list:
+
+<p></p>
 
 <ol>
 <li> item1</li>
@@ -601,7 +645,7 @@ Here is an enumeration list:
 
 And finally a description list:
 
-<p>
+<p></p>
 
 <dl>
  <dt>keyword1:<dd> 
@@ -622,33 +666,35 @@ Indented lines may give strange output in some formats.
 </div>
 
 
+<p></p>
 <h2 id="comment-lines" class="anchor">Comment lines </h2>
 
-<p>
+<p></p>
 Lines starting with <code>#</code> are treated as comments in the document and
 translated to the proper syntax for comments in the output
 document. Such comment lines should not appear before LaTeX math
 blocks, verbatim code blocks, or lists if the formats <code>rst</code> and
 <code>sphinx</code> are desired.
 
-<p>
+<p></p>
 Comment lines starting with <code>##</code> are not propagated to the output
 document and can be used for comments that are only of interest in
 the DocOnce file.
 
-<p>
+<p></p>
 Large portions of text can be left out using Preprocess. Just place
 <code># #ifdef EXTRA</code> and <code># #endif</code> around the text. The command line
 option <code>-DEXTRA</code> will bring the text alive again.
 
-<p>
+<p></p>
 When using the Mako preprocessor one can also place comments in
 the DocOnce source file that will be removed by Mako before
 DocOnce starts processing the file.
 
+<p></p>
 <h2 id="inline-comments" class="anchor">Inline comments </h2>
 
-<p>
+<p></p>
 Inline comments meant as messages or notes, to authors during development
 in particular,
 are enabled by the syntax
@@ -661,7 +707,7 @@ and <code>running text</code> is the comment. The name can contain upper and low
 case characters, digits, single quote, <code>+</code> and <code>-</code>, as well
 as space. Here goes an example.
 
-<p>
+<p></p>
 <!-- begin verbatim block -->
 <pre><code>Some running text. [hpl: There must be a space after the colon,
 but the running text can occupy multiple lines.]
@@ -669,7 +715,7 @@ but the running text can occupy multiple lines.]
 <!-- end verbatim block -->
 which is rendered as
 
-<p>
+<p></p>
 <blockquote>
     Some running text. 
     <!-- begin inline comment -->
@@ -678,14 +724,14 @@ which is rendered as
 </blockquote>
 
 
-<p>
+<p></p>
 The inline comments have simple typesetting in most formats, typically
 boldface name, a comment number, with everything surrounded by
 parenthesis.  However, with LaTeX output and the <code>--latex_todonotes</code>
 option to <code>doconce format</code>, colorful margin or inline boxes (using the
 <code>todonotes</code> package) make it very easy to spot the comments.
 
-<p>
+<p></p>
 Running
 <!-- begin verbatim block  sys-->
 <pre><code>doconce format html mydoc.do.txt --skip_inline_comments
@@ -694,7 +740,7 @@ Running
 removes all inline comments from the output. This feature makes it easy
 to turn on and off notes to authors during the development of the document.
 
-<p>
+<p></p>
 All inline comments to readers can also be physically
 removed from the DocOnce source by
 <!-- begin verbatim block  sys-->
@@ -702,11 +748,11 @@ removed from the DocOnce source by
 </code></pre>
 <!-- end verbatim block -->
 
-<p>
+<p></p>
 Inline comments can also be used to markup edits. There are add, delete, and
 replacement comments for editing:
 
-<p>
+<p></p>
 <!-- begin verbatim block -->
 <pre><code>[add: ,]
 [add: .]
@@ -722,10 +768,10 @@ replacement comments for editing:
 </code></pre>
 <!-- end verbatim block -->
 
-<p>
+<p></p>
 For example, the text
 
-<p>
+<p></p>
 <!-- begin verbatim block -->
 <pre><code>First consider a quantity $Q$. Without loss of generality, we assume
 $Q&gt;0$. There are three, fundamental, basic property of $Q$.
@@ -733,7 +779,7 @@ $Q&gt;0$. There are three, fundamental, basic property of $Q$.
 <!-- end verbatim block -->
 can be edited as
 
-<p>
+<p></p>
 <!-- begin verbatim block -->
 <pre><code>First[add: ,] consider [edit: a quantity -&gt; the flux]
 [del: $Q$. Without loss of generality,
@@ -744,7 +790,7 @@ important for the following discussion.]
 <!-- end verbatim block -->
 which in the html output format results in
 
-<p>
+<p></p>
 <blockquote>
     First<font color="red">, (<b>edit 2</b>: add comma)</font> consider  <font color="red">(<b>edit 3</b>:)</font> <del> a quantity </del> <font color="red">the flux</font>
      <font color="red">(<b>edit 4</b>:)</font> <del> \( Q \). Without loss of generality,
@@ -754,18 +800,19 @@ which in the html output format results in
 </blockquote>
 
 
-<p>
+<p></p>
 To implement these edits, run
 
-<p>
+<p></p>
 <!-- begin verbatim block  sys-->
 <pre><code>Terminal&gt; doconce apply_edit_comments mydoc.do.txt
 </code></pre>
 <!-- end verbatim block -->
 
+<p></p>
 <h2 id="verbatim-computer-code" class="anchor">Verbatim/Computer Code </h2>
 
-<p>
+<p></p>
 Inline verbatim code is typeset within back-ticks, as in
 <!-- begin verbatim block -->
 <pre><code>Some sentence with `words in verbatim style`.
@@ -773,7 +820,7 @@ Inline verbatim code is typeset within back-ticks, as in
 <!-- end verbatim block -->
 resulting in Some sentence with <code>words in verbatim style</code>.
 
-<p>
+<p></p>
 Multi-line blocks of verbatim text, typically computer code, is typeset
 in between <code>!bc xxx</code> and <code>!ec</code> directives, which must appear on the
 beginning of the line. A specification <code>xxx</code> indicates what verbatim
@@ -795,16 +842,16 @@ defined verbatim environment in the <code>ptex2tex</code> configuration file
 that maps environments (<code>xxx</code>) onto valid language types for
 Pygments (which is what <code>sphinx</code> applies to typeset computer code).
 
-<p>
+<p></p>
 The <code>xxx</code> specifier has only effect for <code>latex</code> and
 <code>sphinx</code> output. All other formats use a fixed monospace font for all
 kinds of verbatim output.
 
-<p>
+<p></p>
 Here is an example of computer code (see the source of this document
 for exact syntax):
 
-<p>
+<p></p>
 <!-- begin verbatim block  cod-->
 <pre><code>from numpy import sin, cos, exp, pi
 
@@ -813,7 +860,7 @@ def f(x, y, z, t):
 </code></pre>
 <!-- end verbatim block -->
 
-<p>
+<p></p>
 <!-- When showing copy from file in !bc envir, indent a character - otherwise -->
 <!-- ptex2tex is confused and starts copying... -->
 Computer code can also be copied from a file:
@@ -833,7 +880,7 @@ The third line behaves as the second, but the line matching
 the first regular expression is not copied (this construction is often
 used for copying text between begin-end comment pair in the file).
 
-<p>
+<p></p>
 The copied lines from file are in this example put inside <code>!bc shpro</code>
 and <code>!ec</code> directives, if a complete file is copied, while the
 directives become <code>!bc shcod</code> and <code>!ec</code> when a code snippet is copied
@@ -847,18 +894,18 @@ part of the file (here from <code>name=</code> until the end of the file).
 Copying a part of a file will by default lead to <code>!bc shcod</code>, which indicates a
 code snippet that normally needs more code to run properly.
 
-<p>
+<p></p>
 The <code>--code_prefix=text</code> option adds a path <code>text</code> to the filename specified
 in the <code>@@@CODE</code> command (URLs work). For example
 
-<p>
+<p></p>
 <!-- begin verbatim block -->
 <pre><code> @@@CODE src/myfile.py
 </code></pre>
 <!-- end verbatim block -->
 and <code>--code_prefix=http://some.place.net</code>, the file
 
-<p>
+<p></p>
 <!-- begin verbatim block -->
 <pre><code>http://some.place.net/src/myfile.py
 </code></pre>
@@ -867,8 +914,10 @@ will be included. If source files have a header with author, email, etc.,
 one can remove this header by the option <code>'--code_skip_until=# ---</code>.
 The lines up to and including (the first) <code># ---</code> will then be excluded.
 
-<p>
+<p></p>
 Important warnings:
+
+<p></p>
 
 <ul>
  <li> A code block must come after a plain sentence (at least for successful
@@ -878,16 +927,15 @@ Important warnings:
    output formats. A more robust approach is to replace the list with
    paragraphs that include headings.</li>
 </ul>
-
 <h2 id="latex-mathematics" class="anchor">LaTeX Mathematics </h2>
 
-<p>
+<p></p>
 DocOnce supports inline mathematics and blocks of mathematics, using
 standard LaTeX syntax. The output formats <code>html</code>, <code>sphinx</code>, <code>latex</code>,
 pdflatex`, <code>pandoc</code>, and <code>mwiki</code> work with this syntax while all other
 formats will just display the raw LaTeX code.
 
-<p>
+<p></p>
 Inline expressions are written in the standard
 LaTeX way with the mathematics surrounded by dollar signs, as in
 \( Ax=b \). To help increase readability in other formats than <code>sphinx</code>,
@@ -901,13 +949,13 @@ That is, the LaTeX expression appears to the left of a vertical bar (pipe
 symbol) and the more readable expression appears to the right. Both
 expressions are surrounded by dollar signs.
 
-<p>
+<p></p>
 Blocks of LaTeX mathematics are written within
 <code>!bt</code>
 and
 <code>!et</code> (begin/end TeX) directives starting on the beginning of a line:
 
-<p>
+<p></p>
 <!-- begin verbatim block -->
 <pre><code>!bt
 \begin{align*}
@@ -918,9 +966,10 @@ and
 </code></pre>
 <!-- end verbatim block -->
 
-<p>
+<p></p>
 This LaTeX code gets rendered as
 
+<p></p>
 $$
 \begin{align*}
 \nabla\cdot \pmb{u} &= 0,\\ 
@@ -930,7 +979,7 @@ $$
 
 Here is a single equation:
 
-<p>
+<p></p>
 <!-- begin verbatim block -->
 <pre><code>!bt
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
@@ -939,9 +988,10 @@ Here is a single equation:
 <!-- end verbatim block -->
 which results in
 
+<p></p>
 $$ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.$$
 
-<p>
+<p></p>
 <b>LaTeX Newcommands.</b>
 The author can define <code>newcommand</code> statements in files with names
 <code>newcommands*.tex</code>. Such commands should only be used for mathematics
@@ -956,12 +1006,13 @@ rendered nicely anyway. If you desire <code>newcommand</code> outside LaTeX
 mathematics, simply use a Mako variable or a Mako function (which
 will be much more flexible and powerful).
 
-<p>
+<p></p>
 <!-- include with mako must be in this root tree, so we need a link, see make.sh -->
 
+<p></p>
 <h2 id="manual:latex:guide" class="anchor">Writing Guidelines (Especially for LaTeX Users!)</h2>
 
-<p>
+<p></p>
 LaTeX writers often have their own writing habits and have preferred
 LaTeX packages. DocOnce is a simpler format and
 corresponds to writing in quite plain LaTeX and making the ascii text
@@ -971,11 +1022,13 @@ LaTeX writers should pay attention to. Experience shows that these
 points are so important that we list them <em>before</em> we list typical
 DocOnce syntax!
 
-<p>
+<p></p>
 Any LaTeX syntax in mathematical formulas is accepted when DocOnce
 translates the text to LaTeX, but the following rules should be
 followed when transalting the text to <code>sphinx</code>, <code>pandoc</code>,
 <code>mwiki</code>, <code>html</code>, or <code>ipynb</code> formats.
+
+<p></p>
 
 <ul>
  <li> AMS LaTeX mathematics is supported, also for the <code>html</code>, <code>sphinx</code>,
@@ -1058,7 +1111,7 @@ label any type of text and refer to it. For example, one can have
 environments for examples, tables, code snippets, theorems, lemmas, etc.
 One can also use Mako functions to implement environments.</p>
 
-<p>
+<p></p>
 <div class="alert alert-block alert-success alert-text-normal"><b>Use the preprocessor to tailor output</b>
 If you really need special LaTeX constructs in the LaTeX output
 from DocOnce, you may use use preprocessor if-tests on
@@ -1074,7 +1127,7 @@ your own scripts or the <code>doconce replace</code> and <code>doconce subst</co
 </div>
 
 
-<p>
+<p></p>
 <div class="alert alert-block alert-success alert-text-normal"><b>Autotranslation of LaTeX to DocOnce?</b>
 The tool <code>doconce latex2doconce</code> may help you translate LaTeX files
 to DocOnce syntax. However, if you use computer code in floating
@@ -1083,12 +1136,12 @@ example environments, <code>subfigure</code> in figures,
 or a lot of newcommands in the running text, there will be need for
 a lot of manual edits and adjustments.
 
-<p>
+<p></p>
 For examples, figure environments can only be translated by
 <code>doconce latex2doconce</code> if the label is inside the caption and
 the figure is typeset like
 
-<p>
+<p></p>
 <!-- begin verbatim block  latexcod-->
 <pre><code>\begin{figure}
   \centering
@@ -1103,12 +1156,12 @@ LaTeX writers put the label at different places in different figures,
 and then it becomes more difficult to autoedit figures and translate
 them to the DocOnce <code>FIGURE:</code> syntax.
 
-<p>
+<p></p>
 Tables are hard to interpret and translate because headings and
 caption can be typeset in many different ways. The type of table
 that is recognized looks like
 
-<p>
+<p></p>
 <!-- begin verbatim block  latexcod-->
 <pre><code>\begin{table}
 \caption{Here goes the caption.}
@@ -1124,7 +1177,7 @@ that is recognized looks like
 Recall that table captions do not make sense in DocOnce since tables
 must be inlined and explained in the surrounding text.
 
-<p>
+<p></p>
 Footnotes are also problematic for <code>doconce latex2doconce</code> since DocOnce
 footnotes must have the explanation outside the paragraph where the
 footnote is used. This calls for manual work. The translator from
@@ -1134,12 +1187,13 @@ translation is desired.
 </div>
 
 
+<p></p>
 <h2 id="hyperlinks" class="anchor">Hyperlinks </h2>
 
-<p>
+<p></p>
 Links use either a link text or the raw URL:
 
-<p>
+<p></p>
 <!-- begin verbatim block -->
 <pre><code>Here is some &quot;some link text&quot;: &quot;http://some.net/address&quot;
 (as in &quot;search google&quot;: &quot;http://google.com&quot;)
@@ -1154,9 +1208,10 @@ or just &quot;send mail&quot;: &quot;mailto:hpl@simula.no&quot;.
 </code></pre>
 <!-- end verbatim block -->
 
+<p></p>
 <h2 id="figures-and-movies" class="anchor">Figures and Movies </h2>
 
-<p>
+<p></p>
 Figures and movies have almost equal syntax:
 <!-- begin verbatim block -->
 <pre><code>FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. label{some:fig:label}
@@ -1166,6 +1221,8 @@ MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must 
 </code></pre>
 <!-- end verbatim block -->
 Note three important syntax details:
+
+<p></p>
 
 <ol>
  <li> A mandatory comma after the figure/movie filename,</li>
@@ -1180,26 +1237,26 @@ the version of the file with the most appropriate extension for the chosen
 output format. If not suitable version is found, DocOnce will convert
 another format to the needed one.
 
-<p>
+<p></p>
 The caption is optional. If omitted, the figure will be inlined (meaning
 no use of any figure environment in HTML or LaTeX formats). The <code>width</code>
 and <code>height</code> parameters affect HTML formats (<code>html</code>, <code>rst</code>, <code>sphinx</code>),
 while <code>frac</code> is the width of the image as a fraction of the total text
 width in the <code>latex</code> and <code>pdflatex</code> formats.
 
-<p>
+<p></p>
 The command-line options <code>--fig_prefix=...</code> and <code>--mov_prefix=...</code> can
 be used to add a path (can be a URL) to all figure and movie files,
 respectively.  This is useful when including DocOnce documents in
 other DocOnce documents such that the text is compiled in different
 directories (with different paths to the figure directory).
 
-<p>
+<p></p>
 Movie files can either be a video or a wildcard expression for a
 series of frames. In the latter case, a simple device in an HTML page
 will display the individual frame files as a movie.
 
-<p>
+<p></p>
 Combining several image files into one can be done by the
 <!-- begin verbatim block  sys-->
 <pre><code>doconce combine_images image1 image2 ... output_image
@@ -1208,11 +1265,11 @@ Combining several image files into one can be done by the
 This command applies <code>montage</code> or PDF-based tools to combine the images
 to get the highest quality.
 
-<p>
+<p></p>
 YouTube and Vimeo movies will be embedded in <code>html</code> and <code>sphinx</code> documents
 and otherwise be represented by a link. The syntax is
 
-<p>
+<p></p>
 <!-- begin verbatim block -->
 <pre><code>MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
 
@@ -1222,15 +1279,16 @@ MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
 <!-- end verbatim block -->
 The latter results in
 
-<p>
+<p></p>
 
 <iframe width="500" height="278" src="https://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
 
 <em>Vimeo movie.</em>
 
+<p></p>
 <h2 id="tables" class="anchor">Tables </h2>
 
-<p>
+<p></p>
 The table in the section <a href="#quick:sections">Section Types</a> was written with this
 syntax:
 <!-- begin verbatim block -->
@@ -1248,8 +1306,10 @@ syntax:
 </code></pre>
 <!-- end verbatim block -->
 
-<p>
+<p></p>
 Note that
+
+<p></p>
 
 <ul>
  <li> Each line begins and ends with a vertical bar (pipe symbol).</li>
@@ -1276,16 +1336,16 @@ A quick way of generating tables is to place all the entries in a file
 with comma as separator (a CSV file) and then run the utility
 <code>doconce csv2table</code> to create a table in the DocOnce format.
 
-<p>
+<p></p>
 The command-line option <code>--tables2csv</code> (to <code>doconce format</code>)
 makes DocOnce dump each table to CSV format in a file <code>table_X.csv</code>,
 where <code>X</code> is the table number. This feature makes it easy to
 load tables into spreadsheet programs for further analysis.
 
-<p>
+<p></p>
 DocOnce tables can be efficiently made directly from data in CSV files.
 
-<p>
+<p></p>
 <!-- begin verbatim block  sys-->
 <pre><code>Terminal&gt; doconce csv2table mydata.csv &gt; mydata_table.do.txt
 </code></pre>
@@ -1294,9 +1354,10 @@ Now we can do <code># #include &quot;mydata_table.do.txt&quot;</code> in the Doc
 source file or simply copy the table in <code>mydata_table.do.txt</code>
 into the DocOnce file.
 
+<p></p>
 <h2 id="labels-and-references" class="anchor">Labels and References </h2>
 
-<p>
+<p></p>
 The notion of labels and references (as well as bibliography and index)
 is adopted
 from LaTeX with a very similar syntax. As in LaTeX, a label can be
@@ -1310,7 +1371,7 @@ preceding the label keyword. It is common practice to choose <code>name</code>
 as some hierarchical name, using a delimiter like <code>:</code> or <code>_</code> between
 (e.g.) section, subsection, and topic.
 
-<p>
+<p></p>
 A reference to the label <code>name</code> is written as
 <!-- begin verbatim block -->
 <pre><code>ref{name}
@@ -1318,14 +1379,15 @@ A reference to the label <code>name</code> is written as
 <!-- end verbatim block -->
 again with no backslash before <code>ref</code>.
 
-<p>
+<p></p>
 Use labels for sections and equations only, and precede the reference
 by "Section" or "Chapter", or in case of an equation, surround the
 reference by parenthesis.
 
+<p></p>
 <h2 id="citations-and-bibliography" class="anchor">Citations and Bibliography </h2>
 
-<p>
+<p></p>
 Single citations are written as
 <!-- begin verbatim block -->
 <pre><code>cite{name}
@@ -1343,7 +1405,7 @@ by comma:
 </code></pre>
 <!-- end verbatim block -->
 
-<p>
+<p></p>
 The bibliography is specified by a line <code>BIBFILE: papers.pub</code>,
 where <code>papers.pub</code> is a publication database in the
 <a href="https://github.com/doconce/publish" target="_self">Publish</a> format.
@@ -1351,9 +1413,10 @@ BibTeX <code>.bib</code> files can easily be combined to a Publish database
 (which DocOnce needs to create bibliographies in other formats
 than LaTeX).
 
+<p></p>
 <h2 id="generalized-references" class="anchor">Generalized References </h2>
 
-<p>
+<p></p>
 There is a <em>generalized referencing</em> feature in DocOnce that allows
 a reference with <code>ref</code> to have one formulation if the label is
 in the same document and another formulation if the reference is
@@ -1362,14 +1425,14 @@ to work with many small, independent documents in parallel with
 a book assembly of some of the small elements.
 The syntax of a generalized reference is
 
-<p>
+<p></p>
 <!-- begin verbatim block  do-->
 <pre><code>ref[internal][cite][external]
 </code></pre>
 <!-- end verbatim block -->
 with a specific example being
 
-<p>
+<p></p>
 <!-- begin verbatim block  do-->
 <pre><code>As explained in
 ref[Section ref{subsec:ex}][in cite{testdoc:12}][a &quot;section&quot;:
@@ -1391,9 +1454,10 @@ LaTeX package <code>xr</code> is used to handle the labels in the external
 documents.  If none of the two situations above applies, the
 <code>external</code> text will be the output.
 
+<p></p>
 <h2 id="index-of-keywords" class="anchor">Index of Keywords </h2>
 
-<p>
+<p></p>
 DocOnce supports creating an index of keywords. A certain keyword
 is registered for the index by a syntax like (no
 backslash!)
@@ -1408,14 +1472,15 @@ gives the doconce source code an indication of the content in the
 forthcoming text. The index is only produced for the <code>latex</code>,
 <code>pdflatex</code>, <code>rst</code>, and <code>sphinx</code> formats.
 
+<p></p>
 <h2 id="capabilities-of-the-program-doconce" class="anchor">Capabilities of The Program <code>doconce</code> </h2>
 
-<p>
+<p></p>
 The <code>doconce</code> program can be used for a number of purposes besides
 transforming a <code>.do.txt</code> file to some format. Here is the
 list of capabilities:
 
-<p>
+<p></p>
 <!-- begin verbatim block  shpro-->
 <pre><code>DocOnce version 1.5.4 (from /home/amarin/doconce/venv/lib/python3.6/site-packages/DocOnce-1.5.4-py3.6.egg/doconce)
 Usage: doconce command [optional arguments]
@@ -1587,13 +1652,16 @@ doconce latex_exercise_toc myfile
 </code></pre>
 <!-- end verbatim block -->
 
+<p></p>
 <h2 id="exercises" class="anchor">Exercises </h2>
 
-<p>
+<p></p>
 DocOnce supports <em>Exercise</em>, <em>Problem</em>, <em>Project</em>, and <em>Example</em>.
 These are typeset
 as ordinary sections and referred to by their section labels.
 Exercise, problem, project, or example sections contains certain <em>elements</em>:
+
+<p></p>
 
 <ul>
   <li> a headline at the level of a subsection
@@ -1636,18 +1704,18 @@ If the exercise type (Exercise, Problem, Project, or Example)
 is enclosed in braces, the type is left out of the title in the
 output. For example, the if the title line above reads
 
-<p>
+<p></p>
 <!-- begin verbatim block -->
 <pre><code>===== {Problem}: Derive the Formula for the Area of an Ellipse =====
 </code></pre>
 <!-- end verbatim block -->
 the title becomes just "Derive the ...".
 
-<p>
+<p></p>
 An exercise with subproblems, answers and full solutions has this
 setup-up:
 
-<p>
+<p></p>
 <!-- begin verbatim block -->
 <pre><code>===== Exercise: Determine the Distance to the Moon =====
 label{exer:moondist}
@@ -1702,15 +1770,18 @@ By default, answers, solutions, and hints are typeset as paragraphs.
 The command-line arguments <code>--without_answers</code> and <code>--without_solutions</code>
 turn off output of answers and solutions, respectively, except for examples. The command line options <code>--answers_at_end</code> and <code>--solutions_at_end</code> write all answers and solutions to exercises to a separate section at the end of the document, respectively. Combine with <code>--without_answers</code> and <code>--without_solutions</code> to remove answers and solutions from the main text.
 
-<p>
+<p></p>
 The commands <code>!anshide</code> and <code>!solhide</code> can be used to hide from the main text answers and solutions, respectively, until the <code>!ansoff</code> and <code>!soloff</code> commands are encountered. Similarly, the <code>!ansdocend</code> and <code>!soldocend</code> commands move answers and solutions to the end of the book.
 
+<p></p>
 <h2 id="environments" class="anchor">Environments </h2>
 
-<p>
+<p></p>
 DocOnce environments start with <code>!benvirname</code> and end with <code>!eenvirname</code>,
 where <code>envirname</code> is the name of the environment. Here is a listing of
 the environments:
+
+<p></p>
 
 <ul>
  <li> <code>c</code>: computer code (or verbatim text)</li>
@@ -1731,22 +1802,23 @@ the environments:
 In addition, the user can define new environments <code>!bc-name</code> as
 explained in the <a href="http://doconce.github.io/doconce/doc/pub/manual/manual.html#manual:userdef:envir" target="_self">manual</a>.
 
+<p></p>
 <h2 id="preprocessing" class="anchor">Preprocessing </h2>
 
-<p>
+<p></p>
 DocOnce documents may utilize a preprocessor, either <code>preprocess</code> and/or
 <code>mako</code>. The former is a C-style preprocessor that allows if-tests
 and including other files (but not macros with arguments).
 The <code>mako</code> preprocessor is much more advanced - it is actually a full
 programming language, very similar to Python.
 
-<p>
+<p></p>
 The command <code>doconce format</code> first runs <code>preprocess</code> and then <code>mako</code>.
 Here is a typical example on utilizing <code>preprocess</code> to include another
 document, &quot;comment out&quot; a large portion of text, and to write format-specific
 constructions:
 
-<p>
+<p></p>
 <!-- begin verbatim block  do-->
 <pre><code># #include &quot;myotherdoc.do.txt&quot;
 
@@ -1779,13 +1851,16 @@ constructions:
 </code></pre>
 <!-- end verbatim block -->
 
-<p>
+<p></p>
 With the <code>mako</code> preprocessor the if-else tests have slightly different syntax.
 An <a href="http://doconce.github.com/bioinf-py/" target="_self">example document</a> contains
 some illustrations on how to utilize <code>mako</code> (clone the GitHub project and
 examine the DocOnce source and the <code>doc/src/make.sh</code> script).
 
+<p></p>
 <h2 id="resources" class="anchor">Resources </h2>
+
+<p></p>
 
 <ul>
  <li> Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"</li>

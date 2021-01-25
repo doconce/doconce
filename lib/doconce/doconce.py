@@ -2635,10 +2635,10 @@ def typeset_lists(filestr, format, debug_info=[]):
     for i, line in enumerate(lines):
         db_line = '[%s]' % line
         #debugpr('\n------------------------\nsource line=[%s]' % line)
-
         if not line or line.isspace():  # blank line?
             if not lists:
-                result.write(BLANKLINE[format])
+                if i>0 and lines[i-1]:
+                    result.write(BLANKLINE[format])
             # else: drop writing out blank line inside lists
                 db_line_tp = 'blank line'
                 #debugpr('  > This is a blank line')
@@ -2646,7 +2646,6 @@ def typeset_lists(filestr, format, debug_info=[]):
             continue
 
         if line.startswith('#'):
-
             # first do some debug output:
             if line.startswith('#!!CODE') and len(debug_info) >= 1:
                 result.write(line + '\n')
