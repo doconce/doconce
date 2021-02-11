@@ -48,7 +48,8 @@ sphinx-rootdir
 Trash
 private
 test
-venv
+venv*
 lib/DocOnce.egg-info/
 # dependencies:
 doc/src/manual/src/
+src/

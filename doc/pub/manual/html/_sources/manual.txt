@@ -11809,11 +11809,6 @@ here for convenience.
     Default: none (no journal name).
     
     
-    --ipynb_version=...
-    
-    ipynb version 3 (default) or 4.
-    
-    
     --ipynb_split_pyshell=...
     
     Split interactive sessions into multiple cells after each output.
