@@ -1354,17 +1354,6 @@ import sys
 The notebook will feature the `import sys` statement in a cell prior to the
 `print(sys.version)` cell, and the latter will work.
 
-Similarly, if you import from your own modules, say `from mymod import hello`,
-the `mymod.py` must be accessible for the notebook. Suppose this file
-is in `src-test/mymod.py`. Then you need to add `src-test` to `sys.path`
-for the import statement to work:
-
-!bc
-|bc pyhid
-sys.path.append('src-test')
-|ec
-!ec
-
 ===== Displaying code as plain text instead of executable cells =====
 
 Some code blocks may just be there for explanation and are not

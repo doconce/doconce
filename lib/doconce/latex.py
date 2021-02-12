@@ -458,8 +458,6 @@ identifierstyle=\color{darkblue},
 
 def latex_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):
-    if option("execute"):
-        from . import jupyter_execution
     if option('latex_double_hyphen'):
         errwarn('*** warning: --latex_double_hyphen may lead to unwanted edits.')
         errwarn('             search for all -- in the .p.tex file and check.')
@@ -1078,6 +1076,7 @@ def latex_code(filestr, code_blocks, code_block_types,
     current_code = ""
 
     if option("execute"):
+        from . import jupyter_execution
         kernel_client = jupyter_execution.JupyterKernelClient()
         # This enables PDF output as well as PNG for figures.
         # We only use the PDF when available, but PNG should be added as fallback.

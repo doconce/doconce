@@ -280,6 +280,10 @@ doconce replace 'fig/oscillator_general' '../doc/src/ipynb/fig/oscillator_genera
 doconce format ipynb nbdemo
 doconce ipynb2doconce nbdemo.ipynb
 
+# Test notebook execution
+doconce format ipynb execute.do.txt $ex
+doconce format ipynb execute.do.txt --execute $ex
+
 # Test math
 rm -f *.aux
 name=math_test

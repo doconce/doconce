@@ -10,6 +10,20 @@ from .pandoc import pandoc_ref_and_label, pandoc_index_bib, pandoc_quote, \
 from .misc import option, _abort
 from .doconce import errwarn
 from doconce import globals
+from . import jupyter_execution
+
+try:
+    from nbformat.v4 import new_code_cell, new_markdown_cell, new_notebook, new_output
+    from nbformat import writes
+    from nbformat.v4 import nbformat
+except ImportError:
+    # Try old style of v4
+    try:
+        from IPython.nbformat.v4 import new_code_cell, new_markdown_cell, new_notebook, new_output, writes
+        from IPython.nbformat import writes
+        from nbformat.v4 import nbformat
+    except ImportError:
+        errwarn('*** error: cannot do import nbformat.v4 or IPython.nbformat.v4. Try with IPython.nbformat.v3')
 
 # Global variables
 figure_encountered = False
@@ -250,8 +264,6 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     if newcommands:
         filestr = newcommands + filestr
     """
-    if option("execute"):
-        from . import jupyter_execution
     # Fix pandoc citations to normal internal links: [[key]](#key)
     filestr = re.sub(r'\[@(.+?)\]', r'[[\g<1>]](#\g<1>)', filestr)
 
@@ -418,7 +430,6 @@ def ipynb_code(filestr, code_blocks, code_block_types,
                     lines.remove('')
                 code_blocks[i] = '\n'.join(lines)
                 ipynb_code_tp[i] = 'cell'
-
         elif tp.startswith('sys'):
             # Do we find execution of python file? If so, copy the file
             # to separate subdir and make a run file command in a cell.
@@ -446,7 +457,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
                 code_blocks[i] = indent_lines(code_blocks[i], format)
                 ipynb_code_tp[i] = 'markdown'
         elif tp.endswith("-e"):
-            ipynb_code_tp[i] = 'execute_hidden'
+            ipynb_code_tp[i] = 'cell_execute_hidden'
         elif tp.endswith('hid'):
             ipynb_code_tp[i] = 'cell_hidden'
         elif tp.endswith('out'):
@@ -506,14 +517,8 @@ def ipynb_code(filestr, code_blocks, code_block_types,
         if re.match(pattern % _CODE_BLOCK, notebook_blocks[i]):
             m = re.match(pattern % _CODE_BLOCK, notebook_blocks[i])
             idx = int(m.group(1))
-            if ipynb_code_tp[idx] == 'cell':
-                notebook_blocks[i] = ['cell', notebook_blocks[i]]
-            elif ipynb_code_tp[idx] == 'execute_hidden':
-                notebook_blocks[i] = ['execute_hidden', notebook_blocks[i]]
-            elif ipynb_code_tp[idx] == 'cell_hidden':
-                notebook_blocks[i] = ['cell_hidden', notebook_blocks[i]]
-            elif ipynb_code_tp[idx] == 'cell_output':
-                notebook_blocks[i] = ['cell_output', notebook_blocks[i]]
+            if ipynb_code_tp[idx].startswith('cell'):
+                notebook_blocks[i] = [ipynb_code_tp[idx], notebook_blocks[i]]
             else:
                 notebook_blocks[i] = ['text', notebook_blocks[i]]
         elif re.match(pattern % _MATH_BLOCK, notebook_blocks[i]):
@@ -585,164 +590,57 @@ def ipynb_code(filestr, code_blocks, code_block_types,
             if _MATH_BLOCK in notebook_blocks[i][1]:
                 notebook_blocks[i][1] = tex_blocks[n]
 
-    # Make IPython structures
-
-    nb_version = int(option('ipynb_version=', '4'))
-    if nb_version == 3:
-        try:
-            from IPython.nbformat.v3 import (
-                new_code_cell, new_text_cell, new_worksheet,
-                new_notebook, new_metadata, new_author)
-            nb = new_worksheet()
-        except ImportError:
-            errwarn('*** error: could not import IPython.nbformat.v3!')
-            errwarn('    set --ipynb_version=4 or leave out --ipynb_version=3')
-            _abort()
-    elif nb_version in (4, 5):
-        try:
-            from nbformat.v4 import new_code_cell, new_markdown_cell, new_notebook, new_output
-        except ImportError:
-            # Try old style
-            try:
-                from IPython.nbformat.v4 import new_code_cell, new_markdown_cell, new_notebook, new_output
-            except ImportError:
-                errwarn('*** error: cannot do import nbformat.v4 or IPython.nbformat.v4')
-                errwarn('    make sure IPython notebook or Jupyter is installed correctly')
-                _abort()
-        cells = []
-
-    mdstr = []  # plain md format of the notebook
-    prompt_number = 1
-
-    # Process some options
+    global new_code_cell, new_markdown_cell, new_notebook, new_output
+    cells = []              # ipynb cells
+    mdstr = []              # plain md format of the notebook
+    execution_count = 1
+    kernel_client = None    # Placeholder for a JupyterKernelClient instance
     if option("execute"):
         kernel_client = jupyter_execution.JupyterKernelClient()
-    metadata_md = {}
-    if option('ipynb_non_editable_text'):
-        metadata_md = dict(editable=False)
-    metadata_code = dict(collapsed=False, editable=True)
-    if option('ipynb_non_editable_code'):
-        metadata_code = dict(collapsed=False, editable=False)
+    editable_md = True      # Metadata for md text
+    if not option('ipynb_non_editable_text'):
+        editable_md = False
 
     for block_tp, block in notebook_blocks:
         if (block_tp == 'text' or block_tp == 'math') and block != '' and block != '<!--  -->':
             block = re.sub(r"caption\{(.*)\}", r"*Figure: \1*", block)
-            if nb_version == 3:
-                nb.cells.append(new_text_cell(u'markdown', source=block))
-            elif nb_version in (4, 5):
-                cells.append(new_markdown_cell(source=block, metadata=metadata_md))
+            cells.append(new_markdown_cell(source=block, metadata=dict(editable=editable_md)))
             mdstr.append(('markdown', block))
-        elif block_tp == "execute_hidden" and option("execute"):
-            if not isinstance(block, list):
-                block = [block]
-            for block_ in block:
-                outputs, execution_count = jupyter_execution.run_cell(kernel_client, block_)
-        elif block_tp == 'cell' and block != '' and block != []:
-            if not isinstance(block, list):
-                block = [block]
-            for block_ in block:
-                block_ = block_.rstrip()
-                if block_ == '': continue
-                if nb_version == 3:
-                    cell = new_code_cell(
-                        input=block_,
-                        # prompt_number=prompt_number,
-                        collapsed=False)
-                    nb.cells.append(cell)
-                elif nb_version in (4, 5):
-                    cell = new_code_cell(
-                        source=block_,
-                        # execution_count=prompt_number,
-                        metadata=metadata_code
-                    )
-                    cells.append(cell)
-                    if option("execute"):
-                        outputs, execution_count = jupyter_execution.run_cell(kernel_client, block_)
-                        cell.outputs = outputs
-                        if execution_count:
-                            cell["execution_count"] = execution_count
-                prompt_number += 1
-                mdstr.append(('codecell', block_))
         elif block_tp == 'cell_output' and block != '' and not option("ignore_output"):
+            # Process cells with block type cell_output (*out)
             block = block.rstrip()
-            if nb_version == 3:
-                print("WARNING: Output not implemented for nbformat v3.")
-            elif nb_version in (4, 5):
-                outputs = [
-                    new_output(
-                        output_type="execute_result",
-                        data={
-                            "text/plain": [
-                                block
-                            ]
-                        },
-                        execution_count=prompt_number-1
-                    )
-                ]
-                previous_cell = cells[-1]
-                if previous_cell.cell_type == "code":
-                    previous_cell.outputs = outputs
-                else:
-                    print("WARNING: DocOnce ipynb got code output,",
-                          "but previous was not code.")
-                    cells.append(new_code_cell(
-                        source="#",
-                        outputs=outputs,
-                        execution_count=prompt_number,
-                        metadata=dict(collapsed=False)
-                    ))
-                    mdstr.append(('codecell', block))
-        elif block_tp == 'cell_hidden' and block != '':
-            block = block.rstrip()
-            if nb_version == 3:
-                nb.cells.append(new_code_cell(
-                    input=block, prompt_number=prompt_number, collapsed=True))
-            elif nb_version in (4, 5):
-                cells.append(new_code_cell(
-                    source=block,
-                    execution_count=prompt_number,
-                    metadata=dict(collapsed=True)))
-            prompt_number += 1
-            mdstr.append(('codecell', block))
+            outputs = [
+                new_output(
+                    output_type="execute_result",
+                    data={
+                        "text/plain": [
+                            block
+                          ]
+                    },
+                    execution_count=execution_count-1
+                )
+            ]
+            previous_cell = cells[-1]
+            if previous_cell.cell_type == "code":
+                previous_cell.outputs = outputs
+            else:
+                print("WARNING: DocOnce ipynb got code output,",
+                      "but previous was not code.")
+                cell = new_code_cell(
+                    source="#",
+                    outputs=outputs,
+                    execution_count=execution_count,
+                    metadata=dict(collapsed=False)
+                )
+                cells.append(cell)
+                mdstr.append(('codecell', block))
+        elif block_tp.startswith('cell'):
+            # Process cells with block type cell (py*), cell_execute_hidden (*-e), cell_hidden (*hid)
+            execution_count, md_out = process_ipynb_code_block(kernel_client, block, block_tp, cells, execution_count)
+            mdstr.extend(md_out)
 
-    """
-    # Dump the notebook cells in a simple ASCII format
-    # (doc/src/ipynb/ipynb_generator.py can translate it back to .ipynb file)
-    f = open(globals.dofile_basename + '.md-ipynb', 'w')
-    for cell_tp, block in mdstr:
-        if cell_tp == 'markdown':
-            f.write('\n-----\n\n')
-        elif cell_tp == 'codecell':
-            f.write('\n-----py\n\n')
-        f.write(block)
-    f.close()
-    """
-
-    if nb_version == 3:
-        # Catch the title as the first heading
-        m = re.search(r'^#+\s*(.+)$', filestr, flags=re.MULTILINE)
-        title = m.group(1).strip() if m else ''
-        # md below is not used for anything
-        if authors:
-            authors = eval(authors)
-            md = new_metadata(name=title, authors=authors)
-        else:
-            md = new_metadata(name=title)
-        nb = new_notebook(worksheets=[nb], metadata=new_metadata())
-        # Let us make v4 notebook here by upgrading
-        from IPython.nbformat.v4 import upgrade
-        nb = upgrade(nb)
-        import IPython.nbformat.v4.nbjson as nbjson
-
-        # Convert nb to json format
-        filestr = nbjson.writes(nb)
-    elif nb_version in (4, 5):
-        nb = new_notebook(cells=cells)
-        try:
-            from nbformat import writes
-        except ImportError:
-            from IPython.nbformat import writes
-        filestr = writes(nb, version=4)
+    nb = new_notebook(cells=cells)
+    filestr = writes(nb, version=4)
 
     # Check that there are no empty cells:
     if '"input": []' in filestr:
@@ -817,6 +715,38 @@ def ipynb_code(filestr, code_blocks, code_block_types,
         jupyter_execution.stop(kernel_client)
 
     return filestr
+
+
+def process_ipynb_code_block(kernel_client, block, block_tp, cells, execution_count):
+    md_out = []
+    editable = True
+    collapsed = False
+    if option('ipynb_non_editable_code'):
+        editable=False
+    if block_tp == 'cell_hidden':
+        collapsed = True
+    # Start processing the block
+    if not isinstance(block, list):
+        block = [block]
+    for blockline in block:
+        blockline = blockline.rstrip()
+        if blockline == '': continue
+        cell = new_code_cell(
+            source=blockline,
+            execution_count=execution_count,
+            metadata=dict(editable=editable, collapsed=collapsed)
+        )
+        if block_tp != 'cell_execute_hidden':
+            cells.append(cell)
+        if option("execute"):
+            outputs, execution_count_out = jupyter_execution.run_cell(kernel_client, blockline)
+            cell.outputs = outputs
+            if execution_count_out:
+                cell["execution_count"] = execution_count_out
+        execution_count += 1
+        md_out.append(('codecell', blockline))
+    return execution_count, md_out
+
 
 def ipynb_index_bib(filestr, index, citations, pubfile, pubdata):
     # ipynb has support for latex-style bibliography.

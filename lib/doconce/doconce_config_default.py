@@ -118,7 +118,6 @@ latex_admon_title_no_period = False
 xelatex = False
 latex_double_hyphen = False
 #latex_elsevier_journal =
-#ipynb_version =
 #ipynb_split_pyshell =
 #ipynb_cite =
 #ipynb_admon =

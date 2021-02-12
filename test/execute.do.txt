@@ -6,24 +6,44 @@ Compile this document with
 doconce format ipynb execute.do.txt --execute
 !ec
 
-Hidden execution cells can be used to perform operations that need to be done
-before the following cells are executed:
+Hidden execution cells (`pyhid`, `pycod-e`) can be used to perform operations (e.g. imports, variable initializations) without showing any cell.  
+The `pyhid` environment executes and hides the cell in formats other than .ipynb:
+!bc pyhid
+# This cell appears in ipynb but not in other formats
+import sys
+!ec
 
+The `pycod-e` environment executed but hides the cell also in .ipynb files:
 !bc pycod-e
 import os
 os.listdir(".")
 a = 1
-e = 0
-f = 3
 !ec
 
-This is a cell that should execute automatically:
-
+`pycod` is a normal cell that should execute automatically when using `--execute`. Note that this cells relies on code executed in a previous hidden cell:
 !bc pycod
+print(sys.version)
 b = 2
 c = a + b
 print("The result is {}".format(c))
 c
+!ec
+
+The `*-t` environment (e.g. `pycod-t`) formats a cell to text, and can be used to print an example
+!bc pycod-t
+# This is a for-loop example
+for i in [0,10]:
+  print(i)
+!ec
+
+The `*out`  (e.g. `pycod-out`) environment can be used to write a cell output:
+!bc pycod
+# This is a normal pycod cell
+1/0
+!ec
+
+!bc pyout
+1/0: You cannot divide by zero
 !ec
 
 ======= Plotting =======
@@ -59,17 +79,6 @@ print(a)
 2
 !ec
 
-======= Not executed =======
-
-This is a code block that should not be executed:
-
-!bc pycod-t
-while True:
-    i = 2
-!ec
-
-This is some *formatted* stuff, which is _underlined_ and stuff and maybe even
-contains $a + 2b$.
 
 ======= Code with errors =======
 
