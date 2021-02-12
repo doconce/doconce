@@ -13,7 +13,7 @@ The `pyhid` environment executes and hides the cell in formats other than .ipynb
 import sys
 !ec
 
-The `pycod-e` environment executed but hides the cell also in .ipynb files:
+The `pycod-e` environment executes but hides the cell also in .ipynb files:
 !bc pycod-e
 import os
 os.listdir(".")
