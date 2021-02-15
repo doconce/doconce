@@ -4638,7 +4638,7 @@ or checkout the code on
 "`github.com`": "https://github.com/doconce/publish":
 
 !bc sys
-Terminal> hg clone https://github.com/doconce/publish
+Terminal> git clone https://github.com/doconce/publish
 Terminal> cd publish
 Terminal> python setup.py install
 !ec
