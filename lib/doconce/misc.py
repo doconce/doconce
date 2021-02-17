@@ -1605,7 +1605,7 @@ download preprocess from https://code.google.com/p/preprocess""")
 requires the pygments package to be installed. On Debian/Ubuntu: run
 Terminal> sudo apt-get install python-pygments
 Or
-Terminal> hg clone https://bitbucket.org/birkenfeld/pygments-main pygments
+Terminal> git clone https://bitbucket.org/birkenfeld/pygments-main pygments
 Terminal> cd pygments; python setup.py install
 """)
             _abort()
