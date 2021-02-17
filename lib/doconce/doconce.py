@@ -3334,6 +3334,28 @@ def handle_index_and_bib(filestr, format):
                 errwarn('*** error: citation "%s" is not in the BIBFILE' % citation)
                 _abort()
 
+    # Needed when caller does not pass though doconce2format()
+    if format not in INDEX_BIB.keys():
+        module = eval(format)
+        module.define(
+            FILENAME_EXTENSION,
+            BLANKLINE,
+            INLINE_TAGS_SUBST,
+            CODE,
+            LIST,
+            ARGLIST,
+            TABLE,
+            EXERCISE,
+            FIGURE_EXT,
+            CROSS_REFS,
+            INDEX_BIB,
+            TOC,
+            ENVIRS,
+            QUIZ,
+            INTRO,
+            OUTRO,
+            filestr)
+
     filestr = INDEX_BIB[format](filestr, index, citations, pubfile, pubdata)
 
     if not citations and pubfile is not None:

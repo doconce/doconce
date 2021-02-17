@@ -1,6 +1,7 @@
 import os, sys, shutil, re, glob, math
 from doconce import globals
-from .doconce import read_file, write_file, doconce2format, parse_doconce_filename, errwarn, _rmdolog, preprocess
+from .doconce import read_file, write_file, doconce2format, parse_doconce_filename, handle_index_and_bib, \
+    errwarn, _rmdolog, preprocess
 from .misc import option, help_print_options, check_command_line_options, system, _abort
 from .common import INLINE_TAGS, remove_code_and_tex
 
@@ -90,6 +91,12 @@ def jupyterbook():
         if re.search(r'^%s:.*' % tag, filestr, re.MULTILINE):
             errwarn('*** warning : Removing the %s tag' % tag.lower())
         filestr = re.sub(r'^%s:.*' % tag, '', filestr, flags=re.MULTILINE)
+
+    # Format citations and add bibliography in DocOnce's html format
+    pattern_tag = r'[\w _\-]*'
+    pattern = r'cite(?:(\[' + pattern_tag + '\]))?\{(' + pattern_tag + ')\}'
+    if re.search(pattern, filestr):
+        filestr = handle_index_and_bib(filestr, 'html')
 
     # Delete any non-printing characters, commands, and comments
     # Using regex:
