@@ -1,5 +1,7 @@
 # Text with wrong doconce format
 
+# TODO: fix this
+
 A list followed by a code block works okay:
 
   * Third point
