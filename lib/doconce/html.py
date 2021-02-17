@@ -10,7 +10,7 @@ from .common import table_analysis, plain_exercise, insert_code_and_tex, \
      indent_lines, online_python_tutor, bibliography, \
      is_file_or_url, envir_delimiter_lines, doconce_exercise_output, \
      get_legal_pygments_lexers, has_custom_pygments_lexer, emoji_url, \
-     fix_ref_section_chapter
+     fix_ref_section_chapter, cite_with_multiple_args2multiple_cites
 from .misc import option, _abort
 from doconce import globals
 from .doconce import errwarn, debugpr
@@ -2299,7 +2299,6 @@ def html_exercise(exer):
 
 def html_index_bib(filestr, index, citations, pubfile, pubdata):
     if citations:
-        from .common import cite_with_multiple_args2multiple_cites
         filestr = cite_with_multiple_args2multiple_cites(filestr)
     for label in citations:
         filestr = filestr.replace('cite{%s}' % label,

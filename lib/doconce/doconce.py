@@ -755,7 +755,7 @@ def syntax_check(filestr, format):
     found_problem = False
     non_defined = []
     for ref in refs:
-        if ref not in labels:
+        if not option('allow_refs_to_external_docs') and ref not in labels:
             errwarn('*** error: reference ref{%s} to non-defined label' % ref)
             non_defined.append(ref)
             found_problem = True
