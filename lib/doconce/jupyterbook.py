@@ -4,6 +4,7 @@ from .doconce import read_file, write_file, doconce2format, parse_doconce_filena
     errwarn, _rmdolog, preprocess
 from .misc import option, help_print_options, check_command_line_options, system, _abort
 from .common import INLINE_TAGS, remove_code_and_tex
+import json
 
 docstring_jupyterbook = """Usage: doconce jupyterbook filename [options] 
 Create files for Jupyter Book version: 0.8
@@ -121,7 +122,6 @@ def jupyterbook():
     # chapter_titles :      ['Chapter 1', 'Chapter 2', 'Summary']
     # chapter_titles_auto : ['Header 1', 'Header 2', 'Last Header in DocOnce file']
     # chapter_basenames :   ['01_mybook', '02_mybook', '03_mybook']
-    # chapter_fnames :      ['01_mybook.ipynb', '02_mybook.md', '03_mybook.md']
     #
     # If sep_section is not empty, these variables become relevant
     # sep_section :         Subdivide the jupyter-book chapters in sections, see --sep_section
@@ -129,10 +129,9 @@ def jupyterbook():
     # sec_title_list :      [['Subsection 1.1', 'Subsection 1.2'], ['Subsection 2.1'], []]
     # sec_title_list_auto : [['Subheader 1.1', 'Subheader 1.2'], ['Subheader 2.1'], ['Last Subheader in DocOnce file']]
     # sec_basename_list :   [['01_01_mybook', '01_02_mybook'], ['02_01_mybook'], []]
-    # sec_fname_list :      [['01_01_mybook.md', '01_02_myb   ook.ipynb'], ['02_01_mybook.md'], []]
 
     # Split the DocOnce file in jupyter-book chapters
-    chapters = split_file(filestr, sep, INLINE_TAGS)
+    chapters = split_file(filestr, INLINE_TAGS[sep])
     sec_list = [[]] * len(chapters)
     sec_title_list_auto = None
     # Extract all jupyter-book sections based on --sep_section
@@ -144,31 +143,33 @@ def jupyterbook():
             if m:
                 pos_sep_section = m.start() if m else 0
                 # Write text before the first jupyter-book section as chapter
-                chapters[c] = split_file(chap[:pos_sep_section:], sep_section, INLINE_TAGS)[0]
+                chapters[c] = split_file(chap[:pos_sep_section:], INLINE_TAGS[sep_section])[0]
                 # The text after the first match of sep_section are jupyter-book sections
-                sec_list[c] = split_file(chap[pos_sep_section:], sep_section, INLINE_TAGS)
+                sec_list[c] = split_file(chap[pos_sep_section:], INLINE_TAGS[sep_section])
 
     # Get titles from title file in options
     chapter_titles, sec_title_list = read_title_file(titles_opt, chapters, sec_list)
 
-    # Define a standard formatter for content filenames and default titles. '%02d_' will result in e.g. '03_mybook'
-    def formatter(_list): 
+    # Extract and write titles to each jupyter-book chapter/section.
+    # Also get the basenames for the files to be created later
+    def int_formatter(_list):
         return '%0' + str(max(2, math.floor(math.log(len(_list) + 0.01, 10)) + 1)) + 'd_'
-
-    # Extract and write titles to each jupyter-book chapter/section
-    chapter_formatter = formatter(chapters)
+    chapter_formatter = int_formatter(chapters)
     chapters, chapter_titles, chapter_titles_auto = titles_to_chunks(chapters, chapter_titles, sep=sep,
                                                 chapter_formatter=chapter_formatter, tags=INLINE_TAGS)
+    chapter_basenames = [chapter_formatter % (i + 1) + basename for i in range(len(chapters))]
+    sec_basename_list = [[]] * len(chapters)
     if sep_section:
         # The following contains section titles extracted  automatically
         sec_title_list_auto = [[]] * len(sec_title_list)
         for c, sections in enumerate(sec_list):
-            section_formatter = chapter_formatter % (c + 1) + formatter(sections)
+            section_formatter = chapter_formatter % (c + 1) + int_formatter(sections)
             sec_list[c], section_titles, section_titles_auto = titles_to_chunks(sections, sec_title_list[c],
                                                                sep=sep_section, sep2=sep,
                                                                chapter_formatter=section_formatter, tags=INLINE_TAGS)
             sec_title_list[c] = section_titles
             sec_title_list_auto[c] = section_titles_auto
+            sec_basename_list[c] = [section_formatter % (i + 1) + basename for i in range(len(sections))]
 
     # Print out the detected titles if --show_titles was used
     if show_titles_opt:
@@ -183,66 +184,99 @@ def jupyterbook():
                     print(sec_title_list_auto[c][s])
         print('=====')
 
-    # Get the basenames of the files to be created for jupyter-book chapters and sections
-    create_filenames = lambda l: [chapter_formatter % (i + 1) + basename
-                                  for i in range(len(l))]
-    chapter_basenames = create_filenames(chapters)
-    sec_basename_list = [[]] * len(chapters)
-    for c, sections in enumerate(sec_list):
-        section_formatter = chapter_formatter % (c + 1) + formatter(sections)
-        create_filenames = lambda l: [section_formatter % (i + 1) + basename
-                                      for i in range(len(l))]
-        section_basenames = create_filenames(sections)
-        sec_basename_list[c] = section_basenames
+    # Description of relevant variables
+    # all_texts :           ['====== Chapter 1 ======\n Some text', '====== Subsection 1.1 ======\n Some text', ..]
+    # all_basenames :       ['01_mybook','01_01_mybook','01_02_mybook','02_mybook']
+    # all_suffix :          ['.md','.md','.ipynb','.md']
+    # all_fnames :          ['01_mybook.md','01_01_mybook.md','01_02_mybook.ipynb','02_mybook.md']
+    # all_titles :          ['Chapter 1','Subsection 1.1', 'Subsection 1.2','Chapter 2']
+    # all_nestings :        [0, 1, 1, 0]   # 0 or 1 for jupyter-book chapters or sections, respectively
+    #
+    # filestr_md :          DocOnce input formatted to pandoc
+    # filestr_ipynb :       DocOnce input formatted to ipynb
+    # all_texts_md :        list of all chapters and sections from filestr_md
+    # all_texts_ipynb :     list of all chapters and sections from filestr_ipynb
+    # all_texts_formatted : list of chapters and sections from filestr_ipynb
 
-    # Create a markdown or ipynb for each jupyter-book chapter section
-    chapters, chapter_fnames = create_content_files(chapters, chapter_basenames)
-    sec_fname_list = [[]] * len(chapters)
-    for c in range(len(sec_list)):
-        sections, section_fnames = create_content_files(sec_list[c], sec_basename_list[c])
-        sec_list[c] = sections
-        sec_fname_list[c] = section_fnames
+    # Flatten all texts, basenames, titles, etc for jupyter-book chapters and sections
+    all_texts = []
+    all_basenames = []
+    all_titles = []
+    all_nestings = []
+    for c in range(len(chapters)):
+        all_texts.append(chapters[c])
+        all_basenames.append(chapter_basenames[c])
+        all_titles.append(chapter_titles[c])
+        all_nestings.append(0)
+        for s in range(len(sec_list[c])):
+            all_texts.append(sec_list[c][s])
+            all_basenames.append(sec_basename_list[c][s])
+            all_titles.append(sec_title_list[c][s])
+            all_nestings.append(1)
+
+    # Create markdown or ipynb filenames for each jupyter-book chapter section
+    all_suffix = identify_format(all_texts)
+    all_fnames = [b + s for b, s in zip(all_basenames,all_suffix)]
+
+    # Mark the beginning of each jupyter-book chapter and section with its filename in a comment
+    all_markings = list(map(lambda x: '!split\n<!-- jupyter-book %s -->\n' % x, all_fnames))
+    all_texts = [m + t for m, t in zip(all_markings, all_texts)]
+
+    # Merge all jupyter-book chapters and sections back to a single DocOnce text.
+    # Then convert to pandoc and ipynb
+    filestr = ''.join(all_texts)
+    filestr_md, bg_session = doconce2format(filestr, 'pandoc')
+    filestr_ipynb, bg_session = doconce2format(filestr, 'ipynb')
+
+    # Split the texts (formatted to md and ipynb) to individual jupyter-book chapters/sections
+    all_texts_md = split_file(filestr_md, '<!-- !split -->\n<!-- jupyter-book .* -->\n')
+    all_texts_ipynb = split_ipynb(filestr_ipynb, all_fnames)
+    if len(all_texts_md) != len(all_texts_ipynb):
+        errwarn('*** error : the lengths of .md and .ipynb files should be the same')
+        _abort()
+
+    # Flatten the formatted texts
+    all_texts_formatted = [[]] * len(all_fnames)
+    for i in range(len(all_fnames)):
+        all_texts_formatted[i] = all_texts_md[i]
+        if all_fnames[i].endswith('.ipynb'):
+            all_texts_formatted[i] = all_texts_ipynb[i]
 
     # Fix all links whose destination is in a different document
     # e.g. <a href="#Langtangen_2012"> to <a href="02_jupyterbook.html#Langtangen_2012">
-    chapters, sec_list = resolve_links_destinations(chapters, sec_list,
-                                                    chapter_basenames, sec_basename_list)
+    all_texts_formatted = resolve_links_destinations(all_texts_formatted, all_basenames)
 
     # Write chapters and sections to file
-    for c in range(len(chapters)):
-        write_file(chapters[c], dest + chapter_fnames[c], _encoding=globals.encoding)
-        for s in range(len(sec_list[c])):
-            write_file(sec_list[c][s], dest + sec_fname_list[c][s], _encoding=globals.encoding)
+    for i in range(len(all_texts_formatted)):
+        write_file(all_texts_formatted[i], dest + all_fnames[i], _encoding=globals.encoding)
 
     # Create the _toc.yml file
-    if sep_section == '':
-        yml_text = create_toc_yml(chapter_fnames, chapter_titles, dest=dest, dest_toc=dest_toc)
-    else:
-        yml_text = create_toc_yml(chapter_fnames, chapter_titles, dest=dest, dest_toc=dest_toc,
-                                  section_paths=sec_fname_list, section_titles=sec_title_list)
+    yml_text = create_toc_yml(all_basenames, titles=all_titles, nesting_levels=all_nestings, dest=dest, dest_toc=dest_toc)
+
     write_file(yml_text, dest_toc + '_toc.yml', _encoding=globals.encoding)
     print('\nWrote _toc.yml and %d chapter files to these folders:\n  %s\n  %s' %
-          (len(chapter_fnames), os.path.realpath(dest_toc), os.path.realpath(dest)))
+          (len(all_fnames), os.path.realpath(dest_toc), os.path.realpath(dest)))
 
 
-def split_file(filestr, sep, tags):
-    """Helper function to split the text of a doconce file by a tag
+def split_file(filestr, separator):
+    """Split the text of a doconce file by a regex string.
 
-    Split the text of a doconce file by a separator string and return the chunks of text. Note that the first chunk
-    contains any text before the first separator.
+    Split the text of a doconce file by a separator regex (e.g. the values of
+    the INLINE_TAGS dictionary from common.py) and return the chunks of text.
+    Note that the first chunk contains any text before the first separator.
     :param str filestr: text string
-    :param str sep: chapter|section|subsection
-    :param dict tags: tag patterns, e.g. INLINE_TAGS from common.py
+    :param str separator: regex text, e.g. INLINE_TAGS['chapter'], see common.py
     :return: list of text chunks
     :rtype: list[str]
     """
     chunks = []
-    if re.search(tags[sep], filestr, flags=re.MULTILINE) is None:
-        print('%s pattern not found in file' % sep)
+    c = re.compile(separator, flags=re.MULTILINE)
+    if re.search(c, filestr) is None:
+        print('pattern of separator not found in file')
         chunks.append(filestr)
     else:
         pos_prev = 0
-        for m in re.finditer(tags[sep], filestr, flags=re.MULTILINE):
+        for m in re.finditer(c, filestr):
             if m.start() == 0:
                 continue
             # Skip separators used for illustration of doconce syntax inside !bc and !ec directives
@@ -256,6 +290,44 @@ def split_file(filestr, sep, tags):
         chunk = filestr[pos_prev:]
         chunks.append(chunk)
     return chunks
+
+
+def split_ipynb(ipynb_text, filenames):
+    """Split a Jupyter notebook based on filenames present in its blocks
+
+    Given the text of a Jupyter notebook marked with the output filename
+    in comments (e.g. <!-- jupyter-book 02_mybook.ipynb -->), return a list of
+    Jupyter notebooks separated accordingly.
+    :param str ipynb_text: ipynb code marked with individual filenames i.e. <!-- jupyter-book 02_mybook.ipynb -->
+    :param list[str] filenames: filenames
+    :return: ipynb_texts with the ipynb code for each block
+    :rtype: list[str]
+    """
+    # An ipynb is a python dictionary
+    ipynb_dict = json.loads(ipynb_text)
+    cells = ipynb_dict.pop('cells')
+    # Find the markings with filename in the ipynb blocks
+    ind_fname = []
+    block_sources = [''.join(c['source']) for c in cells]
+    for fname in filenames:
+        marking = '<!-- jupyter-book % s -->' % fname
+        for b, block in enumerate(block_sources):
+            if block.find(marking) > -1:
+                ind_fname.append(b)
+                break
+    if len(ind_fname) != len(filenames):
+        errwarn('*** error : could not find all markings in ipynb')
+        _abort()
+    # Create an ipynb dictionary for each block, then convert to text
+    ipynb_texts = [''] * len(filenames)
+    for i, ind in enumerate(ind_fname):
+        ind2 = None
+        if ind + 1 < len(ind_fname):
+            ind2 = ind_fname[ind + 1]
+        block_dict = ipynb_dict.copy()
+        block_dict['cells'] = cells[ind:ind2]
+        ipynb_texts[i] = json.dumps(block_dict, indent=1, separators=(',', ':'))
+    return ipynb_texts
 
 
 def read_title_file(titles_opt, chapters, sec_list):
@@ -364,22 +436,17 @@ def create_title(chunk, sep, tags):
     return chunk, title
 
 
-def create_content_files(text_list, basenames=[]):
-    """Helper function to create markdown or ipynb files from DocOnce texts
+def identify_format(text_list):
+    """Identify the appropriate formats to convert a list of DocOnce texts.
 
-    Write a list of DocOnce texts to disk using an appropriate format. The format is markdown (.md) or
-    Jupyter Notebook (.ipynb) if the text contains code.
+    Given a list of DocOnce texts, check if they contain code. If so, return the suffix
+    '.ipynb' (for the Jupyter Notebook ipynb format), otherwise return '.md' (for
+    the pandoc markdown format).
     :param list[str] text_list: list of strings using DocOnce syntax
-    :param str dest: destination folder
-    :param list[str] basenames: basenames (e.g. ['01_mybook'] for the files.
-    :return: list of filenames
+    :return: list of formats
     :rtype: list[str]
     """
-    if len(text_list) != len(basenames):
-        errwarn('*** error : input lengths do not match')
-        _abort()
-    chunk_filenames = basenames
-    chunk_outputs = []
+    chunk_formats = [''] * len(text_list)
     for i, text in enumerate(text_list):
         # Convert each text to pandoc, or to ipynb if the text contains any computation
         format = 'pandoc'
@@ -387,27 +454,24 @@ def create_content_files(text_list, basenames=[]):
             remove_code_and_tex(text, format)
         if len(code_blocks):
             format = 'ipynb'
-        chunk_out, bg_session = doconce2format(text, format)
-        chunk_filenames[i] += '.md' if format == 'pandoc' else '.ipynb'
-        chunk_outputs.append(chunk_out)
-    return chunk_outputs, chunk_filenames
+        chunk_formats[i] += '.md' if format == 'pandoc' else '.ipynb'
+    return chunk_formats
 
 
-def create_toc_yml(chapter_paths, chapter_titles, dest='./', dest_toc='./', section_paths=None, section_titles=None):
+def create_toc_yml(basenames, nesting_levels, titles, dest='./', dest_toc='./',     section_paths=None, section_titles=None):
     """Create the content of a _toc.yml file
 
-    Give the lists of paths and titles, return the content of a _toc.yml file
-
-    :param list[str] chapter_paths: list of paths to jupyter-book chapters, i.e. strings that can be used
-    after the `file:` section in a _toc.yml
-    :param list[str] chapter_titles: list of titles to jupyter-book chapters, i.e. strings that can be used
-    after the `title:` section in a _toc.yml
-    :param str dest: destination folder for _toc.yml
-    :param str dest_toc: destination folder for the chapter files
-    :param list[list[str]] section_paths: same as chapter_paths but for jupyter-book sections
-    :param list[list[str]] section_titles: same as chapter_titles but for jupyter-book sections
-    :return: content of a _toc.yml file
-    :rtype: str
+        Give the lists of paths, titles, and nesting levels, return the content of a _toc.yml file
+        :param list[str] basenames: list of file basenames for jupyter-book chapters or sections, i.e.
+        strings that can be used after the `file:` section in a _toc.yml
+        :param list[str] titles: list of titles to jupyter-book chapters, i.e. strings that can be used
+        after the `title:` section in a _toc.yml
+        :param list[str] nesting_levels: nesting levels for basenames and titles: # 0 or 1 for jupyter-book
+        chapters or sections, respectively
+        :param str dest: destination folder for _toc.yml
+        :param str dest_toc: destination folder for the chapter files
+        :return: content of a _toc.yml file
+        :rtype: str
     """
     def escape_chars(title):
         """Wrap title in quotes if it contains colons, asterisks, bacticks"""
@@ -423,19 +487,21 @@ def create_toc_yml(chapter_paths, chapter_titles, dest='./', dest_toc='./', sect
         relpath += '/'
     # Produce the text for _toc.yml
     yml_text = ""
-    for i, cfname in enumerate(chapter_paths):
-        cfroot, _ = os.path.splitext(cfname)
-        ctitle = escape_chars(chapter_titles[i])
+    nesting_prev = 0
+    for i, cfname in enumerate(basenames):
+        ctitle = escape_chars(titles[i])
         if ctitle:
-            yml_text += yml_titledpage(relpath + cfroot, ctitle, numbered=False)
-            # Write the sections
-            if section_paths and len(section_paths[i]):
-                yml_text += yml_section(nesting_level=1)
-                for j, sfname in enumerate(section_paths[i]):
-                    sfroot, _ = os.path.splitext(sfname)
-                    stitle = escape_chars(section_titles[i][j])
-                    yml_text += yml_nested_section(relpath + sfroot, stitle, nesting_level=1)
-        yml_text += '\n'
+            nesting = nesting_levels[i]
+            if nesting == 0:
+                yml_text += '\n'
+                yml_text += yml_titledpage(relpath + cfname, ctitle, numbered=False)
+            else:
+                # Write the sections
+                if nesting_prev == 0:
+                    yml_text += yml_section(nesting_level=nesting)
+                yml_text += yml_nested_section(relpath + cfname, ctitle, nesting_level=nesting)
+        nesting_prev = nesting
+    yml_text = yml_text.strip('\n')
     return yml_text
 
 
@@ -534,27 +600,23 @@ def fix_links(chunk, tag2file):
         chunk_out = chunk_out.replace(match, fixed_tag)
     return chunk_out
 
-
-def resolve_links_destinations(chapters, sec_list, chapter_basenames, sec_basename_list):
+def resolve_links_destinations(chunks, chunk_basenames):
     """Fix links in jupyter-book chapters/sections so that they can target destinations in other files
 
     Prepend a filename to all links' destinations e.g. <a href="#Langtangen_2012"> becomes
     <a href="02_jupyterbook.html#Langtangen_2012">
-    :param list[str] chapters: DocOnce texts consisting in Jupyter-book chapters
-    :param list[list[str]] sec_list: DocOnce texts consisting in Jupyter-book sections
-    :param list[str] chapter_basenames: file basenames for jupyter-book chapters
-    :param list[list[str]] sec_basename_list: file basenames for jupyter-book sections
-    :return: chapters, sec_list with corrected links
+    :param list[str] chunks: DocOnce texts consisting in Jupyter-book chapters/sections
+    :param list[str] chunk_basenames: file basenames for jupyter-book chapters/sections
+    :return: chunks with corrected links
     :rtype: Tuple[list[str], list[list[str]]]
     """
     # Flatten the texts and filenames, then get the basenames from filenames
-    flatten = lambda list_of_list: [el for l in list_of_list for el in l]
     def strip_end(text, suffix):
         if suffix and text.endswith(suffix):
             return text[:-len(suffix)]
         return text
-    all_sects = chapters + flatten(sec_list)
-    all_basenames = chapter_basenames + flatten(sec_basename_list)
+    all_sects = chunks #+ flatten(sec_list)
+    all_basenames = chunk_basenames #+ flatten(sec_basename_list)
     all_basenames = list(map(lambda fname: strip_end(fname, '.md'), all_basenames))
     all_basenames = list(map(lambda fname: strip_end(fname, '.ipynb'), all_basenames))
     # Find all link destinations and create a dictionary tag2file[tag] = destination file
@@ -564,11 +626,9 @@ def resolve_links_destinations(chapters, sec_list, chapter_basenames, sec_basena
         basename_list = [all_basenames[i]] * len(ch_destinations)
         tag2file.update(zip(ch_destination_tags, basename_list))
     # Fix all href in links by prepending the destination filename
-    for c in range(len(chapters)):
-        chapters[c] = fix_links(chapters[c], tag2file)
-        for s, section in enumerate(sec_list[c]):
-            sec_list[c][s] = fix_links(section, tag2file)
-    return chapters, sec_list
+    for c in range(len(chunks)):
+        chunks[c] = fix_links(chunks[c], tag2file)
+    return chunks
 
 
 def yml_file(file):
