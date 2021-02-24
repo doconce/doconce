@@ -467,7 +467,7 @@ idx{multi-page documents}
 
 ===== Splitting HTML documents =====
 
-The `!split` instruction (on separate lines) signifies a pagebreak.
+The `!split` command (on separate lines) signifies a pagebreak.
 A command `doconce split_html` is needed after `doconce format` to
 actually perform the split. The `doconce split_html` command has
 several options for setting the type of splitting, type of navigation
@@ -1390,9 +1390,8 @@ figures and source code as requested.
 Figures in notebooks can be typeset in various ways, specified by
 the `--ipynb_figure=` option, with the following values:
 
- * `md`: plain Markdown syntax for a figure, with no possibility to adjust
-   the size (default)
- * `imgtag`: `<img ...>` tag in HTML taking the specified width into account
+ * `imgtag`: `<img ...>` tag in HTML taking the specified width into account (default)
+ * `md`: plain Markdown syntax for a figure, with no possibility to adjust the size 
  * `Image`: Python notebook cell with `Image` object
 
 ===== Movies =====
