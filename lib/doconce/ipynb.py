@@ -275,7 +275,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
                          flags=re.MULTILINE)
     filestr = re.sub('^<!-- !bnotes.*?<!-- !enotes -->\n', '', filestr,
                      flags=re.DOTALL|re.MULTILINE)
-    filestr = re.sub('^<!-- !split -->\n', '', filestr, flags=re.MULTILINE)
+    #filestr = re.sub('^<!-- !split -->\n', '', filestr, flags=re.MULTILINE)
 
     envirs = globals.doconce_envirs[8:-2]
     for envir in envirs:
@@ -498,13 +498,22 @@ def ipynb_code(filestr, code_blocks, code_block_types,
         elif _MATH_BLOCK in line:
             notebook_blocks[-1] = '\n'.join(notebook_blocks[-1]).strip()
             notebook_blocks.append(line)
+        elif 0 and line.startswith('# '):
+            if not isinstance(notebook_blocks[-1], list):
+                notebook_blocks.append([])
+            notebook_blocks[-1] = '\n'.join(notebook_blocks[-1]).strip()
+        elif '!split' in line:
+            if not isinstance(notebook_blocks[-1], list):
+                notebook_blocks.append([])
+            notebook_blocks[-1] = '\n'.join(notebook_blocks[-1]).strip()
         else:
             if not isinstance(notebook_blocks[-1], list):
                 notebook_blocks.append([])
             notebook_blocks[-1].append(line)
     if isinstance(notebook_blocks[-1], list):
         notebook_blocks[-1] = '\n'.join(notebook_blocks[-1]).strip()
-
+    # Remove empty blocks
+    notebook_blocks = [b for b in notebook_blocks if b != '']
 
     # Add block type info
     pattern = r'(\d+) +%s'
