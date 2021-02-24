@@ -59,9 +59,12 @@ def ipynb_author(authors_and_institutions, auth2index,
             s += ' Email:' + e
         if i is not None:
             s += ' at ' + ' & '.join(i)
-        s += ' -->\n'  
+        s += ' -->\n'
+        # Add extra line between heading and first author
+        s+= '<!-- Author: -->  \n_%s_' % (author)  
         '''
-        s += '<!-- Author: -->  \n_%s_' % (author)
+        # Write the authors
+        s += '_%s_' % (author)
         if e is not None:
             s += ' (email: `%s`)' % e
         if i is not None:
