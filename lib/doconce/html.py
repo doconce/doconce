@@ -1700,21 +1700,21 @@ def html_figure(m):
 
     # Extract figure label
     pattern = r'(label\{(.+?)\})'
-    m = re.search(pattern, caption)
-    if m:
-        label = '<!-- figure label: --> %s' % m.group(1)
+    m_label = re.search(pattern, caption)
+    if m_label:
+        label = '<!-- figure label: --> %s' % m_label.group(1)
         caption = re.sub(pattern,
-                         ' <!-- caption label: %s -->' % m.group(2),
+                         ' <!-- caption label: %s -->' % m_label.group(2),
                          caption)
     else:
         label = ''
     # Place label in top of the figure such that links point to the
     # top regardless of whether the caption is at the top of bottom
 
+    # Process any inline figure opts
     sidecaption = 0
     if opts:
         info = [s.split('=') for s in opts.split()]
-
         if option('html_responsive_figure_width'):
             styleset = []
             styleset.append("width: 100%")
@@ -1722,7 +1722,6 @@ def html_figure(m):
                 if opt == "width":
                     styleset.append("max-width: %s" % value)
             info.append(["style", "'" + "; ".join(styleset) + "'"])
-
         opts = ' '.join(['%s=%s' % (opt, value)
                          for opt, value in info
                          if opt not in ['frac', 'sidecap']])
@@ -1735,11 +1734,11 @@ def html_figure(m):
     bokeh_plot = False
     if filename.endswith('.html') and not filename.startswith('http'):
         f = open(filename, 'r')
-        text = f.read()
+        content = f.read()
         f.close()
-        if 'Bokeh.set_log_level' in text:
+        if 'Bokeh.set_log_level' in content:
             bokeh_plot = True
-            script, divs = interpret_bokeh_plot(text)
+            script, divs = interpret_bokeh_plot(content)
         else:
             errwarn('*** error: figure file "%s" must be a Bokeh plot' % filename)
             _abort()
@@ -1764,20 +1763,20 @@ def html_figure(m):
        placement = option('html_figure_caption=', 'top')
        if sidecaption == 0:
            if placement == 'top':
-               s = ("\n"
+               text = ("\n"
                     "<center> %s <!-- FIGURE -->%s\n"
                     '<center>\n<p class="caption"> %s </p>\n</center>\n'
                     "<p>%s</p>%s\n"
                     "</center>\n") % (label, top_hr, caption, image, bottom_hr)
            else:
-               s = ("\n"
+               text = ("\n"
                     "<center> %s <!-- FIGURE -->%s\n"
                     "<p>%s</p>\n"
                     '<center><p class="caption"> %s </p></center>%s\n'
                     "</center>\n") % (label, top_hr, image, caption, bottom_hr)
        else:
            # sidecaption is implemented as table
-           s = ("\n"
+           text = ("\n"
                 "<center> %s <!-- FIGURE -->%s\n"
                 "<table><tr>\n"
                 "<td>%s</td>\n"
@@ -1785,13 +1784,14 @@ def html_figure(m):
                 "</tr></table>%s\n"
                 "</center>\n"
                 ) % (label, top_hr, image, caption, bottom_hr)
-       return s
+       return text
     else:
        # Just insert image file when no caption
        #s = '<center><p>%s</p></center>' % image # without <linebreak>
        # with two <linebreak>:
-       s = '<br /><br /><center>\n<p>%s</p>\n</center>\n<br /><br/>' % image
-       return s
+       text = '<br /><br /><center>\n<p>%s</p>\n</center>\n<br /><br/>' % image
+       return text
+
 
 
 def html_footnotes(filestr, format, pattern_def, pattern_footnote):

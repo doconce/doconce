@@ -270,14 +270,18 @@ notebook such that all plots are inlined.
 
 ======= Other special options for notebooks =======
 
+===== Start a new notebook cell =====
+
+The `!split` command starts a new cell.
+
 ===== Figures and movies =====
 
 Figures and movies can be implemented in several ways in notebooks, depending on the value of the options
 `--ipynb_figure=` and `ipynb_movie=`. For the former we have the values
 
+ * `imgtag`: `<img>` HTML tag taking the specified width into account (default)
  * `md`: plain Markdown syntax for a figure, with no possibility to adjust
-   the size (default)
- * `imgtag`: `<img ...>` tag in HTML taking the specified width into account
+   the size (default) 
  * `Image`: Python notebook cell with `Image` object
 
 Below is an example

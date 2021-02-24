@@ -4651,7 +4651,6 @@ def doconce2format(filestr_in, format):
     # Next step: do substitutions
     filestr = inline_tag_subst(filestr, format)
     debugpr('The file after all inline substitutions:', filestr)
-
     report_progress('inline substitutions')
 
     # Next step: deal with tables
@@ -4725,7 +4724,6 @@ def doconce2format(filestr_in, format):
     filestr += '\n'
 
     report_progress('insertion of verbatim and latex blocks')
-
     debugpr('The file after inserting intro/outro and tex/code blocks, and fixing last format-specific issues:', filestr)
 
     # Next step: deal with !b... !e... environments
@@ -4734,7 +4732,6 @@ def doconce2format(filestr_in, format):
     filestr = typeset_envirs(filestr, format)
 
     report_progress('!benvir/!eenvir constructions')
-
     debugpr('The file after typesetting of admons and the rest of the !b/!e environments:', filestr)
 
     # Check if we have wrong-spelled environments

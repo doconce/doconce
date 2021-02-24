@@ -83,52 +83,50 @@ def ipynb_figure(m):
     # m.group() must be called before m.group('name')
     text = '<!-- dom:%s -->\n<!-- begin figure -->\n' % m.group()
 
-    filename = m.group('filename')
     caption = m.group('caption').strip()
+    filename = m.group('filename')
     opts = m.group('options').strip()
+
+    # Get some global vars
+    global figure_files
+    if not filename.startswith('http'):
+        figure_files.append(filename)
+    figure_number = len(figure_labels) + 1
+
+    # Extract figure label
+    label = None
+    pattern = r' *label\{(.+?)\}'
+    m_label = re.search(pattern, caption)
+    if m_label:
+        label = m_label.group(1).strip()
+        caption = re.sub(pattern, '', caption)
+        figure_labels[label] = figure_number
+    if label is not None:
+        text += '<div id="%s"></div>\n' % label
+
+    # Process any inline figure opts
     if opts:
         info = [s.split('=') for s in opts.split()]
         opts = ' ' .join(['%s=%s' % (opt, value)
                           for opt, value in info
                           if opt not in ['frac', 'sidecap']])
 
-    global figure_files
-    if not filename.startswith('http'):
-        figure_files.append(filename)
-
-    figure_number = len(figure_labels) + 1
-
-    # Extract optional label in caption
-    label = None
-    pattern = r' *label\{(.+?)\}'
-    m = re.search(pattern, caption)
-    if m:
-        label = m.group(1).strip()
-        caption = re.sub(pattern, '', caption)
-        figure_labels[label] = figure_number
-
     display_method = option('ipynb_figure=', 'imgtag')
     if display_method == 'md':
         # Markdown image syntax for embedded image in text
         # (no control of size, then one must use HTML syntax)
-        if label is not None:
-            #text += '<a name="%s"></a>\n' % label
-            text += '<div id="%s"></div>\n' % label
-        text += '![%s](%s)' % (caption, filename)
+        text += '\![%s](%s)' % (caption, filename)
     elif display_method == 'imgtag':
         # Plain <img tag, allows specifying the image size
-        if label is not None:
-            #text += '<a name="%s"></a>' % label
-            text += '<div id="%s"></div>\n' % label
         # Fix caption markup so it becomes html
         from .doconce import INLINE_TAGS_SUBST, INLINE_TAGS
         for tag in 'bold', 'emphasize', 'verbatim':
             caption = re.sub(INLINE_TAGS[tag], INLINE_TAGS_SUBST['html'][tag],
                              caption, flags=re.MULTILINE)
-        text += (
-            '<img src="{filename}" {opts}>'
-            '<p style="font-size: 0.9em"><i>Figure {figure_number}: {caption}</i></p>'
-        ).format(filename=filename, opts=opts, caption=caption, figure_number=figure_number)
+        text += ('\n'
+                 '<img src="{filename}" {opts}>'
+                 '<p style="font-size: 0.9em"><i>Figure {figure_number}: {caption}</i></p>'
+                 ).format(filename=filename, opts=opts, caption=caption, figure_number=figure_number)
     elif display_method == 'Image':
         # Image object
         # NOTE: This code will normally not work because it inserts a verbatim
@@ -136,10 +134,7 @@ def ipynb_figure(m):
         # numbered. doconce.py makes a test prior to removal of blocks and
         # runs the handle_figures and movie substitution if ipynb format
         # and Image or movie object display.
-        text += '\n'
-        if label is not None:
-            text += '<div id="%s"></div>' % label
-        text += '<!-- options: %s -->\n' % opts
+        text += '\n<!-- options: %s -->\n' % opts
         text = '!bc pycod\n'
         global figure_encountered
         if not figure_encountered:
@@ -157,7 +152,7 @@ def ipynb_figure(m):
     else:
         errwarn('*** error: --ipynb_figure=%s is illegal, must be md, imgtag or Image' % display_method)
         _abort()
-    text += '<!-- end figure -->\n'
+    text += '\n<!-- end figure -->\n'
     return text
 
 def ipynb_movie(m):
@@ -280,7 +275,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
                          flags=re.MULTILINE)
     filestr = re.sub('^<!-- !bnotes.*?<!-- !enotes -->\n', '', filestr,
                      flags=re.DOTALL|re.MULTILINE)
-    filestr = re.sub('^<!-- !split -->\n', '', filestr, flags=re.MULTILINE)
+    #filestr = re.sub('^<!-- !split -->\n', '', filestr, flags=re.MULTILINE)
 
     envirs = globals.doconce_envirs[8:-2]
     for envir in envirs:
@@ -503,13 +498,22 @@ def ipynb_code(filestr, code_blocks, code_block_types,
         elif _MATH_BLOCK in line:
             notebook_blocks[-1] = '\n'.join(notebook_blocks[-1]).strip()
             notebook_blocks.append(line)
+        elif 0 and line.startswith('# '):
+            if not isinstance(notebook_blocks[-1], list):
+                notebook_blocks.append([])
+            notebook_blocks[-1] = '\n'.join(notebook_blocks[-1]).strip()
+        elif '!split' in line:
+            if not isinstance(notebook_blocks[-1], list):
+                notebook_blocks.append([])
+            notebook_blocks[-1] = '\n'.join(notebook_blocks[-1]).strip()
         else:
             if not isinstance(notebook_blocks[-1], list):
                 notebook_blocks.append([])
             notebook_blocks[-1].append(line)
     if isinstance(notebook_blocks[-1], list):
         notebook_blocks[-1] = '\n'.join(notebook_blocks[-1]).strip()
-
+    # Remove empty blocks
+    notebook_blocks = [b for b in notebook_blocks if b != '']
 
     # Add block type info
     pattern = r'(\d+) +%s'
