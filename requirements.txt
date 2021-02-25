@@ -57,7 +57,7 @@ Pillow==8.0.1
 prometheus-client==0.9.0
 prompt-toolkit==3.0.8
 ptyprocess==0.6.0
--e git+https://github.com/doconce/publish@8690832aea04a58e1b2dc7f453ad0a988802da3c#egg=publish
+publish-doconce==1.1.4
 pycparser==2.20
 Pygments==2.7.3
 -e git+https://github.com/doconce/pygments-doconce@681665784184931db7f16bde805137722d2895cb#egg=pygments_doconce
