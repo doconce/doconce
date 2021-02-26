@@ -603,7 +603,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     if option("execute"):
         kernel_client = jupyter_execution.JupyterKernelClient()
     editable_md = True      # Metadata for md text
-    if not option('ipynb_non_editable_text'):
+    if option('ipynb_non_editable_text'):
         editable_md = False
 
     for block_tp, block in notebook_blocks:
