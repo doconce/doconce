@@ -3,7 +3,10 @@ from builtins import str
 from builtins import range
 import re, sys, shutil, os
 from .common import default_movie, plain_exercise, table_analysis, \
-     insert_code_and_tex, indent_lines, bibliography, fix_ref_section_chapter
+     insert_code_and_tex, indent_lines, bibliography, fix_ref_section_chapter, \
+    cite_with_multiple_args2multiple_cites, _CODE_BLOCK, _MATH_BLOCK, DEFAULT_ARGLIST
+from .doconce import INLINE_TAGS_SUBST, INLINE_TAGS
+from .latex import fix_latex_command_regex
 from .html import html_movie, html_table
 from .pandoc import pandoc_ref_and_label, pandoc_index_bib, pandoc_quote, \
      language2pandoc, pandoc_quiz
@@ -120,7 +123,6 @@ def ipynb_figure(m):
     elif display_method == 'imgtag':
         # Plain <img tag, allows specifying the image size
         # Fix caption markup so it becomes html
-        from .doconce import INLINE_TAGS_SUBST, INLINE_TAGS
         for tag in 'bold', 'emphasize', 'verbatim':
             caption = re.sub(INLINE_TAGS[tag], INLINE_TAGS_SUBST['html'][tag],
                              caption, flags=re.MULTILINE)
@@ -265,7 +267,6 @@ def ipynb_code(filestr, code_blocks, code_block_types,
 
     # filestr becomes json list after this function so we must typeset
     # envirs here. All envirs are typeset as pandoc_quote.
-    from .common import _CODE_BLOCK, _MATH_BLOCK
     envir_format = option('ipynb_admon=', 'paragraph')
     # Remove all !bpop-!epop environments (they cause only problems and
     # have no use)
@@ -758,7 +759,6 @@ def ipynb_index_bib(filestr, index, citations, pubfile, pubdata):
     # Quite some code here is copy from latex_index_bib
     # https://nbviewer.ipython.org/github/ipython/nbconvert-examples/blob/master/citations/Tutorial.ipynb
     if citations:
-        from .common import cite_with_multiple_args2multiple_cites
         filestr = cite_with_multiple_args2multiple_cites(filestr)
     for label in citations:
         filestr = filestr.replace('cite{%s}' % label,
@@ -780,7 +780,6 @@ def ipynb_index_bib(filestr, index, citations, pubfile, pubdata):
         os.chdir(this_dir)
 
         bibstyle = option('latex_bibstyle=', 'plain')
-        from .latex import fix_latex_command_regex
         bibtext = fix_latex_command_regex(r(
             "((*- extends 'latex_article.tplx' -*))"
             ''
@@ -803,26 +802,26 @@ def ipynb_index_bib(filestr, index, citations, pubfile, pubdata):
 
 def ipynb_index_bib_latex_plain(filestr, index, citations, pubfile, pubdata):
     if citations:
-        from .common import cite_with_multiple_args2multiple_cites
         filestr = cite_with_multiple_args2multiple_cites(filestr)
 
     for label in citations:
         filestr = filestr.replace('cite{%s}' % label,'[[{}]](#{})'.format(citations[label], label))
 
     if pubfile is not None:
-        bibtext = bibliography(pubdata, citations, format='doconce')
+        bibtext = bibliography(pubdata, citations, format='ipynb')
         filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
-
     # remove all index entries (could also place them
     # in special comments to keep the information)
-
     filestr = re.sub(r'idx\{.+?\}' + '\n?', '', filestr)
 
     # Use HTML anchors for labels and [link text](#label) for references
     # outside mathematics.
     #filestr = re.sub(r'label\{(.+?)\}', '<a name="\g<1>"></a>', filestr)
     # Note: HTML5 should have <sometag id="..."></sometag> instead
-    filestr = re.sub(r'label\{(.+?)\}', '<div id="\g<1>"></div>', filestr)
+    #filestr = re.sub(r'label\{(.+?)\}', '<div id="\g<1>"></div>', filestr)
+    # Use <span> instead of <div>. Unlike block-level HTML tags (<div>),
+    # Markdown does get processed within span-level tags as <span>.
+    filestr = re.sub(r'label\{(.+?)\}', '<span id="\g<1>"></span>', filestr)
 
     return filestr
 
@@ -932,7 +931,6 @@ def define(FILENAME_EXTENSION,
     # treatment of envirs in ipynb_code and ENVIRS can be empty.
     ENVIRS['ipynb'] = {}
 
-    from .common import DEFAULT_ARGLIST
     ARGLIST['ipynb'] = DEFAULT_ARGLIST
     LIST['ipynb'] = {
         'itemize':
