@@ -18,7 +18,7 @@ docutils==0.16
 entrypoints==0.3
 future==0.18.2
 html5lib==1.1
--e git+https://github.com/kriskda/sphinx-sagecell@9ad693730df8788cb7b3f1fb10c20153a530ad20#egg=icsecontrib_sagecellserver
+icsecontrib-sagecellserver==1.3
 idna==2.10
 imagesize==1.2.0
 importlib-metadata==3.3.0
@@ -76,7 +76,7 @@ six==1.15.0
 snowballstemmer==2.0.0
 soupsieve==2.1
 Sphinx==3.3.1
--e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme@a6dfc6f9054f6b4cf3eb1acadf715a679ed53a7b#egg=sphinx_bootstrap_theme
+sphinx-bootstrap-theme==0.7.1
 sphinx-rtd-theme==0.5.0
 sphinxcontrib-applehelp==1.0.2
 sphinxcontrib-devhelp==1.0.2
@@ -86,7 +86,7 @@ sphinxcontrib-paverutils==1.17.0
 sphinxcontrib-qthelp==1.0.3
 sphinxcontrib-serializinghtml==1.1.4
 sphinxjp.themecore==0.2.0
--e git+https://github.com/shkumagai/sphinxjp.themes.impressjs@3c7a0c2c19b53d78242a88ca6990668758299458#egg=sphinxjp.themes.impressjs
+sphinxjp.themes.impressjs==0.1.4
 sphinxjp.themes.solarized==0.1.0
 terminado==0.9.1
 testpath==0.4.4
