@@ -3087,7 +3087,7 @@ def define(FILENAME_EXTENSION,
 
     INTRO['latex'] = r"""%%
 %% Automatically generated file from DocOnce source
-%% (https://github.com/hplgit/doconce/)
+%% (https://github.com/doconce/doconce/)
 %%
 """
     if latex_code_style is None:

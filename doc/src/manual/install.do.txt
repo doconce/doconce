@@ -98,8 +98,7 @@ If you make use of the "Preprocess": "https://github.com/doconce/preprocess"
 preprocessor, this program must be installed:
 
 !bc sys
-pip install -e \
-   git+https://github.com/doconce/preprocess#egg=preprocess --upgrade
+pip install preprocess --upgrade
 !ec
 A much more advanced alternative to Preprocess is
 "Mako": "http://www.makotemplates.org". Its installation is done by
@@ -131,7 +130,7 @@ in your document (`cite` commands and a `BIBFILE:` specification).
 The installation is done by
 
 !bc sys
-pip install -e git+https://github.com/doconce/publish#egg=publish
+pip install publish
 !ec
 
 === Image file handling ===
@@ -295,26 +294,18 @@ pip install sphinx --upgrade
 DocOnce comes with many Sphinx themes that are not part of the
 standard Sphinx source distribution:
 
- * cloud and redcloud: URL: "https://bitbucket.org/ecollins/cloud_sptheme"
- * bootstrap: URL: "https://github.com/ryan-roemer/sphinx-bootstrap-theme"
- * solarized: URL: "https://bitbucket.org/miiton/sphinxjp.themes.solarized"
- * impressjs: URL: "https://github.com/shkumagai/sphinxjp.themes.impressjs"
- * sagecellserver: URL: "https://github.com/kriskda/sphinx-sagecell"
-
-Appropriate installation commands for these themes are
-
-!bc sys
-pip install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme
-pip install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme
-pip install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized
-pip install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs
-pip install -e git+https://github.com/kriskda/sphinx-sagecell#egg=sphinx-sagecell
-!ec
+ * bootstrap: URL: "https://pypi.org/project/sphinx-bootstrap-theme/"
+ * solarized: URL: "https://pypi.org/project/sphinxjp.themes.solarized/"
+ * impressjs: URL: "https://pypi.org/project/sphinxjp.themes.impressjs/"
+ * sagecellserver: URL: "https://pypi.org/project/icsecontrib-sagecellserver/"
+ * cloud and redcloud: URL: "https://pypi.org/project/cloud_sptheme/"
 
 It can also be handy to have special typesetting of IPython sessions:
 
 !bc sys
-pip install -e git+https://bitbucket.org/hplbit/pygments-ipython-console#egg=pygments-ipython-console
+pip install pygments-ipython-console
+qtconsole==5.0.1
+
 !ec
 
 To make OpenOffice or LibreOffice documents from `rst` output, you

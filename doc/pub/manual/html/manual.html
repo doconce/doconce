@@ -21,9 +21,9 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
 <script type="text/javascript" src="_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
 
   
@@ -459,7 +459,7 @@
 <dd class="field-odd"><p>Hans Petter Langtangen, Kristian Gregorius Hustad</p>
 </dd>
 <dt class="field-even">Date</dt>
-<dd class="field-even"><p>Jan 6, 2021</p>
+<dd class="field-even"><p>Mar 1, 2021</p>
 </dd>
 </dl>
 <div class="admonition warning">
@@ -6044,7 +6044,7 @@ on).</p>
 </div>
 <p>or checkout the code on
 <a class="reference external" href="https://github.com/doconce/publish">github.com</a>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Terminal&gt; hg clone https://github.com/doconce/publish
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Terminal&gt; git clone https://github.com/doconce/publish
 Terminal&gt; cd publish
 Terminal&gt; python setup.py install
 </pre></div>
@@ -7981,7 +7981,7 @@ to how you store the template files), and run</p>
 <span class="target" id="index-322"></span></div>
 <div class="section" id="splitting-html-documents">
 <span id="index-323"></span><h3>Splitting HTML documents<a class="headerlink" href="#splitting-html-documents" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">!split</span></code> instruction (on separate lines) signifies a pagebreak.
+<p>The <code class="docutils literal notranslate"><span class="pre">!split</span></code> command (on separate lines) signifies a pagebreak.
 A command <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">split_html</span></code> is needed after <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">format</span></code> to
 actually perform the split. The <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">split_html</span></code> command has
 several options for setting the type of splitting, type of navigation
@@ -8754,15 +8754,6 @@ import sys
 </div>
 <p>The notebook will feature the <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">sys</span></code> statement in a cell prior to the
 <code class="docutils literal notranslate"><span class="pre">print(sys.version)</span></code> cell, and the latter will work.</p>
-<p>Similarly, if you import from your own modules, say <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">mymod</span> <span class="pre">import</span> <span class="pre">hello</span></code>,
-the <code class="docutils literal notranslate"><span class="pre">mymod.py</span></code> must be accessible for the notebook. Suppose this file
-is in <code class="docutils literal notranslate"><span class="pre">src-test/mymod.py</span></code>. Then you need to add <code class="docutils literal notranslate"><span class="pre">src-test</span></code> to <code class="docutils literal notranslate"><span class="pre">sys.path</span></code>
-for the import statement to work:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>!bc pyhid
-sys.path.append(&#39;src-test&#39;)
-!ec
-</pre></div>
-</div>
 </div>
 <div class="section" id="displaying-code-as-plain-text-instead-of-executable-cells">
 <h3>Displaying code as plain text instead of executable cells<a class="headerlink" href="#displaying-code-as-plain-text-instead-of-executable-cells" title="Permalink to this headline">¶</a></h3>
@@ -8797,9 +8788,8 @@ figures and source code as requested.</p>
 the <code class="docutils literal notranslate"><span class="pre">--ipynb_figure=</span></code> option, with the following values:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">md</span></code>: plain Markdown syntax for a figure, with no possibility to adjust
-the size (default)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">imgtag</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;img</span> <span class="pre">...&gt;</span></code> tag in HTML taking the specified width into account</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">imgtag</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;img</span> <span class="pre">...&gt;</span></code> tag in HTML taking the specified width into account (default)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">md</span></code>: plain Markdown syntax for a figure, with no possibility to adjust the size</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Image</span></code>: Python notebook cell with <code class="docutils literal notranslate"><span class="pre">Image</span></code> object</p></li>
 </ul>
 </div></blockquote>
@@ -9650,8 +9640,7 @@ is no bibliography, and you stick to the output formats LaTeX and HTML
 <h4>Preprocessors<a class="headerlink" href="#preprocessors" title="Permalink to this headline">¶</a></h4>
 <p>If you make use of the <a class="reference external" href="https://github.com/doconce/preprocess">Preprocess</a>
 preprocessor, this program must be installed:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pip install -e \
-   git+https://github.com/doconce/preprocess#egg=preprocess --upgrade
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pip install preprocess --upgrade
 </pre></div>
 </div>
 <p>A much more advanced alternative to Preprocess is
@@ -9669,7 +9658,7 @@ this extra software if you make active use of preprocessors.</p>
 <p>The Python package <a class="reference external" href="https://github.com/doconce/publish">Publish</a> is needed if you use a bibliography
 in your document (<code class="docutils literal notranslate"><span class="pre">cite</span></code> commands and a <code class="docutils literal notranslate"><span class="pre">BIBFILE:</span></code> specification).
 The installation is done by</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pip install -e git+https://github.com/doconce/publish#egg=publish
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pip install publish
 </pre></div>
 </div>
 </div>
@@ -9807,23 +9796,16 @@ installed by</p>
 standard Sphinx source distribution:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>cloud and redcloud: <a class="reference external" href="https://bitbucket.org/ecollins/cloud_sptheme">https://bitbucket.org/ecollins/cloud_sptheme</a></p></li>
-<li><p>bootstrap: <a class="reference external" href="https://github.com/ryan-roemer/sphinx-bootstrap-theme">https://github.com/ryan-roemer/sphinx-bootstrap-theme</a></p></li>
-<li><p>solarized: <a class="reference external" href="https://bitbucket.org/miiton/sphinxjp.themes.solarized">https://bitbucket.org/miiton/sphinxjp.themes.solarized</a></p></li>
-<li><p>impressjs: <a class="reference external" href="https://github.com/shkumagai/sphinxjp.themes.impressjs">https://github.com/shkumagai/sphinxjp.themes.impressjs</a></p></li>
-<li><p>sagecellserver: <a class="reference external" href="https://github.com/kriskda/sphinx-sagecell">https://github.com/kriskda/sphinx-sagecell</a></p></li>
+<li><p>bootstrap: <a class="reference external" href="https://pypi.org/project/sphinx-bootstrap-theme/">https://pypi.org/project/sphinx-bootstrap-theme/</a></p></li>
+<li><p>solarized: <a class="reference external" href="https://pypi.org/project/sphinxjp.themes.solarized/">https://pypi.org/project/sphinxjp.themes.solarized/</a></p></li>
+<li><p>impressjs: <a class="reference external" href="https://pypi.org/project/sphinxjp.themes.impressjs/">https://pypi.org/project/sphinxjp.themes.impressjs/</a></p></li>
+<li><p>sagecellserver: <a class="reference external" href="https://pypi.org/project/icsecontrib-sagecellserver/">https://pypi.org/project/icsecontrib-sagecellserver/</a></p></li>
+<li><p>cloud and redcloud: <a class="reference external" href="https://pypi.org/project/cloud_sptheme/">https://pypi.org/project/cloud_sptheme/</a></p></li>
 </ul>
 </div></blockquote>
-<p>Appropriate installation commands for these themes are</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pip install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme
-pip install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme
-pip install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized
-pip install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs
-pip install -e git+https://github.com/kriskda/sphinx-sagecell#egg=sphinx-sagecell
-</pre></div>
-</div>
 <p>It can also be handy to have special typesetting of IPython sessions:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pip install -e git+https://bitbucket.org/hplbit/pygments-ipython-console#egg=pygments-ipython-console
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pip install pygments-ipython-console
+qtconsole==5.0.1
 </pre></div>
 </div>
 <p>To make OpenOffice or LibreOffice documents from <code class="docutils literal notranslate"><span class="pre">rst</span></code> output, you

@@ -80,7 +80,7 @@ Documentation of DocOnce is found in
 
   * The more comprehensive documentation in `doc/manual/manual.do.txt`.
 
-  * There is web access to the "tutorial": "https://hplgit.github.io/doconce/doc/pub/tutorial/html/tutorial.html" the "manual": "https://hplgit.github.io/doconce/doc/pub/manual/html/manual.html"
+  * There is web access to the "tutorial": "https://doconce.github.io/doconce/doc/pub/tutorial/html/tutorial.html" the "manual": "https://doconce.github.io/doconce/doc/pub/manual/html/manual.html"
 
 Both directories contain a `make.sh` file for creating various formats.
 

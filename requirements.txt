@@ -60,8 +60,8 @@ ptyprocess==0.6.0
 publish-doconce==1.1.4
 pycparser==2.20
 Pygments==2.7.3
--e git+https://github.com/doconce/pygments-doconce@681665784184931db7f16bde805137722d2895cb#egg=pygments_doconce
--e git+https://github.com/doconce/pygments-ipython-console@4137d11713fa310bcc0d881a9b96095a1ddebc11#egg=pygments_ipython_console
+pygments-doconce==1.0.1
+pygments-ipython-console==1.0.1
 pyparsing==2.4.7
 pyrsistent==0.17.3
 python-dateutil==2.8.1

@@ -1,2 +1,0 @@
-git+https://github.com/doconce/pygments-ipython-console#egg=pygments-ipython-console
-git+https://github.com/doconce/pygments-doconce#egg=pygments-doconce
