@@ -1,4 +1,0 @@
-future
-lxml
-python-Levenshtein
-git+https://github.com/doconce/publish#egg=publish

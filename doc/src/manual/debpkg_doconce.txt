@@ -36,7 +36,7 @@ pip install jsonschema
 # Preprocessors
 pip install future
 pip install mako
-pip install -e git+https://github.com/doconce/preprocess#egg=preprocess
+pip install preprocess
 
 # Publish for handling bibliography
 pip install python-Levenshtein
@@ -44,18 +44,22 @@ libxml2-dev
 libxslt1-dev
 zlib1g-dev
 pip install lxml
-pip install -e git+https://github.com/doconce/publish#egg=publish
+pip install publish-doconce
 
 # Sphinx (with additional third/party themes)
 pip install sphinx  # installs pygments and docutils too
 
 pip install alabaster
 pip install sphinx_rtd_theme
-pip install -e hg+https://bitbucket.org/ecollins/cloud_sptheme#egg=cloud_sptheme
-pip install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme
-pip install -e hg+https://bitbucket.org/miiton/sphinxjp.themes.solarized#egg=sphinxjp.themes.solarized
-pip install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs
-pip install -e git+https://github.com/kriskda/sphinx-sagecell#egg=sphinx-sagecell
+pip install egg=cloud_sptheme
+pip install sphinx-bootstrap-theme
+pip install sphinxjp.themes.solarized
+pip install sphinxjp.themes.impressjs
+pip install sphinx-sagecell
+
+pip install pygments-ipython-console
+pip install pygments-doconce
+
 # tinkerer has several themes: minimal5, modern5, flat, dark, responsive
 #pip install tinkerer --upgrade
 
@@ -63,10 +67,6 @@ pip install -e git+https://github.com/kriskda/sphinx-sagecell#egg=sphinx-sagecel
 pip install sphinxcontrib-paverutils
 pip install paver
 pip install cogapp
-
-#pip install -e git+https://bitbucket.org/sanguineturtle/pygments-ipython-console#egg=pygments-ipython-console
-pip install -e git+https://bitbucket.org/hplbit/pygments-ipython-console#egg=pygments-ipython-console
-pip install -e git+https://github.com/hplgit/pygments-doconce#egg=pygments-doconce
 
 # XHTML
 pip install beautifulsoup4
@@ -123,5 +123,5 @@ $ if [ -d mdframed ]; then cd mdframed; make localinstall; cd ..; fi
 
 # DocOnce itself
 $ cd srclib
-$ git clone https://github.com/hplgit/doconce.git
+$ git clone https://github.com/doconcce/doconce.git
 $ if [ -d doconce ]; then cd doconce; python setup.py install; cd ../..; fi

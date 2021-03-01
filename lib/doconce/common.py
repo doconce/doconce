@@ -225,7 +225,7 @@ def get_copyfile_info(filestr=None, copyright_filename=None, format=None):
     if cr_info.get('license', None) is not None:
         cr_text += '. ' + cr_info['license']
     if cr_info.get('cite doconce', False):
-        url = 'https://github.com/hplgit/doconce'
+        url = 'https://github.com/doconce/doconce'
         if cr_text:
             cr_text += '. '
         cr_text += 'Made with '
@@ -1287,12 +1287,12 @@ def has_custom_pygments_lexer(name):
     from pygments.lexers import get_lexer_by_name
     if name == 'ipy':
         try:
-            get_lexer_by_name('ipy')
+            get_lexer_by_name(name)
         except Exception as e:
             errwarn('*** warning: !bc ipy used for IPython sessions, but')
             errwarn('    ipython is not supported for syntax highlighting!')
             errwarn('    install:')
-            errwarn('    git clone https://github.com/doconce/pygments-ipython-console.git; cd pygments-ipython-console; python setup.py install')
+            errwarn('    pip install pygments-ipython-console')
             errwarn(str(e))
             return False
     if name == 'doconce':
@@ -1302,9 +1302,7 @@ def has_custom_pygments_lexer(name):
             errwarn('*** warning: !bc do used for DocOnce code, but')
             errwarn('    not supported for syntax highlighting!')
             errwarn('    install:')
-            errwarn('    pip install --exists-action i -e git+https://github.com/doconce/pygments-doconce#egg=pygments-doconce')
-            errwarn('\n    or manually:')
-            errwarn('    git clone https://github.com/doconce/pygments-doconce.git; cd pygments-doconce; python setup.py install')
+            errwarn('    pip install pygments-doconce')
             errwarn(str(e))
             return False
     return True

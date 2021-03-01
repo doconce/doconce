@@ -5025,7 +5025,7 @@ def preprocess(filename_in, format, preprocessor_options=[]):
         if version_compare(preprocess.__version__, required_preprocess_version) == -1:
             errwarn("ERROR: DocOnce requires preprocess >= 1.2.2")
             errwarn("Install a newer version with:\n"
-                    + "pip install --exists-action i -U git+https://github.com/doconce/preprocess#egg=preprocess")
+                    + "pip install preprocess --upgrade")
             _abort()
 
         if option('no_preprocess'):

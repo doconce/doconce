@@ -71,7 +71,7 @@ system('pip install jsonschema')
 # Preprocessors
 system('pip install future')
 system('pip install mako')
-system('pip install -e git+https://github.com/doconce/preprocess#egg=preprocess')
+system('pip install preprocess')
 
 # Publish for handling bibliography
 system('pip install python-Levenshtein')
@@ -79,7 +79,7 @@ system('sudo apt-get -y install libxml2-dev')
 system('sudo apt-get -y install libxslt1-dev')
 system('sudo apt-get -y install zlib1g-dev')
 system('pip install lxml')
-system('pip install -e git+https://github.com/doconce/publish#egg=publish')
+system('pip install publish-doconce')
 
 # Sphinx (with additional third/party themes)
 system('pip install sphinx')
@@ -87,10 +87,10 @@ system('pip install sphinx')
 system('pip install alabaster')
 system('pip install sphinx_rtd_theme')
 system('pip install cloud_sptheme')
-system('pip install -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme')
+system('pip install sphinx-bootstrap-theme')
 system('pip install sphinxjp.themes.solarized')
-system('pip install -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs')
-system('pip install -e git+https://github.com/kriskda/sphinx-sagecell#egg=sphinx-sagecell')
+system('pip install sphinxjp.themes.impressjs')
+system('pip install sphinx-sagecell')
 # tinkerer has several themes: minimal5, modern5, flat, dark, responsive
 #pip install tinkerer --upgrade
 
@@ -100,8 +100,8 @@ system('pip install paver')
 system('pip install cogapp')
 
 #pip install -e git+https://bitbucket.org/sanguineturtle/pygments-ipython-console#egg=pygments-ipython-console
-system('pip install --exists-action i -e git+https://github.com/doconce/pygments-ipython-console#egg=pygments-ipython-console')
-system('pip install --exists-action i -e git+https://github.com/doconce/pygments-doconce#egg=pygments-doconce')
+system('pip install --exists-action i pygments-ipython-console')
+system('pip install --exists-action i pygments-doconce')
 
 # XHTML
 system('pip install beautifulsoup4')

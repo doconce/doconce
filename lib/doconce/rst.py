@@ -728,7 +728,7 @@ def define(FILENAME_EXTENSION,
     QUIZ['rst'] = rst_quiz
     INTRO['rst'] = """\
 .. Automatically generated reStructuredText file from DocOnce source
-   (https://github.com/hplgit/doconce/)
+   (https://github.com/doconce/doconce/)
 
 """
     # https://stackoverflow.com/questions/11830242/non-breaking-space

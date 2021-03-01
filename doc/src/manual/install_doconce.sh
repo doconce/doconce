@@ -65,7 +65,7 @@ pip_install jsonschema
 # Preprocessors
 pip_install future
 pip_install mako
-pip_install -e git+https://github.com/doconce/preprocess#egg=preprocess
+pip_install preprocess
 
 # Publish for handling bibliography
 pip_install python-Levenshtein
@@ -73,7 +73,7 @@ apt_install libxml2-dev
 apt_install libxslt1-dev
 apt_install zlib1g-dev
 pip_install lxml
-pip_install --exists-action i -e git+https://github.com/doconce/publish#egg=publish
+pip_install --exists-action i doconce-publish
 
 # Sphinx (with additional third/party themes)
 pip_install sphinx
@@ -81,10 +81,10 @@ pip_install sphinx
 pip_install alabaster
 pip_install sphinx_rtd_theme
 pip_install cloud_sptheme
-pip_install --exists-action i -e git+https://github.com/ryan-roemer/sphinx-bootstrap-theme#egg=sphinx-bootstrap-theme
+pip_install --exists-action i sphinx-bootstrap-theme
 pip_install sphinxjp.themes.solarized
-pip_install --exists-action i -e git+https://github.com/shkumagai/sphinxjp.themes.impressjs#egg=sphinxjp.themes.impressjs
-pip_install --exists-action i -e git+https://github.com/kriskda/sphinx-sagecell#egg=sphinx-sagecell
+pip_install --exists-action i sphinxjp.themes.impressjs
+pip_install --exists-action i sphinx-sagecell
 # tinkerer has several themes: minimal5, modern5, flat, dark, responsive
 #pip install tinkerer --upgrade
 
@@ -94,8 +94,8 @@ pip_install paver
 pip_install cogapp
 
 #pip install -e git+https://bitbucket.org/sanguineturtle/pygments-ipython-console#egg=pygments-ipython-console
-pip_install --exists-action i -e git+https://github.com/doconce/pygments-ipython-console#egg=pygments-ipython-console
-pip_install --exists-action i -e git+https://github.com/doconce/pygments-doconce#egg=pygments-doconce
+pip_install --exists-action i pygments-ipython-console
+pip_install --exists-action i pygments-doconce
 
 # XHTML
 pip_install beautifulsoup4
