@@ -1,62 +1,39 @@
-#!/usr/bin/env python
-"""
-Usage of this setup.py script:
+import setuptools
 
-python setup.py install [, --prefix=$PREFIX]
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
 
-"""
-from __future__ import print_function
-#from builtins import str
-__author__ = 'Hans Petter Langtangen <hpl@simula.no>'
-__acknowledgements__ = 'Johannes H. Ring',
-
-from setuptools import setup
-
-import os, sys, glob, gzip, tempfile
-
-# Make sure we import from doconce in this package, not an installed one:
-# (need this for extracting the version below)
-sys.path.insert(0, os.path.join('lib'))
-
-__version__ = '1.5.5'
-
-man_filename = os.path.join("doc", "man", "man1", "doconce.1")
-if "install" in sys.argv:
-    # Compresses the man page
-    try:
-        man_inputfile = open(man_filename, 'rb')
-        man_contents = man_inputfile.read()
-        man_inputfile.close()
-
-        # Temporary destination for the man page
-        tmp_filename = tempfile.mktemp(os.path.sep + os.path.basename(man_filename) + ".gz")
-
-        # Make dir if the path doesn't already exist
-        base_dir = os.path.dirname(tmp_filename)
-        if not os.path.exists(base_dir):
-            os.makedirs(base_dir)
-
-        man_outputfile = gzip.open(tmp_filename, 'wb')
-        man_outputfile.write(man_contents)
-        man_outputfile.close()
-
-        man_filename = tmp_filename
-    except IOError as msg:
-        print("Unable to compress man page: %s" % msg)
-
-
-
-setup(
-    version = __version__,
-    author = "Hans Petter Langtangen",
-    author_email = "hpl@simula.no",
+setuptools.setup(
+    name="DocOnce",
+    version="1.5.6",
+    author='Hans Petter Langtangen, Alessandro Marin',
+    author_email="hpl@simula.no, Alessandro.Marin@fys.uio.no",
     maintainer = "Kristian Gregorius Hustad",
     maintainer_email = "krihus@ifi.uio.no",
-    description = __doc__,
+    description="Markup language similar to Markdown targeting scientific reports, software documentation, books, blog posts, and slides. DocOnce can generate LaTeX, Sphinx, HTML, IPython notebooks, Markdown, MediaWiki, and other formats",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     license = "BSD",
-    name = "DocOnce",
-    url = "https://github.com/doconce/doconce",
-    classifiers = [
+    url="https://github.com/doconce/doconce",
+    project_urls={
+        "Issues on GitHub": "https://github.com/doconce/doconce/issues",
+    },
+    packages = ['doconce'],
+    package_dir = {'': 'lib'},
+    python_requires=">=3.6",
+    scripts = ['bin/doconce'],
+    install_requires=[
+        'pygments',
+        'preprocess',
+        'wheel',
+        'mako',
+        'future',
+        'pygments-doconce',
+        'publish-doconce'
+        ],
+    #data_files=[(os.path.join("share", "man", "man1"),[man_filename,]),],
+    package_data = {'': ['sphinx_themes.zip', 'html_images.zip', 'reveal.js.zip', 'deck.js.zip', 'csss.zip', 'latex_styles.zip']},
+    classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Intended Audience :: Education',
@@ -74,28 +51,5 @@ setup(
         'Topic :: Text Processing :: Markup :: HTML',
         'Topic :: Text Processing :: Markup :: LaTeX',
         'Topic :: Text Processing :: Markup :: XML',
-    ],
-    package_dir = {'': 'lib'},
-    packages = ['doconce'],
-    # list individual modules if not all files are wanted as part
-    # of the package (note: this does not work
-    # with package_data - must just specify the package name)
-    #py_modules = ['doconce.common', 'doconce.doconce', ...]
-    package_data = {'': ['sphinx_themes.zip', 'html_images.zip', 'reveal.js.zip', 'deck.js.zip', 'csss.zip', 'latex_styles.zip']},
-    scripts = [os.path.join('bin', f) for f in ['doconce']],
-    data_files=[(os.path.join("share", "man", "man1"),[man_filename,]),],
-    install_requires=[
-        'pygments',
-        #'preprocess',
-        # PIP will pull outdated preprocess from PyPi if preprocess is not already installed
-        # do pip install --upgrade git+https://github.com/doconce/preprocess instead
-        'mako',
-        'future'
-    ],
-    )
-
-# Clean up the temporary compressed man page
-if man_filename.endswith(".gz") and os.path.isfile(man_filename):
-    if "-q" not in sys.argv or "--quiet" not in sys.argv:
-        print("Removing %s" % man_filename)
-    os.remove(man_filename)
+    ]
+)

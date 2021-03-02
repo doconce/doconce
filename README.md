@@ -35,21 +35,14 @@ DocOnce is a Python 3 package that can be installed with `pip` or `conda`. Refer
 
 
 ##### Preliminary steps
-* The `python -V` and `pip -V` commands should refer to Python 3.x. If not, you might want to try the `pip3` and `python3` commands.
-
-* Clone this repository using `git`: 
-```
-git clone https://github.com/doconce/doconce.git
-cd doconce
-```
+* The `python -V` and `pip -V` commands should refer to Python 3.x. If that is not the case, you might want to use the `pip3` and `python3` commands in the following instructions.
 
 ##### Installation using pip
 
 Install DocOnce and its dependencies:
 
 ```
-pip install -r requirements.txt --user
-python setup.py install
+pip install DocOnce --user
 ```
 
 ##### Installation using conda
@@ -63,8 +56,7 @@ conda install pip
 
 Install DocOnce and its dependencies:
 ```
-pip install -r requirements.txt
-python setup.py install
+pip install DocOnce
 ```
 
 ##### Installation in a Python virtual environment
@@ -79,13 +71,11 @@ python -m venv venv
 
 Install DocOnce and its dependencies:
 ```
-pip install -r requirements.txt
-python setup.py install
+pip install DocOnce
 ```
 
 
 ### Highlights
-
 
  * DocOnce is a modestly tagged markup language (see [syntax example](http://doconce.github.io/teamods/writing_reports/_static/report.do.txt.html)), quite like Markdown, but with many more features, aimed at documents with
    *much math and code in the text* (see [demo](http://doconce.github.io/teamods/writing_reports/index.html)).

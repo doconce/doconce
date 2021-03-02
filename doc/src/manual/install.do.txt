@@ -44,14 +44,14 @@ You can omit reading the next sections if you rely on `conda` or
 
 ===== DocOnce =====
 
-DocOnce itself is pure Python code hosted at URL:
+DocOnce itself is pure Python code hosted on PyPi at URL: https://pypi.org/project/DocOnce/1.5.5/ and GitHub at URL:
 "https://github.com/doconce/doconce".
 Installation can be done via
 
 !bc sys
-pip install git+https://github.com/doconce/doconce
+pip install DocOnce
 # or if doconce is already installed
-pip install git+https://github.com/doconce/doconce --upgrade
+pip install DocOnce --upgrade
 !ec
 
 However, the recommended approach is to have a copy of the source on
@@ -60,9 +60,10 @@ the local computer and run `pip install` in that directory:
 !bc sys
 git clone git@github.com:doconce/doconce.git
 cd doconce
-pip install .
-cd ..
+pip install -r requirements.txt
+python setup.py install
 !ec
+
 Since DocOnce is frequently updated, it becomes necessary to ensure
 that you work with the most recent version:
 

@@ -377,7 +377,7 @@ of new opportunities*.
 <!-- !split -->
 ### Solution II: Use DocOnce
 
-[DocOnce](http://doconce.github.io/doconce/doc/web/index.html)
+[DocOnce](https://github.com/doconce/doconce)
 offers minimalistic typing, great flexibility wrt format,
 especially for scientific writing with *much math and code*.
 

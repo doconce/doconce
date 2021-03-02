@@ -131,7 +131,7 @@ FIGURE: [fig/direction14, width=510 frac=0.5]
 !split
 ===== An experimental one-size-fits-all solution =====
 
-"DocOnce": "http://doconce.github.io/doconce/doc/web/index.html"
+"DocOnce": "https://github.com/doconce/doconce"
 is a kind of extended Markdown that can produce
 
    * classical LaTeX books
