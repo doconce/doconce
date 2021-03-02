@@ -5,46 +5,7 @@ label{install:doconce}
 
 idx{installation}
 
-Below, we explain the manual installation of all software that may be
-needed when working with DocOnce documents.
-The impatient way to install everything that is needed is to use
-Anaconda Python and the `conda` program:
-
-DocOnce is available from the `conda-forge` channel. To add the `conda-forge` channel and subsequently install DocOnce, run the following commands.
-
-!bc sys
-Terminal> conda config --add channels conda-forge
-Terminal> conda install doconce
-!ec
-
-If you do not want to use Anaconda and are
-on a Debian-based Linux
-computer (running, e.g., Ubuntu), you can instead run the Bash script
-"`install_doconce.sh`": "https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.sh" or the equivalent Python script
-"`install_doconce.py`": "https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.py".
-These scripts give a comprehensive installation. Some users will prefer to
-install just what is needed for them, and this is explained below.
-
-!bwarning Version control systems are needed!
-The coming installation instructions require that the version control systems
-Subversion, Mercurial, and Git are installed on your computer.
-!ewarning
-
-!bnotice What about Mac and Windows?
-DocOnce is primarily tested on GNU/Debian Linux systems, but also to
-a minor extent on Mac OS X. Experience with Windows is limited.
-Since most packages are Python-based and can be installed via `pip install`
-no problems should arise on Mac and Windows. However, some of the
-image processing tools and spell checking apply Unix-specific software.
-!enotice
-
-You can omit reading the next sections if you rely on `conda` or
-`apt-get install` commands in the Bash script for installing DocOnce.
-
-
-===== DocOnce =====
-
-DocOnce itself is pure Python code hosted on PyPi at URL: https://pypi.org/project/DocOnce/1.5.5/ and GitHub at URL:
+DocOnce is hosted on PyPi at URL: https://pypi.org/project/DocOnce/1.5.5/ and GitHub at URL:
 "https://github.com/doconce/doconce".
 Installation can be done via
 
@@ -64,14 +25,36 @@ pip install -r requirements.txt
 python setup.py install
 !ec
 
-Since DocOnce is frequently updated, it becomes necessary to ensure
-that you work with the most recent version:
+Since DocOnce is frequently updated, you can update your software to the most recent update:
 
 !bc sys
 cd doconce
 git pull origin master
 pip install --upgrade .
 !ec
+
+!bnotice What about Mac and Windows?
+DocOnce is primarily tested on GNU/Debian Linux systems, but also to
+a minor extent on Mac OS X. Experience with Windows is limited.
+Since most packages are Python-based and can be installed via `pip install`
+no problems should arise on Mac and Windows. However, some of the
+image processing tools and spell checking apply Unix-specific software.
+!enotice
+
+
+#Below, we explain the manual installation of all software that may be needed when working with DocOnce documents.
+
+#DocOnce is available from the `conda-forge` channel. To add the `conda-forge` channel and subsequently install DocOnce, run the following commands.
+
+#!bc sys
+#Terminal> conda config --add channels conda-forge
+#Terminal> conda install doconce
+#!ec
+
+#If you do not want to use Anaconda and are on a Debian-based Linux computer (running, e.g., Ubuntu), you can instead run the Bash script
+#"`install_doconce.sh`": "https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.sh" or the equivalent Python script
+#"`install_doconce.py`": "https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.py".
+#These scripts give a comprehensive installation. Some users will prefer to install just what is needed for them, and this is explained below.
 
 
 ===== Dependencies =====
@@ -83,15 +66,6 @@ software. However, if you want other formats as output
 as preprocesors, spellcheck, file differences, bibliographies,
 and so on, a lot of extra software must be installed.
 
-=== Python v2.7 ===
-
-First you need Python version 2.7 and the `pip` installation program.
-Unless you already have these, we recommend to install a comprehensive
-Python bundle like "Anaconda": "https://store.continuum.io/cshop/anaconda/".
-
-You do not need more software if you avoid using preprocessors, there
-is no bibliography, and you stick to the output formats LaTeX and HTML
-(you need of course LaTeX installed to process `.tex` files).
 
 === Preprocessors ===
 

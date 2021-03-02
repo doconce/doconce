@@ -31,8 +31,7 @@ index entries, figures, tables, and admonitions).
 
 ### Installation
 
-DocOnce is a Python 3 package that can be installed with `pip` or `conda`. Refer to the [manual](https://doconce.github.io/doconce/doc/pub/manual/manual.html#install:doconce) for carrying out a comprehensive installation. 
-
+DocOnce is a Python 3 package that can be installed with `pip` or `conda`. This procedure installs a minimal number of dependencies. 
 
 ##### Preliminary steps
 * The `python -V` and `pip -V` commands should refer to Python 3.x. If that is not the case, you might want to use the `pip3` and `python3` commands in the following instructions.
@@ -54,7 +53,7 @@ conda activate doconce
 conda install pip
 ```
 
-Install DocOnce and its dependencies:
+Install DocOnce:
 ```
 pip install DocOnce
 ```
@@ -69,10 +68,24 @@ python -m venv venv
 . venv/bin/activate
 ```
 
-Install DocOnce and its dependencies:
+Install DocOnce:
 ```
 pip install DocOnce
 ```
+
+##### Comprehensive installation
+
+For carrying out a comprehensive installation clone this repository 
+on the local computer and run `pip install` in that directory:
+
+```
+git clone git@github.com:doconce/doconce.git
+cd doconce
+pip install -r requirements.txt
+python setup.py install
+```
+
+Also refer to the [manual](https://doconce.github.io/doconce/doc/pub/manual/manual.html#install:doconce) to upgrade your DocOnce software to the latest update.
 
 
 ### Highlights
