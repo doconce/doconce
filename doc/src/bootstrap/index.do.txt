@@ -4,7 +4,7 @@ DATE: today
 The "Bootstrap": "http://getbootstrap.com" framework for creating
 web pages with modern design and functionality can be used in many
 different ways. This note shows the default setup for using Bootstrap
-styles with HTML documents generated from "DocOnce": "http://doconce.github.io/doconce/doc/web/index.html" source code.
+styles with HTML documents generated from "DocOnce": "https://github.com/doconce/doconce" source code.
 DocOnce supports many variants of Bootstrap themes. Most of them
 are demonstrated below.
 

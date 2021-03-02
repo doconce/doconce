@@ -580,9 +580,7 @@ in.collapse+a.btn.showdetails:before { content:'Hide details'; }
                1,
                'install:doconce',
                'install:doconce'),
-              ('DocOnce', 2, None, 'doconce'),
               ('Dependencies', 2, None, 'dependencies'),
-              ('Python v2.7', 3, None, 'python-v2-7'),
               ('Preprocessors', 3, None, 'preprocessors'),
               ('Bibliography', 3, None, 'bibliography'),
               ('Image file handling', 3, None, 'image-file-handling'),
@@ -890,9 +888,7 @@ $$
      <!-- navigation toc: --> <li><a href="#options-for-the-doconce-commands" style="font-size: 80%;"><b>Options for the <code>doconce</code> commands</b></a></li>
      <!-- navigation toc: --> <li><a href="#doconce-format-command-line-options" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;`doconce format` command-line options</a></li>
      <!-- navigation toc: --> <li><a href="#install:doconce" style="font-size: 80%;"><b>Installation of DocOnce and its Dependencies</b></a></li>
-     <!-- navigation toc: --> <li><a href="#doconce" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;DocOnce</a></li>
      <!-- navigation toc: --> <li><a href="#dependencies" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Dependencies</a></li>
-     <!-- navigation toc: --> <li><a href="#python-v2-7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Python v2.7</a></li>
      <!-- navigation toc: --> <li><a href="#preprocessors" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Preprocessors</a></li>
      <!-- navigation toc: --> <li><a href="#bibliography" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bibliography</a></li>
      <!-- navigation toc: --> <li><a href="#image-file-handling" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Image file handling</a></li>
@@ -956,7 +952,7 @@ $$
 
 <br>
 <center>
-<h4>Mar 1, 2021</h4>
+<h4>Mar 2, 2021</h4>
 </center> <!-- date -->
 <br>
 <p></p>
@@ -1376,8 +1372,6 @@ DocOnce has been used as writing platform for several books:
 &nbsp; &nbsp; &nbsp; <a href="#doconce-format-command-line-options"> <code>doconce format</code> command-line options </a>
 <br>
 <a href="#install:doconce"> Installation of DocOnce and its Dependencies </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="#doconce"> DocOnce </a>
 <br>
 &nbsp; &nbsp; &nbsp; <a href="#dependencies"> Dependencies </a>
 <br>
@@ -13329,66 +13323,16 @@ here for convenience.
 <h1 id="install:doconce" class="anchor">Installation of DocOnce and its Dependencies</h1>
 
 <p></p>
-Below, we explain the manual installation of all software that may be
-needed when working with DocOnce documents.
-The impatient way to install everything that is needed is to use
-Anaconda Python and the <code>conda</code> program:
-
-<p></p>
-DocOnce is available from the <code>conda-forge</code> channel. To add the <code>conda-forge</code> channel and subsequently install DocOnce, run the following commands.
-
-<p></p>
-
-
-<!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span>Terminal&gt; conda config --add channels conda-forge
-Terminal&gt; conda install doconce
-</pre></div>
-
-<p></p>
-If you do not want to use Anaconda and are
-on a Debian-based Linux
-computer (running, e.g., Ubuntu), you can instead run the Bash script
-<a href="https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.sh" target="_self"><tt>install_doconce.sh</tt></a> or the equivalent Python script
-<a href="https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.py" target="_self"><tt>install_doconce.py</tt></a>.
-These scripts give a comprehensive installation. Some users will prefer to
-install just what is needed for them, and this is explained below.
-
-<p></p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>Version control systems are needed!</b>
-The coming installation instructions require that the version control systems
-Subversion, Mercurial, and Git are installed on your computer.
-</div>
-
-
-<p></p>
-<div class="alert alert-block alert-success alert-text-normal"><b>What about Mac and Windows?</b>
-DocOnce is primarily tested on GNU/Debian Linux systems, but also to
-a minor extent on Mac OS X. Experience with Windows is limited.
-Since most packages are Python-based and can be installed via <code>pip install</code>
-no problems should arise on Mac and Windows. However, some of the
-image processing tools and spell checking apply Unix-specific software.
-</div>
-
-
-<p></p>
-You can omit reading the next sections if you rely on <code>conda</code> or
-<code>apt-get install</code> commands in the Bash script for installing DocOnce.
-
-<p></p>
-<h2 id="doconce" class="anchor">DocOnce </h2>
-
-<p></p>
-DocOnce itself is pure Python code hosted at <a href="https://github.com/doconce/doconce" target="_self"><tt>https://github.com/doconce/doconce</tt></a>.
+DocOnce is hosted on PyPi at URL: <a href="https://pypi.org/project/DocOnce/1.5.5/" target="_self"><tt>https://pypi.org/project/DocOnce/1.5.5/</tt></a> and GitHub at <a href="https://github.com/doconce/doconce" target="_self"><tt>https://github.com/doconce/doconce</tt></a>.
 Installation can be done via
 
 <p></p>
 
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span>pip install git+https://github.com/doconce/doconce
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span>pip install DocOnce
 # or if doconce is already installed
-pip install git+https://github.com/doconce/doconce --upgrade
+pip install DocOnce --upgrade
 </pre></div>
 
 <p></p>
@@ -13401,12 +13345,12 @@ the local computer and run <code>pip install</code> in that directory:
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span>git clone git@github.com:doconce/doconce.git
 cd doconce
-pip install .
-cd ..
+pip install -r requirements.txt
+python setup.py install
 </pre></div>
 
-Since DocOnce is frequently updated, it becomes necessary to ensure
-that you work with the most recent version:
+<p></p>
+Since DocOnce is frequently updated, you can update your software to the most recent update:
 
 <p></p>
 
@@ -13418,6 +13362,34 @@ pip install --upgrade .
 </pre></div>
 
 <p></p>
+<div class="alert alert-block alert-success alert-text-normal"><b>What about Mac and Windows?</b>
+DocOnce is primarily tested on GNU/Debian Linux systems, but also to
+a minor extent on Mac OS X. Experience with Windows is limited.
+Since most packages are Python-based and can be installed via <code>pip install</code>
+no problems should arise on Mac and Windows. However, some of the
+image processing tools and spell checking apply Unix-specific software.
+</div>
+
+
+<p></p>
+<!-- Below, we explain the manual installation of all software that may be needed when working with DocOnce documents. -->
+
+<p></p>
+<!-- DocOnce is available from the <code>conda-forge</code> channel. To add the <code>conda-forge</code> channel and subsequently install DocOnce, run the following commands. -->
+
+<p></p>
+<!-- !bc sys -->
+<!-- Terminal> conda config --add channels conda-forge -->
+<!-- Terminal> conda install doconce -->
+<!-- !ec -->
+
+<p></p>
+<!-- If you do not want to use Anaconda and are on a Debian-based Linux computer (running, e.g., Ubuntu), you can instead run the Bash script -->
+<!-- <a href="https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.sh" target="_self"><tt>install_doconce.sh</tt></a> or the equivalent Python script -->
+<!-- <a href="https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.py" target="_self"><tt>install_doconce.py</tt></a>. -->
+<!-- These scripts give a comprehensive installation. Some users will prefer to install just what is needed for them, and this is explained below. -->
+
+<p></p>
 <h2 id="dependencies" class="anchor">Dependencies </h2>
 
 <p></p>
@@ -13427,19 +13399,6 @@ software. However, if you want other formats as output
 (LaTeX, Sphinx, reStructuredText) and assisting utilities such
 as preprocesors, spellcheck, file differences, bibliographies,
 and so on, a lot of extra software must be installed.
-
-<p></p>
-<h3 id="python-v2-7" class="anchor">Python v2.7 </h3>
-
-<p></p>
-First you need Python version 2.7 and the <code>pip</code> installation program.
-Unless you already have these, we recommend to install a comprehensive
-Python bundle like <a href="https://store.continuum.io/cshop/anaconda/" target="_self">Anaconda</a>.
-
-<p></p>
-You do not need more software if you avoid using preprocessors, there
-is no bibliography, and you stick to the output formats LaTeX and HTML
-(you need of course LaTeX installed to process <code>.tex</code> files).
 
 <p></p>
 <h3 id="preprocessors" class="anchor">Preprocessors </h3>
