@@ -9590,3 +9590,63 @@ def extract_exercises():
     f.write(filestr)
     f.close()
     print('exercises extracted to', filename)
+
+
+def find_file_with_extensions(filename_in, allowed_extensions=['']):
+    """Check the existence of a filename having given extensions.
+    Return relative directory, basename, extension, and complete filename,
+
+    Given an input filename (e.g. './book' or 'mybook/book.do.txt') and a
+    list of allowed extensions (e.g. ['.do.txt']), return the file's
+    relative directory ('' or 'mybook', but never '.' or './), basename
+    ('book'), extension ('do.txt'), and complete filename ('book.do.txt')
+    dirname, basename, and filename. './' is stripped of all output.
+    Use `allowed_extensions=''` for checking exact matches, but the
+    extension is ''. Return a tuple of None if the file was not found.
+    :param str filename_in: Filename or its basename.
+    :param list(str) allowed_extensions: list of legal extensions
+    :return: tuple of dirname, basename, extension, and filename
+    :rtype: (str, str, str, str)
+    """
+    # Get the directory name. It can be relative
+    dirname = os.path.dirname(filename_in)
+    if dirname == '.':
+        dirname = ''
+    if dirname.startswith('./'):
+        print('fix this!')
+        _abort()
+
+    ext, basename, filename_out = None, None, None
+    dir_basename = filename_in
+    # Try to split every allowed suffix from input filename.
+    # If it works, check if the file exists
+    for ext_i in allowed_extensions:
+        if ext_i != '':
+            tmp = filename_in.split(ext_i)
+            if len(tmp) == 2 and tmp[-1] == '':
+                dir_basename = tmp[0]
+        #else:
+            #dir_basename = filename_in
+            #if ext_i.endswith(''):
+            #    ext_i = ext_i[:-1]
+
+        # Check that the filename exists
+        if os.path.isfile(dir_basename + ext_i):
+            # Extension found
+            ext = ext_i
+            basename = os.path.basename(dir_basename)
+            # Compose the filename (basename + suffix, but no path)
+            filename_out = basename + ext
+            break
+    if ext == None:
+        print('*** error: could not find any file "%s*"' % filename_in)
+        print('    with extensions %s' % ' , '.join(allowed_extensions))
+        dirname, basename = None, None
+        #_abort()
+    # Remove initial '.' or  './'
+    if basename and basename.startswith('./'):
+        basename = basename[2:]
+    if filename_out and filename_out.startswith('./'):
+        filename_out = filename_out[2:
+                       ]
+    return dirname, basename, ext, filename_out

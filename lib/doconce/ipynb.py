@@ -36,6 +36,25 @@ movie_files = []
 figure_labels = {}
 html_encountered = False
 
+# html code and corresponding regex (here for reusability)
+img2ipynb = {
+    'imgtag':
+        ('\n<img src="{filename}" {opts}>'
+         '<p style="font-size: 0.9em"><i>Figure {figure_number}: {caption}</i></p>'
+         ),
+    'imgtag_regex':
+        r'<(\w+) src=[\\]"(.+)[\\]" .*>(?=[<|\\n])',
+    'md':
+        '\![{caption}]({filename})',
+    'md_regex':
+        r'\!\[(?:Figure )(\d+)\]\((.+)\)',
+    'Image':
+        'Image(%{keyword}="{filename}")\n',
+    'Image_regex':
+        'Image\((\w+)=(\w+)\)',
+}
+
+
 def ipynb_author(authors_and_institutions, auth2index,
                  inst2index, index2inst, auth2email):
     # Old code
@@ -119,17 +138,17 @@ def ipynb_figure(m):
     if display_method == 'md':
         # Markdown image syntax for embedded image in text
         # (no control of size, then one must use HTML syntax)
-        text += '\![%s](%s)' % (caption, filename)
+        text += img2ipynb['md'].format(caption, filename)
     elif display_method == 'imgtag':
         # Plain <img tag, allows specifying the image size
         # Fix caption markup so it becomes html
         for tag in 'bold', 'emphasize', 'verbatim':
             caption = re.sub(INLINE_TAGS[tag], INLINE_TAGS_SUBST['html'][tag],
                              caption, flags=re.MULTILINE)
-        text += ('\n'
-                 '<img src="{filename}" {opts}>'
-                 '<p style="font-size: 0.9em"><i>Figure {figure_number}: {caption}</i></p>'
-                 ).format(filename=filename, opts=opts, caption=caption, figure_number=figure_number)
+        text += img2ipynb['imgtag'].format(filename=filename,
+                                           opts=opts,
+                                           caption=caption,
+                                           figure_number=figure_number)
     elif display_method == 'Image':
         # Image object
         # NOTE: This code will normally not work because it inserts a verbatim
@@ -150,7 +169,7 @@ def ipynb_figure(m):
             keyword = 'url'
         else:
             keyword = 'filename'
-        text += 'Image(%s="%s")\n' % (keyword, filename)
+        text += img2ipynb['Image'].format(keyword, filename)
         text += '!ec\n'
     else:
         errwarn('*** error: --ipynb_figure=%s is illegal, must be md, imgtag or Image' % display_method)
