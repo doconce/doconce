@@ -1,10 +1,12 @@
 import os, sys, shutil, re, glob, math
 from doconce import globals
-from .doconce import read_file, write_file, doconce2format, parse_doconce_filename, handle_index_and_bib, \
+from .doconce import read_file, write_file, doconce2format, handle_index_and_bib, \
     errwarn, _rmdolog, preprocess
-from .misc import option, help_print_options, check_command_line_options, system, _abort
+from .misc import option, help_print_options, check_command_line_options, system, _abort, find_file_with_extensions
 from .common import INLINE_TAGS, remove_code_and_tex
 import json
+from .ipynb import img2ipynb
+from .html import movie2html
 
 docstring_jupyterbook = """Usage: doconce jupyterbook filename [options] 
 Create files for Jupyter Book version: 0.8
@@ -66,7 +68,8 @@ def jupyterbook():
 
     # Check if the file exists, then read it in
     globals.filename = sys.argv[1]
-    dirname, basename, ext, globals.filename = parse_doconce_filename(globals.filename)
+    dirname, basename, ext, globals.filename = find_file_with_extensions(globals.filename,
+                                                                         allowed_extensions=['.do.txt'])
     globals.dofile_basename = basename
 
     # NOTE: The following is a reworking of code from doconce.py > format_driver
@@ -89,8 +92,7 @@ def jupyterbook():
     # Remove TOC tag
     tag = 'TOC'
     if re.search(r'^%s:.*' % tag, filestr, re.MULTILINE):
-        if re.search(r'^%s:.*' % tag, filestr, re.MULTILINE):
-            errwarn('*** warning : Removing the %s tag' % tag.lower())
+        errwarn('*** warning : Removing the %s tag' % tag.lower())
         filestr = re.sub(r'^%s:.*' % tag, '', filestr, flags=re.MULTILINE)
 
     # Format citations and add bibliography in DocOnce's html format
@@ -245,7 +247,9 @@ def jupyterbook():
     # Fix all links whose destination is in a different document
     # e.g. <a href="#Langtangen_2012"> to <a href="02_jupyterbook.html#Langtangen_2012">
     all_texts_formatted = resolve_links_destinations(all_texts_formatted, all_basenames)
-
+    # Fix the path of FIGUREs and MOVIEs.
+    # NB: at the time of writing (03-2021) movies are not supported by Jupyter Book
+    all_texts_formatted = [fix_media_src(t, dirname, dest) for t in all_texts_formatted]
     # Write chapters and sections to file
     for i in range(len(all_texts_formatted)):
         write_file(all_texts_formatted[i], dest + all_fnames[i], _encoding=globals.encoding)
@@ -629,6 +633,50 @@ def resolve_links_destinations(chunks, chunk_basenames):
     for c in range(len(chunks)):
         chunks[c] = fix_links(chunks[c], tag2file)
     return chunks
+
+
+def fix_media_src(filestr, dirname, dest):
+    """Fix the (relative) path to any figure and movie in the DocOnce file.
+
+    The generated .md and .ipynb files will be created in the path passed to `--dest`.
+    This method fixes the paths of the image and movie files so that they can be found
+    in generated .md and .ipynb files.
+    :param filestr:
+    :param dirname:
+    :return:
+    """
+    patterns = [
+        # movies in .md and .ipynb. NB: jupyterbook does not support movies
+        movie2html['movie_regex'],
+        # images in .md
+        r'\!\[<p><em>(.*)</em></p>\]\((.*)\)',
+        # images in .ipynb. See ipynb.py
+        img2ipynb['imgtag_regex'],
+        # images in MarkDown syntax
+        img2ipynb['md_regex'],
+        # commented images and movies in ipynb. See ipynb.py
+        r'<!-- (?:dom:)(FIGURE|MOVIE): \[(.*)',
+        # commented images in md
+        r'<!-- <(\w+) src="(.*)" .*>(?=[<|\\n])',
+    ]
+    filestr_out = filestr
+    for i,pattern in enumerate(patterns):
+        for m in re.finditer(pattern, filestr):
+            match = m.group()
+            tag = m.group(1)
+            src = m.group(2)
+            # Warn that FIGUREs cannot work in Jupyter Book
+            if pattern == movie2html['movie_regex']:
+                errwarn('*** warning : To make images work consider to add this extensions to _config.yml:\n',
+                        ('parse:\n'
+                         '  myst_enable_extensions:\n'
+                         '    - html_image\n'))
+            if not src.startswith('/'):
+                src_new = os.path.relpath(dirname + src, dest)
+                replacement = match.replace(src, src_new, 1)
+                filestr_out = filestr_out.replace(match, replacement, 1)
+                #print('\npattern #%d replaced \n   %s  \nwith\n   %s\n' % (i, match, replacement))
+    return filestr_out
 
 
 def yml_file(file):

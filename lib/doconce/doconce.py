@@ -66,9 +66,12 @@ def errwarn(msg, end='\n', style=''):
         err.write('\n')
 
 from .common import *
-from .misc import option, which, _abort
+from .misc import option, which, _abort, help_format, check_command_line_options, find_file_with_extensions
 from . import html, latex, pdflatex, rst, sphinx, st, epytext, gwiki, mwiki, cwiki, pandoc, ipynb, matlabnb
 from . import plaintext as plain
+from .latex import aux_label2number
+from .html import embed_IBPLOTs
+from .expand_newcommands import expand_newcommands
 
 main_content_begin = globals.main_content_char*19 + ' main content ' + \
                      globals.main_content_char*22
@@ -200,8 +203,7 @@ def markdown2doconce(filestr_in, format=None, ipynb_mode=False):
         perl='pl', bash='sh', html='html')
 
     bc_postfix = '-t' if ipynb_mode else ''
-    from .common import unindent_lines
-    regex = [
+    regex_md2doconce = [
         # Computer code with language specification
         (r"\n?```([A-Za-z]+)(.*?)\n```", lambda m: "\n\n!bc %scod%s%s\n!ec\n" % (extended_markdown_language2dolang[m.group(1).lower()], bc_postfix, unindent_lines(m.group(2).rstrip(), trailing_newline=False)), re.DOTALL), # language given
         # Computer code without (or the same) language specification
@@ -257,7 +259,7 @@ def markdown2doconce(filestr_in, format=None, ipynb_mode=False):
         # doconce-translated ipynb files, treat remaining div tags as labels
         (r'<div id="(.+)?"></div>\n', r'label{\g<1>}\n'),
     ]
-    for r in regex:
+    for r in regex_md2doconce:
         if len(r) == 2:
             filestr = re.sub(r[0], r[1], filestr)
         elif len(r) == 3:
@@ -1476,14 +1478,12 @@ def insert_os_commands(filestr, format):
     return filestr, num_commands
 
 def exercises(filestr, format, code_blocks, tex_blocks):
-    # Exercise:
+    """ Exercise:
     # ===== Exercise: title ===== (starts with at least 3 =, max 5)
     # label{some:label} file=thisfile.py solution=somefile.do.txt
     # __Hint 1.__ some paragraph...,
     # __Hint 2.__ ...
-
-    from .common import _CODE_BLOCK, _MATH_BLOCK
-
+    """
     all_exer = []   # collection of all exercises
     exer = {}       # data for one exercise, to be appended to all_exer
     inside_exer = False
@@ -1833,7 +1833,6 @@ def exercises(filestr, format, code_blocks, tex_blocks):
 
     # Append solutions and answer to filestr (in the end of the doconce string)
     if option('solutions_at_end') or option('answers_at_end') or has_sol_docend or has_ans_docend:
-        from .common import chapter_pattern
         has_chapters = False
         if re.search(chapter_pattern, filestr, flags=re.MULTILINE):
             has_chapters = True
@@ -3118,7 +3117,6 @@ def handle_cross_referencing(filestr, format, tex_blocks):
 
     # 3. Replace ref by hardcoded numbers from a latex .aux file
     refaux = 'refaux{' in filestr
-    from .latex import aux_label2number
     label2number = aux_label2number()
     if format not in ('latex', 'pdflatex') and refaux and not label2number:
         errwarn('*** error: used refaux{} reference(s), but no option --replace_ref_by_latex_auxno=')
@@ -3567,7 +3565,6 @@ def typeset_authors(filestr, format):
 def typeset_section_numbering(filestr, format):
     chapter = section = subsection = subsubsection = 0
     # Do we have chapters?
-    from .common import chapter_pattern
     if re.search(chapter_pattern, filestr, flags=re.MULTILINE):
         has_chapters = True
     else:
@@ -3991,7 +3988,6 @@ def inline_tag_subst(filestr, format):
 
         # Add copyright right under the date if present
         if format not in ('html', 'latex', 'pdflatex', 'sphinx'):
-            from .common import get_copyfile_info
             cr_text = get_copyfile_info(filestr, format=format)
             if cr_text is not None:
                 if cr_text == 'Made with DocOnce':
@@ -4482,7 +4478,6 @@ def doconce2format(filestr_in, format):
     m = re.search('^IBPLOT: *\[', filestr, flags=re.MULTILINE)
     has_ibplot = True if m else False
     if has_ibplot:
-        from .html import embed_IBPLOTs
         filestr, bg_session = embed_IBPLOTs(filestr, format)
         #bg_session.loop_until_closed()
         debugpr('The file after inserting interactive IBPLOT curve plots:', filestr)
@@ -4523,7 +4518,6 @@ def doconce2format(filestr_in, format):
 
     # Next step: substitute latex-style newcommands in filestr and tex_blocks
     # (not in code_blocks)
-    from .expand_newcommands import expand_newcommands
     if format not in ('latex', 'pdflatex'):
         newcommand_files = glob.glob('newcommands*_replace.tex')
         if format in ('sphinx', 'pandoc', 'ipynb'):
@@ -5307,57 +5301,6 @@ def preprocess(filename_in, format, preprocessor_options=[]):
     return resultfile
 
 
-
-def parse_doconce_filename(filename_in):
-    """Parse the DocOnce filename. Abort if the file is not found
-
-    :param str filename_in: Filename. The DocOnce extensions '.do.txt' can be omitted
-    :return: (dirname, basename, extension, filename) tuple
-    :rtype: (str, str, str, str)
-    """
-    filename_out = filename_in
-    dirname, basename = os.path.split(filename_out)
-    if dirname:
-        os.chdir(dirname)
-        filename_out = basename
-        # errwarn('*** doconce format now works in directory %s' % dirname)
-        # cannot call errwarn before globals.dofile_basename is initialized
-        # print instead
-        print('*** doconce format now works in directory %s' % dirname)
-
-    basename, ext = os.path.splitext(basename)
-    # Can allow no extension, .do, or .do.txt
-    legal_extensions = ['.do', '.do.txt']
-    if ext == '':
-        found = False
-        for ext in legal_extensions:
-            filename_out = basename + ext
-            if os.path.isfile(filename_out):
-                found = True
-                break
-        if not found:
-            print('*** error: given doconce file "%s", but no' % basename)
-            print('    files with extensions %s exist' % ' or '.join(legal_extensions))
-            _abort()
-    else:
-        # Given extension
-        if not os.path.isfile(filename_out):
-            print('*** error: file %s does not exist' % filename_out)
-            _abort()
-        if ext == '.txt':
-            if filename_out.endswith('.do.txt'):
-                basename = filename_out[:-7]
-            else: # just .txt
-                basename = filename_out[:-4]
-        elif ext == '.do':
-            basename = filename_out[:-3]
-        else:
-            print('*** error: illegal file extension %s' % ext)
-            print('    must be %s' % ' or '.join(legal_extensions))
-            _abort()
-    return dirname, basename, ext, filename_out
-
-
 def format_driver():
     # doconce format accepts special command-line arguments:
     #   - debug (for debugging in file _doconce_debugging.log) or
@@ -5369,11 +5312,9 @@ def format_driver():
     # oneline is inactive (doesn't work well yet)
 
     if option('help') or '-h' in sys.argv:
-        from .misc import help_format
         help_format()
         sys.exit(1)
 
-    from .misc import check_command_line_options
     check_command_line_options(4)
 
     try:
@@ -5407,19 +5348,17 @@ def format_driver():
     if option('debug'):
         globals._log_filename = '_doconce_debugging.log'
         globals._log = open(globals._log_filename,'w')
-        globals._log.write("""
-    This is a log file for the doconce script.
-    Debugging is turned on by the command-line argument '--debug'
-    to doconce format. Without that command-line argument,
-    this file is not produced.
-
-    """)
+        globals._log.write(('\n'
+                            '    This is a log file for the doconce script.\n'
+                            '    Debugging is turned on by the command-line argument \'--debug\'\n'
+                            '    to doconce format. Without that command-line argument,\n'
+                            '    this file is not produced.\n'
+                            '\n'))
         print('*** debug output in ' + globals._log_filename)
-
-
     debugpr('\n\n******* output format: %s *******\n\n' % format)
 
-    dirname, basename, ext, globals.filename = parse_doconce_filename(globals.filename)
+    dirname, basename, ext, globals.filename = find_file_with_extensions(globals.filename,
+                                                                         allowed_extensions=['.do.txt'])
     globals.dofile_basename = basename
 
     _rmdolog()     # always start with clean log file with errors

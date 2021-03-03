@@ -39,6 +39,14 @@ color_table = [
     ('blue', '#0000FF', 'rgb(0,0,255)'),
     ('navy', '#000080', 'rgb(0,0,128)'),]
 
+# html code and corresponding regex (here for reusability)
+movie2html = {
+    '.mp4': "\n    <source src='%(stem)s.mp4'  type='video/mp4;  codecs=\"avc1.42E01E, mp4a.40.2\"'>",
+    '.webm': "\n    <source src='%(stem)s.webm' type='video/webm; codecs=\"vp8, vorbis\"'>",
+    '.ogg': "\n    <source src='%(stem)s.ogg'  type='video/ogg;  codecs=\"theora, vorbis\"'>",
+    'movie_regex':
+        r'<(\w+) src=\'(.+)\'\s+type=\'video/(?:mp4|webm|ogg);\s+codecs=[\\]{0,1}\".+[\\]{0,1}\"\'>',
+}
 
 
 def add_to_file_collection(filename, doconce_docname=None, mode='a'):
@@ -2020,14 +2028,6 @@ def html_movie(m):
                     "<div>\n"
                     "<video %(autoplay)s loop controls width='%(width)s' height='%(height)s' preload='none'>") \
                    % vars()
-            ext2source_command = {
-                '.mp4': """
-    <source src='%(stem)s.mp4'  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>""" % vars(),
-                '.webm': """
-    <source src='%(stem)s.webm' type='video/webm; codecs="vp8, vorbis"'>""" % vars(),
-                '.ogg': """
-    <source src='%(stem)s.ogg'  type='video/ogg;  codecs="theora, vorbis"'>""" % vars(),
-                }
             movie_exists = False
             mp4_exists = False
             if sources3:
@@ -2037,19 +2037,19 @@ def html_movie(m):
                 # can play on iOS.
                 msg = 'movie: trying to find'
                 if is_file_or_url(stem + '.mp4', msg) in ('file', 'url'):
-                    text += ext2source_command['.mp4']
+                    text += movie2html['.mp4'] % vars()
                     movie_exists = True
                     mp4_exists = True
                 if is_file_or_url(stem + '.webm', msg) in ('file', 'url'):
-                    text += ext2source_command['.webm']
+                    text += movie2html['.webm'] % vars()
                     movie_exists = True
                 if is_file_or_url(stem + '.ogg', msg) in ('file', 'url'):
-                    text += ext2source_command['.ogg']
+                    text += movie2html['.ogg'] % vars()
                     movie_exists = True
             else:
                 # Load just the specified file
                 if is_file_or_url(stem + ext, msg) in ('file', 'url'):
-                    text += ext2source_command[ext]
+                    text += movie2html[ext] % vars()
                     movie_exists = True
             if not movie_exists:
                 errwarn('*** warning: movie "%s" was not found' % filename)
@@ -2062,8 +2062,8 @@ def html_movie(m):
             text += ("\n"
                      "</video>\n"
                      "</div>\n"
-                     "<p><em>%(caption)s</em></p>\n"
-                     ) % vars()
+                     "<p><em>%s</em></p>\n"
+                     ) % caption
             #if not mp4_exists:
             if True:
                 # Seems that there is a problem with .mp4 movies as well...

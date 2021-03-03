@@ -29,7 +29,8 @@ setuptools.setup(
         'mako',
         'future',
         'pygments-doconce',
-        'publish-doconce'
+        'publish-doconce',
+        'requests'
         ],
     #data_files=[(os.path.join("share", "man", "man1"),[man_filename,]),],
     package_data = {'': ['sphinx_themes.zip', 'html_images.zip', 'reveal.js.zip', 'deck.js.zip', 'csss.zip', 'latex_styles.zip']},

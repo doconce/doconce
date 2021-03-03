@@ -605,7 +605,7 @@ class HTML(_BaseWriter):
             height = ' width=%s ' % width
         else:
             height = ''
-        s = '\n<hr><img src="%s"%s%s>\n<p><em>%s</em>\n<hr><p>\n' % \
+        s = '\n<hr><img src="%s"%s%s>\n<p><em>%s</em></p>\n<hr><p>\n' % \
             (filename, width, height, caption)
         self.file.write(s)
 
