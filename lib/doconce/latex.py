@@ -11,16 +11,19 @@ from builtins import str
 from builtins import range
 from builtins import bytes
 from past.utils import old_div
-import os, subprocess, re, sys, glob, shutil, subprocess
-from .common import plain_exercise, table_analysis, \
+import os, subprocess, re, sys, glob, shutil, subprocess, base64, uuid
+from pygments.lexers import get_lexer_by_name
+from .common import plain_exercise, table_analysis, INLINE_TAGS, \
     _CODE_BLOCK, _MATH_BLOCK, doconce_exercise_output, indent_lines, \
     online_python_tutor, envir_delimiter_lines, safe_join, \
-    insert_code_and_tex, is_file_or_url, chapter_pattern
-from .misc import option, _abort, replace_code_command, errwarn, debugpr
+    insert_code_and_tex, is_file_or_url, chapter_pattern, \
+    has_custom_pygments_lexer, get_legal_pygments_lexers, \
+    has_copyright, get_copyfile_info, default_movie
+from .misc import option, _abort, replace_code_command, copy_latex_packages
+from .doconce import errwarn, debugpr
 from doconce import globals
-import base64
-import uuid
-import os
+from . import jupyter_execution
+
 additional_packages = ''  # comma-sep. list of packages for \usepackage{}
 
 include_numbering_of_exercises = True
@@ -103,106 +106,6 @@ envir2lst = dict(
     # pyopt and pysc are treated explicitly
     r='r', php='php',
 )
-
-
-def latex_code_envir(envir, envir_spec):
-    if envir_spec is None:
-        return '\\b' + envir, '\\e' + envir
-
-    leftmargin = option('latex_code_leftmargin=', '2')
-    bg_vpad = '_vpad' if option('latex_code_bg_vpad') else ''
-
-    envir2 = envir if envir in envir_spec else 'default'
-
-    package = envir_spec[envir2]['package']
-    background = envir_spec[envir2]['background']
-    # Default styles
-    any_style = ''
-    lst_style = 'style=simple,xleftmargin=%smm' % leftmargin
-    vrb_style = 'numbers=none,fontsize=\\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=%smm' % leftmargin
-    # mathescape can be used with minted and lstlisting
-    # see https://tex.stackexchange.com/questions/149710/how-to-write-math-symbols-in-a-verbatim,
-    # minted can only have math in comments within the code
-    # but mathescape make problems with bash and $#
-    # (can perhaps be fixed with escapechar=... but I haven't found out)
-    if not envir.startswith('sh'):
-        pyg_style = 'fontsize=\\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,' \
-                    'fontfamily=tt,xleftmargin=%smm' % leftmargin
-    else:
-        # Leave out mathescape for unix shell
-        pyg_style = 'fontsize=\\fontsize{9pt}{9pt},linenos=false,baselinestretch=1.0,' \
-                    'fontfamily=tt,xleftmargin=%smm' % leftmargin
-    if envir_spec[envir2]['style'] is not None:
-        # Override default style
-        if package == 'lst':
-            lst_style = envir_spec[envir2]['style']
-        elif package == 'vrb':
-            vrb_style = envir_spec[envir2]['style']
-        elif package == 'pyg':
-            pyg_style = envir_spec[envir2]['style']
-        else:
-            any_style = envir_spec[envir2]['style']
-
-    envir_tp = ''
-    if envir.endswith('pro'):
-        envir_tp = 'pro'
-        envir = envir[:-3]
-    elif envir.endswith('cod'):
-        envir_tp = 'cod'
-        envir = envir[:-3]
-
-    from .common import get_legal_pygments_lexers
-    global envir2pyg, envir2lst
-
-    if envir in ('ipy', 'do'):
-        # Find substitutes for ipy and doconce if these lexers
-        # are not installed
-        # (third-party repos, does not come with pygments, but
-        # warnings have been issued by doconce format, with
-        # URLs to where the code can be obtained)
-        from pygments.lexers import get_lexer_by_name
-        try:
-            get_lexer_by_name('ipy')
-        except:
-            envir2pyg['ipy'] = 'python'
-        try:
-            get_lexer_by_name('doconce')
-        except:
-            envir2pyg['do'] = 'text'
-
-    if package == 'pyg':
-        begin = '\\begin{minted}[%s]{%s}' % (pyg_style, envir2pyg.get(envir, 'text'))
-        end = '\\end{minted}'
-    elif package == 'lst':
-        if envir2lst.get(envir, 'text') == 'text':
-            begin = '\\begin{lstlisting}[language=Python,%s]' % (lst_style,)
-        else:
-            begin = '\\begin{lstlisting}[language=%s,%s]' % (envir2lst.get(envir, 'text'), lst_style)
-        end = '\\end{lstlisting}'
-    elif package == 'vrb':
-        begin = '\\begin{Verbatim}[%s]' % vrb_style
-        end = '\\end{Verbatim}'
-    else:  # \begin{package}
-        if any_style:
-            begin = '\\begin{%s}[%s]' % (package, any_style)
-        else:
-            begin = '\\begin{%s}' % package
-        end = '\\end{%s}' % package
-
-    if background != 'white':
-        if envir_tp == 'pro':
-            begin = '\\begin{pro%s}{cbg_%s}{bar_%s}' % (bg_vpad, background, background) + begin
-            if package in ('vrb', 'pyg'):
-                end = end + '\n\\end{pro%s}\n\\noindent' % bg_vpad
-            else:
-                end = end + '\\end{pro%s}\n\\noindent' % bg_vpad
-        else:
-            begin = '\\begin{cod%s}{cbg_%s}' % (bg_vpad, background) + begin
-            if package in ('vrb', 'pyg'):
-                end = end + '\n\\end{cod%s}\n\\noindent' % bg_vpad
-            else:
-                end = end + '\\end{cod%s}\n\\noindent' % bg_vpad
-    return begin, end
 
 
 def interpret_latex_code_style():
@@ -594,7 +497,7 @@ def latex_code(filestr, code_blocks, code_block_types,
                 post = '\n\\noindent\n(\\href{{%s}}{Visualize execution}) ' % \
                        online_python_tutor(code_blocks[n], return_tp='url')
                 lines[i] = lines[i].replace(' pyoptpro', ' pypro') + post + '\n'
-
+            lines[i] = lines[i].replace(' pyscpro', ' pypro')
     filestr = safe_join(lines, '\n')
 
     # Check for misspellings
@@ -618,7 +521,6 @@ def latex_code(filestr, code_blocks, code_block_types,
             new_envirs.append(envir + admon_envir_mapping['all'])
     envirs += new_envirs
     # Add all possible pygments envirs
-    from .common import has_custom_pygments_lexer, get_legal_pygments_lexers
     if 'ipy' in code_block_types:
         has_custom_pygments_lexer('ipy')
     if 'do' in code_block_types:
@@ -694,7 +596,6 @@ def latex_code(filestr, code_blocks, code_block_types,
     pattern = r'(begin\{block\}|paragraph)\{.*?\\code\{.*?%.*?\}'
     filestr = re.sub(pattern, lambda m: m.group().replace('%', '\\%'), filestr)
 
-    from .common import get_copyfile_info
     cr_text = get_copyfile_info(filestr, format=format)
     if cr_text is not None:
         filestr = filestr.replace('Copyright COPYRIGHT_HOLDERS',
@@ -1062,7 +963,7 @@ def latex_code(filestr, code_blocks, code_block_types,
 
     # Translate to .tex or .p.tex format
 
-    latex_code_style = interpret_latex_code_style()
+    code_style = interpret_latex_code_style()
 
     filestr = replace_code_command(filestr)  # subst \code{...}
 
@@ -1075,7 +976,6 @@ def latex_code(filestr, code_blocks, code_block_types,
     current_code = ""
 
     if option("execute"):
-        from . import jupyter_execution
         kernel_client = jupyter_execution.JupyterKernelClient()
         # This enables PDF output as well as PNG for figures.
         # We only use the PDF when available, but PNG should be added as fallback.
@@ -1092,9 +992,6 @@ def latex_code(filestr, code_blocks, code_block_types,
             if len(words) == 1:
                 current_code_envir = 'ccq'
             else:
-                if words[1] in ('pyoptpro', 'pyscpro'):
-                    current_code_envir = 'pypro'
-                else:
                     current_code_envir = words[1]
             if current_code_envir is None:
                 # Should not happen since a !bc is encountered first and
@@ -1103,17 +1000,16 @@ def latex_code(filestr, code_blocks, code_block_types,
                 errwarn('*** error: mismatch between !bc and !ec')
                 errwarn('\n'.join(lines[i - 3:i + 4]))
                 _abort()
-            elif current_code_envir.endswith("out") and option("ignore_output"):
+            '''elif current_code_envir.endswith("out") and option("ignore_output"):
                 lines[i] = ""
                 continue
             elif current_code_envir.endswith("-e"):
                 lines[i] = ""
                 continue
-            if latex_code_style is None:
-                lines[i] = '\\b' + current_code_envir
-            else:
-                begin, end = latex_code_envir(current_code_envir, latex_code_style)
+            begin, end = jupyter_execution.formatted_code_envir(current_code_envir, code_style, format)
                 lines[i] = begin
+            '''
+            lines[i] = ""
         elif lines[i].startswith('!ec'):
             if current_code_envir is None:
                 # No envir set by previous !bc?
@@ -1122,118 +1018,72 @@ def latex_code(filestr, code_blocks, code_block_types,
                 errwarn('\n'.join(lines[i - 8:i - 1]))
                 errwarn('error line >>>', lines[i])
                 errwarn('\n'.join(lines[i + 1:i + 8]))
-                # errwarn('    check that every !bc matches !ec in the entire text:')
-                # errwarn(filestr)
                 _abort()
-            # capture caption and label if exists
-            label = None
-            label_regex = re.compile(r"label\{(.*?)\}")
-            label_match = re.search(label_regex, lines[i + 1])
-            if label_match is not None:
-                label = label_match.group(1)
-                lines[i + 1] = re.sub(label_regex, "", lines[i + 1])
 
-            caption = None
-            caption_regex = re.compile(r"caption\{(.*?)\}")
-            caption_match = re.search(caption_regex, lines[i + 1])
-            if caption_match is not None:
-                caption = caption_match.group(1)
-                lines[i + 1] = re.sub(caption_regex, "", lines[i + 1])
-            begin, end = latex_code_envir(current_code_envir, latex_code_style)
-            if current_code_envir.endswith("out") and option("ignore_output"):
-                lines[i] = ""
-            elif current_code_envir.endswith("-e"):
-                if option("execute"):
-                    jupyter_execution.run_cell(kernel_client, current_code)
-                lines[i] = ""
-            else:
-                lines[i] = end
-            if option("execute") and not current_code_envir.endswith("-t") and \
-                    not current_code_envir.endswith("out") and not current_code_envir.endswith("-e"):
-                outputs, execution_count = jupyter_execution.run_cell(kernel_client, current_code)
-                if len(outputs) > 0:
-                    ansi_escape = re.compile(r'\x1b[^m]*m')
-                    for output in outputs:
-                        begin, end = latex_code_envir(
-                            "pyout",
-                            latex_code_style
-                        )
-                        if "text" in output:
-                            text_output = ansi_escape.sub("", output["text"])
-                            lines[i] += "\n{}\n{}{}".format(
-                                begin,
-                                text_output,
-                                end
-                            )
-                        if "data" in output:
-                            data = output["data"]
-                            if "application/pdf" in data or "image/png" in data:
-                                if "application/pdf" in data:
-                                    img_data = data["application/pdf"]
-                                    suffix = ".pdf"
-                                else:
-                                    img_data = data["image/png"]
-                                    suffix = ".png"
-                                cache_folder = ".doconce_figure_cache"
-                                filename_stem = "{}/{}".format(cache_folder, str(uuid.uuid4()))
-                                if not os.path.exists(cache_folder):
-                                    os.makedirs(cache_folder)
-                                filename = "{}{}".format(filename_stem, suffix)
-                                g = open(filename, "wb")
-                                g.write(base64.decodebytes(bytes(img_data, encoding="utf-8")))
-                                g.close()
-
-                                caption_and_label = ""
-                                if caption is not None:
-                                    caption_and_label += (
-                                        "\\captionof{{figure}}{{{caption}}}\n"
-                                    ).format(caption=caption)
-                                if label is not None:
-                                    caption_and_label += (
-                                        "\\label{{{label}}}\n"
-                                    ).format(label=label)
-
-                                lines[i] += (
-                                    "\n"
-                                    "\\begin{{center}}\n"
-                                    "   \\includegraphics[width=0.8\\textwidth]{{{filename_stem}}}\n"
-                                    "   {caption_and_label}"
-                                    "\\end{{center}}\n"
-                                ).format(filename_stem=filename_stem, caption_and_label=caption_and_label)
-                            elif "text/plain" in data:  # add text only if no image
-                                text_output = ansi_escape.sub("", output["data"]["text/plain"])
-                                lines[i] += "\n{}\n{}{}".format(
-                                    begin,
-                                    text_output,
-                                    end
-                                )
-                        elif "traceback" in output:
-                            # TODO: convert ANSI escape chars to colors
-                            traceback = "\n".join(output["traceback"])
-                            traceback = ansi_escape.sub("", traceback)
-                            lines[i] += "\n{}\n{}{}".format(
-                                begin,
-                                traceback,
-                                end
-                            )
+            #begin, end = jupyter_execution.formatted_code_envir(current_code_envir, code_style, format)
+            #lines[i] = begin #TODO place later? place inside some function? yes, in process_code_block
+            #lines[i] = end #TODO place later? place inside some function? yes, in process_code_block
+            # Check if there is any label{} or caption{}, then execute the code
+            current_code, result, comment, go_on = pre_execute(current_code, current_code_envir,
+                                                               code_style, format,
+                                                               pygm=None, pygm_style=None)
+            if not go_on:
+                continue
+            label, caption = jupyter_execution.get_label_and_caption(lines, i)
+            formatted_block, execution_count = jupyter_execution.process_code_block(
+                current_code=current_code,
+                current_code_envir=current_code_envir,
+                kernel_client=kernel_client,
+                format=format,
+                code_style=code_style,
+                caption=caption,
+                label=label)
+            lines[i] = put_together(result, formatted_block, comment, execution_count)
 
             current_code_envir = None
             current_code = ""
         else:
             if current_code_envir is not None:
-                if current_code_envir.endswith("out") and option("ignore_output"):
+                '''if current_code_envir.endswith("out") and option("ignore_output"):
                     lines[i] = ""
                     continue
                 current_code += lines[i] + "\n"
                 if current_code_envir.endswith("-e"):
                     lines[i] = ""
+                '''
+                # Code will be formatted later
+                current_code += lines[i] + "\n"
+                lines[i] = ""
 
     if option("execute"):
         jupyter_execution.stop(kernel_client)
 
     filestr = safe_join(lines, '\n')
-
     return filestr
+
+def pre_execute(code_block, code_block_type, code_style, format, pygm=None, pygm_style=None):
+    return latex_pre_execute(code_block, code_block_type, code_style, format, pygm=None, pygm_style=None)
+def latex_pre_execute(code_block, code_block_type, code_style, format, pygm=None, pygm_style=None): #use ** or so?
+    """TODO
+
+    :param code_block:
+    :param code_block_type:
+    :param pygm:
+    :param pygm_style:
+    :return:
+    """
+    go_on = True
+    result = ''
+    comment = ''
+    begin, end = jupyter_execution.formatted_code_envir(code_block_type, code_style, format)
+    result = begin + '\n' + code_block + '\n' + end
+    return code_block, result, comment, go_on
+
+
+def put_together(result, formatted_block, comment, execution_count):
+    return latex_put_together(result, formatted_block, comment, execution_count)
+def latex_put_together(result, formatted_block, comment, execution_count):
+    return result + '\n' + formatted_block
 
 
 def latex_figure(m):
@@ -1441,7 +1291,6 @@ def latex_movie(m):
 
     def link_to_local_html_movie_player():
         """Simple solution where an HTML file is made for playing the movie."""
-        from .common import default_movie
         text = default_movie(m)
 
         # URL to HTML viewer file must have absolute path in \href
@@ -2796,7 +2645,6 @@ def latex_quiz(quiz):
                 text += '$\bigcirc$ '
 
         text += '\n' + choice[1] + '\n\n'
-    from .common import envir_delimiter_lines
     if not option('without_answers'):
         begin, end = envir_delimiter_lines['ans']
         correct = [i for i, choice in enumerate(quiz['choices'])
@@ -2890,7 +2738,6 @@ def define(FILENAME_EXTENSION,
            OUTRO,
            filestr):
     # all arguments are dicts and accept in-place modifications (extensions)
-    from .common import INLINE_TAGS
     m = re.search(INLINE_TAGS['inlinecomment'], filestr, flags=re.DOTALL)
     has_inline_comments = True if m else False
 
@@ -3130,8 +2977,6 @@ def define(FILENAME_EXTENSION,
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
 """
-
-    from .misc import copy_latex_packages
 
     side_tp = 'twoside' if option('device=') == 'paper' else 'oneside'
     draft = 'draft' if option('draft') else 'final'
@@ -3799,7 +3644,6 @@ justified,
 %\doublespacing
 """
 
-    from .common import has_copyright
     copyright_, symbol = has_copyright(filestr)
     symbol = r'\copyright\ ' if symbol else ''
     fancy_header = option('latex_fancy_header')

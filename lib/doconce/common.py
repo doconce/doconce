@@ -14,6 +14,7 @@ import requests
 import urllib.request, urllib.parse, urllib.error #TODO: substitute urllib with requests library
 from .misc import option, _abort, errwarn
 from doconce import globals
+from pygments.lexers import get_all_lexers, get_lexer_by_name
 
 #format = None   # latex, pdflatex, html, plain, etc
 
@@ -810,7 +811,6 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format,
      smaller and smaller parts of each file)""")
         _abort()
 
-    from .misc import option
     max_linelength = option('max_bc_linelength=', None)
     if max_linelength is not None:
         max_linelength = int(max_linelength)
@@ -1275,7 +1275,6 @@ def bibliography(pubdata, citations, format='doconce'):
     return text
 
 def get_legal_pygments_lexers():
-    from pygments.lexers import get_all_lexers
     lexers = []
     for classname, names, dummy, dymmy in list(get_all_lexers()):
         for name in names:
@@ -1283,7 +1282,6 @@ def get_legal_pygments_lexers():
     return lexers
 
 def has_custom_pygments_lexer(name):
-    from pygments.lexers import get_lexer_by_name
     if name == 'ipy':
         try:
             get_lexer_by_name(name)

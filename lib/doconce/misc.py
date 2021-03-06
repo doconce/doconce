@@ -13,6 +13,16 @@ from past.utils import old_div
 import os, sys, shutil, re, glob, time, subprocess, codecs
 from doconce import globals
 from functools import reduce
+# ---- Import a pygments syntax highlighter for DocOnce ----
+from pygments.lexers import get_lexer_by_name
+from pygments.lexer import RegexLexer, \
+     bygroups, include, using, this, do_insertions
+from pygments.token import Punctuation, Text, Comment, Keyword, \
+     Name, String, Generic, Operator, Number, Whitespace, Literal
+from pygments.formatters import HtmlFormatter
+from pygments import highlight
+from pygments.styles import get_all_styles
+
 
 _part_filename = '._%s%03d'
 _part_filename_wildcard = '._*[0-9][0-9][0-9]'
@@ -1436,7 +1446,6 @@ def ptex2tex():
                     # (third-party repos, does not come with pygments, but
                     # warnings have been issued by doconce format, with
                     # URLs to where the code can be obtained)
-                    from pygments.lexers import get_lexer_by_name
                     try:
                         get_lexer_by_name('ipy')
                     except:
@@ -8257,20 +8266,6 @@ the file) and then try again.
     f.close()
     print('output in', filename)
 
-# ---- Attempt to make a pygments syntax highlighter for DocOnce ----
-try:
-    import pygments as pygm
-    from pygments.lexer import RegexLexer, \
-         bygroups, include, using, this, do_insertions
-    from pygments.token import Punctuation, Text, Comment, Keyword, \
-         Name, String, Generic, Operator, Number, Whitespace, Literal
-    from pygments.formatters import HtmlFormatter
-    from pygments import highlight
-    from pygments.styles import get_all_styles
-except ImportError:
-    pygm = None
-    print('pygments is not installed')
-    _abort()
 
 class DocOnceLexer(RegexLexer):
     """
