@@ -1484,6 +1484,8 @@ def exercises(filestr, format, code_blocks, tex_blocks):
     # __Hint 1.__ some paragraph...,
     # __Hint 2.__ ...
     """
+    from .common import _CODE_BLOCK, _MATH_BLOCK
+
     all_exer = []   # collection of all exercises
     exer = {}       # data for one exercise, to be appended to all_exer
     inside_exer = False
@@ -1833,6 +1835,8 @@ def exercises(filestr, format, code_blocks, tex_blocks):
 
     # Append solutions and answer to filestr (in the end of the doconce string)
     if option('solutions_at_end') or option('answers_at_end') or has_sol_docend or has_ans_docend:
+        # NB: variable name collides with chapter_pattern above
+        from .common import chapter_pattern
         has_chapters = False
         if re.search(chapter_pattern, filestr, flags=re.MULTILINE):
             has_chapters = True
@@ -1884,7 +1888,7 @@ def exercises(filestr, format, code_blocks, tex_blocks):
                 return text
 
             # Why not use insert_code_and_tex here? Should be safer
-            pattern = r"(\d+) %s( +)([a-z]+)" % _CODE_BLOCK
+            pattern = r"(\d+) %s( +)([a-z]+)" % _CODE_BLOCK 
             code = re.findall(pattern, text, flags=re.MULTILINE)
             for n, space, tp in code:
                 block = code_blocks[int(n)]
@@ -5357,13 +5361,17 @@ def format_driver():
         print('*** debug output in ' + globals._log_filename)
     debugpr('\n\n******* output format: %s *******\n\n' % format)
 
-    dirname, basename, ext, globals.filename = find_file_with_extensions(globals.filename,
-                                                                         allowed_extensions=['.do.txt'])
+    dirname, basename, ext, filename = find_file_with_extensions(globals.filename, allowed_extensions=['.do.txt'])
+    if not filename:
+        errwarn('*** doconce file not found')
+        _abort()
+    if dirname:
+        os.chdir(dirname)
+        errwarn('*** doconce format now works in directory %s' % dirname)
+    globals.filename = filename
     globals.dofile_basename = basename
 
     _rmdolog()     # always start with clean log file with errors
-
-    #errwarn('\n----- doconce format %s %s' % (format, globals.filename))
     preprocessor_options = [arg for arg in sys.argv[1:]
                             if not arg.startswith('--')]
     filename_preprocessed = preprocess(globals.filename, format, preprocessor_options)

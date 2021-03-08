@@ -67,9 +67,14 @@ def jupyterbook():
     show_titles_opt = option('show_titles', default=False, option_list=_legal_cmdline_opts_jupyterbook)
 
     # Check if the file exists, then read it in
-    globals.filename = sys.argv[1]
-    dirname, basename, ext, globals.filename = find_file_with_extensions(globals.filename,
-                                                                         allowed_extensions=['.do.txt'])
+    dirname, basename, ext, filename = find_file_with_extensions(sys.argv[1], allowed_extensions=['.do.txt'])
+    if not filename:
+        errwarn('*** error: file %s does not exist' % globals.filename)
+        _abort()
+    if dirname:
+        os.chdir(dirname)
+        errwarn('*** doconce format now works in directory %s' % dirname)
+    globals.filename = filename
     globals.dofile_basename = basename
 
     # NOTE: The following is a reworking of code from doconce.py > format_driver
