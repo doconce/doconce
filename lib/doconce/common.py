@@ -556,10 +556,14 @@ def begin_end_consistency_checks(filestr, envirs):
 
 
 def remove_code_and_tex(filestr, format):
-    """
-    Remove verbatim and latex (math) code blocks from the file and
+    """Remove verbatim and latex (math) code blocks from the file and
     store separately in lists (code_blocks and tex_blocks).
     The function insert_code_and_tex will insert these blocks again.
+
+    :param str filestr: text string
+    :param str format: output format
+    :return: filestr, code_blocks, code_block_types, tex_blocks
+    :rtype: str, list(str), list(str), list(str)
     """
     # Method:
     # store code and tex blocks in lists and substitute these blocks
@@ -769,8 +773,20 @@ def add_labels_to_all_numbered_equations(tex_blocks):
     return tex_blocks
 
 
-def insert_code_and_tex(filestr, code_blocks, tex_blocks, format,
-                        complete_doc=True):
+def insert_code_and_tex(filestr, code_blocks, tex_blocks, format, complete_doc=True, remove_hid=True):
+    """ Insert code in file in
+    Insert in the DocOnce file verbatim and latex (math) code blocks
+    extracted by the `remove_code_and_tex` function and stored separately in lists.
+
+    :param str filestr: text string
+    :param list(str) code_blocks: list of code blocks
+    :param list(str) tex_blocks: list of blocks
+    :param str format: output format
+    :param bool complete_doc: default True
+    :param bool remove_hid: remove hidden code blocks (e.g. !bc pyhid), default False
+    :return: filestr with code in place
+    :rtype: str
+    """
     # Consistency check (only for complete documents):
     # find no of distinct code and math blocks
     # (can be duplicates when solutions are copied at the end)
@@ -847,9 +863,7 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format,
 
     filestr = safe_join(lines, '\n')
 
-    # All formats except sphinx and ipynb must remove !bc *hid blocks
-    # (maybe html will get the possibility to run hidden blocks)
-    if format not in ('sphinx', 'ipynb'):
+    if remove_hid:
         filestr = remove_hidden_code_blocks(filestr, format)
 
     return filestr

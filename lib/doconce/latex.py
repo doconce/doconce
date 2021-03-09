@@ -532,7 +532,7 @@ def latex_code(filestr, code_blocks, code_block_types,
                 errwarn('Warning: found "!bc %s", but %s is not a standard predefined '
                         'code environment' % (envir, envir))
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format, remove_hid=True)
     if code_envir_transform is not None:
         debugpr('file after inserting code/tex blocks, but before translating environments', filestr)
 
@@ -1020,13 +1020,8 @@ def latex_code(filestr, code_blocks, code_block_types,
                 errwarn('\n'.join(lines[i + 1:i + 8]))
                 _abort()
 
-            #begin, end = jupyter_execution.formatted_code_envir(current_code_envir, code_style, format)
-            #lines[i] = begin #TODO place later? place inside some function? yes, in process_code_block
-            #lines[i] = end #TODO place later? place inside some function? yes, in process_code_block
             # Check if there is any label{} or caption{}, then execute the code
-            current_code, result, comment, go_on = pre_execute(current_code, current_code_envir,
-                                                               code_style, format,
-                                                               pygm=None, pygm_style=None)
+            current_code, result, comment, go_on = pre_execute(current_code, current_code_envir, code_style, format)
             if not go_on:
                 continue
             label, caption = jupyter_execution.get_label_and_caption(lines, i)
@@ -1073,11 +1068,11 @@ def latex_pre_execute(code_block, code_block_type, code_style, format, pygm=None
     :return:
     """
     go_on = True
-    result = ''
+    formatted_code = ''
     comment = ''
     begin, end = jupyter_execution.formatted_code_envir(code_block_type, code_style, format)
-    result = begin + '\n' + code_block + '\n' + end
-    return code_block, result, comment, go_on
+    formatted_code = begin + '\n' + code_block + '\n' + end
+    return code_block, formatted_code, comment, go_on
 
 
 def put_together(result, formatted_block, comment, execution_count):

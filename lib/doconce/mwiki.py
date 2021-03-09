@@ -94,7 +94,7 @@ def mwiki_code(filestr, code_blocks, code_block_types,
             if label in filestr:
                 errwarn('*** warning: reference to label "%s" in an equation does not work in MediaWiki' % label)
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format, remove_hid=True)
 
     # Supported programming languages:
     # https://www.mediawiki.org/wiki/Extension:SyntaxHighlight_GeSHi#Supported_languages

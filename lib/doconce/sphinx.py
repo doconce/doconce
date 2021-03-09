@@ -339,7 +339,7 @@ def sphinx_code(filestr, code_blocks, code_block_types,
             errwarn('    label{%s}' % label)
         print()
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'sphinx')
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'sphinx', complete_doc=True, remove_hid=False)
 
     # Remove all !bc ipy and !bc pyshell since interactive sessions
     # are automatically handled by sphinx without indentation
@@ -879,7 +879,7 @@ def sphinx_code_orig(filestr, format):
         #    errwarn('*** warning: the "alignat" environment will give errors in Sphinx:\n' + tex_blocks[i] + '\n')
 
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst')
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst', remove_hid=True)
 
     for key in defs:
         language = defs[key]
@@ -966,7 +966,7 @@ def sphinx_code_newmathlabels(filestr, format):
     for label in math_labels:
         filestr = filestr.replace(':ref:`%s`' % label, ':eq:`%s`' % label)
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst')
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst', remove_hid=True)
 
     for key in defs:
         language = defs[key]

@@ -96,7 +96,7 @@ def matlabnb_code(filestr, code_blocks, code_block_types,
             lines[i] = '% ' + lines[i]
 
     filestr = '\n'.join(lines)
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'matlabnb')
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'matlabnb', remove_hid=True)
     filestr = re.sub(r'\$\$!et', '$$', filestr, flags=re.MULTILINE)
     filestr = re.sub(r'^!bt\s+\$\$', '% $$', filestr, flags=re.MULTILINE)
     filestr = re.sub(r'^!bc.+', '', filestr, flags=re.MULTILINE)

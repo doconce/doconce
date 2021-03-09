@@ -123,7 +123,7 @@ def rst_code(filestr, code_blocks, code_block_types,
         for i in range(len(tex_blocks)):
             tex_blocks[i] = tex_blocks[i].replace(' label{', ' \\label{')
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst')
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst', remove_hid=True)
 
     # substitute !bc and !ec appropriately:
     # the line before the !bc block must end in [a-zA-z0-9)"...]

@@ -1,5 +1,16 @@
 ========= Automatic execution of code blocks =========
 
+!bc pyhid
+# This cell appears in ipynb but not in other formats
+import sys
+!ec
+
+
+This is a normal latex block using the `pycod` environment
+!bc pycod
+print('pycod')
+!ec
+
 Compile this document with
 
 !bc sh-t
@@ -8,6 +19,7 @@ doconce format ipynb execute.do.txt --execute
 
 Hidden execution cells (`pyhid`, `pycod-e`) can be used to perform operations (e.g. imports, variable initializations) without showing any cell.  
 The `pyhid` environment executes and hides the cell in formats other than .ipynb:
+
 !bc pyhid
 # This cell appears in ipynb but not in other formats
 import sys

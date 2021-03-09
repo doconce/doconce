@@ -244,8 +244,6 @@ def process_code_block(current_code, current_code_envir, kernel_client, format, 
 
         if not current_code_envir.endswith('hid'):
             execution_count += 1
-        if not current_code_envir.endswith('hid'):
-            execution_count += 1
 
     return text_out, execution_count
 

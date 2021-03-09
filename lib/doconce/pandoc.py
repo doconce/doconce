@@ -160,7 +160,7 @@ def pandoc_code(filestr, code_blocks, code_block_types,
         for i in range(len(code_blocks)):
             code_blocks[i] = indent_lines(code_blocks[i], format)
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format, remove_hid=True)
 
     github_md = option('github_md')
 

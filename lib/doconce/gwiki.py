@@ -17,7 +17,7 @@ from .misc import _abort, errwarn
 
 def gwiki_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format, remove_hid=True)
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
     filestr = c.sub(r'{{{\n', filestr)
     filestr = re.sub(r'!ec\n', r'}}}\n', filestr)

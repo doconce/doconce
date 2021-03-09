@@ -2076,7 +2076,7 @@ def extract_individual_standalone_exercises(
         sa = sa.strip() + '\n'
 
         sa = insert_code_and_tex(sa, code_blocks, tex_blocks, format,
-                                 complete_doc=False)
+                                 complete_doc=False, remove_hid=True)
 
         # Remove solutions after inserting all code/tex blocks
         sa = process_envir(sa, 'sol', 'plain', action='remove')
