@@ -1021,7 +1021,7 @@ def latex_code(filestr, code_blocks, code_block_types,
                 _abort()
 
             # Check if there is any label{} or caption{}, then execute the code
-            current_code, result, comment, go_on = pre_execute(current_code, current_code_envir, code_style, format)
+            current_code, result, comment, go_on = latex_pre_execute(current_code, current_code_envir, code_style, format)
             if not go_on:
                 continue
             label, caption = jupyter_execution.get_label_and_caption(lines, i)
@@ -1039,13 +1039,6 @@ def latex_code(filestr, code_blocks, code_block_types,
             current_code = ""
         else:
             if current_code_envir is not None:
-                '''if current_code_envir.endswith("out") and option("ignore_output"):
-                    lines[i] = ""
-                    continue
-                current_code += lines[i] + "\n"
-                if current_code_envir.endswith("-e"):
-                    lines[i] = ""
-                '''
                 # Code will be formatted later
                 current_code += lines[i] + "\n"
                 lines[i] = ""
@@ -1056,23 +1049,23 @@ def latex_code(filestr, code_blocks, code_block_types,
     filestr = safe_join(lines, '\n')
     return filestr
 
-def pre_execute(code_block, code_block_type, code_style, format, pygm=None, pygm_style=None):
-    return latex_pre_execute(code_block, code_block_type, code_style, format, pygm=None, pygm_style=None)
-def latex_pre_execute(code_block, code_block_type, code_style, format, pygm=None, pygm_style=None): #use ** or so?
-    """TODO
 
-    :param code_block:
-    :param code_block_type:
-    :param pygm:
-    :param pygm_style:
-    :return:
+def latex_pre_execute(code_block, code_block_type, code_style):
+    """Process the block to output the formatted code. Also
+        output booleans to trigger execution and rendering of the block
+
+    :param str code_block: code
+    :param str code_block_type: block type e.g. 'pycod-e'
+    :param code_style: any style from e.g. pygments
+    :return: formatted_code, comment, execute, show
+    :rtype: str, str, bool, bool
     """
     go_on = True
-    formatted_code = ''
+    show = True
     comment = ''
     begin, end = jupyter_execution.formatted_code_envir(code_block_type, code_style, format)
     formatted_code = begin + '\n' + code_block + '\n' + end
-    return code_block, formatted_code, comment, go_on
+    return formatted_code, comment, go_on, show
 
 
 def put_together(result, formatted_block, comment, execution_count):

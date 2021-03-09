@@ -1065,34 +1065,50 @@ def html_verbatim(m):
     code = code.replace('"', '&quot;')
     return r'%(begin)s<code>%(code)s</code>%(end)s' % vars()
 
-def pre_execute(code_block, code_block_type, code_style, format): #use ** or so?
-    return html_pre_execute(code_block, code_block_type, code_style, format)
 
-def html_pre_execute(code_block, code_block_type, code_style, format): #use ** or so?
-    go_on = True
+def html_pre_execute(code_block, code_block_type, code_style):
+    """Process the block to output the formatted code. Also
+    output booleans to trigger execution and rendering of the block
+
+    :param str code_block: code
+    :param str code_block_type: block type e.g. 'pycod-e'
+    :param code_style: any style from e.g. pygments
+    :return: formatted_code, comment, execute, show
+    :rtype: str, str, bool, bool
+    """
+    # TODO: do i need to return the code_block? test on pyoptpro and pyscpro
     formatted_code = ''
     comment = ''
-    # envir2pygments, get_legal_pygments_lexers(),   should be avail: get_lexer_by_name, highlighthighlight
+    execute = True
+    show = True
     if code_block_type.startswith('pyoptpro'):
-        code_block = online_python_tutor(code_block, return_tp='iframe')
-        go_on = False
+        formatted_code = online_python_tutor(code_block, return_tp='iframe')
+        execute = False
     elif code_block_type.startswith('pyscpro'):
         # Wrap Sage Cell code around the code
         # https://github.com/sagemath/sagecell/blob/master/doc/embedding.rst
-        code_block = ('\n<div class="chtml_pre_exompute"><script type="text/x-sage">\n'
+        formatted_code = ('\n<div class="chtml_pre_exompute"><script type="text/x-sage">\n'
                       '%s\n'
                       '</script></div>\n') % code_block
-        go_on = False
+        execute = False
     # elif pygm is None: # TODO: test with pygments_html_style=off, meaning pygm=None andit should use <pre>
     elif pygm is not None: #pygm
-        # Get the code block type_: cod/pro, cod/pro-h, -h, other
+        # Get any postfix to the block type e.g. '-h', '-e'
+        postfix_ = ''
+        if code_block_type[-2:] in ['-h']:      # Show/Hide button
+            postfix_ = code_block_type[-2:]
+            code_block_type = code_block_type[:-2]
+        elif code_block_type[-3:] in ['hid']:
+            code_block_type = code_block_type[:-3]
+            show = False
+        elif code_block_type[-2:] in ['-e']:    # Hide also in ipynb
+            postfix_ = code_block_type[-2:]
+            code_block_type = code_block_type[:-2]
+            show = False
+        # Get the code block type_ e.g. 'py'
         type_ = code_block_type
-        if code_block_type[-3:] in ['cod', 'pro', 'hid']:
+        if code_block_type[-3:] in ['cod', 'pro']:
             type_ = code_block_type[:-3]
-        elif code_block_type[-5:] in ['cod-h', 'pro-h']:
-            type_ = code_block_type[:-5]
-        elif code_block_type[-2:] in ['-h']:
-            type_ = code_block_type[:-2]
         # Get the code block's language
         language = 'text'
         if type_ in envir2pygments:
@@ -1110,18 +1126,20 @@ def html_pre_execute(code_block, code_block_type, code_style, format): #use ** o
         # The following was after execution
         if code_block_type == 'ccq':
             formatted_code = '<blockquote>\n%s</blockquote>' % formatted_code
-        elif code_block_type.endswith('-h'):
+        elif postfix_ == '-h':
+            i = str(uuid.uuid4())[:4]
             # Embed some jquery JavaScript for a show/hide button
             formatted_code = ('\n'
                       '<script type="text/javascript">\n'
-                      'function show_hide_code%d(){\n'
-                      '  $("#code%d").toggle();\n'
+                      'function show_hide_code%s(){\n'
+                      '  $("#code%s").toggle();\n'
                       '}\n'
                       '</script>\n'
-                      '<button type="button" onclick="show_hide_code%d()">Show/hide code</button>\n'
-                      '<div id="code%d" style="display:none">\n'
+                      '<button type="button" onclick="show_hide_code%s()">Show/Hide code</button>\n'
+                      '<div id="code%s" style="display:none">\n'
                       '%s\n'
                       '</div>\n') % (i, i, i, i, formatted_code)
+            execute = False
         #else:
             #begin, end = jupyter_execution.formatted_code_envir(code_block_type, code_style, format)
             #formatted_code = begin + '\n' + code_block + '\n' + end
@@ -1136,12 +1154,12 @@ def html_pre_execute(code_block, code_block_type, code_style, format): #use ** o
         # code_blocks[i] = re.sub(r'(<)([^>]*?)(>)',
         #                        '&lt;\g<2>&gt;', code_blocks[i])
         # Substitute & first, otherwise & in &quot; becomes &amp;quot;
-        code_block = code_block.replace('&', '&amp;')
-        code_block = code_block.replace('<', '&lt;')
-        code_block = code_block.replace('>', '&gt;')
-        code_block = code_block.replace('"', '&quot;')
-        go_on = False
-    return code_block, formatted_code, comment, go_on
+        formatted_code = code_block.replace('&', '&amp;')
+        formatted_code = code_block.replace('<', '&lt;')
+        formatted_code = code_block.replace('>', '&gt;')
+        formatted_code = code_block.replace('"', '&quot;')
+        execute = False
+    return formatted_code, comment, execute, show
 
 
 def put_together(result, formatted_block, comment, execution_count):
@@ -1149,7 +1167,7 @@ def put_together(result, formatted_block, comment, execution_count):
 def html_put_together(result, formatted_block, comment, execution_count):
     # Write the rendering of the code and code output, and
     # indent the whole cell (input and output) as in jupyter notebook
-    result = html_cell % ('In [%d]:' % execution_count,
+    result = html_cell % ('In [{}]:'.format(execution_count),
                           result,
                           formatted_block)
     return comment + result
@@ -1174,67 +1192,69 @@ def html_code(filestr, code_blocks, code_block_types,
             "set_matplotlib_formats('pdf', 'png')"
         )
 
-    execution_count = -1
+    execution_count = 0
     code_style = pygm_style
 
     filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format, remove_hid=False)
-        # ... more code in latex
-        #l.966
-        #latex_code_style = interpret_latex_code_style()
+    # ... more code in latex
+    #l.966
+    #latex_code_style = interpret_latex_code_style()
 
-        lines = filestr.splitlines()
-        current_code_envir = None
-        current_code = ""
+    lines = filestr.splitlines()
+    current_code_envir = None
+    current_code = ""
 
-        for i in range(len(lines)):
-            if lines[i].startswith('!bc'):
-                words = lines[i].split()
-                if len(words) == 1:
-                    current_code_envir = 'ccq'
-                else:
-                    current_code_envir = words[1]
-                if current_code_envir is None:
-                    # Should not happen since a !bc is encountered first and
-                    # current_code_envir is then set above
-                    # There should have been checks for this in doconce.py
-                    errwarn('*** error: mismatch between !bc and !ec')
-                    errwarn('\n'.join(lines[i - 3:i + 4]))
-                    _abort()
-                lines[i] = ""
-            elif lines[i].startswith('!ec'):
-                if current_code_envir is None:
-                    # No envir set by previous !bc?
-                    errwarn('*** error: mismatch between !bc and !ec')
-                    errwarn('    found !ec without a preceding !bc at line')
-                    errwarn('\n'.join(lines[i - 8:i - 1]))
-                    errwarn('error line >>>', lines[i])
-                    errwarn('\n'.join(lines[i + 1:i + 8]))
-                    _abort()
-
-                # Check if there is any label{} or caption{}, then execute the code
-            current_code, formatted_code, comment, go_on = pre_execute(current_code, current_code_envir,
-                                                                       code_style, format)
-                if not go_on:
-                    continue
-                label, caption = jupyter_execution.get_label_and_caption(lines, i)
-            formatted_output, execution_count = jupyter_execution.process_code_block(
-                    current_code=current_code,
-                    current_code_envir=current_code_envir,
-                    kernel_client=kernel_client,
-                    format=format,
-                    code_style=code_style,
-                    caption=caption,
-                    label=label)
-            lines[i] = put_together(formatted_code, formatted_output, comment, execution_count)
-
-                current_code_envir = None
-                current_code = ""
+    for i in range(len(lines)):
+        if lines[i].startswith('!bc'):
+            words = lines[i].split()
+            if len(words) == 1:
+                current_code_envir = 'ccq'
             else:
-                if current_code_envir is not None:
-                    # Code will be formatted later
-                    current_code += lines[i] + "\n"
-                    lines[i] = ""
-        filestr = safe_join(lines, '\n')
+                current_code_envir = words[1]
+            if current_code_envir is None:
+                # Should not happen since a !bc is encountered first and
+                # current_code_envir is then set above
+                # There should have been checks for this in doconce.py
+                errwarn('*** error: mismatch between !bc and !ec')
+                errwarn('\n'.join(lines[i - 3:i + 4]))
+                _abort()
+            lines[i] = ""
+        elif lines[i].startswith('!ec'):
+            if current_code_envir is None:
+                # No envir set by previous !bc?
+                errwarn('*** error: mismatch between !bc and !ec')
+                errwarn('    found !ec without a preceding !bc at line')
+                errwarn('\n'.join(lines[i - 8:i - 1]))
+                errwarn('error line >>>', lines[i])
+                errwarn('\n'.join(lines[i + 1:i + 8]))
+                _abort()
+
+            # Check if there is any label{} or caption{}, then execute the code
+            formatted_code, comment, execute, show = html_pre_execute(current_code, current_code_envir,
+                                                                       code_style)
+            label, caption = jupyter_execution.get_label_and_caption(lines, i)
+            formatted_output = ''
+            if execute:
+                formatted_output, execution_count_ = jupyter_execution.process_code_block(
+                current_code=current_code,
+                current_code_envir=current_code_envir,
+                kernel_client=kernel_client,
+                format=format,
+                code_style=code_style,
+                caption=caption,
+                label=label)
+            #TODO: show/not show
+            if show:
+                execution_count += 1
+            lines[i] = put_together(formatted_code, formatted_output, comment, execution_count)
+            current_code_envir = None
+            current_code = ""
+        else:
+            if current_code_envir is not None:
+                # Code will be formatted later
+                current_code += lines[i] + "\n"
+                lines[i] = ""
+    filestr = safe_join(lines, '\n')
 
 
     if 0:

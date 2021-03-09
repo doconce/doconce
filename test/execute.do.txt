@@ -1,20 +1,19 @@
 ========= Automatic execution of code blocks =========
 
-!bc pyhid
-# This cell appears in ipynb but not in other formats
-import sys
-!ec
 
-
-This is a normal latex block using the `pycod` environment
-!bc pycod
-print('pycod')
+!bc pyscpro
+print('some sage interactive cell')
 !ec
 
 Compile this document with
 
 !bc sh-t
 doconce format ipynb execute.do.txt --execute
+!ec
+
+This is a normal python block using the `pycod` environment
+!bc pycod
+print('pycod')
 !ec
 
 Hidden execution cells (`pyhid`, `pycod-e`) can be used to perform operations (e.g. imports, variable initializations) without showing any cell.  
@@ -57,6 +56,13 @@ The `*out`  (e.g. `pycod-out`) environment can be used to write a cell output:
 !bc pyout
 1/0: You cannot divide by zero
 !ec
+
+
+The `-h` postfix can be used in the html format to show a Show/Hide button that toggles the code visibility. 
+!bc pycod-h
+print('show/hide')
+!ec
+
 
 ======= Plotting =======
 
