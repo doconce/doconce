@@ -1,6 +1,6 @@
 ========= Automatic execution of code blocks =========
 
-
+Sage interactive
 !bc pyscpro
 print('some sage interactive cell')
 !ec

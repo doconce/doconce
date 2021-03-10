@@ -1076,7 +1076,6 @@ def html_pre_execute(code_block, code_block_type, code_style):
     :return: formatted_code, comment, execute, show
     :rtype: str, str, bool, bool
     """
-    # TODO: do i need to return the code_block? test on pyoptpro and pyscpro
     formatted_code = ''
     comment = ''
     execute = True
@@ -1087,12 +1086,14 @@ def html_pre_execute(code_block, code_block_type, code_style):
     elif code_block_type.startswith('pyscpro'):
         # Wrap Sage Cell code around the code
         # https://github.com/sagemath/sagecell/blob/master/doc/embedding.rst
-        formatted_code = ('\n<div class="chtml_pre_exompute"><script type="text/x-sage">\n'
-                      '%s\n'
-                      '</script></div>\n') % code_block
+        formatted_code = ('\n<div class="sage_compute">\n'
+                          '<script type="text/x-sage">\n'
+                          '%s\n'
+                          '</script>\n'
+                          '</div>\n') % code_block
         execute = False
     # elif pygm is None: # TODO: test with pygments_html_style=off, meaning pygm=None andit should use <pre>
-    elif pygm is not None: #pygm
+    elif pygm is not None:
         # Get any postfix to the block type e.g. '-h', '-e'
         postfix_ = ''
         if code_block_type[-2:] in ['-h']:      # Show/Hide button
@@ -1149,7 +1150,7 @@ def html_pre_execute(code_block, code_block_type, code_style):
         if code_block_type != '':
             comment += '(!bc %s) ' % code_block_type
         comment += 'typeset with pygments style "%s" -->\n' % code_style
-    else:
+    else: #pygments_html_style='off' should go here
         # Plain <pre>: This does not catch things like '<x ...<y>'
         # code_blocks[i] = re.sub(r'(<)([^>]*?)(>)',
         #                        '&lt;\g<2>&gt;', code_blocks[i])
@@ -3503,22 +3504,19 @@ body { %s; }
     if '!bc pyscpro' in filestr or 'envir=pyscpro' in filestr:
         # Embed Sage Cell server
         # See https://github.com/sagemath/sagecell/blob/master/doc/embedding.rst
-        scripts += """
-<script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
-<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
-<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
-<script>
-$(function () {
-    // Make the div with id 'mycell' a Sage cell
-    sagecell.makeSagecell({inputLocation:  '#mycell',
-                           template:       sagecell.templates.minimal,
-                           evalButtonText: 'Activate'});
-    // Make *any* div with class 'compute' a Sage cell
-    sagecell.makeSagecell({inputLocation: 'div.compute',
-                           evalButtonText: 'Evaluate'});
-});
-</script>
-"""
+        scripts += ('\n'
+                    '<script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>\n'
+                    '<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>\n'
+                    '<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">\n'
+                    '<script>\n'
+                    '$(function () {\n'
+                    '   // Make *any* div with class "sage_compute" a Sage cell\n'
+                    '   sagecell.makeSagecell({inputLocation: "div.sage_compute",\n'
+                    '                          evalButtonText: "Evaluate"});\n'
+                    '   document.getElementsByClassName("sage_compute")[0].closest(".input").style.paddingBottom=95;\n'
+                    '});\n'
+                    '</script>\n')
+
     if '!bu-' in filestr:
         scripts += """
 <!-- USER-DEFINED ENVIRONMENTS -->
@@ -3682,7 +3680,7 @@ def get_pygments_style(code_block_types):
         _abort()
     # Can turn off pygments on the cmd line
     global pygm
-    if pygm_style  and pygm is None: #TODO: ALE I added this
+    if pygm_style  and pygm is None:
         errwarn('*** error: pygments could not be found though '
                 '--pygments_html_style="%s" is used' % pygm_style)
         _abort()
