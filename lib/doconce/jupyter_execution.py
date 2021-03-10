@@ -12,7 +12,7 @@ try:
 except ImportError:
     from Queue import Empty # Py 2
 import re, base64, uuid
-
+from .doconce import errwarn, _abort
 
 class JupyterKernelClient:
     def __init__(self):
@@ -220,7 +220,6 @@ def process_code_block(current_code, current_code_envir, kernel_client, format, 
                         g.write(base64.decodebytes(bytes(img_data, encoding="utf-8")))
                         g.close()
                         # Capture caption and label
-                        # TODO: Currently implemented for latex. Implement for html
                         caption_code = ""
                         label_code = ""
                         if caption is not None:

@@ -143,6 +143,23 @@ html_cell = ('<div class="cell border-box-sizing code_cell rendered">\n'
             '  </div>\n'
             '</div>\n')
 
+html_toggle_btn = ('\n'
+                      '<script type="text/javascript">\n'
+                      'function show_hide_code%(hash)s(){\n'
+                      '  $("#code%(hash)s").toggle();\n'
+                      '}\n'
+                      '</script>\n'
+                      '<button type="button" onclick="show_hide_code%(hash)s()">Show/Hide code</button>\n'
+                      '<div id="code%(hash)s" style="display:none">\n'
+                      '%(formatted_code)s\n'
+                      '</div>\n')
+
+html_sagecell = ('\n<div class="sage_compute">\n'
+                 '<script type="text/x-sage">\n'
+                 '%s\n'
+                 '</script>\n'
+                 '</div>\n')
+
 
 # Style sheets
 
@@ -1066,46 +1083,48 @@ def html_verbatim(m):
     return r'%(begin)s<code>%(code)s</code>%(end)s' % vars()
 
 
-def html_pre_execute(code_block, code_block_type, code_style):
+def format_code_html(code_block, code_block_type, code_style):
     """Process the block to output the formatted code. Also
     output booleans to trigger execution and rendering of the block
 
+    The output show can be ['html','pre', 'hide']
     :param str code_block: code
     :param str code_block_type: block type e.g. 'pycod-e'
     :param code_style: any style from e.g. pygments
     :return: formatted_code, comment, execute, show
-    :rtype: str, str, bool, bool
+    :rtype: str, str, bool, str
     """
     formatted_code = ''
     comment = ''
     execute = True
-    show = True
+    show = 'html'
+        # Get any postfix to the block type e.g. '-h', '-e'
+        postfix_ = ''
+        if code_block_type[-2:] in ['-h']:      # Show/Hide button
+            postfix_ = code_block_type[-2:]
+            code_block_type = code_block_type[:-2]
+    elif code_block_type[-3:] in ['hid']:   # Hide the cell
+            code_block_type = code_block_type[:-3]
+        show = 'hide'
+        elif code_block_type[-2:] in ['-e']:    # Hide also in ipynb
+            postfix_ = code_block_type[-2:]
+            code_block_type = code_block_type[:-2]
+        show = 'hide'
+    if show == 'hide':
+        execute = True
+        return formatted_code, comment, execute, show
+
+    # Process code block types
     if code_block_type.startswith('pyoptpro'):
         formatted_code = online_python_tutor(code_block, return_tp='iframe')
         execute = False
     elif code_block_type.startswith('pyscpro'):
         # Wrap Sage Cell code around the code
         # https://github.com/sagemath/sagecell/blob/master/doc/embedding.rst
-        formatted_code = ('\n<div class="sage_compute">\n'
-                          '<script type="text/x-sage">\n'
-                          '%s\n'
-                          '</script>\n'
-                          '</div>\n') % code_block
+        formatted_code = html_sagecell % code_block
         execute = False
-    # elif pygm is None: # TODO: test with pygments_html_style=off, meaning pygm=None andit should use <pre>
-    elif pygm is not None:
-        # Get any postfix to the block type e.g. '-h', '-e'
-        postfix_ = ''
-        if code_block_type[-2:] in ['-h']:      # Show/Hide button
-            postfix_ = code_block_type[-2:]
-            code_block_type = code_block_type[:-2]
-        elif code_block_type[-3:] in ['hid']:
-            code_block_type = code_block_type[:-3]
-            show = False
-        elif code_block_type[-2:] in ['-e']:    # Hide also in ipynb
-            postfix_ = code_block_type[-2:]
-            code_block_type = code_block_type[:-2]
-            show = False
+    elif code_style is not 'off':
+        # Syntax highlighting with pygments
         # Get the code block type_ e.g. 'py'
         type_ = code_block_type
         if code_block_type[-3:] in ['cod', 'pro']:
@@ -1124,54 +1143,58 @@ def html_pre_execute(code_block, code_block_type, code_style):
                                   style=code_style)
         formatted_code = highlight(code_block, lexer, formatter)
 
-        # The following was after execution
         if code_block_type == 'ccq':
             formatted_code = '<blockquote>\n%s</blockquote>' % formatted_code
         elif postfix_ == '-h':
-            i = str(uuid.uuid4())[:4]
             # Embed some jquery JavaScript for a show/hide button
-            formatted_code = ('\n'
-                      '<script type="text/javascript">\n'
-                      'function show_hide_code%s(){\n'
-                      '  $("#code%s").toggle();\n'
-                      '}\n'
-                      '</script>\n'
-                      '<button type="button" onclick="show_hide_code%s()">Show/Hide code</button>\n'
-                      '<div id="code%s" style="display:none">\n'
-                      '%s\n'
-                      '</div>\n') % (i, i, i, i, formatted_code)
+            hash = str(uuid.uuid4())[:4]
+            formatted_code = html_toggle_btn % vars()
             execute = False
-        #else:
-            #begin, end = jupyter_execution.formatted_code_envir(code_block_type, code_style, format)
-            #formatted_code = begin + '\n' + code_block + '\n' + end
-
         # Write a comment before the rendering with a description of the rendering
         comment = '\n<!-- code=%s ' % language
         if code_block_type != '':
             comment += '(!bc %s) ' % code_block_type
         comment += 'typeset with pygments style "%s" -->\n' % code_style
-    else: #pygments_html_style='off' should go here
-        # Plain <pre>: This does not catch things like '<x ...<y>'
-        # code_blocks[i] = re.sub(r'(<)([^>]*?)(>)',
-        #                        '&lt;\g<2>&gt;', code_blocks[i])
+    else:
         # Substitute & first, otherwise & in &quot; becomes &amp;quot;
         formatted_code = code_block.replace('&', '&amp;')
         formatted_code = code_block.replace('<', '&lt;')
         formatted_code = code_block.replace('>', '&gt;')
         formatted_code = code_block.replace('"', '&quot;')
         execute = False
+        show = 'pre'
     return formatted_code, comment, execute, show
 
 
-def put_together(result, formatted_block, comment, execution_count):
-    return html_put_together(result, formatted_block, comment, execution_count)
-def html_put_together(result, formatted_block, comment, execution_count):
+def format_cell(result, formatted_block, execution_count, show):
+    return format_cell_html(result, formatted_block, execution_count, show)
+
+
+def format_cell_html(result, formatted_block, execution_count, show):
+    """
+
+    :param result:
+    :param str formatted_block:
+    :param str execution_count: execution count in the rendered cell
+    :param str show: how to format the output e.g. 'html', 'pre', 'hide'
+    :return:
+    """
+    if not show:
+        pass
+    elif show == 'hide':
+        pass
+    elif show == 'pre':
+        formatted_output = '<pre>' + result + formatted_block + '</pre>'
+    elif show == 'html':
     # Write the rendering of the code and code output, and
     # indent the whole cell (input and output) as in jupyter notebook
-    result = html_cell % ('In [{}]:'.format(execution_count),
+        formatted_output = html_cell % ('In [{}]:'.format(execution_count),
                           result,
                           formatted_block)
-    return comment + result
+    else:
+        errwarn('*** error: show=%s not recognized' % str(show))
+        _abort()
+    return formatted_output
 
 
 def html_code(filestr, code_blocks, code_block_types,
@@ -1188,7 +1211,7 @@ def html_code(filestr, code_blocks, code_block_types,
         # We only use the PDF when available, but PNG should be added as fallback.
         outputs, count = jupyter_execution.run_cell(
             kernel_client,
-            "%matplotlib inline\n" +  # TODO consider removing this line, but it appears to be needed
+            "%matplotlib inline\n" +
             "from IPython.display import set_matplotlib_formats\n" +
             "set_matplotlib_formats('pdf', 'png')"
         )
@@ -1196,7 +1219,7 @@ def html_code(filestr, code_blocks, code_block_types,
     execution_count = 0
     code_style = pygm_style
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format, remove_hid=False)
+    filestr = insert_code_and_tex(filestr, code_blocks, [], format, remove_hid=False)
     # ... more code in latex
     #l.966
     #latex_code_style = interpret_latex_code_style()
@@ -1229,11 +1252,14 @@ def html_code(filestr, code_blocks, code_block_types,
                 errwarn('error line >>>', lines[i])
                 errwarn('\n'.join(lines[i + 1:i + 8]))
                 _abort()
-
-            # Check if there is any label{} or caption{}, then execute the code
-            formatted_code, comment, execute, show = html_pre_execute(current_code, current_code_envir,
+            # See if code has to be shown and executed, then format it
+            lines[i] = ''
+            formatted_code, comment, execute, show = format_code_html(current_code,
+                                                                 current_code_envir,
                                                                        code_style)
+            # Check if there is any label{} or caption{}
             label, caption = jupyter_execution.get_label_and_caption(lines, i)
+            # Execute and/or show the code and its output
             formatted_output = ''
             if execute:
                 formatted_output, execution_count_ = jupyter_execution.process_code_block(
@@ -1244,10 +1270,10 @@ def html_code(filestr, code_blocks, code_block_types,
                 code_style=code_style,
                 caption=caption,
                 label=label)
-            #TODO: show/not show
-            if show:
+            if show is not 'hide':
                 execution_count += 1
-            lines[i] = put_together(formatted_code, formatted_output, comment, execution_count)
+                formatted_code = format_cell(formatted_code, formatted_output, execution_count, show)
+                lines[i] = comment + formatted_code
             current_code_envir = None
             current_code = ""
         else:
@@ -1255,123 +1281,11 @@ def html_code(filestr, code_blocks, code_block_types,
                 # Code will be formatted later
                 current_code += lines[i] + "\n"
                 lines[i] = ""
-    filestr = safe_join(lines, '\n')
-
-
-    if 0:
-        #OLD loop on code_blocks
-        linenos = option('pygments_html_linenos')
-        for i in range(len(code_blocks)):
-            '''# START html_pre_execute
-            #envir2pygments, get_legal_pygments_lexers(),   should be avail: get_lexer_by_name, highlighthighlight
-            if code_block_types[i].startswith('pyoptpro'):
-                code_blocks[i] = online_python_tutor(code_blocks[i], return_tp='iframe')
-            elif code_block_types[i].startswith('pyscpro'):
-                # Wrap Sage Cell code around the code
-                # https://github.com/sagemath/sagecell/blob/master/doc/embedding.rst
-                code_blocks[i] = ('\n<div class="compute"><script type="text/x-sage">\n'
-                                  '%s\n'
-                                  '</script></div>\n') % code_blocks[i]
-            elif pygm is None:
-                # Plain <pre>: This does not catch things like '<x ...<y>'
-                #code_blocks[i] = re.sub(r'(<)([^>]*?)(>)',
-                #                        '&lt;\g<2>&gt;', code_blocks[i])
-                # Substitute & first, otherwise & in &quot; becomes &amp;quot;
-                code_blocks[i] = code_blocks[i].replace('&', '&amp;')
-                code_blocks[i] = code_blocks[i].replace('<', '&lt;')
-                code_blocks[i] = code_blocks[i].replace('>', '&gt;')
-                code_blocks[i] = code_blocks[i].replace('"', '&quot;')
-            else:
-                # Get the code block type_: cod/pro, cod/pro-h, -h, other
-                type_ = code_block_types[i]
-                if code_block_types[i][:-3] in ['cod', 'pro']:
-                    type_ = code_block_types[i][:-3]
-                elif code_block_types[i][:-5] in ['cod-h', 'pro-h']:
-                    type_ = code_block_types[i][:-5]
-                elif code_block_types[i].endswith('-h'):
-                    type_ = code_block_types[i][:-2]
-                # Get the code block's language
-                language = 'text'
-                if type_ in envir2pygments:
-                    language = envir2pygments[type_]
-                elif type_ in get_legal_pygments_lexers():
-                    language = type_
-                # Typeset code with pygments
-                lexer = get_lexer_by_name(language)
-                formatter = HtmlFormatter(linenos=linenos,
-                                          noclasses=True,
-                                          style=pygm_style)
-                formatted_code = highlight(code_blocks[i], lexer, formatter)
-                # END html_pre_execute'''
-
-            code_block, formatted_code, go_on = pre_execute(code_blocks[i], code_block_types, pygm_style, format)
-            if go_on:
-                #NB: formatted_block goes in result, which becomes code_blocks[i]
-                # Execute the code and retrieve its output      #OLD loop on codeblocks
-                formatted_output, execution_count = jupyter_execution.process_code_block(current_code=code_blocks[i],
-                                                current_code_envir=code_block_types[i],
-                                                kernel_client=kernel_client,
-                                                format='html',
-                                                code_style='',
-                                                caption=None,
-                                                label=None)
-                code_blocks[i] = html_put_together(formatted_code, formatted_output, comment, execution_count)
-                ''' #placed in process_code_block
-                if not code_block_types[i].endswith('hid'):
-                    execution_count += 1
-                '''
-                ''' #placed in html_pre_execute
-                if code_block_types[i] == 'ccq':
-                    result = '<blockquote>\n%s</blockquote>' % result
-                elif code_block_types[i].endswith('-h'):
-                    # Embed some jquery JavaScript for a show/hide button
-                    result = ('\n'
-                              '<script type="text/javascript">\n'
-                              'function show_hide_code%d(){\n'
-                              '  $("#code%d").toggle();\n'
-                              '}\n'
-                              '</script>\n'
-                              '<button type="button" onclick="show_hide_code%d()">Show/hide code</button>\n'
-                              '<div id="code%d" style="display:none">\n'
-                              '%s\n'
-                              '</div>\n') % (i, i, i, i, result)
-                #elif code_block_types[i].endswith("out"):
-                #    # TODO: note that because we are looping on the code lines,
-                #    # we don't know if any cell_output immediately follows a cell
-                #    code_blocks[i] = ''
-                #    result = highlight('', lexer, formatter)
-                '''
-                ''' #placed in process_code_block
-                if not code_block_types[i].endswith('hid'):
-                    execution_count += 1
-                '''
-
-                ''' #placed in html_pre_execute
-                # Write a comment before the rendering with a description of the rendering
-                comment = '<!-- code=%s ' % language
-                if code_block_types[i] != '':
-                    comment += '(!bc %s) ' % code_block_types[i]
-                comment += 'typeset with pygments style "%s" -->\n' % pygm_style
-                '''
-
-                ''' #it must be possible to place this later
-                # Fix ugly error boxes
-                result = re.sub(r'<span style="border: 1px .*?">(.+?)</span>',
-                                '\g<1>', result)
-                # Fix html formatting while keeping indentation
-                indent = ''
-                m = re.search(r'^( +).*><pre ', result, re.MULTILINE)
-                if m:
-                    indent = m.groups()[0]
-                result = re.sub(r'><pre ', r'>\n'+indent+'  <pre ', result)
-                result = re.sub(r'</pre><', r'</pre>\n'+indent+'<', result)
-                result = re.sub(r'<span></span>', r'', result)
-                
-                code_blocks[i] = result
-                '''
 
     if option("execute"):
         jupyter_execution.stop(kernel_client)
+
+    filestr = safe_join(lines, delimiter='\n')
 
     ''' #I rmemoved this from inside loop, try to do here
     # Fix ugly error boxes
@@ -1499,8 +1413,7 @@ def html_code(filestr, code_blocks, code_block_types,
 
     debugpr('File before call to insert_code_and_tex (format html):', filestr)
     # I might have to move stuff up here ..
-    if 0: #ALE
-        filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format, remove_hid=True)
+    filestr = insert_code_and_tex(filestr, [], tex_blocks, format, remove_hid=True)
     debugpr('File after call to insert_code_and tex (format html):', filestr)
 
     needs_online_python_tutor = any(x.startswith('pyoptpro') for x in code_block_types)
@@ -3666,32 +3579,37 @@ def string2href(title=''):
 
 
 def get_pygments_style(code_block_types):
-    # `pygm` is the pygments version.
-    #  error if pygm=None and pygm_style is used
-    # TODO: what if pygments_html_style=native but pygm is not existing?
-    pygm_style = option('pygments_html_style=', default=None)
+    """ Return pygments version and pygments style used
+
+    `pygm` is the pygments version. Abort if it is None and
+    `--pygments_html_style` is used.
+    :param code_block_types:
+    :return: pygm, pygm_style
+    :rtype: str, str
+    """
+    pygm_style = option('pygments_html_style=', default='default')
     legal_pygm_styles = 'monokai manni rrt perldoc borland colorful default murphy vs trac tango fruity autumn ' \
                         'bw emacs vim pastie friendly native'.split()
+    global pygm
     if pygm_style in ['none', 'None', 'off', 'no']:
-        pygm_style = None
-    elif pygm_style not in legal_pygm_styles + [None]:
+        pygm_style = 'off'
+        return pygm, pygm_style
+    elif pygm_style not in legal_pygm_styles:
         errwarn('*** error: wrong pygments style "%s"' % pygm_style)
         errwarn('    must be among\n%s' % str(legal_pygm_styles)[1:-1])
         _abort()
-    # Can turn off pygments on the cmd line
-    global pygm
     if pygm_style  and pygm is None:
         errwarn('*** error: pygments could not be found though '
                 '--pygments_html_style="%s" is used' % pygm_style)
         _abort()
-    else:
+    # Can turn off pygments on the cmd line
+    if pygm is not None:
         if 'ipy' in code_block_types:
             if not has_custom_pygments_lexer('ipy'):
                 envir2pygments['ipy'] = 'python'
         if 'do' in code_block_types:
             if not has_custom_pygments_lexer('doconce'):
                 envir2pygments['do'] = 'text'
-
         if pygm_style is None:
             # Set sensible default values
             if option('html_style=', '').startswith('solarized'):
@@ -3720,9 +3638,7 @@ def get_pygments_style(code_block_types):
                     errwarn('    automatically changed to --html_style=friendly')
                     errwarn('    (it is recommended not to specify --pygm_style for solarized_dark)')
                     pygm_style = 'friendly'
-
-        legal_styles = list(get_all_styles())
-        legal_styles += ['no', 'none', 'off']
+        legal_styles = list(get_all_styles()) + ['no', 'none', 'off']
         if pygm_style not in legal_styles:
             errwarn('pygments style "%s" is not legal, must be among\n%s' % (pygm_style, ', '.join(legal_styles)))
             #_abort()

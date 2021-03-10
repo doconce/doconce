@@ -532,7 +532,7 @@ def latex_code(filestr, code_blocks, code_block_types,
                 errwarn('Warning: found "!bc %s", but %s is not a standard predefined '
                         'code environment' % (envir, envir))
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format, remove_hid=True)
+    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format, remove_hid=False)
     if code_envir_transform is not None:
         debugpr('file after inserting code/tex blocks, but before translating environments', filestr)
 
@@ -962,7 +962,7 @@ def latex_code(filestr, code_blocks, code_block_types,
                                  filestr, flags=re.MULTILINE)
 
     # Translate to .tex or .p.tex format
-
+    execution_count = 0
     code_style = interpret_latex_code_style()
 
     filestr = replace_code_command(filestr)  # subst \code{...}
@@ -981,7 +981,7 @@ def latex_code(filestr, code_blocks, code_block_types,
         # We only use the PDF when available, but PNG should be added as fallback.
         outputs, count = jupyter_execution.run_cell(
             kernel_client,
-            "%matplotlib inline\n" +  # TODO consider removing this line, but it appears to be needed
+            "%matplotlib inline\n" +
             "from IPython.display import set_matplotlib_formats\n" +
             "set_matplotlib_formats('pdf', 'png')"
         )
@@ -992,7 +992,7 @@ def latex_code(filestr, code_blocks, code_block_types,
             if len(words) == 1:
                 current_code_envir = 'ccq'
             else:
-                    current_code_envir = words[1]
+                current_code_envir = words[1]
             if current_code_envir is None:
                 # Should not happen since a !bc is encountered first and
                 # current_code_envir is then set above
@@ -1000,15 +1000,6 @@ def latex_code(filestr, code_blocks, code_block_types,
                 errwarn('*** error: mismatch between !bc and !ec')
                 errwarn('\n'.join(lines[i - 3:i + 4]))
                 _abort()
-            '''elif current_code_envir.endswith("out") and option("ignore_output"):
-                lines[i] = ""
-                continue
-            elif current_code_envir.endswith("-e"):
-                lines[i] = ""
-                continue
-            begin, end = jupyter_execution.formatted_code_envir(current_code_envir, code_style, format)
-                lines[i] = begin
-            '''
             lines[i] = ""
         elif lines[i].startswith('!ec'):
             if current_code_envir is None:
@@ -1019,13 +1010,17 @@ def latex_code(filestr, code_blocks, code_block_types,
                 errwarn('error line >>>', lines[i])
                 errwarn('\n'.join(lines[i + 1:i + 8]))
                 _abort()
-
-            # Check if there is any label{} or caption{}, then execute the code
-            current_code, result, comment, go_on = latex_pre_execute(current_code, current_code_envir, code_style, format)
-            if not go_on:
-                continue
+            # See if code has to be shown and executed, then format it
+            lines[i] = ''
+            formatted_code, comment, execute, show = format_code_latex(current_code,
+                                                                 current_code_envir,
+                                                                 code_style)
+            # Check if there is any label{} or caption{}
             label, caption = jupyter_execution.get_label_and_caption(lines, i)
-            formatted_block, execution_count = jupyter_execution.process_code_block(
+            # Execute and/or show the code and its output
+            formatted_output = ''
+            if execute:
+                formatted_output, execution_count_ = jupyter_execution.process_code_block(
                 current_code=current_code,
                 current_code_envir=current_code_envir,
                 kernel_client=kernel_client,
@@ -1033,8 +1028,10 @@ def latex_code(filestr, code_blocks, code_block_types,
                 code_style=code_style,
                 caption=caption,
                 label=label)
-            lines[i] = put_together(result, formatted_block, comment, execution_count)
-
+            if show is not 'hide':
+                execution_count += 1
+                formatted_code = format_cell(formatted_code, formatted_output, execution_count, show)
+                lines[i] = comment + formatted_code
             current_code_envir = None
             current_code = ""
         else:
@@ -1046,11 +1043,11 @@ def latex_code(filestr, code_blocks, code_block_types,
     if option("execute"):
         jupyter_execution.stop(kernel_client)
 
-    filestr = safe_join(lines, '\n')
+    filestr = safe_join(lines, delimiter='\n')
     return filestr
 
 
-def latex_pre_execute(code_block, code_block_type, code_style):
+def format_code_latex(code_block, code_block_type, code_style):
     """Process the block to output the formatted code. Also
         output booleans to trigger execution and rendering of the block
 
@@ -1060,17 +1057,36 @@ def latex_pre_execute(code_block, code_block_type, code_style):
     :return: formatted_code, comment, execute, show
     :rtype: str, str, bool, bool
     """
-    go_on = True
+    formatted_code = ''
+    execute = True
     show = True
     comment = ''
-    begin, end = jupyter_execution.formatted_code_envir(code_block_type, code_style, format)
+    # Get any postfix to the block type e.g. '-h', '-e'
+    postfix_ = ''
+    if code_block_type[-2:] in ['-h']:      # Show/Hide button
+        postfix_ = code_block_type[-2:]
+        code_block_type = code_block_type[:-2]
+    elif code_block_type[-3:] in ['hid']:   # Hide the cell
+        code_block_type = code_block_type[:-3]
+        show = 'hide'
+    elif code_block_type[-2:] in ['-e']:    # Hide also in ipynb
+        postfix_ = code_block_type[-2:]
+        code_block_type = code_block_type[:-2]
+        show = 'hide'
+    if show == 'hide':
+        execute = True
+        return formatted_code, comment, execute, show
+
+    begin, end = jupyter_execution.formatted_code_envir(code_block_type, code_style, 'latex')
     formatted_code = begin + '\n' + code_block + '\n' + end
-    return formatted_code, comment, go_on, show
+    return formatted_code, comment, execute, show
 
 
-def put_together(result, formatted_block, comment, execution_count):
-    return latex_put_together(result, formatted_block, comment, execution_count)
-def latex_put_together(result, formatted_block, comment, execution_count):
+def format_cell(result, formatted_block, execution_count, show):
+    return format_cell_latex(result, formatted_block, execution_count, show)
+
+
+def format_cell_latex(result, formatted_block, execution_count, show):
     return result + '\n' + formatted_block
 
 

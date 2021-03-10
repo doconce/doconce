@@ -1,11 +1,6 @@
 ========= Automatic execution of code blocks =========
 
-Sage interactive
-!bc pyscpro
-print('some sage interactive cell')
-!ec
-
-Compile this document with
+Convert this document to `ipynb`, `latex` or `html` with e.g.:
 
 !bc sh-t
 doconce format ipynb execute.do.txt --execute
@@ -40,6 +35,8 @@ print("The result is {}".format(c))
 c
 !ec
 
+======= Special environments =======
+
 The `*-t` environment (e.g. `pycod-t`) formats a cell to text, and can be used to print an example
 !bc pycod-t
 # This is a for-loop example
@@ -54,14 +51,24 @@ The `*out`  (e.g. `pycod-out`) environment can be used to write a cell output:
 !ec
 
 !bc pyout
+# Python shows this error if you divide by zero:
 1/0: You cannot divide by zero
 !ec
 
 
-The `-h` postfix can be used in the html format to show a Show/Hide button that toggles the code visibility. 
+The `-h` postfix can be used in the `html` format to show a Show/Hide button that toggles the code visibility. 
+% if FORMAT in ('html'):
 !bc pycod-h
 print('show/hide')
 !ec
+% endif
+
+The `pyscpro` environment creates an interactive cell using "Sage": "https://github.com/sagemath/sagecell/" in the `html` format
+% if FORMAT in ('html'):
+!bc pyscpro
+print('Execute this cell in Sage')
+!ec
+% endif
 
 
 ======= Plotting =======
