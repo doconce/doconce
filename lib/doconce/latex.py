@@ -404,21 +404,20 @@ def latex_code(filestr, code_blocks, code_block_types,
                    for name in filepaths]
         auxfiles = [r'\@addtofilelist{%s.aux}' % name.strip()
                     for name in filepaths]
-        new_text = r"""
-
-%% References to labels in external documents:
-\usepackage{xr}
-
-%s
-
-%% Add external .aux files to \listfiles list:
-\makeatletter
-%s
-\makeatother
-
-
-%% insert custom LaTeX commands...
-""" % ('\n'.join(extdocs), '\n'.join(auxfiles))
+        new_text = ('\n\n'
+                    '%% References to labels in external documents:\n'
+                    r'\usepackage{xr}'
+                    '\n\n'
+                    '%s\n\n'
+                    r'%% Add external .aux files to \listfiles list:'
+                    '\n'
+                    r'\makeatletter'
+                    '\n'
+                    '%s\n'
+                    r'\makeatother'
+                    '\n\n\n'
+                    '%% insert custom LaTeX commands...\n') % \
+                   ('\n'.join(extdocs), '\n'.join(auxfiles))
         filestr = filestr.replace('% insert custom LaTeX commands...', new_text)
         # Check that the files exist
         for name in m.group(1).split(','):
@@ -620,9 +619,10 @@ def latex_code(filestr, code_blocks, code_block_types,
                 not option('exercises_as_subsections'):
             replacement = pattern
         else:
-            replacement = pattern + r"""\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-"""
+            replacement = pattern + (r'\begin{doconceexercise}'
+                                     '\n'
+                                     r'\refstepcounter{doconceexercisecounter}'
+                                     '\n')
 
         filestr = filestr.replace(pattern, replacement)
         pattern = comment_pattern % envir_delimiter_lines['exercise'][1] + '\n'
@@ -681,14 +681,14 @@ def latex_code(filestr, code_blocks, code_block_types,
                 exercise_pattern = r'^% --- begin exercise ---\n\\begin\{doconceexercise\}\n' \
                                    r'\\refstepcounter\{doconceexercisecounter\}\n\n\\subsection\{(.+?)$(?!\\addcont)'
                 # No increment of exercise counter, but add to contents
-                replacement = r"""% --- begin exercise ---
-\begin{doconceexercise}
-
-\exercisesection{\g<1>"""
+                replacement = ('% --- begin exercise ---\n'
+                               r'\begin{doconceexercise}'
+                               '\n\n'
+                               r'\exercisesection{\g<1>')
                 if option('latex_list_of_exercises=', 'none') != 'none':
-                    replacement += r"""
-\addcontentsline{loe}{doconceexercise}{\g<1>
-"""
+                    replacement += ('\n'
+                                    r'\addcontentsline{loe}{doconceexercise}{\g<1>'
+                                    '\n')
                 replacement = fix_latex_command_regex(replacement, 'replacement')
                 filestr = re.sub(exercise_pattern, replacement, filestr,
                                  flags=re.MULTILINE)
@@ -724,24 +724,34 @@ def latex_code(filestr, code_blocks, code_block_types,
                     # cannot be doconce:exercise (previous name), but
                     # must be doconceexercise because of the \l@... command
                     if chapters:
-                        style_listofexercises = r"""
-%% --- begin definition of \listofexercises command ---
-\makeatletter
-\newcommand\listofexercises{
-\chapter*{%(heading)s
-          \@mkboth{%(heading)s}{%(heading)s}}
-\markboth{%(heading)s}{%(heading)s}
-\@starttoc{loe}
-}
-\newcommand*{\l@doconceexercise}{\@dottedtocline{0}{0pt}{6.5em}}
-\makeatother
-%% --- end definition of \listofexercises command ---
-""" % vars()
-                        insert_listofexercises = r"""
-\clearemptydoublepage
-\listofexercises
-\clearemptydoublepage
-""" % vars()
+                        style_listofexercises = (r'%% --- begin definition of \listofexercises command ---'
+                                                 '\n'
+                                                 r'\makeatletter'
+                                                 '\n'
+                                                 r'\newcommand\listofexercises{'
+                                                 '\n'
+                                                 r'\chapter*{%(heading)s'
+                                                 '\n'
+                                                 r'          \@mkboth{%(heading)s}{%(heading)s}}'
+                                                 '\n'
+                                                 r'\markboth{%(heading)s}{%(heading)s}'
+                                                 '\n'
+                                                 r'\@starttoc{loe}'
+                                                 '\n'
+                                                 '}\n'
+                                                 r'\newcommand*{\l@doconceexercise}{\@dottedtocline{0}{0pt}{6.5em}}'
+                                                 '\n'
+                                                 r'\makeatother'
+                                                 '\n'
+                                                 r'%% --- end definition of \listofexercises command ---'
+                                                 '\n') % vars()
+                        insert_listofexercises = ('\n'
+                                                  r'\clearemptydoublepage'
+                                                  '\n'
+                                                  r'\listofexercises'
+                                                  '\n'
+                                                  r'\clearemptydoublepage'
+                                                  '\n') % vars()
                     else:
                         style_listofexercises = r"""
 %% --- begin definition of \listofexercises command ---
@@ -961,89 +971,14 @@ def latex_code(filestr, code_blocks, code_block_types,
                                  r'\\begin{minted}[escapeinside=||,',
                                  filestr, flags=re.MULTILINE)
 
-    # Translate to .tex or .p.tex format
-    execution_count = 0
-    code_style = interpret_latex_code_style()
-
     filestr = replace_code_command(filestr)  # subst \code{...}
 
     # Fix footnotes `verbatim`[^footnote] (originally without space)
     # (this forced 3 extra spaces in latex_footnotes)
     filestr = re.sub(r'([!?@|}])   \\footnote{', r'\g<1>\\footnote{', filestr)
 
-    lines = filestr.splitlines()
-    current_code_envir = None
-    current_code = ""
-
-    if option("execute"):
-        kernel_client = jupyter_execution.JupyterKernelClient()
-        # This enables PDF output as well as PNG for figures.
-        # We only use the PDF when available, but PNG should be added as fallback.
-        outputs, count = jupyter_execution.run_cell(
-            kernel_client,
-            "%matplotlib inline\n" +
-            "from IPython.display import set_matplotlib_formats\n" +
-            "set_matplotlib_formats('pdf', 'png')"
-        )
-
-    for i in range(len(lines)):
-        if lines[i].startswith('!bc'):
-            words = lines[i].split()
-            if len(words) == 1:
-                current_code_envir = 'ccq'
-            else:
-                current_code_envir = words[1]
-            if current_code_envir is None:
-                # Should not happen since a !bc is encountered first and
-                # current_code_envir is then set above
-                # There should have been checks for this in doconce.py
-                errwarn('*** error: mismatch between !bc and !ec')
-                errwarn('\n'.join(lines[i - 3:i + 4]))
-                _abort()
-            lines[i] = ""
-        elif lines[i].startswith('!ec'):
-            if current_code_envir is None:
-                # No envir set by previous !bc?
-                errwarn('*** error: mismatch between !bc and !ec')
-                errwarn('    found !ec without a preceding !bc at line')
-                errwarn('\n'.join(lines[i - 8:i - 1]))
-                errwarn('error line >>>', lines[i])
-                errwarn('\n'.join(lines[i + 1:i + 8]))
-                _abort()
-            # See if code has to be shown and executed, then format it
-            lines[i] = ''
-            formatted_code, comment, execute, show = format_code_latex(current_code,
-                                                                 current_code_envir,
-                                                                 code_style)
-            # Check if there is any label{} or caption{}
-            label, caption = jupyter_execution.get_label_and_caption(lines, i)
-            # Execute and/or show the code and its output
-            formatted_output = ''
-            if execute:
-                formatted_output, execution_count_ = jupyter_execution.process_code_block(
-                current_code=current_code,
-                current_code_envir=current_code_envir,
-                kernel_client=kernel_client,
-                format=format,
-                code_style=code_style,
-                caption=caption,
-                label=label)
-            if show is not 'hide':
-                execution_count += 1
-                formatted_code = format_cell(formatted_code, formatted_output, execution_count, show)
-                lines[i] = comment + formatted_code
-            current_code_envir = None
-            current_code = ""
-        else:
-            if current_code_envir is not None:
-                # Code will be formatted later
-                current_code += lines[i] + "\n"
-                lines[i] = ""
-
-    if option("execute"):
-        jupyter_execution.stop(kernel_client)
-
-    filestr = safe_join(lines, delimiter='\n')
+    code_style = interpret_latex_code_style()
+    filestr = jupyter_execution.process_code_blocks(filestr, code_style, format)
     return filestr
 
 
@@ -1051,15 +986,19 @@ def format_code_latex(code_block, code_block_type, code_style):
     """Process the block to output the formatted code. Also
         output booleans to trigger execution and rendering of the block
 
+    The output `show` is one of ['hide','latex']. The output
+    `code_style` is a style e.g. from `--latex_code_style`.
+    The output `execute` is a boolean indicating whether
+    the code should be executed.
     :param str code_block: code
     :param str code_block_type: block type e.g. 'pycod-e'
-    :param code_style: any style from e.g. pygments
+    :param code_style: any style from e.g. `--latex_code_style`
     :return: formatted_code, comment, execute, show
     :rtype: str, str, bool, bool
     """
     formatted_code = ''
     execute = True
-    show = True
+    show = 'latex'
     comment = ''
     # Get any postfix to the block type e.g. '-h', '-e'
     postfix_ = ''
@@ -1082,12 +1021,18 @@ def format_code_latex(code_block, code_block_type, code_style):
     return formatted_code, comment, execute, show
 
 
-def format_cell(result, formatted_block, execution_count, show):
-    return format_cell_latex(result, formatted_block, execution_count, show)
+def format_cell_latex(formatted_code, formatted_block, execution_count, show):
+    """Format a code cell and its output
 
-
-def format_cell_latex(result, formatted_block, execution_count, show):
-    return result + '\n' + formatted_block
+    This function is referenced by `format_cell` in jupyter_execution.py.
+    :param str formatted_code: formatted code
+    :param str formatted_block: formatted block
+    :param int execution_count:
+    :param str show: how to format the output e.g. 'html', 'pre', 'hide'
+    :return: formatted_output
+    :rtype: str
+    """
+    return formatted_code + '\n' + formatted_block
 
 
 def latex_figure(m):

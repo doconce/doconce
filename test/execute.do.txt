@@ -1,5 +1,13 @@
 ========= Automatic execution of code blocks =========
 
+The `*-t` environment (e.g. `pycod-t`) formats a cell to text, and can be used to print an example
+!bc pycod-t
+# This is a for-loop example
+for i in [0,10]:
+  print(i)
+!ec
+
+
 Convert this document to `ipynb`, `latex` or `html` with e.g.:
 
 !bc sh-t
@@ -44,9 +52,9 @@ for i in [0,10]:
   print(i)
 !ec
 
-The `*out`  (e.g. `pycod-out`) environment can be used to write a cell output:
-!bc pycod
-# This is a normal pycod cell
+-t The `*out`  (e.g. `pycod-out`) environment can be used to write a cell output:
+!bc pycod-t
+# This is a TODOOOOOOOOOOOOOOOO normal pycod cell
 1/0
 !ec
 

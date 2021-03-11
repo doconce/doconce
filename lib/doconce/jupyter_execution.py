@@ -13,7 +13,8 @@ except ImportError:
     from Queue import Empty # Py 2
 import re, base64, uuid
 from .doconce import errwarn, _abort
-
+from .misc import option
+from .common import safe_join
 class JupyterKernelClient:
     def __init__(self):
         self.manager = KernelManager(kernel_name='python3')
@@ -160,14 +161,102 @@ latex_caption = "   \\captionof{{figure}}{{{caption}}}\n"
 
 latex_label = "   \\label{{{label}}}\n"
 
-def process_code_block(current_code, current_code_envir, kernel_client, format, code_style='', caption=None, label=None):
+
+def process_code_blocks(filestr, code_style, format):
+    """Process a filestr with code blocks
+
+    Loop through a file and process the code it contains.
+    :param str filestr: text string
+    :param str code_style: optional typesetting of code blocks
+    :param str format: output formatting, one of ['html', 'latex', 'pdflatex']
+    :return: filestr
+    :rtype: str
+    """
+    execution_count = 0
+    lines = filestr.splitlines()
+    current_code_envir = None
+    current_code = ""
+    kernel_client = None
+    if option("execute"):
+        kernel_client = JupyterKernelClient()
+        # This enables PDF output as well as PNG for figures.
+        # We only use the PDF when available, but PNG should be added as fallback.
+        outputs, count = run_cell(
+            kernel_client,
+            "%matplotlib inline\n" +
+            "from IPython.display import set_matplotlib_formats\n" +
+            "set_matplotlib_formats('pdf', 'png')"
+        )
+
+    for i in range(len(lines)):
+        if lines[i].startswith('!bc'):
+            words = lines[i].split()
+            if len(words) == 1:
+                current_code_envir = 'ccq'
+            else:
+                current_code_envir = words[1]
+            if current_code_envir is None:
+                # Should not happen since a !bc is encountered first and
+                # current_code_envir is then set above
+                # There should have been checks for this in doconce.py
+                errwarn('*** error: mismatch between !bc and !ec')
+                errwarn('\n'.join(lines[i - 3:i + 4]))
+                _abort()
+            lines[i] = ""
+        elif lines[i].startswith('!ec'):
+            if current_code_envir is None:
+                # No envir set by previous !bc?
+                errwarn('*** error: mismatch between !bc and !ec')
+                errwarn('    found !ec without a preceding !bc at line')
+                errwarn('\n'.join(lines[i - 8:i - 1]))
+                errwarn('error line >>>', lines[i])
+                errwarn('\n'.join(lines[i + 1:i + 8]))
+                _abort()
+            # See if code has to be shown and executed, then format it
+            lines[i] = ''
+            formatted_code, comment, execute, show = format_code(current_code,
+                                                                 current_code_envir,
+                                                                 code_style, format)
+            # Check if there is any label{} or caption{}
+            label, caption = get_label_and_caption(lines, i)
+            # Execute and/or show the code and its output
+            formatted_output = ''
+            if execute:
+                formatted_output, execution_count_ = execute_code_block(
+                    current_code=current_code,
+                    current_code_envir=current_code_envir,
+                    kernel_client=kernel_client,
+                    format=format,
+                    code_style=code_style,
+                    caption=caption,
+                    label=label)
+            if show is not 'hide':
+                execution_count += 1
+                formatted_code = format_cell(formatted_code, formatted_output, execution_count, show, format)
+                lines[i] = comment + formatted_code
+            current_code_envir = None
+            current_code = ""
+        else:
+            if current_code_envir is not None:
+                # Code will be formatted later
+                current_code += lines[i] + "\n"
+                lines[i] = ""
+
+    if option("execute"):
+        stop(kernel_client)
+
+    filestr = safe_join(lines, delimiter='\n')
+    return filestr
+
+
+def execute_code_block(current_code, current_code_envir, kernel_client, format, code_style='', caption=None, label=None):
     """
     Execute a code block and return it formatted together with any code output
 
     Execute a code block in a jupyter kernel, process the code's output and return a formatted string
     :param str current_code: line of
     :param str current_code_envir:
-    :param JupyterKernelClient kernel_client: instance of JupyterKernelClient from jupyter_execution.py
+    :param JupyterKernelClient kernel_client: instance of JupyterKernelClient
     :param str format: output formatting, one of ['html', 'latex', 'pdflatex']
     :param str code_style: optional typesetting of code blocks
     :return: text_out, execution_count
@@ -179,17 +268,6 @@ def process_code_block(current_code, current_code_envir, kernel_client, format, 
         return text_out
     if misc.option("execute") and not current_code_envir.endswith("-t") \
             and not current_code_envir.endswith("out"):
-        '''if misc.option("execute") and not current_code_envir.endswith("-t"):
-        # NB this works for html but messes up latex.py
-        if current_code_envir.endswith("out"):
-            # Write the output code block to a fake cell output
-            #outputs = [{
-            #    "text": current_code
-            #}]
-            return text_out
-        #else:
-        #    outputs, execution_count = run_cell(kernel_client, current_code)
-        '''
         outputs, execution_count = run_cell(kernel_client, current_code)
         if current_code_envir.endswith("-e"):
             # Skip writing the ouput if -e is used
@@ -247,9 +325,50 @@ def process_code_block(current_code, current_code_envir, kernel_client, format, 
     return text_out, execution_count
 
 
+def format_code(code_block, code_block_type, code_style, format):
+    """Process the block to output the formatted code. Also
+        output booleans to trigger execution and rendering of the block
+
+    Wrapper function redirecting to `format_code_latex` in latex.py
+    or `format_code_html` in doconce.py.
+    :param str code_block: code
+    :param str code_block_type: block type e.g. 'pycod-e'
+    :param str code_style: optional typesetting of code blocks
+    :param str format: output format, one of ['html', 'latex', 'pdflatex']
+    :return:
+    """
+    if format in ['latex','pdflatex']:
+        from .latex import format_code_latex
+        return format_code_latex(code_block, code_block_type, code_style)
+    elif format in ['html']:
+        from .html import format_code_html
+        return format_code_html(code_block, code_block_type, code_style)
+
+
+def format_cell(formatted_code, formatted_block, execution_count, show, format):
+    """Wrapper function to format a code cell and its output
+
+    Wrapper function redirecting to `format_cell_latex` in latex.py
+    or `format_cell_html` in doconce.py.
+    :param str formatted_code: formatted code
+    :param str formatted_block: formatted block
+    :param int execution_count: execution count in the rendered cell
+    :param str show: how to format the output e.g. 'html', 'pre', 'hide'
+    :param str format: output format, one of ['html', 'latex', 'pdflatex']
+    :return: func
+    :rtype: func -> func
+    """
+    if format in ['latex','pdflatex']:
+        from .latex import format_cell_latex
+        return format_cell_latex(formatted_code, formatted_block, execution_count, show)
+    elif format in ['html']:
+        from .html import format_cell_html
+        return format_cell_html(formatted_code, formatted_block, execution_count, show)
+
+
 def formatted_code_envir(envir, envir_spec, format):
-    '''
-    Wrapper function to get environments for formatted code
+    """
+    Get environments for formatted code
 
     Wrapper for html_code_envir, latex_code_envir, and any similar future methods
     :param str envir: code environment e.g. "pycod"
@@ -257,7 +376,7 @@ def formatted_code_envir(envir, envir_spec, format):
     :param str format: output format, one of ['html', 'latex', 'pdflatex']
     :return: tuple of html tags/latex environments
     :rtype: [str, str]
-    '''
+    """
     supported_formats = ['html', 'latex', 'pdflatex']
     if format == 'html':
         begin, end = html_code_envir(envir, envir_spec)
@@ -436,9 +555,10 @@ def get_label_and_caption(lines, i):
 def embed_caption_label(attribute, format):
     """Return code for formatting images in different formats
 
-    :param attribute:
-    :param format:
-    :return:
+    :param str attribute: one in ['caption','label']
+    :param str format: output format, one of ['html', 'latex', 'pdflatex']
+    :return: string for embedding code
+    :rtype: str
     """
     supported_formats = ['html', 'latex', 'pdflatex']
     if format == 'html':
