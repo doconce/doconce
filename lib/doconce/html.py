@@ -120,7 +120,7 @@ def add_to_file_collection(filename, doconce_docname=None, mode='a'):
 
 # HTML code
 
-html_cell = ('<div class="cell border-box-sizing code_cell rendered">\n'
+html_cell_code = (
             '  <div class="input">\n'
             '    <div class="prompt input_prompt">'
             '      %s'        # Execution count
@@ -130,7 +130,8 @@ html_cell = ('<div class="cell border-box-sizing code_cell rendered">\n'
             '        %s'        # code <div> with class highlight
             '      </div>\n'
             '    </div>\n'
-            '  </div>\n'
+            '  </div>\n')
+html_cell_output = (
             '  <div class="output_wrapper">\n'
             '    <div class="output">\n'
             '      <div class="output_area">\n'
@@ -140,8 +141,14 @@ html_cell = ('<div class="cell border-box-sizing code_cell rendered">\n'
             '        </div>\n'
             '      </div>\n'
             '    </div>\n'
-            '  </div>\n'
-            '</div>\n')
+            '  </div>\n')
+
+html_cell_wrap = '<div class="cell border-box-sizing code_cell rendered">\n'
+
+html_cell = html_cell_wrap + \
+            html_cell_code + \
+            html_cell_output + \
+            '</div>\n'
 
 html_toggle_btn = ('\n'
                       '<script type="text/javascript">\n'
@@ -1099,19 +1106,9 @@ def html_code(filestr, code_blocks, code_block_types,
     code_style = pygm_style
     filestr = jupyter_execution.process_code_blocks(filestr, code_style, format)
 
-    ''' #I rmemoved this from inside loop, try to do here
-    # Fix ugly error boxes
-    result = re.sub(r'<span style="border: 1px .*?">(.+?)</span>',
-                    '\g<1>', result)
-    # Fix html formatting while keeping indentation
-    indent = ''
-    m = re.search(r'^( +).*><pre ', result, re.MULTILINE)
-    if m:
-        indent = m.groups()[0]
-    result = re.sub(r'><pre ', r'>\n'+indent+'  <pre ', result)
-    result = re.sub(r'</pre><', r'</pre>\n'+indent+'<', result)
-    result = re.sub(r'<span></span>', r'', result)
-    '''
+    # Remove all <p></p> between </div> and <div> ?
+    filestr = re.sub(r'</div>[\n]+<p></p>[\n]+(<!--.*-->)*[\n]+', r'\1', filestr)
+
     # Inline math cannot have x<z<w as this is interpreted as tags
     # and becomes invisible
     filestr2 = re.sub(r'<!--(.+?)-->', '', filestr)  # remove comments first
@@ -1604,12 +1601,12 @@ def html_code(filestr, code_blocks, code_block_types,
     return filestr
 
 
-def format_code_html(code_block, code_block_type, code_style):
+def format_code_html(code_block, code_block_type, code_style, postfix='', execute=True, show='format'):
     """Process the block to output the formatted code. Also
     output booleans to trigger execution and rendering of the block
 
-    The output `show` is one of ['html','pre', 'hide']. The output
-    `code_style` is a style e.g. from `--pygments_html_style`.
+    The output `show` is one of ['html','pre','hide','text','output'].
+    The output `code_style` is a style e.g. from `--pygments_html_style`.
     The output `execute` is a boolean indicating whether
     the code should be executed.
     :param str code_block: code
@@ -1620,33 +1617,10 @@ def format_code_html(code_block, code_block_type, code_style):
     """
     formatted_code = ''
     comment = ''
-    execute = True
-    show = 'html'
-    # Pt I: decide on execute and show based on any
-    # code envir postfixes to the block type ('hid','h','-e','-t')
-    postfix_ = ''
-    if code_block_type[-2:] in ['-h']:      # Show/Hide button (in html)
-        postfix_ = code_block_type[-2:]
-        code_block_type = code_block_type[:-2]
-        execute = False
-    elif code_block_type[-3:] in ['hid']:   # Hide the cell
-        code_block_type = code_block_type[:-3]
-        execute = True
-        show = 'hide'
-    elif code_block_type[-2:] in ['-e']:    # Hide also in ipynb
-        postfix_ = code_block_type[-2:]
-        code_block_type = code_block_type[:-2]
-        execute = True
-        show = 'hide'
-    elif code_block_type[-2:] in ['-t']:    # Code as text
-        postfix_ = code_block_type[-2:]
-        code_block_type = code_block_type[:-2]
-        execute = False
-        #show = 'hide'
     if show == 'hide':
         return formatted_code, comment, execute, show
 
-    # Pt II: format the code
+    # Format code based on `show` and its code type
     if code_block_type.startswith('pyoptpro'):
         formatted_code = online_python_tutor(code_block, return_tp='iframe')
         execute = False
@@ -1677,14 +1651,25 @@ def format_code_html(code_block, code_block_type, code_style):
 
         if code_block_type == 'ccq':
             formatted_code = '<blockquote>\n%s</blockquote>' % formatted_code
-        elif postfix_ == '-h':
+        elif postfix == '-h':
             # Embed some jquery JavaScript for a show/hide button
             hash = str(uuid.uuid4())[:4]
             formatted_code = html_toggle_btn % vars()
+
+        # Fix som ugly html code: error boxes
+        formatted_code = re.sub(r'<span style="border: 1px .*?">(.+?)</span>', '\g<1>', formatted_code)
+        indent = ''
+        m = re.search(r'^( +).*><pre ', formatted_code, re.MULTILINE)
+        if m:
+            indent = m.groups()[0]
+        formatted_code = re.sub(r'><pre ', r'>\n'+indent+'  <pre ', formatted_code)
+        formatted_code = re.sub(r'</pre><', r'</pre>\n'+indent+'<', formatted_code)
+        formatted_code = re.sub(r'<span></span>', r'', formatted_code)
+
         # Write a comment before the rendering with a description of the rendering
         comment = '\n<!-- code=%s ' % language_
         if code_block_type != '':
-            comment += '(!bc %s) ' % code_block_type
+            comment += '(!bc %s) ' % (code_block_type+postfix)
         comment += 'typeset with pygments style "%s" -->\n' % code_style
     else:
         # Substitute & first, otherwise & in &quot; becomes &amp;quot;
@@ -1697,14 +1682,14 @@ def format_code_html(code_block, code_block_type, code_style):
     return formatted_code, comment, execute, show
 
 
-def format_cell_html(formatted_code, formatted_block, execution_count, show):
+def format_cell_html(formatted_code, formatted_output, execution_count, show):
     """Format a code cell and its output
 
     This function is referenced by `format_cell` in jupyter_execution.py.
     :param str formatted_code: formatted code
-    :param str formatted_block: formatted block
+    :param str formatted_output: formatted block
     :param str execution_count: execution count in the rendered cell
-    :param str show: how to format the output e.g. 'html', 'pre', 'hide'
+    :param str show: how to format the output e.g. 'format','pre','hide','text','output'
     :return: formatted_output
     :rtype: str
     """
@@ -1713,13 +1698,25 @@ def format_cell_html(formatted_code, formatted_block, execution_count, show):
     elif show == 'hide':
         pass
     elif show == 'pre':
-        formatted_output = '<pre>' + formatted_code + formatted_block + '</pre>'
-    elif show == 'html':
-        # Write the rendering of the code and code output, and
-        # indent the whole cell (input and output) as in jupyter notebook
+        formatted_output = '<pre>' + formatted_code + formatted_output + '</pre>'
+    elif show == 'format':
+        # Render of the code and code output and indent
+        # the whole cell (input and output) as in jupyter notebook
         formatted_output = html_cell % ('In [{}]:'.format(execution_count),
                                         formatted_code,
-                                        formatted_block)
+                                        formatted_output)
+    elif show == 'text':
+        # Render of the code as text in a cell input
+        formatted_output = html_cell_wrap + \
+                           html_cell_code % (
+                               'In [{}]:'.format(execution_count),
+                               formatted_code) + \
+                           '</div>'
+    elif show == 'output':
+        # Render as code output
+        formatted_output = html_cell_wrap + \
+                           html_cell_output % formatted_output + \
+                           '</div>'
     else:
         errwarn('*** error: show=%s not recognized' % str(show))
         _abort()

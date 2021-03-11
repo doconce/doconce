@@ -22,6 +22,7 @@ The `pyhid` environment executes and hides the cell in formats other than .ipynb
 !bc pyhid
 # This cell appears in ipynb but not in other formats
 import sys
+print('hide pyhyd')
 !ec
 
 The `pycod-e` environment executes but hides the cell also in .ipynb files:
@@ -29,6 +30,7 @@ The `pycod-e` environment executes but hides the cell also in .ipynb files:
 import os
 os.listdir(".")
 a = 1
+print('hide pycod-e')
 !ec
 
 `pycod` is a normal cell that should execute automatically when using `--execute`. Note that this cells relies on code executed in a previous hidden cell:
@@ -49,12 +51,11 @@ for i in [0,10]:
   print(i)
 !ec
 
--t The `*out`  (e.g. `pycod-out`) environment can be used to write a cell output:
+The `*out`  (e.g. `pycod-out`) environment can be used to write a cell output:
 !bc pycod-t
-# This is a normal pycod cell
+# This is a text cell using pycod-t
 1/0
 !ec
-
 !bc pyout
 # Python shows this error if you divide by zero:
 1/0: You cannot divide by zero

@@ -231,7 +231,8 @@ def process_code_blocks(filestr, code_style, format):
                     caption=caption,
                     label=label)
             if show is not 'hide':
-                execution_count += 1
+                if show is not 'output':
+                    execution_count += 1
                 formatted_code = format_cell(formatted_code, formatted_output, execution_count, show, format)
                 lines[i] = comment + formatted_code
             current_code_envir = None
@@ -244,6 +245,9 @@ def process_code_blocks(filestr, code_style, format):
 
     if option("execute"):
         stop(kernel_client)
+
+    # Remove empty lines
+    lines = list(filter(lambda l: len(l), lines))
 
     filestr = safe_join(lines, delimiter='\n')
     return filestr
@@ -266,61 +270,63 @@ def execute_code_block(current_code, current_code_envir, kernel_client, format, 
     execution_count = 0
     if kernel_client is None:
         return text_out
-    if misc.option("execute") and not current_code_envir.endswith("-t") \
-            and not current_code_envir.endswith("out"):
+    if current_code_envir.endswith('out'):      # Output cell
+        outputs = [{'text': current_code}]
+    else:
         outputs, execution_count = run_cell(kernel_client, current_code)
-        if current_code_envir.endswith("-e"):
-            # Skip writing the ouput if -e is used
+    if current_code_envir.endswith("hid"):      # Hide cell output
+        # Skip writing the output, except for ipynb
+        if format != 'ipynb':
             outputs = []
-        if len(outputs) > 0:
-            ansi_escape = re.compile(r'\x1b[^m]*m')
-            begin, end = formatted_code_envir("pyout", code_style, format)
-            for output in outputs:
-                if "text" in output:
-                    text_output = ansi_escape.sub("", output["text"])
+    elif current_code_envir.endswith("-e"):     # Hide also in ipynb
+        # Skip writing the output even in ipynb
+        outputs = []
+    if len(outputs) > 0:
+        ansi_escape = re.compile(r'\x1b[^m]*m')
+        begin, end = formatted_code_envir("pyout", code_style, format)
+        for output in outputs:
+            if "text" in output:
+                text_output = ansi_escape.sub("", output["text"])
+                text_out += "\n{}\n{}{}".format(begin, text_output, end)
+            if "data" in output:
+                data = output["data"]
+                if "application/pdf" in data or "image/png" in data:
+                    cache_folder = ".doconce_figure_cache"
+                    filename_stem = "{}/{}".format(cache_folder, str(uuid.uuid4()))
+                    if "application/pdf" in data:
+                        img_data = data["application/pdf"]
+                        suffix = ".pdf"
+                    else:
+                        img_data = data["image/png"]
+                        suffix = ".png"
+                    # Save image to folder
+                    if not os.path.exists(cache_folder):
+                        os.makedirs(cache_folder)
+                    filename = "{}{}".format(filename_stem, suffix)
+                    g = open(filename, "wb")
+                    g.write(base64.decodebytes(bytes(img_data, encoding="utf-8")))
+                    g.close()
+                    # Capture caption and label
+                    caption_code = ""
+                    label_code = ""
+                    if caption is not None:
+                        formatter = embed_caption_label(attribute='caption', format=format)
+                        caption_code = formatter.format(caption=caption)
+                    if label is not None:
+                        formatter = embed_caption_label(attribute='label', format=format)
+                        label_code = formatter.format(label=label)
+                    img_formatter = embed_image(image_type=suffix, format=format)
+                    text_out += img_formatter.format(filename_stem=filename_stem + suffix,
+                                                     caption=caption_code,
+                                                     label=label_code)
+                elif "text/plain" in data:  # add text only if no image
+                    text_output = ansi_escape.sub("", output["data"]["text/plain"])
                     text_out += "\n{}\n{}{}".format(begin, text_output, end)
-                if "data" in output:
-                    data = output["data"]
-                    if "application/pdf" in data or "image/png" in data:
-                        cache_folder = ".doconce_figure_cache"
-                        filename_stem = "{}/{}".format(cache_folder, str(uuid.uuid4()))
-                        if "application/pdf" in data:
-                            img_data = data["application/pdf"]
-                            suffix = ".pdf"
-                        else:
-                            img_data = data["image/png"]
-                            suffix = ".png"
-                        # Save image to folder
-                        if not os.path.exists(cache_folder):
-                            os.makedirs(cache_folder)
-                        filename = "{}{}".format(filename_stem, suffix)
-                        g = open(filename, "wb")
-                        g.write(base64.decodebytes(bytes(img_data, encoding="utf-8")))
-                        g.close()
-                        # Capture caption and label
-                        caption_code = ""
-                        label_code = ""
-                        if caption is not None:
-                            formatter = embed_caption_label(attribute='caption', format=format)
-                            caption_code = formatter.format(caption=caption)
-                        if label is not None:
-                            formatter = embed_caption_label(attribute='label', format=format)
-                            label_code = formatter.format(label=label)
-                        img_formatter = embed_image(image_type=suffix, format=format)
-                        text_out += img_formatter.format(filename_stem=filename_stem + suffix,
-                                                         caption=caption_code,
-                                                         label=label_code)
-                    elif "text/plain" in data:  # add text only if no image
-                        text_output = ansi_escape.sub("", output["data"]["text/plain"])
-                        text_out += "\n{}\n{}{}".format(begin, text_output, end)
-                elif "traceback" in output:
-                    # TODO: convert ANSI escape chars to colors
-                    traceback = "\n".join(output["traceback"])
-                    traceback = ansi_escape.sub("", traceback)
-                    text_out += "\n{}\n{}{}".format(begin, traceback, end)
-
-        if not current_code_envir.endswith('hid'):
-            execution_count += 1
+            elif "traceback" in output:
+                # TODO: convert ANSI escape chars to colors
+                traceback = "\n".join(output["traceback"])
+                traceback = ansi_escape.sub("", traceback)
+                text_out += "\n{}\n{}{}".format(begin, traceback, end)
 
     return text_out, execution_count
 
@@ -337,36 +343,73 @@ def format_code(code_block, code_block_type, code_style, format):
     :param str format: output format, one of ['html', 'latex', 'pdflatex']
     :return:
     """
+    postfix, execute, show = process_code_envir_postfix(code_block_type)
     if format in ['latex','pdflatex']:
         from .latex import format_code_latex
-        return format_code_latex(code_block, code_block_type, code_style)
+        return format_code_latex(code_block, code_block_type, code_style, postfix, execute, show)
     elif format in ['html']:
         from .html import format_code_html
-        return format_code_html(code_block, code_block_type, code_style)
-
-        execute, show, postfix = get_code_postfix(code_block_type)
-        formatted_code, comment, execute, show = format_code_html(code_block, code_block_type, code_style, postfix='')
+        return format_code_html(code_block, code_block_type, code_style, postfix, execute, show)
 
 
-def format_cell(formatted_code, formatted_block, execution_count, show, format):
+def process_code_envir_postfix(code_block_type):
+    """Extract any code envir postfix to code environments
+    ('hid','h','-e','-t','out) and return whether the code should
+    be executed and showed
+
+    :param str code_block_type: block type e.g. 'pycod-e'
+    :return: postfix, execute, show
+    :rtype: str, bool, str
+    """
+    execute = True
+    show = 'format'
+    postfix = ''
+    if code_block_type[-2:] in ['-h']:  # Show/Hide button (in html)
+        postfix = code_block_type[-2:]
+        code_block_type = code_block_type[:-2]
+        execute = False
+    elif code_block_type[-3:] in ['hid']:  # Hide the cell
+        code_block_type = code_block_type[:-3]
+        execute = True
+        show = 'hide'
+    elif code_block_type[-2:] in ['-e']:  # Hide also in ipynb
+        postfix = code_block_type[-2:]
+        code_block_type = code_block_type[:-2]
+        execute = True
+        show = 'hide'
+    elif code_block_type[-3:] in ['out']:  # Output cell
+        postfix = code_block_type[:-3]
+        code_block_type = code_block_type[:-3]
+        execute = True  # execute_code_block will render this as code output
+        show = 'output'
+        return postfix, execute, show
+    elif code_block_type[-2:] in ['-t']:  # Code as text
+        postfix = code_block_type[-2:]
+        code_block_type = code_block_type[:-2]
+        execute = False
+        show = 'text'
+    return postfix, execute, show
+
+
+def format_cell(formatted_code, formatted_output, execution_count, show, format):
     """Wrapper function to format a code cell and its output
 
     Wrapper function redirecting to `format_cell_latex` in latex.py
     or `format_cell_html` in doconce.py.
     :param str formatted_code: formatted code
-    :param str formatted_block: formatted block
+    :param str formatted_output: formatted block
     :param int execution_count: execution count in the rendered cell
-    :param str show: how to format the output e.g. 'html', 'pre', 'hide'
+    :param str show: how to format the output e.g. 'format','pre','hide','text','output'
     :param str format: output format, one of ['html', 'latex', 'pdflatex']
     :return: func
     :rtype: func -> func
     """
     if format in ['latex','pdflatex']:
         from .latex import format_cell_latex
-        return format_cell_latex(formatted_code, formatted_block, execution_count, show)
+        return format_cell_latex(formatted_code, formatted_output, execution_count, show)
     elif format in ['html']:
         from .html import format_cell_html
-        return format_cell_html(formatted_code, formatted_block, execution_count, show)
+        return format_cell_html(formatted_code, formatted_output, execution_count, show)
 
 
 def formatted_code_envir(envir, envir_spec, format):

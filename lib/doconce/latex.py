@@ -982,12 +982,12 @@ def latex_code(filestr, code_blocks, code_block_types,
     return filestr
 
 
-def format_code_latex(code_block, code_block_type, code_style):
+def format_code_latex(code_block, code_block_type, code_style, postfix='', execute=True, show='format'):
     """Process the block to output the formatted code. Also
         output booleans to trigger execution and rendering of the block
 
-    The output `show` is one of ['hide','latex']. The output
-    `code_style` is a style e.g. from `--latex_code_style`.
+    The output `show` is one of ['format','pre','hide','text','output'].
+    The output `code_style` is a style e.g. from `--pygments_html_style`.
     The output `execute` is a boolean indicating whether
     the code should be executed.
     :param str code_block: code
@@ -997,30 +997,7 @@ def format_code_latex(code_block, code_block_type, code_style):
     :rtype: str, str, bool, str
     """
     formatted_code = ''
-    execute = True
-    show = 'latex'
     comment = ''
-    # Pt I: decide on execute and show based on any
-    # code envir postfixes to the block type ('hid','h','-e','-t')
-    postfix_ = ''
-    if code_block_type[-2:] in ['-h']:      # Show/Hide button (in html)
-        postfix_ = code_block_type[-2:]
-        code_block_type = code_block_type[:-2]
-        execute = False
-    elif code_block_type[-3:] in ['hid']:   # Hide the cell
-        code_block_type = code_block_type[:-3]
-        execute = True
-        show = 'hide'
-    elif code_block_type[-2:] in ['-e']:    # Hide also in ipynb
-        postfix_ = code_block_type[-2:]
-        code_block_type = code_block_type[:-2]
-        execute = True
-        show = 'hide'
-    elif code_block_type[-2:] in ['-t']:    # Code as text
-        postfix_ = code_block_type[-2:]
-        code_block_type = code_block_type[:-2]
-        execute = False
-        #show = 'hide'
     if show == 'hide':
         return formatted_code, comment, execute, show
     # Pt II: format the code
@@ -1029,18 +1006,19 @@ def format_code_latex(code_block, code_block_type, code_style):
     return formatted_code, comment, execute, show
 
 
-def format_cell_latex(formatted_code, formatted_block, execution_count, show):
+def format_cell_latex(formatted_code, formatted_output, execution_count, show):
     """Format a code cell and its output
 
     This function is referenced by `format_cell` in jupyter_execution.py.
     :param str formatted_code: formatted code
-    :param str formatted_block: formatted block
+    :param str formatted_output: formatted block
     :param int execution_count:
-    :param str show: how to format the output e.g. 'html', 'pre', 'hide'
+    :param str show: how to format the output e.g. 'format','pre','hide','text','output'
     :return: formatted_output
     :rtype: str
     """
-    return formatted_code + '\n' + formatted_block
+    #TODO: hidden stuff gets hidden or..?
+    return formatted_code + '\n' + formatted_output
 
 
 def latex_figure(m):
