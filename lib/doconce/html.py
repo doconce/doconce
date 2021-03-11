@@ -1622,11 +1622,13 @@ def format_code_html(code_block, code_block_type, code_style):
     comment = ''
     execute = True
     show = 'html'
-    # Get any postfix to the block type e.g. '-h', '-e'
+    # Pt I: decide on execute and show based on any
+    # code envir postfixes to the block type ('hid','h','-e','-t')
     postfix_ = ''
-    if code_block_type[-2:] in ['-h']:      # Show/Hide button
+    if code_block_type[-2:] in ['-h']:      # Show/Hide button (in html)
         postfix_ = code_block_type[-2:]
         code_block_type = code_block_type[:-2]
+        execute = False
     elif code_block_type[-3:] in ['hid']:   # Hide the cell
         code_block_type = code_block_type[:-3]
         execute = True
@@ -1636,10 +1638,15 @@ def format_code_html(code_block, code_block_type, code_style):
         code_block_type = code_block_type[:-2]
         execute = True
         show = 'hide'
+    elif code_block_type[-2:] in ['-t']:    # Code as text
+        postfix_ = code_block_type[-2:]
+        code_block_type = code_block_type[:-2]
+        execute = False
+        #show = 'hide'
     if show == 'hide':
         return formatted_code, comment, execute, show
 
-    # Process code block types
+    # Pt II: format the code
     if code_block_type.startswith('pyoptpro'):
         formatted_code = online_python_tutor(code_block, return_tp='iframe')
         execute = False
@@ -1655,13 +1662,13 @@ def format_code_html(code_block, code_block_type, code_style):
         if code_block_type[-3:] in ['cod', 'pro']:
             type_ = code_block_type[:-3]
         # Get the code block's language
-        language = 'text'
+        language_ = 'text'
         if type_ in envir2pygments:
-            language = envir2pygments[type_]
+            language_ = envir2pygments[type_]
         elif type_ in get_legal_pygments_lexers():
-            language = type_
+            language_ = type_
         # Typeset code with pygments
-        lexer = get_lexer_by_name(language)
+        lexer = get_lexer_by_name(language_)
         linenos = option('pygments_html_linenos')
         formatter = HtmlFormatter(linenos=linenos,
                                   noclasses=True,
@@ -1674,9 +1681,8 @@ def format_code_html(code_block, code_block_type, code_style):
             # Embed some jquery JavaScript for a show/hide button
             hash = str(uuid.uuid4())[:4]
             formatted_code = html_toggle_btn % vars()
-            execute = False
         # Write a comment before the rendering with a description of the rendering
-        comment = '\n<!-- code=%s ' % language
+        comment = '\n<!-- code=%s ' % language_
         if code_block_type != '':
             comment += '(!bc %s) ' % code_block_type
         comment += 'typeset with pygments style "%s" -->\n' % code_style

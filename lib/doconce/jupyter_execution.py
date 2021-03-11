@@ -344,6 +344,9 @@ def format_code(code_block, code_block_type, code_style, format):
         from .html import format_code_html
         return format_code_html(code_block, code_block_type, code_style)
 
+        execute, show, postfix = get_code_postfix(code_block_type)
+        formatted_code, comment, execute, show = format_code_html(code_block, code_block_type, code_style, postfix='')
+
 
 def format_cell(formatted_code, formatted_block, execution_count, show, format):
     """Wrapper function to format a code cell and its output

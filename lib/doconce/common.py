@@ -576,7 +576,7 @@ def remove_code_and_tex(filestr, format):
     # see if a code is to be executed or just displayed as text.
     # !bc *cod-t and !bc *pro-t is used to indicate pure text.
     if format not in ('ipynb', 'matlabnb'):
-        filestr = re.sub(r'^!bc +([a-z0-9]+)-t', r'!bc \g<1>',
+        filestr = re.sub(r'^!bc +([a-z0-9]+)', r'!bc \g<1>',
                          filestr, flags=re.MULTILINE)
     # !bc pypro-h for show/hide button
     if format not in ('html', 'sphinx'):

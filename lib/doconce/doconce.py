@@ -4484,7 +4484,7 @@ def doconce2format(filestr_in, format):
         filestr = expand_newcommands(newcommand_files, filestr) # inline math
         for i in range(len(tex_blocks)):
             tex_blocks[i] = expand_newcommands(newcommand_files, tex_blocks[i])
-    ### ALE maybe modularize START
+
     # Check URLs to see if they are valid
     if option('urlcheck'):
         urlcheck(filestr)
@@ -4523,7 +4523,7 @@ def doconce2format(filestr_in, format):
         for s in 7, 3:
             filestr = re.sub(r'^ *%s +(\{?(Exercise|Problem|Project|Example)\}?):\s*(.+?) +%s' % ('='*s, '='*s), '===== \g<1>: \g<3> =====', filestr, flags=re.MULTILINE)
         debugpr('The file after changing the level of section headings:', filestr)
-    ### ALE maybe modularize END
+
     # Remove linebreaks within paragraphs
     if option('oneline_paragraphs'):  # (does not yet work well)
         filestr = make_one_line_paragraphs(filestr, format)

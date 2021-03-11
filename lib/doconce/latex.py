@@ -994,28 +994,36 @@ def format_code_latex(code_block, code_block_type, code_style):
     :param str code_block_type: block type e.g. 'pycod-e'
     :param code_style: any style from e.g. `--latex_code_style`
     :return: formatted_code, comment, execute, show
-    :rtype: str, str, bool, bool
+    :rtype: str, str, bool, str
     """
     formatted_code = ''
     execute = True
     show = 'latex'
     comment = ''
-    # Get any postfix to the block type e.g. '-h', '-e'
+    # Pt I: decide on execute and show based on any
+    # code envir postfixes to the block type ('hid','h','-e','-t')
     postfix_ = ''
-    if code_block_type[-2:] in ['-h']:      # Show/Hide button
+    if code_block_type[-2:] in ['-h']:      # Show/Hide button (in html)
         postfix_ = code_block_type[-2:]
         code_block_type = code_block_type[:-2]
+        execute = False
     elif code_block_type[-3:] in ['hid']:   # Hide the cell
         code_block_type = code_block_type[:-3]
+        execute = True
         show = 'hide'
     elif code_block_type[-2:] in ['-e']:    # Hide also in ipynb
         postfix_ = code_block_type[-2:]
         code_block_type = code_block_type[:-2]
-        show = 'hide'
-    if show == 'hide':
         execute = True
+        show = 'hide'
+    elif code_block_type[-2:] in ['-t']:    # Code as text
+        postfix_ = code_block_type[-2:]
+        code_block_type = code_block_type[:-2]
+        execute = False
+        #show = 'hide'
+    if show == 'hide':
         return formatted_code, comment, execute, show
-
+    # Pt II: format the code
     begin, end = jupyter_execution.formatted_code_envir(code_block_type, code_style, 'latex')
     formatted_code = begin + '\n' + code_block + '\n' + end
     return formatted_code, comment, execute, show
