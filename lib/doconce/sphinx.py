@@ -5,10 +5,10 @@ from builtins import range
 
 # can reuse most of rst module:
 from .rst import *
-from .common import align2equations, online_python_tutor, get_copyfile_info, \
-     get_legal_pygments_lexers, has_custom_pygments_lexer, INLINE_TAGS
-from .misc import option, _abort, errwarn
-from .latex import fix_latex_command_regex
+from .common import align2equations, online_python_tutor, \
+     get_legal_pygments_lexers, has_custom_pygments_lexer
+from .misc import option, _abort
+from .doconce import errwarn
 # used in sphinx_dir
 import time, shutil, glob, re
 from doconce.misc import system, load_preprocessed_doconce_file
@@ -63,7 +63,10 @@ def sphinx_figure(m):
 
     # math is ignored in references to figures, test for math only
     if caption.startswith('$') and caption.endswith('$'):
-        errwarn('*** warning: math only in sphinx figure caption (it will be ignored by sphinx, resulting in empty caption)\n  %s\n    FIGURE: [%s' % (caption, filename))
+        errwarn(('*** warning: math only in sphinx figure caption\n'
+                 '(it will be ignored by sphinx, resulting in empty caption)\n'
+                 '  %s\n'
+                 '    FIGURE: [%s' % (caption, filename)))
 
     #stem = os.path.splitext(filename)[0]
     #result += '\n.. figure:: ' + stem + '.*\n'  # utilize flexibility  # does not work yet
@@ -91,12 +94,11 @@ def sphinx_movie(m):
         # Use RunestoneInteractive video environment
         global video_counter
         video_counter += 1
-        text = """
-.. video:: video_%d
-   :controls:
-
-   %s
-""" % (video_counter, filename)
+        text = ('\n'
+                '.. video:: video_%d\n'
+                '   :controls:\n'
+                '\n'
+                '   %s\n') % (video_counter, filename)
         return text
     else:
         # Use plain html code
@@ -331,15 +333,16 @@ def sphinx_code(filestr, code_blocks, code_block_types,
                 multiple_math_labels_with_refs.append(label)
 
     if multiple_math_labels_with_refs:
-        errwarn("""
-*** warning: detected non-align math environment with multiple labels
-    (Sphinx cannot handle this equation system - labels will be removed
-    and references to them will be empty):""")
+        errwarn('\n'
+                '*** warning: detected non-align math environment with multiple labels\n'
+                '    (Sphinx cannot handle this equation system - labels will be removed\n'
+                '    and references to them will be empty):')
         for label in multiple_math_labels_with_refs:
             errwarn('    label{%s}' % label)
         print()
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'sphinx', complete_doc=True, remove_hid=False)
+    filestr = insert_code_blocks(filestr, code_blocks, format, complete_doc=True, remove_hid=False)
+    filestr = insert_tex_blocks(filestr, tex_blocks, format, complete_doc=True)
 
     # Remove all !bc ipy and !bc pyshell since interactive sessions
     # are automatically handled by sphinx without indentation
@@ -362,12 +365,10 @@ def sphinx_code(filestr, code_blocks, code_block_types,
     for key in set(code_block_types):
         if key in envir2pygments:
             if not envir2pygments[key] in legal_pygments_languages:
-                errwarn("""*** warning: %s is not a legal Pygments language (lexer)
-found in line:
-  %s
-
-    The 'text' lexer will be used instead.
-""" % (envir2pygments[key], defs_line))
+                errwarn(('*** warning: %s is not a legal Pygments language (lexer)\n'
+                         'found in line:\n'
+                         '  %s\n\n'
+                         '    The \'text\' lexer will be used instead.\n') % (envir2pygments[key], defs_line))
                 envir2pygments[key] = 'text'
 
         #filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
@@ -379,10 +380,10 @@ found in line:
             try:
                 import icsecontrib.sagecellserver
             except ImportError:
-                errwarn("""
-*** warning: pyscpro for computer code (sage cells) is requested, but'
-    icsecontrib.sagecellserver from https://github.com/kriskda/sphinx-sagecell
-    is not installed. Using plain Python typesetting instead.""")
+                errwarn(('\n'
+                         '*** warning: pyscpro for computer code (sage cells) is requested, but\n'
+                         '    icsecontrib.sagecellserver from https://github.com/kriskda/sphinx-sagecell\n'
+                         '    is not installed. Using plain Python typesetting instead.'))
                 key = 'pypro'
 
         if key == 'pyoptpro':
@@ -396,12 +397,9 @@ found in line:
                                  filestr, flags=re.MULTILINE)
         elif key == 'pyscpro':
             if option('runestone'):
-                filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
-                                 """
-.. activecode:: activecode_
-   :language: python
-
-""", filestr, flags=re.MULTILINE)
+                filestr = re.sub((r'^!bc\s+%s\s*\n' % key,
+                                 '\n.. activecode:: activecode_\n'
+                                 '   :language: python\n\n'), filestr, flags=re.MULTILINE)
             else:
                 filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
                                  '\n.. sagecellserver::\n\n',
@@ -412,11 +410,9 @@ found in line:
                 # NOTE: this is most likely not what we want
                 include = ', '.join([i for i in range(1, activecode_counter)])
                 filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
-                                 """
-.. activecode:: activecode_
-   :language: python
-   "include: %s
-""" % include, filestr, flags=re.MULTILINE)
+                                 ('\n.. activecode:: activecode_\n'
+                                  '   :language: python\n'
+                                  '   "include: %s\n') % include, filestr, flags=re.MULTILINE)
             else:
                 errwarn('*** error: pysccod for sphinx is not supported without the --runestone flag\n    (but pyscpro is via Sage Cell Server)')
                 _abort()
@@ -436,14 +432,12 @@ found in line:
                 key2language = dict(py='python', js='javascript', html='html')
                 language = key2language[key.replace('hid', '')]
                 include = ', '.join([i for i in range(1, activecode_counter)])
-                filestr = re.sub(r'^!bc +%s\s*\n' % key,
-                                 """
-.. activecode:: activecode_
-   :language: %s
-   :include: %s
-   :hidecode:
-
-""" % (language, include), filestr, flags=re.MULTILINE)
+                filestr = re.sub((r'^!bc +%s\s*\n' % key,
+                                  '.. activecode:: activecode_\n'
+                                  '   :language: %s\n'
+                                  '   :include: %s\n'
+                                  '   :hidecode:\n\n') %
+                                 (language, include), filestr, flags=re.MULTILINE)
             else:
                 # Remove hidden code block
                 pattern = r'^!bc +%s\n.+?^!ec' % key
@@ -451,9 +445,11 @@ found in line:
                                  flags=re.MULTILINE|re.DOTALL)
         else:
             show_hide = False
-            if key.endswith('-h'):
+            postfix = process_code_envir_postfix(key)
+            if len(postfix):
                 key_orig = key
-                key = key[:-2]
+                key = key[:-len(postfix)]
+                if postfix == '-h':
                 show_hide = True
             # Use the standard sphinx code-block directive
             if key in envir2pygments:
@@ -539,15 +535,12 @@ found in line:
         # can replace the default links by proper modified target= option.
         #filestr = '\n\n.. NOTE: Open external links in new windows.\n\n' + filestr
         # Use JavaScript instead
-        filestr = """.. raw:: html
-
-        <script type="text/javascript">
-        $(document).ready(function() {
-            $("a[href^='http']").attr('target','_blank');
-        });
-        </script>
-
-""" + filestr
+        filestr = ('.. raw:: html\n\n'
+                   '        <script type="text/javascript">\n'
+                   '        $(document).ready(function() {\n'
+                   '            $("a[href^=\'http\']").attr(\'target\',\'_blank\');\n'
+                   '        });\n'
+                   '        </script>\n\n') + filestr
 
 
     # Remove too much vertical space
@@ -879,7 +872,7 @@ def sphinx_code_orig(filestr, format):
         #    errwarn('*** warning: the "alignat" environment will give errors in Sphinx:\n' + tex_blocks[i] + '\n')
 
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst', remove_hid=True)
+    filestr = insert_tex_blocks(filestr, tex_blocks, format, complete_doc=True)
 
     for key in defs:
         language = defs[key]
@@ -966,7 +959,8 @@ def sphinx_code_newmathlabels(filestr, format):
     for label in math_labels:
         filestr = filestr.replace(':ref:`%s`' % label, ':eq:`%s`' % label)
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst', remove_hid=True)
+    filestr = insert_code_blocks(filestr, code_blocks, format, complete_doc=True, remove_hid=True)
+    filestr = insert_tex_blocks(filestr, tex_blocks, format, complete_doc=True)
 
     for key in defs:
         language = defs[key]

@@ -16,7 +16,7 @@ from pygments.lexers import get_lexer_by_name
 from .common import plain_exercise, table_analysis, INLINE_TAGS, \
     _CODE_BLOCK, _MATH_BLOCK, doconce_exercise_output, indent_lines, \
     online_python_tutor, envir_delimiter_lines, safe_join, \
-    insert_code_and_tex, is_file_or_url, chapter_pattern, \
+    insert_code_blocks, insert_tex_blocks, is_file_or_url, chapter_pattern, \
     has_custom_pygments_lexer, get_legal_pygments_lexers, \
     has_copyright, get_copyfile_info, default_movie
 from .misc import option, _abort, replace_code_command, copy_latex_packages
@@ -77,35 +77,6 @@ def get_bib_index_pages():
         if '{Index}' in line:
             idx_page = line.split('}{')[-2]
     return bib_page, idx_page
-
-
-# Mappings from DocOnce code environments to Pygments and lstlisting names
-envir2pyg = dict(
-    pyshell='python',
-    py='python', cy='cython', f='fortran',
-    c='c', cpp='c++', cu='cuda', cuda='cuda', bash='bash', sh='bash', rst='rst',
-    m='matlab', pl='perl', swig='c++',
-    latex='latex', html='html', js='js',
-    java='java',
-    xml='xml', rb='ruby', sys='console',
-    dat='text', txt='text', csv='text',
-    ipy='ipy', do='doconce',
-    # pyopt and pysc are treated explicitly
-    r='r', php='php',
-)
-envir2lst = dict(
-    pyshell='Python',
-    py='Python', cy='Python', f='Fortran',
-    c='C', cpp='C++', bash='bash', sh='bash', rst='text',
-    m='Matlab', pl='Perl', swig='C++',
-    latex='TeX', html='HTML', js='Java',
-    java='Java',
-    xml='XML', rb='Ruby', sys='bash',
-    dat='text', txt='text', csv='text',
-    ipy='Python', do='text',
-    # pyopt and pysc are treated explicitly
-    r='r', php='php',
-)
 
 
 def interpret_latex_code_style():
@@ -531,7 +502,8 @@ def latex_code(filestr, code_blocks, code_block_types,
                 errwarn('Warning: found "!bc %s", but %s is not a standard predefined '
                         'code environment' % (envir, envir))
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format, remove_hid=False)
+    filestr = insert_code_blocks(filestr, code_blocks, format, complete_doc=True, remove_hid=False)
+    filestr = insert_tex_blocks(filestr, tex_blocks, format, complete_doc=True)
     if code_envir_transform is not None:
         debugpr('file after inserting code/tex blocks, but before translating environments', filestr)
 
@@ -1000,7 +972,7 @@ def format_code_latex(code_block, code_block_type, code_style, postfix='', execu
     comment = ''
     if show == 'hide':
         return formatted_code, comment, execute, show
-    # Pt II: format the code
+    # Format the code
     begin, end = jupyter_execution.formatted_code_envir(code_block_type, code_style, 'latex')
     formatted_code = begin + '\n' + code_block + '\n' + end
     return formatted_code, comment, execute, show

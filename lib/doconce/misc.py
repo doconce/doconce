@@ -1430,17 +1430,19 @@ def ptex2tex():
                 # they need the language explicitly
                 if value == 'minted':
                     envir2pygments = dict(
+                        do='doconce',
                         pyshell='python',
                         py='python', cy='cython', f='fortran',
-                        c='c', cpp='c++', cu='cuda', cuda='cuda', sh='bash', rst='rst',
-                        m ='matlab', pl='perl', swig='c++',
-                        latex='latex', html='html', js='js',
-                        java='java',
+                        c='c', cpp='c++', cu='cuda', cuda='cuda', sh='bash', rst='rst', swig='c++',
+                        m='matlab', pl='perl',
+                        latex='latex',
+                        html='html',
                         xml='xml', rb='ruby', sys='console',
+                        js='js', java='java',
                         dat='text', txt='text', csv='text',
-                        ipy='ipy', do='doconce',
+                        ipy='ipy'
                         # pyopt and pysc are treated in latex.py
-                        )
+                    )
                     # Find substitutes for ipy and doconce if these lexers
                     # are not installed
                     # (third-party repos, does not come with pygments, but

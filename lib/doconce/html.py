@@ -7,7 +7,7 @@ from past.builtins import basestring
 from builtins import object
 import re, os, glob, sys, glob, base64, uuid
 from .common import table_analysis, plain_exercise, insert_code_and_tex, \
-     indent_lines, online_python_tutor, bibliography, _linked_files, safe_join, \
+     indent_lines, online_python_tutor, bibliography, safe_join, \
      is_file_or_url, envir_delimiter_lines, doconce_exercise_output, \
      get_legal_pygments_lexers, has_custom_pygments_lexer, emoji_url, \
      fix_ref_section_chapter, cite_with_multiple_args2multiple_cites, \
@@ -28,18 +28,20 @@ global _file_collection_filename
 
 # Mapping from envir (+cod/pro if present) to pygment style
 envir2pygments = dict(
+    bash='bash',
+    pyshell='python',
     py='python', cy='cython', f='fortran',
-    c='c', cpp='c++', cu='cuda', cuda='cuda', bash='bash', sh='bash', rst='rst',
-    m='matlab', pl='perl', rb='ruby',
-    swig='c++', latex='latex', tex='latex',
-    html='html', xml='xml',
-    js='js', java='java',
-    #sys='console',
+    c='c', cpp='c++', cu='cuda', cuda='cuda', sh='bash', rst='rst', swig='c++',
+    m='matlab', pl='perl',
+    latex='latex', tex='latex',
+    html='html',
+    xml='xml', rb='ruby',  # sys='console',
     sys='text',
     #sys='bash',
+    js='js', java='java',
     dat='text', txt='text', csv='text',
     cc='text', ccq='text',
-    pyshell='python', ipy='ipy',
+    ipy='ipy',
     pyopt='python', pysc='python',
     do='doconce')
 
@@ -1097,8 +1099,8 @@ def html_code(filestr, code_blocks, code_block_types,
     html_style = option('html_style=', '')
     pygm, pygm_style = get_pygments_style(code_block_types)
 
+    filestr = insert_code_blocks(filestr, code_blocks, format, complete_doc=True, remove_hid=False)
 
-    filestr = insert_code_and_tex(filestr, code_blocks, [], format, remove_hid=False)
     # ... more code in latex
     #l.966
     #latex_code_style = interpret_latex_code_style()
@@ -1107,7 +1109,7 @@ def html_code(filestr, code_blocks, code_block_types,
     filestr = jupyter_execution.process_code_blocks(filestr, code_style, format)
 
     # Remove all <p></p> between </div> and <div> ?
-    filestr = re.sub(r'</div>[\n]+<p></p>[\n]+(<!--.*-->)*[\n]+', r'\1', filestr)
+    filestr = re.sub(r'</div>[\n]+<p></p>[\n]+(<!--.*-->[\n]{0,1})*[\n]+', r'\1', filestr)
 
     # Inline math cannot have x<z<w as this is interpreted as tags
     # and becomes invisible
@@ -1220,9 +1222,9 @@ def html_code(filestr, code_blocks, code_block_types,
             tex_blocks[i] = re.sub(r'^label\{', r'\\label{', tex_blocks[i],
                                    flags=re.MULTILINE)
 
-    debugpr('File before call to insert_code_and_tex (format html):', filestr)
+    debugpr('File before call to insert_code_blocks (format html):', filestr)
     # I might have to move stuff up here ..
-    filestr = insert_code_and_tex(filestr, [], tex_blocks, format, remove_hid=True)
+    filestr = insert_tex_blocks(filestr, tex_blocks, format, complete_doc=True)
     debugpr('File after call to insert_code_and tex (format html):', filestr)
 
     needs_online_python_tutor = any(x.startswith('pyoptpro') for x in code_block_types)
@@ -1669,8 +1671,8 @@ def format_code_html(code_block, code_block_type, code_style, postfix='', execut
         # Write a comment before the rendering with a description of the rendering
         comment = '\n<!-- code=%s ' % language_
         if code_block_type != '':
-            comment += '(!bc %s) ' % (code_block_type+postfix)
-        comment += 'typeset with pygments style "%s" -->\n' % code_style
+            comment += '(!bc %s) ' % (code_block_type)
+        comment += 'typeset with pygments style "%s%s" -->\n' % (code_style, postfix)
     else:
         # Substitute & first, otherwise & in &quot; becomes &amp;quot;
         formatted_code = code_block.replace('&', '&amp;')
@@ -2667,11 +2669,9 @@ def html_box(block, format, text_size='normal'):
 
 
 def html_quote(block, format, text_size='normal'):
-    return """\
-<blockquote>
-%s
-</blockquote>
-""" % (indent_lines(block, format, ' '*4, trailing_newline=False))
+    return ('<blockquote>\n'
+            '%s\n'
+            '</blockquote>\n') % (indent_lines(block, format, ' '*4, trailing_newline=False))
 
 global admon_css_vars        # set in define
 global html_admon_style      # set below
@@ -3271,7 +3271,8 @@ body { %s; }
             if outfilename is None:
                 outfilename = globals.dofile_basename + '.html'
             else:
-                if not outfilename.endswith('html'):
+                outfilename = outfilename.strip('.html') + '.html'
+                if not outfilename.endswith('.html'):
                     outfilename += '.html'
 
             if option('html_bootstrap_navbar=', 'on') != 'off':

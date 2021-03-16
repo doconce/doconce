@@ -57,7 +57,7 @@ The `*out`  (e.g. `pycod-out`) environment can be used to write a cell output:
 1/0
 !ec
 !bc pyout
-# Python shows this error if you divide by zero:
+# This is a output cell using the `pycod-out` environment
 1/0: You cannot divide by zero
 !ec
 

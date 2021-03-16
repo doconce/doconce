@@ -2,9 +2,9 @@ from __future__ import absolute_import
 from builtins import str
 from builtins import range
 import re, sys, shutil, os
-from .common import default_movie, plain_exercise, table_analysis, \
-     insert_code_and_tex, indent_lines, bibliography, fix_ref_section_chapter, \
-    cite_with_multiple_args2multiple_cites, _CODE_BLOCK, _MATH_BLOCK, DEFAULT_ARGLIST
+from .common import default_movie, plain_exercise, table_analysis, indent_lines, \
+    bibliography, fix_ref_section_chapter, cite_with_multiple_args2multiple_cites, \
+    _CODE_BLOCK, _MATH_BLOCK, DEFAULT_ARGLIST
 from .doconce import INLINE_TAGS_SUBST, INLINE_TAGS
 from .latex import fix_latex_command_regex
 from .html import html_movie, html_table

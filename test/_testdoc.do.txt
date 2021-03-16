@@ -131,7 +131,7 @@ and finally the complete file with a plain text verbatim environment
 
 Testing other code environments. First Python:
 
-!bc
+!bc do
 |bc pycod
 def f(x):
     return x+1
@@ -282,7 +282,7 @@ int main()
 # It also tests emoji before code
 And a little bit of Fortran: :dizzy_face:
 
-!bc
+!bc do
 |bc cod
       subroutine midpt(x, length, a, b)
       real*8 a, b, x
@@ -339,7 +339,7 @@ output2
 
 Any valid pygments lexer/language name can appear to, e.g.,
 
-!bc
+!bc do
 |bc restructuredtext
 =======
 Heading

@@ -100,6 +100,10 @@ def apply_regex(logfilename, logfilenameout=None):
     text = re.sub(r'^\s*\d+[\.]*$', r'', text, flags=re.M)      #stray numbers: 5.
     text = re.sub(r'^(?:\[\d+\]\s*)+$', r'', text, flags=re.M)  #stray numbers: [5] [6]
     text = re.sub(r'^[\[\]]{2,}\s*$', r'', text, flags=re.M)       #parentheses [][][]
+    text = re.sub(r'show_hide_code.*\(\)', r'show_hide_code()', text)
+    text = re.sub(r'\(\d+ pages', r'(X pages', text)
+    text = re.sub(r'line \d+', r'line XXX', text)
+    text = re.sub(r'^\s*d+[\.]*$', r'', text) #some stray numbers
     log = open(logfilenameout, 'w')
     log.write(text)
     log.close()

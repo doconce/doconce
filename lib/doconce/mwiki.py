@@ -37,7 +37,7 @@ from builtins import range
 
 
 import re, os, subprocess, sys, subprocess
-from .common import default_movie, plain_exercise, insert_code_and_tex
+from .common import default_movie, plain_exercise, insert_code_blocks, insert_tex_blocks
 from .plaintext import plain_quiz
 from .misc import _abort, errwarn
 
@@ -94,7 +94,8 @@ def mwiki_code(filestr, code_blocks, code_block_types,
             if label in filestr:
                 errwarn('*** warning: reference to label "%s" in an equation does not work in MediaWiki' % label)
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format, remove_hid=True)
+    filestr = insert_code_blocks(filestr, code_blocks, format, complete_doc=True, remove_hid=True)
+    filestr = insert_tex_blocks(filestr, tex_blocks, format, complete_doc=True)
 
     # Supported programming languages:
     # https://www.mediawiki.org/wiki/Extension:SyntaxHighlight_GeSHi#Supported_languages

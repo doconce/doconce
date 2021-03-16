@@ -7,13 +7,15 @@ from builtins import zip
 # Simple edit of gwiki.py
 
 import re, os, sys, subprocess
-from .common import default_movie, plain_exercise, insert_code_and_tex
+from .common import default_movie, plain_exercise, insert_code_blocks, insert_tex_blocks
 from .plaintext import plain_quiz
 from .misc import _abort, errwarn
 
+
 def cwiki_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format, remove_hid=True)
+    filestr = insert_code_blocks(filestr, code_blocks, format, complete_doc=True, remove_hid=True)
+    filestr = insert_tex_blocks(filestr, tex_blocks, format, complete_doc=True)
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
     filestr = c.sub(r'{{{\n', filestr)
     filestr = re.sub(r'!ec\n', r'}}}\n', filestr)
@@ -21,6 +23,7 @@ def cwiki_code(filestr, code_blocks, code_block_types,
     filestr = c.sub(r'{{{\n', filestr)
     filestr = re.sub(r'!et\n', r'}}}\n', filestr)
     return filestr
+
 
 def cwiki_figure(m):
     filename = m.group('filename')
@@ -52,7 +55,9 @@ def cwiki_figure(m):
     result = r"""{{%s|%s}}""" % (filename, caption)
     return result
 
+
 from .common import table_analysis
+
 
 def cwiki_table(table):
     """Native Creole wiki table."""
@@ -81,9 +86,8 @@ def cwiki_table(table):
     s += '\n\n'
     return s
 
-def cwiki_author(authors_and_institutions, auth2index,
-                 inst2index, index2inst, auth2email):
 
+def cwiki_author(authors_and_institutions, auth2index, inst2index, index2inst, auth2email):
     authors = []
     for author, i, email in authors_and_institutions:
         if email is None:
@@ -107,7 +111,9 @@ def cwiki_author(authors_and_institutions, auth2index,
     # we skip institutions in Creole wiki
     return text
 
+
 from .gwiki import wiki_ref_and_label_common
+
 
 def cwiki_ref_and_label(section_label2title, format, filestr):
     return wiki_ref_and_label_common(section_label2title, format, filestr)

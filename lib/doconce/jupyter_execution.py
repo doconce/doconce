@@ -14,7 +14,7 @@ except ImportError:
 import re, base64, uuid
 from .doconce import errwarn, _abort
 from .misc import option
-from .common import safe_join
+from .common import safe_join, process_code_envir_postfix
 class JupyterKernelClient:
     def __init__(self):
         self.manager = KernelManager(kernel_name='python3')
@@ -216,7 +216,8 @@ def process_code_blocks(filestr, code_style, format):
             lines[i] = ''
             formatted_code, comment, execute, show = format_code(current_code,
                                                                  current_code_envir,
-                                                                 code_style, format)
+                                                                 code_style,
+                                                                 format)
             # Check if there is any label{} or caption{}
             label, caption = get_label_and_caption(lines, i)
             # Execute and/or show the code and its output
@@ -269,7 +270,7 @@ def execute_code_block(current_code, current_code_envir, kernel_client, format, 
     text_out = ''
     execution_count = 0
     if kernel_client is None:
-        return text_out
+        return text_out, execution_count
     if current_code_envir.endswith('out'):      # Output cell
         outputs = [{'text': current_code}]
     else:
@@ -343,7 +344,10 @@ def format_code(code_block, code_block_type, code_style, format):
     :param str format: output format, one of ['html', 'latex', 'pdflatex']
     :return:
     """
-    postfix, execute, show = process_code_envir_postfix(code_block_type)
+    postfix = process_code_envir_postfix(code_block_type)
+    execute, show = get_execute_show(postfix)
+    if len(postfix):
+        code_block_type = code_block_type[:-len(postfix)]
     if format in ['latex','pdflatex']:
         from .latex import format_code_latex
         return format_code_latex(code_block, code_block_type, code_style, postfix, execute, show)
@@ -352,43 +356,33 @@ def format_code(code_block, code_block_type, code_style, format):
         return format_code_html(code_block, code_block_type, code_style, postfix, execute, show)
 
 
-def process_code_envir_postfix(code_block_type):
-    """Extract any code envir postfix to code environments
-    ('hid','h','-e','-t','out) and return whether the code should
-    be executed and showed
+def get_execute_show(postfix):
+    """Return whether the code should be executed and showed
 
-    :param str code_block_type: block type e.g. 'pycod-e'
-    :return: postfix, execute, show
-    :rtype: str, bool, str
+    Based on the postfix (e.g. '-e') on a code environment (e.g. 'pycod-e'),
+    return whether the code should be executed and shown
+    :param str postfix: postfix (e.g. '-e') to code environment (e.g. 'pycod-e')
+    :return: execute, show
+    :rtype: bool, str
     """
     execute = True
     show = 'format'
-    postfix = ''
-    if code_block_type[-2:] in ['-h']:  # Show/Hide button (in html)
-        postfix = code_block_type[-2:]
-        code_block_type = code_block_type[:-2]
+    if postfix == '-h':     # Show/Hide button (in html)
         execute = False
-    elif code_block_type[-3:] in ['hid']:  # Hide the cell
-        code_block_type = code_block_type[:-3]
+    elif postfix == 'hid':  # Hide the cell
         execute = True
         show = 'hide'
-    elif code_block_type[-2:] in ['-e']:  # Hide also in ipynb
-        postfix = code_block_type[-2:]
-        code_block_type = code_block_type[:-2]
+    elif postfix == '-e':   # Hide also in ipynb
         execute = True
         show = 'hide'
-    elif code_block_type[-3:] in ['out']:  # Output cell
-        postfix = code_block_type[:-3]
-        code_block_type = code_block_type[:-3]
-        execute = True  # execute_code_block will render this as code output
+    elif postfix == 'out':  # Output cell
+        execute = True      # execute_code_block will render this as code output
         show = 'output'
-        return postfix, execute, show
-    elif code_block_type[-2:] in ['-t']:  # Code as text
-        postfix = code_block_type[-2:]
-        code_block_type = code_block_type[:-2]
+        return execute, show
+    elif postfix == '-t':   # Code as text
         execute = False
         show = 'text'
-    return postfix, execute, show
+    return execute, show
 
 
 def format_cell(formatted_code, formatted_output, execution_count, show, format):
@@ -466,11 +460,11 @@ def latex_code_envir(envir, envir_spec):
     """
     if envir_spec is None:
         return '\\b' + envir, '\\e' + envir
-    elif envir_spec.endswith("out") and option("ignore_output"):
+    elif envir.endswith("out") and option("ignore_output"):
         return '',''
-    elif envir_spec.endswith("-e"):
+    elif envir.endswith("-e"):
         return '',''
-    
+
     leftmargin = option('latex_code_leftmargin=', '2')
     bg_vpad = '_vpad' if option('latex_code_bg_vpad') else ''
 
@@ -513,7 +507,36 @@ def latex_code_envir(envir, envir_spec):
         envir_tp = 'cod'
         envir = envir[:-3]
 
-    global envir2pyg, envir2lst
+    # Mappings from DocOnce code environments to Pygments and lstlisting names
+    envir2lst = dict(
+        pyshell='Python',
+        py='Python', cy='Python', f='Fortran',
+        c='C', cpp='C++', bash='bash', sh='bash', rst='text',
+        m='Matlab', pl='Perl', swig='C++',
+        latex='TeX', html='HTML', js='Java',
+        java='Java',
+        xml='XML', rb='Ruby', sys='bash',
+        dat='text', txt='text', csv='text',
+        ipy='Python', do='text',
+        # pyopt and pysc are treated explicitly
+        r='r', php='php',
+    )
+
+    envir2pygments = dict(
+        pyshell='python',
+        py='python', cy='cython', f='fortran',
+        c='c', cpp='c++', cu='cuda', cuda='cuda', sh='bash', rst='rst', swig='c++',
+        bash='bash',
+        m='matlab', pl='perl',
+        latex='latex',
+        html='html',
+        xml='xml', rb='ruby', sys='console',
+        js='js', java='java',
+        dat='text', txt='text', csv='text',
+        ipy='ipy', do='doconce',
+        # pyopt and pysc are treated explicitly
+        r='r', php='php'
+    )
 
     if envir in ('ipy', 'do'):
         # Find substitutes for ipy and doconce if these lexers
@@ -524,14 +547,14 @@ def latex_code_envir(envir, envir_spec):
         try:
             get_lexer_by_name('ipy')
         except:
-            envir2pyg['ipy'] = 'python'
+            envir2pygments['ipy'] = 'python'
         try:
             get_lexer_by_name('doconce')
         except:
-            envir2pyg['do'] = 'text'
+            envir2pygments['do'] = 'text'
 
     if package == 'pyg':
-        begin = '\\begin{minted}[%s]{%s}' % (pyg_style, envir2pyg.get(envir, 'text'))
+        begin = '\\begin{minted}[%s]{%s}' % (pyg_style, envir2pygments.get(envir, 'text'))
         end = '\\end{minted}'
     elif package == 'lst':
         if envir2lst.get(envir, 'text') == 'text':

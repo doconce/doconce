@@ -31,11 +31,14 @@ emoji_url = 'https://raw.githubusercontent.com/hplgit/doconce/master/bundled/emo
 def begin_end_comment_tags(tag):
     return '--- begin ' + tag + ' ---', '--- end ' + tag + ' ---'
 
+
 def comment_tag(tag, comment_pattern='# %s'):
     return comment_pattern % tag
 
+
 def begin_comment_tag(tag, comment_pattern='# %s'):
     return comment_pattern % (begin_end_comment_tags(tag)[0])
+
 
 def end_comment_tag(tag, comment_pattern='# %s'):
     return comment_pattern % (begin_end_comment_tags(tag)[1])
@@ -66,6 +69,7 @@ envir_delimiter_lines = {
 
 _counter_for_html_movie_player = 0
 
+
 def internet_access(timeout=1):
     """Return True if internet is on, else False."""
     import urllib.request, urllib.error, urllib.parse, socket
@@ -80,6 +84,7 @@ def internet_access(timeout=1):
         pass
     return False
 
+
 def safe_join(lines, delimiter):
     try:
         filestr = delimiter.join(lines) + '\n' # will fail if ord(char) > 127
@@ -91,6 +96,7 @@ def safe_join(lines, delimiter):
         else:
             errwarn(e)
             _abort()
+
 
 def fix_backslashes(text):
     """
@@ -124,6 +130,7 @@ def where():
     # Technique: find the directory where this common.py file resides
     import os
     return os.path.dirname(__file__)
+
 
 def is_file_or_url(filename, msg='checking existence of', debug=True):
     """
@@ -204,6 +211,7 @@ def has_copyright(filestr):
             break
     return copyright_, symbol
 
+
 def get_copyfile_info(filestr=None, copyright_filename=None, format=None):
     """Return copyright tuple in .filename.copyright."""
     # Copyright info
@@ -239,6 +247,7 @@ def get_copyfile_info(filestr=None, copyright_filename=None, format=None):
             cr_text += r'DocOnce'
 
     return cr_text
+
 
 def fix_ref_section_chapter(filestr, format):
     # .... see section ref{my:sec} is replaced by
@@ -285,6 +294,7 @@ def fix_ref_section_chapter(filestr, format):
     # when it comes to section/chapter references.
     return filestr
 
+
 def indent_lines(text, format, indentation=' '*8, trailing_newline=True):
     """
     Indent each line in the string text, provided in a format for
@@ -312,6 +322,7 @@ def indent_lines(text, format, indentation=' '*8, trailing_newline=True):
         text += '\n'
     return text
 
+
 def unindent_lines(text, format=None, trailing_newline=True):
     """
     Unindent each line in the string text.
@@ -331,6 +342,7 @@ def unindent_lines(text, format=None, trailing_newline=True):
         text += '\n'
     return text
 
+
 def cite_with_multiple_args2multiple_cites(filestr):
     """Fix cite{key1,key2,key3} to cite{key1}cite[key2]cite[key3]."""
     cite_args = re.findall(r'cite\{(.+?)\}', filestr)
@@ -341,6 +353,7 @@ def cite_with_multiple_args2multiple_cites(filestr):
                 args = ' '.join(['cite{%s}' % a for a in args])
                 filestr = filestr.replace('cite{%s}' % arg, args)
     return filestr
+
 
 def table_analysis(table):
     """Return max width of each column."""
@@ -370,6 +383,7 @@ def table_analysis(table):
                 column_width[j] = max(column_width[j], len(column))
     return column_width
 
+
 def online_python_tutor(code, return_tp='iframe'):
     """
     Return URL (return_tp is 'url') or iframe HTML code
@@ -393,6 +407,7 @@ def online_python_tutor(code, return_tp='iframe'):
         return url
     else:
         raise ValueError('BUG!')
+
 
 def align2equations(filestr, format):
     """Turn align environments into separate equation environments."""
@@ -485,6 +500,7 @@ def ref2equations(filestr):
     filestr = re.sub(r'XXX___(.+?)___XXX', r'\g<1>(ref{', filestr)
     return filestr
 
+
 def default_movie(m):
     """
     Replace a movie entry by a proper URL with text.
@@ -519,6 +535,7 @@ def default_movie(m):
     text = '%s `%s`: load "`%s`": "%s" into a browser' % \
        (caption, filename, moviehtml, moviehtml)
     return text
+
 
 def begin_end_consistency_checks(filestr, envirs):
     """Perform consistency checks: no of !bc must equal no of !ec, etc."""
@@ -558,7 +575,8 @@ def begin_end_consistency_checks(filestr, envirs):
 def remove_code_and_tex(filestr, format):
     """Remove verbatim and latex (math) code blocks from the file and
     store separately in lists (code_blocks and tex_blocks).
-    The function insert_code_and_tex will insert these blocks again.
+    The functions insert_code_blocks and insert_tex_blocks will insert
+    these blocks again.
 
     :param str filestr: text string
     :param str format: output format
@@ -575,14 +593,14 @@ def remove_code_and_tex(filestr, format):
     # ipynb (and future interactive executable documents) needs to
     # see if a code is to be executed or just displayed as text.
     # !bc *cod-t and !bc *pro-t is used to indicate pure text.
-    if format not in ('ipynb', 'matlabnb'):
-        filestr = re.sub(r'^!bc +([a-z0-9]+)', r'!bc \g<1>',
+    '''if format not in ('ipynb', 'matlabnb'):
+        filestr = re.sub(r'^!bc +([a-z0-9]+)', r'!bc \g<1>',  #-t
                          filestr, flags=re.MULTILINE)
     # !bc pypro-h for show/hide button
     if format not in ('html', 'sphinx'):
         filestr = re.sub(r'^!bc +([a-z0-9]+)-h', r'!bc \g<1>',
                          filestr, flags=re.MULTILINE)
-
+    '''
     # (recall that !bc can be followed by extra information that we must keep:)
     code = re.compile(r'^!bc(.*?)\n(.*?)^!ec *\n', re.DOTALL|re.MULTILINE)
 
@@ -693,6 +711,28 @@ def remove_code_and_tex(filestr, format):
 
     return filestr, code_blocks, code_block_types, tex_blocks
 
+
+def process_code_envir_postfix(environment):
+    """Extract any code envir postfix to code environments
+        ('hid','-h','-e','-t','out')
+
+    :param str environment: code environment e.g. 'pycod-e'
+    :return: postfix
+    :rtype: str
+    """
+    postfix = ""
+    if environment[-2:] in ['-h', '-e', '-t']:
+        # Show/Hide button (in html)
+        # Hide also in ipynb
+        # Code as text
+        postfix = environment[-2:]
+    elif environment[-3:] in ['hid', 'out']:
+        # Hide the cell
+        # Output cell
+        postfix = environment[-3:]
+    return postfix
+
+
 def add_labels_to_all_numbered_equations(tex_blocks):
     """
     Add a label with name _autoX, where X is an integer,
@@ -773,35 +813,35 @@ def add_labels_to_all_numbered_equations(tex_blocks):
     return tex_blocks
 
 
-def insert_code_and_tex(filestr, code_blocks, tex_blocks, format, complete_doc=True, remove_hid=True):
-    """ Insert code in file in
-    Insert in the DocOnce file verbatim and latex (math) code blocks
-    extracted by the `remove_code_and_tex` function and stored separately in lists.
+def insert_code_blocks(filestr, code_blocks, format, complete_doc=True, remove_hid=True):
+    """ Insert code blocks in file
 
+    Insert in the DocOnce file verbatim code blocks previously extracted by
+    the `remove_code_and_tex` function and stored separately in lists.
     :param str filestr: text string
     :param list(str) code_blocks: list of code blocks
-    :param list(str) tex_blocks: list of blocks
     :param str format: output format
-    :param bool complete_doc: default True
+    :param bool complete_doc: check with regex that the number of code blocks are
+    consistent, default True
     :param bool remove_hid: remove hidden code blocks (e.g. !bc pyhid), default False
-    :return: filestr with code in place
+    :return: filestr with code blocks in place
     :rtype: str
     """
     # Consistency check (only for complete documents):
-    # find no of distinct code and math blocks
+    # find no of distinct code blocks
     # (can be duplicates when solutions are copied at the end)
     pattern = r'^\d+ ' + _CODE_BLOCK
     code_lines = re.findall(pattern, filestr, flags=re.MULTILINE)
     n = len(set(code_lines))
     if complete_doc and len(code_blocks) != n:
         errwarn('*** error: found %d code block markers for %d initial code blocks' % (n, len(code_blocks)))
-        errwarn("""    Possible causes:
-           - mismatch of !bt and !et within one file, such that a !bt
-             swallows code
-           - mismatch of !bt and !et across files in multi-file documents
-           - !bc and !ec inside code blocks - replace by |bc and |ec
-    (run doconce on each individual file to locate the problem, then on
-     smaller and smaller parts of each file)""")
+        errwarn('    Possible causes:\n'
+                '           - mismatch of !bt and !et within one file, such that a !bt\n'
+                '             swallows code\n'
+                '           - mismatch of !bt and !et across files in multi-file documents\n'
+                '           - !bc and !ec inside code blocks - replace by |bc and |ec\n'
+                '    (run doconce on each individual file to locate the problem, then on\n'
+                '     smaller and smaller parts of each file)\n')
         numbers = list(range(len(code_blocks)))  # expected numbers in code blocks
         for e in code_lines:
             # remove number
@@ -814,23 +854,10 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format, complete_doc=T
             errwarn('    Problem: did not find XX <<<!!CODE_BLOCK for XX in %s' % numbers)
 
         _abort()
-    pattern = r'^\d+ ' + _MATH_BLOCK
-    n = len(set(re.findall(pattern, filestr, flags=re.MULTILINE)))
-    if complete_doc and len(tex_blocks) != n:
-        errwarn('*** error: found %d tex block markers for %d initial tex blocks\nAbort!' % (n, len(tex_blocks)))
-        errwarn("""    Possible causes:
-           - mismatch of !bc and !ec within one file, such that a !bc
-             swallows tex blocks
-           - mismatch of !bc and !ec across files in multi-file documents
-           - !bt and !et inside code blocks - replace by |bt and |et
-    (run doconce on each file to locate the problem, then on
-     smaller and smaller parts of each file)""")
-        _abort()
-
+    # Apply the max_bc_linelength option
     max_linelength = option('max_bc_linelength=', None)
     if max_linelength is not None:
         max_linelength = int(max_linelength)
-
         for i in range(len(code_blocks)):
             lines = code_blocks[i].splitlines()
             truncated = False
@@ -840,43 +867,76 @@ def insert_code_and_tex(filestr, code_blocks, tex_blocks, format, complete_doc=T
                     truncated = True
             if truncated:
                 code_blocks[i] = '\n'.join(lines) + '\n'
-
-
+    # Loop through lines in input file
     lines = filestr.splitlines()
-
-    # Note: re.sub cannot be used because newlines, \nabla, etc
-    # are not handled correctly. Need str.replace.
-
     for i in range(len(lines)):
-        if _CODE_BLOCK in lines[i] or _MATH_BLOCK in lines[i]:
+        if _CODE_BLOCK in lines[i]:
             words = lines[i].split()
             # on a line: number block-indicator code-type
             n = int(words[0])
-            if _CODE_BLOCK in lines[i]:
-                words[1] = '!bc'
-                code = code_blocks[n]
-                lines[i] = ' '.join(words[1:]) + '\n' + code + '!ec'
-            if _MATH_BLOCK in lines[i]:
-                words[1] = '!bc'
-                math = tex_blocks[n]
-                lines[i] = '!bt\n' + math + '!et'
-
+            words[1] = '!bc'
+            code = code_blocks[n]
+            lines[i] = ' '.join(words[1:]) + '\n' + code + '!ec'
     filestr = safe_join(lines, '\n')
-
+    # Remove hidden code blocks
     if remove_hid:
         filestr = remove_hidden_code_blocks(filestr, format)
-
     return filestr
+
+
+def insert_tex_blocks(filestr, tex_blocks, format, complete_doc=True):
+    """ Insert code blocks in file
+
+    Insert in the DocOnce file verbatim and latex (math) code blocks
+    extracted by the `remove_code_and_tex` function and stored separately in lists.
+    :param str filestr: text string
+    :param list(str) tex_blocks: list of blocks
+    :param str format: output format
+    :param bool complete_doc: check with regex that the number of tex blocks
+    are consistent, default True
+    :return: filestr with tex blocks in place
+    :rtype: str
+    """
+    # Consistency check (only for complete documents):
+    # find no of distinct math blocks
+    # (can be duplicates when solutions are copied at the end)
+    pattern = r'^\d+ ' + _MATH_BLOCK
+    tex_lines = re.findall(pattern, filestr, flags=re.MULTILINE)
+    n = len(set(tex_lines))
+    if complete_doc and len(tex_blocks) != n:
+        errwarn('*** error: found %d tex block markers for %d initial tex blocks\nAbort!' % (n, len(tex_blocks)))
+        errwarn('    Possible causes:\n'
+                '           - mismatch of !bc and !ec within one file, such that a !bc\n'
+                '             swallows tex blocks\n'
+                '           - mismatch of !bc and !ec across files in multi-file documents\n'
+                '           - !bt and !et inside code blocks - replace by |bt and |et\n'
+                '    (run doconce on each file to locate the problem, then on\n'
+                '     smaller and smaller parts of each file)')
+        _abort()
+    # Loop through lines in input file
+    lines = filestr.splitlines()
+    for i in range(len(lines)):
+        if _MATH_BLOCK in lines[i]:
+            words = lines[i].split()
+            # on a line: number block-indicator code-type
+            n = int(words[0])
+            words[1] = '!bc'
+            math = tex_blocks[n]
+            lines[i] = '!bt\n' + math + '!et'
+    filestr = safe_join(lines, '\n')
+    return filestr
+
 
 def remove_hidden_code_blocks(filestr, format):
     """
-    Remove text encolsed in !bc *hid and !ec tags.
+    Remove text enclosed in !bc *hid and !ec tags.
     Some formats need this for executable code blocks to work,
     but they should be invisible in the text.
     """
     pattern = r'^!bc +[a-z]*hid\n.+?!ec'
     filestr = re.sub(pattern, '', filestr, flags=re.MULTILINE|re.DOTALL)
     return filestr
+
 
 def doconce_exercise_output(
     exer,
@@ -1250,6 +1310,7 @@ def doconce_exercise_output(
         sol = ''
     return s, sol
 
+
 def plain_exercise(exer):
     return doconce_exercise_output(exer)
 
@@ -1288,12 +1349,14 @@ def bibliography(pubdata, citations, format='doconce'):
     text += '\n\n'
     return text
 
+
 def get_legal_pygments_lexers():
     lexers = []
     for classname, names, dummy, dymmy in list(get_all_lexers()):
         for name in names:
             lexers.append(name)
     return lexers
+
 
 def has_custom_pygments_lexer(name):
     if name == 'ipy':
