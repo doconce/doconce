@@ -2,7 +2,7 @@
 
 dofile_basename = None
 filename = None
-
+format = None
 encoding = ''
 
 _log = ''

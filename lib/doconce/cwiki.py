@@ -9,8 +9,7 @@ from builtins import zip
 import re, os, sys, subprocess
 from .common import default_movie, plain_exercise, insert_code_and_tex
 from .plaintext import plain_quiz
-from .misc import _abort
-from .doconce import errwarn
+from .misc import _abort, errwarn
 
 def cwiki_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):

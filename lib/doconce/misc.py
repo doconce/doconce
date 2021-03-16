@@ -11,7 +11,6 @@ from past.builtins import basestring
 from past.utils import old_div
 from past.utils import old_div
 import os, sys, shutil, re, glob, time, subprocess, codecs
-from .doconce import errwarn
 from doconce import globals
 from functools import reduce
 
@@ -198,6 +197,53 @@ def misc_option(name, default=None):
     elif option_name in sys.argv:
         value = True
     return value
+
+def debugpr(heading='', text=''):
+    """Add `heading` and `text` to the log/debug file.
+
+    :param str heading: heading to be added
+    :param str text: text to be added
+    """
+    if option('debug'):
+        if globals.encoding:
+            globals._log = codecs.open('_doconce_debugging.log','a', globals.encoding)
+        else:
+            globals._log = open('_doconce_debugging.log','a')
+        out_class = str(type(text)).split("'")[1]
+        pre = '\n' + '*'*60 + '\n%s>>> ' % out_class if text else ''
+        globals._log.write(pre + heading + '\n\n')
+        globals._log.write(text + '\n')
+        globals._log.close()
+
+def _rmdolog():
+    """Remove the .dolog file
+    """
+    logfilename = globals.dofile_basename + '.dolog'
+    if os.path.isfile(logfilename):
+        os.remove(logfilename)
+
+def errwarn(msg, end='\n', style=''):
+    """Function for reporting errors and warnings to screen and file.
+
+    :param str msg: text message
+    :param str end: string appended after the last value, default a newline
+    :param str style: style msg with color or formatting
+    """
+    if style:
+        print(globals.style[style] + msg + globals.style['_end'], end=end)
+    else:
+        print(msg, end=end)
+    if globals.dofile_basename is None:
+        return
+    logfilename = globals.dofile_basename + '.dlog'
+    mode = 'a' if os.path.isfile(logfilename) else 'w'
+    if globals.encoding:
+        err = codecs.open(logfilename, mode, globals.encoding)
+    else:
+        err = open(logfilename, mode)
+    err.write(msg)
+    if end == '\n':
+        err.write('\n')
 
 def _abort():
     """Abort the program's execution

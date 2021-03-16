@@ -16,8 +16,7 @@ from .common import plain_exercise, table_analysis, \
     _CODE_BLOCK, _MATH_BLOCK, doconce_exercise_output, indent_lines, \
     online_python_tutor, envir_delimiter_lines, safe_join, \
     insert_code_and_tex, is_file_or_url, chapter_pattern
-from .misc import option, _abort, replace_code_command
-from .doconce import errwarn, debugpr
+from .misc import option, _abort, replace_code_command, errwarn, debugpr
 from doconce import globals
 import base64
 import uuid

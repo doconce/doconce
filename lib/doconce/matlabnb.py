@@ -21,8 +21,7 @@ import re, sys
 from .common import default_movie, plain_exercise, bibliography, \
      cite_with_multiple_args2multiple_cites, insert_code_and_tex, \
      fix_ref_section_chapter
-from .misc import option
-from .doconce import errwarn
+from .misc import option, errwarn
 
 def matlabnb_author(authors_and_institutions, auth2index,
                  inst2index, index2inst, auth2email):

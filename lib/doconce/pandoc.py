@@ -12,12 +12,11 @@ from past.builtins import basestring
 # solution seems to be manual editing, which is doable for small
 # documents and issues.)
 
-import re, sys, functools
-from .common import default_movie, plain_exercise, table_analysis, \
+import re, sys, functools, string
+from .common import default_movie, plain_exercise, table_analysis, DEFAULT_ARGLIST, \
      insert_code_and_tex, bibliography, indent_lines, fix_ref_section_chapter
 from .html import html_movie, html_table
-from .misc import option
-from .doconce import errwarn
+from .misc import option, errwarn
 
 # Mapping of envirs to correct Pandoc verbatim environment
 language2pandoc = dict(
@@ -372,7 +371,6 @@ def pandoc_quote(block, format, text_size='normal'):
 
 def pandoc_quiz(quiz):
     # Simple typesetting of a quiz
-    import string
     question_prefix = quiz.get('question prefix',
                                option('quiz_question_prefix=', 'Question:'))
     common_choice_prefix = option('quiz_choice_prefix=', 'Choice')
@@ -491,7 +489,6 @@ def define(FILENAME_EXTENSION,
             'box':      slate_success,
             }
 
-    from .common import DEFAULT_ARGLIST
     ARGLIST['pandoc'] = DEFAULT_ARGLIST
     LIST['pandoc'] = {
         'itemize':
