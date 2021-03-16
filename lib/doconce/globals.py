@@ -22,6 +22,10 @@ doconce_envirs = ['c', 't',                # verbatim and tex blocks
             'quiz', 'u-',
             ]
 
+# Postfixes allowed on code blocks e.g. `pycod-e` and regex to catch them
+postfix_code_block = ['hid', '-h', '-e', '-t', 'out']
+postfix_regex = '(?:' + '|'.join(postfix_code_block) + '|)'
+
 main_content_char = '-'
 
 # Python colors and styling for printing

@@ -8,16 +8,9 @@ Automatically generated HTML file from DocOnce source
 <meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="This is a demo of movies in DocOnce">
-
 <title>This is a demo of movies in DocOnce</title>
-
-
 <style type="text/css">
 /* blueish style */
-
-/* Color definitions:  https://www.december.com/html/spec/color0.html
-   CSS examples:       https://www.w3schools.com/css/css_examples.asp */
-
 body {
   margin-top: 1.0em;
   background-color: #ffffff;
@@ -27,18 +20,106 @@ body {
 h1 { font-size: 1.8em; color: #1e36ce; }
 h2 { font-size: 1.6em; color: #1e36ce; }
 h3 { font-size: 1.4em; color: #1e36ce; }
+h4 { font-size: 1.2em; color: #1e36ce; }
 a { color: #1e36ce; text-decoration:none; }
 tt { font-family: "Courier New", Courier; }
-/* pre style removed because it will interfer with pygments */
 p { text-indent: 0px; }
 hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 p.caption { width: 80%; font-style: normal; text-align: left; }
-hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa; }
+/* pre style removed because it will interfer with pygments */
+div.highlight {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    line-height: 1.21429em;
+}
+div.cell {
+    width: 100%;
+    padding: 5px 5px 5px 0;
+    margin: 0;
+    outline: none;
+}
+div.input {
+    page-break-inside: avoid;
+    box-orient: horizontal;
+    box-align: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+div.prompt {
+    min-width: 11ex;
+    padding: .4em;
+    margin: 0;
+    font-family: monospace;
+    text-align: right;
+    line-height: 1.21429em;
+}
+div.prompt:empty {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+div.input_prompt {
+    color: navy;
+    border-top: 1px solid transparent;
+}
+div.inner_cell {
+    box-orient: vertical;
+    box-align: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    box-flex: 1;
+    flex: 1;
+}
+div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 4px;
+    background: #f7f7f7;
+    line-height: 1.21429em;
+}
+div.input_area > div.highlight {
+    margin: .4em;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+}
+div.output_wrapper {
+    position: relative;
+    box-orient: vertical;
+    box-align: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.output {
+    box-orient: vertical;
+    box-align: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+div.output_area {
+    padding: 0;
+    page-break-inside: avoid;
+    box-orient: horizontal;
+    box-align: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+div.output_subarea {
+    padding: .4em .4em 0 .4em;
+    box-flex: 1;
+    flex: 1;
+}
+div.output_text {
+    text-align: left;
+    color: #000;
+    line-height: 1.21429em;
+}
 div { text-align: justify; text-justify: inter-word; }
 </style>
-
-
 </head>
 
 <!-- tocinfo
@@ -46,25 +127,17 @@ div { text-align: justify; text-justify: inter-word; }
 end of tocinfo -->
 
 <body>
-
     
 <!-- ------------------- main content ---------------------- -->
-
-
-
 <center>
 <h1>This is a demo of movies in DocOnce</h1>
 </center>  <!-- document title -->
-
 <p></p>
 <!-- author(s): HPL -->
-
 <center>
 <b>HPL</b> 
 </center>
-
 <p><!-- institution(s) --></p>
-
 <br>
 <center>
 <h4>Mar 16, 2021</h4>
@@ -78,9 +151,7 @@ three alternative sources (MP4, WebM, OGG)
 are inserted in the HTML code by default. The command-line
 option <code>--no_mp4_webm_ogg_alternatives</code> makes the HTML
 code use exactly the specified movie file.
-
 <p></p>
-
 <div>
 <video  loop controls width='700' height='400' preload='none'>
     <source src='../doc/src/manual/mov/wave.mp4'  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
@@ -89,18 +160,14 @@ code use exactly the specified movie file.
 </video>
 </div>
 <p><em>1D wave in WebM.</em></p>
-
 <!-- Issue warning if in a Safari browser -->
 <script language="javascript">
 if (!!(window.safari)) {
   document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
 </script>
-
 <p></p>
 Here is the same movie in Ogg format:
-
 <p></p>
-
 <div>
 <video  loop controls width='700' height='400' preload='none'>
     <source src='../doc/src/manual/mov/wave.mp4'  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
@@ -109,18 +176,14 @@ Here is the same movie in Ogg format:
 </video>
 </div>
 <p><em>1D wave in Ogg.</em></p>
-
 <!-- Issue warning if in a Safari browser -->
 <script language="javascript">
 if (!!(window.safari)) {
   document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
 </script>
-
 <p></p>
 Here is the same movie in MP4 format:
-
 <p></p>
-
 <div>
 <video  loop controls width='700' height='400' preload='none'>
     <source src='../doc/src/manual/mov/wave.mp4'  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
@@ -129,27 +192,20 @@ Here is the same movie in MP4 format:
 </video>
 </div>
 <p><em>1D wave in MP4.</em></p>
-
 <!-- Issue warning if in a Safari browser -->
 <script language="javascript">
 if (!!(window.safari)) {
   document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
 </script>
-
 <p></p>
 Here is the same movie in Flash format:
-
 <p></p>
-
 <embed src="../doc/src/manual/mov/wave.flv" width=700 height=400 autoplay="false" loop="true"></embed>
 <p><em>1D wave in Flash.</em></p>
-
 <p></p>
 And here is a collection of images shown as an animation
 (<code>frame_*.png</code>):
-
 <p></p>
-
 <script language="Javascript">
 <!---
 var num_images____doc_src_manual_mov_wave_frames_frame_0080 = 50;
@@ -157,11 +213,9 @@ var img_width____doc_src_manual_mov_wave_frames_frame_0080 = 700;
 var img_height____doc_src_manual_mov_wave_frames_frame_0080 = 400;
 var interval____doc_src_manual_mov_wave_frames_frame_0080 = 300;
 var images____doc_src_manual_mov_wave_frames_frame_0080 = new Array();
-
 function preload_images____doc_src_manual_mov_wave_frames_frame_0080()
 {
    t = document.getElementById("progress");
-
    t.innerHTML = "Preloading image ";
    images____doc_src_manual_mov_wave_frames_frame_0080[0] = new Image(img_width____doc_src_manual_mov_wave_frames_frame_0080, img_height____doc_src_manual_mov_wave_frames_frame_0080);
    images____doc_src_manual_mov_wave_frames_frame_0080[0].src = "../doc/src/manual/mov/wave_frames/frame_0080.png";
@@ -364,39 +418,30 @@ function preload_images____doc_src_manual_mov_wave_frames_frame_0080()
         
    t.innerHTML = "";
 }
-
 function tick____doc_src_manual_mov_wave_frames_frame_0080()
 {
    if (frame____doc_src_manual_mov_wave_frames_frame_0080 > num_images____doc_src_manual_mov_wave_frames_frame_0080 - 1)
        frame____doc_src_manual_mov_wave_frames_frame_0080 = 0;
-
    document.name____doc_src_manual_mov_wave_frames_frame_0080.src = images____doc_src_manual_mov_wave_frames_frame_0080[frame____doc_src_manual_mov_wave_frames_frame_0080].src;
    frame____doc_src_manual_mov_wave_frames_frame_0080 += 1;
    tt = setTimeout("tick____doc_src_manual_mov_wave_frames_frame_0080()", interval____doc_src_manual_mov_wave_frames_frame_0080);
 }
-
 function startup____doc_src_manual_mov_wave_frames_frame_0080()
 {
    preload_images____doc_src_manual_mov_wave_frames_frame_0080();
    frame____doc_src_manual_mov_wave_frames_frame_0080 = 0;
    setTimeout("tick____doc_src_manual_mov_wave_frames_frame_0080()", interval____doc_src_manual_mov_wave_frames_frame_0080);
 }
-
 function stopit____doc_src_manual_mov_wave_frames_frame_0080()
 { clearTimeout(tt); }
-
 function restart____doc_src_manual_mov_wave_frames_frame_0080()
 { tt = setTimeout("tick____doc_src_manual_mov_wave_frames_frame_0080()", interval____doc_src_manual_mov_wave_frames_frame_0080); }
-
 function slower____doc_src_manual_mov_wave_frames_frame_0080()
 { interval____doc_src_manual_mov_wave_frames_frame_0080 = interval____doc_src_manual_mov_wave_frames_frame_0080/0.7; }
-
 function faster____doc_src_manual_mov_wave_frames_frame_0080()
 { interval____doc_src_manual_mov_wave_frames_frame_0080 = interval____doc_src_manual_mov_wave_frames_frame_0080*0.7; }
-
 // --->
 </script>
-
 <form>
 &nbsp;
 <input type="button" value="Start movie" onClick="startup____doc_src_manual_mov_wave_frames_frame_0080()">
@@ -406,24 +451,39 @@ function faster____doc_src_manual_mov_wave_frames_frame_0080()
 <input type="button" value="Slower" onClick="slower____doc_src_manual_mov_wave_frames_frame_0080()">
 <input type="button" value="Faster" onClick="faster____doc_src_manual_mov_wave_frames_frame_0080()">
 </form>
-
 <p><div ID="progress"></div></p>
 <img src="../doc/src/manual/mov/wave_frames/frame_0080.png" name="name____doc_src_manual_mov_wave_frames_frame_0080" border=2/>
-
 <br><em>Animated collection of images.</em><br>
-
 <p></p>
 Here is the same collection, but with images in cyberspace, given as URLs:
-
 <p></p>
 
-
-<!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span>https://hplgit.github.io/animate/..../frame_%04d.png:80-&gt;129
-</pre></div>
+<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="prompt input_prompt">      In [1]:    </div>
+    <div class="inner_cell">
+      <div class="input_area">
+        <blockquote>
+<div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">https://hplgit.github.io/animate/..../frame_%04d.png:80-&gt;129
+</pre>
+</div>
+</blockquote>      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="prompt"></div>
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <p></p>
-
 <script language="Javascript">
 <!---
 var num_images_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080 = 50;
@@ -431,11 +491,9 @@ var img_width_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_
 var img_height_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080 = 600;
 var interval_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080 = 300;
 var images_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080 = new Array();
-
 function preload_images_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080()
 {
    t = document.getElementById("progress");
-
    t.innerHTML = "Preloading image ";
    images_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080[0] = new Image(img_width_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080, img_height_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080);
    images_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080[0].src = "https://hplgit.github.io/animate/doc/pub/mov-animate/frames/frame_0080.png";
@@ -638,39 +696,30 @@ function preload_images_https___hplgit_github_io_animate_doc_pub_mov_animate_fra
         
    t.innerHTML = "";
 }
-
 function tick_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080()
 {
    if (frame_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080 > num_images_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080 - 1)
        frame_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080 = 0;
-
    document.name_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080.src = images_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080[frame_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080].src;
    frame_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080 += 1;
    tt = setTimeout("tick_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080()", interval_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080);
 }
-
 function startup_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080()
 {
    preload_images_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080();
    frame_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080 = 0;
    setTimeout("tick_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080()", interval_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080);
 }
-
 function stopit_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080()
 { clearTimeout(tt); }
-
 function restart_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080()
 { tt = setTimeout("tick_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080()", interval_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080); }
-
 function slower_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080()
 { interval_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080 = interval_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080/0.7; }
-
 function faster_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080()
 { interval_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080 = interval_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080*0.7; }
-
 // --->
 </script>
-
 <form>
 &nbsp;
 <input type="button" value="Start movie" onClick="startup_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080()">
@@ -680,39 +729,28 @@ function faster_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_fram
 <input type="button" value="Slower" onClick="slower_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080()">
 <input type="button" value="Faster" onClick="faster_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080()">
 </form>
-
 <p><div ID="progress"></div></p>
 <img src="https://hplgit.github.io/animate/doc/pub/mov-animate/frames/frame_0080.png" name="name_https___hplgit_github_io_animate_doc_pub_mov_animate_frames_frame_0080" border=2/>
-
 <br><em>Taking images to animate from cyberspace.</em><br>
-
 <p></p>
 The movie above in MPEG format, typeset in a box:
-
 <p></p>
 
 <!-- begin box -->
 <div style="width: 95%; padding: 10px; border: 1px solid #000; border-radius: 4px;">
-
 <embed src="../doc/src/manual/mov/wave.mpeg" width=700 height=400 autoplay="false" loop="true"></embed>
 <p><em>1D wave in MPEG. <div id="mov:wave"></div></em></p>
 </div>
 <!-- end box -->
 
-
 <p></p>
 Here is the same movie in AVI format:
-
 <p></p>
-
 <embed src="../doc/src/manual/mov/wave.avi" width=700 height=400 autoplay="false" loop="true"></embed>
 <p><em>1D wave in AVI.</em></p>
-
 <p></p>
 Here is the same movie, but with a URL to GitHub:
-
 <p></p>
-
 <div>
 <video  loop controls width='640' height='365' preload='none'>
     <source src='https://hplgit.github.io/animate/doc/pub/mov-animate/demo.mp4'  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
@@ -721,37 +759,24 @@ Here is the same movie, but with a URL to GitHub:
 </video>
 </div>
 <p><em></em></p>
-
 <!-- Issue warning if in a Safari browser -->
 <script language="javascript">
 if (!!(window.safari)) {
   document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
 </script>
-
 <p></p>
 Here is a YouTube video:
-
 <p></p>
-
 <iframe width="420" height="315" src="https://www.youtube.com/embed/_O7iUiftbKU" frameborder="0" allowfullscreen></iframe>
-
 <p><em>YouTube movie.</em></p>
-
 <p></p>
 And a vimeo video:
-
 <p></p>
-
 <iframe width="500" height="278" src="https://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
-
 <em>Vimeo movie.</em>
-
 <p></p>
 Finally, let us demonstrate referencing the movie <a href="#mov:wave">mov:wave</a>.
-
 <!-- ------------------- end of main content --------------- -->
-
-
 </body>
 </html>
     

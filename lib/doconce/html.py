@@ -1109,7 +1109,7 @@ def html_code(filestr, code_blocks, code_block_types,
     filestr = jupyter_execution.process_code_blocks(filestr, code_style, format)
 
     # Remove all <p></p> between </div> and <div> ?
-    filestr = re.sub(r'</div>[\n]+<p></p>[\n]+(<!--.*-->[\n]{0,1})*[\n]+', r'\1', filestr)
+    filestr = re.sub(r'</div>[\n]+<p></p>[\n]+(<!--.*-->[\n]{1})*[\n]+', r'\1', filestr)
 
     # Inline math cannot have x<z<w as this is interpreted as tags
     # and becomes invisible

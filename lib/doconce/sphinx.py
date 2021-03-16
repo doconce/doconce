@@ -12,6 +12,7 @@ from .doconce import errwarn
 # used in sphinx_dir
 import time, shutil, glob, re
 from doconce.misc import system, load_preprocessed_doconce_file
+from .globals import postfix_regex
 
 # RunestoneInteractive book counters
 question_counter = 0
@@ -89,7 +90,8 @@ def sphinx_figure(m):
 
 def sphinx_movie(m):
     filename = m.group('filename')
-    special_movie = '*' in filename or '->' in filename or 'youtu.be' in filename or 'youtube.com' in filename or 'vimeo.com' in filename
+    special_movie = '*' in filename or '->' in filename or 'youtu.be' in filename or \
+                    'youtube.com' in filename or 'vimeo.com' in filename
     if option('runestone') and not special_movie:
         # Use RunestoneInteractive video environment
         global video_counter
@@ -362,6 +364,7 @@ def sphinx_code(filestr, code_blocks, code_block_types,
 
     # Make correct code-block:: language constructions
     legal_pygments_languages = get_legal_pygments_lexers()
+    code_block_regex = r'^!bc\s+%s' + postfix_regex + '\s*\n'
     for key in set(code_block_types):
         if key in envir2pygments:
             if not envir2pygments[key] in legal_pygments_languages:
@@ -371,7 +374,7 @@ def sphinx_code(filestr, code_blocks, code_block_types,
                          '    The \'text\' lexer will be used instead.\n') % (envir2pygments[key], defs_line))
                 envir2pygments[key] = 'text'
 
-        #filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
+        #filestr = re.sub(code_block_regex % key,
         #                 '\n.. code-block:: %s\n\n' % envir2pygments[key], filestr,
         #                 flags=re.MULTILINE)
 
@@ -388,20 +391,20 @@ def sphinx_code(filestr, code_blocks, code_block_types,
 
         if key == 'pyoptpro':
             if option('runestone'):
-                filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
+                filestr = re.sub(code_block_regex % key,
                     '\n.. codelens:: codelens_\n   :showoutput:\n\n',
                     filestr, flags=re.MULTILINE)
             else:
-                filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
+                filestr = re.sub(code_block_regex % key,
                                  '\n.. raw:: html\n\n',
                                  filestr, flags=re.MULTILINE)
         elif key == 'pyscpro':
             if option('runestone'):
-                filestr = re.sub((r'^!bc\s+%s\s*\n' % key,
+                filestr = re.sub((code_block_regex % key,
                                  '\n.. activecode:: activecode_\n'
                                  '   :language: python\n\n'), filestr, flags=re.MULTILINE)
             else:
-                filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
+                filestr = re.sub(code_block_regex % key,
                                  '\n.. sagecellserver::\n\n',
                                  filestr, flags=re.MULTILINE)
         elif key == 'pysccod':
@@ -409,7 +412,7 @@ def sphinx_code(filestr, code_blocks, code_block_types,
                 # Include (i.e., run) all previous code segments...
                 # NOTE: this is most likely not what we want
                 include = ', '.join([i for i in range(1, activecode_counter)])
-                filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
+                filestr = re.sub(code_block_regex % key,
                                  ('\n.. activecode:: activecode_\n'
                                   '   :language: python\n'
                                   '   "include: %s\n') % include, filestr, flags=re.MULTILINE)
@@ -432,7 +435,7 @@ def sphinx_code(filestr, code_blocks, code_block_types,
                 key2language = dict(py='python', js='javascript', html='html')
                 language = key2language[key.replace('hid', '')]
                 include = ', '.join([i for i in range(1, activecode_counter)])
-                filestr = re.sub((r'^!bc +%s\s*\n' % key,
+                filestr = re.sub((code_block_regex % key,
                                   '.. activecode:: activecode_\n'
                                   '   :language: %s\n'
                                   '   :include: %s\n'
@@ -440,7 +443,7 @@ def sphinx_code(filestr, code_blocks, code_block_types,
                                  (language, include), filestr, flags=re.MULTILINE)
             else:
                 # Remove hidden code block
-                pattern = r'^!bc +%s\n.+?^!ec' % key
+                pattern = r'^!bc\s+%s%s\n.+?^!ec' % (key, postfix_regex)
                 filestr = re.sub(pattern, '', filestr,
                                  flags=re.MULTILINE|re.DOTALL)
         else:
@@ -462,14 +465,17 @@ def sphinx_code(filestr, code_blocks, code_block_types,
                 errwarn('    or not a language registered in pygments')
                 _abort()
             if show_hide:
-                filestr = re.sub(r'^!bc +%s\s*\n' % key_orig,
-                                 '\n.. container:: toggle\n\n    .. container:: header\n\n        **Show/Hide Code**\n\n    .. code-block:: %s\n\n' % \
+                filestr = re.sub(code_block_regex % key_orig,
+                                 '\n.. container:: toggle\n\n'
+                                 '    .. container:: header\n\n'
+                                 '        **Show/Hide Code**\n\n'
+                                 '    .. code-block:: %s\n\n' % \
                                  pygments_language, filestr, flags=re.MULTILINE)
                 # Must add 4 indent in corresponding code_blocks[i], done above
             else:
-                filestr = re.sub(r'^!bc +%s\s*\n' % key,
-                                 '\n.. code-block:: %s\n\n' % \
-                                 pygments_language, filestr, flags=re.MULTILINE)
+                filestr = re.sub(code_block_regex % key,
+                                 '\n.. code-block:: %s\n\n' % pygments_language,
+                                 filestr, flags=re.MULTILINE)
 
     # any !bc with/without argument becomes a text block:
     filestr = re.sub(r'^!bc.*$', '\n.. code-block:: text\n\n', filestr,
@@ -880,10 +886,10 @@ def sphinx_code_orig(filestr, format):
             raise TypeError('%s is not a legal Pygments language '\
                             '(lexer) in line with:\n  %s' % \
                                 (language, defs_line))
-        #filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
+        #filestr = re.sub(code_block_regex % key,
         #                 '\n.. code-block:: %s\n\n' % defs[key], filestr,
         #                 flags=re.MULTILINE)
-        cpattern = re.compile(r'^!bc\s+%s\s*\n' % key, flags=re.MULTILINE)
+        cpattern = re.compile(code_block_regex % key, flags=re.MULTILINE)
         filestr, n = cpattern.subn('\n.. code-block:: %s\n\n' % defs[key], filestr)
         errwarn(key + ' ' + n)
         if n > 0:
@@ -968,10 +974,10 @@ def sphinx_code_newmathlabels(filestr, format):
             raise TypeError('%s is not a legal Pygments language '\
                             '(lexer) in line with:\n  %s' % \
                                 (language, defs_line))
-        #filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
+        #filestr = re.sub(code_block_regex % key,
         #                 '\n.. code-block:: %s\n\n' % defs[key], filestr,
         #                 flags=re.MULTILINE)
-        cpattern = re.compile(r'^!bc\s+%s\s*\n' % key, flags=re.MULTILINE)
+        cpattern = re.compile(code_block_regex % key, flags=re.MULTILINE)
         filestr = cpattern.sub('\n.. code-block:: %s\n\n' % defs[key], filestr)
 
     # any !bc with/without argument becomes a py (python) block:
@@ -1917,14 +1923,20 @@ def make_conf_py(themes, theme, title, short_title, copyright_,
                           r"    # pygments_style =\n"
                           r"    html_theme_options = {\n"
                           r"       'rightsidebar': 'false',  # 'true'\n"
-                          r"       'stickysidebar': 'false', # Make the sidebar \"fixed\" so that it doesn't scroll out of view for long body content.  This may not work well with all browsers.  Defaults to false.\n"
-                          r"       'collapsiblesidebar': 'false', # Add an *experimental* JavaScript snippet that makes the sidebar collapsible via a button on its side. *Doesn't work together with \"rightsidebar\" or \"stickysidebar\".* Defaults to false.\n"
-                          r"       'externalrefs': 'false', # Display external links differently from internal links.  Defaults to false.\n"
+                          r"       'stickysidebar': 'false', # Make the sidebar \"fixed\" so that it doesn't scroll "
+                          r"out of view for long body content.  This may not work well with all browsers.  "
+                          r"Defaults to false.\n"
+                          r"       'collapsiblesidebar': 'false', # Add an *experimental* JavaScript snippet that "
+                          r"makes the sidebar collapsible via a button on its side. *Doesn't work together with "
+                          r"\"rightsidebar\" or \"stickysidebar\".* Defaults to false.\n"
+                          r"       'externalrefs': 'false', # Display external links differently from internal links.  "
+                          r"Defaults to false.\n"
                           r"       # For colors and fonts, see default/theme.conf for default values\n"
                           r"       #'footerbgcolor':    # Background color for the footer line.\n"
                           r"       #'footertextcolor:'  # Text color for the footer line.\n"
                           r"       #'sidebarbgcolor':   # Background color for the sidebar.\n"
-                          r"       #'sidebarbtncolor':  # Background color for the sidebar collapse button (used when *collapsiblesidebar* is true).\n"
+                          r"       #'sidebarbtncolor':  # Background color for the sidebar collapse button (used when "
+                          r"*collapsiblesidebar* is true).\n"
                           r"       #'sidebartextcolor': # Text color for the sidebar.\n"
                           r"       #'sidebarlinkcolor': # Link color for the sidebar.\n"
                           r"       #'relbarbgcolor':    # Background color for the relation bar.\n"
@@ -1938,7 +1950,8 @@ def make_conf_py(themes, theme, title, short_title, copyright_,
                           r"       #'headtextcolor':    # Text color for headings.\n"
                           r"       #'headlinkcolor':    # Link color for headings.\n"
                           r"       #'codebgcolor':      # Background color for code blocks.\n"
-                          r"       #'codetextcolor':    # Default text color for code blocks, if not set differently by the highlighting style.\n"
+                          r"       #'codetextcolor':    # Default text color for code blocks, if not set differently "
+                          r"by the highlighting style.\n"
                           r"       #'bodyfont':         # Font for normal text.\n"
                           r"       #'headfont':         # Font for headings.\n"
                           r"    }\n\n"

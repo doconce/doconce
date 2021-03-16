@@ -8,78 +8,73 @@ from builtins import chr
 from builtins import str
 from builtins import range
 from past.builtins import basestring, unicode
-import re, os, sys, shutil, subprocess, pprint, time, glob, codecs
-
 from doconce import globals
-from .common import *
-from .misc import option, which, _abort, help_format, check_command_line_options, find_file_with_extensions, \
-    _rmdolog, debugpr, errwarn
-from . import plaintext as plain
-from .expand_newcommands import expand_newcommands
-# Import all modules associated with formats
-from . import html, latex, pdflatex, rst, sphinx, st, epytext, gwiki, mwiki, cwiki, pandoc, ipynb, matlabnb
+
+import re, os, sys, shutil, subprocess, pprint, time, glob, codecs
 try:
     from collections import OrderedDict   # v2.7 and v3.1
 except ImportError:
-    # use standard arbitrary-ordered dict instead (original order of citations is then lost)
+    # use standard arbitrary-ordered dict instead (original order of
+    # citations is then lost)
     OrderedDict = dict
 
 
-(??)def debugpr(heading='', text=''):
-(??)    """Add `heading` and `text` to the log/debug file.
-(??)
-(??)    :param str heading: heading to be added
-(??)    :param str text: text to be added
-(??)    """
-(??)    if option('debug'):
-(??)        if globals.encoding:
-(??)            globals._log = codecs.open('_doconce_debugging.log','a', globals.encoding)
-(??)        else:
-(??)            globals._log = open('_doconce_debugging.log','a')
-(??)        out_class = str(type(text)).split("'")[1]
-(??)        pre = '\n' + '*'*60 + '\n%s>>> ' % out_class if text else ''
-(??)        globals._log.write(pre + heading + '\n\n')
-(??)        globals._log.write(text + '\n')
-(??)        globals._log.close()
-(??)
-(??)def _rmdolog():
-(??)    """Remove the .dolog file
-(??)    """
-(??)    logfilename = globals.dofile_basename + '.dolog'
-(??)    if os.path.isfile(logfilename):
-(??)        os.remove(logfilename)
-(??)
-(??)def errwarn(msg, end='\n', style=''):
-(??)    """Function for reporting errors and warnings to screen and file.
-(??)
-(??)    :param str msg: text message
-(??)    :param str end: string appended after the last value, default a newline
-(??)    :param str style: style msg with color or formatting
-(??)    """
-(??)    if style:
-(??)        print(globals.style[style] + msg + globals.style['_end'], end=end)
-(??)    else:
-(??)        print(msg, end=end)
-(??)    if globals.dofile_basename is None:
-(??)        return
-(??)    logfilename = globals.dofile_basename + '.dlog'
-(??)    mode = 'a' if os.path.isfile(logfilename) else 'w'
-(??)    if globals.encoding:
-(??)        err = codecs.open(logfilename, mode, globals.encoding)
-(??)    else:
-(??)        err = open(logfilename, mode)
-(??)    err.write(msg)
-(??)    if end == '\n':
-(??)        err.write('\n')
-(??)
-(??)from .common import *
-(??)from .misc import option, which, _abort, help_format, check_command_line_options, find_file_with_extensions
-(??)from . import html, latex, pdflatex, rst, sphinx, st, epytext, gwiki, mwiki, cwiki, pandoc, ipynb, matlabnb
-(??)from . import plaintext as plain
-(??)from .latex import aux_label2number
-(??)from .html import embed_IBPLOTs
-(??)from .expand_newcommands import expand_newcommands
-(??)
+def debugpr(heading='', text=''):
+    """Add `heading` and `text` to the log/debug file.
+
+    :param str heading: heading to be added
+    :param str text: text to be added
+    """
+    if option('debug'):
+        if globals.encoding:
+            globals._log = codecs.open('_doconce_debugging.log','a', globals.encoding)
+        else:
+            globals._log = open('_doconce_debugging.log','a')
+        out_class = str(type(text)).split("'")[1]
+        pre = '\n' + '*'*60 + '\n%s>>> ' % out_class if text else ''
+        globals._log.write(pre + heading + '\n\n')
+        globals._log.write(text + '\n')
+        globals._log.close()
+
+
+def _rmdolog():
+    """Remove the .dolog file
+    """
+    logfilename = globals.dofile_basename + '.dolog'
+    if os.path.isfile(logfilename):
+        os.remove(logfilename)
+
+def errwarn(msg, end='\n', style=''):
+    """Function for reporting errors and warnings to screen and file.
+
+    :param str msg: text message
+    :param str end: string appended after the last value, default '\n'
+    :param str style: style msg with color or formatting e.g. 'green','bold','underline'
+    """
+    if style:
+        msg = globals.style[style] + msg + globals.style['_end']
+    print(msg, end=end)
+    # Write to log
+    if globals.dofile_basename is None:
+        return
+    logfilename = globals.dofile_basename + '.dlog'
+    mode = 'a' if os.path.isfile(logfilename) else 'w'
+    if globals.encoding:
+        err = codecs.open(logfilename, mode, globals.encoding)
+    else:
+        err = open(logfilename, mode)
+    err.write(msg)
+    if end == '\n':
+        err.write('\n')
+
+from .common import *
+from .misc import option, which, _abort, help_format, check_command_line_options, find_file_with_extensions
+from . import html, latex, pdflatex, rst, sphinx, st, epytext, gwiki, mwiki, cwiki, pandoc, ipynb, matlabnb
+from . import plaintext as plain
+from .latex import aux_label2number
+from .html import embed_IBPLOTs
+from .expand_newcommands import expand_newcommands
+
 main_content_begin = globals.main_content_char*19 + ' main content ' + \
                      globals.main_content_char*22
 main_content_end = globals.main_content_char*19 + ' end of main content ' + \
@@ -2163,8 +2158,8 @@ def extract_individual_standalone_exercises(
 
         sa = sa.strip() + '\n'
 
-        sa = insert_code_blocks(sa, code_blocks, format, complete_doc=True, remove_hid=True)
-        sa = insert_tex_blocks(sa, tex_blocks, format, complete_doc=True)
+        sa = insert_code_blocks(sa, code_blocks, format, complete_doc=False, remove_hid=True)
+        sa = insert_tex_blocks(sa, tex_blocks, format, complete_doc=False)
 
         # Remove solutions after inserting all code/tex blocks
         sa = process_envir(sa, 'sol', 'plain', action='remove')

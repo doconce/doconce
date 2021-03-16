@@ -257,7 +257,7 @@ MathJax.Hub.Config({
 </script>
 
 
-
+    
 <!-- ------------------- main content ---------------------- -->
 <center>
 <h1>A Document for Testing DocOnce</h1>
@@ -303,7 +303,7 @@ MathJax.Hub.Config({
 </center>
 <br>
 <center>
-(??)<h4>Mar 8, 2021</h4>
+(??)<h4>Mar 15, 2021</h4>
 </center> <!-- date -->
 <br>
 <p></p>
@@ -513,13 +513,13 @@ The section <a href="#subsubsec:ex">URLs</a> too.
 Let's do some copying from files too. First from subroutine up to the very end,
 <p></p>
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=fortran (!bc fcod) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [1]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 4</span>
@@ -533,19 +533,19 @@ Let's do some copying from files too. First from subroutine up to the very end,
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">12</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">13</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
-  <pre style="line-height: 125%;">      subroutine test()
-      integer i
-      real*8 r
-      r = 0
-      do i = 1, i
+  <pre style="line-height: 125%;">      <span style="color: #8B008B; font-weight: bold">subroutine </span>test()
+      <span style="color: #00688B; font-weight: bold">integer </span>i
+      <span style="color: #00688B; font-weight: bold">real</span>*<span style="color: #B452CD">8</span> r
+      r = <span style="color: #B452CD">0</span>
+      <span style="color: #8B008B; font-weight: bold">do </span>i = <span style="color: #B452CD">1</span>, i
          r = r + i
-      end do
-      return
+      <span style="color: #8B008B; font-weight: bold">end do</span>
+<span style="color: #8B008B; font-weight: bold">      return</span>
 C     END1
 
-      program testme
-      call test()
-      return
+      <span style="color: #8B008B; font-weight: bold">program </span>testme
+      <span style="color: #8B008B; font-weight: bold">call </span>test()
+      <span style="color: #8B008B; font-weight: bold">return</span>
 </pre>
 </div>
 </td></tr></table>      </div>
@@ -564,13 +564,13 @@ C     END1
 
 and then just the subroutine,
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=fortran (!bc fcod) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [2]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">4</span>
@@ -579,14 +579,14 @@ and then just the subroutine,
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">7</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">8</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
-  <pre style="line-height: 125%;">      subroutine test()
-      integer i
-      real*8 r
-      r = 0
-      do i = 1, i
+  <pre style="line-height: 125%;">      <span style="color: #8B008B; font-weight: bold">subroutine </span>test()
+      <span style="color: #00688B; font-weight: bold">integer </span>i
+      <span style="color: #00688B; font-weight: bold">real</span>*<span style="color: #B452CD">8</span> r
+      r = <span style="color: #B452CD">0</span>
+      <span style="color: #8B008B; font-weight: bold">do </span>i = <span style="color: #B452CD">1</span>, i
          r = r + i
-      end do
-      return
+      <span style="color: #8B008B; font-weight: bold">end do</span>
+<span style="color: #8B008B; font-weight: bold">      return</span>
 </pre>
 </div>
 </td></tr></table>      </div>
@@ -606,13 +606,14 @@ and then just the subroutine,
 and finally the complete file with a plain text verbatim environment
 (<code>envir=ccq</code>):
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=text (!bc ccq) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [3]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 1</span>
+        <blockquote>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 4</span>
@@ -645,7 +646,7 @@ C     END1
       return
 </pre>
 </div>
-</td></tr></table>      </div>
+</td></tr></table></blockquote>      </div>
     </div>
   </div>
   <div class="output_wrapper">
@@ -663,13 +664,13 @@ C     END1
 Testing other code environments. First Python:
 <p></p>
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=doconce (!bc do) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [4]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">4</span></pre>
@@ -697,13 +698,13 @@ def f(x):
 which gets rendered as
 <p></p>
 
-<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc-t" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [5]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
   <pre style="line-height: 125%;"><span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">f</span>(x):
@@ -721,13 +722,13 @@ before code.
 <b>Paragraph heading before code.</b>
 <p></p>
 
-<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc-t" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [6]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
   <pre style="line-height: 125%;"><span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">sys</span>
@@ -742,13 +743,13 @@ sys.path.insert(<span style="color: #B452CD">0</span>, os.pardir)
 <h3 id="subsubsection-heading-before-code">Subsubsection heading before code </h3>
 <p></p>
 
-<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc-t" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [7]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
   <pre style="line-height: 125%;"><span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">h</span>(z):
@@ -762,39 +763,15 @@ sys.path.insert(<span style="color: #B452CD">0</span>, os.pardir)
 <p></p>
 Now a complete program to be shown via Python Online Tutorial:
 <p></p>
-
-<!-- code=text typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [8]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 1</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 2</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 3</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 4</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 5</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 6</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 7</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 8</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 9</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">10</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">11</span></pre>
-</div></td><td class="code"><div class="highlight" style="background: #eeeedd">
-  <pre style="line-height: 125%;">class Line:
-    def __init__(self, a, b):
-        self.a, self.b = a, b
-
-    def __call__(self, x):
-        a, b = self.a, self.b
-        return a*x + b
-
-line = Line(2, 1)
-y = line(x=3)
-print(y)
-</pre>
+        <iframe width="950" height="500" frameborder="0"
+        src="https://pythontutor.com/iframe-embed.html#code=class+Line%3A%0A++++def+__init__%28self%2C+a%2C+b%29%3A%0A++++++++self.a%2C+self.b+%3D+a%2C+b%0A%0A++++def+__call__%28self%2C+x%29%3A%0A++++++++a%2C+b+%3D+self.a%2C+self.b%0A++++++++return+a%2Ax+%2B+b%0A%0Aline+%3D+Line%282%2C+1%29%0Ay+%3D+line%28x%3D3%29%0Aprint%28y%29&py=2&curInstr=0&cumulative=false">
+</iframe>
 </div>
-</td></tr></table>      </div>
     </div>
   </div>
   <div class="output_wrapper">
@@ -812,29 +789,17 @@ print(y)
 Some more Python code (actually specified as a sage cell, but
 such cells are not supported by this format).
 <p></p>
-
-<!-- code=text typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [9]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 1</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 2</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 3</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 4</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 5</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 6</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 7</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 8</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 9</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">10</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">11</span>
-<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">12</span></pre>
-</div></td><td class="code"><div class="highlight" style="background: #eeeedd">
-  <pre style="line-height: 125%;">a = 2
+        
+<div class="sage_compute">
+<script type="text/x-sage">
+a = 2
 b = 3
-print(&#39;a+b:&#39;, a + b)
+print('a+b:', a + b)
 
 # In a sage cell we can also plot
 from matplotlib.pyplot import *
@@ -842,11 +807,12 @@ from numpy import *
 x = linspace(0, 4*pi, 101)
 y = exp(-0.1*x)*cos(x)
 plot(x, y)
-xlabel(&#39;x&#39;); ylabel(&#39;y&#39;)
+xlabel('x'); ylabel('y')
 show()
-</pre>
+
+</script>
 </div>
-</td></tr></table>      </div>
+      </div>
     </div>
   </div>
   <div class="output_wrapper">
@@ -864,20 +830,20 @@ show()
 Then Cython (with -h option so it is hidden in html/sphinx):
 <p></p>
 
-<!-- code=cython (!bc cycod) typeset with pygments style "perldoc" -->
+<!-- code=cython (!bc cycod) typeset with pygments style "perldoc-h" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [10]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-
+        
 <script type="text/javascript">
-function show_hide_code6aca(){
-  $("#code6aca").toggle();
+function show_hide_code0137(){
+  $("#code0137").toggle();
 }
 </script>
-<button type="button" onclick="show_hide_code6aca()">Show/Hide code</button>
-<div id="code6aca" style="display:none">
+<button type="button" onclick="show_hide_code0137()">Show/Hide code</button>
+<div id="code0137" style="display:none">
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
@@ -905,13 +871,13 @@ function show_hide_code6aca(){
 Standard Python shell sessions:
 <p></p>
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=python (!bc pyshell) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [11]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">4</span>
@@ -920,13 +886,13 @@ Standard Python shell sessions:
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">7</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">8</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
-  <pre style="line-height: 125%;">&gt;&gt;&gt; from numpy import linspace, sin
-&gt;&gt;&gt; # Some comment
-&gt;&gt;&gt; x = linspace(0, 2, 11)
+  <pre style="line-height: 125%;">&gt;&gt;&gt; <span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">numpy</span> <span style="color: #8B008B; font-weight: bold">import</span> linspace, sin
+&gt;&gt;&gt; <span style="color: #228B22"># Some comment</span>
+&gt;&gt;&gt; x = linspace(<span style="color: #B452CD">0</span>, <span style="color: #B452CD">2</span>, <span style="color: #B452CD">11</span>)
 &gt;&gt;&gt; y = sin(x)
-&gt;&gt;&gt; y[0]
-0
-&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; y[<span style="color: #B452CD">0</span>]
+<span style="color: #B452CD">0</span>
+&gt;&gt;&gt; <span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">matplotlib.pyplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">plt</span>
 &gt;&gt;&gt; plt.plot(x, y)
 </pre>
 </div>
@@ -948,13 +914,13 @@ Standard Python shell sessions:
 Similar IPython sessions:
 <p></p>
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=ipy (!bc ipy) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [12]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 4</span>
@@ -970,21 +936,21 @@ Similar IPython sessions:
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">14</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">15</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
-  <pre style="line-height: 125%;">In [1]: from numpy import linspace, sin
-In [2]: # Some comment
-In [3]: x = linspace(0, 2, 11)
-In [4]: y = sin(x)
-In [5]: y[0]
-Out[5]: 0
-In [6]: import matplotlib.pyplot as plt
-In [7]: plt.plot(x, y)
-In [8]: a=&#39;multiple-\nline\noutput&#39;
-In [9]: a
-Out[9]: &#39;multiple-\nline\noutput&#39;
-In [10]: print(a)
-multiple-
-line
-output
+  <pre style="line-height: 125%;"><span style="color: #555555">In [1]: </span><span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">numpy</span> <span style="color: #8B008B; font-weight: bold">import</span> linspace, sin
+<span style="color: #555555">In [2]: </span><span style="color: #228B22"># Some comment</span>
+<span style="color: #555555">In [3]: </span>x = linspace(<span style="color: #B452CD">0</span>, <span style="color: #B452CD">2</span>, <span style="color: #B452CD">11</span>)
+<span style="color: #555555">In [4]: </span>y = sin(x)
+<span style="color: #555555">In [5]: </span>y[<span style="color: #B452CD">0</span>]
+<span style="color: #000080; font-weight: bold">Out[5]: </span><span style="color: #888888">0</span>
+<span style="color: #555555">In [6]: </span><span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">matplotlib.pyplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">plt</span>
+<span style="color: #555555">In [7]: </span>plt.plot(x, y)
+<span style="color: #555555">In [8]: </span>a=<span style="color: #CD5555">&#39;multiple-\nline\noutput&#39;</span>
+<span style="color: #555555">In [9]: </span>a
+<span style="color: #000080; font-weight: bold">Out[9]: </span><span style="color: #888888">&#39;multiple-\nline\noutput&#39;</span>
+<span style="color: #555555">In [10]: </span><span style="color: #658b00">print</span>(a)
+<span style="color: #888888">multiple-</span>
+<span style="color: #888888">line</span>
+<span style="color: #888888">output</span>
 </pre>
 </div>
 </td></tr></table>      </div>
@@ -1005,13 +971,13 @@ output
 Here is the interactive session again, but with <code>pyshell-t</code>.
 <p></p>
 
-<!-- code=python (!bc pyshell) typeset with pygments style "perldoc" -->
+<!-- code=python (!bc pyshell) typeset with pygments style "perldoc-t" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [13]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">4</span>
@@ -1035,13 +1001,13 @@ Here is the interactive session again, but with <code>pyshell-t</code>.
   </div>
 <!-- This one tests a + sign before a code environment -->C++:
 
-<!-- code=c++ (!bc cpppro) typeset with pygments style "perldoc" -->
+<!-- code=c++ (!bc cpppro) typeset with pygments style "perldoc-t" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [14]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">4</span>
@@ -1067,13 +1033,13 @@ Here is the interactive session again, but with <code>pyshell-t</code>.
 And a little bit of Fortran: <img src="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/emoji/png/dizzy_face.png" width="22px" height="22px" align="center">
 <p></p>
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=doconce (!bc do) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [15]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">4</span>
@@ -1109,13 +1075,13 @@ And a little bit of Fortran: <img src="https://raw.githubusercontent.com/hplgit/
 which then is typeset as
 <p></p>
 
-<!-- code=text (!bc cod) typeset with pygments style "perldoc" -->
+<!-- code=text (!bc cod) typeset with pygments style "perldoc-t" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [16]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">4</span>
@@ -1138,23 +1104,23 @@ which then is typeset as
 HTML:
 <p></p>
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=html (!bc htmlcod) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [17]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">4</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">5</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
-  <pre style="line-height: 125%;">&lt;table&gt;
-&lt;tr&gt;&lt;td&gt;Column 1&lt;/td&gt;&lt;td&gt;Column 2&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;0.67526 &lt;/td&gt;&lt;td&gt;0.92871 &lt;/td&gt;&lt;/tr&gt;
-&lt;!-- comment --&gt;
-&lt;/table&gt;
+  <pre style="line-height: 125%;">&lt;<span style="color: #8B008B; font-weight: bold">table</span>&gt;
+&lt;<span style="color: #8B008B; font-weight: bold">tr</span>&gt;&lt;<span style="color: #8B008B; font-weight: bold">td</span>&gt;Column 1&lt;/<span style="color: #8B008B; font-weight: bold">td</span>&gt;&lt;<span style="color: #8B008B; font-weight: bold">td</span>&gt;Column 2&lt;/<span style="color: #8B008B; font-weight: bold">td</span>&gt;&lt;/<span style="color: #8B008B; font-weight: bold">tr</span>&gt;
+&lt;<span style="color: #8B008B; font-weight: bold">tr</span>&gt;&lt;<span style="color: #8B008B; font-weight: bold">td</span>&gt;0.67526 &lt;/<span style="color: #8B008B; font-weight: bold">td</span>&gt;&lt;<span style="color: #8B008B; font-weight: bold">td</span>&gt;0.92871 &lt;/<span style="color: #8B008B; font-weight: bold">td</span>&gt;&lt;/<span style="color: #8B008B; font-weight: bold">tr</span>&gt;
+<span style="color: #228B22">&lt;!-- comment --&gt;</span>
+&lt;/<span style="color: #8B008B; font-weight: bold">table</span>&gt;
 </pre>
 </div>
 </td></tr></table>      </div>
@@ -1179,23 +1145,23 @@ quoted).
 Matlab with comments requires special typesetting:
 <p></p>
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=matlab (!bc mcod) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [18]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">4</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">5</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
-  <pre style="line-height: 125%;">% Comment on the beginning of the line can be escaped by %%
-if a &gt; b
-  % Indented comment needs this trick
+  <pre style="line-height: 125%;"><span style="color: #228B22">% Comment on the beginning of the line can be escaped by %%</span>
+<span style="color: #8B008B; font-weight: bold">if</span> a &gt; b
+  <span style="color: #228B22">% Indented comment needs this trick</span>
   c = a + b
-end
+<span style="color: #8B008B; font-weight: bold">end</span>
 </pre>
 </div>
 </td></tr></table>      </div>
@@ -1216,13 +1182,13 @@ end
 And here is a system call:
 <p></p>
 
-<!-- code=text (!bc sys) typeset with pygments style "perldoc" -->
+<!-- code=text (!bc sys) typeset with pygments style "perldoc-t" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [19]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">4</span>
@@ -1243,13 +1209,13 @@ output2
 Any valid pygments lexer/language name can appear to, e.g.,
 <p></p>
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=doconce (!bc do) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [20]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">4</span>
@@ -1283,21 +1249,21 @@ Some text.
 results in
 <p></p>
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=restructuredtext (!bc restructuredtext) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [21]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">4</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">5</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
-  <pre style="line-height: 125%;">=======
-Heading
-=======
+  <pre style="line-height: 125%;"><span style="color: #000080; font-weight: bold">=======</span>
+<span style="color: #000080; font-weight: bold">Heading</span>
+<span style="color: #000080; font-weight: bold">=======</span>
 
 Some text.
 </pre>
@@ -1320,13 +1286,13 @@ Some text.
 Finally, <code>!bc do</code> supports highlighting of DocOnce source:
 <p></p>
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=doconce (!bc do) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [22]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;"> 4</span>
@@ -1362,9 +1328,9 @@ Finally, <code>!bc do</code> supports highlighting of DocOnce source:
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">34</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">35</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
-  <pre style="line-height: 125%;">======= DocOnce test file =======
+  <pre style="line-height: 125%;"><span style="color: #000080; font-weight: bold">======= DocOnce test file =======</span>
 
-===== Computer code =====
+<span style="color: #000080; font-weight: bold">===== Computer code =====</span>
 
 Inline verbatim code, as in `import numpy as np`, is allowed, as well as
 code blocks:
@@ -1380,23 +1346,23 @@ print(f(0))
 !ec
 
 
-===== Mathematics =====
+<span style="color: #000080; font-weight: bold">===== Mathematics =====</span>
 
 Formulas can be inline, as in $\nabla\cdot\boldsymbol{u} = 0$, or typeset
 as equations:
 
 !bt
-\begin{align*}
+<span style="color: #658b00">\begin{align*}</span>
 \nabla\cdot\boldsymbol{u} &amp;= 0,\\ 
 \boldsymbol{u} &amp;= \nabla\phi .
-\end{align*}
+<span style="color: #658b00">\end{align*}</span>
 !et
 
-=== Subsubsection heading ===
+<span style="color: #000080; font-weight: bold">=== Subsubsection heading ===</span>
 
 DocOnce files can have chapters, sections, subsections, and subsubsections.
 
-__Paragraph heading.__ Paragraphs may have headings.
+<span style="color: #800080; font-weight: bold">__Paragraph heading.__</span> Paragraphs may have headings.
 </pre>
 </div>
 </td></tr></table>      </div>
@@ -1432,13 +1398,13 @@ the previous blocks with line breaks.
 <h3 id="running-os-commands">Running OS commands </h3>
 <p></p>
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=text (!bc sys) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [23]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">4</span>
@@ -1598,20 +1564,21 @@ Movies are tested in separate file <code>movies.do.txt</code>.
 Functions do not always need to be advanced, here is one
 involving \( \theta \):
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=text (!bc ccq) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [24]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <blockquote>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
   <pre style="line-height: 125%;">def f(theta):
     return theta**2
 </pre>
 </div>
-</td></tr></table>      </div>
+</td></tr></table></blockquote>      </div>
     </div>
   </div>
   <div class="output_wrapper">
@@ -1807,13 +1774,14 @@ Let us take this table from the manual:
 <p></p>
 The DocOnce source code reads
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=text (!bc ccq) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [25]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <blockquote>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">4</span>
@@ -1830,7 +1798,7 @@ The DocOnce source code reads
   |--------------------------------|
 </pre>
 </div>
-</td></tr></table>      </div>
+</td></tr></table></blockquote>      </div>
     </div>
   </div>
   <div class="output_wrapper">
@@ -2023,20 +1991,21 @@ A sole <code>&</code> must also work.
 <!-- Note: substitutions must not occur inside verbatim, just in ordinary text. -->
 <p></p>
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=text (!bc ccq) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [26]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <blockquote>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
   <pre style="line-height: 125%;"># Just to check that ampersand works in code blocks:
 c = a &amp; b
 </pre>
 </div>
-</td></tr></table>      </div>
+</td></tr></table></blockquote>      </div>
     </div>
   </div>
   <div class="output_wrapper">
@@ -2134,13 +2103,13 @@ Suppose we want to write a test function for checking the
 implementation of a Python function for addition.
 <p></p>
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [27]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">4</span>
@@ -2149,14 +2118,14 @@ implementation of a Python function for addition.
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">7</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">8</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
-  <pre style="line-height: 125%;">def add(a, b):
-    return a + b
+  <pre style="line-height: 125%;"><span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">add</span>(a, b):
+    <span style="color: #8B008B; font-weight: bold">return</span> a + b
 
-def test_add():
-    a = 1; b = 1
+<span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">test_add</span>():
+    a = <span style="color: #B452CD">1</span>; b = <span style="color: #B452CD">1</span>
     expected = a + b
     computed = add(a, b)
-    assert expected == computed
+    <span style="color: #8B008B; font-weight: bold">assert</span> expected == computed
 </pre>
 </div>
 </td></tr></table>      </div>
@@ -2341,13 +2310,13 @@ head, otherwise tail. Repeat this \( N \) number of times.
 <!-- --- begin solution of exercise --- -->
 <b>Solution.</b>
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [28]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">4</span>
@@ -2356,14 +2325,14 @@ head, otherwise tail. Repeat this \( N \) number of times.
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">7</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">8</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
-  <pre style="line-height: 125%;">import sys, random
-N = int(sys.argv[1])
-heads = 0
-for i in range(N):
+  <pre style="line-height: 125%;"><span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">sys</span>, <span style="color: #008b45; text-decoration: underline">random</span>
+N = <span style="color: #658b00">int</span>(sys.argv[<span style="color: #B452CD">1</span>])
+heads = <span style="color: #B452CD">0</span>
+<span style="color: #8B008B; font-weight: bold">for</span> i <span style="color: #8B008B">in</span> <span style="color: #658b00">range</span>(N):
     r = random.random()
-    if r &lt;= 0.5:
-        heads += 1
-print(&#39;Flipping a coin %d times gave %d heads&#39; % (N, heads))
+    <span style="color: #8B008B; font-weight: bold">if</span> r &lt;= <span style="color: #B452CD">0.5</span>:
+        heads += <span style="color: #B452CD">1</span>
+<span style="color: #658b00">print</span>(<span style="color: #CD5555">&#39;Flipping a coin %d times gave %d heads&#39;</span> % (N, heads))
 </pre>
 </div>
 </td></tr></table>      </div>
@@ -2487,13 +2456,13 @@ is a point on the circle.
 The formula can be used to generate <code>n</code> points on a circle:
 <p></p>
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=python (!bc pypro) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [29]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">4</span>
@@ -2503,15 +2472,15 @@ The formula can be used to generate <code>n</code> points on a circle:
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">8</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">9</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
-  <pre style="line-height: 125%;">import numpy as np
+  <pre style="line-height: 125%;"><span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">numpy</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">np</span>
 
-def circle(R, x0, y0, n=501):
-    t = np.linspace(0, 1, n)
-    x = x0 + R*np.cos(2*np.pi*t)
-    y = y0 + R*np.sin(2*np.pi*t)
-    return x, y
+<span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">circle</span>(R, x0, y0, n=<span style="color: #B452CD">501</span>):
+    t = np.linspace(<span style="color: #B452CD">0</span>, <span style="color: #B452CD">1</span>, n)
+    x = x0 + R*np.cos(<span style="color: #B452CD">2</span>*np.pi*t)
+    y = y0 + R*np.sin(<span style="color: #B452CD">2</span>*np.pi*t)
+    <span style="color: #8B008B; font-weight: bold">return</span> x, y
 
-x, y = circle(2.0, 0, 0)
+x, y = circle(<span style="color: #B452CD">2.0</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">0</span>)
 </pre>
 </div>
 </td></tr></table>      </div>
@@ -2584,18 +2553,19 @@ $$ \hbox{math in solution: } a = b $$
 
 And code <code>a=b</code> in this solution:
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=text (!bc ccq) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [30]:    </div>
     <div class="inner_cell">
       <div class="input_area">
+        <blockquote>
         <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
   <pre style="line-height: 125%;">a = b  # code in solution
 </pre>
 </div>
-</td></tr></table>      </div>
+</td></tr></table></blockquote>      </div>
     </div>
   </div>
   <div class="output_wrapper">
@@ -2627,20 +2597,21 @@ $$ a=b. $$
 And with code (in plain verbatim) returning \( x+1 \) in hint:
 <p></p>
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=text (!bc ccq) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [31]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <blockquote>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
   <pre style="line-height: 125%;">def func(x):
     return x + 1  # with code in hint
 </pre>
 </div>
-</td></tr></table>      </div>
+</td></tr></table></blockquote>      </div>
     </div>
   </div>
   <div class="output_wrapper">
@@ -2728,18 +2699,19 @@ $$ \exp{(0)} = 1 $$
 And a test that the code <code>lambda x: x+2</code> is correctly placed here:
 <p></p>
 
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=text (!bc ccq) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [32]:    </div>
     <div class="inner_cell">
       <div class="input_area">
+        <blockquote>
         <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
   <pre style="line-height: 125%;">lambda x: x+2
 </pre>
 </div>
-</td></tr></table>      </div>
+</td></tr></table></blockquote>      </div>
     </div>
   </div>
   <div class="output_wrapper">
@@ -2772,19 +2744,19 @@ What is the solution of this equation?</p>
 </div></p>
 
 <p><div title="Wrong! "><b>Choice C:</b>
-<!-- code=text typeset with pygments style "perldoc" -->
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="prompt input_prompt">      In [33]:    </div>
     <div class="inner_cell">
       <div class="input_area">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
 <span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span></pre>
 </div></td><td class="code"><div class="highlight" style="background: #eeeedd">
-  <pre style="line-height: 125%;">from math import exp
-def f(x):
-    return exp(x)
+  <pre style="line-height: 125%;"><span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">math</span> <span style="color: #8B008B; font-weight: bold">import</span> exp
+<span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">f</span>(x):
+    <span style="color: #8B008B; font-weight: bold">return</span> exp(x)
 </pre>
 </div>
 </td></tr></table>      </div>
