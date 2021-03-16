@@ -38,55 +38,54 @@ EOF
 
 system doconce spellcheck -d .dict4spell.txt _testdoc.do.txt
 
-ex="--examples_as_exercises"
 rawgit="--html_raw_github_url=raw.github"
 
-system doconce jupyterbook testdoc --show_titles --sep=section --dest=$PWD --dest_toc=$PWD $ex --allow_refs_to_external_docs
+system doconce jupyterbook testdoc --show_titles --sep=section --dest=$PWD --dest_toc=$PWD --examples_as_exercises --allow_refs_to_external_docs
 
-system doconce jupyterbook testdoc --show_titles --sep=section --sep_section=subsection --titles=README $ex --allow_refs_to_external_docs 
+system doconce jupyterbook testdoc --show_titles --sep=section --sep_section=subsection --titles=README --examples_as_exercises --allow_refs_to_external_docs 
 
-system doconce jupyterbook testdoc --show_titles --sep=section --sep_section=subsection --dest=$PWD --dest_toc=$PWD $ex --allow_refs_to_external_docs
+system doconce jupyterbook testdoc --show_titles --sep=section --sep_section=subsection --dest=$PWD --dest_toc=$PWD --examples_as_exercises --allow_refs_to_external_docs
 
-system doconce format html testdoc --wordpress  $ex --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80 --figure_prefix="https://raw.github.com/hplgit/doconce/master/test/" --movie_prefix="https://raw.github.com/hplgit/doconce/master/test/" --html_links_in_new_window --cite_doconce $rawgit
+system doconce format html testdoc --wordpress  --examples_as_exercises --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80 --figure_prefix="https://raw.github.com/hplgit/doconce/master/test/" --movie_prefix="https://raw.github.com/hplgit/doconce/master/test/" --html_links_in_new_window --cite_doconce $rawgit
 
 cp testdoc.html testdoc_wordpress.html
 
-system doconce format html testdoc --without_answers --without_solutions $ex -DSOMEVAR --html_exercise_icon=default --solutions_at_end --html_share=https://cyber.space.com/specials,twitter,print,google+,facebook,linkedin $rawgit
-system doconce format html testdoc --without_answers --without_solutions $ex --html_exercise_icon=default --answers_at_end --solutions_at_end --html_share=https://cyber.space.com/specials,twitter,print,google+,facebook,linkedin $rawgit
+system doconce format html testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR --html_exercise_icon=default --solutions_at_end --html_share=https://cyber.space.com/specials,twitter,print,google+,facebook,linkedin $rawgit
+system doconce format html testdoc --without_answers --without_solutions --examples_as_exercises --html_exercise_icon=default --answers_at_end --solutions_at_end --html_share=https://cyber.space.com/specials,twitter,print,google+,facebook,linkedin $rawgit
 
 system doconce split_html testdoc.html --method=space10
 cp testdoc.html testdoc_no_solutions.html
 
-system doconce format html testdoc $ex  # just produce the mako file
+system doconce format html testdoc --examples_as_exercises  # just produce the mako file
 doconce extract_exercises tmp_mako__testdoc.do.txt --exercise_numbering=section --filter=ipynb
 
-system doconce format latex testdoc --without_answers --without_solutions $ex -DSOMEVAR --sections_down --number_all_equations --latex_packages=varioref --cite_doconce
+system doconce format latex testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR --sections_down --number_all_equations --latex_packages=varioref --cite_doconce
 cp testdoc.p.tex testdoc_no_solutions.p.tex
 
 cp ../bundled/html_styles/style_vagrant/template_vagrant.html .
-system doconce format html testdoc.do.txt $ex --html_style=bootstrap --html_template=template_vagrant.html --html_toc_indent=0 --toc_depth=2 $rawgit
+system doconce format html testdoc.do.txt --examples_as_exercises --html_style=bootstrap --html_template=template_vagrant.html --html_toc_indent=0 --toc_depth=2 $rawgit
 cp testdoc.html testdoc_vagrant.html
 # Test that a split of testdoc_vagrant.html becomes correct
 doconce split_html testdoc_vagrant.html --method=split
 
 system doconce apply_inline_edits testdoc.do.txt
-system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs $ex --html_exercise_icon=exercise1.svg $rawgit
+system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg $rawgit
 
 system doconce remove_exercise_answers testdoc.html
 system doconce html_colorbullets testdoc.html
 system doconce split_html testdoc.html --nav_button=gray2,bottom --font_size=slides
 
-system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs $ex --html_output=demo_testdoc $rawgit
+system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_output=demo_testdoc $rawgit
 
-system doconce format latex testdoc.do.txt $ex SOMEVAR=True --skip_inline_comments --latex_packages=varioref
+system doconce format latex testdoc.do.txt --examples_as_exercises SOMEVAR=True --skip_inline_comments --latex_packages=varioref
 
 # Test lst with external and internal styles
-system doconce format pdflatex testdoc.do.txt $ex "--latex_code_style=default:lst-blue1[style=myspeciallststyle,numbers=left,numberstyle=\\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]@fcod:vrb-gray@sys:vrb[frame=lines,label=\\fbox{{\\tiny Terminal}},framesep=2.5mm,framerule=0.7pt]" --latex_code_lststyles=mylststyles --latex_packages=varioref
+system doconce format pdflatex testdoc.do.txt --examples_as_exercises "--latex_code_style=default:lst-blue1[style=myspeciallststyle,numbers=left,numberstyle=\\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]@fcod:vrb-gray@sys:vrb[frame=lines,label=\\fbox{{\\tiny Terminal}},framesep=2.5mm,framerule=0.7pt]" --latex_code_lststyles=mylststyles --latex_packages=varioref
 
 # Issue #9: removed "style=redblue"
 cp testdoc.tex testdoc.tex_direct
 
-system doconce format pdflatex testdoc.do.txt --device=paper $ex --latex_double_hyphen --latex_index_in_margin --latex_no_program_footnotelink --latex_title_layout=titlepage --latex_papersize=a4 --latex_colored_table_rows=blue --latex_fancy_header --latex_section_headings=blue --latex_labels_in_margin --latex_double_spacing --latex_todonotes --latex_list_of_exercises=loe --latex_font=palatino --latex_packages=varioref '--latex_link_color=blue!90' --draft
+system doconce format pdflatex testdoc.do.txt --device=paper --examples_as_exercises --latex_double_hyphen --latex_index_in_margin --latex_no_program_footnotelink --latex_title_layout=titlepage --latex_papersize=a4 --latex_colored_table_rows=blue --latex_fancy_header --latex_section_headings=blue --latex_labels_in_margin --latex_double_spacing --latex_todonotes --latex_list_of_exercises=loe --latex_font=palatino --latex_packages=varioref '--latex_link_color=blue!90' --draft
 # --latex_paper=a4 triggers summary environment to be smaller paragraph
 # within the text (fine for proposals or articles).
 
@@ -103,7 +102,7 @@ doconce replace '% begin theorem' '\begin{theorem}' testdoc.p.tex
 doconce replace '% end theorem' '\end{theorem}' testdoc.p.tex
 # because of --latex-double-hyphen:
 doconce replace Newton--Cotes Newton-Cotes testdoc.p.tex
-doconce replace --examples_as__exercises $ex testdoc.p.tex
+doconce replace --examples_as__exercises --examples_as_exercises testdoc.p.tex
 
 # Does not work in python 3
 PYTHON_VERSION=$(python -V 2>&1 | grep -Po '(?<=Python )(.+)')
@@ -134,17 +133,17 @@ rm -f *.aux
 system pdflatex -shell-escape testdoc
 
 # Test stand-alone exercises
-system doconce format plain testdoc --exercises_in_zip $ex
+system doconce format plain testdoc --exercises_in_zip --examples_as_exercises
 rm -rf standalone_exercises
 unzip testdoc_exercises.zip
 
 # Test prefix
-system doconce format html testdoc --code_prefix=https://raw.githubusercontent.com/hplgit/doconce/master/test --html_output=testdoc_code_prefix $ex
+system doconce format html testdoc --code_prefix=https://raw.githubusercontent.com/hplgit/doconce/master/test --html_output=testdoc_code_prefix --examples_as_exercises
 
-system doconce format plain testdoc.do.txt $ex -DSOMEVAR=1 --tables2csv
-system doconce format st testdoc.do.txt $ex
+system doconce format plain testdoc.do.txt --examples_as_exercises -DSOMEVAR=1 --tables2csv
+system doconce format st testdoc.do.txt --examples_as_exercises
 
-system doconce format sphinx testdoc $ex --html_links_in_new_window
+system doconce format sphinx testdoc --examples_as_exercises --html_links_in_new_window
 cp testdoc.rst testdoc.sphinx.rst
 system doconce split_rst testdoc
 # Problem reproducible after: `git clean -fd && rm -rf sphinx-testdoc`
@@ -157,20 +156,20 @@ cp sphinx-testdoc/conf.py testdoc_sphinx_conf.py
 cp sphinx-testdoc/index.rst testdoc_sphinx_index.rst
 
 
-system doconce format rst testdoc.do.txt $ex --rst_mathjax
+system doconce format rst testdoc.do.txt --examples_as_exercises --rst_mathjax
 
-system doconce format epytext testdoc.do.txt $ex
-system doconce format pandoc testdoc.do.txt $ex
-system doconce format mwiki testdoc.do.txt $ex
-system doconce format cwiki testdoc.do.txt $ex
-system doconce format ipynb testdoc.do.txt $ex
-system doconce format matlabnb testdoc.do.txt $ex
+system doconce format epytext testdoc.do.txt --examples_as_exercises
+system doconce format pandoc testdoc.do.txt --examples_as_exercises
+system doconce format mwiki testdoc.do.txt --examples_as_exercises
+system doconce format cwiki testdoc.do.txt --examples_as_exercises
+system doconce format ipynb testdoc.do.txt --examples_as_exercises
+system doconce format matlabnb testdoc.do.txt --examples_as_exercises
 
 # Test mako variables too
-system doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' $ex
+system doconce format gwiki testdoc.do.txt --skip_inline_comments MYVAR1=3 MYVAR2='a string' --examples_as_exercises
 
 # Test pandoc: from latex to markdown, from markdown to html
-system doconce format latex testdoc.do.txt $ex --latex_title_layout=std --latex_packages=varioref
+system doconce format latex testdoc.do.txt --examples_as_exercises --latex_title_layout=std --latex_packages=varioref
 system doconce ptex2tex testdoc
 
 #doconce subst -s 'And here is a system of equations with labels.+?\\section' '\\section' testdoc.tex
@@ -184,7 +183,7 @@ doconce replace '+%26+' '' testdoc.tex
 #system pandoc -f markdown -t html -o testdoc_pnd_l2h.html --mathjax -s testdoc.md
 #pandoc -v >> testdoc_pnd_l2h.html
 
-system doconce format pandoc testdoc.do.txt $ex
+system doconce format pandoc testdoc.do.txt --examples_as_exercises
 #system pandoc -t html -o testdoc_pnd_d2h.html --mathjax -s testdoc.md
 #pandoc -v >> testdoc_pnd_d2h.html
 
@@ -281,8 +280,8 @@ doconce format ipynb nbdemo
 doconce ipynb2doconce nbdemo.ipynb
 
 # Test notebook execution
-doconce format ipynb execute.do.txt $ex
-doconce format ipynb execute.do.txt --execute $ex
+doconce format ipynb execute.do.txt --examples_as_exercises
+doconce format ipynb execute.do.txt --execute --examples_as_exercises
 
 # Test math
 rm -f *.aux
@@ -554,10 +553,12 @@ doconce format pdflatex tmp2 --device=paper
 # Remedy: drop paper and rewrite, just run electronic
 doconce format pdflatex tmp2
 #doconce replace '# Comment before math is ok' '' tmp2.do.txt
-echo
+echo ""
 echo "When we reach this point in the script,"
 echo "it is clearly a successful run of all tests!"
 echo "Check the generated test.v file with e.g.: "
 echo "meld test.r test.v"
 echo "To remove untracked files run: "
 echo "cd .. & git clean -f -d"
+echo "rm -rf tmp_*"
+echo ""

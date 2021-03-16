@@ -39,8 +39,7 @@ from builtins import range
 import re, os, subprocess, sys, subprocess
 from .common import default_movie, plain_exercise, insert_code_and_tex
 from .plaintext import plain_quiz
-from .misc import _abort
-from .doconce import errwarn
+from .misc import _abort, errwarn
 
 def align2equations(math_text):
     """

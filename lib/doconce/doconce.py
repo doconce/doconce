@@ -8,70 +8,21 @@ from builtins import chr
 from builtins import str
 from builtins import range
 from past.builtins import basestring, unicode
-from doconce import globals
-
 import re, os, sys, shutil, subprocess, pprint, time, glob, codecs
+
+from doconce import globals
+from .common import *
+from .misc import option, which, _abort, help_format, check_command_line_options, find_file_with_extensions, \
+    _rmdolog, debugpr, errwarn
+from . import plaintext as plain
+from .expand_newcommands import expand_newcommands
+# Import all modules associated with formats
+from . import html, latex, pdflatex, rst, sphinx, st, epytext, gwiki, mwiki, cwiki, pandoc, ipynb, matlabnb
 try:
     from collections import OrderedDict   # v2.7 and v3.1
 except ImportError:
-    # use standard arbitrary-ordered dict instead (original order of
-    # citations is then lost)
+    # use standard arbitrary-ordered dict instead (original order of citations is then lost)
     OrderedDict = dict
-
-def debugpr(heading='', text=''):
-    """Add `heading` and `text` to the log/debug file.
-
-    :param str heading: heading to be added
-    :param str text: text to be added
-    """
-    if option('debug'):
-        if globals.encoding:
-            globals._log = codecs.open('_doconce_debugging.log','a', globals.encoding)
-        else:
-            globals._log = open('_doconce_debugging.log','a')
-        out_class = str(type(text)).split("'")[1]
-        pre = '\n' + '*'*60 + '\n%s>>> ' % out_class if text else ''
-        globals._log.write(pre + heading + '\n\n')
-        globals._log.write(text + '\n')
-        globals._log.close()
-
-def _rmdolog():
-    """Remove the .dolog file
-    """
-    logfilename = globals.dofile_basename + '.dolog'
-    if os.path.isfile(logfilename):
-        os.remove(logfilename)
-
-def errwarn(msg, end='\n', style=''):
-    """Function for reporting errors and warnings to screen and file.
-
-    :param str msg: text message
-    :param str end: string appended after the last value, default a newline
-    :param str style: style msg with color or formatting
-    """
-    if style:
-        print(globals.style[style] + msg + globals.style['_end'], end=end)
-    else:
-        print(msg, end=end)
-    if globals.dofile_basename is None:
-        return
-    logfilename = globals.dofile_basename + '.dlog'
-    mode = 'a' if os.path.isfile(logfilename) else 'w'
-    if globals.encoding:
-        err = codecs.open(logfilename, mode, globals.encoding)
-    else:
-        err = open(logfilename, mode)
-    err.write(msg)
-    if end == '\n':
-        err.write('\n')
-
-from .common import *
-from .misc import option, which, _abort, help_format, check_command_line_options, find_file_with_extensions
-from . import html, latex, pdflatex, rst, sphinx, st, epytext, gwiki, mwiki, cwiki, pandoc, ipynb, matlabnb
-from . import plaintext as plain
-from .latex import aux_label2number
-from .html import embed_IBPLOTs
-from .expand_newcommands import expand_newcommands
 
 main_content_begin = globals.main_content_char*19 + ' main content ' + \
                      globals.main_content_char*22
@@ -3121,7 +3072,7 @@ def handle_cross_referencing(filestr, format, tex_blocks):
 
     # 3. Replace ref by hardcoded numbers from a latex .aux file
     refaux = 'refaux{' in filestr
-    label2number = aux_label2number()
+    label2number = latex.aux_label2number()
     if format not in ('latex', 'pdflatex') and refaux and not label2number:
         errwarn('*** error: used refaux{} reference(s), but no option --replace_ref_by_latex_auxno=')
         _abort()
@@ -3379,7 +3330,6 @@ def interpret_authors(filestr, format):
     # contract multiple AUTHOR lines to one single:
     filestr = re.sub('(XXXAUTHOR\n)+', 'XXXAUTHOR', filestr)
 
-    from collections import OrderedDict
     copyright_ = OrderedDict()
 
     # (author, (inst1, inst2, ...) or (author, None)
@@ -3783,7 +3733,6 @@ def extract_quizzes(filestr, format):
     by a Python data structure and a special instruction where formatting
     of this data structure is to be inserted.
     """
-    from collections import OrderedDict
     ct = comment_tag
     bct = begin_comment_tag
     ect = end_comment_tag
@@ -4482,7 +4431,7 @@ def doconce2format(filestr_in, format):
     m = re.search('^IBPLOT: *\[', filestr, flags=re.MULTILINE)
     has_ibplot = True if m else False
     if has_ibplot:
-        filestr, bg_session = embed_IBPLOTs(filestr, format)
+        filestr, bg_session = html.embed_IBPLOTs(filestr, format)
         #bg_session.loop_until_closed()
         debugpr('The file after inserting interactive IBPLOT curve plots:', filestr)
     # Next step: deal with user-defined environments
@@ -5325,8 +5274,7 @@ def format_driver():
         format = sys.argv[1]
         globals.filename = sys.argv[2]
         del sys.argv[1:3]
-        from . import common
-        common.format = format
+        globals.format = format
     except IndexError:
         options = ' '.join([opt for opt, help in globals._registered_command_line_options])
         print('Usage: %s format filename [preprocessor options] [%s]\n' \

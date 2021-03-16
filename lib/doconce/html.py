@@ -7,13 +7,13 @@ from past.builtins import basestring
 from builtins import object
 import re, os, glob, sys, glob
 from .common import table_analysis, plain_exercise, insert_code_and_tex, \
-     indent_lines, online_python_tutor, bibliography, \
+     indent_lines, online_python_tutor, bibliography, _linked_files, \
      is_file_or_url, envir_delimiter_lines, doconce_exercise_output, \
      get_legal_pygments_lexers, has_custom_pygments_lexer, emoji_url, \
-     fix_ref_section_chapter, cite_with_multiple_args2multiple_cites
-from .misc import option, _abort
+     fix_ref_section_chapter, cite_with_multiple_args2multiple_cites, \
+    INLINE_TAGS, INLINE_TAGS_SUBST
+from .misc import option, _abort, errwarn, debugpr
 from doconce import globals
-from .doconce import errwarn, debugpr
 
 box_shadow = 'box-shadow: 8px 8px 5px #888888;'
 #box_shadow = 'box-shadow: 0px 0px 10px #888888'
@@ -1247,7 +1247,7 @@ def html_code(filestr, code_blocks, code_block_types,
         MATH_TYPESETTING = 'MathJax'
     c = re.compile(r'^!bt *\n', re.MULTILINE)
     m1 = c.search(filestr)
-    # common.INLINE_TAGS['math'] won't work since we have replaced
+    # INLINE_TAGS['math'] won't work since we have replaced
     # $...$ by \( ... \)
     pattern = r'\\\( .+? \\\)'
     m2 = re.search(pattern, filestr)
@@ -1339,8 +1339,7 @@ def html_code(filestr, code_blocks, code_block_types,
                          filestr, flags=re.DOTALL)
 
     # Find all URLs to files (non http, ftp)
-    from . import common
-    pattern = '<a href=' + common._linked_files
+    pattern = '<a href=' + _linked_files
     files = re.findall(pattern, filestr)
     for f, dummy in files:
         if not (f.startswith('http') or f.startswith('ftp') or \
@@ -1388,8 +1387,8 @@ def html_code(filestr, code_blocks, code_block_types,
     # drop URLs in headings?
     from . import common
     for tag in tags:
-        toc_html = re.sub(common.INLINE_TAGS[tag],
-                          common.INLINE_TAGS_SUBST[format][tag],
+        toc_html = re.sub(INLINE_TAGS[tag],
+                          INLINE_TAGS_SUBST[format][tag],
                           toc_html)
 
     if template:
@@ -3188,7 +3187,7 @@ body { %s; }
                 if not '`' in keyword]
     # Keywords paragraph
     from . import common
-    m = re.search(common.INLINE_TAGS['keywords'], filestr, flags=re.MULTILINE)
+    m = re.search(INLINE_TAGS['keywords'], filestr, flags=re.MULTILINE)
     if m:
         keywords += re.split(r', *', m.group(1))
     # keyword!subkeyword -> keyword subkeyword

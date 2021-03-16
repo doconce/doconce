@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from future import standard_library
 standard_library.install_aliases()
 from .latex import *
-from .doconce import errwarn
+from .misc import errwarn
 
 def pdflatex_emoji(m):
     space1 = m.group(1)

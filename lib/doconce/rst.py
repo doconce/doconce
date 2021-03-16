@@ -8,9 +8,8 @@ from .common import insert_code_and_tex, indent_lines, \
     table_analysis, plain_exercise, bibliography, \
     cite_with_multiple_args2multiple_cites, fix_ref_section_chapter
 from .html import html_movie, html_quiz
-from .doconce import _abort, errwarn
 from doconce import globals
-from .misc import option, _abort
+from .misc import option, _abort, _abort, debugpr, errwarn
 
 def rst_abstract(m):
     # r'\n*\g<type>.* \g<text>\n\g<rest>'
@@ -391,8 +390,7 @@ def ref_and_label_commoncode(section_label2title, format, filestr):
     filestr = cpattern.sub('', filestr)
     filestr = re.sub(r'label\{[^}]+?\}', '', filestr)  # all the remaining
 
-    from . import doconce
-    doconce.debugpr(debugtext)
+    debugpr(debugtext)
 
     return filestr
 
@@ -741,7 +739,7 @@ def define(FILENAME_EXTENSION,
 """
         if 'TITLE:' not in filestr:
             from . import common
-            if common.format in ('rst', 'sphinx'):
+            if globals.format in ('rst', 'sphinx'):
                 errwarn('*** error: non-breaking space character ~ is used,')
                 errwarn('    but this will give an error when the document does')
                 errwarn('    not have a title.')

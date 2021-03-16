@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="DocOnce",
-    version="1.5.6",
+    version="1.5.7",
     author='Hans Petter Langtangen, Alessandro Marin',
     author_email="hpl@simula.no, Alessandro.Marin@fys.uio.no",
     maintainer = "Kristian Gregorius Hustad",
@@ -30,7 +30,9 @@ setuptools.setup(
         'future',
         'pygments-doconce',
         'publish-doconce',
-        'requests'
+        'requests',
+        'nbformat',
+        'jupyter_client'
         ],
     #data_files=[(os.path.join("share", "man", "man1"),[man_filename,]),],
     package_data = {'': ['sphinx_themes.zip', 'html_images.zip', 'reveal.js.zip', 'deck.js.zip', 'csss.zip', 'latex_styles.zip']},

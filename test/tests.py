@@ -78,7 +78,7 @@ def apply_regex(logfilename, logfilenameout=None):
     text = re.sub(r'\\usepackage{anslistings,fancyvrb} % (.*)', r'\\usepackage{fancyvrb,anslistings} % \1', text)
     text = re.sub(r'\.{3} checking existence of .*\n\s{4}found!\n', r'', text)
     text = re.sub(r'<function html_verbatim at .*>', r'<function html_verbatim at XXX>', text)
-    text = re.sub(r'20\d\d, Hans Petter', r'20XX, Hans Petter', text)
+    text = re.sub(r'2\d\d\d, Hans Petter', r'2XXX, Hans Petter', text)
     text = re.sub(r'figure file .*\n\s+can use .*for format.*\n', 
         r'\n', text)
     text = re.sub(r'\.{3}doconce translation: figures \d{1,3}\.\d s \(accumulated time: \d{1,3}\.\d\)', 
@@ -87,12 +87,19 @@ def apply_regex(logfilename, logfilenameout=None):
     text = re.sub(r'\.{3}doconce format used \d{1,3}\.\d s', r'...doconce format used XXX s', text)
     text = re.sub(r'\*{3} warning: hyperlink to URL .* is to a local file,\n.*recommended to be .*\n', r'\n', text)
     text = re.sub(r'\.{3} checking existence of .*\n.*found!\n', r'\n', text)
-    #re.sub(r'DocOnce version [\.\d]+', r'/X/X/X', text)
     text = re.sub(r'DocOnce version [\.\d]+ \(.*\)', r'DocOnce version X.X.X', text)
     text = re.sub(os.getenv("HOME")+r'[/\w]*/(\w*)', r'/X/X/\1', text) 
     text = re.sub(r'found \..*png\n', r'', text)
     text = re.sub(r'[\n]*(\.\.\. checking existence.*)[\n]*', r'\n\1\n', text)    
-    text = re.sub(r'^fancyvrb.sty\s+[\/\d]+\s*$', r'', text)
+    text = re.sub(r'^fancyvrb.sty\s+[\/\d]+\s*\n', r'', text, flags=re.M)
+    text = re.sub(r'show_hide_code.*\(\)', r'show_hide_code()', text)   #hash
+    text = re.sub(r'<div id="code.*\"', r'<div id="codeXXX"', text)     #hash
+    text = re.sub(r'\"#code.*\"', r'"#codeXXX"', text)     #hash
+    text = re.sub(r'\(\d+ pages', r'(XXX pages', text)
+    text = re.sub(r'line \d+', r'line XXX', text)
+    text = re.sub(r'^\s*\d+[\.]*$', r'', text, flags=re.M)      #stray numbers: 5.
+    text = re.sub(r'^(?:\[\d+\]\s*)+$', r'', text, flags=re.M)  #stray numbers: [5] [6]
+    text = re.sub(r'^[\[\]]{2,}\s*$', r'', text, flags=re.M)       #parentheses [][][]
     log = open(logfilenameout, 'w')
     log.write(text)
     log.close()

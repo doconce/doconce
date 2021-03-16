@@ -4,6 +4,8 @@ from __future__ import absolute_import
 from builtins import range
 from past.builtins import basestring
 import shutil, re, sys, os
+from .misc import debugpr
+from .latex import fix_latex_command_regex as fix
 
 # NOTE: all newcommands can only span *one line*!
 # (necessary requirement since a findall with re.DOTALL will
@@ -50,7 +52,6 @@ def process_newcommand(line):
 
     if found:
         # fix \x, \b, \r... etc in strings
-        from .latex import fix_latex_command_regex as fix
         pattern = fix(pattern, 'match')
         replacement = fix(replacement, 'replacement')
         return pattern, replacement
@@ -91,7 +92,6 @@ def substitute(source, newcommands):
     else:
         text = source
 
-    from .doconce import debugpr
     for pattern, replacement in newcommands:
         text, n = re.subn(pattern, replacement, text)
         if n:

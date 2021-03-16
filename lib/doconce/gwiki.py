@@ -13,8 +13,7 @@ import re, os, subprocess, sys
 from .common import default_movie, plain_exercise, insert_code_and_tex, \
      fix_ref_section_chapter
 from .plaintext import plain_quiz
-from .misc import _abort
-from .doconce import errwarn
+from .misc import _abort, errwarn
 
 def gwiki_code(filestr, code_blocks, code_block_types,
                tex_blocks, format):
