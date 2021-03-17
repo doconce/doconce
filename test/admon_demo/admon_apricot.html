@@ -8,14 +8,10 @@ Automatically generated HTML file from DocOnce source
 <meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Testing admons">
-
 <title>Testing admons</title>
-
-
 <link href="https://raw.github.com/doconce/doconce/master/bundled/html_styles/style_solarized_box/css/solarized_light_code.css" rel="stylesheet" type="text/css" title="light"/>
 <script src="https://raw.github.com/doconce/doconce/master/bundled/html_styles/style_solarized_box/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-
 <style type="text/css">
 /* solarized style */
 body {
@@ -67,11 +63,8 @@ hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa; }
 .alert-summary  { background-image:url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_yellow_summary.png); }
 .alert-warning { background-image: url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_yellow_warning.png); }
 .alert-question {background-image:url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_yellow_question.png); }
-
 div { text-align: justify; text-justify: inter-word; }
 </style>
-
-
 </head>
 
 <!-- tocinfo
@@ -104,28 +97,20 @@ MathJax.Hub.Config({
 </script>
 
 
-
     
 <!-- ------------------- main content ---------------------- -->
-
-
-
 <center>
 <h1>Testing admons</h1>
 </center>  <!-- document title -->
-
 <p></p>
 <!-- author(s): H. P. Langtangen -->
-
 <center>
 <b>H. P. Langtangen</b> 
 </center>
-
 <p><!-- institution(s) --></p>
-
 <br>
 <center>
-<h4>Mar 16, 2021</h4>
+<h4>Mar 17, 2021</h4>
 </center> <!-- date -->
 <br>
 <p></p>
@@ -133,36 +118,71 @@ MathJax.Hub.Config({
 <h1 id="introduction">Introduction </h1>
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
-
 <p></p>
 <h2 id="code">Code </h2>
-
 <p></p>
 Need some code outside admons for color and font comparisons:
-
 <p></p>
-<!-- begin verbatim block  pycod-->
-<pre><code>def some_code(x):
-    return sin(x)*exp(1-x)
-</code></pre>
-<!-- end verbatim block -->
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="prompt input_prompt">      In [1]:    </div>
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #eeeedd">
+  <pre style="line-height: 125%;"><span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">some_code</span>(x):
+    <span style="color: #8B008B; font-weight: bold">return</span> sin(x)*exp(<span style="color: #B452CD">1</span>-x)
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="prompt"></div>
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <p></p>
 And some plain text verbatim:
-
 <p></p>
-<!-- begin verbatim block -->
-<pre><code>x=1.0 y=0.9 z=0.4
+
+<!-- code=text (!bc ccq) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="prompt input_prompt">      In [2]:    </div>
+    <div class="inner_cell">
+      <div class="input_area">
+        <blockquote>
+<div class="highlight" style="background: #eeeedd">
+  <pre style="line-height: 125%;">x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
-</code></pre>
-<!-- end verbatim block -->
+</pre>
+</div>
+</blockquote>      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="prompt"></div>
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <p></p>
 <h2 id="quotes-and-boxes">Quotes and boxes </h2>
-
 <p></p>
 Here is a plain quote environment.
-
 <p></p>
 <blockquote>
     Sayre's law states that
@@ -173,32 +193,25 @@ Here is a plain quote environment.
     <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a>
 </blockquote>
 
-
 <p></p>
 Does quotes with title also work? No...cannot work in LaTeX and HTML
 and then it does not make sense to support it.
-
 <p></p>
 A plain <em>box</em> is sometimes useful. Let's show it here for comparison
 with admons (especially the block admon has much in common with a box).
 The box is more aimed at framing a law or an equation.
-
 <p></p>
 First a simple block with text, an equation, and a list:
-
 <p></p>
 
 <!-- begin box -->
 <div style="width: 95%; padding: 10px; border: 1px solid #000; border-radius: 4px;">
 A generic equation
-
 <p></p>
 $$ f(x) = 0 $$
 
 must be solved by a numerical method, such as
-
 <p></p>
-
 <ul>
  <li> Newton's method</li>
  <li> The Bisection method</li>
@@ -210,7 +223,6 @@ must be solved by a numerical method, such as
 
 Now test a box with equation only (note that this line continues the
 box, it is not a new paragraph):
-
 <p></p>
 
 <!-- begin box -->
@@ -222,36 +234,50 @@ $$
 </div>
 <!-- end box -->
 
-
 <p></p>
 <b>Hint.</b>
 
 Newton's method requires a good start vector to converge fast.
 
 
-
 <p></p>
 Let's begin a new paragraph and show a box with code only:
-
 <p></p>
 
 <!-- begin box -->
 <div style="width: 95%; padding: 10px; border: 1px solid #000; border-radius: 4px;">
-<!-- begin verbatim block  pycod-->
-<pre><code>def some_code(x):
-    return sin(x)*exp(1-x)
-</code></pre>
-<!-- end verbatim block -->
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="prompt input_prompt">      In [3]:    </div>
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #eeeedd">
+  <pre style="line-height: 125%;"><span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">some_code</span>(x):
+    <span style="color: #8B008B; font-weight: bold">return</span> sin(x)*exp(<span style="color: #B452CD">1</span>-x)
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="prompt"></div>
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 <!-- end box -->
 
-
 <p></p>
 <h2 id="admonitions">Admonitions </h2>
-
 <p></p>
 Let us start with a plain warning environment.
-
 <p></p>
 <div class="alert alert-block alert-warning alert-text-normal">
 <b>Warning</b>
@@ -259,14 +285,11 @@ Let us start with a plain warning environment.
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
-
 <p></p>
-
 <ul>
   <li> and a list</li>
   <li> with items</li>
 </ul>
-
 We continue with more text to see how that affects the layout.
 And more and more text.
 And more and more text.
@@ -276,38 +299,72 @@ And more and more text.
 And more and more text.
 </div>
 
-
 <p></p>
 Test warning with title:
-
 <p></p>
 <div class="alert alert-block alert-warning alert-text-large">
 <b>Title ending with math \( \sqrt{2}\approx 1.4 \)</b>
 <p>
 And here comes some text with bad news in larger font.
-
 <p></p>
 Also some code:
-
 <p></p>
-<!-- begin verbatim block  pycod-->
-<pre><code>def f(x):
-    return x
-</code></pre>
-<!-- end verbatim block -->
-And a complete program
 
-<p></p>
-<!-- begin verbatim block  pypro-->
-<pre><code>print(&quot;Hello, World!&quot;)
-</code></pre>
-<!-- end verbatim block -->
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="prompt input_prompt">      In [4]:    </div>
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #fbeed5">
+  <pre style="line-height: 125%;"><span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">f</span>(x):
+    <span style="color: #8B008B; font-weight: bold">return</span> x
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="prompt"></div>
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
+And a complete program
+<p></p>
+
+<!-- code=python (!bc pypro) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="prompt input_prompt">      In [5]:    </div>
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #fbeed5">
+  <pre style="line-height: 125%;"><span style="color: #658b00">print</span>(<span style="color: #CD5555">&quot;Hello, World!&quot;</span>)
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="prompt"></div>
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
 <p></p>
 Test warning with large title with math:
-
 <p></p>
 <div class="alert alert-block alert-warning alert-text-large">
 <b>Watch out for \( \nabla\cdot\boldsymbol{u}=0 \) equations</b>
@@ -316,10 +373,8 @@ Divergence freedom is often problematic from a numerical point
 of view.
 </div>
 
-
 <p></p>
 Then we test a block, which is guaranteed to never have any admon icon.
-
 <p></p>
 <div class="alert alert-block alert-block alert-text-small">
 <b>Block with title</b>
@@ -332,7 +387,6 @@ about fun facts that are not strictly necessary for the main flow
 of understanding.
 </div>
 
-
 <p></p>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
@@ -341,18 +395,15 @@ Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
 </div>
 
-
 <p></p>
 <!-- Note that the final ! does not appear in Sphinx and reST since -->
 <!-- those formats automatically add : to the admonition title. -->
-
 <p></p>
 <div class="alert alert-block alert-notice alert-text-illegal-size">
 <b>Note, eventually!</b>
 <p>
 Ah, we are soon close to the end (with illegal font size specification!).
 But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
-
 <p></p>
 $$
 \begin{align*}
@@ -362,17 +413,14 @@ $$
 $$
 </div>
 
-
 <p></p>
 <!-- Test one word with a number -->
-
 <p></p>
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Point1</b>
 <p>
 Ah, we are soon close to the end.
 </div>
-
 
 <p></p>
 <div class="alert alert-block alert-question alert-text-normal">
@@ -381,47 +429,58 @@ Ah, we are soon close to the end.
 So, how many admonition environments does DocOnce support?
 </div>
 
-
 <p></p>
 <div class="alert alert-block alert-question alert-text-normal">
 <b>Question</b>
 <p>
-
 <ol>
  <li> Once more, how many admonition environments does DocOnce support?</li>
 </ol>
 </div>
-
 
 <p></p>
 <div class="alert alert-block alert-warning alert-text-normal">
 <b>Tip</b>
 <p>
 It is of outmost important to
-
 <p></p>
-
 <ol>
 <li> stay cool</li>
 <li> read hints and tips carefully</li>
 </ol>
-
 Because here the thing is to do
-
 <p></p>
-<!-- begin verbatim block  pycod-->
-<pre><code>import urllib
 
-def grab(url, filename):
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="prompt input_prompt">      In [6]:    </div>
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #fbeed5">
+  <pre style="line-height: 125%;"><span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">urllib</span>
+
+<span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">grab</span>(url, filename):
     urllib.urlretrieve(url, filename=filename)
-</code></pre>
-<!-- end verbatim block -->
+</pre>
 </div>
-
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="prompt"></div>
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
 <p></p>
 Next is a warning without a title ("none" implies no title).
-
 <p></p>
 <div class="alert alert-block alert-warning alert-text-normal">
 <b></b>
@@ -429,14 +488,11 @@ Next is a warning without a title ("none" implies no title).
 And here comes some text with bad news.
 </div>
 
-
 <p></p>
 <h2 id="going-deeper-environments">Going deeper environments </h2>
-
 <p></p>
 Here is a long notice environment with a custom title and much
 text, math and code.
-
 <p></p>
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Going deeper.</b>
@@ -446,10 +502,8 @@ task is to write and write. The number of words, and not the
 meaning, is what counts here. We need desperately to fill up the
 page in the hope that some admonitions will experience a page break,
 which the LaTeX environment should handle with ease.
-
 <p></p>
 Let us start with some equations:
-
 <p></p>
 $$
 \begin{align*}
@@ -463,64 +517,103 @@ $$
 <p></p>
 The implementation of such complicated equations in computer
 code is task that this "Going deeper" environment targets.
-
 <p></p>
-<!-- begin verbatim block  pycod-->
-<pre><code>def Dudt(u):
-    r = diff(u, t) + u*grad(u)
-    return r
 
-half = 0.5
-x = 2*n
-</code></pre>
-<!-- end verbatim block -->
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="prompt input_prompt">      In [7]:    </div>
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #fbeed5">
+  <pre style="line-height: 125%;"><span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">Dudt</span>(u):
+    r = diff(u, t) + u*grad(u)
+    <span style="color: #8B008B; font-weight: bold">return</span> r
+
+half = <span style="color: #B452CD">0.5</span>
+x = <span style="color: #B452CD">2</span>*n
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="prompt"></div>
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 And some more text that can help going into the next page.
 Longer computer code requires vertical space:
-
 <p></p>
-<!-- begin verbatim block  pycod-->
-<pre><code>class Diff:
-    def __init__(self, f, h=1E-5):
-        self.f = f
-        self.h = float(h)
 
-class Forward1(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (f(x+h) - f(x))/h
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="prompt input_prompt">      In [8]:    </div>
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #fbeed5">
+  <pre style="line-height: 125%;"><span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Diff</span>:
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">__init__</span>(<span style="color: #658b00">self</span>, f, h=<span style="color: #B452CD">1E-5</span>):
+        <span style="color: #658b00">self</span>.f = f
+        <span style="color: #658b00">self</span>.h = <span style="color: #658b00">float</span>(h)
 
-class Backward1(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (f(x) - f(x-h))/h
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Forward1</span>(Diff):
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">__call__</span>(<span style="color: #658b00">self</span>, x):
+        f, h = <span style="color: #658b00">self</span>.f, <span style="color: #658b00">self</span>.h
+        <span style="color: #8B008B; font-weight: bold">return</span> (f(x+h) - f(x))/h
 
-class Central2(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (f(x+h) - f(x-h))/(2*h)
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Backward1</span>(Diff):
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">__call__</span>(<span style="color: #658b00">self</span>, x):
+        f, h = <span style="color: #658b00">self</span>.f, <span style="color: #658b00">self</span>.h
+        <span style="color: #8B008B; font-weight: bold">return</span> (f(x) - f(x-h))/h
 
-class Central4(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
-               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Central2</span>(Diff):
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">__call__</span>(<span style="color: #658b00">self</span>, x):
+        f, h = <span style="color: #658b00">self</span>.f, <span style="color: #658b00">self</span>.h
+        <span style="color: #8B008B; font-weight: bold">return</span> (f(x+h) - f(x-h))/(<span style="color: #B452CD">2</span>*h)
 
-class Central6(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
-               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
-               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Central4</span>(Diff):
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">__call__</span>(<span style="color: #658b00">self</span>, x):
+        f, h = <span style="color: #658b00">self</span>.f, <span style="color: #658b00">self</span>.h
+        <span style="color: #8B008B; font-weight: bold">return</span> (<span style="color: #B452CD">4.</span>/<span style="color: #B452CD">3</span>)*(f(x+h)   - f(x-h))  /(<span style="color: #B452CD">2</span>*h) - \
+               (<span style="color: #B452CD">1.</span>/<span style="color: #B452CD">3</span>)*(f(x+<span style="color: #B452CD">2</span>*h) - f(x-<span style="color: #B452CD">2</span>*h))/(<span style="color: #B452CD">4</span>*h)
 
-class Forward3(Diff):
-    def __call__(self, x):
-        f, h = self.f, self.h
-        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
-                (1./3)*f(x-h))/h
-</code></pre>
-<!-- end verbatim block -->
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Central6</span>(Diff):
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">__call__</span>(<span style="color: #658b00">self</span>, x):
+        f, h = <span style="color: #658b00">self</span>.f, <span style="color: #658b00">self</span>.h
+        <span style="color: #8B008B; font-weight: bold">return</span> (<span style="color: #B452CD">3.</span>/<span style="color: #B452CD">2</span>) *(f(x+h)   - f(x-h))  /(<span style="color: #B452CD">2</span>*h) - \
+               (<span style="color: #B452CD">3.</span>/<span style="color: #B452CD">5</span>) *(f(x+<span style="color: #B452CD">2</span>*h) - f(x-<span style="color: #B452CD">2</span>*h))/(<span style="color: #B452CD">4</span>*h) + \
+               (<span style="color: #B452CD">1.</span>/<span style="color: #B452CD">10</span>)*(f(x+<span style="color: #B452CD">3</span>*h) - f(x-<span style="color: #B452CD">3</span>*h))/(<span style="color: #B452CD">6</span>*h)
+
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Forward3</span>(Diff):
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">__call__</span>(<span style="color: #658b00">self</span>, x):
+        f, h = <span style="color: #658b00">self</span>.f, <span style="color: #658b00">self</span>.h
+        <span style="color: #8B008B; font-weight: bold">return</span> (-(<span style="color: #B452CD">1.</span>/<span style="color: #B452CD">6</span>)*f(x+<span style="color: #B452CD">2</span>*h) + f(x+h) - <span style="color: #B452CD">0.5</span>*f(x) - \
+                (<span style="color: #B452CD">1.</span>/<span style="color: #B452CD">3</span>)*f(x-h))/h
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="prompt"></div>
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 And then we add a figure too.
-
 <p></p>
 <br /><br /><center>
 <p><img src="../../doc/src/manual/fig/wave1D.png" align="bottom" width=400></p>
@@ -528,15 +621,12 @@ And then we add a figure too.
 <br /><br/>
 </div>
 
-
 <p></p>
 <h2 id="the-end">The end </h2>
-
 <p></p>
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
 just because we can.
-
 <p></p>
 <div class="alert alert-block alert-summary alert-text-normal">
 <b>Concluding remarks, for the novice</b>
@@ -546,20 +636,14 @@ a different typesetting, and they may have a symbol.
 Titles should be optional.
 </div>
 
-
 <p></p>
 <b>Remark.</b>
 The <code>remarks</code> and <code>hint</code> environments are not allowed outside
 exercises (and problems and projects too).
-
 <!-- ------------------- end of main content --------------- -->
-
-
 <center style="font-size:80%">
 <!-- copyright --> &copy; 2021, H. P. Langtangen. Made with <a href="https://github.com/doconce/doconce">DocOnce</a>
 </center>
-
-
 </body>
 </html>
     

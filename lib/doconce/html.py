@@ -5,20 +5,46 @@ from builtins import str
 from builtins import range
 from past.builtins import basestring
 from builtins import object
-import re, os, glob, sys, glob
-from .common import table_analysis, plain_exercise, insert_code_and_tex, \
-     indent_lines, online_python_tutor, bibliography, _linked_files, \
-     is_file_or_url, envir_delimiter_lines, doconce_exercise_output, \
+import re, os, glob, sys, glob, base64, uuid
+from .common import table_analysis, plain_exercise, insert_code_blocks, \
+    insert_tex_blocks, indent_lines, online_python_tutor, bibliography, _linked_files, \
+    safe_join, is_file_or_url, envir_delimiter_lines, doconce_exercise_output, \
      get_legal_pygments_lexers, has_custom_pygments_lexer, emoji_url, \
      fix_ref_section_chapter, cite_with_multiple_args2multiple_cites, \
     INLINE_TAGS, INLINE_TAGS_SUBST
-from .misc import option, _abort, errwarn, debugpr
+from .misc import option, _abort
 from doconce import globals
+from .misc import errwarn, debugpr
+from . import jupyter_execution
+# ---- Import a pygments syntax highlighter for DocOnce ----
+from pygments import __version__ as pygm
+from pygments.lexers import guess_lexer, get_lexer_by_name
+from pygments.formatters import HtmlFormatter
+from pygments import highlight
+from pygments.styles import get_all_styles
 
 box_shadow = 'box-shadow: 8px 8px 5px #888888;'
-#box_shadow = 'box-shadow: 0px 0px 10px #888888'
 
 global _file_collection_filename
+
+# Mapping from envir (+cod/pro if present) to pygment style
+envir2pygments = dict(
+    bash='bash',
+    pyshell='python',
+    py='python', cy='cython', f='fortran',
+    c='c', cpp='c++', cu='cuda', cuda='cuda', sh='bash', rst='rst', swig='c++',
+    m='matlab', pl='perl',
+    latex='latex', tex='latex',
+    html='html',
+    xml='xml', rb='ruby',  # sys='console',
+    sys='text',
+    #sys='bash',
+    js='js', java='java',
+    dat='text', txt='text', csv='text',
+    cc='text', ccq='text',
+    ipy='ipy',
+    pyopt='python', pysc='python',
+    do='doconce')
 
 # From https://service.real.com/help/library/guides/realone/ProductionGuide/HTML/htmfiles/colors.htm:
 color_table = [
@@ -93,6 +119,57 @@ def add_to_file_collection(filename, doconce_docname=None, mode='a'):
         if not name in files:  # already registered?
             f.write(name + '\n')
     f.close()
+
+
+# HTML code
+
+html_cell_code = (
+            '  <div class="input">\n'
+            '    <div class="prompt input_prompt">'
+            '      %s'        # Execution count
+            '    </div>\n'
+            '    <div class="inner_cell">\n'
+            '      <div class="input_area">\n'
+            '        %s'        # code <div> with class highlight
+            '      </div>\n'
+            '    </div>\n'
+            '  </div>\n')
+html_cell_output = (
+            '  <div class="output_wrapper">\n'
+            '    <div class="output">\n'
+            '      <div class="output_area">\n'
+            '        <div class="prompt"></div>\n'
+            '        <div class="output_subarea output_stream output_stdout output_text">'
+            '          %s\n'      # code output wrapped in <pre> 
+            '        </div>\n'
+            '      </div>\n'
+            '    </div>\n'
+            '  </div>\n')
+
+html_cell_wrap = '<div class="cell border-box-sizing code_cell rendered">\n'
+
+html_cell = html_cell_wrap + \
+            html_cell_code + \
+            html_cell_output + \
+            '</div>\n'
+
+html_toggle_btn = ('\n'
+                      '<script type="text/javascript">\n'
+                      'function show_hide_code%(hash)s(){\n'
+                      '  $("#code%(hash)s").toggle();\n'
+                      '}\n'
+                      '</script>\n'
+                      '<button type="button" onclick="show_hide_code%(hash)s()">Show/Hide code</button>\n'
+                      '<div id="code%(hash)s" style="display:none">\n'
+                      '%(formatted_code)s\n'
+                      '</div>\n')
+
+html_sagecell = ('\n<div class="sage_compute">\n'
+                 '<script type="text/x-sage">\n'
+                 '%s\n'
+                 '</script>\n'
+                 '</div>\n')
+
 
 # Style sheets
 
@@ -214,85 +291,149 @@ pre {
 }
 """  # h2, h3 are green
 
+# css for jupyter blocks
+css_jupyter_blocks = (
+    'div.highlight {\n'
+    '    border: 1px solid #cfcfcf;\n'
+    '    border-radius: 2px;\n'
+    '    line-height: 1.21429em;\n'
+    '}\n'
+    'div.cell {\n'
+    '    width: 100%;\n'
+    '    padding: 5px 5px 5px 0;\n'
+    '    margin: 0;\n'
+    '    outline: none;\n'
+    '}\n'
+    'div.input {\n'
+    '    page-break-inside: avoid;\n'
+    '    box-orient: horizontal;\n'
+    '    box-align: stretch;\n'
+    '    display: flex;\n'
+    '    flex-direction: row;\n'
+    '    align-items: stretch;\n'
+    '}\n'
+    'div.prompt {\n'
+    '    min-width: 11ex;\n'
+    '    padding: .4em;\n'
+    '    margin: 0;\n'
+    '    font-family: monospace;\n'
+    '    text-align: right;\n'
+    '    line-height: 1.21429em;\n'
+    '}\n'
+    'div.prompt:empty {\n'
+    '    padding-top: 0;\n'
+    '    padding-bottom: 0;\n'
+    '}\n'
+    'div.input_prompt {\n'
+    '    color: navy;\n'
+    '    border-top: 1px solid transparent;\n'
+    '}\n'
+    'div.inner_cell {\n'
+    '    box-orient: vertical;\n'
+    '    box-align: stretch;\n'
+    '    display: flex;\n'
+    '    flex-direction: column;\n'
+    '    align-items: stretch;\n'
+    '    box-flex: 1;\n'
+    '    flex: 1;\n'
+    '}\n'
+    'div.input_area {\n'
+    '    border: 1px solid #cfcfcf;\n'
+    '    border-radius: 4px;\n'
+    '    background: #f7f7f7;\n'
+    '    line-height: 1.21429em;\n'
+    '}\n'
+    'div.input_area > div.highlight {\n'
+    '    margin: .4em;\n'
+    '    border: none;\n'
+    '    padding: 0;\n'
+    '    background-color: transparent;\n'
+    '}\n'
+    'div.output_wrapper {\n'
+    '    position: relative;\n'
+    '    box-orient: vertical;\n'
+    '    box-align: stretch;\n'
+    '    display: flex;\n'
+    '    flex-direction: column;\n'
+    '    align-items: stretch;\n'
+    '}\n'
+    '.output {\n'
+    '    box-orient: vertical;\n'
+    '    box-align: stretch;\n'
+    '    display: flex;\n'
+    '    flex-direction: column;\n'
+    '    align-items: stretch;\n'
+    '}\n'
+    'div.output_area {\n'
+    '    padding: 0;\n'
+    '    page-break-inside: avoid;\n'
+    '    box-orient: horizontal;\n'
+    '    box-align: stretch;\n'
+    '    display: flex;\n'
+    '    flex-direction: row;\n'
+    '    align-items: stretch;\n'
+    '}\n'
+    'div.output_subarea {\n'
+    '    padding: .4em .4em 0 .4em;\n'
+    '    box-flex: 1;\n'
+    '    flex: 1;\n'
+    '}\n'    
+    'div.output_text {\n'
+    '    text-align: left;\n'
+    '    color: #000;\n'
+    '    line-height: 1.21429em;\n'
+    '}\n'
+)
 
-css_blueish = """\
-/* blueish style */
+css_body = ('\n'
+            'body {\n'
+            '  margin-top: 1.0em;\n'
+            '  background-color: #ffffff;\n'
+            '  font-family: Helvetica, Arial, FreeSans, san-serif;\n'
+            '  color: #000000;\n'
+            '}\n')
 
-/* Color definitions:  https://www.december.com/html/spec/color0.html
-   CSS examples:       https://www.w3schools.com/css/css_examples.asp */
+css_base = ('h1 {{ font-size: 1.8em; color: {h_color}; }}\n'
+            'h2 {{ font-size: 1.6em; color: {h_color}; }}\n'
+            'h3 {{ font-size: 1.4em; color: {h_color}; }}\n'
+            'h4 {{ font-size: 1.2em; color: {h_color}; }}\n'
+            'a {{ color: {h_color}; text-decoration:none; }}\n'
+            'tt {{ font-family: "Courier New", Courier; }}\n'
+            'p {{ text-indent: 0px; }}\n'
+            'hr {{ border: 0; width: 80%; border-bottom: 1px solid #aaa}}\n'
+            'p.caption {{ width: 80%; font-style: normal; text-align: left; }}\n'
+            'hr.figure {{ border: 0; width: 80%; border-bottom: 1px solid #aaa; }}')
 
-body {
-  margin-top: 1.0em;
-  background-color: #ffffff;
-  font-family: Helvetica, Arial, FreeSans, san-serif;
-  color: #000000;
-}
-h1 { font-size: 1.8em; color: #1e36ce; }
-h2 { font-size: 1.6em; color: #1e36ce; }
-h3 { font-size: 1.4em; color: #1e36ce; }
-a { color: #1e36ce; text-decoration:none; }
-tt { font-family: "Courier New", Courier; }
-pre { background: #ededed; color: #000; padding: 15px;}
-p { text-indent: 0px; }
-hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-p.caption { width: 80%; font-style: normal; text-align: left; }
-hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-"""
+css_blueish = "/* blueish style */\n" + \
+              css_body + \
+              css_base.format(h_color='#1e36ce') + \
+              "\npre { background: #ededed; color: #000; padding: 15px;}\n" + \
+              css_jupyter_blocks
 
-css_blueish2 = """\
-/* blueish2 style (as blueish style, but different pre and code tags
-   (only effective if not pygments is used))
-*/
+css_blueish2 = "/* blueish2 style (as blueish style, but different pre and code tags\n" \
+               "   (only effective if pygments is not used))\n*/\n" + \
+               css_body + \
+               css_base.format(h_color='#1e36ce') + \
+               ('\n'
+                'pre {\n'
+                '  background-color: #fefbf3;\n'
+                '  vpadding: 9px;\n'
+                '  border: 1px solid rgba(0,0,0,.2);\n'
+                '  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);\n'
+                '  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.1);\n'
+                '  box-shadow: 0 1px 2px rgba(0,0,0,.1);\n'
+                '}\n'
+                'pre, code { font-size: 90%; line-height: 1.6em; }\n') + \
+               css_jupyter_blocks
 
-/* Color definitions:  https://www.december.com/html/spec/color0.html
-   CSS examples:       https://www.w3schools.com/css/css_examples.asp */
-
-body {
-  margin-top: 1.0em;
-  background-color: #ffffff;
-  font-family: Helvetica, Arial, FreeSans, san-serif;
-  color: #000000;
-}
-h1 { font-size: 1.8em; color: #1e36ce; }
-h2 { font-size: 1.6em; color: #1e36ce; }
-h3 { font-size: 1.4em; color: #1e36ce; }
-a { color: #1e36ce; text-decoration:none; }
-tt { font-family: "Courier New", Courier; }
-pre {
-background-color: #fefbf3;
-vpadding: 9px;
-border: 1px solid rgba(0,0,0,.2);
--webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
-   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.1);
-        box-shadow: 0 1px 2px rgba(0,0,0,.1);
-}
-pre, code { font-size: 90%; line-height: 1.6em; }
-p { text-indent: 0px; }
-hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-p.caption { width: 80%; font-style: normal; text-align: left; }
-hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-"""
-
-css_bloodish = """\
-/* bloodish style */
-
-body {
-  font-family: Helvetica, Verdana, Arial, Sans-serif;
-  color: #404040;
-  background: #ffffff;
-}
-h1 { font-size: 1.8em;  color: #8A0808; }
-h2 { font-size: 1.6em;  color: #8A0808; }
-h3 { font-size: 1.4em;  color: #8A0808; }
-h4 { color: #8A0808; }
-a { color: #8A0808; text-decoration:none; }
-tt { font-family: "Courier New", Courier; }
-pre { background: #ededed; color: #000; padding: 15px;}
-p { text-indent: 0px; }
-hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-p.caption { width: 80%; font-style: normal; text-align: left; }
-hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-"""
+css_bloodish = "/* bloodish style */\n" + \
+               ('body {\n'
+                '  font-family: Helvetica, Verdana, Arial, Sans-serif;\n'
+                '  color: #404040;\n'
+                '  background: #ffffff;\n'
+                '}\n') + \
+               css_base.format(h_color='#8A0808') + \
+               css_jupyter_blocks
 
 # Tactile theme from GitHub web page generator
 css_tactile = """
@@ -456,7 +597,7 @@ footer a:hover {
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {}
-"""
+""" + css_jupyter_blocks
 
 # too small margin bottom: h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
 
@@ -520,7 +661,8 @@ h3 {
     font-size: 1.35em;
     color: #777;
 }
-"""
+""" + css_jupyter_blocks
+
 
 def share(code_type,
           url=None,
@@ -600,6 +742,7 @@ display: inline;
         s += '</center>\n'
     return s
 
+
 def toc2html(html_style, bootstrap=True,
              max_headings=17, # max no of headings in pull down menu
              ):
@@ -672,6 +815,7 @@ def toc2html(html_style, bootstrap=True,
         errwarn('*** error: no table of contents generated from toc2html - BUG in doconce')
         _abort()
     return toc_html
+
 
 class CreateApp(object):
     """
@@ -885,6 +1029,7 @@ def embed_IBPLOTs(filestr, format):
     document.add_root(layout)
     return filestr, session
 
+
 def embed_newcommands(filestr):
     from .expand_newcommands import process_newcommand
     newcommands_files = list(
@@ -907,6 +1052,7 @@ def embed_newcommands(filestr):
             newcommands += '\n<!-- %s -->\n' % filename + '$$\n' + text \
                            + '\n$$\n\n'
     return newcommands
+
 
 def mathjax_header(filestr):
     newcommands = embed_newcommands(filestr)
@@ -934,6 +1080,7 @@ def mathjax_header(filestr):
     latex = '\n\n' + mathjax_script_tag + newcommands + '\n\n'
     return latex
 
+
 def html_verbatim(m):
     code = m.group('subst')
     begin = m.group('begin')
@@ -945,167 +1092,25 @@ def html_verbatim(m):
     code = code.replace('"', '&quot;')
     return r'%(begin)s<code>%(code)s</code>%(end)s' % vars()
 
+
 def html_code(filestr, code_blocks, code_block_types,
               tex_blocks, format):
     """Replace code and LaTeX blocks by html environments."""
 
     html_style = option('html_style=', '')
-    pygm_style = option('pygments_html_style=', default=None)
-    legal_pygm_styles = 'monokai manni rrt perldoc borland colorful default murphy vs trac tango fruity autumn bw emacs vim pastie friendly native'.split()
-    if pygm_style not in legal_pygm_styles:
-        if pygm_style not in (None, "none", "None", "off", "no"):
-            errwarn('*** error: wrong pygments style "%s"' % pygm_style)
-            errwarn('    must be among\n%s' % str(legal_pygm_styles)[1:-1])
-            _abort()
+    pygm, pygm_style = get_pygments_style(code_block_types)
 
-    # Mapping from envir (+cod/pro if present) to pygment style
-    envir2pygments = dict(
-        py='python', cy='cython', f='fortran',
-        c='c', cpp='c++', cu='cuda', cuda='cuda', bash='bash', sh='bash', rst='rst',
-        m='matlab', pl='perl', rb='ruby',
-        swig='c++', latex='latex', tex='latex',
-        html='html', xml='xml',
-        js='js', java='java',
-        #sys='console',
-        sys='text',
-        #sys='bash',
-        dat='text', txt='text', csv='text',
-        cc='text', ccq='text',
-        pyshell='python', ipy='ipy',
-        pyopt='python', pysc='python',
-        do='doconce')
-    try:
-        import pygments as pygm
-        from pygments.lexers import guess_lexer, get_lexer_by_name
-        from pygments.formatters import HtmlFormatter
-        from pygments import highlight
-        from pygments.styles import get_all_styles
-    except ImportError:
-        pygm = None
-    # Can turn off pygments on the cmd line
-    if pygm_style in ('no', 'none', 'off'):
-        pygm = None
-    if pygm is not None:
-        if 'ipy' in code_block_types:
-            if not has_custom_pygments_lexer('ipy'):
-                envir2pygments['ipy'] = 'python'
-        if 'do' in code_block_types:
-            if not has_custom_pygments_lexer('doconce'):
-                envir2pygments['do'] = 'text'
+    filestr = insert_code_blocks(filestr, code_blocks, format, complete_doc=True, remove_hid=False)
 
-        if pygm_style is None:
-            # Set sensible default values
-            if option('html_style=', '').startswith('solarized'):
-                if 'pyscpro' in code_block_types:
-                    # Must have pygments style for Sage Cells to work
-                    pygm_style = 'perldoc'
-                else:
-                    pygm_style = 'none'
-                    # 2nd best: perldoc (light), see below
-            elif option('html_style=', '').startswith('tactile'):
-                pygm_style = 'trac'
-            elif option('html_style=', '') == 'rossant':
-                pygm_style = 'monokai'
-            else:
-                pygm_style = 'default'
-        else:
-            # Fix style for solarized and rossant
-            if option('html_style=') == 'solarized':
-                if pygm_style != 'perldoc':
-                    errwarn('*** warning: --pygm_style=%s is not recommended when --html_style=solarized' % pygm_style)
-                    errwarn('    automatically changed to --html_style=perldoc')
-                    pygm_style = 'perldoc'
-            elif option('html_style=') == 'solarized_dark':
-                if pygm_style != 'friendly':
-                    errwarn('*** warning: --pygm_style=%s is not recommended when --html_style=solarized_dark' % pygm_style)
-                    errwarn('    automatically changed to --html_style=friendly')
-                    errwarn('    (it is recommended not to specify --pygm_style for solarized_dark)')
-                    pygm_style = 'friendly'
+    # ... more code in latex
+    #l.966
+    #latex_code_style = interpret_latex_code_style()
 
-        legal_lexers = get_legal_pygments_lexers()
-        legal_styles = list(get_all_styles())
-        legal_styles += ['no', 'none', 'off']
-        if pygm_style not in legal_styles:
-            errwarn('pygments style "%s" is not legal, must be among\n%s' % (pygm_style, ', '.join(legal_styles)))
-            #_abort()
-            errwarn('using the "default" style...')
-            pygm_style = 'default'
-        if pygm_style in ['no', 'none', 'off']:
-            pygm = None
+    code_style = pygm_style
+    filestr = jupyter_execution.process_code_blocks(filestr, code_style, format)
 
-        linenos = option('pygments_html_linenos')
-
-    needs_online_python_tutor = False  # True if one occurence
-    for i in range(len(code_blocks)):
-        if code_block_types[i].startswith('pyoptpro'):
-            needs_online_python_tutor = True
-            code_blocks[i] = online_python_tutor(code_blocks[i],
-                                                 return_tp='iframe')
-
-        elif code_block_types[i].startswith('pyscpro'):
-            # Wrap Sage Cell code around the code
-            # https://github.com/sagemath/sagecell/blob/master/doc/embedding.rst
-            code_blocks[i] = ('\n'
-                              '<div class="compute"><script type="text/x-sage">\n'
-                              '%s\n'
-                              '</script></div>\n') % code_blocks[i]
-
-        elif pygm is not None:
-            # Typeset with pygments
-            #lexer = guess_lexer(code_blocks[i])
-            if code_block_types[i].endswith('cod') or \
-               code_block_types[i].endswith('pro'):
-                type_ = code_block_types[i][:-3]
-            elif code_block_types[i].endswith('cod-h') or \
-                 code_block_types[i].endswith('pro-h'):
-                type_ = code_block_types[i][:-5]
-            elif code_block_types[i].endswith('-h'):
-                type_ = code_block_types[i][:-2]
-            else:
-                type_ = code_block_types[i]
-            if type_ in envir2pygments:
-                language = envir2pygments[type_]
-            elif type_ in legal_lexers:
-                language = type_
-            else:
-                language = 'text'
-            lexer = get_lexer_by_name(language)
-            formatter = HtmlFormatter(linenos=linenos, noclasses=True,
-                                      style=pygm_style)
-            result = highlight(code_blocks[i], lexer, formatter)
-
-            if code_block_types[i] == 'ccq':
-                result = '<blockquote>\n%s</blockquote>' % result
-
-            if code_block_types[i].endswith('-h'):
-                # Embed some jquery JavaScript for a show/hide button
-                result = ('\n'
-                          '<script type="text/javascript">\n'
-                          'function show_hide_code%d(){\n'
-                          '  $("#code%d").toggle();\n'
-                          '}\n'
-                          '</script>\n'
-                          '<button type="button" onclick="show_hide_code%d()">Show/hide code</button>\n'
-                          '<div id="code%d" style="display:none">\n'
-                          '%s\n'
-                          '</div>\n') % (i, i, i, i, result)
-
-            result = '<!-- code=%s%s typeset with pygments style "%s" -->\n' % (language, '' if code_block_types[i] == '' else ' (!bc %s)' % code_block_types[i], pygm_style) + result
-            # Fix ugly error boxes
-            result = re.sub(r'<span style="border: 1px .*?">(.+?)</span>',
-                            '\g<1>', result)
-
-            code_blocks[i] = result
-
-        else:
-            # Plain <pre>: This does not catch things like '<x ...<y>'
-            #code_blocks[i] = re.sub(r'(<)([^>]*?)(>)',
-            #                        '&lt;\g<2>&gt;', code_blocks[i])
-            # Substitute & first, otherwise & in &quot; becomes &amp;quot;
-            code_blocks[i] = code_blocks[i].replace('&', '&amp;')
-            code_blocks[i] = code_blocks[i].replace('<', '&lt;')
-            code_blocks[i] = code_blocks[i].replace('>', '&gt;')
-            code_blocks[i] = code_blocks[i].replace('"', '&quot;')
+    # Remove all <p></p> between </div> and <div> ?
+    filestr = re.sub(r'</div>[\n]+<p></p>[\n]+(<!--.*-->[\n]{1})*[\n]+', r'\1', filestr)
 
     # Inline math cannot have x<z<w as this is interpreted as tags
     # and becomes invisible
@@ -1218,10 +1223,12 @@ def html_code(filestr, code_blocks, code_block_types,
             tex_blocks[i] = re.sub(r'^label\{', r'\\label{', tex_blocks[i],
                                    flags=re.MULTILINE)
 
-    debugpr('File before call to insert_code_and_tex (format html):', filestr)
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
+    debugpr('File before call to insert_code_blocks (format html):', filestr)
+    # I might have to move stuff up here ..
+    filestr = insert_tex_blocks(filestr, tex_blocks, format, complete_doc=True)
     debugpr('File after call to insert_code_and tex (format html):', filestr)
 
+    needs_online_python_tutor = any(x.startswith('pyoptpro') for x in code_block_types)
     if pygm or needs_online_python_tutor:
         c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
         filestr = c.sub(r'\n\n', filestr)
@@ -1596,6 +1603,129 @@ def html_code(filestr, code_blocks, code_block_types,
 
     return filestr
 
+
+def format_code_html(code_block, code_block_type, code_style, postfix='', execute=True, show='format'):
+    """Process the block to output the formatted code. Also
+    output booleans to trigger execution and rendering of the block
+
+    The output `show` is one of ['html','pre','hide','text','output'].
+    The output `code_style` is a style e.g. from `--pygments_html_style`.
+    The output `execute` is a boolean indicating whether
+    the code should be executed.
+    :param str code_block: code
+    :param str code_block_type: block type e.g. 'pycod-e'
+    :param code_style: any style from e.g. pygments
+    :return: formatted_code, comment, execute, show
+    :rtype: str, str, bool, str
+    """
+    formatted_code = ''
+    comment = ''
+    if show == 'hide':
+        return formatted_code, comment, execute, show
+
+    # Format code based on `show` and its code type
+    if code_block_type.startswith('pyoptpro'):
+        formatted_code = online_python_tutor(code_block, return_tp='iframe')
+        execute = False
+    elif code_block_type.startswith('pyscpro'):
+        # Wrap Sage Cell code around the code
+        # https://github.com/sagemath/sagecell/blob/master/doc/embedding.rst
+        formatted_code = html_sagecell % code_block
+        execute = False
+    elif code_style is not 'off':
+        # Syntax highlighting with pygments
+        # Get the code block type_ e.g. 'py'
+        type_ = code_block_type
+        if code_block_type[-3:] in ['cod', 'pro']:
+            type_ = code_block_type[:-3]
+        # Get the code block's language
+        language_ = 'text'
+        if type_ in envir2pygments:
+            language_ = envir2pygments[type_]
+        elif type_ in get_legal_pygments_lexers():
+            language_ = type_
+        # Typeset code with pygments
+        lexer = get_lexer_by_name(language_)
+        linenos = option('pygments_html_linenos')
+        formatter = HtmlFormatter(linenos=linenos,
+                                  noclasses=True,
+                                  style=code_style)
+        formatted_code = highlight(code_block, lexer, formatter)
+
+        if code_block_type == 'ccq':
+            formatted_code = '<blockquote>\n%s</blockquote>' % formatted_code
+        elif postfix == '-h':
+            # Embed some jquery JavaScript for a show/hide button
+            hash = str(uuid.uuid4())[:4]
+            formatted_code = html_toggle_btn % vars()
+
+        # Fix som ugly html code: error boxes
+        formatted_code = re.sub(r'<span style="border: 1px .*?">(.+?)</span>', '\g<1>', formatted_code)
+        indent = ''
+        m = re.search(r'^( +).*><pre ', formatted_code, re.MULTILINE)
+        if m:
+            indent = m.groups()[0]
+        formatted_code = re.sub(r'><pre ', r'>\n'+indent+'  <pre ', formatted_code)
+        formatted_code = re.sub(r'</pre><', r'</pre>\n'+indent+'<', formatted_code)
+        formatted_code = re.sub(r'<span></span>', r'', formatted_code)
+
+        # Write a comment before the rendering with a description of the rendering
+        comment = '\n<!-- code=%s ' % language_
+        if code_block_type != '':
+            comment += '(!bc %s) ' % (code_block_type)
+        comment += 'typeset with pygments style "%s%s" -->\n' % (code_style, postfix)
+    else:
+        # Substitute & first, otherwise & in &quot; becomes &amp;quot;
+        formatted_code = code_block.replace('&', '&amp;')
+        formatted_code = code_block.replace('<', '&lt;')
+        formatted_code = code_block.replace('>', '&gt;')
+        formatted_code = code_block.replace('"', '&quot;')
+        execute = False
+        show = 'pre'
+    return formatted_code, comment, execute, show
+
+
+def format_cell_html(formatted_code, formatted_output, execution_count, show):
+    """Format a code cell and its output
+
+    This function is referenced by `format_cell` in jupyter_execution.py.
+    :param str formatted_code: formatted code
+    :param str formatted_output: formatted block
+    :param str execution_count: execution count in the rendered cell
+    :param str show: how to format the output e.g. 'format','pre','hide','text','output'
+    :return: formatted_output
+    :rtype: str
+    """
+    if not show:
+        pass
+    elif show == 'hide':
+        pass
+    elif show == 'pre':
+        formatted_output = '<pre>' + formatted_code + formatted_output + '</pre>'
+    elif show == 'format':
+        # Render of the code and code output and indent
+        # the whole cell (input and output) as in jupyter notebook
+        formatted_output = html_cell % ('In [{}]:'.format(execution_count),
+                                        formatted_code,
+                                        formatted_output)
+    elif show == 'text':
+        # Render of the code as text in a cell input
+        formatted_output = html_cell_wrap + \
+                           html_cell_code % (
+                               'In [{}]:'.format(execution_count),
+                               formatted_code) + \
+                           '</div>'
+    elif show == 'output':
+        # Render as code output
+        formatted_output = html_cell_wrap + \
+                           html_cell_output % formatted_output + \
+                           '</div>'
+    else:
+        errwarn('*** error: show=%s not recognized' % str(show))
+        _abort()
+    return formatted_output
+
+
 def html_remove_whitespace(filestr):
     # Reduce redunant newlines and <p> (easy with lookahead pattern)
     # Eliminate any <p> that goes with blanks up to <p> or a section
@@ -1617,6 +1747,7 @@ def html_remove_whitespace(filestr):
     # Remove <p> + space up to </endtag>
     filestr = re.sub(r'<p>\s+(?=</)', r'<p>\n', filestr)
     return filestr
+
 
 def process_grid_areas(filestr):
     # Extract all cell areas
@@ -1650,6 +1781,7 @@ def process_grid_areas(filestr):
             new_text += '</div> <!-- end cell row -->\n'
             filestr = filestr.replace(full_text, new_text)
     return filestr
+
 
 def interpret_bokeh_plot(text):
     """Find script and div tags in a Bokeh HTML file."""
@@ -1868,6 +2000,7 @@ def html_footnotes(filestr, format, pattern_def, pattern_footnote):
     filestr = re.sub(pattern_footnote, subst_footnote, filestr)
     return filestr
 
+
 def html_table(table):
     column_width = table_analysis(table['rows'])
     ncolumns = len(column_width)
@@ -1936,6 +2069,7 @@ def html_table(table):
     else:
         s += '</table>\n'
     return s
+
 
 def html_movie(m):
     filename = m.group('filename')
@@ -2086,6 +2220,7 @@ def html_movie(m):
                     ) % (filename, ' '.join(options), autoplay, caption)
     return text
 
+
 def html_author(authors_and_institutions, auth2index,
                 inst2index, index2inst, auth2email):
     # Make a short list of author names - can be extracted elsewhere
@@ -2143,6 +2278,7 @@ def html_abstract(m):
         return '%(text)s\n%(rest)s' % vars()
     else:
         return '<b>%(type)s.</b> %(text)s\n%(rest)s' % vars()
+
 
 def html_ref_and_label(section_label2title, format, filestr):
     # This is the first format-specific function to be called.
@@ -2296,6 +2432,7 @@ def html_exercise(exer):
             solstr = re.sub(pattern, subst, solstr, flags=re.DOTALL)
     return exerstr, solstr
 
+
 def html_index_bib(filestr, index, citations, pubfile, pubdata):
     if citations:
         filestr = cite_with_multiple_args2multiple_cites(filestr)
@@ -2346,6 +2483,7 @@ def html_index_bib(filestr, index, citations, pubfile, pubdata):
 global tocinfo
 tocinfo = None
 
+
 def html_toc(sections, filestr):
     # Find minimum section level
     level_min = 4
@@ -2383,6 +2521,7 @@ def html_toc(sections, filestr):
 
     return s
 
+
 def bootstrap_collapse(visible_text, collapsed_text,
                        id, button_text='', icon='pencil'):
     """Generate HTML Bootstrap code for a collapsing/unfolding text."""
@@ -2402,6 +2541,7 @@ def bootstrap_collapse(visible_text, collapsed_text,
             '</div>\n'
             '</p>\n') % vars()
     return text
+
 
 def html_inline_comment(m):
     # See latex.py for explanation
@@ -2433,6 +2573,7 @@ def html_inline_comment(m):
         else:
             # Ordinary comment
             return '\n<!-- begin inline comment -->\n<font color="red">(<b>%s</b>: %s)</font>\n<!-- end inline comment -->\n' % (name, comment)
+
 
 def html_quiz(quiz):
     import string
@@ -2514,6 +2655,7 @@ def html_quiz(quiz):
     text += '<!-- end quiz -->\n'
     return text
 
+
 def html_box(block, format, text_size='normal'):
     """Add a HTML box with text, code, equations inside. Can have shadow."""
     # box_shadow is a global variable set in the top of the file
@@ -2526,12 +2668,11 @@ def html_box(block, format, text_size='normal'):
 <!-- end box -->
 """ % (shadow, block)
 
+
 def html_quote(block, format, text_size='normal'):
-    return """\
-<blockquote>
-%s
-</blockquote>
-""" % (indent_lines(block, format, ' '*4, trailing_newline=False))
+    return ('<blockquote>\n'
+            '%s\n'
+            '</blockquote>\n') % (indent_lines(block, format, ' '*4, trailing_newline=False))
 
 global admon_css_vars        # set in define
 global html_admon_style      # set below
@@ -2687,6 +2828,7 @@ def html_%(_admon)s(block, format, title='%(_Admon)s', text_size='normal'):
         _abort()
 ''' % vars()
     exec(_text)
+
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,
@@ -3130,7 +3272,8 @@ body { %s; }
             if outfilename is None:
                 outfilename = globals.dofile_basename + '.html'
             else:
-                if not outfilename.endswith('html'):
+                outfilename = outfilename.strip('.html') + '.html'
+                if not outfilename.endswith('.html'):
                     outfilename += '.html'
 
             if option('html_bootstrap_navbar=', 'on') != 'off':
@@ -3207,22 +3350,19 @@ body { %s; }
     if '!bc pyscpro' in filestr or 'envir=pyscpro' in filestr:
         # Embed Sage Cell server
         # See https://github.com/sagemath/sagecell/blob/master/doc/embedding.rst
-        scripts += """
-<script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
-<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
-<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
-<script>
-$(function () {
-    // Make the div with id 'mycell' a Sage cell
-    sagecell.makeSagecell({inputLocation:  '#mycell',
-                           template:       sagecell.templates.minimal,
-                           evalButtonText: 'Activate'});
-    // Make *any* div with class 'compute' a Sage cell
-    sagecell.makeSagecell({inputLocation: 'div.compute',
-                           evalButtonText: 'Evaluate'});
-});
-</script>
-"""
+        scripts += ('\n'
+                    '<script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>\n'
+                    '<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>\n'
+                    '<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">\n'
+                    '<script>\n'
+                    '$(function () {\n'
+                    '   // Make *any* div with class "sage_compute" a Sage cell\n'
+                    '   sagecell.makeSagecell({inputLocation: "div.sage_compute",\n'
+                    '                          evalButtonText: "Evaluate"});\n'
+                    '   document.getElementsByClassName("sage_compute")[0].closest(".input").style.paddingBottom=95;\n'
+                    '});\n'
+                    '</script>\n')
+
     if '!bu-' in filestr:
         scripts += """
 <!-- USER-DEFINED ENVIRONMENTS -->
@@ -3288,7 +3428,6 @@ Automatically generated HTML file from DocOnce source
 </html>
     """
 
-
 def latin2html(text):
     """
     Transform a text with possible latin-1 characters to the
@@ -3330,6 +3469,7 @@ def latin2html(text):
                               (e.__class__.__name__, c))
     return ''.join(text_new)
 
+
 def html2latin(html):
     """
     Transform a HTML text with possible special characters to the
@@ -3369,3 +3509,74 @@ def string2href(title=''):
     href = re.sub('\W+', '-', title.lower())
     href = latin2html(href)
     return href.strip('-')
+
+
+def get_pygments_style(code_block_types):
+    """ Return pygments version and pygments style used
+
+    `pygm` is the pygments version. Abort if it is None and
+    `--pygments_html_style` is used.
+    :param code_block_types:
+    :return: pygm, pygm_style
+    :rtype: str, str
+    """
+    pygm_style = option('pygments_html_style=', default='default')
+    legal_pygm_styles = 'monokai manni rrt perldoc borland colorful default murphy vs trac tango fruity autumn ' \
+                        'bw emacs vim pastie friendly native'.split()
+    global pygm
+    if pygm_style in ['none', 'None', 'off', 'no']:
+        pygm_style = 'off'
+        return pygm, pygm_style
+    elif pygm_style not in legal_pygm_styles:
+        errwarn('*** error: wrong pygments style "%s"' % pygm_style)
+        errwarn('    must be among\n%s' % str(legal_pygm_styles)[1:-1])
+        _abort()
+    if pygm_style and pygm is None:
+        errwarn('*** error: pygments could not be found though '
+                '--pygments_html_style="%s" is used' % pygm_style)
+        _abort()
+    # Can turn off pygments on the cmd line
+    if pygm is not None:
+        if 'ipy' in code_block_types:
+            if not has_custom_pygments_lexer('ipy'):
+                envir2pygments['ipy'] = 'python'
+        if 'do' in code_block_types:
+            if not has_custom_pygments_lexer('doconce'):
+                envir2pygments['do'] = 'text'
+        if pygm_style is None:
+            # Set sensible default values
+            if option('html_style=', '').startswith('solarized'):
+                if 'pyscpro' in code_block_types:
+                    # Must have pygments style for Sage Cells to work
+                    pygm_style = 'perldoc'
+                else:
+                    pygm_style = 'none'
+                    # 2nd best: perldoc (light), see below
+            elif option('html_style=', '').startswith('tactile'):
+                pygm_style = 'trac'
+            elif option('html_style=', '') == 'rossant':
+                pygm_style = 'monokai'
+            else:
+                pygm_style = 'default'
+        else:
+            # Fix style for solarized and rossant
+            if option('html_style=') == 'solarized':
+                if pygm_style != 'perldoc':
+                    errwarn('*** warning: --pygm_style=%s is not recommended when --html_style=solarized' % pygm_style)
+                    errwarn('    automatically changed to --html_style=perldoc')
+                    pygm_style = 'perldoc'
+            elif option('html_style=') == 'solarized_dark':
+                if pygm_style != 'friendly':
+                    errwarn('*** warning: --pygm_style=%s is not recommended when --html_style=solarized_dark' % pygm_style)
+                    errwarn('    automatically changed to --html_style=friendly')
+                    errwarn('    (it is recommended not to specify --pygm_style for solarized_dark)')
+                    pygm_style = 'friendly'
+        legal_styles = list(get_all_styles()) + ['no', 'none', 'off']
+        if pygm_style not in legal_styles:
+            errwarn('pygments style "%s" is not legal, must be among\n%s' % (pygm_style, ', '.join(legal_styles)))
+            #_abort()
+            errwarn('using the "default" style...')
+            pygm_style = 'default'
+        if pygm_style in ['no', 'none', 'off']:
+            pygm = None
+    return pygm, pygm_style

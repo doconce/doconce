@@ -35,11 +35,12 @@ from future import standard_library
 standard_library.install_aliases()
 from builtins import range
 
-
 import re, os, subprocess, sys, subprocess
-from .common import default_movie, plain_exercise, insert_code_and_tex
+from .common import default_movie, plain_exercise, insert_code_blocks, insert_tex_blocks
 from .plaintext import plain_quiz
 from .misc import _abort, errwarn
+from .globals import postfix_regex
+
 
 def align2equations(math_text):
     """
@@ -94,7 +95,8 @@ def mwiki_code(filestr, code_blocks, code_block_types,
             if label in filestr:
                 errwarn('*** warning: reference to label "%s" in an equation does not work in MediaWiki' % label)
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
+    filestr = insert_code_blocks(filestr, code_blocks, format, complete_doc=True, remove_hid=True)
+    filestr = insert_tex_blocks(filestr, tex_blocks, format, complete_doc=True)
 
     # Supported programming languages:
     # https://www.mediawiki.org/wiki/Extension:SyntaxHighlight_GeSHi#Supported_languages
@@ -114,9 +116,10 @@ def mwiki_code(filestr, code_blocks, code_block_types,
                       ipy='python', pyshell='python',
                       )
 
+    code_block_regex = r'^!bc\s+%s' + postfix_regex + '\s*\n'
     for key in envir2lang:
         language = envir2lang[key]
-        cpattern = re.compile(r'^!bc\s+%s\s*\n' % key, flags=re.MULTILINE)
+        cpattern = re.compile(code_block_regex % key, flags=re.MULTILINE)
         filestr = cpattern.sub('<syntaxhighlight lang="%s">\n' % \
                                envir2lang[key], filestr)
     c = re.compile(r'^!bc.*$\n', re.MULTILINE)

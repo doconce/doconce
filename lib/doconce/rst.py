@@ -4,12 +4,12 @@ from builtins import str
 from builtins import range
 from past.builtins import basestring
 import re, os, sys
-from .common import insert_code_and_tex, indent_lines, \
-    table_analysis, plain_exercise, bibliography, \
+from .common import insert_code_blocks, insert_tex_blocks, \
+    indent_lines, table_analysis, plain_exercise, bibliography, \
     cite_with_multiple_args2multiple_cites, fix_ref_section_chapter
 from .html import html_movie, html_quiz
 from doconce import globals
-from .misc import option, _abort, _abort, debugpr, errwarn
+from .misc import option, errwarn, debugpr, _abort
 
 def rst_abstract(m):
     # r'\n*\g<type>.* \g<text>\n\g<rest>'
@@ -123,7 +123,8 @@ def rst_code(filestr, code_blocks, code_block_types,
         for i in range(len(tex_blocks)):
             tex_blocks[i] = tex_blocks[i].replace(' label{', ' \\label{')
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'rst')
+    filestr = insert_code_blocks(filestr, code_blocks, format, complete_doc=True, remove_hid=True)
+    filestr = insert_tex_blocks(filestr, tex_blocks, format, complete_doc=True)
 
     # substitute !bc and !ec appropriately:
     # the line before the !bc block must end in [a-zA-z0-9)"...]

@@ -1,16 +1,28 @@
 ========= Automatic execution of code blocks =========
 
-Compile this document with
+Convert this document to `ipynb`, `latex` or `html` with e.g.:
 
 !bc sh-t
 doconce format ipynb execute.do.txt --execute
 !ec
 
+This is a normal python block using the `pycod` environment
+!bc pycod
+print('pycod')
+!ec
+
+This is a normal bash block using the `sh` environment
+!bc sh
+if [ 1 -eq 0 ] ; then echo 1; fi
+!ec
+
 Hidden execution cells (`pyhid`, `pycod-e`) can be used to perform operations (e.g. imports, variable initializations) without showing any cell.  
 The `pyhid` environment executes and hides the cell in formats other than .ipynb:
+
 !bc pyhid
 # This cell appears in ipynb but not in other formats
 import sys
+print('hide pyhyd')
 !ec
 
 The `pycod-e` environment executes but hides the cell also in .ipynb files:
@@ -18,6 +30,7 @@ The `pycod-e` environment executes but hides the cell also in .ipynb files:
 import os
 os.listdir(".")
 a = 1
+print('hide pycod-e')
 !ec
 
 `pycod` is a normal cell that should execute automatically when using `--execute`. Note that this cells relies on code executed in a previous hidden cell:
@@ -29,6 +42,9 @@ print("The result is {}".format(c))
 c
 !ec
 
+!split
+======= Special environments =======
+
 The `*-t` environment (e.g. `pycod-t`) formats a cell to text, and can be used to print an example
 !bc pycod-t
 # This is a for-loop example
@@ -37,15 +53,31 @@ for i in [0,10]:
 !ec
 
 The `*out`  (e.g. `pycod-out`) environment can be used to write a cell output:
-!bc pycod
-# This is a normal pycod cell
+!bc pycod-t
+# This is a text cell using pycod-t
 1/0
 !ec
-
 !bc pyout
+# This is a output cell using the `pycod-out` environment
 1/0: You cannot divide by zero
 !ec
 
+
+The `-h` postfix can be used in the `html` format to show a Show/Hide button that toggles the code visibility. 
+% if FORMAT in ('html'):
+!bc pycod-h
+print('show/hide')
+!ec
+% endif
+
+The `pyscpro` environment creates an interactive cell using "Sage": "https://github.com/sagemath/sagecell/" in the `html` format
+% if FORMAT in ('html'):
+!bc pyscpro
+print('Execute this cell in Sage')
+!ec
+% endif
+
+!split
 ======= Plotting =======
 
 This is a cell that should plot and output:
@@ -65,6 +97,7 @@ from IPython.display import set_matplotlib_formats
 set_matplotlib_formats('png', 'pdf')
 !ec
 
+!split
 ======= Ignore output =======
 
 Predefined output can be omitted by passing `--ignore_output` to DocOnce.
@@ -79,7 +112,7 @@ print(a)
 2
 !ec
 
-
+!split
 ======= Code with errors =======
 
 If code contains errors, it will still be run and the exception shown as part
@@ -90,6 +123,7 @@ for a in range(10)
     print(a)
 !ec
 
+!split
 ======= Opening files =======
 
 The working directory is the same as the .do.txt file.

@@ -8,18 +8,11 @@ Automatically generated HTML file from DocOnce source
 <meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Testing admons">
-
 <title>Testing admons</title>
-
-
 <style type="text/css">
 /* blueish2 style (as blueish style, but different pre and code tags
-   (only effective if not pygments is used))
+   (only effective if pygments is not used))
 */
-
-/* Color definitions:  https://www.december.com/html/spec/color0.html
-   CSS examples:       https://www.w3schools.com/css/css_examples.asp */
-
 body {
   margin-top: 1.0em;
   background-color: #ffffff;
@@ -29,22 +22,110 @@ body {
 h1 { font-size: 1.8em; color: #1e36ce; }
 h2 { font-size: 1.6em; color: #1e36ce; }
 h3 { font-size: 1.4em; color: #1e36ce; }
+h4 { font-size: 1.2em; color: #1e36ce; }
 a { color: #1e36ce; text-decoration:none; }
 tt { font-family: "Courier New", Courier; }
-/* pre style removed because it will interfer with pygments */
-/* pre, code style removed because it will interfer with pygments */
 p { text-indent: 0px; }
 hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 p.caption { width: 80%; font-style: normal; text-align: left; }
-hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa; }
+/* pre style removed because it will interfer with pygments */
+/* pre, code style removed because it will interfer with pygments */
+div.highlight {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    line-height: 1.21429em;
+}
+div.cell {
+    width: 100%;
+    padding: 5px 5px 5px 0;
+    margin: 0;
+    outline: none;
+}
+div.input {
+    page-break-inside: avoid;
+    box-orient: horizontal;
+    box-align: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+div.prompt {
+    min-width: 11ex;
+    padding: .4em;
+    margin: 0;
+    font-family: monospace;
+    text-align: right;
+    line-height: 1.21429em;
+}
+div.prompt:empty {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+div.input_prompt {
+    color: navy;
+    border-top: 1px solid transparent;
+}
+div.inner_cell {
+    box-orient: vertical;
+    box-align: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    box-flex: 1;
+    flex: 1;
+}
+div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 4px;
+    background: #f7f7f7;
+    line-height: 1.21429em;
+}
+div.input_area > div.highlight {
+    margin: .4em;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+}
+div.output_wrapper {
+    position: relative;
+    box-orient: vertical;
+    box-align: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.output {
+    box-orient: vertical;
+    box-align: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+div.output_area {
+    padding: 0;
+    page-break-inside: avoid;
+    box-orient: horizontal;
+    box-align: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+div.output_subarea {
+    padding: .4em .4em 0 .4em;
+    box-flex: 1;
+    flex: 1;
+}
+div.output_text {
+    text-align: left;
+    color: #000;
+    line-height: 1.21429em;
+}
 .alert-text-small   { font-size: 80%;  }
 .alert-text-large   { font-size: 130%; }
 .alert-text-normal  { font-size: 90%;  }
-
 div { text-align: justify; text-justify: inter-word; }
 </style>
-
-
 </head>
 
 <!-- tocinfo
@@ -77,28 +158,20 @@ MathJax.Hub.Config({
 </script>
 
 
-
     
 <!-- ------------------- main content ---------------------- -->
-
-
-
 <center>
 <h1>Testing admons</h1>
 </center>  <!-- document title -->
-
 <p></p>
 <!-- author(s): H. P. Langtangen -->
-
 <center>
 <b>H. P. Langtangen</b> 
 </center>
-
 <p><!-- institution(s) --></p>
-
 <br>
 <center>
-<h4>Mar 16, 2021</h4>
+<h4>Mar 17, 2021</h4>
 </center> <!-- date -->
 <br>
 <p></p>
@@ -106,38 +179,71 @@ MathJax.Hub.Config({
 <h1 id="introduction">Introduction </h1>
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
-
 <p></p>
 <h2 id="code">Code </h2>
-
 <p></p>
 Need some code outside admons for color and font comparisons:
-
 <p></p>
 
-
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="prompt input_prompt">      In [1]:    </div>
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> sin(x)<span style="color: #666666">*</span>exp(<span style="color: #666666">1-</span>x)
-</pre></div>
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="prompt"></div>
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <p></p>
 And some plain text verbatim:
-
 <p></p>
 
-
-<!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span>x=1.0 y=0.9 z=0.4
+<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="prompt input_prompt">      In [2]:    </div>
+    <div class="inner_cell">
+      <div class="input_area">
+        <blockquote>
+<div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
-</pre></div>
+</pre>
+</div>
+</blockquote>      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="prompt"></div>
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <p></p>
 <h2 id="quotes-and-boxes">Quotes and boxes </h2>
-
 <p></p>
 Here is a plain quote environment.
-
 <p></p>
 <blockquote>
     Sayre's law states that
@@ -148,32 +254,25 @@ Here is a plain quote environment.
     <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a>
 </blockquote>
 
-
 <p></p>
 Does quotes with title also work? No...cannot work in LaTeX and HTML
 and then it does not make sense to support it.
-
 <p></p>
 A plain <em>box</em> is sometimes useful. Let's show it here for comparison
 with admons (especially the block admon has much in common with a box).
 The box is more aimed at framing a law or an equation.
-
 <p></p>
 First a simple block with text, an equation, and a list:
-
 <p></p>
 
 <!-- begin box -->
 <div style="width: 95%; padding: 10px; border: 1px solid #000; border-radius: 4px;">
 A generic equation
-
 <p></p>
 $$ f(x) = 0 $$
 
 must be solved by a numerical method, such as
-
 <p></p>
-
 <ul>
  <li> Newton's method</li>
  <li> The Bisection method</li>
@@ -185,7 +284,6 @@ must be solved by a numerical method, such as
 
 Now test a box with equation only (note that this line continues the
 box, it is not a new paragraph):
-
 <p></p>
 
 <!-- begin box -->
@@ -197,37 +295,50 @@ $$
 </div>
 <!-- end box -->
 
-
 <p></p>
 <b>Hint.</b>
 
 Newton's method requires a good start vector to converge fast.
 
 
-
 <p></p>
 Let's begin a new paragraph and show a box with code only:
-
 <p></p>
 
 <!-- begin box -->
 <div style="width: 95%; padding: 10px; border: 1px solid #000; border-radius: 4px;">
 
-
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="prompt input_prompt">      In [3]:    </div>
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">some_code</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> sin(x)<span style="color: #666666">*</span>exp(<span style="color: #666666">1-</span>x)
-</pre></div>
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="prompt"></div>
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 <!-- end box -->
 
-
 <p></p>
 <h2 id="admonitions">Admonitions </h2>
-
 <p></p>
 Let us start with a plain warning environment.
-
 <p></p>
 
 
@@ -236,14 +347,11 @@ Let us start with a plain warning environment.
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
-
 <p></p>
-
 <ul>
   <li> and a list</li>
   <li> with items</li>
 </ul>
-
 We continue with more text to see how that affects the layout.
 And more and more text.
 And more and more text.
@@ -253,42 +361,73 @@ And more and more text.
 And more and more text.
 </div>
 
-
 <p></p>
 Test warning with title:
-
 <p></p>
 
 
 <!-- admonition: warning, typeset as paragraph -->
 <div class="alert-text-large"><b>Title ending with math \( \sqrt{2}\approx 1.4 \)</b>
 And here comes some text with bad news in larger font.
-
 <p></p>
 Also some code:
-
 <p></p>
-
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">f</span>(x):
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="prompt input_prompt">      In [4]:    </div>
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">f</span>(x):
     <span style="color: #008000; font-weight: bold">return</span> x
-</pre></div>
-
-And a complete program
-
-<p></p>
-
-
-<!-- code=python (!bc pypro) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #008000">print</span>(<span style="color: #BA2121">&quot;Hello, World!&quot;</span>)
-</pre></div>
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="prompt"></div>
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
+And a complete program
+<p></p>
+
+<!-- code=python (!bc pypro) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="prompt input_prompt">      In [5]:    </div>
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;"><span style="color: #008000">print</span>(<span style="color: #BA2121">&quot;Hello, World!&quot;</span>)
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="prompt"></div>
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
 <p></p>
 Test warning with large title with math:
-
 <p></p>
 
 
@@ -298,10 +437,8 @@ Divergence freedom is often problematic from a numerical point
 of view.
 </div>
 
-
 <p></p>
 Then we test a block, which is guaranteed to never have any admon icon.
-
 <p></p>
 
 
@@ -315,7 +452,6 @@ about fun facts that are not strictly necessary for the main flow
 of understanding.
 </div>
 
-
 <p></p>
 
 
@@ -325,11 +461,9 @@ Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
 </div>
 
-
 <p></p>
 <!-- Note that the final ! does not appear in Sphinx and reST since -->
 <!-- those formats automatically add : to the admonition title. -->
-
 <p></p>
 
 
@@ -337,7 +471,6 @@ and is useful when you want some admons with icon and some without.
 <div class="alert-text-illegal-size"><b>Note, eventually!</b>
 Ah, we are soon close to the end (with illegal font size specification!).
 But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
-
 <p></p>
 $$
 \begin{align*}
@@ -347,10 +480,8 @@ $$
 $$
 </div>
 
-
 <p></p>
 <!-- Test one word with a number -->
-
 <p></p>
 
 
@@ -358,7 +489,6 @@ $$
 <div class="alert-text-normal"><b>Point1</b>
 Ah, we are soon close to the end.
 </div>
-
 
 <p></p>
 
@@ -368,18 +498,15 @@ Ah, we are soon close to the end.
 So, how many admonition environments does DocOnce support?
 </div>
 
-
 <p></p>
 
 
 <!-- admonition: question, typeset as paragraph -->
 <div class="alert-text-normal"><b>Question</b>
-
 <ol>
  <li> Once more, how many admonition environments does DocOnce support?</li>
 </ol>
 </div>
-
 
 <p></p>
 
@@ -387,31 +514,44 @@ So, how many admonition environments does DocOnce support?
 <!-- admonition: warning, typeset as paragraph -->
 <div class="alert-text-normal"><b>Tip</b>
 It is of outmost important to
-
 <p></p>
-
 <ol>
 <li> stay cool</li>
 <li> read hints and tips carefully</li>
 </ol>
-
 Because here the thing is to do
-
 <p></p>
 
-
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="prompt input_prompt">      In [6]:    </div>
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">urllib</span>
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">grab</span>(url, filename):
     urllib<span style="color: #666666">.</span>urlretrieve(url, filename<span style="color: #666666">=</span>filename)
-</pre></div>
+</pre>
 </div>
-
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="prompt"></div>
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
 <p></p>
 Next is a warning without a title ("none" implies no title).
-
 <p></p>
 
 
@@ -420,14 +560,11 @@ Next is a warning without a title ("none" implies no title).
 And here comes some text with bad news.
 </div>
 
-
 <p></p>
 <h2 id="going-deeper-environments">Going deeper environments </h2>
-
 <p></p>
 Here is a long notice environment with a custom title and much
 text, math and code.
-
 <p></p>
 
 
@@ -438,10 +575,8 @@ task is to write and write. The number of words, and not the
 meaning, is what counts here. We need desperately to fill up the
 page in the hope that some admonitions will experience a page break,
 which the LaTeX environment should handle with ease.
-
 <p></p>
 Let us start with some equations:
-
 <p></p>
 $$
 \begin{align*}
@@ -455,27 +590,49 @@ $$
 <p></p>
 The implementation of such complicated equations in computer
 code is task that this "Going deeper" environment targets.
-
 <p></p>
 
-
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="prompt input_prompt">      In [7]:    </div>
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">Dudt</span>(u):
     r <span style="color: #666666">=</span> diff(u, t) <span style="color: #666666">+</span> u<span style="color: #666666">*</span>grad(u)
     <span style="color: #008000; font-weight: bold">return</span> r
 
 half <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>
 x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
-</pre></div>
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="prompt"></div>
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 And some more text that can help going into the next page.
 Longer computer code requires vertical space:
-
 <p></p>
 
-
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="prompt input_prompt">      In [8]:    </div>
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Diff</span>:
     <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, f, h<span style="color: #666666">=1E-5</span>):
         <span style="color: #008000">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
         <span style="color: #008000">self</span><span style="color: #666666">.</span>h <span style="color: #666666">=</span> <span style="color: #008000">float</span>(h)
@@ -513,10 +670,23 @@ Longer computer code requires vertical space:
         f, h <span style="color: #666666">=</span> <span style="color: #008000">self</span><span style="color: #666666">.</span>f, <span style="color: #008000">self</span><span style="color: #666666">.</span>h
         <span style="color: #008000; font-weight: bold">return</span> (<span style="color: #666666">-</span>(<span style="color: #666666">1./6</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">+2*</span>h) <span style="color: #666666">+</span> f(x<span style="color: #666666">+</span>h) <span style="color: #666666">-</span> <span style="color: #666666">0.5*</span>f(x) <span style="color: #666666">-</span> \
                 (<span style="color: #666666">1./3</span>)<span style="color: #666666">*</span>f(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>h
-</pre></div>
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="prompt"></div>
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 And then we add a figure too.
-
 <p></p>
 <br /><br /><center>
 <p><img src="../../doc/src/manual/fig/wave1D.png" align="bottom" width=400></p>
@@ -524,15 +694,12 @@ And then we add a figure too.
 <br /><br/>
 </div>
 
-
 <p></p>
 <h2 id="the-end">The end </h2>
-
 <p></p>
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
 just because we can.
-
 <p></p>
 
 
@@ -543,20 +710,14 @@ a different typesetting, and they may have a symbol.
 Titles should be optional.
 </div>
 
-
 <p></p>
 <b>Remark.</b>
 The <code>remarks</code> and <code>hint</code> environments are not allowed outside
 exercises (and problems and projects too).
-
 <!-- ------------------- end of main content --------------- -->
-
-
 <center style="font-size:80%">
 <!-- copyright --> &copy; 2021, H. P. Langtangen. Made with <a href="https://github.com/doconce/doconce">DocOnce</a>
 </center>
-
-
 </body>
 </html>
     

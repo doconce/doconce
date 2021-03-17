@@ -10,14 +10,15 @@ from builtins import zip
 
 
 import re, os, subprocess, sys
-from .common import default_movie, plain_exercise, insert_code_and_tex, \
-     fix_ref_section_chapter
+from .common import default_movie, plain_exercise, \
+    insert_code_blocks, insert_tex_blocks, fix_ref_section_chapter
 from .plaintext import plain_quiz
 from .misc import _abort, errwarn
 
-def gwiki_code(filestr, code_blocks, code_block_types,
-               tex_blocks, format):
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
+
+def gwiki_code(filestr, code_blocks, code_block_types, tex_blocks, format):
+    filestr = insert_code_blocks(filestr, code_blocks, format, complete_doc=True, remove_hid=True)
+    filestr = insert_tex_blocks(filestr, tex_blocks, format, complete_doc=True)
     c = re.compile(r'^!bc(.*?)\n', re.MULTILINE)
     filestr = c.sub(r'{{{\n', filestr)
     filestr = re.sub(r'!ec\n', r'}}}\n', filestr)
@@ -25,6 +26,7 @@ def gwiki_code(filestr, code_blocks, code_block_types,
     filestr = c.sub(r'{{{\n', filestr)
     filestr = re.sub(r'!et\n', r'}}}\n', filestr)
     return filestr
+
 
 def gwiki_figure(m):
     filename = m.group('filename')
@@ -77,6 +79,7 @@ googlecode repository) and substitute the line above with the URL.
 
 from .common import table_analysis
 
+
 def gwiki_table(table):
     """Native gwiki table."""
     # add 2 chars for column width since we add boldface _..._
@@ -117,6 +120,7 @@ def gwiki_table(table):
     s += '\n\n'
     return s
 
+
 def gwiki_author(authors_and_institutions, auth2index,
                  inst2index, index2inst, auth2email):
 
@@ -143,6 +147,7 @@ def gwiki_author(authors_and_institutions, auth2index,
     # we skip institutions in gwiki
     return text
 
+
 def wiki_ref_and_label_common(section_label2title, format, filestr):
     filestr = fix_ref_section_chapter(filestr, format)
 
@@ -165,8 +170,10 @@ def wiki_ref_and_label_common(section_label2title, format, filestr):
 
     return filestr
 
+
 def gwiki_ref_and_label(section_label2title, format, filestr):
     return wiki_ref_and_label_common(section_label2title, format, filestr)
+
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,

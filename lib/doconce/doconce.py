@@ -8,21 +8,24 @@ from builtins import chr
 from builtins import str
 from builtins import range
 from past.builtins import basestring, unicode
-import re, os, sys, shutil, subprocess, pprint, time, glob, codecs
-
 from doconce import globals
-from .common import *
-from .misc import option, which, _abort, help_format, check_command_line_options, find_file_with_extensions, \
-    _rmdolog, debugpr, errwarn
-from . import plaintext as plain
-from .expand_newcommands import expand_newcommands
-# Import all modules associated with formats
-from . import html, latex, pdflatex, rst, sphinx, st, epytext, gwiki, mwiki, cwiki, pandoc, ipynb, matlabnb
+
+import re, os, sys, shutil, subprocess, pprint, time, glob, codecs
 try:
     from collections import OrderedDict   # v2.7 and v3.1
 except ImportError:
-    # use standard arbitrary-ordered dict instead (original order of citations is then lost)
+    # use standard arbitrary-ordered dict instead (original order of
+    # citations is then lost)
     OrderedDict = dict
+
+
+from .common import *
+from .misc import option, which, _abort, help_format, check_command_line_options, find_file_with_extensions, _rmdolog, debugpr, errwarn
+from . import html, latex, pdflatex, rst, sphinx, st, epytext, gwiki, mwiki, cwiki, pandoc, ipynb, matlabnb
+from . import plaintext as plain
+from .latex import aux_label2number
+from .html import embed_IBPLOTs
+from .expand_newcommands import expand_newcommands
 
 main_content_begin = globals.main_content_char*19 + ' main content ' + \
                      globals.main_content_char*22
@@ -56,6 +59,7 @@ def encode_error_message(exception, text, print_length=40):
         #raise Exception
         _abort()
 
+
 def markdown2doconce(filestr_in, format=None, ipynb_mode=False):
     """Look for Markdown (and Extended Markdown) syntax in the file (filestr)
     and transform the text to valid DocOnce format.
@@ -66,7 +70,8 @@ def markdown2doconce(filestr_in, format=None, ipynb_mode=False):
     :return: the converted filestr_in
     :rtype: str
     """
-    #md2doconce "preprocessor" --markdown --write_doconce_from_markdown=myfile.do.txt (for debugging the translation from markdown-inspired doconce)
+    #md2doconce "preprocessor" --markdown --write_doconce_from_markdown=myfile.do.txt
+    # (for debugging the translation from markdown-inspired doconce)
     #check https://stackedit.io/
 
     # Not treated:
@@ -156,9 +161,16 @@ def markdown2doconce(filestr_in, format=None, ipynb_mode=False):
     bc_postfix = '-t' if ipynb_mode else ''
     regex_md2doconce = [
         # Computer code with language specification
-        (r"\n?```([A-Za-z]+)(.*?)\n```", lambda m: "\n\n!bc %scod%s%s\n!ec\n" % (extended_markdown_language2dolang[m.group(1).lower()], bc_postfix, unindent_lines(m.group(2).rstrip(), trailing_newline=False)), re.DOTALL), # language given
+        (r"\n?```([A-Za-z]+)(.*?)\n```",
+         lambda m: "\n\n!bc %scod%s%s\n!ec\n" %
+                   (extended_markdown_language2dolang[m.group(1).lower()],
+                    bc_postfix,
+                    unindent_lines(m.group(2).rstrip(),
+                                   trailing_newline=False)),
+         re.DOTALL), # language given
         # Computer code without (or the same) language specification
-        (r"\n?```\n(.+?)\n```", lambda m: "\n\n!bc\n%s\n!ec\n" % unindent_lines(m.group(1).rstrip(), trailing_newline=False), re.DOTALL),
+        (r"\n?```\n(.+?)\n```", lambda m: "\n\n!bc\n%s\n!ec\n" %
+                                          unindent_lines(m.group(1).rstrip(), trailing_newline=False), re.DOTALL),
         # Figure/movie (the figure/movie syntax is in a dom: comment)
         (r'<!-- begin figure -->.+?<!-- end figure -->\n', '', re.DOTALL),
         (r'<!-- begin movie -->.+?<!-- end movie -->\n', '', re.DOTALL),
@@ -267,6 +279,7 @@ def markdown2doconce(filestr_in, format=None, ipynb_mode=False):
     filestr = re.sub(r'\n\n\n+!b([ct])', r'\n\n!b\g<1>', filestr)
     return filestr
 
+
 def fix(filestr_in, format, verbose=0):
     """Fix issues with the text (correct wrong syntax).
 
@@ -307,7 +320,8 @@ def fix(filestr_in, format, verbose=0):
         if '\n' in caption.strip():   # multiline caption?
             # Do not allow figures and movies without a nice blank line after
             if 'FIGURE:' in caption or 'MOVIE:' in caption:
-                errwarn('*** error: missing blank line between multiple figures/movies\n    %s: [%s, ...' % (fig[1], fig[2]))
+                errwarn('*** error: missing blank line between multiple figures/movies\n    %s: [%s, ...' %
+                        (fig[1], fig[2]))
                 _abort()
             # Allow environments to the figure
             if not '!e' in caption:
@@ -317,7 +331,8 @@ def fix(filestr_in, format, verbose=0):
                 filestr = filestr.replace(caption, caption1)
                 num_fixes += 1
                 if verbose > 0:
-                    errwarn('\n*** warning: found multi-line caption for %s\n\n%s\n    fix: collected this text to one single line (right?)' % (fig[1], caption))
+                    errwarn('\n*** warning: found multi-line caption for %s\n\n%s\n'
+                            '    fix: collected this text to one single line (right?)' % (fig[1], caption))
 
     # edit markup: add space after add: and del: for .,;?
     # (should consider using https://github.com/CriticMarkup/CriticMarkup-toolkit instead!)
@@ -347,9 +362,9 @@ def fix(filestr_in, format, verbose=0):
     """
 
     if verbose and num_fixes:
-        errwarn('\n*** warning: the total of %d fixes above should be manually edited in the file!\n    (also note: some of these automatic fixes may not be what you want)\n' % num_fixes)
+        errwarn('\n*** warning: the total of %d fixes above should be manually edited in the file!\n'
+                '    (also note: some of these automatic fixes may not be what you want)\n' % num_fixes)
     return filestr
-
 
 
 def syntax_check(filestr, format):
@@ -525,7 +540,9 @@ def syntax_check(filestr, format):
                              re.MULTILINE)
         m = pattern.search(filestr2)
         if m and format in ('rst', 'plain', 'epytext', 'st'):
-            errwarn('\n*** error: must in format "%s" have a plain sentence before\na code block like !bc/!bt/@@@CODE, not a section/paragraph heading,\ntable, or comment:\n\n---------------------------------' % format)
+            errwarn('\n*** error: must in format "%s" have a plain sentence before\n'
+                    'a code block like !bc/!bt/@@@CODE, not a section/paragraph heading,\n'
+                    'table, or comment:\n\n---------------------------------' % format)
             errwarn(filestr2[m.start()-40:m.start()+80])
             errwarn('---------------------------------')
             _abort()
@@ -808,9 +825,14 @@ def syntax_check(filestr, format):
             for i in range(len(part)-1):
                 if part[i][0] - part[i+1][0] > 0 and \
                    part[i][0] - part[i+1][0] != 2:
-                    errwarn('*** error: heading "%s" is %s and\n    comes after %s, but will be treated as %s in %s' % (part[i+1][1], len2sectype[part[i+1][0]], len2sectype[part[i][0]], len2sectype[part[i][0]-2], format))
+                    errwarn('*** error: heading "%s" is %s and\n    comes after %s, but will be treated as %s in %s' %
+                            (part[i+1][1], len2sectype[part[i+1][0]],
+                             len2sectype[part[i][0]], len2sectype[part[i][0]-2], format))
                 if part[i+1][0] > part[0][0]:
-                    errwarn('*** error: heading "%s" is %s, but\n    this part of the document (after !split) has its first heading as\n    %s - the first heading must have the highest level' % (part[i+1][1], len2sectype[part[i+1][0]], len2sectype[part[0][0]]))
+                    errwarn('*** error: heading "%s" is %s, but\n'
+                            '    this part of the document (after !split) has its first heading as\n'
+                            '    %s - the first heading must have the highest level' %
+                            (part[i+1][1], len2sectype[part[i+1][0]], len2sectype[part[0][0]]))
 
     # Check that ref{} and label{} have closing }
     pattern = r'(ref|label)\{([^}]+?)\}'
@@ -841,8 +863,10 @@ def syntax_check(filestr, format):
         if prefix[-1] == 's':
             prefix = prefix[:-1]  # skip plural
         if not prefix.lower() in prefixes:
-            errwarn('*** warning: found reference "%s %s" with unexpected word "%s" in front\n' % (orig_prefix, ref, orig_prefix),)
-            errwarn('    (expected Section/Chapter/Figure %s, or could it be a reference to an equation, but missing parenthesis in (%s)?)' % (ref, ref))
+            errwarn('*** warning: found reference "%s %s" with unexpected word "%s" in front\n' %
+                    (orig_prefix, ref, orig_prefix),)
+            errwarn('    (expected Section/Chapter/Figure %s, or could it be a reference '
+                    'to an equation, but missing parenthesis in (%s)?)' % (ref, ref))
 
     # Check for Exercises/Problems/Projects with wrong header
     exer_heading_pattern = r'^(=======) *\{?(Exercise|Problem|Project)\}?:\s*(?P<title>[^ =-].+?) *======='
@@ -866,7 +890,9 @@ def syntax_check(filestr, format):
                              re.MULTILINE)
         m = pattern.search(filestr)
         if m and format in ('rst', 'sphinx'):
-            errwarn('\n*** error: line before list, !bc, !bt or @@@CODE block is a %s line\nwhich will "swallow" the block in reST format.\n    Insert some extra line (text) to separate the two elements.' % construction)
+            errwarn('\n*** error: line before list, !bc, !bt or @@@CODE block is a %s line\n'
+                    'which will "swallow" the block in reST format.\n'
+                    '    Insert some extra line (text) to separate the two elements.' % construction)
             errwarn(filestr[m.start():m.start()+80])
             _abort()
 
@@ -1031,7 +1057,8 @@ def syntax_check(filestr, format):
                 pass  # automake_sphinx.py will move mov* dirs to static
             else:
                 if 'mailto' not in link:
-                    errwarn('*** warning: hyperlink to URL %s is to a local file,\n    recommended to be _static/%s for sphinx' % (link, link))
+                    errwarn('*** warning: hyperlink to URL %s is to a local file,\n'
+                            '    recommended to be _static/%s for sphinx' % (link, link))
                     ok = False
         if not ok:
             errwarn('    move linked file to _static and change URLs unless')
@@ -1040,6 +1067,7 @@ def syntax_check(filestr, format):
             #_abort()  # no abort since some documentation has local URLs for illustration
 
     return None
+
 
 def urlcheck(filestr):
     pattern = '"(https?://.+?)"'
@@ -1071,6 +1099,7 @@ def urlcheck(filestr):
     return ok
     """
 
+
 def make_one_line_paragraphs(filestr, format):
     # THIS FUNCTION DOES NOT WORK WELL - it's difficult to make
     # one-line paragraphs...
@@ -1100,6 +1129,7 @@ def make_one_line_paragraphs(filestr, format):
     debugpr('ONELINE4:', filestr)
     return filestr
 
+
 def bm2boldsymbol(filestr, format):
     if format in ("html", "sphinx", "pandoc", "ipynb"):
         if r'\bm{' in filestr:
@@ -1107,6 +1137,7 @@ def bm2boldsymbol(filestr, format):
             filestr = filestr.replace(r'\bm{', r'\boldsymbol{')
             # See https://www.wikidot.com/doc:math
     return filestr
+
 
 def insert_code_from_file(filestr, format):
     if not ('@@@CODE ' in filestr or '@@@CODE-' in filestr):
@@ -1291,7 +1322,8 @@ def insert_code_from_file(filestr, format):
                         copy = True
                         from_found = True
                         from_line = line_no+1
-                        debugpr('hit (fromto:) start "%s" (as "%s") in line no. %d\n%s\ncode environment: %s' % (from_, codeline[mf.start():mf.end()], line_no+1, codeline, code_envir if code_envir else 'none'))
+                        debugpr('hit (fromto:) start "%s" (as "%s") in line no. %d\n%s\ncode environment: %s' %
+                                (from_, codeline[mf.start():mf.end()], line_no+1, codeline, code_envir if code_envir else 'none'))
 
                     if to_:
                         mt = cto.search(codeline)
@@ -1300,7 +1332,8 @@ def insert_code_from_file(filestr, format):
                             to_found = True
                             to_line = line_no+1
                             # now the to_ line is not included
-                            debugpr('hit end "%s" (as "%s") in line no. %d\n%s' %  (to_, codeline[mt.start():mt.end()], line_no+1, codeline))
+                            debugpr('hit end "%s" (as "%s") in line no. %d\n%s' %
+                                    (to_, codeline[mt.start():mt.end()], line_no+1, codeline))
                     if copy:
                         debugpr('copy: %s' % codeline.rstrip())
                         if codeline[-2:] == '\\\n':
@@ -1313,7 +1346,8 @@ def insert_code_from_file(filestr, format):
                         copy = True  # start copy from next codeline
                         from_found = True
                         from_line = line_no+2
-                        debugpr('hit (from-to:) start "%s" (as "%s") in line no. %d\n%s\ncode environment: %s' % (from_, codeline[mf.start():mf.end()], line_no+1, codeline, code_envir if code_envir else 'none'))
+                        debugpr('hit (from-to:) start "%s" (as "%s") in line no. %d\n%s\ncode environment: %s' %
+                                (from_, codeline[mf.start():mf.end()], line_no+1, codeline, code_envir if code_envir else 'none'))
 
                 if remove_indentation:
                     for k in range(len(codelines)):  # (don't use i!)
@@ -1427,6 +1461,7 @@ def insert_os_commands(filestr, format):
             lines[i] = text
     filestr = '\n'.join(lines)
     return filestr, num_commands
+
 
 def exercises(filestr, format, code_blocks, tex_blocks):
     """ Exercise:
@@ -1824,8 +1859,7 @@ def exercises(filestr, format, code_blocks, tex_blocks):
             filestr += '\n\n\n' + sol_sec
 
     if option('exercises_in_zip'):
-        extract_individual_standalone_exercises(
-            filestr, format, all_exer, code_blocks, tex_blocks)
+        extract_individual_standalone_exercises(filestr, format, all_exer, code_blocks, tex_blocks)
 
     if all_exer:
         # Replace code and math blocks by actual code.
@@ -1838,7 +1872,7 @@ def exercises(filestr, format, code_blocks, tex_blocks):
             if not isinstance(text, basestring):
                 return text
 
-            # Why not use insert_code_and_tex here? Should be safer
+            # Why not use insert_code_blocks/insert_tex_blocks here? Should be safer
             pattern = r"(\d+) %s( +)([a-z]+)" % _CODE_BLOCK 
             code = re.findall(pattern, text, flags=re.MULTILINE)
             for n, space, tp in code:
@@ -2008,6 +2042,7 @@ def process_envir(filestr, envir, format, action='remove', reason=''):
     else:
         raise ValueError(action)
 
+
 def extract_individual_standalone_exercises(
     filestr, format, all_exer, code_blocks, tex_blocks):
     text = filestr
@@ -2075,8 +2110,8 @@ def extract_individual_standalone_exercises(
 
         sa = sa.strip() + '\n'
 
-        sa = insert_code_and_tex(sa, code_blocks, tex_blocks, format,
-                                 complete_doc=False)
+        sa = insert_code_blocks(sa, code_blocks, format, complete_doc=False, remove_hid=True)
+        sa = insert_tex_blocks(sa, tex_blocks, format, complete_doc=False)
 
         # Remove solutions after inserting all code/tex blocks
         sa = process_envir(sa, 'sol', 'plain', action='remove')
@@ -2222,6 +2257,7 @@ def space_in_tables(filestr):
             filestr = filestr.replace(line, line_wspaces)
             inserted_space_around_pipe = True
     return filestr, inserted_space_around_pipe
+
 
 def typeset_tables(filestr, format):
     """
@@ -2400,6 +2436,7 @@ def typeset_tables(filestr, format):
                 result.write(line + '\n')
     return result.getvalue()
 
+
 def typeset_userdef_envirs(filestr, format):
     userdef_envirs = re.findall(r'^!bu-([^ ]+)', filestr, flags=re.MULTILINE)
     if not userdef_envirs:
@@ -2475,6 +2512,7 @@ def typeset_userdef_envirs(filestr, format):
             _abort()
         filestr = filestr.replace(all, replacement)
     return filestr
+
 
 def typeset_envirs(filestr, format):
     # Note: exercises are done (and translated to doconce syntax)
@@ -2889,7 +2927,8 @@ def handle_figures(filestr, format):
                                          '%s\g<1>' % newname, filestr)
                         break
                 if not file_found:
-                    errwarn('*** error: figure %s:\n    could not find URL with legal extension %s' % (figfile, ', '.join(search_extensions)))
+                    errwarn('*** error: figure %s:\n    could not find URL with legal extension %s' %
+                            (figfile, ', '.join(search_extensions)))
                     _abort()
             continue
         # else: check out local figure file on the disk
@@ -3321,6 +3360,7 @@ def handle_index_and_bib(filestr, format):
 
     return filestr
 
+
 def interpret_authors(filestr, format):
     debugpr('\n*** Dealing with authors and institutions ***')
     # first deal with AUTHOR as there can be several such lines
@@ -3340,7 +3380,9 @@ def interpret_authors(filestr, format):
             try:
                 a, i = line.split(' at ')
             except ValueError:
-                errwarn('Wrong syntax of author(s) and institution(s): too many "at":\n' + line + '\nauthor at inst1, adr1 and inst2, adr2a, adr2b and inst3, adr3')
+                errwarn('Wrong syntax of author(s) and institution(s): too many "at":\n' +
+                        line +
+                        '\nauthor at inst1, adr1 and inst2, adr2a, adr2b and inst3, adr3')
                 _abort()
             a = a.strip()
             if ' & ' in i:
@@ -3412,7 +3454,8 @@ def interpret_authors(filestr, format):
                         if year[1] == 'present':
                             year[1] = this_year
                         if int(year[1]) > int(this_year):
-                            errwarn('*** warning: copyright year %s-%s is adjusted to %s-present (%s)' % (year[0], year[1], year[0], this_year))
+                            errwarn('*** warning: copyright year %s-%s is adjusted to %s-present (%s)' %
+                                    (year[0], year[1], year[0], this_year))
                             year[1] = this_year
                         # Concatenate as interval
                         year = year[0] + '-' + year[1]
@@ -3462,11 +3505,13 @@ def interpret_authors(filestr, format):
         # Test that year and license are the same
         for key in keys[1:]:
             if copyright_[key][0] != year0:
-                errwarn('*** error: copyright year for %s is %s, different from %s for %s' % (key, copyright_[key], copyright_[keys[0]], keys[0]))
+                errwarn('*** error: copyright year for %s is %s, different from %s for %s' %
+                        (key, copyright_[key], copyright_[keys[0]], keys[0]))
                 errwarn('    make sure all copyrights have the same info!')
                 _abort()
             if copyright_[key][1] != license0:
-                errwarn('*** error: copyright license for %s is "%s", different from "%s" for %s' % (key, copyright_[key], copyright_[keys[0]], keys[0]))
+                errwarn('*** error: copyright license for %s is "%s", different from "%s" for %s' %
+                        (key, copyright_[key], copyright_[keys[0]], keys[0]))
                 errwarn('    make sure all copyrights have the same info!')
                 _abort()
         copyright_ = {'holder': keys, 'year': year0, 'license': license0,
@@ -3507,6 +3552,7 @@ def interpret_authors(filestr, format):
         errwarn('*** warning: multiple authors\n - correct order of authors requires Python version 2.7 or 3.1 (or higher)')
     return authors_and_institutions, auth2index, inst2index, index2inst, auth2email, filestr
 
+
 def typeset_authors(filestr, format):
     authors_and_institutions, auth2index, inst2index, \
         index2inst, auth2email, filestr = interpret_authors(filestr, format)
@@ -3515,6 +3561,7 @@ def typeset_authors(filestr, format):
          index2inst, auth2email).rstrip() + '\n'  # ensure one newline
     filestr = filestr.replace('XXXAUTHOR', author_block)
     return filestr
+
 
 def typeset_section_numbering(filestr, format):
     chapter = section = subsection = subsubsection = 0
@@ -3563,6 +3610,7 @@ def typeset_section_numbering(filestr, format):
                               counter(chapter, section, subsection, subsubsection),
                               lines[i])
     return '\n'.join(lines)
+
 
 def typeset_quizzes1(filestr, insert_missing_quiz_header=True):
     """
@@ -3618,6 +3666,7 @@ def typeset_quizzes1(filestr, insert_missing_quiz_header=True):
         filestr = filestr.replace(text, new_text)
     return filestr, len(quiztexts)
 
+
 def interpret_quiz_text(text, insert_missing_heading= False,
                         previous_heading=None, previous_heading_tp=None):
     """
@@ -3651,7 +3700,8 @@ def interpret_quiz_text(text, insert_missing_heading= False,
                 text = '===== Exercise: %s =====\n\n' % heading + text
                 # no label, file=, solution= are needed for quizzes
                 previous_heading_tp = 'exercise'
-        heading_comment = ct('--- quiz heading: ' + heading) + '\n' + ct('--- previous heading type: ' + str(previous_heading_tp))
+        heading_comment = ct('--- quiz heading: ' + heading) + '\n' + \
+                          ct('--- previous heading type: ' + str(previous_heading_tp))
         text = re.sub(pattern, heading_comment, text, flags=re.MULTILINE)
     else:
         # Give info about previous heading type
@@ -3711,9 +3761,14 @@ def interpret_quiz_text(text, insert_missing_heading= False,
             if re.search(r'^E:', choice, flags=re.MULTILINE):
                 choice, explanation = re.split(r'^E:\s*',
                                                choice, flags=re.MULTILINE)
-                text = text.replace(choice_text, begin_end_tags('quiz choice %d (%s)' % (counter, 'right' if right else 'wrong'), choice.strip()) + begin_end_tags('explanation of choice %d' % counter, explanation.strip()))
+                text = text.replace(choice_text,
+                                    begin_end_tags('quiz choice %d (%s)' %
+                                                   (counter, 'right' if right else 'wrong'), choice.strip()) +
+                                    begin_end_tags('explanation of choice %d' % counter, explanation.strip()))
             else:
-                text = text.replace(choice_text, begin_end_tags('quiz choice %d (%s)' % (counter, 'right' if right else 'wrong'), choice.strip()))
+                text = text.replace(choice_text,
+                                    begin_end_tags('quiz choice %d (%s)' %
+                                                   (counter, 'right' if right else 'wrong'), choice.strip()))
             counter += 1
     else:
         errwarn('*** error: found quiz without choices!')
@@ -3726,6 +3781,7 @@ def interpret_quiz_text(text, insert_missing_heading= False,
     return text
 
 _QUIZ_BLOCK = '<<<!!QUIZ_BLOCK'
+
 
 def extract_quizzes(filestr, format):
     """
@@ -3839,6 +3895,7 @@ def extract_quizzes(filestr, format):
 
     return data, quizzes, filestr
 
+
 def typeset_quizzes2(filestr, format):
     quizzes, html_quizzes, filestr = extract_quizzes(filestr, format)
     debugpr('The file after extracting quizzes, before inserting finally rendered quizzes', filestr)
@@ -3894,6 +3951,7 @@ def typeset_quizzes2(filestr, format):
             _abort()
     return filestr
 
+
 def inline_tag_subst(filestr, format):
     """Deal with all inline tags by substitution."""
 
@@ -3934,8 +3992,10 @@ def inline_tag_subst(filestr, format):
                         recovered = True
                 if not recovered:
                     errwarn('*** error: ' + str(e))
-                    errwarn('    locale=%s must be installed' % (globals.locale_dict[globals.locale_dict['language']]['locale']))
-                    errwarn('    sudo locale-gen %s; sudo update-locale' % (globals.locale_dict[globals.locale_dict['language']]['locale']))
+                    errwarn('    locale=%s must be installed' %
+                            (globals.locale_dict[globals.locale_dict['language']]['locale']))
+                    errwarn('    sudo locale-gen %s; sudo update-locale' %
+                            (globals.locale_dict[globals.locale_dict['language']]['locale']))
                     _abort()
             date = time.strftime('%A, %d. %b, %Y')
 
@@ -4062,7 +4122,8 @@ def inline_tag_subst(filestr, format):
                     except Exception as e:
                         errwarn('Problem at line\n   ' +  lines[i] +
                                 '\nException:\n' + str(e))
-                        errwarn('occured while replacing inline tag "%s" (%s) with aid of function %s' % (tag, tag_pattern, replacement.__name__))
+                        errwarn('occured while replacing inline tag "%s" (%s) with aid of function %s' %
+                                (tag, tag_pattern, replacement.__name__))
                         #raise Exception(e)
                         # Raising exception is misleading since the
                         # error occured in the replacement function
@@ -4082,11 +4143,13 @@ def inline_tag_subst(filestr, format):
 
     return filestr
 
+
 def subst_away_inline_comments(filestr):
     # inline comments: [hpl: this is a comment]
     pattern = INLINE_TAGS['inlinecomment']
     filestr = re.sub(pattern, '', filestr, flags=re.DOTALL|re.MULTILINE)
     return filestr
+
 
 def subst_class_func_mod(filestr, format):
     if format == 'sphinx' or format == 'rst':
@@ -4124,9 +4187,12 @@ def file2file(in_filename, format, basename):
         html_output = option('html_output=', '')
         if html_output:
             if '/' in html_output:
-                errwarn('*** error: --html_output=%s cannot specify another directory\n    %s' % (html_output, os.path.dirname(html_output)))
+                errwarn('*** error: --html_output=%s cannot specify another directory\n    %s' %
+                        (html_output, os.path.dirname(html_output)))
                 _abort()
             basename = html_output
+            if basename.endswith('.html'):
+                basename = basename[:-len('.html')]
         # Initialize the doc's file collection
         html.add_to_file_collection(basename + '.html',
                                     basename, mode='w')
@@ -4142,6 +4208,7 @@ def file2file(in_filename, format, basename):
     out_filename = basename + FILENAME_EXTENSION[format]
     write_file(filestr, out_filename, _encoding = globals.encoding)
     return out_filename, bg_session
+
 
 def read_file(in_filename, _encoding = None):
     """Read text from file
@@ -4179,6 +4246,7 @@ def read_file(in_filename, _encoding = None):
         _abort()
 
     return text
+
 
 def write_file(text, out_filename, _encoding = ''):
     """Write string to file
@@ -4258,6 +4326,7 @@ def doconce2format4docstrings(filestr, format):
 
 global _t0, _t1
 
+
 def doconce2format(filestr_in, format):
     """Convert string to desired format
 
@@ -4288,7 +4357,9 @@ def doconce2format(filestr_in, format):
         cpu_last_task = time.time() - _t1
         _t1 = time.time()
         if cpu_last_task > report_cpu_time:
-            errwarn('\n...doconce translation: ' + msg + ' %.1f s' % cpu_last_task + ' (accumulated time: %.1f)' % cpu_accumulated)
+            errwarn('\n...doconce translation: ' + msg +
+                    ' %.1f s' % cpu_last_task +
+                    ' (accumulated time: %.1f)' % cpu_accumulated)
             time.sleep(1)
 
     report_progress('finished preprocessors')
@@ -4521,7 +4592,10 @@ def doconce2format(filestr_in, format):
     if section_level_changed:
         # Fix Exercise, Problem, Project, Example - they must be 5=
         for s in 7, 3:
-            filestr = re.sub(r'^ *%s +(\{?(Exercise|Problem|Project|Example)\}?):\s*(.+?) +%s' % ('='*s, '='*s), '===== \g<1>: \g<3> =====', filestr, flags=re.MULTILINE)
+            filestr = re.sub(r'^ *%s +(\{?(Exercise|Problem|Project|Example)\}?):\s*(.+?) +%s' % ('='*s, '='*s),
+                             '===== \g<1>: \g<3> =====',
+                             filestr,
+                             flags=re.MULTILINE)
         debugpr('The file after changing the level of section headings:', filestr)
 
     # Remove linebreaks within paragraphs
@@ -4784,7 +4858,7 @@ def doconce2format(filestr_in, format):
     cmd2option = dict(sol_at_end = 'solutions_at_end', ans_at_end = 'answers_at_end')
     for envir in 'ans_at_end', 'sol_at_end':
         option_name = cmd2option[envir]
-        if not option(option_name) and format is not 'ipynb': #TODO: format is not 'ipynb' was used to avoid errors. is it necessary?
+        if not option(option_name) and format is not 'ipynb': #TODO: 'ipynb' part was used to avoid errors. is it necessary?
             filestr = process_envir(filestr, envir, format, action='remove',
                     reason='(because the command-line option --%s was not used)' % option_name)
     debugpr('The file after potential removal of solutions, answers, hints, etc.:', filestr)
@@ -5005,19 +5079,22 @@ def preprocess(filename_in, format, preprocessor_options=[]):
     match_percentage = re.search(mako_commands, filestr_without_code,
                                  re.MULTILINE)  # match %
     if match_percentage:
-        debugpr('Found use of %% sign(s) for mako code in %s:\n%s' % (resultfile, ', '.join(re.findall(mako_commands, filestr_without_code))))
+        debugpr('Found use of %% sign(s) for mako code in %s:\n%s' %
+                (resultfile, ', '.join(re.findall(mako_commands, filestr_without_code))))
 
     match_mako_variable = False  # See if we use a mako variable
     for name in mako_kwargs:
         pattern = r'\$\{%s\}' % name  # ${name}
         if re.search(pattern, filestr_without_code):
             match_mako_variable = True  # command-line variable is used
-            debugpr('Found use of mako variable(s) in %s: %s' % (resultfile, ', '.join(re.findall(pattern, filestr_without_code))))
+            debugpr('Found use of mako variable(s) in %s: %s' %
+                    (resultfile, ', '.join(re.findall(pattern, filestr_without_code))))
             break
         pattern = r'\b%s\b' % name    # e.g. % if name == 'a' (or Python code)
         if re.search(pattern, filestr_without_code):
             match_mako_variable = True
-            debugpr('Found use of mako variable(s) in mako code in %s: %s' % (resultfile, ', '.join(re.findall(pattern, filestr_without_code))))
+            debugpr('Found use of mako variable(s) in mako code in %s: %s' %
+                    (resultfile, ', '.join(re.findall(pattern, filestr_without_code))))
             break
     if not match_mako_variable and not match_percentage:
         # See if we use a mako function/variable construction
@@ -5171,13 +5248,15 @@ def preprocess(filename_in, format, preprocessor_options=[]):
             errwarn('   ' + str(e))
             if isinstance(e, mako.exceptions.SyntaxException):
                 import platform
-                errwarn('This could indicate that the mako template code is not compatible with the version of Python currently used by DocOnce and mako, which is Python %s' % platform.python_version())
+                errwarn('This could indicate that the mako template code is not compatible with the version of Python '
+                        'currently used by DocOnce and mako, which is Python %s' % platform.python_version())
             elif "'ascii'" in str(e):
                 errwarn('    reason: doconce file contains non-ascii characters')
                 errwarn('    rerun with --encoding=utf-8 (or similar):')
                 errwarn('    doconce format %s %s %s --encoding=utf-8'
                         % (format, orig_filename, ' '.join(sys.argv[1:])))
-                errwarn('    doconce find_nonascii_chars can be used to identify non-ascii characters (use it on %s or tmp_mako__%s' % (orig_filename, orig_filename))
+                errwarn('    doconce find_nonascii_chars can be used to identify non-ascii characters '
+                        '(use it on %s or tmp_mako__%s' % (orig_filename, orig_filename))
             elif "line:" in str(e):
                 errwarn('    Note: the line number refers to the file ' + resultfile2)
             _abort()
@@ -5192,7 +5271,8 @@ def preprocess(filename_in, format, preprocessor_options=[]):
         except TypeError as e:
             if "'Undefined' object is not callable" in str(e):
                 calls = '\n'.join(re.findall(r'(\$\{[A-Za-z0-9_ ]+?\()[^}]+?\}', filestr))
-                errwarn('*** mako error: ${func(...)} calls undefined function "func",\ncheck all ${...} calls in the file(s) for possible typos and lack of includes!\n%s' % calls)
+                errwarn('*** mako error: ${func(...)} calls undefined function "func",\ncheck all ${...} calls in '
+                        'the file(s) for possible typos and lack of includes!\n%s' % calls)
                 _abort()
             else:
                 # Just dump everything mako has
@@ -5331,8 +5411,10 @@ def format_driver():
     errwarn('output in ' + os.path.join(dirname, out_filename))
     return bg_session
 
+
 class DocOnceSyntaxError(Exception):
     pass
+
 
 def doconce_format(format, dotext, compile=False,
                    filename_stem='_tmp', cleanup=False, **options):

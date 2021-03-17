@@ -19,8 +19,8 @@ from builtins import range
 from past.builtins import basestring
 import re, sys
 from .common import default_movie, plain_exercise, bibliography, \
-     cite_with_multiple_args2multiple_cites, insert_code_and_tex, \
-     fix_ref_section_chapter
+    cite_with_multiple_args2multiple_cites, insert_code_blocks, \
+    insert_tex_blocks, fix_ref_section_chapter
 from .misc import option, errwarn
 
 def matlabnb_author(authors_and_institutions, auth2index,
@@ -96,7 +96,8 @@ def matlabnb_code(filestr, code_blocks, code_block_types,
             lines[i] = '% ' + lines[i]
 
     filestr = '\n'.join(lines)
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, 'matlabnb')
+    filestr = insert_code_blocks(filestr, code_blocks, format, complete_doc=True, remove_hid=True)
+    filestr = insert_tex_blocks(filestr, tex_blocks, format, complete_doc=True)
     filestr = re.sub(r'\$\$!et', '$$', filestr, flags=re.MULTILINE)
     filestr = re.sub(r'^!bt\s+\$\$', '% $$', filestr, flags=re.MULTILINE)
     filestr = re.sub(r'^!bc.+', '', filestr, flags=re.MULTILINE)

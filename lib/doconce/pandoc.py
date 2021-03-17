@@ -14,9 +14,10 @@ from past.builtins import basestring
 
 import re, sys, functools, string
 from .common import default_movie, plain_exercise, table_analysis, DEFAULT_ARGLIST, \
-     insert_code_and_tex, bibliography, indent_lines, fix_ref_section_chapter
+     insert_code_blocks, insert_tex_blocks, bibliography, indent_lines, fix_ref_section_chapter
 from .html import html_movie, html_table
 from .misc import option, errwarn
+from .globals import postfix_regex
 
 # Mapping of envirs to correct Pandoc verbatim environment
 language2pandoc = dict(
@@ -147,9 +148,7 @@ def pandoc_code(filestr, code_blocks, code_block_types,
             envir = m.group(1)
             if envir not in ('equation', 'equation*', 'align*', 'align',
                              'array'):
-                errwarn("""\
-*** warning: latex envir \\begin{%s} does not work well.
-""" % envir)
+                errwarn("*** warning: latex envir \\begin{%s} does not work well." % envir)
         # Add $$ on each side of the equation
         tex_blocks[i] = '$$\n' + tex_blocks[i] + '$$\n'
     # Note: HTML output from pandoc requires $$ while latex cannot have
@@ -160,7 +159,8 @@ def pandoc_code(filestr, code_blocks, code_block_types,
         for i in range(len(code_blocks)):
             code_blocks[i] = indent_lines(code_blocks[i], format)
 
-    filestr = insert_code_and_tex(filestr, code_blocks, tex_blocks, format)
+    filestr = insert_code_blocks(filestr, code_blocks, format, complete_doc=True, remove_hid=True)
+    filestr = insert_tex_blocks(filestr, tex_blocks, format, complete_doc=True)
 
     github_md = option('github_md')
 
@@ -172,6 +172,7 @@ def pandoc_code(filestr, code_blocks, code_block_types,
 
         # Code blocks apply the ~~~~~ delimiter, with blank lines before
         # and after
+        code_block_regex = r'^!bc\s+%s' + postfix_regex + '\s*\n'
         for key in language2pandoc:
             language = language2pandoc[key]
             if github_md:
@@ -180,8 +181,7 @@ def pandoc_code(filestr, code_blocks, code_block_types,
                 # pandoc-extended Markdown
                 replacement = '\n~~~{.%s}\n' % language2pandoc[key]
                 #replacement = '\n~~~{.%s ,numberLines}\n' % language2pandoc[key]  # enable line numbering
-            filestr = re.sub(r'^!bc\s+%s\s*\n' % key,
-                             replacement, filestr, flags=re.MULTILINE)
+            filestr = re.sub(code_block_regex % key, replacement, filestr, flags=re.MULTILINE)
 
         # any !bc with/without argument becomes an unspecified block
         if github_md:
