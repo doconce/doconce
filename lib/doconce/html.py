@@ -6,14 +6,15 @@ from builtins import range
 from past.builtins import basestring
 from builtins import object
 import re, os, glob, sys, glob, base64, uuid
-from .common import table_analysis, plain_exercise, insert_code_and_tex, \
-     indent_lines, online_python_tutor, bibliography, safe_join, \
-     is_file_or_url, envir_delimiter_lines, doconce_exercise_output, \
+from .common import table_analysis, plain_exercise, insert_code_blocks, \
+    insert_tex_blocks, indent_lines, online_python_tutor, bibliography, _linked_files, \
+    safe_join, is_file_or_url, envir_delimiter_lines, doconce_exercise_output, \
      get_legal_pygments_lexers, has_custom_pygments_lexer, emoji_url, \
      fix_ref_section_chapter, cite_with_multiple_args2multiple_cites, \
     INLINE_TAGS, INLINE_TAGS_SUBST
-from .misc import option, _abort, errwarn, debugpr
+from .misc import option, _abort
 from doconce import globals
+from .misc import errwarn, debugpr
 from . import jupyter_execution
 # ---- Import a pygments syntax highlighter for DocOnce ----
 from pygments import __version__ as pygm

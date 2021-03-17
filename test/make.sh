@@ -281,7 +281,11 @@ doconce ipynb2doconce nbdemo.ipynb
 
 # Test notebook execution
 doconce format ipynb execute.do.txt --examples_as_exercises
-doconce format ipynb execute.do.txt --execute --examples_as_exercises
+doconce format ipynb execute.do.txt --examples_as_exercises --execute 
+doconce format latex execute.do.txt --examples_as_exercises
+doconce format latex execute.do.txt --examples_as_exercises --execute 
+doconce format html execute.do.txt  --examples_as_exercises
+doconce format html execute.do.txt  --examples_as_exercises --execute 
 
 # Test math
 rm -f *.aux

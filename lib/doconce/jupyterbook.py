@@ -1,8 +1,8 @@
 import os, sys, shutil, re, glob, math
 from doconce import globals
 from .doconce import read_file, write_file, doconce2format, handle_index_and_bib, preprocess
-from .misc import option, help_print_options, check_command_line_options, system, _abort, find_file_with_extensions, \
-    _rmdolog, errwarn,  debugpr
+from .misc import option, help_print_options, check_command_line_options, system, _abort, \
+    find_file_with_extensions, _rmdolog, errwarn,  debugpr
 from .common import INLINE_TAGS, remove_code_and_tex
 import json
 from .ipynb import img2ipynb

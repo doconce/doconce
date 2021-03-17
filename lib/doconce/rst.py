@@ -9,7 +9,7 @@ from .common import insert_code_blocks, insert_tex_blocks, \
     cite_with_multiple_args2multiple_cites, fix_ref_section_chapter
 from .html import html_movie, html_quiz
 from doconce import globals
-from .misc import option, _abort, _abort, debugpr, errwarn
+from .misc import option, errwarn, debugpr, _abort
 
 def rst_abstract(m):
     # r'\n*\g<type>.* \g<text>\n\g<rest>'

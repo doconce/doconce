@@ -19,8 +19,7 @@ from .common import plain_exercise, table_analysis, INLINE_TAGS, \
     insert_code_blocks, insert_tex_blocks, is_file_or_url, chapter_pattern, \
     has_custom_pygments_lexer, get_legal_pygments_lexers, \
     has_copyright, get_copyfile_info, default_movie
-from .misc import option, _abort, replace_code_command, copy_latex_packages
-from .doconce import errwarn, debugpr
+from .misc import option, _abort, replace_code_command, copy_latex_packages, errwarn, debugpr
 from doconce import globals
 from . import jupyter_execution
 

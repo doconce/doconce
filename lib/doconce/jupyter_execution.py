@@ -12,8 +12,7 @@ try:
 except ImportError:
     from Queue import Empty # Py 2
 import re, base64, uuid
-from .doconce import errwarn, _abort
-from .misc import option
+from .misc import errwarn, _abort, option
 from .common import safe_join, process_code_envir_postfix
 class JupyterKernelClient:
     def __init__(self):

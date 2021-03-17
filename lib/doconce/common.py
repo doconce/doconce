@@ -12,11 +12,11 @@ from builtins import range
 import re, sys, os, shutil, subprocess#, xml.etree.ElementTree
 import requests
 import urllib.request, urllib.parse, urllib.error #TODO: substitute urllib with requests library
-from .misc import option, _abort, errwarn
+from .misc import option, errwarn, _abort
 from doconce import globals
 from pygments.lexers import get_all_lexers, get_lexer_by_name
 
-#format = None   # latex, pdflatex, html, plain, etc
+format = None   # latex, pdflatex, html, plain, etc
 
 # Identifiers in the text used to identify code and math blocks
 _CODE_BLOCK = '<<<!!CODE_BLOCK'

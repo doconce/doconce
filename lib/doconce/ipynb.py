@@ -10,9 +10,9 @@ from .latex import fix_latex_command_regex
 from .html import html_movie, html_table
 from .pandoc import pandoc_ref_and_label, pandoc_index_bib, pandoc_quote, \
      language2pandoc, pandoc_quiz
-from .misc import option, _abort, errwarn
+from .misc import option, errwarn, _abort
 from doconce import globals
-#from . import jupyter_execution
+from . import jupyter_execution
 
 try:
     from nbformat.v4 import new_code_cell, new_markdown_cell, new_notebook, new_output

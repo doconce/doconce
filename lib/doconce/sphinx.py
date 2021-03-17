@@ -6,9 +6,8 @@ from builtins import range
 # can reuse most of rst module:
 from .rst import *
 from .common import align2equations, online_python_tutor, \
-     get_legal_pygments_lexers, has_custom_pygments_lexer
-from .misc import option, _abort
-from .doconce import errwarn
+     get_legal_pygments_lexers, has_custom_pygments_lexer, process_code_envir_postfix
+from .misc import option, errwarn, _abort
 # used in sphinx_dir
 import time, shutil, glob, re
 from doconce.misc import system, load_preprocessed_doconce_file
@@ -198,6 +197,8 @@ def sphinx_quiz(quiz):
         return rst_quiz(quiz)
 
 
+from .latex import fix_latex_command_regex as fix_latex
+
 def sphinx_code(filestr, code_blocks, code_block_types,
                 tex_blocks, format):
     # In rst syntax, code blocks are typeset with :: (verbatim)
@@ -269,7 +270,7 @@ def sphinx_code(filestr, code_blocks, code_block_types,
         tex_blocks[i] = indent_lines(tex_blocks[i], format)
         # extract all \label{}s inside tex blocks and typeset them
         # with :label: tags
-        label_regex = fix_latex_command_regex( r'label\{(.+?)\}', application='match')
+        label_regex = fix_latex( r'label\{(.+?)\}', application='match')
         labels = re.findall(label_regex, tex_blocks[i])
         if len(labels) == 1:
             tex_blocks[i] = '   :label: %s\n' % labels[0] + tex_blocks[i]
@@ -453,7 +454,7 @@ def sphinx_code(filestr, code_blocks, code_block_types,
                 key_orig = key
                 key = key[:-len(postfix)]
                 if postfix == '-h':
-                show_hide = True
+                    show_hide = True
             # Use the standard sphinx code-block directive
             if key in envir2pygments:
                 pygments_language = envir2pygments[key]
@@ -618,6 +619,7 @@ def sphinx_index_bib(filestr, index, citations, pubfile, pubdata):
     numbering = not option('sphinx_preserve_bib_keys', False)
 
     filestr = rst_bib(filestr, citations, pubfile, pubdata, numbering=numbering)
+    from .common import INLINE_TAGS
 
     for word in index:
         # Drop verbatim, emphasize, bold, and math in index
@@ -826,7 +828,7 @@ def sphinx_code_orig(filestr, format):
     for i in range(len(tex_blocks)):
         tex_blocks[i] = indent_lines(tex_blocks[i], format)
         # remove all \label{}s inside tex blocks:
-        tex_blocks[i] = re.sub(fix_latex_command_regex(r'\label\{.+?\}', application='match'),
+        tex_blocks[i] = re.sub(fix_latex(r'\label\{.+?\}', application='match'),
                               '', tex_blocks[i])
         # remove those without \ if there are any:
         tex_blocks[i] = re.sub(r'label\{.+?\}', '', tex_blocks[i])
@@ -952,8 +954,8 @@ def sphinx_code_newmathlabels(filestr, format):
         tex_blocks[i] = indent_lines(tex_blocks[i], format)
         # extract all \label{}s inside tex blocks and typeset them
         # with :label: tags
-        label_regex1 = fix_latex_command_regex(r'\label\{(.+?)\}', application='match')
-        label_regex2 = fix_latex_command_regex( r'label\{(.+?)\}', application='match')
+        label_regex1 = fix_latex(r'\label\{(.+?)\}', application='match')
+        label_regex2 = fix_latex( r'label\{(.+?)\}', application='match')
         math_labels.extend(re.findall(label_regex1, tex_blocks[i]))
         tex_blocks[i] = re.sub(label_regex1,
                               r' :label: \g<1> ', tex_blocks[i])
@@ -1156,6 +1158,7 @@ def sphinx_dir():
         else:
             author = author_cml
 
+    from doconce.common import get_copyfile_info
     copyright_filename = '.' + filename + '.copyright'
     copyright_ = get_copyfile_info(copyright_filename=copyright_filename,
                                    format='sphinx')
