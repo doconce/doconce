@@ -9655,8 +9655,8 @@ def find_file_with_extensions(filename_in, allowed_extensions=['']):
     if dirname == '.':
         dirname = ''
     if dirname.startswith('./'):
-        print('fix this!')
-        _abort()
+        dirname = dirname[2:]
+        #_abort()
 
     ext, basename, filename_out = None, None, None
     dir_basename = filename_in

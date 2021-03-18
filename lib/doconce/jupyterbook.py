@@ -72,8 +72,17 @@ def jupyterbook():
         errwarn('*** error: file %s does not exist' % globals.filename)
         _abort()
     if dirname:
+        # cd into the DocOnce file's directory, then fix dest and dest_toc
         os.chdir(dirname)
         errwarn('*** doconce format now works in directory %s' % dirname)
+        # fix dest, dest_roc, and finally dirname
+        dest = os.path.relpath(dest, start=dirname) + '/'
+        if dest.startswith('./'):
+            dest = dest[2:]
+        dest_toc = os.path.relpath(dest_toc, start=dirname) + '/'
+        if dest_toc.startswith('./'):
+            dest_toc = dest_toc[2:]
+        dirname = ''
     globals.filename = filename
     globals.dofile_basename = basename
 
@@ -327,14 +336,14 @@ def split_ipynb(ipynb_text, filenames):
     if len(ind_fname) != len(filenames):
         errwarn('*** error : could not find all markings in ipynb')
         _abort()
-    # Create an ipynb dictionary for each block, then convert to text
+    # For each file create a dictionary with the relevant ipynb blocks, then convert to text
     ipynb_texts = [''] * len(filenames)
-    for i, ind in enumerate(ind_fname):
-        ind2 = None
-        if ind + 1 < len(ind_fname):
-            ind2 = ind_fname[ind + 1]
+    for i, ind_start in enumerate(ind_fname):
+        ind_end = None
+        if i + 1 < len(ind_fname):
+            ind_end = ind_fname[i + 1]
         block_dict = ipynb_dict.copy()
-        block_dict['cells'] = cells[ind:ind2]
+        block_dict['cells'] = cells[ind_start:ind_end]
         ipynb_texts[i] = json.dumps(block_dict, indent=1, separators=(',', ':'))
     return ipynb_texts
 
@@ -489,7 +498,7 @@ def create_toc_yml(basenames, nesting_levels, titles, dest='./', dest_toc='./', 
             title = '"' + title + '"'
         return title
     # Get the relative path between the destination folders
-    relpath = os.path.relpath(dest, dest_toc)
+    relpath = os.path.relpath(dest, start=dest_toc)
     if relpath == '.':
         relpath = ''
     else:
@@ -646,9 +655,11 @@ def fix_media_src(filestr, dirname, dest):
     The generated .md and .ipynb files will be created in the path passed to `--dest`.
     This method fixes the paths of the image and movie files so that they can be found
     in generated .md and .ipynb files.
-    :param filestr:
-    :param dirname:
-    :return:
+    :param str filestr: text string
+    :param str dirname: Path to an existing folder
+    :param str dest: directory name
+    :return: filestr with new paths
+    :rtype: str
     """
     patterns = [
         # movies in .md and .ipynb. NB: jupyterbook does not support movies
@@ -677,10 +688,11 @@ def fix_media_src(filestr, dirname, dest):
                          '  myst_enable_extensions:\n'
                          '    - html_image\n'))
             if not src.startswith('/'):
-                src_new = os.path.relpath(dirname + src, dest)
+                if dirname != '' and not dirname.endswith('/'):
+                    dirname += '/'
+                src_new = os.path.relpath(dirname + src, start=dest)
                 replacement = match.replace(src, src_new, 1)
                 filestr_out = filestr_out.replace(match, replacement, 1)
-                #print('\npattern #%d replaced \n   %s  \nwith\n   %s\n' % (i, match, replacement))
     return filestr_out
 
 
