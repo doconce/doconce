@@ -50,22 +50,6 @@ div.input {
     flex-direction: row;
     align-items: stretch;
 }
-div.prompt {
-    min-width: 11ex;
-    padding: .4em;
-    margin: 0;
-    font-family: monospace;
-    text-align: right;
-    line-height: 1.21429em;
-}
-div.prompt:empty {
-    padding-top: 0;
-    padding-bottom: 0;
-}
-div.input_prompt {
-    color: navy;
-    border-top: 1px solid transparent;
-}
 div.inner_cell {
     box-orient: vertical;
     box-align: stretch;
@@ -171,7 +155,7 @@ MathJax.Hub.Config({
 <p><!-- institution(s) --></p>
 <br>
 <center>
-<h4>Mar 17, 2021</h4>
+<h4>Mar 18, 2021</h4>
 </center> <!-- date -->
 <br>
 <p></p>
@@ -188,7 +172,6 @@ Need some code outside admons for color and font comparisons:
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
-    <div class="prompt input_prompt">      In [1]:    </div>
     <div class="inner_cell">
       <div class="input_area">
         <div class="highlight" style="background: #f8f8f8">
@@ -202,7 +185,6 @@ Need some code outside admons for color and font comparisons:
   <div class="output_wrapper">
     <div class="output">
       <div class="output_area">
-        <div class="prompt"></div>
         <div class="output_subarea output_stream output_stdout output_text">          
         </div>
       </div>
@@ -217,7 +199,6 @@ And some plain text verbatim:
 <!-- code=text (!bc ccq) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
-    <div class="prompt input_prompt">      In [2]:    </div>
     <div class="inner_cell">
       <div class="input_area">
         <blockquote>
@@ -232,7 +213,6 @@ x=1.1 y=0.3 z=0.1
   <div class="output_wrapper">
     <div class="output">
       <div class="output_area">
-        <div class="prompt"></div>
         <div class="output_subarea output_stream output_stdout output_text">          
         </div>
       </div>
@@ -311,7 +291,6 @@ Let's begin a new paragraph and show a box with code only:
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
-    <div class="prompt input_prompt">      In [3]:    </div>
     <div class="inner_cell">
       <div class="input_area">
         <div class="highlight" style="background: #f8f8f8">
@@ -325,7 +304,6 @@ Let's begin a new paragraph and show a box with code only:
   <div class="output_wrapper">
     <div class="output">
       <div class="output_area">
-        <div class="prompt"></div>
         <div class="output_subarea output_stream output_stdout output_text">          
         </div>
       </div>
@@ -385,7 +363,6 @@ Also some code:
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
-    <div class="prompt input_prompt">      In [4]:    </div>
     <div class="inner_cell">
       <div class="input_area">
         <div class="highlight" style="background: #f8f8f8">
@@ -399,7 +376,6 @@ Also some code:
   <div class="output_wrapper">
     <div class="output">
       <div class="output_area">
-        <div class="prompt"></div>
         <div class="output_subarea output_stream output_stdout output_text">          
         </div>
       </div>
@@ -413,7 +389,6 @@ And a complete program
 <!-- code=python (!bc pypro) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
-    <div class="prompt input_prompt">      In [5]:    </div>
     <div class="inner_cell">
       <div class="input_area">
         <div class="highlight" style="background: #f8f8f8">
@@ -426,7 +401,6 @@ And a complete program
   <div class="output_wrapper">
     <div class="output">
       <div class="output_area">
-        <div class="prompt"></div>
         <div class="output_subarea output_stream output_stdout output_text">          
         </div>
       </div>
@@ -568,7 +542,6 @@ Because here the thing is to do
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
-    <div class="prompt input_prompt">      In [6]:    </div>
     <div class="inner_cell">
       <div class="input_area">
         <div class="highlight" style="background: #f8f8f8">
@@ -584,7 +557,6 @@ Because here the thing is to do
   <div class="output_wrapper">
     <div class="output">
       <div class="output_area">
-        <div class="prompt"></div>
         <div class="output_subarea output_stream output_stdout output_text">          
         </div>
       </div>
@@ -648,7 +620,6 @@ code is task that this "Going deeper" environment targets.
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
-    <div class="prompt input_prompt">      In [7]:    </div>
     <div class="inner_cell">
       <div class="input_area">
         <div class="highlight" style="background: #f8f8f8">
@@ -666,7 +637,6 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
   <div class="output_wrapper">
     <div class="output">
       <div class="output_area">
-        <div class="prompt"></div>
         <div class="output_subarea output_stream output_stdout output_text">          
         </div>
       </div>
@@ -681,7 +651,6 @@ Longer computer code requires vertical space:
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
-    <div class="prompt input_prompt">      In [8]:    </div>
     <div class="inner_cell">
       <div class="input_area">
         <div class="highlight" style="background: #f8f8f8">
@@ -731,7 +700,6 @@ Longer computer code requires vertical space:
   <div class="output_wrapper">
     <div class="output">
       <div class="output_area">
-        <div class="prompt"></div>
         <div class="output_subarea output_stream output_stdout output_text">          
         </div>
       </div>
