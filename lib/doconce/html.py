@@ -125,9 +125,6 @@ def add_to_file_collection(filename, doconce_docname=None, mode='a'):
 
 html_cell_code = (
             '  <div class="input">\n'
-            '    <div class="prompt input_prompt">'
-            '      %s'        # Execution count
-            '    </div>\n'
             '    <div class="inner_cell">\n'
             '      <div class="input_area">\n'
             '        %s'        # code <div> with class highlight
@@ -138,7 +135,6 @@ html_cell_output = (
             '  <div class="output_wrapper">\n'
             '    <div class="output">\n'
             '      <div class="output_area">\n'
-            '        <div class="prompt"></div>\n'
             '        <div class="output_subarea output_stream output_stdout output_text">'
             '          %s\n'      # code output wrapped in <pre> 
             '        </div>\n'
@@ -311,22 +307,6 @@ css_jupyter_blocks = (
     '    display: flex;\n'
     '    flex-direction: row;\n'
     '    align-items: stretch;\n'
-    '}\n'
-    'div.prompt {\n'
-    '    min-width: 11ex;\n'
-    '    padding: .4em;\n'
-    '    margin: 0;\n'
-    '    font-family: monospace;\n'
-    '    text-align: right;\n'
-    '    line-height: 1.21429em;\n'
-    '}\n'
-    'div.prompt:empty {\n'
-    '    padding-top: 0;\n'
-    '    padding-bottom: 0;\n'
-    '}\n'
-    'div.input_prompt {\n'
-    '    color: navy;\n'
-    '    border-top: 1px solid transparent;\n'
     '}\n'
     'div.inner_cell {\n'
     '    box-orient: vertical;\n'
@@ -1705,15 +1685,12 @@ def format_cell_html(formatted_code, formatted_output, execution_count, show):
     elif show == 'format':
         # Render of the code and code output and indent
         # the whole cell (input and output) as in jupyter notebook
-        formatted_output = html_cell % ('In [{}]:'.format(execution_count),
-                                        formatted_code,
+        formatted_output = html_cell % (formatted_code,
                                         formatted_output)
     elif show == 'text':
         # Render of the code as text in a cell input
         formatted_output = html_cell_wrap + \
-                           html_cell_code % (
-                               'In [{}]:'.format(execution_count),
-                               formatted_code) + \
+                           html_cell_code % (formatted_code) + \
                            '</div>'
     elif show == 'output':
         # Render as code output
