@@ -579,7 +579,10 @@ def get_link_destinations(chunk):
     destinations, destination_tags = [], []
     # html links. label{} has already been converted
     pattern_tag = r'[\w _\-:]'
-    pattern = r'<' + pattern_tag + '+ (id|name)=["\'](' + pattern_tag + '+)["\'][^>]*>'
+    pattern_backslash = '[\\\]'
+    pattern = r'<' + pattern_tag + \
+              '+ (id|name)=' + pattern_backslash + '["\']' + \
+              '(' + pattern_tag + '+)' + pattern_backslash + '["\'][^>]*>'
     for m in re.finditer(pattern, chunk):
         match = m.group()
         tag = m.group(2)
