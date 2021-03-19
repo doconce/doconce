@@ -95,6 +95,7 @@ def ipynb_author(authors_and_institutions, auth2index,
 
 def ipynb_table(table):
     text = html_table(table)
+    text += '\n'
     # Fix the problem that `verbatim` inside the table is not
     # typeset as verbatim (according to the ipynb translator rules)
     # in the GitHub Issue Tracker
