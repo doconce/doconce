@@ -300,70 +300,6 @@ def remove_verbatim_blocks(text, format):
         return text
 
 
-def recommended_html_styles_and_pygments_styles():
-    """
-    List good combinations of HTML slide styles and
-    pygments styles for typesetting code.
-    """
-    combinations = {
-        'html': {
-            'blueish': ['default'],
-            'bloodish': ['default'],
-            'solarized': ['perldoc'],
-            'solarized2': ['perldoc'],
-            'solarized3': ['perldoc'],
-            'solarized3_dark': ['native'],
-            },
-        'deck': {
-            'neon': ['fruity', 'native'],
-            'sandstone.aurora': ['fruity'],
-            'sandstone.dark': ['native', 'fruity'],
-            'sandstone.mdn': ['fruity'],
-            'sandstone.mightly': ['default', 'autumn', 'manni', 'emacs'],
-            'beamer': ['autumn', 'perldoc', 'manni', 'default', 'emacs'],
-            'mnml': ['default', 'autumn', 'manni', 'emacs'],
-            'sandstone.firefox': ['default', 'manni', 'autumn', 'emacs'],
-            'sandstone.default': ['perldoc', 'autumn', 'manni', 'default'],
-            'sandstone.light': ['emacs', 'autumn'],  # purple
-            'swiss': ['autumn', 'default', 'perldoc', 'manni', 'emacs'],
-            'web-2.0': ['autumn', 'default', 'perldoc', 'emacs'],
-            'cbc': ['default', 'autumn'],
-            },
-        'reveal': {
-            'beige': ['perldoc',],
-            'beigesmall': ['perldoc',],
-            'solarized': ['perldoc',],
-            'serif': ['perldoc'],
-            'simple': ['autumn', 'default', 'perldoc'],
-            'white': ['autumn', 'default', 'perldoc'],
-            'blood': ['monokai', 'native'],
-            'black': ['monokai', 'native'],
-            'sky': ['default'],
-            'moon': ['fruity', 'native'],
-            'night': ['fruity', 'native'],
-            'moon': ['fruity', 'native'],
-            'darkgray': ['native', 'monokai'],
-            'league': ['native', 'monokai'],
-            'cbc': ['default', 'autumn'],
-            'simula': ['autumn', 'default'],
-            },
-        'csss': {
-            'csss_default': ['monokai'],
-            },
-        'dzslides': {
-            'dzslides_default': ['autumn', 'default'],
-            },
-        'html5slides': {
-            'template-default': ['autumn', 'default'],
-            'template-io2011': ['autumn', 'default'],
-            },
-        'remark': {
-            'light': ['autumn', 'default'],
-            'dark': ['native', 'monokai'],
-            },
-        }
-    return combinations
-
 def load_preprocessed_doconce_file(filename, dirpath=''):
     """
     Load as complete doconce file as possible. That is,
@@ -2412,6 +2348,17 @@ def _format_comments(format='html'):
         return '..', ''
     else:
         return None, None
+
+# TODO experiment
+pattern_newline = '\n'
+pattern_tag = r'[\w _\-:]'
+pattern_backslash = '[\\\]'
+
+def fold_html(code):
+    code_out = re.sub(r'\n', '', code)
+    code_out = re.sub(r'(?:<.*>' + pattern_newline + '\s*)<', '><', code_out)
+    code_out = re.sub(r'(?:<' + pattern_tag + ')/>' + pattern_newline + '\s*<', '/><', code_out)
+    return code_out
 
 def get_header_parts_footer(filename, format='html'):
     """Return list of lines for header, parts split by !split, and footer."""

@@ -21,13 +21,95 @@ import os, sys, re#,shutil, glob, time, subprocess, codecs
 #from pygments.formatters import HtmlFormatter
 #from pygments import highlight
 #from pygments.styles import get_all_styles
-from .misc import get_header_parts_footer, misc_option, remove_verbatim_blocks, copy_latex_packages, copy_datafiles, \
-    recommended_html_styles_and_pygments_styles,  tablify, get_header_parts_footer, doconce_split_html, \
+from .misc import get_header_parts_footer, misc_option, remove_verbatim_blocks, \
+    copy_latex_packages, copy_datafiles, tablify, get_header_parts_footer, doconce_split_html, \
     errwarn, _abort
 
 reveal_files = 'reveal.js.zip'
 csss_files = 'csss.zip'
-deck_files = 'deck.js.zip'
+deck_files = 'deck.js-latest.zip'
+
+
+pattern_backslash = '[\\\]'
+pattern_tag = r'[\w _\-:]'
+
+
+#pattern = r'<' + pattern_tag + '+ (id|name)=' + pattern_backslash + '["\']' + \
+#          '(' + pattern_tag + '+)' + pattern_backslash + '["\'][^>]*>'
+
+pattern_newline = '[\\n]'
+
+def fold_html(code):
+    code_out = re.sub('\n', '', code)
+    code_out = re.sub(r'<(.*)>\s*' + pattern_newline + '\s*<', r'<\1><', code_out)
+    code_out = re.sub('<(' + pattern_tag + ')/>\s*' + pattern_newline + '\s*<', r'<\1/><', code_out)
+    return code_out
+
+
+
+def recommended_html_styles_and_pygments_styles():
+    """
+    List good combinations of HTML slide styles and
+    pygments styles for typesetting code.
+    """
+    combinations = {
+        'html': {
+            'blueish': ['default'],
+            'bloodish': ['default'],
+            'solarized': ['perldoc'],
+            'solarized2': ['perldoc'],
+            'solarized3': ['perldoc'],
+            'solarized3_dark': ['native'],
+            },
+        'deck': {
+            'neon': ['fruity', 'native'],
+            'sandstone.aurora': ['fruity'],
+            'sandstone.dark': ['native', 'fruity'],
+            'sandstone.mdn': ['fruity'],
+            'sandstone.mightly': ['default', 'autumn', 'manni', 'emacs'],
+            'beamer': ['autumn', 'perldoc', 'manni', 'default', 'emacs'],
+            'mnml': ['default', 'autumn', 'manni', 'emacs'],
+            'sandstone.firefox': ['default', 'manni', 'autumn', 'emacs'],
+            'sandstone.default': ['perldoc', 'autumn', 'manni', 'default'],
+            'sandstone.light': ['emacs', 'autumn'],  # purple
+            'swiss': ['autumn', 'default', 'perldoc', 'manni', 'emacs'],
+            'web-2.0': ['autumn', 'default', 'perldoc', 'emacs'],
+            'cbc': ['default', 'autumn'],
+            },
+        'reveal': {
+            'beige': ['perldoc',],
+            'beigesmall': ['perldoc',],
+            'solarized': ['perldoc',],
+            'serif': ['perldoc'],
+            'simple': ['autumn', 'default', 'perldoc'],
+            'white': ['autumn', 'default', 'perldoc'],
+            'blood': ['monokai', 'native'],
+            'black': ['monokai', 'native'],
+            'sky': ['default'],
+            'moon': ['fruity', 'native'],
+            'night': ['fruity', 'native'],
+            'moon': ['fruity', 'native'],
+            'darkgray': ['native', 'monokai'],
+            'league': ['native', 'monokai'],
+            'cbc': ['default', 'autumn'],
+            'simula': ['autumn', 'default'],
+            },
+        'csss': {
+            'csss_default': ['monokai'],
+            },
+        'dzslides': {
+            'dzslides_default': ['autumn', 'default'],
+            },
+        'html5slides': {
+            'template-default': ['autumn', 'default'],
+            'template-io2011': ['autumn', 'default'],
+            },
+        'remark': {
+            'light': ['autumn', 'default'],
+            'dark': ['native', 'monokai'],
+            },
+        }
+    return combinations
 
 
 def _usage_slides_html():
@@ -1173,7 +1255,7 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
             title=None,
         ),
         deck=dict(
-            subdir='deck.js',
+            subdir='deck.js-latest',
             default_theme='web-2.0',
             slide_envir_begin='<section class="slide">',
             slide_envir_end='</section>',
@@ -1419,6 +1501,8 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
             ),
         )
 
+    #html5slides['head_header']
+
     theme = misc_option('html_slide_theme=', default='default')
 
     # Check that the theme name is registered
@@ -1552,30 +1636,23 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
     slide_syntax[slide_tp]['head_lines'] = ''.join(head_lines)
     slide_syntax[slide_tp]['body_lines'] = ''.join(body_lines)
 
-    #<title>%(title)s</title>
-    slides = r"""<!DOCTYPE html>
-
-%(head_lines)s
-
-%(head_header)s
-
-<!-- Styles for table layout of slides -->
-<style type="text/css">
-td.padding {
-  padding-top:20px;
-  padding-bottom:20px;
-  padding-right:50px;
-  padding-left:50px;
-}
-</style>
-
-</head>
-
-%(body_header)s
-
-%(body_lines)s
-
-""" % slide_syntax[slide_tp]
+    slides = ('<!DOCTYPE html>\n'
+              '<html>\n'
+              '<head>\n'
+              '%(head_lines)s\n\n'
+              '%(head_header)s\n\n'
+              '<!-- Styles for table layout of slides -->\n'
+              '<style type="text/css">\n'
+              'td.padding {\n'
+              '  padding-top:20px;\n'
+              '  padding-bottom:20px;\n'
+              '  padding-right:50px;\n'
+              '  padding-left:50px;\n'
+              '}\n'
+              '</style>\n\n'
+              '</head>\n\n'
+              '%(body_header)s\n\n'
+              '%(body_lines)s\n\n') % slide_syntax[slide_tp]
 
     # Avoid too many numbered equations: use \tag for all equations
     # with labels (these get numbers) and turn all other numbers off
@@ -1742,22 +1819,17 @@ td.padding {
         if html_copyright_placement == 'titlepage' and part_no > 0:
             copyright_ = ''
 
-        slides += r"""
-%s
-%s
-%s
-%s
-
-""" % (slide_syntax[slide_tp]['slide_envir_begin'],
+        slides += ('\n'
+                   '%s\n'
+                   '%s\n'
+                   '%s\n'
+                   '%s\n\n') % (slide_syntax[slide_tp]['slide_envir_begin'],
        part,
        copyright_,
        slide_syntax[slide_tp]['slide_envir_end'])
-    slides += r"""
-%s
-
-</body>
-</html>
-""" % (slide_syntax[slide_tp]['footer'])
+    slides += ('\n%s\n\n'
+               '</body>\n'
+               '</html>\n') % (slide_syntax[slide_tp]['footer'])
     slides = re.sub(r'<!-- !split .*-->\n', '', slides)
 
     eq_no = 1  # counter for equations
