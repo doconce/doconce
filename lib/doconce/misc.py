@@ -2349,19 +2349,17 @@ def _format_comments(format='html'):
     else:
         return None, None
 
-# TODO experiment
-pattern_newline = '\n'
-pattern_tag = r'[\w _\-:]'
-pattern_backslash = '[\\\]'
-
-def fold_html(code):
-    code_out = re.sub(r'\n', '', code)
-    code_out = re.sub(r'(?:<.*>' + pattern_newline + '\s*)<', '><', code_out)
-    code_out = re.sub(r'(?:<' + pattern_tag + ')/>' + pattern_newline + '\s*<', '/><', code_out)
-    return code_out
-
 def get_header_parts_footer(filename, format='html'):
-    """Return list of lines for header, parts split by !split, and footer."""
+    """Split files in different file formats
+
+    Return list of lines for header, parts split by !split, and footer.
+    This function relies on markers such as "main content",
+    "end of main content", "!split"
+    :param str filename: text string
+    :param str format: default 'html'
+    :return: header, parts, footer
+    :rtype: list(str, list[str], str)
+    """
     header = []
     footer = []
     parts = [[]]

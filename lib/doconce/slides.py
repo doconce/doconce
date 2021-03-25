@@ -24,27 +24,11 @@ import os, sys, re#,shutil, glob, time, subprocess, codecs
 from .misc import get_header_parts_footer, misc_option, remove_verbatim_blocks, \
     copy_latex_packages, copy_datafiles, tablify, get_header_parts_footer, doconce_split_html, \
     errwarn, _abort
+from .html import html_remove_whitespace, add_to_file_collection
 
 reveal_files = 'reveal.js.zip'
 csss_files = 'csss.zip'
 deck_files = 'deck.js-latest.zip'
-
-
-pattern_backslash = '[\\\]'
-pattern_tag = r'[\w _\-:]'
-
-
-#pattern = r'<' + pattern_tag + '+ (id|name)=' + pattern_backslash + '["\']' + \
-#          '(' + pattern_tag + '+)' + pattern_backslash + '["\'][^>]*>'
-
-pattern_newline = '[\\n]'
-
-def fold_html(code):
-    code_out = re.sub('\n', '', code)
-    code_out = re.sub(r'<(.*)>\s*' + pattern_newline + '\s*<', r'<\1><', code_out)
-    code_out = re.sub('<(' + pattern_tag + ')/>\s*' + pattern_newline + '\s*<', r'<\1/><', code_out)
-    return code_out
-
 
 
 def recommended_html_styles_and_pygments_styles():
@@ -265,14 +249,11 @@ def slides_html():
 
     if filestr is not None:
         # Make whitespace nicer (clean up code)
-        from .html import html_remove_whitespace
         filestr = html_remove_whitespace(filestr)
         # More fixes for html5 slides
         filestr = re.sub(r'<section>\s+(?=<h[12])', r'<section>\n', filestr)
         filestr = re.sub(r'<p>\n</section>', '</section>', filestr)
         filestr = re.sub(r'\s+</section>', '\n</section>', filestr)
-
-        from .html import html_remove_whitespace
         filestr = html_remove_whitespace(filestr)
         # More fixes for html5 slides
         filestr = re.sub(r'<section>\s+(?=<h[12])', r'<section>\n', filestr)
@@ -1518,24 +1499,17 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
     # We need the subdir with reveal.js, deck.js, or similar to show
     # the HTML slides so add the subdir to the registered file collection
     if slide_syntax[slide_tp]['subdir'] is not None:
-        from . import html
-        html.add_to_file_collection(
-            slide_syntax[slide_tp]['subdir'], filename, 'a')
+        add_to_file_collection(slide_syntax[slide_tp]['subdir'], filename, 'a')
 
-    if theme != 'default':
-        if not theme in all_combinations[slide_tp]:
+    if (theme == 'default' or theme.endswith('_default')):
+        slide_syntax[slide_tp]['theme'] = slide_syntax[slide_tp]['default_theme']
+    else:
+        if theme in all_combinations[slide_tp].keys():
+            slide_syntax[slide_tp]['theme'] = theme
+        else:
             errwarn('*** error: %s theme "%s" is not known - abort' % (slide_tp, theme))
             errwarn('known themes: ' + ', '.join(list(all_combinations[slide_tp].keys())))
             _abort()
-
-    #m = re.search(r'<title>(.*?)</title>', ''.join(parts[0]))
-    #if m:
-    #    title = m.group(1).strip()
-    #else:
-    #    title = ''
-    #slide_syntax[slide_tp]['title'] = title
-    slide_syntax[slide_tp]['theme'] = \
-       slide_syntax[slide_tp]['default_theme'] if (theme == 'default' or theme.endswith('_default')) else theme
 
     # Fill in theme etc.
     slide_syntax[slide_tp]['head_header'] = \
@@ -1678,12 +1652,12 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
             if '<!-- document title -->' in part:
                 # h1 title should be h2 to fix problems with
                 # .csstransforms h1, .csstransforms .vcenter in css files
-                pattern = r'<center><h1>(.+?)</h1></center>'
+                pattern = r'<center>\s*<h1>(.+?)</h1>\s*</center>'
                 part = re.sub(pattern,
                               r'<h2 style="text-align: center;">\g<1></h2>',
                               part)
                 # Date should use b rather than h4 (which is too big)
-                pattern = '<center><h4>(.+?)</h4></center>'
+                pattern = '<center>\s*<h4>(.+?)</h4>\s*</center>'
                 part = re.sub(pattern, r'<center><b>\g<1></b></center>', part)
 
             # <b> does not work, so we must turn on bold manually
@@ -1700,7 +1674,7 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
             # Add space after names and after institutions
             part = re.sub(r'<p>\s+<!-- institution\(s\)',
                           r'<p>&nbsp;<br>\n<!-- institution(s)', part)
-            part = re.sub(r'<p>\s+<center><h4>(.+?)</h4></center>\s+<!-- date -->',
+            part = re.sub(r'<p>\s+<center>\s*<h4>(.+?)</h4>\s*</center>\s+<!-- date -->',
                           r'<p>&nbsp;<br>\n<center><h4>\g<1></h4></center> <!-- date -->',
                           part)
 
@@ -1738,7 +1712,7 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
 
         # Pieces to pop up item by item as the user is clicking
         if '<!-- !bpop' in part:
-            pattern = r'<!-- !bpop (.*?)-->(.+?)<!-- !epop.*?-->'
+            pattern = r'<!-- !bpop (.*?)-->\s*(.+?)\s*<!-- !epop.*?-->'
             cpattern = re.compile(pattern, re.DOTALL)
             #import pprint;pprint.pprint(cpattern.findall(part))
             def subst(m):  # m is match object
@@ -1777,7 +1751,7 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
 
                     # Hack to preserve spacings before equation (see above),
                     # when <p> is removed (as we must do below)
-                    body = body.replace('<p>&nbsp;<br>', '&nbsp;<br>&nbsp;<br>')
+                    body = body.replace('<p>&nbsp;\s*<br>', '&nbsp;<br>&nbsp;<br>')
                     body = body.replace('<p>', '')  # can make strange behavior
                     # Add a <p class="fragments"> to the whole body
                     # (but only if not code or admon content?)
@@ -1807,7 +1781,7 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
                           r'<pre><code>\g<1></code></pre>',
                           part, flags=re.DOTALL)
         if slide_tp == 'reveal':
-            part = re.sub(r'<pre><code>(.+?)</code></pre>',
+            part = re.sub(r'<pre>\s*<code>(.+?)</code>\s*</pre>',
                           r'<pre><code data-trim contenteditable>\g<1></code></pre>',
                           part,
                           flags=re.DOTALL)
@@ -1824,9 +1798,9 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
                    '%s\n'
                    '%s\n'
                    '%s\n\n') % (slide_syntax[slide_tp]['slide_envir_begin'],
-       part,
-       copyright_,
-       slide_syntax[slide_tp]['slide_envir_end'])
+                                part,
+                                copyright_,
+                                slide_syntax[slide_tp]['slide_envir_end'])
     slides += ('\n%s\n\n'
                '</body>\n'
                '</html>\n') % (slide_syntax[slide_tp]['footer'])

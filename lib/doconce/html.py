@@ -1704,23 +1704,28 @@ def format_cell_html(formatted_code, formatted_output, execution_count, show):
 
 
 def html_remove_whitespace(filestr):
-    # Reduce redunant newlines and <p> (easy with lookahead pattern)
-    # Eliminate any <p> that goes with blanks up to <p> or a section
-    # heading
-    pattern = r'<p>\s+(?=<p>|<p id=|<[hH]\d[^>]*>)'
+    """Reduce redunant newlines and empty <p></p> tags
+
+    Eliminate any <p> that goes with blanks up to <p> or a section heading
+    :param str filestr: text string
+    :return: filestr
+    :rtype: str
+    """
+    #pattern = r'<p>\s+(?=<p>|<p id=|<[hH]\d[^>]*>)' #old: stray <p> should not be present
+    pattern = r'<p>\s*</p>'
     filestr = re.sub(pattern, '', filestr)
     # Extra blank before section heading
     pattern = r'(?<!center>)\s+(?=^<[hH]\d[^>]*>)'
     filestr = re.sub(pattern, '\n', filestr, flags=re.MULTILINE)
     # Elimate <p> before equations $$ and before lists
-    filestr = re.sub(r'<p>\s+(\$\$|<ul>|<ol>)', r'\g<1>', filestr)
+    filestr = re.sub(r'<p>\s*</p>\s+(\$\$|<ul>|<ol>)', r'\g<1>', filestr)
     # Eliminate <p> after </h1>, </h2>, etc.
     #filestr = re.sub(r'(</[hH]\d[^>]*>)\s+<p>', '\g<1>\n', filestr)
     #bad side effect in deck.js slides
     # Remove remaining too much space before <p>
     filestr = re.sub(r'\s{3,}<p>', r'\n\n<p>', filestr)
-    # Remove repeated <p>'s
-    filestr = re.sub(r'(\s+<p>){2,}', r'\g<1>', filestr)
+    # Remove repeated <p></p>'s
+    filestr = re.sub(r'(\s+<p>\s*</p>){2,}', r'\g<1>', filestr)
     # Remove <p> + space up to </endtag>
     filestr = re.sub(r'<p>\s+(?=</)', r'<p>\n', filestr)
     return filestr
