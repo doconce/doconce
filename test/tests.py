@@ -56,9 +56,8 @@ def apply_regex(logfilename, logfilenameout=None):
     # Open and create the log files
     if not logfilenameout:
         logfilenameout = logfilename
-    log = open(logfilename, 'r')
-    text = log.read()
-    log.close()
+    with open(logfilename, 'r') as fin:
+        text = fin.read()
     text += '\n\n'.join(system_output)
     date = r'[A-Z][a-z][a-z], \d?\d [A-Z][a-z][a-z] \d\d\d\d \(\d\d:\d\d\)'
     text = re.sub(date, r'Jan 32, 2100', text)
@@ -100,9 +99,8 @@ def apply_regex(logfilename, logfilenameout=None):
     text = re.sub(r'^[\s]*\d+[\.]*$', r'', text, flags=re.M)      #stray numbers: 5.
     text = re.sub(r'^[\s]*(?:\[\d+\]\s*)+$', r'', text, flags=re.M)  #stray numbers: [5] [6]
     text = re.sub(r'^[\s]*[\[\]]{2,}\s*$', r'', text, flags=re.M)       #parentheses [][][]
-    log = open(logfilenameout, 'w')
-    log.write(text)
-    log.close()
+    with open(logfilenameout, 'w') as fout:
+        fout.write(text)
 
 def run():
     thisdir = os.getcwd()
