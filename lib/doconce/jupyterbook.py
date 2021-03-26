@@ -2,7 +2,7 @@ import os, sys, shutil, re, glob, math
 from doconce import globals
 from .doconce import read_file, write_file, doconce2format, handle_index_and_bib, preprocess
 from .misc import option, help_print_options, check_command_line_options, system, _abort, \
-    find_file_with_extensions, _rmdolog, errwarn,  debugpr
+    find_file_with_extensions, folder_checker, _rmdolog, errwarn, debugpr
 from .common import INLINE_TAGS, remove_code_and_tex
 import json
 from .ipynb import img2ipynb
@@ -76,10 +76,12 @@ def jupyterbook():
         os.chdir(dirname)
         errwarn('*** doconce format now works in directory %s' % dirname)
         # fix dest, dest_roc, and finally dirname
-        dest = os.path.relpath(dest, start=dirname) + '/'
+        ##### this does not work with absolute path!
+        #make dist relative above
+        dest = os.path.relpath(dest or '.', start=dirname) + '/'
         if dest.startswith('./'):
             dest = dest[2:]
-        dest_toc = os.path.relpath(dest_toc, start=dirname) + '/'
+        dest_toc = os.path.relpath(dest_toc or '.', start=dirname) + '/'
         if dest_toc.startswith('./'):
             dest_toc = dest_toc[2:]
         dirname = ''
@@ -549,23 +551,6 @@ def read_to_list(file):
     with open(file, 'r') as f:
         out = f.read().splitlines()
     return out
-
-
-def folder_checker(dirname):
-    """Verify a path
-
-    Helper function to evaluate the existence and formatting of a folder
-
-    :param str dirname: Path to an existing folder
-    :return: directory name
-    :rtype: str
-    """
-    if not os.path.isdir(dirname):
-        errwarn('*** error : destination folder not found:\n    %s' % dirname)
-        _abort()
-    if not dirname.endswith('/'):
-        return dirname + '/'
-    return dirname
 
 
 def get_link_destinations(chunk):
