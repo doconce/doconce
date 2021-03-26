@@ -9650,8 +9650,9 @@ def find_file_with_extensions(filename_in, allowed_extensions=['']):
     :return: tuple of dirname, basename, extension, and filename
     :rtype: (str, str, str, str)
     """
-    # Get the directory name. It can be relative
+    # Get the directory name. Make it a relative path
     dirname = os.path.dirname(filename_in)
+    dirname = os.path.relpath(dirname or '.', start=os.getcwd())
     if dirname == '.':
         dirname = ''
     if dirname.startswith('./'):
@@ -9692,3 +9693,22 @@ def find_file_with_extensions(filename_in, allowed_extensions=['']):
         filename_out = filename_out[2:
                        ]
     return dirname, basename, ext, filename_out
+
+
+def folder_checker(dirname):
+    """Convert to relative path and verify that it exists
+
+    Helper function to evaluate the existence and formatting of a folder
+
+    :param str dirname: Path to an existing folder
+    :return: relative path to the input directory
+    :rtype: str
+    """
+    # Convert to path relative to current directory
+    dirname = os.path.relpath(dirname , start=os.getcwd())
+    if not os.path.isdir(dirname):
+        errwarn('*** error : destination folder not found:\n    %s' % dirname)
+        _abort()
+    if not dirname.endswith('/'):
+        return dirname + '/'
+    return dirname
