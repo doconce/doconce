@@ -196,28 +196,16 @@ def main():
 
     command = sys.argv[1]
     del sys.argv[1]
-    if command == '2format':
-        command = 'format'
-    if command == 'format':
-        # For backward compatibility:
-        if len(sys.argv) >= 2 and sys.argv[1] == 'LaTeX':
-            sys.argv[1] = 'latex'
-            print('\nWarning: Previous format LaTeX now has the name latex\n')
-        if len(sys.argv) >= 2 and sys.argv[1] == 'HTML':
-            sys.argv[1] = 'html'
-            print('\nWarning: Previous format HTML now has the name html\n')
-
-    # Treat wrong command name
-    retval = None
-    if command in commands:
-        retval = eval(command + '()')
-    else:
+    # Execute the command
+    if command not in commands:
         if command in ('html', 'latex', 'sphinx', 'rst', 'plain', 'gwiki', 'mwiki', 'epydoc', 'pandoc'):
             print('command', command, 'is not a legal command for doconce, did you mean')
             print('doconce format %s %s?' % (command, ' '.join(sys.argv[1:])))
         else:
             print('command "%s" is not legal, must be among\n' % command)
             print(', '.join(commands))
+        sys.exit(0)
+    retval = eval(command + '()')
     return retval
 
 bg_session = main()

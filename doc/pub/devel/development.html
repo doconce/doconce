@@ -1,0 +1,276 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/doconce/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Getting Started with Development">
+<title>Getting Started with Development</title>
+<!-- Bootstrap style: bootswatch_readable -->
+<link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/readable/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+<style type="text/css">
+/* Let inline verbatim have the same color as the surroundings */
+code { color: inherit; background-color: transparent; }
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:64px;      /* fixed header height for style bootswatch_readable */
+  margin:-64px 0 0; /* negative fixed header height */
+}
+</style>
+</head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [('The entry point `bin/doconce`',
+               1,
+               None,
+               'the-entry-point-bin-doconce'),
+              ('Python scripts in `lib/doconce/`',
+               1,
+               None,
+               'python-scripts-in-lib-doconce'),
+              ('Running in a IDE', 1, 'section:IDE', 'section:IDE'),
+              ('Running Tests', 1, None, 'running-tests'),
+              ('Compiling the documentation',
+               1,
+               None,
+               'compiling-the-documentation')]}
+end of tocinfo -->
+
+<body>
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="development.html">Getting Started with Development</a>
+  </div>
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#the-entry-point-bin-doconce" style="font-size: 80%;">The entry point <code>bin/doconce</code></a></li>
+     <!-- navigation toc: --> <li><a href="#python-scripts-in-lib-doconce" style="font-size: 80%;">Python scripts in <code>lib/doconce/</code></a></li>
+     <!-- navigation toc: --> <li><a href="#section:IDE" style="font-size: 80%;">Running in a IDE</a></li>
+     <!-- navigation toc: --> <li><a href="#running-tests" style="font-size: 80%;">Running Tests</a></li>
+     <!-- navigation toc: --> <li><a href="#compiling-the-documentation" style="font-size: 80%;">Compiling the documentation</a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+<div class="container">
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+<!-- ------------------- main content ---------------------- -->
+<div class="jumbotron">
+<center>
+<h1>Getting Started with Development</h1>
+</center>  <!-- document title -->
+<p></p>
+<!-- author(s): Alessandro Marin -->
+<center>
+<b>Alessandro Marin</b> 
+</center>
+<p><!-- institution --></p>
+<center>
+<b>Center for Computation in Science Education (CCSE), Department of Physics, University of Oslo</b>
+</center>
+<br>
+<center>
+<h4>Mar 27, 2021</h4>
+</center> <!-- date -->
+<br>
+<p></p>
+DocOnce is an open source project. 
+The aim of this guide is to help getting started with development. It describes the program's structure and how to set up a script that runs DocOnce from a Python IDE.
+<p></p>
+
+</div> <!-- end jumbotron -->
+<h1 id="the-entry-point-bin-doconce" class="anchor">The entry point <code>bin/doconce</code> </h1>
+The entry point of the doconce program is the file <code>bin/doconce</code>. In fact, the <code>setup.py</code> file contains this line invoking the <code>scripts</code> option to run commands from terminal:
+<p></p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default-t" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">setup(<span style="color: #666666">...</span>,
+  scripts <span style="color: #666666">=</span> [<span style="color: #BA2121">&#39;bin/doconce&#39;</span>],
+)
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+<p></p>
+Read more about <code>setup.py</code> on this page: <a href="https://docs.python.org/3/distutils/setupscript.html#installing-scripts" target="_self">setuptools</a>
+<p></p>
+The <code>main</code> function in <code>/bin/doconce</code> starts processing the <code>doconce</code> command and sends it to different scripts. 
+<p></p>
+Any <code>doconce format</code> command is passed to the <code>format()</code> function, which in turn calls <code>format_driver()</code> in <code>lib/doconce/doconce.py</code>. 
+<p></p>
+The <code>doconce format --help</code> command is passed help_format(). Other commands including undefined ones are handled locally. 
+<p></p>
+Most of the commands are handled by the <code>eval</code> function: 
+<p></p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default-t" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">retval <span style="color: #666666">=</span> <span style="color: #008000">eval</span>(command <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;()&#39;</span>)
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+<p></p>
+which passes execution to specific function that are imported in the beginning of the script.
+<p></p>
+<h1 id="python-scripts-in-lib-doconce" class="anchor">Python scripts in <code>lib/doconce/</code> </h1>
+<p></p>
+The <code>lib/doconce/</code> directory contains the scripts to run DocOnce. The name of the files give a clue about their purpose, e.g. <code>html.py</code> contains code that is run by <code>doconce format html</code>. The <code>doconce.py</code> file contains important formatting functions such as <code>doconce_format()</code>, <code>preprocess()</code>, <code>doconce2format()</code>, <code>file2file()</code>. 
+<p></p>
+I suggest navigating through the scripts by using an IDE with debugger. See the 
+the section <a href="#section:IDE">Running in a IDE</a>.
+<p></p>
+<h1 id="section:IDE" class="anchor">Running in a IDE</h1>
+<p></p>
+The following code can be used in a IDE such as <a href="https://www.jetbrains.com/pycharm/" target="_self">PyCharm</a>, <a href="https://www.eclipse.org/" target="_self">Eclipse</a>, <a href="https://visualstudio.microsoft.com/" target="_self">Microsoft Visual Studio</a>, or others.
+<p></p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default-t" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">sys</span><span style="color: #666666">,</span> <span style="color: #0000FF; font-weight: bold">os</span>
+<span style="color: #408080; font-style: italic"># Add the doconce installation directory to the path</span>
+HOME <span style="color: #666666">=</span> os<span style="color: #666666">.</span>getenv(<span style="color: #BA2121">&quot;HOME&quot;</span>)
+sys<span style="color: #666666">.</span>path<span style="color: #666666">.</span>insert(<span style="color: #666666">0</span>, os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>join(HOME, <span style="color: #BA2121">&#39;doconce/lib&#39;</span>))
+<span style="color: #408080; font-style: italic"># Load the doconce.py file</span>
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">doconce</span> <span style="color: #008000; font-weight: bold">import</span> doconce
+
+<span style="color: #408080; font-style: italic"># Format to html</span>
+os<span style="color: #666666">.</span>chdir(os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>join(HOME, <span style="color: #BA2121">&#39;doconce/test&#39;</span>))
+sys<span style="color: #666666">.</span>argv <span style="color: #666666">=</span> [<span style="color: #BA2121">&#39;doconce format&#39;</span>, <span style="color: #BA2121">&#39;html&#39;</span>, <span style="color: #BA2121">&#39;testdoc.do.txt&#39;</span>,<span style="color: #BA2121">&#39;--html_output=temp&#39;</span>,<span style="color: #BA2121">&#39;--execute&#39;</span>]
+doconce<span style="color: #666666">.</span>format_driver()
+sys<span style="color: #666666">.</span>exit()  <span style="color: #408080; font-style: italic">#stop execution here</span>
+
+<span style="color: #408080; font-style: italic"># Create a jupyterbook</span>
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">doconce.jupyterbook</span> <span style="color: #008000; font-weight: bold">import</span> jupyterbook
+os<span style="color: #666666">.</span>chdir(os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>join(HOME, <span style="color: #BA2121">&#39;doconce/test/mybook&#39;</span>))
+sys<span style="color: #666666">.</span>argv <span style="color: #666666">=</span> [<span style="color: #BA2121">&#39;doconce jupyterbook&#39;</span>, <span style="color: #BA2121">&#39;jupyterbook.do.txt&#39;</span>,
+            <span style="color: #BA2121">&#39;--sep=section&#39;</span>, <span style="color: #BA2121">&#39;--sep_section=subsection&#39;</span>,
+            <span style="color: #BA2121">&#39;--dest=content&#39;</span>,<span style="color: #BA2121">&#39;--dest_toc=.&#39;</span>,
+            <span style="color: #BA2121">&#39;--titles=titles.txt&#39;</span>, 
+            <span style="color: #BA2121">&#39;--allow_refs_to_external_docs&#39;</span>]
+jupyterbook()
+<span style="color: #008000">print</span>(os<span style="color: #666666">.</span>system(<span style="color: #BA2121">&#39;jupyter-book build .&#39;</span>));
+sys<span style="color: #666666">.</span>exit()  <span style="color: #408080; font-style: italic">#stop execution here</span>
+
+<span style="color: #408080; font-style: italic"># Format to latex</span>
+os<span style="color: #666666">.</span>chdir(os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>join(HOME, <span style="color: #BA2121">&#39;doconce/test&#39;</span>))
+sys<span style="color: #666666">.</span>argv <span style="color: #666666">=</span> [<span style="color: #BA2121">&#39;doconce format&#39;</span>, <span style="color: #BA2121">&#39;latex&#39;</span>, <span style="color: #BA2121">&#39;execute.do.txt&#39;</span>, 
+            <span style="color: #BA2121">&#39;--execute&#39;</span>, 
+            <span style="color: #BA2121">&#39;--latex_font=helvetica&#39;</span>, <span style="color: #BA2121">&#39;--latex_code_style=pyg&#39;</span>]
+doconce<span style="color: #666666">.</span>format_driver()
+<span style="color: #408080; font-style: italic"># Run a function in a py script</span>
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">doconce.misc</span> <span style="color: #008000; font-weight: bold">import</span> ptex2tex;
+ptex2tex()
+os<span style="color: #666666">.</span>system(<span style="color: #BA2121">&#39;pdflatex -shell-escape execute.tex&#39;</span>);
+os<span style="color: #666666">.</span>system(<span style="color: #BA2121">&#39;dvipdf execute.dvi&#39;</span>);
+os<span style="color: #666666">.</span>system(<span style="color: #BA2121">&#39;xreader execute.pdf&#39;</span>);
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+<p></p>
+As an example for PyCharm, see the guide <a href="https://www.jetbrains.com/help/pycharm/creating-and-editing-run-debug-configurations.html" target="_self">Create and edit run/debug configurations&#65279;</a> to set up create and edit run/debug configurations&#65279;. I suggest using a virtual environment as <a href="https://www.jetbrains.com/help/pycharm/python-interpreters.html" target="_self">Python interpreter</a>.
+<p></p>
+<h1 id="running-tests" class="anchor">Running Tests </h1>
+<p></p>
+Tests are written in the <code>test/</code> folder. See the instructions in the <code>README</code> file. 
+<p></p>
+New tests using <code>pytest</code> library are currently under development. They can be run with 
+<p></p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default-t" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">pytest <span style="color: #666666">-</span>v test_run<span style="color: #666666">.</span>py
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+<p></p>
+<h1 id="compiling-the-documentation" class="anchor">Compiling the documentation </h1>
+<p></p>
+The documentation is written as DocOnce <code>.do.txt</code> files in different folder inside <code>doc/src/</code>, for example <code>doc/src/manual/</code>, <code>doc/src/quickref/</code>, <code>doc/src/tutorial/</code>. These folders contains a <code>make.sh</code> file that can be run in <code>bash</code> to create documentation in  different formats: 
+<p></p>
+
+<!-- code=bash (!bc shcod) typeset with pygments style "default-t" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">bash make.sh
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+<p></p>
+All relevant output files are copied to <code>doc/pub</code> for publication on the github website.
+<!-- ------------------- end of main content --------------- -->
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<!-- Bootstrap footer
+<footer>
+<a href="https://..."><img width="250" align=right src="https://..."></a>
+</footer>
+-->
+</body>
+</html>
+    
+
