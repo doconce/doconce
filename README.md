@@ -112,7 +112,6 @@ independently of the book, thus lowering the barrier of writing books
 (see [example](https://github.com/hplgit/setup4book-doconce)).
 
 
-
 ### News
 
 Here are some of the most recent features and enhancements in DocOnce:
@@ -125,43 +124,10 @@ Here are some recent books written in DocOnce:
 <!-- <img src="doc/src/manual/fig/doconce_books.jpg" width=600> -->
 ![](doc/src/manual/fig/doconce_books.jpg)
 
-### Installation
 
-DocOnce is a pure Python package and can be installed with `pip`.
+### Contribute to DocOnce
 
-
-```
-Terminal> pip install --upgrade git+https://github.com/doconce/preprocess
-Terminal> pip install --upgrade .
-```
-
-*Notice.* 
-If you first installed DocOnce prior to February 2017, you must remove the old installation before upgrading. See instructions in [issue #110](https://github.com/hplgit/doconce/issues/110).
-
-
-However, DocOnce has *a lot* of dependencies, depending on what type of
-formats you want to work with and how advanced constructions that are
-used in the text.
-
-With Anaconda it is trivial to install DocOnce and all dependencies by
-
-```
-Terminal> conda config --add channels conda-forge
-Terminal> conda install doconce
-```
-
-*Warning.* 
-As of March 2017, a few dependencies have yet to be added to the `conda-forge` channel, but most formats should work fine.
-
-
-
-
-On Debian/Ubuntu it is fairly straightforward to get the packages you need. You can run a 
-[Python script](https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.py) or an equivalent [Bash script](https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.sh). 
-Such a script installs a very comprehensive bundle of software. You can read the [Installation Guide](http://doconce.github.io/doconce/doc/pub/manual/html/manual.html#installation-of-doconce-and-its-dependencies) to get a more
-detailed description of what is needed of software for various purposes.
-For HTML output, for example, you can usually get away with just installing
-the pure DocOnce source (and perhaps the preprocessors if you use them).
+Refer to the guide [Getting Started with Development](http://doconce.github.io/doconce/doc/pub/devel/development.html). There you can read about how the DocOnce project is structured, and how to write a run/debug configuration script for a Python IDE. 
 
 
 ### Demo
