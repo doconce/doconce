@@ -1,0 +1,79 @@
+TITLE: Project 5: Explore Distributions of Random Circles
+AUTHOR: Jane Doe Email:jane.doe@cyberspace.net
+DATE: Due Jan 32, 2100
+
+# Logical name of exercise: norm
+# This document contains references to a parent document (../testdoc).
+# These references will work for latex (using the xr package and
+# a compiled parent document (with ../testdoc.aux file), but other formats
+# will have missing references.
+# Externaldocuments: ../testdoc
+
+
+# keywords = ipynb
+
+The formula for a circle is given by
+
+!bt
+\begin{align}
+x &= x_0 + R\cos 2\pi t,
+label{circle:x}\\ 
+y &= y_0 + R\sin 2\pi t,
+label{circle:y}
+\end{align}
+!et
+where $R$ is the radius of the circle, $(x_0,y_0)$ is the
+center point, and $t$ is a parameter in the unit interval $[0,1]$.
+For any $t$, $(x,y)$ computed from (ref{circle:x})-(ref{circle:y})
+is a point on the circle.
+The formula can be used to generate `n` points on a circle:
+
+!bc pypro
+import numpy as np
+
+def circle(R, x0, y0, n=501):
+    t = np.linspace(0, 1, n)
+    x = x0 + R*np.cos(2*np.pi*t)
+    y = y0 + R*np.sin(2*np.pi*t)
+    return x, y
+
+x, y = circle(2.0, 0, 0)
+!ec
+
+# Often in an exercise we have some comments about the solution
+# which we normally want to keep where they are.
+
+The goal of this project is to draw $N$ circles with random
+center and radius. Plot each circle using the `circle` function
+above.
+
+
+__a)__
+Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
+
+
+__Hint.__
+Use the `numpy.random` module to draw the
+$x_0$, $y_0$, and $R$ quantities.
+
+
+
+
+
+
+__b)__
+Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
+
+
+__c)__
+Let $R$ and $(x_0,y_0)$ be normally distributed.
+
+
+
+
+# Closing remarks for this Project
+
+=== Remarks ===
+
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.

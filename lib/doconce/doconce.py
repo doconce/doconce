@@ -1202,7 +1202,7 @@ def insert_code_from_file(filestr, format):
                     dummyfile.close()
                     codefile = open(filename, 'r')
                 else:
-                    errwarn(e)
+                    errwarn(str(e))
                     _abort()
 
             # Check if the code environment is explicitly specified

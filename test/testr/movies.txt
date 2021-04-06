@@ -1,0 +1,59 @@
+This is a demo of movies in DocOnce
+===================================
+
+HPL
+
+Date: Jan 32, 2100
+
+Here is a movie in WebM format.
+
+1D wave in WebM. ../doc/src/manual/mov/wave.webm: load movie_player1.html (movie_player1.html) into a browser
+
+Here is the same movie in Ogg format:
+
+1D wave in Ogg. ../doc/src/manual/mov/wave.ogg: load movie_player2.html (movie_player2.html) into a browser
+
+Here is the same movie in MP4 format:
+
+1D wave in MP4. ../doc/src/manual/mov/wave.mp4: load movie_player3.html (movie_player3.html) into a browser
+
+Here is the same movie in Flash format:
+
+1D wave in Flash. ../doc/src/manual/mov/wave.flv: load movie_player4.html (movie_player4.html) into a browser
+
+And here is a collection of images shown as an animation
+(frame_*.png):
+
+Animated collection of images. ../doc/src/manual/mov/wave_frames/frame_*.png: load movie_player5.html (movie_player5.html) into a browser
+
+Here is the same collection, but with images in cyberspace, given as URLs::
+
+        https://hplgit.github.io/animate/..../frame_%04d.png:80->129
+
+Taking images to animate from cyberspace. https://hplgit.github.io/animate/doc/pub/mov-animate/frames/frame_%04d.png:80->129: load movie_player6.html (movie_player6.html) into a browser
+
+The movie above in MPEG format, typeset in a box:
+
+
+|---------------------------------------------------------------------------------------------------------------|
+| 1D wave in MPEG. ../doc/src/manual/mov/wave.mpeg: load movie_player7.html (movie_player7.html) into a browser |
+|---------------------------------------------------------------------------------------------------------------|
+
+
+Here is the same movie in AVI format:
+
+1D wave in AVI. ../doc/src/manual/mov/wave.avi: load movie_player8.html (movie_player8.html) into a browser
+
+Here is the same movie, but with a URL to GitHub:
+
+ https://hplgit.github.io/animate/doc/pub/mov-animate/demo.ogg: load movie_player9.html (movie_player9.html) into a browser
+
+Here is a YouTube video:
+
+YouTube movie. https://www.youtube.com/watch?v=_O7iUiftbKU: load movie_player10.html (movie_player10.html) into a browser
+
+And a vimeo video:
+
+Vimeo movie. https://vimeo.com/55562330: load movie_player11.html (movie_player11.html) into a browser
+
+Finally, let us demonstrate referencing the movie ref{mov:wave}.

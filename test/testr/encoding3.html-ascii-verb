@@ -1,0 +1,445 @@
+
+<!-- tocinfo
+{'highest level': 4, 'sections': []}
+end of tocinfo -->
+
+<!-- ------------------- main content ---------------------- -->
+Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+<p></p>
+<pre>a = 1  # Value suggested by Åsmund Ødegård.
+</pre>
+<p></p>
+<!-- ------------------- end of main content --------------- -->
+
+
+    This is a log file for the doconce script.
+    Debugging is turned on by the command-line argument '--debug'
+    to doconce format. Without that command-line argument,
+    this file is not produced.
+
+
+
+******* output format: html *******
+
+
+
+
+Found use of 2 preprocess directives # #if|define|include in file encoding3.do.txt
+
+
+
+************************************************************
+str>>> The file after running preprocess and/or mako:
+
+## Test of handling non-ASCII characters in DocOnce
+Text with a name like Åsmund Ødegård works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+
+!bc
+a = 1  # Value suggested by Åsmund Ødegård.
+!ec
+
+
+
+
+************************************************************
+str>>> The file after running @@@OSCMD (from file):
+
+## Test of handling non-ASCII characters in DocOnce
+Text with a name like Åsmund Ødegård works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+
+!bc
+a = 1  # Value suggested by Åsmund Ødegård.
+!ec
+
+
+
+
+************************************************************
+str>>> The file after inserting @@@CODE (from file):
+
+## Test of handling non-ASCII characters in DocOnce
+Text with a name like Åsmund Ødegård works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+
+!bc
+a = 1  # Value suggested by Åsmund Ødegård.
+!ec
+
+
+
+
+************************************************************
+str>>> The file after removal of code/tex blocks:
+
+## Test of handling non-ASCII characters in DocOnce
+Text with a name like Åsmund Ødegård works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+
+0 <<<!!CODE_BLOCK 
+
+
+
+
+************************************************************
+str>>> The code blocks:
+
+0:
+a = 1  # Value suggested by Åsmund Ødegård.
+
+------------
+
+
+************************************************************
+str>>> The code block types:
+
+
+The tex blocks:
+
+
+
+************************************************************
+str>>> The file after handling exercises:
+
+Text with a name like Åsmund Ødegård works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+
+0 <<<!!CODE_BLOCK 
+
+
+
+
+************************************************************
+str>>> The file after handling figures:
+
+Text with a name like Åsmund Ødegård works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+
+0 <<<!!CODE_BLOCK 
+
+
+
+
+************************************************************
+str>>> The file after handling ref and label cross referencing:
+
+Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+
+0 <<<!!CODE_BLOCK 
+
+
+
+************************************************************
+str>>> The file after handling index and bibliography:
+
+Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+
+0 <<<!!CODE_BLOCK 
+
+
+*** List typesetting phase + comments and blank lines ***
+
+
+[Text with a name like &#197;smund &#216;deg&#229;rd works in general.] (ordinary line)
+
+
+[Verbatim blocks with non-ASCII text does not work for HTML, but it works] (ordinary line)
+
+
+[for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.] (ordinary line)
+
+
+[0 <<<!!CODE_BLOCK ] (ordinary line)
+
+
+
+************************************************************
+str>>> The file after typesetting of lists:
+
+Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+
+<p></p>
+0 <<<!!CODE_BLOCK 
+
+<p></p>
+
+
+*** Dealing with authors and institutions ***
+
+
+
+*** Inline tags substitution phase ***
+
+
+
+*************** Working with tag "horizontal-rule"
+
+
+
+*************** Working with tag "title"
+
+
+
+*************** Working with tag "date"
+
+
+
+*************** Working with tag "movie"
+
+
+
+*************** Working with tag "inlinecomment"
+
+
+
+*************** Working with tag "abstract"
+
+
+
+*************** Working with tag "keywords"
+
+
+
+*************** Working with tag "emphasize"
+
+
+
+*************** Working with tag "math2"
+
+
+
+*************** Working with tag "math"
+
+
+
+*************** Working with tag "bold"
+
+
+
+*************** Working with tag "ampersand2"
+
+
+
+*************** Working with tag "ampersand1"
+
+
+
+*************** Working with tag "colortext"
+
+
+
+*************** Working with tag "verbatim"
+
+
+
+*************** Working with tag "emoji"
+
+
+
+*************** Working with tag "paragraph"
+
+
+
+*************** Working with tag "plainURL"
+
+
+
+*************** Working with tag "linkURL2v"
+
+
+
+*************** Working with tag "linkURL3v"
+
+
+
+*************** Working with tag "linkURL2"
+
+
+
+*************** Working with tag "linkURL3"
+
+
+
+*************** Working with tag "linkURL"
+
+
+
+*************** Working with tag "chapter"
+
+
+
+*************** Working with tag "section"
+
+
+
+*************** Working with tag "subsection"
+
+
+
+*************** Working with tag "subsubsection"
+
+
+
+*************** Working with tag "linebreak"
+
+
+
+*************** Working with tag "non-breaking-space"
+
+
+
+************************************************************
+str>>> The file after all inline substitutions:
+
+Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+
+<p></p>
+0 <<<!!CODE_BLOCK 
+
+<p></p>
+
+
+************************************************************
+str>>> The file after typesetting of tables:
+
+Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+
+<p></p>
+0 <<<!!CODE_BLOCK 
+
+<p></p>
+
+
+************************************************************
+str>>> The file after commenting out !split, !bpop, !epop, !bslidecell, !eslidecell, !bnotes, !enotes:
+
+Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+
+<p></p>
+0 <<<!!CODE_BLOCK 
+
+<p></p>
+
+
+************************************************************
+str>>> File before call to insert_code_blocks (format html):
+
+<!-- ------------------- main content ---------------------- -->
+Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+<p></p>
+<pre>a = 1  # Value suggested by Åsmund Ødegård.
+</pre>
+<p></p>
+<!-- ------------------- end of main content --------------- -->
+
+
+************************************************************
+str>>> File after call to insert_code_and tex (format html):
+
+<!-- ------------------- main content ---------------------- -->
+Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+<p></p>
+<pre>a = 1  # Value suggested by Åsmund Ødegård.
+</pre>
+<p></p>
+<!-- ------------------- end of main content --------------- -->
+
+
+************************************************************
+str>>> After replacement of !bc and !ec (pygmentized code):
+
+<!-- ------------------- main content ---------------------- -->
+Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+<p></p>
+<pre>a = 1  # Value suggested by Åsmund Ødegård.
+</pre>
+<p></p>
+<!-- ------------------- end of main content --------------- -->
+
+
+************************************************************
+str>>> The file after inserting intro/outro and tex/code blocks, and fixing last format-specific issues:
+
+
+<!-- tocinfo
+{'highest level': 4, 'sections': []}
+end of tocinfo -->
+
+<!-- ------------------- main content ---------------------- -->
+Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+<p></p>
+<pre>a = 1  # Value suggested by Åsmund Ødegård.
+</pre>
+<p></p>
+<!-- ------------------- end of main content --------------- -->
+
+
+
+************************************************************
+str>>> The file after typesetting of admons and the rest of the !b/!e environments:
+
+
+<!-- tocinfo
+{'highest level': 4, 'sections': []}
+end of tocinfo -->
+
+<!-- ------------------- main content ---------------------- -->
+Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+<p></p>
+<pre>a = 1  # Value suggested by Åsmund Ødegård.
+</pre>
+<p></p>
+<!-- ------------------- end of main content --------------- -->
+
+
+
+************************************************************
+str>>> The file after potential removal of solutions, answers, hints, etc.:
+
+
+<!-- tocinfo
+{'highest level': 4, 'sections': []}
+end of tocinfo -->
+
+<!-- ------------------- main content ---------------------- -->
+Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+<p></p>
+<pre>a = 1  # Value suggested by Åsmund Ødegård.
+</pre>
+<p></p>
+<!-- ------------------- end of main content --------------- -->
+
+

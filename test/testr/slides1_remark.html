@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<style type="text/css">
+   @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+   @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+   @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+body { font-family: 'Droid Serif'; }
+h1, h2, h3 {
+  font-family: 'Yanone Kaffeesatz';
+  font-weight: normal;
+}
+.remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+</style>
+</head>
+
+<body>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+<textarea id="source">
+
+class: center, middle
+
+# Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides
+
+
+### **Hans Petter Langtangen** at Simula Research Laboratory and University of Oslo
+
+
+### Jan 32, 2100
+
+Made with DocOnce
+
+
+
+---
+
+# This is the first section
+<!-- Short title: First -->
+
+---
+
+## Figure and bullet list
+
+*Title with comma, and brackets: \\( [a,b] \\)* 
+  * Here is a *wave signal* \\( f(x-ct) \\)
+  * It moves with velocity \\( c \\)
+  * But here it is just a figure
+
+
+.center[<img src="../doc/src/manual/fig/wave1D.png" width=300>]
+
+
+---
+
+## Slide with pop-ups in red and notes
+
+[hpl 1: Comments are typeset as usual in DocOnce.]
+
+<!-- !bpop highlight-red -->
+Here we have a paragraph to pop up in red.<br />
+And a line more
+---
+
+## A LaTeX document
+
+```
+\documentclass[11pt]{article}
+\usepackage{fancyvrb}
+\begin{document}
+
+\title{Here goes the title...}
+\author{John Doe \and
+Jane Doe\footnote{\texttt{jane.doe@cyber.net}.}}
+\date{\today}
+\maketitle
+```
+
+*Notice.* 
+LaTeX has a lot of backslashes.
+
+
+```
+\section{Heading}
+bla-bla
+\end{document}
+```
+
+---
+
+## An HTML document
+
+
+```html
+<html><head></head><body bgcolor="red">
+<title>Here goes the title...<title>
+<h1>Section heading</h1>
+</body>
+</html>
+```
+
+---
+
+# Second section
+
+.center[<img src="../doc/src/manual/fig/wave1D.png" width=600>]
+
+
+
+---
+
+## Some math and computer code
+
+*A simple, mathematical formula where \\( t\in [0,\pi] \\):* 
+$$
+f(x,y,t) = e^{-xt}\sin\pi y
+$$
+
+*Bash demanded more of DocOnce than Python, so let's do Bash:* 
+First, inline `\\( ? != 0`, then comments with dollar variables (and minted
+style):
+
+
+```shell
+var=10
+#  \\)1, \\( 2, ... are command-line args
+if [  \\)? -eq 0 ]; then   # $? reflects success or not
+  echo "Great!"
+fi
+```
+
+
+
+---
+
+## Pop ups inside code blocks (for Beamer slides only)
+
+
+```python
+def f(x):
+    return 42 + x
+
+def g(x):
+    return f(42)
+
+print(g(13))
+```
+
+---
+
+## Various admon blocks
+
+Can use admons to simulate blocks:
+
+*Key PDE (with large title and math font):* 
+$$
+\frac{\partial u}{\partial t} = \nabla^2 u
+$$
+
+*None* 
+Just some block with text and a conclusion that something is important.
+This one pops up after the rest of the slide.
+
+
+Can use, e.g., a warning admon to have my own notes, preferably
+inside preprocess/mako if statements to turn notes on and off.
+This one is typeset in a small font and with the default
+title (Warning) since no title is specified.
+
+
+
+
+</textarea>
+<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+  var slideshow = remark.create();
+</script>
+</body>
+</html>

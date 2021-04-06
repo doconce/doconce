@@ -1,0 +1,3454 @@
+# DocOnce Quick Reference
+### Author
+
+**Hans Petter Langtangen** at Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo
+#### Date: Jan 32, 2100
+<!-- Table of contents: Run pandoc with --toc option -->
+
+**WARNING: This quick reference is very incomplete!**
+
+*Mission.* Enable writing documentation with much mathematics and
+computer code *once, in one place* and include it in traditional LaTeX
+books, thesis, and reports, and, without extra efforts, also make
+professional looking web versions with Sphinx or HTML. Other outlets
+include Google's `blogger.com`, Wikipedia/Wikibooks, IPython/Jupyter
+notebooks, plus a wide variety of other formats for documents without
+mathematics and code.
+
+### Supported Formats
+
+DocOnce currently translates files to the following formats:
+
+ * LaTeX (format `latex` or `pdflatex`)
+ * HTML (format `html`)
+ * Sphinx (format `sphinx`)
+ * Pandoc-extended or GitHub-flavored Markdown (format `pandoc`)
+ * IPython notebook (format `ipynb`)
+ * Matlab notebook (format `matlabnb`)
+ * MediaWiki (format `mwiki`)
+ * Googlecode wiki (format `gwiki`)
+ * Creoloe wiki (format `cwiki`)
+ * reStructuredText (format `rst`)
+ * plain (untagged) ASCII (format `plain`)
+ * Epydoc (format `epydoc`)
+ * StructuredText (format `st`)
+
+For documents with much code and mathematics, the best (and most supported)
+formats are `latex`, `pdflatex`, `sphinx`, and `html`; and to a slightly
+less extent `mwiki` and `pandoc`. The HTML format supports blog posts on
+Google and Wordpress.
+
+*Use a text editor with monospace font!* 
+Some DocOnce constructions are sensitive to whitespace,
+so you *must* use a text editor with monospace font.
+
+
+
+### Emacs syntax support
+
+The file [.doconce-mode.el](https://github.com/doconce/doconce/blob/master/misc/.doconce-mode.el)
+in the DocOnce source distribution gives a "DocOnce Editing Mode" in
+Emacs. Store the raw version of the file in the home directory and add
+`(load-file "~/.doconce-mode.el")` to the `.emacs` file.
+
+Besides syntax highlighting of DocOnce documents, this Emacs mode
+provides a lot of shortcuts for setting up many elements in a document:
+
+<table border="1">
+<thead>
+<tr><th align="center">  Emacs key  </th> <th align="center">                Action                </th> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   Ctrl+c f         </td> <td align="left">   figure                                    </td> </tr>
+<tr><td align="left">   Ctrl+c v         </td> <td align="left">   movie/video                               </td> </tr>
+<tr><td align="left">   Ctrl+c h1        </td> <td align="left">   heading level 1 (section/h1)              </td> </tr>
+<tr><td align="left">   Ctrl+c h2        </td> <td align="left">   heading level 2 (subsection/h2)           </td> </tr>
+<tr><td align="left">   Ctrl+c h3        </td> <td align="left">   heading level 2 (subsection/h3)           </td> </tr>
+<tr><td align="left">   Ctrl+c hp        </td> <td align="left">   heading for paragraph                     </td> </tr>
+<tr><td align="left">   Ctrl+c me        </td> <td align="left">   math environment: <code>!bt</code> equation <code>!et</code>    </td> </tr>
+<tr><td align="left">   Ctrl+c ma        </td> <td align="left">   math environment: <code>!bt</code> align <code>!et</code>       </td> </tr>
+<tr><td align="left">   Ctrl+c ce        </td> <td align="left">   code environment: <code>!bc</code> code <code>!ec</code>        </td> </tr>
+<tr><td align="left">   Ctrl+c cf        </td> <td align="left">   code from file: <code>@@@CODE</code>                 </td> </tr>
+<tr><td align="left">   Ctrl+c table2    </td> <td align="left">   table with 2 columns                      </td> </tr>
+<tr><td align="left">   Ctrl+c table3    </td> <td align="left">   table with 3 columns                      </td> </tr>
+<tr><td align="left">   Ctrl+c table4    </td> <td align="left">   table with 4 columns                      </td> </tr>
+<tr><td align="left">   Ctrl+c exer      </td> <td align="left">   exercise outline                          </td> </tr>
+<tr><td align="left">   Ctrl+c slide     </td> <td align="left">   slide outline                             </td> </tr>
+<tr><td align="left">   Ctrl+c help      </td> <td align="left">   print this table                          </td> </tr>
+</tbody>
+</table>
+### Title, Authors, and Date
+
+A typical example of giving a title, a set of authors, a date,
+and an optional table of contents
+reads
+
+
+        TITLE: On an Ultimate Markup Language
+        AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo
+        AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
+        AUTHOR: A. Dummy Author
+        DATE: today
+        TOC: on
+
+The entire title must appear on a single line.
+The author syntax is
+
+        name Email: somename@adr.net at institution1 & institution2
+
+where the email is optional, the "at" keyword is required if one or
+more institutions are to be specified, and the `&` keyword
+separates the institutions (the keyword `and` works too).
+Each author specification must appear
+on a single line.
+When more than one author belong to the
+same institution, make sure that the institution is specified in an identical
+way for each author.
+
+The date can be set as any text different from `today` if not the
+current date is wanted, e.g., `Jan 32, 2100`.
+
+The table of contents is removed by writing `TOC: off`.
+
+### Copyright
+
+<!-- Recall to ident AUTHOR commands to avoid interpretation -->
+
+Copyright for selected authors and/or institutions are easy to insert as part
+of the `AUTHOR` command. The copyright syntax is
+
+
+        {copyright,year1-year2|license}
+
+and can be placed after the author or after an institution, e.g.,
+
+
+         AUTHOR: name Email: somename@adr.net {copyright,2006-present} at inst1
+         AUTHOR: name {copyright} at inst1 {copyright}
+
+The first line gives `name` a copyright for 2006 up to the present year,
+while the second line gives copyright to `name` and the institution `inst1`
+for the present year. The license can be any formulation, but there are
+some convenient abbreviations for Creative Commons ("public domain")
+licenses: `CC BY` for Creative Commons Attribution 4.0 license,
+`CC BY-NC` for Creative Commons Attribution-NonCommercial 4.0 license.
+For example,
+
+
+         AUTHOR: name1 {copyright|CC BY} at institution1
+         AUTHOR: name2 {copyright|CC BY} at institution2
+
+is a very common copyright for the present year with the Attribution license.
+The copyright must be identical for all authors and institutions.
+
+### Section Types
+<div id="quick:sections"></div>
+
+<table border="1">
+<thead>
+<tr><th align="center"> Section type</th> <th align="center">                   Syntax                  </th> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   chapter          </td> <td align="left">   <code>========= Heading ========</code> (9 <code>=</code>)           </td> </tr>
+<tr><td align="left">   section          </td> <td align="left">   <code>======= Heading =======</code>    (7 <code>=</code>)           </td> </tr>
+<tr><td align="left">   subsection       </td> <td align="left">   <code>===== Heading =====</code>        (5 <code>=</code>)           </td> </tr>
+<tr><td align="left">   subsubsection    </td> <td align="left">   <code>=== Heading ===</code>            (3 <code>=</code>)           </td> </tr>
+<tr><td align="left">   paragraph        </td> <td align="left">   <code>__Heading.__</code>               (2 <code>_</code>)           </td> </tr>
+<tr><td align="left">   abstract         </td> <td align="left">   <code>__Abstract.__</code> Running text...                </td> </tr>
+<tr><td align="left">   appendix         </td> <td align="left">   <code>======= Appendix: heading =======</code> (7 <code>=</code>)    </td> </tr>
+<tr><td align="left">   appendix         </td> <td align="left">   <code>===== Appendix: heading =====</code> (5 <code>=</code>)        </td> </tr>
+<tr><td align="left">   exercise         </td> <td align="left">   <code>===== Exercise: heading =====</code> (5 <code>=</code>)        </td> </tr>
+</tbody>
+</table>
+Note that abstracts are recognized by starting with `__Abstract.__` or
+`__Summary.__` at the beginning of a line and ending with three or
+more `=` signs of the next heading.
+
+The `Exercise:` keyword can be substituted by `Problem:` or `Project:`.
+A recommended convention is that an exercise is tied to the text,
+a problem can stand on its own, and a project is a comprehensive
+problem.
+
+### Inline Formatting
+
+Words surrounded by `*` are emphasized: `*emphasized words*` becomes
+*emphasized words*. Similarly, an underscore surrounds words that
+appear in boldface: `_boldface_` becomes **boldface**. Colored words
+are also possible: the text
+
+
+        `color{red}{two red words}`
+
+becomes <font color="red">two red words</font>.
+(But colors do not work in format pandoc).
+
+Quotations appear inside double backticks and double single quotes:
+
+
+        This is a sentence with ``words to be quoted''.
+
+A forced linebreak is specified by `<linebreak>` at the point where the
+linebreak in the output is wanted.
+
+Footnotes use a label in the text with the footnote text separate,
+preferably after the paragraph where the footnote appears:
+
+
+        Differentiating[^diff2] this equation leads
+        to a new and much simpler equation.
+        
+        [^diff2]: More precisely, we apply the divergence
+        $\nabla\cdot$ on both sides.
+        
+        Here comes a new paragraph...
+
+Non-breaking space is inserted using the tilde character as in LaTeX:
+
+
+        This distance corresponds to 7.5~km, which is traveled in $7.5/5$~s.
+
+A horizontal rule for separating content vertically, like this:
+
+-----
+
+is typeset as four or more hyphens on a single line:
+
+
+        ---------
+
+The `latex`, `pdflatex`, `sphinx`, and `html` formats support em-dash,
+indicated by three hyphens: `---`. Here is an example:
+
+
+        The em-dash is used - without spaces - as alternative to hyphen with
+        space around in sentences---this way, or in quotes:
+        *Premature optimization is the root of all evil.*--- Donald Knuth.
+
+This text is in the pandoc rendered as
+
+The em-dash is used - without spaces - as alternative to hyphen with
+space around in sentences&mdash;this way, or in quotes:
+*Premature optimization is the root of all evil.*&mdash; Donald Knuth.
+
+The en-dash consists of two hyphens, either with blanks on both sides &ndash; for
+something in the middle of a sentence &ndash; or in number ranges like 240&ndash;249.
+LaTeX writes are used to and fond of en-dash.
+
+An ampersand, as in Guns & Roses or Texas A&M, is written as a
+plain `&` *with space(s) on both sides*. Single upper case letters on each
+side of `&`, as in `Texas A & M`, remove the spaces and result in
+Texas A&M, while words on both sides of `&`, as in `Guns & Roses`,
+preserve the spaces: Guns & Roses. Failing to have spaces before and
+after `&` will result in wrong typesetting of the ampersand in the `html`,
+`latex`, and `pdflatex` formats.
+
+Emojis, as defined in <http://www.emoji-cheat-sheet.com>, can be
+inserted in the text, as (e.g.) `:dizzy_face:` with blank or newline
+before or after :dizzy_face: Only the `pdflatex`, `html`, and `pandoc` output
+formats translate emoji specifications to images, while all other
+formats leave the textual specification in the document. The
+command-line option `--no_emoji` removes all emojis from the output
+document.
+
+### Lists
+
+There are three types of lists: *bullet lists*, where each item starts
+with `*`, *enumeration lists*, where each item starts with `o` and gets
+consecutive numbers,
+and *description* lists, where each item starts with `-` followed
+by a keyword and a colon.
+
+        Here is a bullet list:
+        
+         * item1
+         * item2
+          * subitem1 of item2
+          * subitem2 of item2,
+            second line of subitem2
+         * item3
+        
+        Note that sublists are consistently indented by one or more blanks as
+        shown: bullets must exactly match and continuation lines must start
+        right below the line above.
+        
+        Here is an enumeration list:
+        
+         o item1
+         o item2
+           may appear on
+           multiple lines
+          o subitem1 of item2
+          o subitem2 of item2
+         o item3
+        
+        And finally a description list:
+        
+         - keyword1: followed by
+           some text
+           over multiple
+           lines
+         - keyword2:
+           followed by text on the next line
+         - keyword3: and its description may fit on one line
+
+The code above follows.
+
+Here is a bullet list:
+
+ * item1
+ * item2
+  * subitem1 of item2
+  * subitem2 of item2
+
+ * item3
+
+Note that sublists are consistently indented by one or more blanks as
+shown: bullets must exactly match and continuation lines must start
+right below the line above.
+
+Here is an enumeration list:
+
+1. item1
+2. item2
+   may appear on
+   multiple lines
+ a. subitem1 of item2
+ b. subitem2 of item2
+
+3. item3
+
+And finally a description list:
+
+ keyword1:
+  :    
+   followed by
+   some text
+   over multiple
+   lines
+ keyword2:
+  :    
+   followed by text on the next line
+ keyword3:
+  :    
+   and its description may fit on one line
+
+*No indentation - except in lists!* 
+DocOnce syntax is sensitive to whitespace.
+No lines should be indented, only lines belonging to lists.
+Indented lines may give strange output in some formats.
+
+
+
+### Comment lines
+
+Lines starting with `#` are treated as comments in the document and
+translated to the proper syntax for comments in the output
+document. Such comment lines should not appear before LaTeX math
+blocks, verbatim code blocks, or lists if the formats `rst` and
+`sphinx` are desired.
+
+Comment lines starting with `##` are not propagated to the output
+document and can be used for comments that are only of interest in
+the DocOnce file.
+
+Large portions of text can be left out using Preprocess. Just place
+`# #ifdef EXTRA` and `# #endif` around the text. The command line
+option `-DEXTRA` will bring the text alive again.
+
+When using the Mako preprocessor one can also place comments in
+the DocOnce source file that will be removed by Mako before
+DocOnce starts processing the file.
+
+### Inline comments
+
+Inline comments meant as messages or notes, to authors during development
+in particular,
+are enabled by the syntax
+
+        [name: running text]
+
+where `name` is the name or ID of an author or reader making the comment,
+and `running text` is the comment. The name can contain upper and lower
+case characters, digits, single quote, `+` and `-`, as well
+as space. Here goes an example.
+
+
+        Some running text. [hpl: There must be a space after the colon,
+        but the running text can occupy multiple lines.]
+
+which is rendered as
+
+> Some running text. [hpl 1: There must be a space after the colon,
+> but the running text can occupy multiple lines.]
+
+
+
+The inline comments have simple typesetting in most formats, typically
+boldface name, a comment number, with everything surrounded by
+parenthesis.  However, with LaTeX output and the `--latex_todonotes`
+option to `doconce format`, colorful margin or inline boxes (using the
+`todonotes` package) make it very easy to spot the comments.
+
+Running
+
+        doconce format html mydoc.do.txt --skip_inline_comments
+
+removes all inline comments from the output. This feature makes it easy
+to turn on and off notes to authors during the development of the document.
+
+All inline comments to readers can also be physically
+removed from the DocOnce source by
+
+        doconce remove_inline_comments mydoc.do.txt
+
+Inline comments can also be used to markup edits. There are add, delete, and
+replacement comments for editing:
+
+
+        [add: ,]
+        [add: .]
+        [add: ;]
+        [del: ,]
+        [del: ,]
+        [del: .]
+        [del: ;]
+        [add: some text]
+        [del: some text]
+        [edit: some text -> some replacement for text]
+        [name: some text -> some replacement for text]
+
+For example, the text
+
+
+        First consider a quantity $Q$. Without loss of generality, we assume
+        $Q>0$. There are three, fundamental, basic property of $Q$.
+
+can be edited as
+
+
+        First[add: ,] consider [edit: a quantity -> the flux]
+        [del: $Q$. Without loss of generality,
+        we assume] $Q>0$. There are three[del: ,] fundamental[del: , basic]
+        [edit: property -> properties] of $Q$. [add: These are not
+        important for the following discussion.]
+
+which in the pandoc output format results in
+
+> First[add 2: ,] consider [edit 3: a quantity -> the flux]
+> [del 4: $Q$. Without loss of generality,
+> we assume] $Q>0$. There are three[del 5: ,] fundamental[del 6: , basic]
+> [edit 7: property -> properties] of $Q$. [add 8: These are not
+> important for the following discussion.]
+
+
+
+To implement these edits, run
+
+
+        Terminal> doconce apply_edit_comments mydoc.do.txt
+
+### Verbatim/Computer Code
+
+Inline verbatim code is typeset within back-ticks, as in
+
+        Some sentence with `words in verbatim style`.
+
+resulting in Some sentence with `words in verbatim style`.
+
+Multi-line blocks of verbatim text, typically computer code, is typeset
+in between `!bc xxx` and `!ec` directives, which must appear on the
+beginning of the line. A specification `xxx` indicates what verbatim
+formatting style that is to be used. Typical values for `xxx` are
+nothing, `cod` for a code snippet, `pro` for a complete program,
+`sys` for a terminal session, `dat` for a data file (or output from a
+program),
+`Xpro` or `Xcod` for a program or code snipped, respectively,
+in programming `X`, where `X` may be `py` for Python,
+`cy` for Cython, `sh` for Bash or other Unix shells,
+`f` for Fortran, `c` for C, `cpp` for C++, `m` for MATLAB,
+`pl` for Perl. For output in `latex` one can let `xxx` reflect any
+defined verbatim environment in the `ptex2tex` configuration file
+(`.ptex2tex.cfg`). For `sphinx` output one can insert a comment
+
+        # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
+
+that maps environments (`xxx`) onto valid language types for
+Pygments (which is what `sphinx` applies to typeset computer code).
+
+The `xxx` specifier has only effect for `latex` and
+`sphinx` output. All other formats use a fixed monospace font for all
+kinds of verbatim output.
+
+Here is an example of computer code (see the source of this document
+for exact syntax):
+
+
+        from numpy import sin, cos, exp, pi
+        
+        def f(x, y, z, t):
+            return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
+
+<!-- When showing copy from file in !bc envir, indent a character - otherwise -->
+<!-- ptex2tex is confused and starts copying... -->
+Computer code can also be copied from a file:
+
+         @@@CODE doconce_program.sh
+         @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
+         @@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
+         @@@CODE doconce_program.sh  envir=shpro fromto: name=@
+
+The `@@@CODE` identifier must appear at the very beginning of the line.
+The first line copies the complete file `doconce_program.sh`.
+The second line copies from the first line matching the *regular
+expression* `doconce clean` up to, but not including, the line
+matching the *regular expression* `^doconce split_rst`.
+The third line behaves as the second, but the line matching
+the first regular expression is not copied (this construction is often
+used for copying text between begin-end comment pair in the file).
+
+The copied lines from file are in this example put inside `!bc shpro`
+and `!ec` directives, if a complete file is copied, while the
+directives become `!bc shcod` and `!ec` when a code snippet is copied
+from a file. In general, for a filename extension `.X`, the environment
+becomes `!bc Xpro` or `!bc Xcod` for a complete program or snippet,
+respectively. The enivorments (`Xcod` and `Xpro`) are only active for
+`latex`, `pdflatex`, html`, and `sphinx` output.  The fourth line
+above specifies the code environment explicitly (`envir=shpro`) such
+that it indicates a complete shell program (`shpro`) even if we copy a
+part of the file (here from `name=` until the end of the file).
+Copying a part of a file will by default lead to `!bc shcod`, which indicates a
+code snippet that normally needs more code to run properly.
+
+The `--code_prefix=text` option adds a path `text` to the filename specified
+in the `@@@CODE` command (URLs work). For example
+
+
+         @@@CODE src/myfile.py
+
+and `--code_prefix=http://some.place.net`, the file
+
+
+        http://some.place.net/src/myfile.py
+
+will be included. If source files have a header with author, email, etc.,
+one can remove this header by the option `'--code_skip_until=# ---`.
+The lines up to and including (the first) `# ---` will then be excluded.
+
+Important warnings:
+
+ * A code block must come after a plain sentence (at least for successful
+   output in reStructredText), not directly after a section/paragraph heading,
+   table, comment, figure, or movie.
+ * Verbatim code blocks inside lists can be ugly when typeset in some
+   output formats. A more robust approach is to replace the list with
+   paragraphs that include headings.
+
+### LaTeX Mathematics
+
+DocOnce supports inline mathematics and blocks of mathematics, using
+standard LaTeX syntax. The output formats `html`, `sphinx`, `latex`,
+pdflatex`, `pandoc`, and `mwiki` work with this syntax while all other
+formats will just display the raw LaTeX code.
+
+Inline expressions are written in the standard
+LaTeX way with the mathematics surrounded by dollar signs, as in
+$Ax=b$. To help increase readability in other formats than `sphinx`,
+`latex`, and `pdflatex`, inline mathematics may have a more human
+readable companion expression. The syntax is like
+
+        $\sin(\norm{\bf u})$|$sin(||u||)$
+
+That is, the LaTeX expression appears to the left of a vertical bar (pipe
+symbol) and the more readable expression appears to the right. Both
+expressions are surrounded by dollar signs.
+
+Blocks of LaTeX mathematics are written within
+`!bt`
+and
+`!et` (begin/end TeX) directives starting on the beginning of a line:
+
+
+        !bt
+        \begin{align*}
+        \nabla\cdot \pmb{u} &= 0,\\ 
+        \nabla\times \pmb{u} &= 0.
+        \end{align*}
+        !et
+
+This LaTeX code gets rendered as
+
+$$
+\begin{align*}
+\nabla\cdot \pmb{u} &= 0,\\ 
+\nabla\times \pmb{u} &= 0.
+\end{align*}
+$$
+Here is a single equation:
+
+
+        !bt
+        \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
+        !et
+
+which results in
+
+$$
+ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.
+$$
+
+*LaTeX Newcommands.*
+The author can define `newcommand` statements in files with names
+`newcommands*.tex`. Such commands should only be used for mathematics
+(other LaTeX constructions are only understood by LaTeX itself).
+The convention is that `newcommands_keep.tex`
+contains the newcommands that are kept in the document, while
+those in `newcommands_replace.tex` will be replaced by their full
+LaTeX code. This conventions helps make readable documents in formats
+without LaTeX support. For `html`, `sphinx`, `latex`, `pdflatex`,
+`mwiki`, `ipynb`, and `pandoc`, the mathematics in newcommands is
+rendered nicely anyway. If you desire `newcommand` outside LaTeX
+mathematics, simply use a Mako variable or a Mako function (which
+will be much more flexible and powerful).
+
+<!-- include with mako must be in this root tree, so we need a link, see make.sh -->
+
+### Writing Guidelines (Especially for LaTeX Users!)
+<div id="manual:latex:guide"></div>
+
+LaTeX writers often have their own writing habits and have preferred
+LaTeX packages. DocOnce is a simpler format and
+corresponds to writing in quite plain LaTeX and making the ascii text
+look nice (be careful with the use of white space!). This means that
+although DocOnce has borrowed a lot from LaTeX, there are a few points
+LaTeX writers should pay attention to. Experience shows that these
+points are so important that we list them *before* we list typical
+DocOnce syntax!
+
+Any LaTeX syntax in mathematical formulas is accepted when DocOnce
+translates the text to LaTeX, but the following rules should be
+followed when transalting the text to `sphinx`, `pandoc`,
+`mwiki`, `html`, or `ipynb` formats.
+
+ * AMS LaTeX mathematics is supported, also for the `html`, `sphinx`,
+   and `ipynb` formats.
+ * If you want LaTeX math blocks to work with `latex`, `html`, `sphinx`,
+   `markdown`, and `ipynb`, only use
+   the following equation environments: `\[ ... \]`,
+   `equation*`, `equation`, `align*`, `align`. `alignat*`, `alignat`.
+   Other environments, such as `split`, `multiline`, `gather` are
+   supported in modern MathJax in HTML and Sphinx, but may have
+   rendering problems (to a larger extent than `equation` and `align`).
+   DocOnce performs extensions to `sphinx`, `ipynb`,
+   and other formats such that
+   labels in `align` and `alignat` environments work well.
+   If you face problems with fancy LaTeX equation environments in
+   web formats, try rewriting with plain `align`, `nonumber`, etc.
+ * Do not use comments inside equations.
+ * Newcommands in mathematical formulas are allowed, but not in
+   the running text. Newcommands must be defined in files with names
+   `newcommands*.tex`. Use `\newcommands` and not `\def`.
+   Each newcommand must be defined on a single line.
+   Use Mako functions if you need macros in the running text.
+ * Use labels and refer to them
+   for sections, figures, movies, and equations only.
+   MediaWiki (`mwiki`) does not support references to equations.
+ * Spaces are not allowed in labels.
+ * There is just one `ref` command (no `\eqref` for equations) and references to
+   equations must use parentheses. Never use the tilde `\ ` (non-breaking
+   space) character before references to figures, sections, etc., but
+   tilde is allowed for references to equations.
+ * Never use `\pageref` as pages are not a concept in web documents
+   (there is only a `ref` command in DocOnce and it refers to labels).
+ * Only figures and movies are floating elements in DocOnce, all other elements
+   (code, tables, algorithms) must appear *inline* without numbers or labels
+   for reference[^exception] (refer to inline elements by a section label).
+   The reason is that floating elements are in general
+   not used in web documents, but we made an exception with figures
+   and movies.
+ * Keep figure captions shorts as they are used as references in the
+   Sphinx format. Avoid inline mathematics since Sphinx will strip it
+   away in the figure reference.
+   (Many writing styles encourage rich captions that
+   explains everything about the figure; this work well
+   only in the HTML and LaTeX formats.)
+ * You cannot use `subfigure` to combine several image files in one
+   figure, but you can combine the files into one file using
+   the `doconce combine_images` tool. Refer to individual image files
+   in the caption or text by (e.g.) "left" and "right", or
+   "upper left", "lower right", etc.
+ * Footnotes can be used as usual in LaTeX, but some HTML formats are not
+   able to display mathematics or inline verbatim or other formatted
+   code (emphasis, boldface, color) in footnotes - keep that in mind.
+ * Use plain `cite` for references (e.g., `\citeauthor` has no counterpart
+   in DocOnce). The bibliography must be prepared in the Publish format,
+   but import from (clean) BibTeX is possible.
+ * Use `idx` for index entries, but put the definitions between paragraphs,
+   not inside them (required by Sphinx).
+ * Use the `\bm` command (from the `bm` package, always included by DocOnce)
+   for boldface in mathematics.
+ * Make sure all ordinary text starts in column 1 on each line. Equations
+   can be indented. The `\begin{}` and `\end{}` directives should start
+   in column 1.
+ * If you depend on various LaTeX environments for your writings, you have
+   to give these up, or implement *user-defined environments* in DocOnce.
+   For instance, examples are normally typeset as subsections in DocOnce,
+   but can also utilize a user-defined example environment.
+   Learn about the exercise support in DocOnce for typesetting
+   exercises, problems, and projects.
+ * Learn about the preprocessors Preprocess and Mako - these are smart
+   tools for, e.g., commenting out/in large portions of text and creating
+   macros.
+ * Use *generalized references* when referring to companion documents
+   that may later become part of this document (or migrated out of this document).
+ * Follow [recommendations for DocOnce books](https://github.com/doconce/setup4book-doconce) if you plan to write a book.
+
+[^exception]: There is an exception: by using *user-defined environments*
+within `!bu-name` and `!eu-name` directives, it is possible to
+label any type of text and refer to it. For example, one can have
+environments for examples, tables, code snippets, theorems, lemmas, etc.
+One can also use Mako functions to implement environments.
+
+*Use the preprocessor to tailor output.* 
+If you really need special LaTeX constructs in the LaTeX output
+from DocOnce, you may use use preprocessor if-tests on
+the format (typically `#if FORMAT in ("latex", "pdflatex")`) to
+include such special LaTeX code. With an else clause you can easily
+create corresponding constructions for other formats. This way
+of using Preprocess or Mako
+allows you to use advanced LaTeX features (or HTML features for the HTML formats)
+to fine tune the resulting
+document. More tuning can be done by automatic editing of the
+output file (e.g., `.tex` or `.html`) produced by DocOnce using
+your own scripts or the `doconce replace` and `doconce subst` commands.
+
+
+
+*Autotranslation of LaTeX to DocOnce?* 
+The tool `doconce latex2doconce` may help you translate LaTeX files
+to DocOnce syntax. However, if you use computer code in floating
+list environments, special packages for typesetting algorithms,
+example environments, `subfigure` in figures,
+or a lot of newcommands in the running text, there will be need for
+a lot of manual edits and adjustments.
+
+For examples, figure environments can only be translated by
+`doconce latex2doconce` if the label is inside the caption and
+the figure is typeset like
+
+
+        \begin{figure}
+          \centering
+          \includegraphics[width=0.55\linewidth]{figs/myfig.pdf}
+          \caption{This is a figure. \labe{myfig}}
+        \end{figure}
+
+If the LaTeX text is consistent with respect to the placement of the label, a
+simple script can autoedit the label inside the caption, but many
+LaTeX writers put the label at different places in different figures,
+and then it becomes more difficult to autoedit figures and translate
+them to the DocOnce `FIGURE:` syntax.
+
+Tables are hard to interpret and translate because headings and
+caption can be typeset in many different ways. The type of table
+that is recognized looks like
+
+
+        \begin{table}
+        \caption{Here goes the caption.}
+        \begin{tabular}{lr}
+        \hline
+        \multicolumn{1}{c}{$v_0$} & \multicolumn{1}{c}{$f_R(v_0)$}\\hline
+        1.2 & 4.2\1.1 & 4.0\0.9 & 3.7
+        \hline
+        \end{tabular}
+        \end{table}
+
+Recall that table captions do not make sense in DocOnce since tables
+must be inlined and explained in the surrounding text.
+
+Footnotes are also problematic for `doconce latex2doconce` since DocOnce
+footnotes must have the explanation outside the paragraph where the
+footnote is used. This calls for manual work. The translator from
+LaTeX to DocOnce will insert `_PROBLEM_` and mark footnotes. One
+solution is to avoid footnotes in the LaTeX document if fully automatic
+translation is desired.
+
+
+
+### Hyperlinks
+
+Links use either a link text or the raw URL:
+
+
+        Here is some "some link text": "http://some.net/address"
+        (as in "search google": "http://google.com")
+        or just the raw address: URL: "http://google.com".
+        
+        Links to files typeset in verbatim mode applies backtics:
+        "`myfile.py`": "http://some.net/some/place/myfile.py".
+        
+        Mail addresses works too: send problems to
+        "`hpl@simula.no`": "mailto:hpl@simula.no"
+        or just "send mail": "mailto:hpl@simula.no".
+
+### Figures and Movies
+
+Figures and movies have almost equal syntax:
+
+        FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. \label{some:fig:label}
+        
+        MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. 
+        
+
+Note three important syntax details:
+
+ 1. A mandatory comma after the figure/movie filename,
+ 2. no comments between `width`, `height`, and `frac` and no spaces
+    around the `=` characters,
+ 3. all of the commands must appear on a single line,
+ 4. there must be a blank line after the command.
+
+The figure file can be listed without extension. DocOnce will then find
+the version of the file with the most appropriate extension for the chosen
+output format. If not suitable version is found, DocOnce will convert
+another format to the needed one.
+
+The caption is optional. If omitted, the figure will be inlined (meaning
+no use of any figure environment in HTML or LaTeX formats). The `width`
+and `height` parameters affect HTML formats (`html`, `rst`, `sphinx`),
+while `frac` is the width of the image as a fraction of the total text
+width in the `latex` and `pdflatex` formats.
+
+The command-line options `--fig_prefix=...` and `--mov_prefix=...` can
+be used to add a path (can be a URL) to all figure and movie files,
+respectively.  This is useful when including DocOnce documents in
+other DocOnce documents such that the text is compiled in different
+directories (with different paths to the figure directory).
+
+Movie files can either be a video or a wildcard expression for a
+series of frames. In the latter case, a simple device in an HTML page
+will display the individual frame files as a movie.
+
+Combining several image files into one can be done by the
+
+        doconce combine_images image1 image2 ... output_image
+
+This command applies `montage` or PDF-based tools to combine the images
+to get the highest quality.
+
+YouTube and Vimeo movies will be embedded in `html` and `sphinx` documents
+and otherwise be represented by a link. The syntax is
+
+
+        MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
+        
+        MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
+        
+
+The latter results in
+
+
+<iframe width="500" height="278" src="https://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
+
+<em>Vimeo movie.</em>
+
+
+
+### Tables
+
+The table in the section [Section Types](#quick:sections) was written with this
+syntax:
+
+        
+        |----------------c--------|------------------c--------------------|
+        |      Section type       |        Syntax                         |
+        |----------------l--------|------------------l--------------------|
+        | chapter                 | `========= Heading ========` (9 `=`)  |
+        | section                 | `======= Heading =======`    (7 `=`)  |
+        | subsection              | `===== Heading =====`        (5 `=`)  |
+        | subsubsection           | `=== Heading ===`            (3 `=`)  |
+        | paragraph               | `__Heading.__`               (2 `_`)  |
+        |-----------------------------------------------------------------|
+        
+
+Note that
+
+ * Each line begins and ends with a vertical bar (pipe symbol).
+ * Column data are separated by a vertical bar (pipe symbol).
+ * There must be a blank line before and after the table.
+ * There may be horizontal rules, i.e., lines with dashes for
+   indicating the heading and the end of the table, and these may
+   contain characters 'c', 'l', or 'r' for how to align headings or
+   columns. The first horizontal rule may indicate how to align
+   headings (center, left, right), and the horizontal rule after the
+   heading line may indicate how to align the data in the columns
+   (center, left, right).
+   One can also use `X` for potentially very wide text that must be
+   wrapped and left-adjusted (will only affect `latex` and `pdflatex` where the
+   `tabularx` package is then used; `X` means `l` in all other formats).
+ * If the horizontal rules are without alignment information there should
+   be no vertical bar (pipe symbol) between the columns. Otherwise, such
+   a bar indicates a vertical bar between columns in LaTeX.
+ * Many output formats are so primitive that heading and column alignment
+   have no effect.
+
+A quick way of generating tables is to place all the entries in a file
+with comma as separator (a CSV file) and then run the utility
+`doconce csv2table` to create a table in the DocOnce format.
+
+The command-line option `--tables2csv` (to `doconce format`)
+makes DocOnce dump each table to CSV format in a file `table_X.csv`,
+where `X` is the table number. This feature makes it easy to
+load tables into spreadsheet programs for further analysis.
+
+DocOnce tables can be efficiently made directly from data in CSV files.
+
+
+        Terminal> doconce csv2table mydata.csv > mydata_table.do.txt
+
+Now we can do `# #include "mydata_table.do.txt"` in the DocOnce
+source file or simply copy the table in `mydata_table.do.txt`
+into the DocOnce file.
+
+### Labels and References
+
+The notion of labels and references (as well as bibliography and index)
+is adopted
+from LaTeX with a very similar syntax. As in LaTeX, a label can be
+inserted anywhere, using the syntax
+
+        \label{name}
+
+with no backslash
+preceding the label keyword. It is common practice to choose `name`
+as some hierarchical name, using a delimiter like `:` or `_` between
+(e.g.) section, subsection, and topic.
+
+A reference to the label `name` is written as
+
+        ref{name}
+
+again with no backslash before `ref`.
+
+Use labels for sections and equations only, and precede the reference
+by "Section" or "Chapter", or in case of an equation, surround the
+reference by parenthesis.
+
+### Citations and Bibliography
+
+Single citations are written as
+
+        cite{name}
+
+where `name` is a logical name
+of the reference (again, LaTeX writers must not insert a backslash).
+Bibliography citations often have `name` on the form
+`Author1_Author2_YYYY`, `Author_YYYY`, or `Author1_etal_YYYY`, where
+`YYYY` is the year of the publication.
+Multiple citations at once is possible by separating the logical names
+by comma:
+
+        cite{name1,name2,name3}
+
+The bibliography is specified by a line `BIBFILE: papers.pub`,
+where `papers.pub` is a publication database in the
+[Publish](https://github.com/doconce/publish) format.
+BibTeX `.bib` files can easily be combined to a Publish database
+(which DocOnce needs to create bibliographies in other formats
+than LaTeX).
+
+### Generalized References
+
+There is a *generalized referencing* feature in DocOnce that allows
+a reference with `ref` to have one formulation if the label is
+in the same document and another formulation if the reference is
+to an item in an external document. This construction makes it easy
+to work with many small, independent documents in parallel with
+a book assembly of some of the small elements.
+The syntax of a generalized reference is
+
+
+        ref[internal][cite][external]
+
+with a specific example being
+
+
+        As explained in
+        ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
+        "testdoc.html#___sec2" in the document
+        "A Document for Testing DocOnce": "testdoc.html" cite{testdoc:12}],
+        DocOnce documents may include movies.
+
+The output from a generalized reference is the text `internal` if all
+references with `ref` in the text `internal` are references to labels
+defined in the
+present document. Otherwise, if `cite` is non-empty and the format is
+`latex` or `pdflatex`, one assumes that the references in `internal`
+are to external documents declared by a comment line
+`# Externaldocuments: testdoc, mydoc` (usually after the title, authors,
+and date). In this case the output text is `internal` followed by `cite`,
+and the
+LaTeX package `xr` is used to handle the labels in the external
+documents.  If none of the two situations above applies, the
+`external` text will be the output.
+
+### Index of Keywords
+
+DocOnce supports creating an index of keywords. A certain keyword
+is registered for the index by a syntax like (no
+backslash!)
+
+        index{name}
+
+It is recommended to place any index of this type outside
+running text, i.e., after (sub)section titles and in the space between
+paragraphs. Index specifications placed right before paragraphs also
+gives the doconce source code an indication of the content in the
+forthcoming text. The index is only produced for the `latex`,
+`pdflatex`, `rst`, and `sphinx` formats.
+
+### Capabilities of The Program `doconce`
+
+The `doconce` program can be used for a number of purposes besides
+transforming a `.do.txt` file to some format. Here is the
+list of capabilities:
+
+
+        DocOnce version X.X.X
+        Usage: doconce command [optional arguments]
+        commands: help format find subst replace remove spellcheck apply_inline_edits capitalize change_encoding clean combine_images csv2table diff expand_commands expand_mako extract_exercises find_nonascii_chars fix_bibtex4publish gitdiff grab grep guess_encoding gwiki_figsubst html2doconce html_colorbullets jupyterbook include_map insertdocstr ipynb2doconce latex2doconce latex_dislikes latex_exercise_toc latex_footer latex_header latex_problems latin2html lightclean linkchecker list_fig_src_files list_labels makefile md2html md2latex old2new_format ptex2tex pygmentize ref_external remove_exercise_answers remove_inline_comments replace_from_file slides_beamer slides_html slides_markdown sphinx_dir sphinxfix_localURLs split_html split_rst teamod
+        
+        doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwiki|
+                       cwiki|pandoc|st|epytext dofile 
+        # transform doconce file to another format
+        
+        doconce subst [-s -m -x --restore] regex-pattern \ 
+                regex-replacement file1 file2 ... 
+        # substitute a phrase by another using regular expressions (in this example -s is the re.DOTALL modifier, -m is the re.MULTILINE modifier, -x is the re.VERBOSE modifier, --restore copies backup files back again)
+        
+        doconce replace from-text to-text file1 file2 ...                      
+        # replace a phrase by another literally (exact text substitution)
+        
+        doconce replace_from_file file-with-from-to-replacements file1 file2 ... 
+        # replace using from and to phrases from file
+        
+        doconce find expression                                                
+        # search for a (regular) expression in all .do.txt files in the current directory tree (useful when removing compilation errors)
+        
+        doconce include_map mydoc.do.txt                                       
+        # print an overview of how various files are included in the root doc
+        
+        doconce expand_mako mako_code_file funcname file1 file2 ...            
+        # replace all mako function calls by the `results of the calls
+        
+        doconce remove_inline_comments dofile                                  
+        # remove all inline comments in a doconce file
+        
+        doconce apply_inline_edits                                             
+        # apply all edits specified through inline comments
+        
+        doconce sphinx_dir copyright='John Doe' title='Long title' \
+                short_title="Short title" version=0.1 intersphinx \
+                /path/to/mylogo.png dofile 
+        # create a directory for the sphinx format (requires sphinx version >= 1.1)
+        
+        doconce format sphinx complete_file 
+        doconce split_rst complete_file 
+        doconce sphinx_dir complete_file 
+        python automake_sphinx.py 
+        # split a sphinx/rst file into parts according to !split commands
+        
+        doconce insertdocstr rootdir                                           
+        # walk through a directory tree and insert doconce files as docstrings in *.p.py files
+        
+        doconce lightclean                                                     
+        # remove all redundant files (keep source .do.txt and results: .pdf, .html, sphinx- dirs, .mwiki, .ipynb, etc.)
+        
+        doconce clean                                                          
+        # remove all files that the doconce can regenerate
+        
+        doconce change_encoding utf-8 latin1 dofile                            
+        # change encoding
+        
+        doconce guess_encoding filename                                        
+        # guess the encoding in a text
+        
+        doconce find_nonascii_chars file1 file2 ...                            
+        # find non-ascii characters in a file
+        
+        doconce split_html complete_file.html                                  
+        # split an html file into parts according to !split commands
+        
+        doconce slides_html slide_type complete_file.html                      
+        # create HTML slides from a (doconce) html file
+        
+        doconce slides_beamer complete_file.tex                                
+        # create LaTeX Beamer slides from a (doconce) latex/pdflatex file
+        
+        doconce slides_markdown complete_file.md remark --slide_style=light    
+        # create Remark slides from Markdown
+        
+        doconce html_colorbullets file1.html file2.html ...                    
+        # replace bullets in lists by colored bullets
+        
+        doconce extract_exercises tmp_mako__mydoc                              
+        # extract all exercises (projects and problems too)
+        
+        doconce grab --from[-] from-text [--to[-] to-text] file > result       
+        # grab selected text from a file
+        
+        doconce remove --from[-] from-text [--to[-] to-text] file > result     
+        # remove selected text from a file
+        
+        doconce grep FIGURE|MOVIE|CODE dofile                                  
+        # list all figure, movie or included code files
+        
+        doconce spellcheck [-d .mydict.txt] *.do.txt                           
+        # run spellcheck on a set of files
+        
+        doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \
+                dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{quote} 
+        # transform ptex2tex files (.p.tex) to ordinary latex file and manage the code environments
+        
+        doconce md2html file.md                                                
+        # make HTML file via pandoc from Markdown (.md) file
+        
+        doconce md2latex file.md                                               
+        # make LaTeX file via pandoc from Markdown (.md) file
+        
+        doconce combine_images image1 image2 ... output_file                   
+        # combine several images into one
+        
+        doconce latex_problems mydoc.log [overfull-hbox-limit]                 
+        # report problems from a LaTeX .log file
+        
+        doconce list_fig_src_files *.do.txt                                    
+        # list all figure files, movie files, and source code files needed
+        
+        doconce list_labels myfile                                             
+        # list all labels in a document (for purposes of cleaning them up)
+        
+        doconce ref_external mydoc [pubfile]                                   
+        # generate script for substituting generalized references
+        
+        doconce linkchecker *.html                                             
+        # check all links in HTML files
+        
+        doconce capitalize [-d .mydict.txt] *.do.txt                           
+        # change headings from "This is a Heading" to "This is a heading"
+        
+        doconce latex2doconce latexfile                                        
+        # translate a latex document to doconce (requires usually manual fixing)
+        
+        doconce latex_dislikes latexfile                                       
+        # check if there are problems with translating latex to doconce
+        
+        doconce ipynb2doconce notebookfile                                     
+        # translate an IPython/Jupyter notebook to doconce
+        
+        doconce pygmentize myfile [pygments-style]                             
+        # typeset a doconce document with pygments (for pretty print of doconce itself)
+        
+        doconce makefile docname doconcefile [html sphinx pdflatex ...]        
+        # generate a make.py script for translating a doconce file to various formats
+        
+        doconce diff file1.do.txt file2.do.txt [diffprog]                      
+        # find differences between two files (diffprog can be difflib, diff, pdiff, latexdiff, kdiff3, diffuse, ...)
+        
+        doconce gitdiff file1 file2 file3 ...                                  
+        # find differences between the last two Git versions of several files
+        
+        doconce csv2table somefile.csv                                         
+        # convert csv file to doconce table format
+        
+        doconce sphinxfix_local_URLs file.rst                                  
+        # edit URLs to local files and place them in _static
+        
+        doconce latin2html file.html                                           
+        # replace latex-1 (non-ascii) characters by html codes
+        
+        doconce fix_bibtex4publish file1.bib file2.bib ...                     
+        # fix common problems in bibtex files for publish import
+        
+        doconce latex_header                                                   
+        # print the header (preamble) for latex file
+        
+        doconce latex_footer                                                   
+        # print the footer for latex files
+        
+        doconce expand_commands file1 file2 ...                                
+        # expand short cut commands to full form in files
+        
+        doconce latex_exercise_toc myfile                                      
+        # insert a table of exercises in a latex file myfile.p.tex
+
+### Exercises
+
+DocOnce supports *Exercise*, *Problem*, *Project*, and *Example*.
+These are typeset
+as ordinary sections and referred to by their section labels.
+Exercise, problem, project, or example sections contains certain *elements*:
+
+  * a headline at the level of a subsection
+    containing one of the words "Exercise:", "Problem:",
+    "Project:", or "Example:", followed by a title (required)
+  * a label (optional)
+  * a solution file (optional)
+  * name of file with a student solution (optional)
+  * main exercise text (required)
+  * a short answer (optional)
+  * a full solution (optional)
+  * one or more hints (optional)
+  * one or more subexercises (subproblems, subprojects), which can also
+    contain a text, a short answer, a full solution, name student file
+    to be handed in, and one or more hints (optional)
+
+A typical sketch of a a problem without subexercises goes as follows:
+
+        ===== Problem: Derive the Formula for the Area of an Ellipse =====
+        \label{problem:ellipsearea1}
+        file=ellipse_area.pdf
+        solution=ellipse_area1_sol.pdf
+        
+        Derive an expression for the area of an ellipse by integrating
+        the area under a curve that defines half of the ellipse.
+        Show each step in the mathematical derivation.
+        
+        !bhint
+        Wikipedia has the formula for the curve.
+        !ehint
+        
+        !bhint
+        "Wolframalpha": "http://wolframalpha.com" can perhaps
+        compute the integral.
+        !ehint
+
+If the exercise type (Exercise, Problem, Project, or Example)
+is enclosed in braces, the type is left out of the title in the
+output. For example, the if the title line above reads
+
+
+        ===== {Problem}: Derive the Formula for the Area of an Ellipse =====
+
+the title becomes just "Derive the ...".
+
+An exercise with subproblems, answers and full solutions has this
+setup-up:
+
+
+        ===== Exercise: Determine the Distance to the Moon =====
+        \label{exer:moondist}
+        
+        Intro to this exercise. Questions are in subexercises below.
+        
+        !bsubex
+        Subexercises are numbered a), b), etc.
+        
+        file=subexer_a.pdf
+        
+        !bans
+        Short answer to subexercise a).
+        !eans
+        
+        !bhint
+        First hint to subexercise a).
+        !ehint
+        
+        !bhint
+        Second hint to subexercise a).
+        !ehint
+        !esubex
+        
+        !bsubex
+        Here goes the text for subexercise b).
+        
+        file=subexer_b.pdf
+        
+        !bhint
+        A hint for this subexercise.
+        !ehint
+        
+        !bsol
+        Here goes the solution of this subexercise.
+        !esol
+        !esubex
+        
+        !bremarks
+        At the very end of the exercise it may be appropriate to summarize
+        and give some perspectives. The text inside the `!bremarks` and `!eremarks`
+        directives is always typeset at the end of the exercise.
+        !eremarks
+        
+        !bsol
+        Here goes a full solution of the whole exercise.
+        !esol
+        
+
+By default, answers, solutions, and hints are typeset as paragraphs.
+The command-line arguments `--without_answers` and `--without_solutions`
+turn off output of answers and solutions, respectively, except for examples. The command line options `--answers_at_end` and `--solutions_at_end` write all answers and solutions to exercises to a separate section at the end of the document, respectively. Combine with `--without_answers` and `--without_solutions` to remove answers and solutions from the main text.
+
+The commands `!anshide` and `!solhide` can be used to hide from the main text answers and solutions, respectively, until the `!ansoff` and `!soloff` commands are encountered. Similarly, the `!ansdocend` and `!soldocend` commands move answers and solutions to the end of the book. 
+
+### Environments
+
+DocOnce environments start with `!benvirname` and end with `!eenvirname`,
+where `envirname` is the name of the environment. Here is a listing of
+the environments:
+
+ * `c`: computer code (or verbatim text)
+ * `t`: math blocks with LaTeX syntax
+ * `subex`: sub-exercise
+ * `ans`: short answer to exercise or sub-exercise
+ * `sol`: full solution to exercise or sub-exercise
+ * `hint`: multiple help items in an exercise or sub-exercise
+ * `quote`: indented text
+ * `notice`, `summary`, `warning`, `question`: admonition boxes with
+    custom title, special icon, and (sometimes) background color
+ * `block`, `box`: simpler boxes (`block` may have title but never any icon)
+ * `pop`: text to gradually pop up in slide presentations
+ * `slidecell`: indication of cells in a grid layout for elements on a
+   slide
+
+In addition, the user can define new environments `!bc-name` as
+explained in the [manual](http://doconce.github.io/doconce/doc/pub/manual/manual.html#manual:userdef:envir).
+
+### Preprocessing
+
+DocOnce documents may utilize a preprocessor, either `preprocess` and/or
+`mako`. The former is a C-style preprocessor that allows if-tests
+and including other files (but not macros with arguments).
+The `mako` preprocessor is much more advanced - it is actually a full
+programming language, very similar to Python.
+
+The command `doconce format` first runs `preprocess` and then `mako`.
+Here is a typical example on utilizing `preprocess` to include another
+document, "comment out" a large portion of text, and to write format-specific
+constructions:
+
+
+        # #include "myotherdoc.do.txt"
+        
+        # #if FORMAT in ("latex", "pdflatex")
+        \begin{table}
+        \caption{Some words... \label{mytab}}
+        \begin{tabular}{lrr}
+        \hline\noalign{\smallskip}
+        \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \multicolumn{1}{c}{acceleration} \\ 
+        \hline
+        0.0          & 1.4186       & -5.01        \\ 
+        2.0          & 1.376512     & 11.919       \\ 
+        4.0          & 1.1E+1       & 14.717624    \\ 
+        \hline
+        \end{tabular}
+        \end{table}
+        # #else
+          |--------------------------------|
+          |time  | velocity | acceleration |
+          |--l--------r-----------r--------|
+          | 0.0  | 1.4186   | -5.01        |
+          | 2.0  | 1.376512 | 11.919       |
+          | 4.0  | 1.1E+1   | 14.717624    |
+          |--------------------------------|
+        # #endif
+        
+        # #ifdef EXTRA_MATERIAL
+        ....large portions of text...
+        # #endif
+
+With the `mako` preprocessor the if-else tests have slightly different syntax.
+An [example document](http://doconce.github.com/bioinf-py/) contains
+some illustrations on how to utilize `mako` (clone the GitHub project and
+examine the DocOnce source and the `doc/src/make.sh` script).
+
+### Resources
+
+ * Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"
+
+
++ name=quickref
++ set -x
++ sh ./clean.sh
+Removing in /X/X/quickref:
++ '[' '!' -L guidelines.do.txt ']'
++ doconce
++ sed -i 's/^\x1b\[[0-9;]*m//' doconce_program.sh
++ sed -i 's/\x1b\[[0-9;]*m//' doconce_program.sh
++ sed -i 's/\x1b\[[0-9;]*m\s*/\n# /' doconce_program.sh
++ sed -i 's/\x1b\[[0-9;]*m//g' doconce_program.sh
++ system doconce format html quickref --pygments_html_style=none --no_preprocess --no_abort --html_style=bootswatch_readable
++ doconce format html quickref --pygments_html_style=none --no_preprocess --no_abort --html_style=bootswatch_readable
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+Translating doconce text in tmp_mako__quickref.do.txt to html
+copy complete file doconce_program.sh  (format: shpro)
+*** warning: found emphasis tag *...* in footnote, which was removed
+    in tooltip (since it does not work with bootstrap tooltips)
+    but not in the footnote itself.
+There is an exception: by using *user-defined environments* within `!bu-name` and `!eu-name` directives, it is possible to label any type of text and refer to it. For example, one can have environments for examples, tables, code snippets, theorems, lemmas, etc. One can also use Mako functions to implement environments.
+
+*** warning: found inline code tag `...` in footnote, which was removed
+    in tooltip (since it does not work with bootstrap tooltips):
+There is an exception: by using user-defined environments within `!bu-name` and `!eu-name` directives, it is possible to label any type of text and refer to it. For example, one can have environments for examples, tables, code snippets, theorems, lemmas, etc. One can also use Mako functions to implement environments.
+
+output in quickref.html
++ '[' 0 -ne 0 ']'
++ system doconce format pdflatex quickref --no_preprocess --latex_font=helvetica --no_ampersand_quote --latex_code_style=vrb --no_abort
++ doconce format pdflatex quickref --no_preprocess --latex_font=helvetica --no_ampersand_quote --latex_code_style=vrb --no_abort
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+Translating doconce text in tmp_mako__quickref.do.txt to pdflatex
+copy complete file doconce_program.sh  (format: shpro)
+Final all \\label\{(.+?)\}
+output in quickref.tex
++ '[' 0 -ne 0 ']'
++ doconce subst '([^`])Guns & Roses([^`])' '\g<1>Guns {\&} Roses\g<2>' quickref.tex
+([^`])Guns & Roses([^`]) replaced by \g<1>Guns {\&} Roses\g<2> in quickref.tex
++ doconce subst '([^`])Texas A & M([^`])' '\g<2>Texas A {\&} M\g<2>' quickref.tex
+([^`])Texas A & M([^`]) replaced by \g<2>Texas A {\&} M\g<2> in quickref.tex
++ system pdflatex -shell-escape quickref
++ pdflatex -shell-escape quickref
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex)
+ \write18 enabled.
+entering extended mode
+(./quickref.tex
+LaTeX2e <2017-04-15>
+Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+
+
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/ltablex/ltablex.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)) 
+ (/usr/share/texlive/texmf-dist/tex/latex/moreverb/moreverb.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/ucs.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+
+(/X/X/mdframed.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/zref-abspage.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
+ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
+ex)) 
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
+f)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
+tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex)))
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
+ode.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
+s.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
+ex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
+tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
+ode.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
+tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
+.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
+.sty)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarytopaths.code.tex)))
+(/X/X/md-frame-1.mdf))
+
+Writing index file quickref.idx
+(/usr/share/texlive/texmf-dist/tex/latex/idxlayout/idxlayout.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/tocbibind/tocbibind.sty
+
+Package tocbibind Note: Using section or other style headings.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/ms/ragged2e.sty
+
+No file quickref.aux.
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+ABD: EveryShipout initializing macros ABD: EverySelectfont initializing macros
+
+
+
+
+
+
+
+
+
+
+Package hyperref Warning: old toc file detected, not used; run LaTeX again.
+
+
+ [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map}] [2] [3]
+Overfull \hbox \(XXXpt too wide\) 
+\T1/phv/m/n/10 Note that ab-stracts are rec-og-nized by start-ing with [] or []
+
+[4] [5 <./latex_figs/dizzy_face.png>] [6] [7]
+Overfull \hbox \(XXXpt too wide\) 
+[]\T1/phv/m/n/10 resulting in Some sen-tence with \T1/lmtt/m/n/10 words in verb
+atim style\T1/phv/m/n/10 . Multi-line blocks
+
+Overfull \hbox \(XXXpt too wide\) 
+[]\T1/phv/m/n/10 that maps en-vi-ron-ments (\T1/lmtt/m/n/10 xxx\T1/phv/m/n/10 )
+ onto valid lan-guage types for Pyg-ments (which
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/phv/m/n/10 ning text. New-com-mands must be de-fined in files with names \T
+1/lmtt/m/n/10 newcommands*.tex\T1/phv/m/n/10 .
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/phv/m/n/10 but you can com-bine the files into one file us-ing the []
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/phv/m/n/10 tools for, e.g., com-ment-ing out/in large por-tions of text and
+ cre-at-ing macros. 
+
+Overfull \hbox \(XXXpt too wide\) 
+[]\T1/phv/m/n/10 Now we can do [] in the Do-cOnce source
+
+Overfull \hbox \(XXXpt too wide\) 
+[]\T1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line \T1/lmtt/m/n/10 
+BIBFILE: papers.pub\T1/phv/m/n/10 , where \T1/lmtt/m/n/10 papers.pub
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/phv/m/n/10 (usu-ally af-ter the ti-tle, au-thors, and date). In this case t
+he out-put text is \T1/lmtt/m/n/10 internal
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/phv/m/n/10 ment, re-spec-tively. Com-bine with [] and []
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/phv/m/n/10 the GitHub project and ex-am-ine the Do-cOnce source and the \T1
+/lmtt/m/n/10 doc/src/make.sh
+
+Overfull \hbox \(XXXpt too wide\) 
+[]\T1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee.
+ethz.ch/ creller/web/tricks/reST.html" 
+[24] (./quickref.aux)
+
+ *File List*
+ article.cls    2014/09/29 v1.4h Standard LaTeX document class
+  size10.clo    2014/09/29 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2013/03/29 ver 4.1
+ makeidx.sty    2014/09/29 v1.0m Standard LaTeX package
+   color.sty    1999/02/16
+   color.cfg    2016/01/02 v1.6 sample color configuration
+  pdftex.def    2018/01/08 v1.0l Graphics/color driver for pdftex
+setspace.sty    2011/12/19 v6.7a set line spacing
+ amsmath.sty    2017/09/02 v2.17a AMS math features
+ amstext.sty    2000/06/29 v2.01 AMS text
+  amsgen.sty    1999/11/30 v2.0 generic functions
+  amsbsy.sty    1999/11/29 v1.2d Bold Symbols
+  amsopn.sty    2016/03/08 v2.02 operator names
+amsfonts.sty    2013/01/14 v3.01 Basic AMSFonts support
+ amssymb.sty    2013/01/14 v3.01 AMS font symbols
+  xcolor.sty    2016/05/11 v2.12 LaTeX color extensions (UK)
+   color.cfg    2016/01/02 v1.6 sample color configuration
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2016/10/06 v2.4d Tabular extension package (FMi)
+      bm.sty    2017/01/16 v1.2c Bold Symbol Support (DPC/FMi)
+ ltablex.sty    2014/08/13 v1.1 Modified tabularx
+longtable.sty    2014/10/28 v4.11 Multi-page Table package (DPC)
+tabularx.sty    2016/02/03 v2.11 `tabularx' package (DPC)
+microtype.sty    2018/01/14 v2.7a Micro-typographical refinements (RS)
+  keyval.sty    2014/10/28 v1.15 key=value parser (DPC)
+microtype-pdftex.def    2018/01/14 v2.7a Definitions specific to pdftex (RS)
+microtype.cfg    2018/01/14 v2.7a microtype main configuration file (RS)
+graphicx.sty    2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+graphics.sty    2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    2016/01/03 v1.10 sin cos tan (DPC)
+graphics.cfg    2016/06/04 v1.11 sample graphics configuration
+    soul.sty    2003/11/17 v2.4 letterspacing/underlining (mf)
+  framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
+moreverb.sty    2008/06/03 v2.3a `more' verbatim facilities
+verbatim.sty    2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+ fontenc.sty
+   t1enc.def    2017/04/05 v2.0i Standard LaTeX file
+     ucs.sty    2013/05/11 v2.2 UCS: Unicode input support
+uni-global.def    2013/05/13 UCS: Unicode global data
+inputenc.sty    2015/03/17 v1.2c Input encoding file
+   utf8x.def    2004/10/17 UCS: Input encoding UTF-8
+  helvet.sty    2005/04/12 PSNFSS-v9.2a (WaS) 
+ lmodern.sty    2009/10/30 v1.6 Latin Modern Fonts
+hyperref.sty    2018/02/06 v6.86b Hypertext links for LaTeX
+hobsub-hyperref.sty    2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2016/05/16 v1.14 Construct package bundles (HO)
+infwarerr.sty    2016/05/16 v1.4 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+ifluatex.sty    2016/05/16 v1.4 Provides the ifluatex switch (HO)
+  ifvtex.sty    2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+ intcalc.sty    2016/05/16 v1.2 Expandable calculations with integers (HO)
+   ifpdf.sty    2017/03/15 v3.2 Provides the ifpdf switch
+etexcmds.sty    2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+kvsetkeys.sty    2016/05/16 v1.17 Key value parser (HO)
+kvdefinekeys.sty    2016/05/16 v1.4 Define keys (HO)
+pdftexcmds.sty    2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO)
+pdfescape.sty    2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2016/05/16 v1.4 Expandable calculations on big integers (HO)
+  bitset.sty    2016/05/16 v1.2 Handle bit-vector datatype (HO)
+uniquecounter.sty    2016/05/16 v1.3 Provide unlimited unique counter (HO)
+letltxmacro.sty    2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2016/05/16 v1.3 Wrapper for package hooks (HO)
+xcolor-patch.sty    2016/05/16 xcolor patch
+atveryend.sty    2016/05/16 v1.9 Hooks at the very end of document (HO)
+atbegshi.sty    2016/06/09 v1.18 At begin shipout hook (HO)
+refcount.sty    2016/05/16 v3.5 Data extraction from label references (HO)
+ hycolor.sty    2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+ auxhook.sty    2016/05/16 v1.4 Hooks for auxiliary files (HO)
+kvoptions.sty    2016/05/16 v3.12 Key value format for package options (HO)
+  pd1enc.def    2018/02/06 v6.86b Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2013/09/16  ver 3.4  Verb mode for urls, etc.
+ hpdftex.def    2018/02/06 v6.86b Hyperref driver for pdfTeX
+rerunfilecheck.sty    2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+mdframed.sty    2014/05/30 2.0: mdframed
+  xparse.sty    2018/02/21 L3 Experimental document command parser
+   expl3.sty    2018/02/21 L3 programming layer (loader) 
+expl3-code.tex    2018/02/21 L3 programming layer 
+l3pdfmode.def    2017/03/18 v L3 Experimental driver: PDF mode
+etoolbox.sty    2018/02/11 v2.5e e-TeX tools for LaTeX (JAW)
+zref-abspage.sty    2016/05/21 v2.26 Module abspage for zref (HO)
+zref-base.sty    2016/05/21 v2.26 Module base for zref (HO)
+needspace.sty    2010/09/12 v1.3d reserve vertical space
+    tikz.sty    2015/08/07 v3.0.1a (rcs-revision 1.151)
+     pgf.sty    2015/08/07 v3.0.1a (rcs-revision 1.15)
+  pgfrcs.sty    2015/08/07 v3.0.1a (rcs-revision 1.31)
+everyshi.sty    2001/05/15 v3.00 EveryShipout Package (MS)
+  pgfrcs.code.tex
+ pgfcore.sty    2010/04/11 v3.0.1a (rcs-revision 1.7)
+  pgfsys.sty    2014/07/09 v3.0.1a (rcs-revision 1.48)
+  pgfsys.code.tex
+pgfsyssoftpath.code.tex    2013/09/09  (rcs-revision 1.9)
+pgfsysprotocol.code.tex    2006/10/16  (rcs-revision 1.4)
+ pgfcore.code.tex
+pgfcomp-version-0-65.sty    2007/07/03 v3.0.1a (rcs-revision 1.7)
+pgfcomp-version-1-18.sty    2007/07/23 v3.0.1a (rcs-revision 1.1)
+  pgffor.sty    2013/12/13 v3.0.1a (rcs-revision 1.25)
+ pgfkeys.sty    
+ pgfkeys.code.tex
+ pgfmath.sty    
+ pgfmath.code.tex
+  pgffor.code.tex
+    tikz.code.tex
+md-frame-1.mdf    2014/05/30\ 2.0: md-frame-1
+    calc.sty    2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+idxlayout.sty    2012/03/30 v0.4d Configurable index layout
+multicol.sty    2017/04/11 v1.8q multicolumn formatting (FMi)
+tocbibind.sty    2010/10/13 v1.5k extra ToC listings
+ragged2e.sty    2009/05/21 v2.1 ragged2e Package (MS)
+everysel.sty    2011/10/28 v1.2 EverySelectfont Package (MS)
+   t1phv.fd    2001/06/04 scalable font definitions for T1/phv.
+supp-pdf.mkii
+epstopdf-base.sty    2016/05/15 v2.6 Base part for package epstopdf
+  grfext.sty    2016/05/16 v1.2 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+ ucsencs.def    2011/01/21 Fixes to fontencodings LGR, T3
+ nameref.sty    2016/05/21 v2.44 Cross-referencing by name of section
+gettitlestring.sty    2016/05/16 v1.5 Cleanup title references (HO)
+  ot1lmr.fd    2009/10/30 v1.6 Font defs for Latin Modern
+  mt-cmr.cfg    2013/05/19 v2.2 microtype config. file: Computer Modern Roman (
+RS)
+  omllmm.fd    2009/10/30 v1.6 Font defs for Latin Modern
+ omslmsy.fd    2009/10/30 v1.6 Font defs for Latin Modern
+ omxlmex.fd    2009/10/30 v1.6 Font defs for Latin Modern
+    umsa.fd    2013/01/14 v3.01 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+    umsb.fd    2013/01/14 v3.01 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+  t1lmtt.fd    2009/10/30 v1.6 Font defs for Latin Modern
+  omsphv.fd    
+latex_figs/dizzy_face.png
+ ***********
+
+
+Package rerunfilecheck Warning: File `quickref.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information){/usr/share/texmf/fonts/enc
+/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/sh
+are/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-
+mathit.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/tex
+mf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmm
+i7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/font
+s/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></u
+sr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/p
+ublic/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/sh
+are/texmf/fonts/type1/public/lm/lmtt8.pfb></usr/share/texmf/fonts/type1/public/
+lm/lmtt9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on quickref.pdf (XXX pages, ).
+Transcript written on quickref.log.
++ '[' 0 -ne 0 ']'
++ system pdflatex -shell-escape quickref
++ pdflatex -shell-escape quickref
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex)
+ \write18 enabled.
+entering extended mode
+(./quickref.tex
+LaTeX2e <2017-04-15>
+Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+
+
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/ltablex/ltablex.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)) 
+ (/usr/share/texlive/texmf-dist/tex/latex/moreverb/moreverb.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/ucs.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+
+(/X/X/mdframed.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/zref-abspage.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
+ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
+ex)) 
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
+f)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
+tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex)))
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
+ode.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
+s.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
+ex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
+tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
+x)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
+ode.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
+tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
+.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
+.sty)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarytopaths.code.tex)))
+(/X/X/md-frame-1.mdf))
+
+Writing index file quickref.idx
+(/usr/share/texlive/texmf-dist/tex/latex/idxlayout/idxlayout.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/tocbibind/tocbibind.sty
+
+Package tocbibind Note: Using section or other style headings.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/ms/ragged2e.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(./quickref.out) (./quickref.out) ABD: EveryShipout initializing macros
+ABD: EverySelectfont initializing macros
+
+
+
+
+
+
+
+
+ (./quickref.toc
+ [1{/var/lib/texmf/fonts/map/pdftex/u
+pdmap/pdftex.map}] 
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/phv/m/n/10 Note that ab-stracts are rec-og-nized by start-ing with [] or []
+
+[4] [5] [6 <./latex_figs/dizzy_face.png>] [7] [8]
+Overfull \hbox \(XXXpt too wide\) 
+[]\T1/phv/m/n/10 resulting in Some sen-tence with \T1/lmtt/m/n/10 words in verb
+atim style\T1/phv/m/n/10 . Multi-line blocks
+
+Overfull \hbox \(XXXpt too wide\) 
+[]\T1/phv/m/n/10 that maps en-vi-ron-ments (\T1/lmtt/m/n/10 xxx\T1/phv/m/n/10 )
+ onto valid lan-guage types for Pyg-ments (which
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/phv/m/n/10 ning text. New-com-mands must be de-fined in files with names \T
+1/lmtt/m/n/10 newcommands*.tex\T1/phv/m/n/10 .
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/phv/m/n/10 but you can com-bine the files into one file us-ing the []
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/phv/m/n/10 tools for, e.g., com-ment-ing out/in large por-tions of text and
+ cre-at-ing macros. 
+
+Overfull \hbox \(XXXpt too wide\) 
+[]\T1/phv/m/n/10 Now we can do [] in the Do-cOnce source
+
+Overfull \hbox \(XXXpt too wide\) 
+[]\T1/phv/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line \T1/lmtt/m/n/10 
+BIBFILE: papers.pub\T1/phv/m/n/10 , where \T1/lmtt/m/n/10 papers.pub
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/phv/m/n/10 (usu-ally af-ter the ti-tle, au-thors, and date). In this case t
+he out-put text is \T1/lmtt/m/n/10 internal
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/phv/m/n/10 ment, re-spec-tively. Com-bine with [] and []
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/phv/m/n/10 the GitHub project and ex-am-ine the Do-cOnce source and the \T1
+/lmtt/m/n/10 doc/src/make.sh
+
+Overfull \hbox \(XXXpt too wide\) 
+[]\T1/phv/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "http://people.ee.
+ethz.ch/ creller/web/tricks/reST.html" 
+[25] (./quickref.aux)
+
+ *File List*
+ article.cls    2014/09/29 v1.4h Standard LaTeX document class
+  size10.clo    2014/09/29 v1.4h Standard LaTeX file (size option)
+ relsize.sty    2013/03/29 ver 4.1
+ makeidx.sty    2014/09/29 v1.0m Standard LaTeX package
+   color.sty    1999/02/16
+   color.cfg    2016/01/02 v1.6 sample color configuration
+  pdftex.def    2018/01/08 v1.0l Graphics/color driver for pdftex
+setspace.sty    2011/12/19 v6.7a set line spacing
+ amsmath.sty    2017/09/02 v2.17a AMS math features
+ amstext.sty    2000/06/29 v2.01 AMS text
+  amsgen.sty    1999/11/30 v2.0 generic functions
+  amsbsy.sty    1999/11/29 v1.2d Bold Symbols
+  amsopn.sty    2016/03/08 v2.02 operator names
+amsfonts.sty    2013/01/14 v3.01 Basic AMSFonts support
+ amssymb.sty    2013/01/14 v3.01 AMS font symbols
+  xcolor.sty    2016/05/11 v2.12 LaTeX color extensions (UK)
+   color.cfg    2016/01/02 v1.6 sample color configuration
+colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
+   array.sty    2016/10/06 v2.4d Tabular extension package (FMi)
+      bm.sty    2017/01/16 v1.2c Bold Symbol Support (DPC/FMi)
+ ltablex.sty    2014/08/13 v1.1 Modified tabularx
+longtable.sty    2014/10/28 v4.11 Multi-page Table package (DPC)
+tabularx.sty    2016/02/03 v2.11 `tabularx' package (DPC)
+microtype.sty    2018/01/14 v2.7a Micro-typographical refinements (RS)
+  keyval.sty    2014/10/28 v1.15 key=value parser (DPC)
+microtype-pdftex.def    2018/01/14 v2.7a Definitions specific to pdftex (RS)
+microtype.cfg    2018/01/14 v2.7a microtype main configuration file (RS)
+graphicx.sty    2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+graphics.sty    2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    2016/01/03 v1.10 sin cos tan (DPC)
+graphics.cfg    2016/06/04 v1.11 sample graphics configuration
+    soul.sty    2003/11/17 v2.4 letterspacing/underlining (mf)
+  framed.sty    2011/10/22 v 0.96: framed or shaded text with page breaks
+moreverb.sty    2008/06/03 v2.3a `more' verbatim facilities
+verbatim.sty    2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+ fontenc.sty
+   t1enc.def    2017/04/05 v2.0i Standard LaTeX file
+     ucs.sty    2013/05/11 v2.2 UCS: Unicode input support
+uni-global.def    2013/05/13 UCS: Unicode global data
+inputenc.sty    2015/03/17 v1.2c Input encoding file
+   utf8x.def    2004/10/17 UCS: Input encoding UTF-8
+  helvet.sty    2005/04/12 PSNFSS-v9.2a (WaS) 
+ lmodern.sty    2009/10/30 v1.6 Latin Modern Fonts
+hyperref.sty    2018/02/06 v6.86b Hypertext links for LaTeX
+hobsub-hyperref.sty    2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+hobsub-generic.sty    2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+  hobsub.sty    2016/05/16 v1.14 Construct package bundles (HO)
+infwarerr.sty    2016/05/16 v1.4 Providing info/warning/error messages (HO)
+ ltxcmds.sty    2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+ifluatex.sty    2016/05/16 v1.4 Provides the ifluatex switch (HO)
+  ifvtex.sty    2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+ intcalc.sty    2016/05/16 v1.2 Expandable calculations with integers (HO)
+   ifpdf.sty    2017/03/15 v3.2 Provides the ifpdf switch
+etexcmds.sty    2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+kvsetkeys.sty    2016/05/16 v1.17 Key value parser (HO)
+kvdefinekeys.sty    2016/05/16 v1.4 Define keys (HO)
+pdftexcmds.sty    2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO)
+pdfescape.sty    2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+bigintcalc.sty    2016/05/16 v1.4 Expandable calculations on big integers (HO)
+  bitset.sty    2016/05/16 v1.2 Handle bit-vector datatype (HO)
+uniquecounter.sty    2016/05/16 v1.3 Provide unlimited unique counter (HO)
+letltxmacro.sty    2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+ hopatch.sty    2016/05/16 v1.3 Wrapper for package hooks (HO)
+xcolor-patch.sty    2016/05/16 xcolor patch
+atveryend.sty    2016/05/16 v1.9 Hooks at the very end of document (HO)
+atbegshi.sty    2016/06/09 v1.18 At begin shipout hook (HO)
+refcount.sty    2016/05/16 v3.5 Data extraction from label references (HO)
+ hycolor.sty    2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+ auxhook.sty    2016/05/16 v1.4 Hooks for auxiliary files (HO)
+kvoptions.sty    2016/05/16 v3.12 Key value format for package options (HO)
+  pd1enc.def    2018/02/06 v6.86b Hyperref: PDFDocEncoding definition (HO)
+hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
+     url.sty    2013/09/16  ver 3.4  Verb mode for urls, etc.
+ hpdftex.def    2018/02/06 v6.86b Hyperref driver for pdfTeX
+rerunfilecheck.sty    2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+placeins.sty    2005/04/18  v 2.2
+mdframed.sty    2014/05/30 2.0: mdframed
+  xparse.sty    2018/02/21 L3 Experimental document command parser
+   expl3.sty    2018/02/21 L3 programming layer (loader) 
+expl3-code.tex    2018/02/21 L3 programming layer 
+l3pdfmode.def    2017/03/18 v L3 Experimental driver: PDF mode
+etoolbox.sty    2018/02/11 v2.5e e-TeX tools for LaTeX (JAW)
+zref-abspage.sty    2016/05/21 v2.26 Module abspage for zref (HO)
+zref-base.sty    2016/05/21 v2.26 Module base for zref (HO)
+needspace.sty    2010/09/12 v1.3d reserve vertical space
+    tikz.sty    2015/08/07 v3.0.1a (rcs-revision 1.151)
+     pgf.sty    2015/08/07 v3.0.1a (rcs-revision 1.15)
+  pgfrcs.sty    2015/08/07 v3.0.1a (rcs-revision 1.31)
+everyshi.sty    2001/05/15 v3.00 EveryShipout Package (MS)
+  pgfrcs.code.tex
+ pgfcore.sty    2010/04/11 v3.0.1a (rcs-revision 1.7)
+  pgfsys.sty    2014/07/09 v3.0.1a (rcs-revision 1.48)
+  pgfsys.code.tex
+pgfsyssoftpath.code.tex    2013/09/09  (rcs-revision 1.9)
+pgfsysprotocol.code.tex    2006/10/16  (rcs-revision 1.4)
+ pgfcore.code.tex
+pgfcomp-version-0-65.sty    2007/07/03 v3.0.1a (rcs-revision 1.7)
+pgfcomp-version-1-18.sty    2007/07/23 v3.0.1a (rcs-revision 1.1)
+  pgffor.sty    2013/12/13 v3.0.1a (rcs-revision 1.25)
+ pgfkeys.sty    
+ pgfkeys.code.tex
+ pgfmath.sty    
+ pgfmath.code.tex
+  pgffor.code.tex
+    tikz.code.tex
+md-frame-1.mdf    2014/05/30\ 2.0: md-frame-1
+    calc.sty    2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+idxlayout.sty    2012/03/30 v0.4d Configurable index layout
+multicol.sty    2017/04/11 v1.8q multicolumn formatting (FMi)
+tocbibind.sty    2010/10/13 v1.5k extra ToC listings
+ragged2e.sty    2009/05/21 v2.1 ragged2e Package (MS)
+everysel.sty    2011/10/28 v1.2 EverySelectfont Package (MS)
+   t1phv.fd    2001/06/04 scalable font definitions for T1/phv.
+supp-pdf.mkii
+epstopdf-base.sty    2016/05/15 v2.6 Base part for package epstopdf
+  grfext.sty    2016/05/16 v1.2 Manage graphics extensions (HO)
+epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+ ucsencs.def    2011/01/21 Fixes to fontencodings LGR, T3
+ nameref.sty    2016/05/21 v2.44 Cross-referencing by name of section
+gettitlestring.sty    2016/05/16 v1.5 Cleanup title references (HO)
+quickref.out
+quickref.out
+  ot1lmr.fd    2009/10/30 v1.6 Font defs for Latin Modern
+  mt-cmr.cfg    2013/05/19 v2.2 microtype config. file: Computer Modern Roman (
+RS)
+  omllmm.fd    2009/10/30 v1.6 Font defs for Latin Modern
+ omslmsy.fd    2009/10/30 v1.6 Font defs for Latin Modern
+ omxlmex.fd    2009/10/30 v1.6 Font defs for Latin Modern
+    umsa.fd    2013/01/14 v3.01 AMS symbols A
+  mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+    umsb.fd    2013/01/14 v3.01 AMS symbols B
+  mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+  t1lmtt.fd    2009/10/30 v1.6 Font defs for Latin Modern
+  omsphv.fd    
+latex_figs/dizzy_face.png
+ ***********
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information){/usr/share/texmf/fonts/enc
+/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/sh
+are/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-
+mathit.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/tex
+mf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmm
+i7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/font
+s/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></u
+sr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/p
+ublic/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/sh
+are/texmf/fonts/type1/public/lm/lmtt8.pfb></usr/share/texmf/fonts/type1/public/
+lm/lmtt9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on quickref.pdf (XXX pages, ).
+Transcript written on quickref.log.
++ '[' 0 -ne 0 ']'
++ system doconce format sphinx quickref --no_preprocess --no_abort
++ doconce format sphinx quickref --no_preprocess --no_abort
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+Translating doconce text in tmp_mako__quickref.do.txt to sphinx
+copy complete file doconce_program.sh  (format: shpro)
+*** warning: sphinx/rst is a suboptimal format for
+    typesetting edit markup such as
+    [add 2: ,]
+    Use HTML or LaTeX output instead, implement the
+    edits (doconce apply_edit_comments) and then use sphinx.
+output in quickref.rst
++ '[' 0 -ne 0 ']'
++ rm -rf sphinx-rootdir
++ touch conf.py
++ system doconce sphinx_dir theme=cbc quickref dirname=sphinx-rootdir
++ doconce sphinx_dir theme=cbc quickref dirname=sphinx-rootdir
+Making sphinx-rootdir
+Welcome to the Sphinx 3.3.1 quickstart utility.
+
+Please enter values for the following settings (just press Enter to
+accept a default value, if one is given in brackets).
+
+Selected root path: .
+
+Error: an existing conf.py has been found in the selected root path.
+sphinx-quickstart will not overwrite existing Sphinx projects.
+
+> Please enter a new root path (or just Enter to exit) []: 
+You have two options for placing the build directory for Sphinx output.
+Either, you use a directory "_build" within the root path, or you separate
+"source" and "build" directories within the root path.
+> Separate source and build directories (y/n) [n]: 
+The project name will occur in several places in the built documentation.
+> Project name: > Author name(s): > Project release []: 
+If the documents are to be written in a language other than English,
+you can select a language here by its language code. Sphinx will then
+translate text that it generates into that language.
+
+For a list of supported codes, see
+https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language.
+> Project language [en]: 
+Creating file /X/X/sphinx-rootdir/conf.py.
+Creating file /X/X/sphinx-rootdir/index.rst.
+Creating file /X/X/sphinx-rootdir/Makefile.
+Creating file /X/X/sphinx-rootdir/make.bat.
+
+Finished: An initial directory structure has been created.
+
+You should now populate your master file /X/X/sphinx-rootdir/index.rst and create other documentation
+source files. Use the Makefile to build the docs, like so:
+   make builder
+where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
+
+title: DocOnce Quick Reference
+author: Hans Petter Langtangen, H. P. Langtangen, Kaare Dump and A. Dummy Author
+copyright: 2XXX, Hans Petter Langtangen, H. P. Langtangen, Kaare Dump and A. Dummy Author
+theme: cbc
+
+These Sphinx themes were found: ADCtheme, agni, agogo, alabaster, basic, basicstrap, bizstyle, bloodish, bootstrap, cbc, classic, cloud, default, epub, fenics, fenics_classic, fenics_minimal1, fenics_minimal2, haiku, jal, nature, pylons, pyramid, redcloud, scipy_lectures, scrolls, slim-agogo, solarized, sphinx_rtd_theme, sphinxdoc, traditional, uio, uio2, vlinux-theme
+'automake_sphinx.py' contains the steps to (re)compile the sphinx
+version. You may want to edit this file, or run the steps manually,
+or just run it by
+
+  python automake_sphinx.py
+
++ '[' 0 -ne 0 ']'
++ doconce replace 'doconce format sphinx %s' 'doconce format sphinx %s --no-preprocess' automake_sphinx.py
+replacing doconce format sphinx %s by doconce format sphinx %s --no-preprocess in automake_sphinx.py
++ system python automake_sphinx.py
++ python automake_sphinx.py
+Removing everything under '_build'...
+Running Sphinx v3.3.1
+loading translations [1.0]... not available for built-in messages
+making output directory... done
+building [mo]: targets for 0 po files that are out of date
+building [html]: targets for 2 source files that are out of date
+updating environment: [new config] 2 added, 0 changed, 0 removed
+reading sources... [ 50%] index
+reading sources... [100%] quickref
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+writing output... [ 50%] index
+writing output... [100%] quickref
+
+generating indices... genindex done
+writing additional pages... search done
+copying static files... done
+copying extra files... done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in _build/html.
+/X/X/sphinx-rootdir
+running make clean
+running make html
+Fix generated files:
+genindex.html
+index.html
+quickref.html
+search.html
+
+
+google-chrome sphinx-rootdir/_build/html/index.html
+
++ '[' 0 -ne 0 ']'
++ cp quickref.rst quickref.sphinx.rst
++ system doconce format rst quickref --no_preprocess --no_abort
++ doconce format rst quickref --no_preprocess --no_abort
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+Translating doconce text in tmp_mako__quickref.do.txt to rst
+copy complete file doconce_program.sh  (format: shpro)
+output in quickref.rst
++ '[' 0 -ne 0 ']'
++ rst2xml.py quickref.rst
++ rst2odt.py quickref.rst
++ rst2html.py quickref.rst
++ rst2latex.py quickref.rst
++ system latex quickref.rst.tex
++ latex quickref.rst.tex
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=latex)
+ restricted \write18 enabled.
+entering extended mode
+(./quickref.rst.tex
+LaTeX2e <2017-04-15>
+Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+
+(/usr/share/texlive/texmf-dist/tex/latex/cmap/cmap.sty
+
+Package cmap Warning: pdftex in DVI mode - exiting.
+
+) 
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+
+
+
+
+
+
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/helvet.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/bookmark.sty
+
+No file quickref.rst.aux.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
+
+
+
+
+
+
+Package hyperref Warning: old toc file detected, not used; run LaTeX again.
+
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/ptm/m/n/10 HTML. Other out-lets in-clude Google's \T1/pcr/m/n/10 blogger.co
+m\T1/ptm/m/n/10 , Wikipedia/Wikibooks, IPython/Jupyter
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, 
+Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyb
+erspace Inc.[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 name Email: somename@adr.net at institution1 & institution2[]
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 AUTHOR: name Email: somename@adr.net {copyright,2006-present}
+ at inst1[] 
+
+Underfull \hbox (badness 10000) 
+[]|\T1/pcr/m/n/10 ======= Appendix: heading
+
+Underfull \hbox (badness 1168) 
+[]|\T1/pcr/m/n/10 ===== Appendix: heading ===== \T1/ptm/m/n/10 (5
+
+Underfull \hbox (badness 1168) 
+[]|\T1/pcr/m/n/10 ===== Exercise: heading ===== \T1/ptm/m/n/10 (5
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/ptm/m/n/10 Note that ab-stracts are rec-og-nized by start-ing with \T1/pcr/
+m/n/10 __Abstract.__ \T1/ptm/m/n/10 or \T1/pcr/m/n/10 __Summary.__
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/ptm/m/it/10 sized words\T1/ptm/m/n/10 . Sim-i-larly, an un-der-score sur-ro
+unds words that ap-pear in bold-face: \T1/pcr/m/n/10 _boldface_
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 This distance corresponds to 7.5~km, which is traveled in $7.
+5/5$~s.[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 The em-dash is used - without spaces - as alternative to hyph
+en with[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 *Premature optimization is the root of all evil.*--- Donald K
+nuth.[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 Note that sublists are consistently indented by one or more b
+lanks as[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 shown: bullets must exactly match and continuation lines must
+ start[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 Some running text. [hpl: There must be a space after the colo
+n,[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce format html mydoc.do.txt --skip_inline_comments[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 First consider a quantity $Q$. Without loss of generality, we
+ assume[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 $Q>0$. There are three, fundamental, basic property of $Q$.[]
+ 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 we assume] $Q>0$. There are three[del: ,] fundamental[del: , 
+basic][] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 [edit: property -> properties] of $Q$. [add: These are not[] 
+
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/ptm/m/n/10 three-color{red}{(\T1/ptm/b/n/10 del 5\T1/ptm/m/n/10 : ,}) fun-d
+a-men-tal-color{red}{(\T1/ptm/b/n/10 del 6\T1/ptm/m/n/10 : , ba-sic}) \T1/ptm/b
+/n/10 (**edit
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys
+=console[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 @@@CODE doconce_program.sh  fromto: doconce clean@^doconce sp
+lit_rst[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 @@@CODE doconce_program.sh  from-to: doconce clean@^doconce s
+plit_rst[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 @@@CODE doconce_program.sh  envir=shpro fromto: name=@[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pm
+b{u} = 0.\][] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pm
+b{u} = 0.\][] 
+
+Overfull \hbox \(XXXpt too wide\) 
+[]\T1/ptm/m/n/10 If you want La-TeX math blocks to work with \T1/pcr/m/n/10 lat
+ex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 html\T1/ptm/m/n/10 , \T1/pcr/m/n/10 sphinx\T1
+/ptm/m/n/10 ,
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/ptm/m/n/10 ments: \T1/pcr/m/n/10 \[ ... \]\T1/ptm/m/n/10 , \T1/pcr/m/n/10 e
+quation*\T1/ptm/m/n/10 , \T1/pcr/m/n/10 equation\T1/ptm/m/n/10 , \T1/pcr/m/n/10
+ align*\T1/ptm/m/n/10 , \T1/pcr/m/n/10 align\T1/ptm/m/n/10 .
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/pcr/m/n/10 alignat*\T1/ptm/m/n/10 , \T1/pcr/m/n/10 alignat\T1/ptm/m/n/10 . 
+Other en-vi-ron-ments, such as \T1/pcr/m/n/10 split\T1/ptm/m/n/10 , \T1/pcr/m/n
+/10 multiline\T1/ptm/m/n/10 ,
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/pcr/m/n/10 newcommands*.tex\T1/ptm/m/n/10 . Use \T1/pcr/m/n/10 \newcommands
+ \T1/ptm/m/n/10 and not \T1/pcr/m/n/10 \def\T1/ptm/m/n/10 . Each
+
+Package hyperref Warning: Ignoring empty anchor on .
+
+Overfull \hbox \(XXXpt too wide\) 
+[]  \T1/pcr/m/n/10 \includegraphics[width=0.55\linewidth]{figs/myfig.pdf}  
+
+Overfull \hbox \(XXXpt too wide\) 
+[]\T1/pcr/m/n/10 \multicolumn{1}{c}{$v_0$} & \multicolumn{1}{c}{$f_R(v_0)$}\\hl
+ine  
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 Here is some "some link text": "http://some.net/address"[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 Links to files typeset in verbatim mode applies backtics:[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 "`myfile.py`": "http://some.net/some/place/myfile.py".[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Her
+e goes the caption which must be on a single line. label{some:fig:label}[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 MOVIE: [relative/path/to/moviefile, width=500] Here goes the 
+caption which must be on a single line.[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420
+ height=315] YouTube movie.[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vime
+o movie.[] 
+
+
+ne 1371.
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 |----------------c--------|------------------c---------------
+-----|[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 |      Section type       |        Syntax                    
+     |[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 |----------------l--------|------------------l---------------
+-----|[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 | chapter                 | `========= Heading ========` (9 `
+=`)  |[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 | section                 | `======= Heading =======`    (7 `
+=`)  |[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 | subsection              | `===== Heading =====`        (5 `
+=`)  |[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 | subsubsection           | `=== Heading ===`            (3 `
+=`)  |[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 | paragraph               | `__Heading.__`               (2 `
+_`)  |[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 |------------------------------------------------------------
+-----|[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 Terminal> doconce csv2table mydata.csv > mydata_table.do.txt[
+] 
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/ptm/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have \T1
+/pcr/m/n/10 name \T1/ptm/m/n/10 on the form \T1/pcr/m/n/10 Author1_Author2_YYYY
+\T1/ptm/m/n/10 ,
+
+Overfull \hbox \(XXXpt too wide\) 
+[]\T1/ptm/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line \T1/pcr/m/n/10 B
+IBFILE: papers.pub\T1/ptm/m/n/10 , where \T1/pcr/m/n/10 papers.pub
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 "A Document for Testing DocOnce": "testdoc.html" cite{testdoc
+:12}],[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 DocOnce version 1.5.7 (from /X/X/pyt
+hon3.6/site-packages/DocOnce-1.5.7-py3.6.egg/doconce)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 commands: help format find subst replace remove spellcheck ap
+ply_inline_edits capitalize change_encoding clean combine_images csv2table diff
+ expand_commands expand_mako extract_exercises find_nonascii_chars fix_bibtex4p
+ublish gitdiff grab grep guess_encoding gwiki_figsubst html2doconce html_colorb
+ullets jupyterbook include_map insertdocstr ipynb2doconce latex2doconce latex_d
+islikes latex_exercise_toc latex_footer latex_header latex_problems latin2html 
+lightclean linkchecker list_fig_src_files list_labels makefile md2html md2latex
+ old2new_format ptex2tex pygmentize ref_external remove_exercise_answers remove
+_inline_comments replace_from_file slides_beamer slides_html slides_markdown sp
+hinx_dir sphinxfix_localURLs split_html split_rst teamod[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwi
+ki|[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # substitute a phrase by another using regular expressions (i
+n this example -s is the re.DOTALL modifier, -m is the re.MULTILINE modifier, -
+x is the re.VERBOSE modifier, --restore copies backup files back again)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # replace a phrase by another literally (exact text substitut
+ion)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce replace_from_file file-with-from-to-replacements file
+1 file2 ...[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # search for a (regular) expression in all .do.txt files in t
+he current directory tree (useful when removing compilation errors)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # print an overview of how various files are included in the 
+root doc[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce expand_mako mako_code_file funcname file1 file2 ...[]
+ 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # replace all mako function calls by the `results of the call
+s[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce sphinx_dir copyright='John Doe' title='Long title' \[
+] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []        \T1/pcr/m/n/10 short_title="Short title" version=0.1 intersphinx \[]
+ 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # create a directory for the sphinx format (requires sphinx v
+ersion >= 1.1)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # split a sphinx/rst file into parts according to !split comm
+ands[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # walk through a directory tree and insert doconce files as d
+ocstrings in *.p.py files[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # remove all redundant files (keep source .do.txt and results
+: .pdf, .html, sphinx- dirs, .mwiki, .ipynb, etc.)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # split an html file into parts according to !split commands[
+] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # create LaTeX Beamer slides from a (doconce) latex/pdflatex 
+file[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce slides_markdown complete_file.md remark --slide_style
+=light[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce grab --from[-] from-text [--to[-] to-text] file > res
+ult[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce remove --from[-] from-text [--to[-] to-text] file > r
+esult[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \[]
+ 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []        \T1/pcr/m/n/10 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{
+quote}[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # transform ptex2tex files (.p.tex) to ordinary latex file an
+d manage the code environments[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce latex_problems mydoc.log [overfull-hbox-limit][] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # list all figure files, movie files, and source code files n
+eeded[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # list all labels in a document (for purposes of cleaning the
+m up)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # generate script for substituting generalized references[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # change headings from "This is a Heading" to "This is a head
+ing"[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # translate a latex document to doconce (requires usually man
+ual fixing)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # check if there are problems with translating latex to docon
+ce[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # typeset a doconce document with pygments (for pretty print 
+of doconce itself)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce makefile docname doconcefile [html sphinx pdflatex ..
+.][] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # generate a make.py script for translating a doconce file to
+ various formats[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # find differences between two files (diffprog can be difflib
+, diff, pdiff, latexdiff, kdiff3, diffuse, ...)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # find differences between the last two Git versions of sever
+al files[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # replace latex-1 (non-ascii) characters by html codes[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # fix common problems in bibtex files for publish import[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # insert a table of exercises in a latex file myfile.p.tex[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse 
+=====[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 Derive an expression for the area of an ellipse by integratin
+g[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 the area under a curve that defines half of the ellipse.[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 ===== {Problem}: Derive the Formula for the Area of an Ellips
+e =====[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.[
+] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summ
+arize[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 and give some perspectives. The text inside the `!bremarks` a
+nd `!eremarks`[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/ptm/m/n/10 DocOnce en-vi-ron-ments start with \T1/pcr/m/n/10 !benvirname \T
+1/ptm/m/n/10 and end with \T1/pcr/m/n/10 !eenvirname\T1/ptm/m/n/10 , where
+
+Overfull \hbox \(XXXpt too wide\) 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mu
+lticolumn{1}{c}{acceleration} \\[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+[][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
+\T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
+
+Overfull \hbox \(XXXpt too wide\) 
+[]\T1/ptm/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "[][][][][][]" 
+[25] (./quickref.rst.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information)
+Output written on quickref.rst.dvi (XXX pages, ).
+Transcript written on quickref.rst.log.
++ '[' 0 -ne 0 ']'
++ latex quickref.rst.tex
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=latex)
+ restricted \write18 enabled.
+entering extended mode
+(./quickref.rst.tex
+LaTeX2e <2017-04-15>
+Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+
+(/usr/share/texlive/texmf-dist/tex/latex/cmap/cmap.sty
+
+Package cmap Warning: pdftex in DVI mode - exiting.
+
+) 
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+
+
+
+
+
+
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/helvet.sty
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+
+
+
+
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/bookmark.sty
+
+(./quickref.rst.aux) 
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+
+
+
+
+
+ (./quickref.rst.toc
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/ptm/m/n/10 HTML. Other out-lets in-clude Google's \T1/pcr/m/n/10 blogger.co
+m\T1/ptm/m/n/10 , Wikipedia/Wikibooks, IPython/Jupyter
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, 
+Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyb
+erspace Inc.[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 name Email: somename@adr.net at institution1 & institution2[]
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 AUTHOR: name Email: somename@adr.net {copyright,2006-present}
+ at inst1[] 
+
+Underfull \hbox (badness 10000) 
+[]|\T1/pcr/m/n/10 ======= Appendix: heading
+
+Underfull \hbox (badness 1168) 
+[]|\T1/pcr/m/n/10 ===== Appendix: heading ===== \T1/ptm/m/n/10 (5
+
+Underfull \hbox (badness 1168) 
+[]|\T1/pcr/m/n/10 ===== Exercise: heading ===== \T1/ptm/m/n/10 (5
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/ptm/m/n/10 Note that ab-stracts are rec-og-nized by start-ing with \T1/pcr/
+m/n/10 __Abstract.__ \T1/ptm/m/n/10 or \T1/pcr/m/n/10 __Summary.__
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/ptm/m/it/10 sized words\T1/ptm/m/n/10 . Sim-i-larly, an un-der-score sur-ro
+unds words that ap-pear in bold-face: \T1/pcr/m/n/10 _boldface_
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 This distance corresponds to 7.5~km, which is traveled in $7.
+5/5$~s.[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 The em-dash is used - without spaces - as alternative to hyph
+en with[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 *Premature optimization is the root of all evil.*--- Donald K
+nuth.[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 Note that sublists are consistently indented by one or more b
+lanks as[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 shown: bullets must exactly match and continuation lines must
+ start[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 Some running text. [hpl: There must be a space after the colo
+n,[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce format html mydoc.do.txt --skip_inline_comments[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 First consider a quantity $Q$. Without loss of generality, we
+ assume[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 $Q>0$. There are three, fundamental, basic property of $Q$.[]
+ 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 we assume] $Q>0$. There are three[del: ,] fundamental[del: , 
+basic][] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 [edit: property -> properties] of $Q$. [add: These are not[] 
+
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/ptm/m/n/10 three-color{red}{(\T1/ptm/b/n/10 del 5\T1/ptm/m/n/10 : ,}) fun-d
+a-men-tal-color{red}{(\T1/ptm/b/n/10 del 6\T1/ptm/m/n/10 : , ba-sic}) \T1/ptm/b
+/n/10 (**edit
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys
+=console[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 @@@CODE doconce_program.sh  fromto: doconce clean@^doconce sp
+lit_rst[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 @@@CODE doconce_program.sh  from-to: doconce clean@^doconce s
+plit_rst[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 @@@CODE doconce_program.sh  envir=shpro fromto: name=@[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pm
+b{u} = 0.\][] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pm
+b{u} = 0.\][] 
+
+Overfull \hbox \(XXXpt too wide\) 
+[]\T1/ptm/m/n/10 If you want La-TeX math blocks to work with \T1/pcr/m/n/10 lat
+ex\T1/ptm/m/n/10 , \T1/pcr/m/n/10 html\T1/ptm/m/n/10 , \T1/pcr/m/n/10 sphinx\T1
+/ptm/m/n/10 ,
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/ptm/m/n/10 ments: \T1/pcr/m/n/10 \[ ... \]\T1/ptm/m/n/10 , \T1/pcr/m/n/10 e
+quation*\T1/ptm/m/n/10 , \T1/pcr/m/n/10 equation\T1/ptm/m/n/10 , \T1/pcr/m/n/10
+ align*\T1/ptm/m/n/10 , \T1/pcr/m/n/10 align\T1/ptm/m/n/10 .
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/pcr/m/n/10 alignat*\T1/ptm/m/n/10 , \T1/pcr/m/n/10 alignat\T1/ptm/m/n/10 . 
+Other en-vi-ron-ments, such as \T1/pcr/m/n/10 split\T1/ptm/m/n/10 , \T1/pcr/m/n
+/10 multiline\T1/ptm/m/n/10 ,
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/pcr/m/n/10 newcommands*.tex\T1/ptm/m/n/10 . Use \T1/pcr/m/n/10 \newcommands
+ \T1/ptm/m/n/10 and not \T1/pcr/m/n/10 \def\T1/ptm/m/n/10 . Each
+
+Package hyperref Warning: Ignoring empty anchor on .
+
+Overfull \hbox \(XXXpt too wide\) 
+[]  \T1/pcr/m/n/10 \includegraphics[width=0.55\linewidth]{figs/myfig.pdf}  
+
+Overfull \hbox \(XXXpt too wide\) 
+[]\T1/pcr/m/n/10 \multicolumn{1}{c}{$v_0$} & \multicolumn{1}{c}{$f_R(v_0)$}\\hl
+ine  
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 Here is some "some link text": "http://some.net/address"[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 Links to files typeset in verbatim mode applies backtics:[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 "`myfile.py`": "http://some.net/some/place/myfile.py".[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Her
+e goes the caption which must be on a single line. label{some:fig:label}[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 MOVIE: [relative/path/to/moviefile, width=500] Here goes the 
+caption which must be on a single line.[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420
+ height=315] YouTube movie.[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vime
+o movie.[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 |----------------c--------|------------------c---------------
+-----|[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 |      Section type       |        Syntax                    
+     |[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 |----------------l--------|------------------l---------------
+-----|[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 | chapter                 | `========= Heading ========` (9 `
+=`)  |[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 | section                 | `======= Heading =======`    (7 `
+=`)  |[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 | subsection              | `===== Heading =====`        (5 `
+=`)  |[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 | subsubsection           | `=== Heading ===`            (3 `
+=`)  |[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 | paragraph               | `__Heading.__`               (2 `
+_`)  |[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 |------------------------------------------------------------
+-----|[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 Terminal> doconce csv2table mydata.csv > mydata_table.do.txt[
+] 
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/ptm/m/n/10 sert a back-slash). Bib-li-og-ra-phy ci-ta-tions of-ten have \T1
+/pcr/m/n/10 name \T1/ptm/m/n/10 on the form \T1/pcr/m/n/10 Author1_Author2_YYYY
+\T1/ptm/m/n/10 ,
+
+Overfull \hbox \(XXXpt too wide\) 
+[]\T1/ptm/m/n/10 The bib-li-og-ra-phy is spec-i-fied by a line \T1/pcr/m/n/10 B
+IBFILE: papers.pub\T1/ptm/m/n/10 , where \T1/pcr/m/n/10 papers.pub
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 ref[Section ref{subsec:ex}][in cite{testdoc:12}][a "section":
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 "A Document for Testing DocOnce": "testdoc.html" cite{testdoc
+:12}],[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 DocOnce version 1.5.7 (from /X/X/pyt
+hon3.6/site-packages/DocOnce-1.5.7-py3.6.egg/doconce)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 commands: help format find subst replace remove spellcheck ap
+ply_inline_edits capitalize change_encoding clean combine_images csv2table diff
+ expand_commands expand_mako extract_exercises find_nonascii_chars fix_bibtex4p
+ublish gitdiff grab grep guess_encoding gwiki_figsubst html2doconce html_colorb
+ullets jupyterbook include_map insertdocstr ipynb2doconce latex2doconce latex_d
+islikes latex_exercise_toc latex_footer latex_header latex_problems latin2html 
+lightclean linkchecker list_fig_src_files list_labels makefile md2html md2latex
+ old2new_format ptex2tex pygmentize ref_external remove_exercise_answers remove
+_inline_comments replace_from_file slides_beamer slides_html slides_markdown sp
+hinx_dir sphinxfix_localURLs split_html split_rst teamod[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce format html|latex|pdflatex|rst|sphinx|plain|gwiki|mwi
+ki|[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # substitute a phrase by another using regular expressions (i
+n this example -s is the re.DOTALL modifier, -m is the re.MULTILINE modifier, -
+x is the re.VERBOSE modifier, --restore copies backup files back again)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # replace a phrase by another literally (exact text substitut
+ion)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce replace_from_file file-with-from-to-replacements file
+1 file2 ...[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # search for a (regular) expression in all .do.txt files in t
+he current directory tree (useful when removing compilation errors)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # print an overview of how various files are included in the 
+root doc[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce expand_mako mako_code_file funcname file1 file2 ...[]
+ 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # replace all mako function calls by the `results of the call
+s[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce sphinx_dir copyright='John Doe' title='Long title' \[
+] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []        \T1/pcr/m/n/10 short_title="Short title" version=0.1 intersphinx \[]
+ 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # create a directory for the sphinx format (requires sphinx v
+ersion >= 1.1)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # split a sphinx/rst file into parts according to !split comm
+ands[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # walk through a directory tree and insert doconce files as d
+ocstrings in *.p.py files[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # remove all redundant files (keep source .do.txt and results
+: .pdf, .html, sphinx- dirs, .mwiki, .ipynb, etc.)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # split an html file into parts according to !split commands[
+] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # create LaTeX Beamer slides from a (doconce) latex/pdflatex 
+file[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce slides_markdown complete_file.md remark --slide_style
+=light[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce grab --from[-] from-text [--to[-] to-text] file > res
+ult[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce remove --from[-] from-text [--to[-] to-text] file > r
+esult[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce ptex2tex mydoc -DMINTED pycod=minted sys=Verbatim \[]
+ 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []        \T1/pcr/m/n/10 dat=\begin{quote}\begin{verbatim};\end{verbatim}\end{
+quote}[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # transform ptex2tex files (.p.tex) to ordinary latex file an
+d manage the code environments[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce latex_problems mydoc.log [overfull-hbox-limit][] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # list all figure files, movie files, and source code files n
+eeded[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # list all labels in a document (for purposes of cleaning the
+m up)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # generate script for substituting generalized references[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # change headings from "This is a Heading" to "This is a head
+ing"[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # translate a latex document to doconce (requires usually man
+ual fixing)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # check if there are problems with translating latex to docon
+ce[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # typeset a doconce document with pygments (for pretty print 
+of doconce itself)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 doconce makefile docname doconcefile [html sphinx pdflatex ..
+.][] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # generate a make.py script for translating a doconce file to
+ various formats[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # find differences between two files (diffprog can be difflib
+, diff, pdiff, latexdiff, kdiff3, diffuse, ...)[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # find differences between the last two Git versions of sever
+al files[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # replace latex-1 (non-ascii) characters by html codes[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # fix common problems in bibtex files for publish import[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 # insert a table of exercises in a latex file myfile.p.tex[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 ===== Problem: Derive the Formula for the Area of an Ellipse 
+=====[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 Derive an expression for the area of an ellipse by integratin
+g[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 the area under a curve that defines half of the ellipse.[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 ===== {Problem}: Derive the Formula for the Area of an Ellips
+e =====[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 ===== Exercise: Determine the Distance to the Moon =====[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 Intro to this exercise. Questions are in subexercises below.[
+] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 At the very end of the exercise it may be appropriate to summ
+arize[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 and give some perspectives. The text inside the `!bremarks` a
+nd `!eremarks`[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 directives is always typeset at the end of the exercise.[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+\T1/ptm/m/n/10 DocOnce en-vi-ron-ments start with \T1/pcr/m/n/10 !benvirname \T
+1/ptm/m/n/10 and end with \T1/pcr/m/n/10 !eenvirname\T1/ptm/m/n/10 , where
+
+Overfull \hbox \(XXXpt too wide\) 
+
+Overfull \hbox \(XXXpt too wide\) 
+ []\T1/pcr/m/n/10 \multicolumn{1}{c}{time} & \multicolumn{1}{c}{velocity} & \mu
+lticolumn{1}{c}{acceleration} \\[] 
+
+Overfull \hbox \(XXXpt too wide\) 
+[][][][][][] \T1/ptm/m/n/10 con-tains some il-lus-tra-tions on how to uti-lize 
+\T1/pcr/m/n/10 mako \T1/ptm/m/n/10 (clone the GitHub
+
+Overfull \hbox \(XXXpt too wide\) 
+[]\T1/ptm/m/n/10 Excellent "Sphinx Tu-to-rial" by C. Reller: "[][][][][][]" 
+[26] (./quickref.rst.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information)
+Output written on quickref.rst.dvi (XXX pages, ).
+Transcript written on quickref.rst.log.
++ dvipdf quickref.rst.dvi
++ system doconce format plain quickref --no_preprocess --no_abort
++ doconce format plain quickref --no_preprocess --no_abort
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+Translating doconce text in tmp_mako__quickref.do.txt to plain
+copy complete file doconce_program.sh  (format: shpro)
+*** made link to new HTML file movie_player1.html
+    with code to display the movie 
+    http://vimeo.com/55562330
+output in quickref.txt
++ '[' 0 -ne 0 ']'
++ system doconce format gwiki quickref --no_preprocess --no_abort
++ doconce format gwiki quickref --no_preprocess --no_abort
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+Translating doconce text in tmp_mako__quickref.do.txt to gwiki
+copy complete file doconce_program.sh  (format: shpro)
+*** warning: footnotes are not supported for format gwiki
+    footnotes will be left in the doconce syntax
+*** made link to new HTML file movie_player1.html
+    with code to display the movie 
+    http://vimeo.com/55562330
+output in quickref.gwiki
++ '[' 0 -ne 0 ']'
++ system doconce format mwiki quickref --no_preprocess --no_abort
++ doconce format mwiki quickref --no_preprocess --no_abort
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+Translating doconce text in tmp_mako__quickref.do.txt to mwiki
+copy complete file doconce_program.sh  (format: shpro)
+*** warning: footnotes are not supported for format mwiki
+    footnotes will be left in the doconce syntax
+*** made link to new HTML file movie_player1.html
+    with code to display the movie 
+    http://vimeo.com/55562330
+output in quickref.mwiki
++ '[' 0 -ne 0 ']'
++ system doconce format cwiki quickref --no_preprocess --no_abort
++ doconce format cwiki quickref --no_preprocess --no_abort
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+Translating doconce text in tmp_mako__quickref.do.txt to cwiki
+copy complete file doconce_program.sh  (format: shpro)
+*** warning: footnotes are not supported for format cwiki
+    footnotes will be left in the doconce syntax
+*** made link to new HTML file movie_player1.html
+    with code to display the movie 
+    http://vimeo.com/55562330
+output in quickref.cwiki
++ '[' 0 -ne 0 ']'
++ system doconce format st quickref --no_preprocess --no_abort
++ doconce format st quickref --no_preprocess --no_abort
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+Translating doconce text in tmp_mako__quickref.do.txt to st
+copy complete file doconce_program.sh  (format: shpro)
+*** warning: footnotes are not supported for format st
+    footnotes will be left in the doconce syntax
+*** made link to new HTML file movie_player1.html
+    with code to display the movie 
+    http://vimeo.com/55562330
+output in quickref.st
++ '[' 0 -ne 0 ']'
++ system doconce format epytext quickref --no_preprocess --no_abort
++ doconce format epytext quickref --no_preprocess --no_abort
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+Translating doconce text in tmp_mako__quickref.do.txt to epytext
+copy complete file doconce_program.sh  (format: shpro)
+*** warning: footnotes are not supported for format epytext
+    footnotes will be left in the doconce syntax
+*** made link to new HTML file movie_player1.html
+    with code to display the movie 
+    http://vimeo.com/55562330
+output in quickref.epytext
++ '[' 0 -ne 0 ']'
++ system doconce format pandoc quickref --no_preprocess --strict_markdown_output --github_md --no_abort
++ doconce format pandoc quickref --no_preprocess --strict_markdown_output --github_md --no_abort
+running mako on quickref.do.txt to make tmp_mako__quickref.do.txt
+Translating doconce text in tmp_mako__quickref.do.txt to pandoc
+copy complete file doconce_program.sh  (format: shpro)
+*** warning: footnotes are not supported for format pandoc
+    footnotes will be left in the doconce syntax
+output in quickref.md
++ '[' 0 -ne 0 ']'
++ rm -rf demo
++ mkdir demo
++ cp -r quickref.do.txt quickref.html quickref.p.tex quickref.tex quickref.pdf quickref.rst quickref.xml quickref.rst.html quickref.rst.tex quickref.rst.pdf quickref.gwiki quickref.mwiki quickref.cwiki quickref.txt quickref.epytext quickref.st quickref.md sphinx-rootdir/_build/html demo
+cp: cannot stat 'quickref.p.tex': No such file or directory
++ cd demo
++ cat
++ echo
+
++ echo 'Go to the demo directory /X/X/demo and load index.html into a web browser.'
+Go to the demo directory /X/X/demo and load index.html into a web browser.
++ cd ..
++ dest=../../pub/quickref
++ cp -r demo/html demo/quickref.pdf demo/quickref.html ../../pub/quickref
++ dest=../../../../doconce.wiki
++ cp -r demo/quickref.md ../../../../doconce.wiki

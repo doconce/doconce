@@ -1,0 +1,575 @@
+# Information about all exercises in the file testdoc.do.txt.
+# The information can be loaded into a Python list of dicts by
+#
+# f = open('.testdoc.exerinfo', 'r')
+# exer = eval(f.read())
+#
+[{'ans_docend': '',
+  'answer': '',
+  'chapter_exercise': None,
+  'chapter_no': None,
+  'chapter_title': None,
+  'chapter_type': None,
+  'closing_remarks': '',
+  'file': None,
+  'heading': '=====',
+  'hints': [],
+  'keywords': None,
+  'label': 'Example',
+  'no': 1,
+  'sol_docend': '',
+  'solution': '',
+  'solution_file': None,
+  'subex': [{'ans_docend': '',
+             'answer': '',
+             'file': None,
+             'hints': [],
+             'sol_docend': '',
+             'solution': 'The answer to this subproblem can be written here.',
+             'text': 'State some problem.'},
+            {'ans_docend': '',
+             'answer': '',
+             'file': None,
+             'hints': ['A hint can be given.', 'Maybe even another hint?'],
+             'sol_docend': '',
+             'solution': 'The answer to this other subproblem goes here,\n'
+                         'maybe over multiple doconce input lines.',
+             'text': 'State some other problem.'}],
+  'text': 'Examples can start with a subsection heading starting with '
+          '`Example:`\n'
+          'and then, with the command-line option `--examples_as_exercises` '
+          'be\n'
+          'typeset as exercises. This is useful if one has solution\n'
+          'environments as part of the example.',
+  'title': 'Examples can be typeset as exercises',
+  'type': 'Example',
+  'type_visible': True},
+ {'ans_docend': '',
+  'answer': '',
+  'chapter_exercise': None,
+  'chapter_no': None,
+  'chapter_title': None,
+  'chapter_type': None,
+  'closing_remarks': 'These are the exercise remarks, appearing at the very '
+                     'end.',
+  'file': ['flip_coin.py', 'flip_coin.pdf'],
+  'heading': '=====',
+  'hints': [],
+  'keywords': ['random numbers', 'Monte Carlo simulation', 'ipynb'],
+  'label': 'demo:ex:1',
+  'no': 2,
+  'sol_docend': '',
+  'solution': '',
+  'solution_file': ['mysol.txt', 'mysol_flip_coin.py', 'yet_another.file'],
+  'subex': [{'ans_docend': '',
+             'answer': 'If the `random.random()` function returns a number '
+                       '$<1/2$, let it be\n'
+                       'head, otherwise tail. Repeat this $N$ number of times.',
+             'file': None,
+             'hints': ['Use `r = random.random()` and define head as `r <= '
+                       '0.5`.',
+                       'Draw an integer among $\\{1,2\\}$ with\n'
+                       '`r = random.randint(1,2)` and define head when `r` is '
+                       '1.'],
+             'sol_docend': '',
+             'solution': '!bc pycod\n'
+                         'import sys, random\n'
+                         'N = int(sys.argv[1])\n'
+                         'heads = 0\n'
+                         'for i in range(N):\n'
+                         '    r = random.random()\n'
+                         '    if r <= 0.5:\n'
+                         '        heads += 1\n'
+                         "print('Flipping a coin %d times gave %d heads' % (N, "
+                         'heads))\n'
+                         '\n'
+                         '!ec',
+             'text': 'Make a program that simulates flipping a coin $N$ '
+                     'times.\n'
+                     "Print out ``tail'' or ``head'' for each flip and\n"
+                     'let the program count the number of heads.'},
+            {'aftertext': '\n'
+                          'Vectorized code can be written in many ways.\n'
+                          'Sometimes the code is less intuitive, sometimes '
+                          'not.\n'
+                          'At least there is not much to find in Section '
+                          'ref{sec1}.\n',
+             'ans_docend': '',
+             'answer': '',
+             'file': None,
+             'hints': [],
+             'sol_docend': '',
+             'solution': '',
+             'text': 'Vectorize the code in a) using boolean indexing.'},
+            {'aftertext': '\n'
+                          'In this latter subexercise, we have an\n'
+                          'example where the code is easy to read.\n'
+                          '\n'
+                          '\n'
+                          '=== My remarks ===\n'
+                          '\n'
+                          'Remarks with such a subsubsection is treated as '
+                          'more text\n'
+                          'after the last subexercise. Test a list too:\n'
+                          '\n'
+                          ' o Mark 1.\n'
+                          ' o Mark 2.\n',
+             'ans_docend': '',
+             'answer': '`np.sum(np.where(r <= 0.5, 1, 0))` or `np.sum(r <= '
+                       '0.5)`.',
+             'file': None,
+             'hints': [],
+             'sol_docend': '',
+             'solution': '',
+             'text': 'Vectorize the code in a) using `numpy.sum`.'}],
+  'text': '# Torture tests',
+  'title': 'Flip a Coin',
+  'type': 'Problem',
+  'type_visible': True},
+ {'ans_docend': '',
+  'answer': '',
+  'chapter_exercise': None,
+  'chapter_no': None,
+  'chapter_title': None,
+  'chapter_type': None,
+  'closing_remarks': '',
+  'file': ['myexer1'],
+  'heading': '=====',
+  'hints': [],
+  'keywords': None,
+  'label': 'my:exer1',
+  'no': 3,
+  'sol_docend': '',
+  'solution': '',
+  'solution_file': None,
+  'subex': [],
+  'text': 'Very short exercise. What is the capital\nof Norway?',
+  'title': 'Test of plain text exercise',
+  'type': 'Exercise',
+  'type_visible': True},
+ {'ans_docend': '',
+  'answer': '',
+  'chapter_exercise': None,
+  'chapter_no': None,
+  'chapter_title': None,
+  'chapter_type': None,
+  'closing_remarks': '',
+  'file': None,
+  'heading': '=====',
+  'hints': ['To answer this question empirically, let a program\n'
+            "draw $N$ such random numbers using Python's standard `random` "
+            'module,\n'
+            'count how many of them, $M$, that fall in the interval '
+            '$(0.5,0.6)$, and\n'
+            'compute the probability as $M/N$.'],
+  'keywords': None,
+  'label': 'demo:ex:2',
+  'no': 4,
+  'sol_docend': '',
+  'solution': '',
+  'solution_file': None,
+  'subex': [],
+  'text': '# Minimalistic exercise\n'
+          '\n'
+          '\n'
+          'What is the probability of getting a number between 0.5 and 0.6 '
+          'when\n'
+          'drawing uniformly distributed random numbers from the interval '
+          '$[0,1)$?\n'
+          '\n'
+          '\n'
+          'At the end we have a list because that caused problems in LaTeX\n'
+          'in previous DocOnce versions:\n'
+          '\n'
+          ' o item1\n'
+          ' o item2',
+  'title': 'Compute a Probability',
+  'type': 'Project',
+  'type_visible': True},
+ {'ans_docend': '',
+  'answer': '',
+  'chapter_exercise': None,
+  'chapter_no': None,
+  'chapter_title': None,
+  'chapter_type': None,
+  'closing_remarks': 'At the very end of the exercise it may be appropriate to '
+                     'summarize\n'
+                     'and give some perspectives.',
+  'file': ['circles'],
+  'heading': '=====',
+  'hints': [],
+  'keywords': ['ipynb'],
+  'label': 'proj:circle1',
+  'no': 5,
+  'sol_docend': '',
+  'solution': '',
+  'solution_file': None,
+  'subex': [{'ans_docend': '',
+             'answer': 'Here goes the short answer to part a).',
+             'file': None,
+             'hints': ['Use the `numpy.random` module to draw the\n'
+                       '$x_0$, $y_0$, and $R$ quantities.'],
+             'sol_docend': '',
+             'solution': 'Here goes a full solution to part a).',
+             'text': 'Let $R$ be normally distributed and $(x_0,y_0)$ '
+                     'uniformly distributed.'},
+            {'ans_docend': '',
+             'answer': '',
+             'file': ['norm'],
+             'hints': [],
+             'sol_docend': '',
+             'solution': '',
+             'text': 'Let $R$ be uniformly distributed and $(x_0,y_0)$ '
+                     'normally distributed.'},
+            {'aftertext': '\n',
+             'ans_docend': '',
+             'answer': '',
+             'file': None,
+             'hints': [],
+             'sol_docend': '',
+             'solution': '',
+             'text': 'Let $R$ and $(x_0,y_0)$ be normally distributed.'}],
+  'text': 'The formula for a circle is given by\n'
+          '\n'
+          '!bt\n'
+          '\\begin{align}\n'
+          'x &= x_0 + R\\cos 2\\pi t,\n'
+          'label{circle:x}\\\\ \n'
+          'y &= y_0 + R\\sin 2\\pi t,\n'
+          'label{circle:y}\n'
+          '\\end{align}\n'
+          '\n'
+          '!et\n'
+          'where $R$ is the radius of the circle, $(x_0,y_0)$ is the\n'
+          'center point, and $t$ is a parameter in the unit interval $[0,1]$.\n'
+          'For any $t$, $(x,y)$ computed from (ref{circle:x})-(ref{circle:y})\n'
+          'is a point on the circle.\n'
+          'The formula can be used to generate `n` points on a circle:\n'
+          '\n'
+          '!bc pypro\n'
+          'import numpy as np\n'
+          '\n'
+          'def circle(R, x0, y0, n=501):\n'
+          '    t = np.linspace(0, 1, n)\n'
+          '    x = x0 + R*np.cos(2*np.pi*t)\n'
+          '    y = y0 + R*np.sin(2*np.pi*t)\n'
+          '    return x, y\n'
+          '\n'
+          'x, y = circle(2.0, 0, 0)\n'
+          '\n'
+          '!ec\n'
+          '\n'
+          '# Often in an exercise we have some comments about the solution\n'
+          '# which we normally want to keep where they are.\n'
+          '\n'
+          'The goal of this project is to draw $N$ circles with random\n'
+          'center and radius. Plot each circle using the `circle` function\n'
+          'above.',
+  'title': 'Explore Distributions of Random Circles',
+  'type': 'Project',
+  'type_visible': True},
+ {'ans_docend': '',
+  'answer': '',
+  'chapter_exercise': None,
+  'chapter_no': None,
+  'chapter_title': None,
+  'chapter_type': None,
+  'closing_remarks': 'Some final closing remarks, e.g., summarizing the main '
+                     'findings\n'
+                     'and their implications in other problems can be made. '
+                     'These\n'
+                     'remarks will appear at the end of the typeset exercise.',
+  'file': None,
+  'heading': '=====',
+  'hints': [],
+  'keywords': None,
+  'label': 'exer:dist',
+  'no': 6,
+  'sol_docend': '',
+  'solution': 'Here goes a full solution of the whole exercise.\n'
+              'With some math $a=b$ in this solution:\n'
+              '!bt\n'
+              '\\[ \\hbox{math in solution: } a = b \\]\n'
+              '\n'
+              '!et\n'
+              'And code `a=b` in this solution:\n'
+              '!bc\n'
+              'a = b  # code in solution\n'
+              '\n'
+              '!ec \n'
+              'End of solution is here.',
+  'solution_file': None,
+  'subex': [{'ans_docend': '',
+             'answer': 'Short answer to subexercise a).\n'
+                       'With math in answer: $a=b$.',
+             'file': ['subexer_a.pdf'],
+             'hints': ['First hint to subexercise a).\n'
+                       'With math $a=b$ in hint:\n'
+                       '\n'
+                       '!bt\n'
+                       '\\[ a=b. \\]\n'
+                       '\n'
+                       '!et\n'
+                       'And with code (in plain verbatim) returning $x+1$ in '
+                       'hint:\n'
+                       '\n'
+                       '!bc\n'
+                       'def func(x):\n'
+                       '    return x + 1  # with code in hint\n'
+                       '\n'
+                       '!ec',
+                       'Second hint to subexercise a).\n'
+                       '\n'
+                       'Test list in hint:\n'
+                       '\n'
+                       ' o item1\n'
+                       ' o item2'],
+             'sol_docend': '',
+             'solution': '',
+             'text': 'Subexercises are numbered a), b), etc.'},
+            {'aftertext': '\n'
+                          '\n'
+                          '\n'
+                          '#  No meaning in this weired test example:\n'
+                          'The text here belongs to the main (intro) part of '
+                          'the exercise. Need\n'
+                          'closing remarks to have text after subexercises.\n'
+                          '\n'
+                          'Test list in exercise:\n'
+                          '\n'
+                          ' o item1\n'
+                          ' o item2\n'
+                          '\n',
+             'ans_docend': '',
+             'answer': '',
+             'file': ['subexer_b.pdf'],
+             'hints': ['A hint for this subexercise.'],
+             'sol_docend': '',
+             'solution': 'Here goes the solution of this subexercise.',
+             'text': 'Here goes the text for subexercise b).\n'
+                     '\n'
+                     '\n'
+                     'Some math $\\cos^2 x + \\sin^2 x = 1$ written one a '
+                     'single line:\n'
+                     '\n'
+                     '!bt\n'
+                     '\\[ \\cos^2 x + \\sin^2 x = 1 \\thinspace .\\]\n'
+                     '\n'
+                     '!et'}],
+  'text': 'Intro to this exercise. Questions are in subexercises below.',
+  'title': 'Determine some Distance',
+  'type': 'Exercise',
+  'type_visible': True},
+ {'ans_docend': '',
+  'answer': '',
+  'chapter_exercise': None,
+  'chapter_no': None,
+  'chapter_title': None,
+  'chapter_type': None,
+  'closing_remarks': '',
+  'file': None,
+  'heading': '=====',
+  'hints': [],
+  'keywords': None,
+  'label': None,
+  'no': 7,
+  'sol_docend': '',
+  'solution': '',
+  'solution_file': None,
+  'subex': [],
+  'text': '# Another minimalistic exercise\n'
+          '\n'
+          'Just some text. And some math saying that $e^0=1$ on a single '
+          'line,\n'
+          'to test that math block insertion is correct:\n'
+          '\n'
+          '!bt\n'
+          '\\[ \\exp{(0)} = 1 \\]\n'
+          '\n'
+          '!et\n'
+          '\n'
+          'And a test that the code `lambda x: x+2` is correctly placed here:\n'
+          '\n'
+          '!bc\n'
+          'lambda x: x+2\n'
+          '\n'
+          '!ec ',
+  'title': 'Some exercise without the "Exercise:" prefix',
+  'type': 'Exercise',
+  'type_visible': False},
+ {'ans_docend': '',
+  'answer': '',
+  'chapter_exercise': None,
+  'chapter_no': None,
+  'chapter_title': None,
+  'chapter_type': None,
+  'closing_remarks': '',
+  'file': None,
+  'heading': '=====',
+  'hints': [],
+  'keywords': None,
+  'label': 'sec:this:exer:de',
+  'no': 8,
+  'sol_docend': '',
+  'solution': '',
+  'solution_file': None,
+  'subex': [],
+  'text': '# --- begin quiz ---\n'
+          '# --- quiz heading: SOlution of differential equation\n'
+          '# --- previous heading type: exercise\n'
+          "# --- keywords: ['derivatives', 'exponential function', 'equation, "
+          "differential', 'differential equation']\n"
+          '\n'
+          '# --- begin quiz question ---\n'
+          'Given\n'
+          '\n'
+          '!bt\n'
+          '\\[ \\frac{dy}{dx} = -y(x),\\quad y(0)=1 \\]\n'
+          '\n'
+          '!et\n'
+          'What is the solution of this equation?\n'
+          '# --- end quiz question ---\n'
+          '# --- label: quiz:diff:eq1\n'
+          '\n'
+          '\n'
+          '# --- begin quiz choice 1 (right) ---\n'
+          '$y=e^{-y}$\n'
+          '# --- end quiz choice 1 (right) ---\n'
+          '\n'
+          '# --- begin quiz choice 2 (wrong) ---\n'
+          '$y=e^{y}$\n'
+          '# --- end quiz choice 2 (wrong) ---\n'
+          '\n'
+          '# --- begin explanation of choice 2 ---\n'
+          'Almost, but the sign is wrong (note the minus!).\n'
+          '# --- end explanation of choice 2 ---\n'
+          '\n'
+          '# --- begin quiz choice 3 (wrong) ---\n'
+          '!bc pycod\n'
+          'from math import exp\n'
+          'def f(x):\n'
+          '    return exp(x)\n'
+          '\n'
+          '!ec\n'
+          '# --- end quiz choice 3 (wrong) ---\n'
+          '\n'
+          '# --- begin explanation of choice 3 ---\n'
+          'Ooops, forgot a minus: `exp(-x)`, otherwise this Python code\n'
+          'must be considered as a good answer. It is more natural,\n'
+          'though, to write the solution to the problem\n'
+          'in mathematical notation:\n'
+          '\n'
+          '!bt\n'
+          '\\[ y(x) = e^{-y}.\\]\n'
+          '\n'
+          '!et\n'
+          '# --- end explanation of choice 3 ---\n'
+          '\n'
+          '# --- begin quiz choice 4 (wrong) ---\n'
+          'The solution cannot be found because there is a derivative in the '
+          'equation.\n'
+          '# --- end quiz choice 4 (wrong) ---\n'
+          '\n'
+          '# --- begin explanation of choice 4 ---\n'
+          'Equations with derivatives can be solved;\n'
+          'they are termed *differential\n'
+          'equations*.\n'
+          '# --- end explanation of choice 4 ---\n'
+          '\n'
+          '# --- begin quiz choice 5 (wrong) ---\n'
+          'The equation is meaningless: an equation must be an equation\n'
+          'for $x$ or $y$, not a function $y(x)$.\n'
+          '# --- end quiz choice 5 (wrong) ---\n'
+          '\n'
+          '# --- begin explanation of choice 5 ---\n'
+          'Equations where the unknown is a function, as $y(x)$\n'
+          'here, are called *differential equations*, and are solved by\n'
+          'special techniques.\n'
+          '# --- end explanation of choice 5 ---\n'
+          '# --- end quiz ---',
+  'title': 'Solution of differential equation',
+  'type': 'Exercise',
+  'type_visible': True},
+ {'ans_docend': '',
+  'answer': '',
+  'chapter_exercise': None,
+  'chapter_no': None,
+  'chapter_title': None,
+  'chapter_type': None,
+  'closing_remarks': '',
+  'file': None,
+  'heading': '=====',
+  'hints': [],
+  'keywords': None,
+  'label': None,
+  'no': 9,
+  'sol_docend': '',
+  'solution': '',
+  'solution_file': None,
+  'subex': [{'ans_docend': '',
+             'answer': 'Oslo.',
+             'file': None,
+             'hints': [],
+             'sol_docend': '',
+             'solution': '',
+             'text': 'What is the capital of Norway?'}],
+  'text': '# This example needs the --examples_as_exercises option, otherwise\n'
+          '# it is just typeset as it is written.',
+  'title': 'Just an example',
+  'type': 'Example',
+  'type_visible': True},
+ {'ans_docend': '',
+  'answer': '',
+  'chapter_exercise': None,
+  'chapter_no': None,
+  'chapter_title': None,
+  'chapter_type': None,
+  'closing_remarks': '',
+  'file': ['verify_formula.py'],
+  'heading': '=====',
+  'hints': [],
+  'keywords': None,
+  'label': 'exer:some:formula',
+  'no': 10,
+  'sol_docend': '',
+  'solution': '',
+  'solution_file': None,
+  'subex': [],
+  'text': '# Test comments not at the end only\n'
+          'Pick a statement from Project ref{proj:circle1} or Problem '
+          'ref{demo:ex:1}\n'
+          'and verify it.\n'
+          '\n'
+          'Test list at the end of an exercise without other elements (like '
+          'subexercise,\n'
+          'hint, etc.):\n'
+          '\n'
+          ' o item1\n'
+          ' o item2',
+  'title': 'Make references to projects and problems',
+  'type': 'Exercise',
+  'type_visible': True},
+ {'ans_docend': '',
+  'answer': '',
+  'chapter_exercise': None,
+  'chapter_no': None,
+  'chapter_title': None,
+  'chapter_type': None,
+  'closing_remarks': '',
+  'file': ['selc_composed.pdf'],
+  'heading': '=====',
+  'hints': [],
+  'keywords': None,
+  'label': 'exer:you',
+  'no': 11,
+  'sol_docend': '',
+  'solution': '',
+  'solution_file': None,
+  'subex': [],
+  'text': 'Refer to the previous exercise as Exercise ref{exer:some:formula},\n'
+          'the two before that as Projects ref{demo:ex:2} and '
+          'ref{proj:circle1},\n'
+          'and this one as Project ref{exer:you}.',
+  'title': 'References to Project ref{demo:ex:2} in a heading works for pandoc',
+  'type': 'Project',
+  'type_visible': True}]

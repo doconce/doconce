@@ -1,0 +1,35 @@
+label{subsec1}
+
+idx{`somefunc` function}
+
+# Refer to section/appendix etc. at the beginning of the line
+# and other special fix situations for HTML.
+
+More text, with a reference back to
+Section ref{sec1} and ref{subsec1}, and further to the
+sections    ref{subsec1} and ref{subsubsec:ex}, which
+encourages you to do the tasks in the
+Exercises ref{demo:ex:1} and ref{exer:some:formula}.
+Appendices     ref{app1} and ref{app2} are also nice elements.
+
+=== Test Section reference at beginning of line and after a sentence ===
+
+Section ref{subsec1} is fine.
+Section ref{subsubsec:ex} too.
+
+
+# sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
+
+=== Computer code ===
+
+Let's do some copying from files too. First from subroutine up to the very end,
+
+@@@CODE testfigs/__testcode.f fromto: subroutine@
+===== Project: Compute a Probability =====
+
+# Minimalistic exercise
+
+label{demo:ex:2}
+
+What is the probability of getting a number between 0.5 and 0.6 when
+Could not find match for from regex "\*\s+\$.+normally"

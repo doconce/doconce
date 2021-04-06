@@ -1,0 +1,975 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/doconce/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="A Document for Testing DocOnce">
+<meta name="keywords" content="figures,movies,index with subindex,_boldface word_ in index,index with _boldface word_,index with _boldface word_ in subentry,double _boldface word_  _boldface word_ in subentry too,index, with comma, and one more">
+<title>A Document for Testing DocOnce</title>
+<link href="https://raw.github.com/doconce/doconce/master/bundled/html_styles/style_solarized_box/css/solarized_light_code.css" rel="stylesheet" type="text/css" title="light"/>
+<script src="https://raw.github.com/doconce/doconce/master/bundled/html_styles/style_solarized_box/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<style type="text/css">
+body, td {font-size: 140%;}
+h1 {font-size: 200%;}
+h2 {font-size: 180%;}
+
+/* solarized style */
+body {
+  margin:5;
+  padding:0;
+  border:0; /* Remove the border around the viewport in old versions of IE */
+  width:100%;
+  background: #fdf6e3;
+  min-width:600px;	/* Minimum width of layout - remove if not required */
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 1.0em;
+  line-height: 1.3em;
+  color: #657b83;
+}
+a { color: #859900; text-decoration: underline; }
+a:hover, a:active { outline:none }
+a, a:active, a:visited { color: #859900; }
+a:hover { color: #268bd2; }
+h1, h2, h3 { margin:.8em 0 .2em 0; padding:0; line-height: 125%; }
+h2 { font-variant: small-caps; }
+tt, code { font-family: monospace, sans-serif; box-shadow: none; }
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa; }
+p { text-indent: 0px; }
+p.caption { width: 80%; font-style: normal; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa; }
+.alert-text-small   { font-size: 80%;  }
+.alert-text-large   { font-size: 130%; }
+.alert-text-normal  { font-size: 90%;  }
+.alert {
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:1px solid #93a1a1;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  color: #555;
+  background-color: #eee8d5;
+  background-position: 10px 5px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 55px;
+  width: 75%;
+ }
+.alert-block {padding-top:14px; padding-bottom:14px}
+.alert-block > p, .alert-block > ul {margin-bottom:1em}
+.alert li {margin-top: 1em}
+.alert-block p+p {margin-top:5px}
+.alert-notice { background-image: url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_yellow_notice.png); }
+.alert-summary  { background-image:url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_yellow_summary.png); }
+.alert-warning { background-image: url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_yellow_warning.png); }
+.alert-question {background-image:url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_yellow_question.png); }
+div { text-align: justify; text-justify: inter-word; }
+</style>
+<script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+<script>
+$(function () {
+   // Make *any* div with class "sage_compute" a Sage cell
+   sagecell.makeSagecell({inputLocation: "div.sage_compute",
+                          evalButtonText: "Evaluate"});
+   document.getElementsByClassName("sage_compute")[0].closest(".input").style.paddingBottom=95;
+});
+</script>
+
+<!-- Tools for embedded Bokeh plots -->
+<link rel="stylesheet"
+      href="https://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.css"
+      type="text/css" />
+<script type="text/javascript"
+	src="https://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.js">
+</script>
+<script type="text/javascript">
+  Bokeh.set_log_level("info");
+</script>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [('Table of contents',
+               1,
+               'table_of_contents',
+               'table_of_contents'),
+              ('Section 1', 1, 'sec1', 'sec1'),
+              ('Here is a list with subsubsection heading',
+               3,
+               None,
+               'here-is-a-list-with-subsubsection-heading'),
+              ('Subsection 1', 2, 'subsec1', 'subsec1'),
+              ('Test Section reference at beginning of line and after a '
+               'sentence',
+               3,
+               None,
+               'test-section-reference-at-beginning-of-line-and-after-a-sentence'),
+              ('Computer code', 3, None, 'computer-code'),
+              ('Subsubsection heading before code',
+               3,
+               None,
+               'subsubsection-heading-before-code'),
+              ('Running OS commands', 3, None, 'running-os-commands'),
+              ('Footnotes', 3, None, 'footnotes'),
+              ('Subsection 2: Testing figures', 2, 'subsec:ex', 'subsec:ex'),
+              ('The $\\theta$ parameter (not $\\nabla$?)',
+               2,
+               'decay:sec:theta',
+               'decay:sec:theta'),
+              ('Custom Environments', 2, None, 'custom-environments'),
+              ('Tables', 2, 'subsec:table', 'subsec:table'),
+              ('A test of verbatim words in heading with subscript $a_i$: '
+               '`my_file_v1` and `my_file_v2`',
+               2,
+               None,
+               'a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2'),
+              ('_Just bold_', 2, None, '_just-bold_'),
+              ('*Just emphasize*', 2, None, 'just-emphasize'),
+              ('`Just verbatim`', 2, None, 'just-verbatim'),
+              ('_Bold_ beginning', 2, None, '_bold_-beginning'),
+              ('*Emphasize* beginning', 2, None, 'emphasize-beginning'),
+              ('`Verbatim` beginning', 2, None, 'verbatim-beginning'),
+              ('Maybe _bold end_', 2, None, 'maybe-_bold-end_'),
+              ('Maybe *emphasize end*', 2, None, 'maybe-emphasize-end'),
+              ('Maybe `verbatim end`', 2, None, 'maybe-verbatim-end'),
+              ('The middle has _bold_ word',
+               2,
+               None,
+               'the-middle-has-_bold_-word'),
+              ('The middle has *emphasize* word',
+               2,
+               None,
+               'the-middle-has-emphasize-word'),
+              ('The middle has `verbatim` word',
+               2,
+               None,
+               'the-middle-has-verbatim-word'),
+              ('Bibliography test', 2, None, 'bibliography-test'),
+              ('Example 1: Examples can be typeset as exercises',
+               2,
+               'Example',
+               'Example'),
+              ('User-defined environments',
+               2,
+               None,
+               'user-defined-environments'),
+              ('Example 1: A test function', 2, 'ex:test:1p1', 'ex:test:1p1'),
+              ('Example 2: Addition', 2, 'ex:math:1p1', 'ex:math:1p1'),
+              ('URLs', 2, 'subsubsec:ex', 'subsubsec:ex'),
+              ('LaTeX Mathematics', 1, None, 'latex-mathematics'),
+              ('Exercises', 1, None, 'exercises'),
+              ('Problem 2: Flip a Coin', 2, 'demo:ex:1', 'demo:ex:1'),
+              ('My remarks', 3, None, 'my-remarks'),
+              ('Remarks', 3, None, 'remarks'),
+              ('Not an exercise', 2, None, 'not-an-exercise'),
+              ('Exercise 3: Test of plain text exercise',
+               2,
+               'my:exer1',
+               'my:exer1'),
+              ('Project 4: Compute a Probability', 2, 'demo:ex:2', 'demo:ex:2'),
+              ('Project 5: Explore Distributions of Random Circles',
+               2,
+               'proj:circle1',
+               'proj:circle1'),
+              ('Remarks', 3, None, 'remarks'),
+              ('Exercise 6: Determine some Distance',
+               2,
+               'exer:dist',
+               'exer:dist'),
+              ('Remarks', 3, None, 'remarks'),
+              ('Some exercise without the "Exercise:" prefix',
+               2,
+               None,
+               'some-exercise-without-the-exercise-prefix'),
+              ('Exercise 8: Solution of differential equation',
+               2,
+               'sec:this:exer:de',
+               'sec:this:exer:de'),
+              ('Example 9: Just an example',
+               2,
+               None,
+               'example-9-just-an-example'),
+              ('Here goes another section',
+               1,
+               None,
+               'here-goes-another-section'),
+              ('More Exercises', 1, None, 'more-exercises'),
+              ('Exercise 10: Make references to projects and problems',
+               2,
+               'exer:some:formula',
+               'exer:some:formula'),
+              ('Project 11: References in a headings do not work well in html',
+               2,
+               'exer:you',
+               'exer:you'),
+              ('References', 1, None, 'references'),
+              ('Appendix: Just for testing; part I', 1, 'app1', 'app1'),
+              ('A subsection within an appendix',
+               2,
+               None,
+               'a-subsection-within-an-appendix'),
+              ('Appendix: Just for testing; part II', 1, 'app2', 'app2'),
+              ('Appendix: Testing identical titles',
+               2,
+               None,
+               'appendix-testing-identical-titles'),
+              ('Appendix: Testing identical titles',
+               2,
+               'test:title:id1',
+               'test:title:id1'),
+              ('Appendix: Testing identical titles',
+               2,
+               'test:title:id2',
+               'test:title:id2'),
+              ('Appendix: Testing identical titles',
+               2,
+               None,
+               'appendix-testing-identical-titles'),
+              ('Appendix: Testing inline comments',
+               2,
+               None,
+               'appendix-testing-inline-comments'),
+              ('Appendix: Testing headings ending with `verbatim inline`',
+               2,
+               None,
+               'appendix-testing-headings-ending-with-verbatim-inline')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<a name="part0002"></a>
+<!-- !split and check if these extra words are included properly in the comment -->
+<p></p>
+<h1 id="latex-mathematics">LaTeX Mathematics </h1>
+<p></p>
+Here is an equation without label using backslash-bracket environment:
+$$ a = b + c $$
+
+<p></p>
+or with number and label, as in <a href="#mjx-eqn-12">(12)</a>, using the equation environment:
+<p></p>
+$$
+\begin{equation}
+{\partial u\over\partial t} = \nabla^2 u \tag{12}
+\end{equation}
+$$
+
+<p></p>
+We can refer to this equation by <a href="#mjx-eqn-12">(12)</a>.
+<p></p>
+Here is a system without equation numbers, using the align-asterisk environment:
+<p></p>
+$$
+\begin{align*}
+\pmb{a} &= \pmb{q}\times\pmb{n} \\ 
+b &= \nabla^2 u + \nabla^4 v
+\end{align*}
+$$
+
+<p></p>
+And here is a system of equations with labels in an align environment:
+<p></p>
+$$
+\begin{align}
+a &= q + 4 + 5+ 6 \tag{13} \\ 
+b &= \nabla^2 u + \nabla^4 x \tag{14}
+\end{align}
+
+$$
+
+We can refer to <a href="#mjx-eqn-13">(13)</a>-<a href="#mjx-eqn-14">(14)</a>. They are a bit simpler than
+the Navier&ndash;Stokes equations. And test LaTeX hyphen in <code>CG-2</code>.
+Also test \( a_{i-j} \) as well as \( kx-wt \).
+<p></p>
+Testing <code>alignat</code> environment:
+<p></p>
+$$
+\begin{alignat}{2}
+a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \tag{15} \\ 
+b &= \nabla^2 u + \nabla^4 x & x\in\Omega \tag{16}
+\end{alignat}
+$$
+
+<p></p>
+More mathematical typesetting is demonstrated in the coming exercises.
+<p></p>
+Below, we have <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#demo:ex:2">Project 4: Compute a Probability</a>,
+as well as <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 11: References in a headings do not work well in html</a>, and in
+between there we have <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.
+<p></p>
+<h1 id="exercises">Exercises </h1>
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="demo:ex:1">Problem 2: Flip a Coin</h2>
+<!-- keywords = random numbers; Monte Carlo simulation; ipynb -->
+<p></p>
+<!-- Torture tests -->
+<p></p>
+<b>a)</b>
+Make a program that simulates flipping a coin \( N \) times.
+Print out &quot;tail&quot; or &quot;head&quot; for each flip and
+let the program count the number of heads.
+<p></p>
+<!-- --- begin hint in exercise --- -->
+<p></p>
+<b>Hint 1.</b>
+Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.
+<p></p>
+<!-- --- end hint in exercise --- -->
+<p></p>
+<!-- --- begin hint in exercise --- -->
+<p></p>
+<b>Hint 2.</b>
+Draw an integer among \( \{1,2\} \) with
+<code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.
+<p></p>
+<!-- --- end hint in exercise --- -->
+<p></p>
+<!-- --- begin answer of exercise --- -->
+<b>Answer.</b>
+If the <code>random.random()</code> function returns a number \( < 1/2 \), let it be
+head, otherwise tail. Repeat this \( N \) number of times.
+<!-- --- end answer of exercise --- -->
+<p></p>
+<p></p>
+<b>b)</b>
+Vectorize the code in a) using boolean indexing.
+<p></p>
+Vectorized code can be written in many ways.
+Sometimes the code is less intuitive, sometimes not.
+At least there is not much to find in the section <a href="._testdoc001.html#sec1">Section 1</a>.
+<p></p>
+<b>c)</b>
+Vectorize the code in a) using <code>numpy.sum</code>.
+<p></p>
+<!-- --- begin answer of exercise --- -->
+<b>Answer.</b>
+<code>np.sum(np.where(r &lt;= 0.5, 1, 0))</code> or <code>np.sum(r &lt;= 0.5)</code>.
+<!-- --- end answer of exercise --- -->
+<p></p>
+In this latter subexercise, we have an
+example where the code is easy to read.
+<p></p>
+<h3 id="my-remarks">My remarks </h3>
+<p></p>
+Remarks with such a subsubsection is treated as more text
+after the last subexercise. Test a list too:
+<p></p>
+<ol>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> Mark 1.</li>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> Mark 2.</li>
+</ol>
+Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
+<p></p>
+<!-- Closing remarks for this Problem -->
+<p></p>
+<h3 id="remarks">Remarks </h3>
+<p></p>
+These are the exercise remarks, appearing at the very end.
+<p></p>
+<!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
+<p></p>
+<!-- --- end exercise --- -->
+<p></p>
+<h2 id="not-an-exercise">Not an exercise </h2>
+<p></p>
+Should be possible to stick a normal section in the middle of many
+exercises.
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="my:exer1">Exercise 3: Test of plain text exercise</h2>
+<p></p>
+Very short exercise. What is the capital
+of Norway?
+Filename: <code>myexer1</code>.
+<p></p>
+<!-- --- end exercise --- -->
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="demo:ex:2">Project 4: Compute a Probability</h2>
+<p></p>
+<!-- Minimalistic exercise -->
+<p></p>
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval \( [0,1) \)?
+<p></p>
+At the end we have a list because that caused problems in LaTeX
+in previous DocOnce versions:
+<p></p>
+<ol>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> item1</li>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> item2</li>
+</ol>
+<!-- --- begin hint in exercise --- -->
+<p></p>
+<b>Hint.</b>
+To answer this question empirically, let a program
+draw \( N \) such random numbers using Python's standard <code>random</code> module,
+count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and
+compute the probability as \( M/N \).
+<p></p>
+<!-- --- end hint in exercise --- -->
+<p></p>
+<!-- --- end exercise --- -->
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="proj:circle1">Project 5: Explore Distributions of Random Circles</h2>
+<!-- keywords = ipynb -->
+<p></p>
+The formula for a circle is given by
+<p></p>
+$$
+\begin{align}
+x &= x_0 + R\cos 2\pi t,
+\tag{17}\\ 
+y &= y_0 + R\sin 2\pi t,
+\tag{18}
+\end{align}
+$$
+
+where \( R \) is the radius of the circle, \( (x_0,y_0) \) is the
+center point, and \( t \) is a parameter in the unit interval \( [0,1] \).
+For any \( t \), \( (x,y) \) computed from <a href="#mjx-eqn-17">(17)</a>-<a href="#mjx-eqn-18">(18)</a>
+is a point on the circle.
+The formula can be used to generate <code>n</code> points on a circle:
+<p></p>
+
+<!-- code=python (!bc pypro) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
+<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span>
+<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">4</span>
+<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">5</span>
+<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">6</span>
+<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">7</span>
+<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">8</span>
+<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">9</span></pre>
+</div></td><td class="code"><div class="highlight" style="background: #eeeedd">
+  <pre style="line-height: 125%;"><span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">numpy</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">np</span>
+
+<span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">circle</span>(R, x0, y0, n=<span style="color: #B452CD">501</span>):
+    t = np.linspace(<span style="color: #B452CD">0</span>, <span style="color: #B452CD">1</span>, n)
+    x = x0 + R*np.cos(<span style="color: #B452CD">2</span>*np.pi*t)
+    y = y0 + R*np.sin(<span style="color: #B452CD">2</span>*np.pi*t)
+    <span style="color: #8B008B; font-weight: bold">return</span> x, y
+
+x, y = circle(<span style="color: #B452CD">2.0</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">0</span>)
+</pre>
+</div>
+</td></tr></table>      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p></p>
+<!-- Often in an exercise we have some comments about the solution -->
+<!-- which we normally want to keep where they are. -->
+<p></p>
+The goal of this project is to draw \( N \) circles with random
+center and radius. Plot each circle using the <code>circle</code> function
+above.
+<p></p>
+<b>a)</b>
+Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
+<p></p>
+<!-- --- begin hint in exercise --- -->
+<p></p>
+<b>Hint.</b>
+Use the <code>numpy.random</code> module to draw the
+\( x_0 \), \( y_0 \), and \( R \) quantities.
+<p></p>
+<!-- --- end hint in exercise --- -->
+<p></p>
+<!-- --- begin answer of exercise --- -->
+<b>Answer.</b>
+Here goes the short answer to part a).
+<!-- --- end answer of exercise --- -->
+<p></p>
+<p></p>
+<b>b)</b>
+Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed.
+Filename: <code>norm</code>.
+<p></p>
+<b>c)</b>
+Let \( R \) and \( (x_0,y_0) \) be normally distributed.
+<p></p>
+Filename: <code>circles</code>.
+<p></p>
+<!-- Closing remarks for this Project -->
+<p></p>
+<h3 id="remarks">Remarks </h3>
+<p></p>
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+<p></p>
+<!-- --- end exercise --- -->
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="exer:dist">Exercise 6: Determine some Distance</h2>
+<p></p>
+Intro to this exercise. Questions are in subexercises below.
+<p></p>
+<p></p>
+<b>a)</b>
+Subexercises are numbered a), b), etc.
+<p></p>
+<!-- --- begin hint in exercise --- -->
+<p></p>
+<b>Hint 1.</b>
+First hint to subexercise a).
+With math \( a=b \) in hint:
+<p></p>
+$$ a=b. $$
+
+And with code (in plain verbatim) returning \( x+1 \) in hint:
+<p></p>
+
+<!-- code=text (!bc ccq) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <blockquote>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span></pre>
+</div></td><td class="code"><div class="highlight" style="background: #eeeedd">
+  <pre style="line-height: 125%;">def func(x):
+    return x + 1  # with code in hint
+</pre>
+</div>
+</td></tr></table></blockquote>      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p></p>
+<!-- --- end hint in exercise --- -->
+<p></p>
+<!-- --- begin hint in exercise --- -->
+<p></p>
+<b>Hint 2.</b>
+Second hint to subexercise a).
+<p></p>
+Test list in hint:
+<p></p>
+<ol>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> item1</li>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> item2</li>
+</ol>
+<!-- --- end hint in exercise --- -->
+Filename: <code>subexer_a.pdf</code>.
+<p></p>
+<!-- --- begin answer of exercise --- -->
+<b>Answer.</b>
+Short answer to subexercise a).
+With math in answer: \( a=b \).
+<!-- --- end answer of exercise --- -->
+<p></p>
+<b>b)</b>
+Here goes the text for subexercise b).
+<p></p>
+Some math \( \cos^2 x + \sin^2 x = 1 \) written one a single line:
+<p></p>
+$$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
+
+<p></p>
+<!-- --- begin hint in exercise --- -->
+<p></p>
+<b>Hint.</b>
+A hint for this subexercise.
+<p></p>
+<!-- --- end hint in exercise --- -->
+Filename: <code>subexer_b.pdf</code>.
+<p></p>
+<p></p>
+<!-- No meaning in this weired test example: -->
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+<p></p>
+Test list in exercise:
+<p></p>
+<ol>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> item1</li>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> item2
+<!-- Closing remarks for this Exercise --></li>
+</ol>
+<h3 id="remarks">Remarks </h3>
+<p></p>
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+<p></p>
+<!-- --- end exercise --- -->
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="some-exercise-without-the-exercise-prefix">Some exercise without the "Exercise:" prefix </h2>
+<p></p>
+<!-- Another minimalistic exercise -->
+<p></p>
+Just some text. And some math saying that \( e^0=1 \) on a single line,
+to test that math block insertion is correct:
+<p></p>
+$$ \exp{(0)} = 1 $$
+
+<p></p>
+And a test that the code <code>lambda x: x+2</code> is correctly placed here:
+<p></p>
+
+<!-- code=text (!bc ccq) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <blockquote>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span></pre>
+</div></td><td class="code"><div class="highlight" style="background: #eeeedd">
+  <pre style="line-height: 125%;">lambda x: x+2
+</pre>
+</div>
+</td></tr></table></blockquote>      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p></p>
+<!-- Have some comments at the end of the exercise to see that -->
+<!-- the Filename: ... is written correctly. -->
+<!-- --- end exercise --- -->
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="sec:this:exer:de">Exercise 8: Solution of differential equation</h2>
+<p></p>
+<!-- begin quiz -->
+Given
+<p></p>
+$$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
+
+What is the solution of this equation?</p>
+
+<p><div title="Right! "><b>Choice A:</b>
+\( y=e^{-y} \)
+</div></p>
+
+<p><div title="Wrong! Almost, but the sign is wrong (note the minus!)."><b>Choice B:</b>
+\( y=e^{y} \)
+</div></p>
+
+<p><div title="Wrong! "><b>Choice C:</b>
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">1</span>
+<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">2</span>
+<span style="color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px;">3</span></pre>
+</div></td><td class="code"><div class="highlight" style="background: #eeeedd">
+  <pre style="line-height: 125%;"><span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">math</span> <span style="color: #8B008B; font-weight: bold">import</span> exp
+<span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">f</span>(x):
+    <span style="color: #8B008B; font-weight: bold">return</span> exp(x)
+</pre>
+</div>
+</td></tr></table>      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div></p>
+
+<p><div title="Wrong! Equations with derivatives can be solved; they are termed  differential equations ."><b>Choice D:</b>
+The solution cannot be found because there is a derivative in the equation.
+</div></p>
+
+<p><div title="Wrong! Equations where the unknown is a function, as \( y(x) \) here, are called  differential equations , and are solved by special techniques."><b>Choice E:</b>
+The equation is meaningless: an equation must be an equation
+for \( x \) or \( y \), not a function \( y(x) \).
+</div></p>
+<hr>
+<!-- end quiz -->
+
+<p></p>
+<!-- --- end exercise --- -->
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="example-9-just-an-example">Example 9: Just an example </h2>
+<p></p>
+<!-- This example needs the --examples_as_exercises option, otherwise -->
+<!-- it is just typeset as it is written. -->
+<p></p>
+<b>a)</b>
+What is the capital of Norway?
+<p></p>
+<b>Answer.</b>
+Oslo.
+<p></p>
+<!-- --- end exercise --- -->
+<p></p>
+<h1 id="here-goes-another-section">Here goes another section </h1>
+<p></p>
+With some text, before we continue with exercises.
+<p></p>
+<h1 id="more-exercises">More Exercises </h1>
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="exer:some:formula">Exercise 10: Make references to projects and problems</h2>
+<p></p>
+<!-- Test comments not at the end only -->
+Pick a statement from <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 2: Flip a Coin</a>
+and verify it.
+<p></p>
+Test list at the end of an exercise without other elements (like subexercise,
+hint, etc.):
+<p></p>
+<ol>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> item1</li>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> item2</li>
+</ol>
+Filename: <code>verify_formula.py</code>.
+<p></p>
+<!-- --- end exercise --- -->
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="exer:you">Project 11: References in a headings do not work well in html</h2>
+<p></p>
+Refer to the previous exercise as <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>,
+the two before that as <a href="#demo:ex:2">Project 4: Compute a Probability</a> and <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a>,
+and this one as <a href="#exer:you">Project 11: References in a headings do not work well in html</a>.
+Filename: <code>selc_composed.pdf</code>.
+<p></p>
+<!-- --- end exercise --- -->
+<p></p>
+<h1 id="references">References </h1>
+<p></p>
+<!-- begin bibliography -->
+<ol>
+ </tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Langtangen_Pedersen_2002"></div> <b>H. P. Langtangen and G. Pedersen</b>. 
+    Propagation of Large Destructive Waves,
+    <em>International Journal of Applied Mechanics and Engineering</em>,
+    7(1),
+    pp. 187-204,
+    2002.</li>
+ </tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Langtangen_et_al_2002"></div> <b>H. P. Langtangen, K.-A. Mardal and R. Winther</b>. 
+    Numerical Methods for Incompressible Viscous Flow,
+    <em>Advances in Water Resources</em>,
+    25,
+    pp. 1125-1146,
+    2002.</li>
+ </tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Langtangen_1994a"></div> <b>H. P. Langtangen</b>. 
+    Numerical Solution of First Passage Problems in Random Vibrations,
+    <em>SIAM Journal of Scientific and Statistical Computing</em>,
+    15,
+    pp. 997-996,
+    1994.</li>
+ </tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Mardal_et_al_2003a"></div> <b>K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen</b>. 
+    Software Tools for Multigrid Methods,
+    <em>Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming</em>,
+    edited by <b>H. P. Langtangen and A. Tveito</b>,
+    Springer,
+    2003,
+    Edited book,
+    <a href="http://some.where.org" target="_self"><tt>http://some.where.org</tt></a>.</li>
+ </tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Langtangen_1988d"></div> <b>H. P. Langtangen</b>. 
+    The FEMDEQS Program System,
+    <em>Department of Mathematics, University of Oslo</em>,
+    1989,
+    <a href="http://www.math.uio.no/old/days/hpl/femdeqs.pdf" target="_self"><tt>http://www.math.uio.no/old/days/hpl/femdeqs.pdf</tt></a>.</li>
+ </tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Langtangen_1992c"></div> <b>H. P. Langtangen</b>. 
+    Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,
+    <em>SIAM Journal on Scientific Computing</em>,
+    13,
+    pp. 1394-1417,
+    1992.</li>
+ </tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Mortensen_et_al_2011"></div> <b>M. Mortensen, H. P. Langtangen and G. N. Wells</b>. 
+    A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,
+    <em>Advances in Water Resources</em>,
+    34(9),
+    <a href="https://dx.doi.org/10.1016/j.advwatres.2011.02.013" target="_self">doi: 10.1016/j.advwatres.2011.02.013</a>,
+    2011.</li>
+ </tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Glimsdal_et_al_20006"></div> <b>S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt</b>. 
+    Propagation of the Dec.&nbsp;26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,
+    <em>International Journal of Fluid Mechanics Research</em>,
+    33(1),
+    pp. 15-43,
+    2006.</li>
+ </tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Rahman_et_al_2006b"></div> <b>S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen</b>. 
+    Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,
+    <em>Physical Review B: Condensed Matter and Materials Physics</em>,
+    74,
+    2006,
+    035308.</li>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Haga_et_al_2011a"></div> <b>J. B. Haga, H. Osnes and H. P. Langtangen</b>. 
+    On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
+    <em>International Journal of Analytical and Numerical Methods in Geomechanics</em>,
+    <a href="https://dx.doi.org/10.1002/nag.1062" target="_self">doi: 10.1002/nag.1062</a>,
+    2011,
+    <a href="http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract" target="_self"><tt>http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract</tt></a>.</li>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Langtangen_2003a"></div> <b>H. P. Langtangen</b>. 
+    <em>Computational Partial Differential Equations - Numerical Methods and Diffpack Programming</em>,
+    second edition,
+    <em>Texts in Computational Science and Engineering</em>,
+    Springer,
+    2003.</li>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Langtangen_2008a"></div> <b>H. P. Langtangen</b>. 
+    <em>Python Scripting for Computational Science</em>,
+    third edition,
+    <em>Texts in Computational Science and Engineering</em>,
+    Springer,
+    2008.</li>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Langtangen:95"></div> <b>H. P. Langtangen and G. Pedersen</b>. 
+    Finite Elements for the Boussinesq Wave Equations,
+    Waves and Non-linear Processes in Hydrodynamics,
+    edited by <b>J. Grue, B. Gjevik and J. E. Weber</b>,
+    Kluwer Academic Publishers,
+    pp. pp. 117-126,
+    1995,
+    <a href="http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310" target="_self"><tt>http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310</tt></a>.</li>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Langtangen_2012"></div> <b>H. P. Langtangen</b>. 
+    <em>A Primer on Scientific Programming With Python</em>,
+    third edition,
+    <em>Texts in Computational Science and Engineering</em>,
+    Springer,
+    2012.</li>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Jeberg_et_al_2004"></div> <b>P. V. Jeberg, H. P. Langtangen and C. B. Terp</b>. 
+    Optimization With Diffpack: Practical Example From Welding,
+    <em>Simula Research Laboratory</em>,
+    2004,
+    Internal report.</li>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Langtangen_1989e"></div> <b>H. P. Langtangen</b>. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989,
+    Dr.&nbsp;Scient.&nbsp;thesis..</li>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Langtangen_talk_2007a"></div> <b>H. P. Langtangen</b>. 
+    Computational Modeling of Huge Tsunamis From Asteroid Impacts,
+    2007,
+    Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China.</li>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Langtangen:85"></div> <b>H. P. Langtangen</b>. 
+    Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,
+    M.Sc. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1985,
+    Cand.Scient. thesis.</li>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Langtangen:91"></div> <b>H. P. Langtangen and A. Tveito</b>. 
+    Numerical Methods in Continuum Mechanics,
+    <em>Center for Industrial Research</em>,
+    1991,
+    Lecture notes for a course (ME-IN 324). 286 pages..</li>
+</tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <div id="Langtangen:94b"></div> <b>H. P. Langtangen</b>. 
+    Diffpack: Software for Partial Differential Equations,
+    <em>Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA</em>,
+    edited by <b>A. Vermeulen</b>,
+    1994.</li>
+</ol>
+<!-- end bibliography -->
+<p></p>
+<h1 id="app1">Appendix: Just for testing; part I</h1>
+<p></p>
+This is the first appendix.
+<p></p>
+<h2 id="a-subsection-within-an-appendix">A subsection within an appendix </h2>
+<p></p>
+Some text.
+<p></p>
+<h1 id="app2">Appendix: Just for testing; part II</h1>
+<p></p>
+This is more stuff for an appendix.
+<p></p>
+<h2 id="appendix-testing-identical-titles">Appendix: Testing identical titles </h2>
+<p></p>
+Without label.
+<p></p>
+<h2 id="test:title:id1">Appendix: Testing identical titles</h2>
+<p></p>
+With label.
+<p></p>
+<h2 id="test:title:id2">Appendix: Testing identical titles</h2>
+<p></p>
+What about inserting a quiz?
+<p></p>
+<p>
+<!-- begin bottom navigation -->
+<table style="width: 100%"><tr><td>
+\
+<div style="text-align: left;"><a href="._testdoc001.html"><img src="https://hplgit.github.io/doconce/bundled/html_images/prev2.png" border=0 alt="&laquo; Previous"></a></div>
+</td><td>
+\
+<div style="text-align: right;"><a href="._testdoc003.html"><img src="https://hplgit.github.io/doconce/bundled/html_images/next2.png" border=0 alt="Next &raquo;"></a></div>
+</td></tr></table>
+<!-- end bottom navigation -->
+</p>
+
+<!-- ------------------- end of main content --------------- -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+</body>
+</html>

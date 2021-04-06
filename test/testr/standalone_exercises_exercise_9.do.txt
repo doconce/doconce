@@ -1,0 +1,14 @@
+TITLE: Example 9: Just an example
+AUTHOR: Jane Doe Email:jane.doe@cyberspace.net
+DATE: Due Jan 32, 2100
+
+
+# This example needs the --examples_as_exercises option, otherwise
+# it is just typeset as it is written.
+
+
+__a)__
+What is the capital of Norway?
+
+__Answer.__
+Oslo.

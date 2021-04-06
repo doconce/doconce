@@ -1,0 +1,160 @@
+TITLE: Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides
+AUTHOR: Hans Petter Langtangen at Simula Research Laboratory & University of Oslo
+DATE: Today
+
+!split
+======= This is the first section =======
+# Short title: First
+
+!split
+===== Figure and bullet list =====
+
+!bslidecell 00  0.60
+!bpop
+!bblock (small) Title with comma, and brackets: $[a,b]$
+  * Here is a *wave signal* $f(x-ct)$
+  * It moves with velocity $c$
+  * But here it is just a figure
+!eblock
+!epop
+!eslidecell
+
+!bslidecell 01
+!bblock
+FIGURE: [../doc/src/manual/fig/wave1D.png, width=300 frac=0.7]
+!eblock
+!eslidecell
+
+!split
+===== Slide with pop-ups in red and notes =====
+
+[hpl: Comments are typeset as usual in DocOnce.]
+
+!bpop highlight-red
+Here we have a paragraph to pop up in red.<linebreak>
+And a line more
+!epop
+
+!bnotes
+One can also have ordinary notes.
+Over multiple lines.
+!enotes
+
+!split
+===== A LaTeX document =====
+
+## Beamer had trouble with multiple \title{} strings, check that it works.
+
+!bpop
+!bc latex
+\documentclass[11pt]{article}
+\usepackage{fancyvrb}
+\begin{document}
+
+\title{Here goes the title...}
+\author{John Doe \and
+Jane Doe\footnote{\texttt{jane.doe@cyber.net}.}}
+\date{\today}
+\maketitle
+!ec
+!epop
+
+!bpop
+!bnotice
+LaTeX has a lot of backslashes.
+!enotice
+!epop
+
+!bpop
+!bc latex
+\section{Heading}
+bla-bla
+\end{document}
+!ec
+!epop
+
+!split
+===== An HTML document =====
+
+!bc html
+<html><head></head><body bgcolor="red">
+<title>Here goes the title...<title>
+<h1>Section heading</h1>
+</body>
+</html>
+!ec
+
+!split
+======= Second section =======
+
+!bblock
+FIGURE: [../doc/src/manual/fig/wave1D.png, width=600 frac=0.8]
+!eblock
+
+!split
+===== Some math and computer code =====
+
+## Command and [] used to be problematic in blocks, check that it is ok
+
+!bblock A simple, mathematical formula where $t\in [0,\pi]$:
+!bt
+\[ f(x,y,t) = e^{-xt}\sin\pi y \]
+!et
+!eblock
+
+!bblock Bash demanded more of DocOnce than Python, so let's do Bash:
+First, inline `$? != 0`, then comments with dollar variables (and minted
+style):
+
+!bc shcod
+var=10
+# $1, $2, ... are command-line args
+if [ $? -eq 0 ]; then   # $? reflects success or not
+  echo "Great!"
+fi
+!ec
+!eblock
+
+!split
+===== Pop ups inside code blocks (for Beamer slides only) =====
+
+!bc pycod
+def f(x):
+    return 42 + x
+
+(*@\pause@*)
+def g(x):
+    return f(42)
+
+(*@\pause@*)
+print(g(13))
+!ec
+
+!split
+===== Various admon blocks =====
+
+Can use admons to simulate blocks:
+
+!bpop
+!bnotice (large) Key PDE (with large title and math font):
+!bt
+\[ \frac{\partial u}{\partial t} = \nabla^2 u \]
+!et
+!enotice
+!epop
+
+!bpop
+!bsummary None
+Just some block with text and a conclusion that something is important.
+This one pops up after the rest of the slide.
+!esummary
+!epop
+
+!bpop
+!bwarning (small)
+Can use, e.g., a warning admon to have my own notes, preferably
+inside preprocess/mako if statements to turn notes on and off.
+This one is typeset in a small font and with the default
+title (Warning) since no title is specified.
+!ewarning
+!epop

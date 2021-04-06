@@ -1,0 +1,86 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/doconce/doconce/)
+%%
+%%
+%-------------------- begin preamble ----------------------
+% Style: SIAM LaTeX2e
+\documentclass[leqno,final]{siamltex}
+\listfiles               %  print all files needed to compile this document
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+\usepackage[pdftex]{graphicx}
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+\setcounter{tocdepth}{2}  % levels in table of contents
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+% --- end of standard preamble for documents ---
+% insert custom LaTeX commands...
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+%-------------------- end preamble ----------------------
+\begin{document}
+% matching end for #ifdef PREAMBLE
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+% ------------------- main content ----------------------
+% ----------------- title -------------------------
+\title{Yet Another Scientific Paper}
+% ----------------- author(s) -------------------------
+\author{Hans Petter Langtangen\thanks{Email: \texttt{hpl@simula.no}. Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo.}
+\and Kaare Dump\thanks{Segfault, Cyberspace.}
+\and A. Dummy Author
+\and I. S. Overworked and Outburned\thanks{Inst1; Inst2, Somewhere; Third Inst, Elsewhere; and Fourth Inst.}
+\and J. Doe\thanks{Email: \texttt{j\_doe@cyberspace.com}.}}
+% ----------------- end author(s) -------------------------
+% --- begin date ---
+\begin{center}
+Jan 32, 2100
+\end{center}
+% --- end date ---
+\vspace{1cm}
+\begin{abstract}
+Here goes
+a very short
+abstract.
+\end{abstract}
+\begin{keywords}
+test, doconce, paper, multiple authors.
+\end{keywords}
+%\tableofcontents  % not legal in SIAM latex style
+\vspace{1cm} % after toc
+\section{Introduction}
+This is a test of a typical paper.
+\section{Concluding remarks}
+We need to test bibliography too, and for this purpose we need
+a citation like \cite{Langtangen_1992c,Langtangen_1994a}.
+\bibliographystyle{plain}
+\bibliography{papers}
+% ------------------- end of main content ---------------
+\end{document}
+

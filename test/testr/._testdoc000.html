@@ -1,0 +1,431 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/doconce/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="A Document for Testing DocOnce">
+<meta name="keywords" content="figures,movies,index with subindex,_boldface word_ in index,index with _boldface word_,index with _boldface word_ in subentry,double _boldface word_  _boldface word_ in subentry too,index, with comma, and one more">
+<title>A Document for Testing DocOnce</title>
+<link href="https://raw.github.com/doconce/doconce/master/bundled/html_styles/style_solarized_box/css/solarized_light_code.css" rel="stylesheet" type="text/css" title="light"/>
+<script src="https://raw.github.com/doconce/doconce/master/bundled/html_styles/style_solarized_box/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<style type="text/css">
+body, td {font-size: 140%;}
+h1 {font-size: 200%;}
+h2 {font-size: 180%;}
+
+/* solarized style */
+body {
+  margin:5;
+  padding:0;
+  border:0; /* Remove the border around the viewport in old versions of IE */
+  width:100%;
+  background: #fdf6e3;
+  min-width:600px;	/* Minimum width of layout - remove if not required */
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 1.0em;
+  line-height: 1.3em;
+  color: #657b83;
+}
+a { color: #859900; text-decoration: underline; }
+a:hover, a:active { outline:none }
+a, a:active, a:visited { color: #859900; }
+a:hover { color: #268bd2; }
+h1, h2, h3 { margin:.8em 0 .2em 0; padding:0; line-height: 125%; }
+h2 { font-variant: small-caps; }
+tt, code { font-family: monospace, sans-serif; box-shadow: none; }
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa; }
+p { text-indent: 0px; }
+p.caption { width: 80%; font-style: normal; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa; }
+.alert-text-small   { font-size: 80%;  }
+.alert-text-large   { font-size: 130%; }
+.alert-text-normal  { font-size: 90%;  }
+.alert {
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:1px solid #93a1a1;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  color: #555;
+  background-color: #eee8d5;
+  background-position: 10px 5px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 55px;
+  width: 75%;
+ }
+.alert-block {padding-top:14px; padding-bottom:14px}
+.alert-block > p, .alert-block > ul {margin-bottom:1em}
+.alert li {margin-top: 1em}
+.alert-block p+p {margin-top:5px}
+.alert-notice { background-image: url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_yellow_notice.png); }
+.alert-summary  { background-image:url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_yellow_summary.png); }
+.alert-warning { background-image: url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_yellow_warning.png); }
+.alert-question {background-image:url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_yellow_question.png); }
+div { text-align: justify; text-justify: inter-word; }
+</style>
+<script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+<script>
+$(function () {
+   // Make *any* div with class "sage_compute" a Sage cell
+   sagecell.makeSagecell({inputLocation: "div.sage_compute",
+                          evalButtonText: "Evaluate"});
+   document.getElementsByClassName("sage_compute")[0].closest(".input").style.paddingBottom=95;
+});
+</script>
+
+<!-- Tools for embedded Bokeh plots -->
+<link rel="stylesheet"
+      href="https://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.css"
+      type="text/css" />
+<script type="text/javascript"
+	src="https://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.js">
+</script>
+<script type="text/javascript">
+  Bokeh.set_log_level("info");
+</script>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [('Table of contents',
+               1,
+               'table_of_contents',
+               'table_of_contents'),
+              ('Section 1', 1, 'sec1', 'sec1'),
+              ('Here is a list with subsubsection heading',
+               3,
+               None,
+               'here-is-a-list-with-subsubsection-heading'),
+              ('Subsection 1', 2, 'subsec1', 'subsec1'),
+              ('Test Section reference at beginning of line and after a '
+               'sentence',
+               3,
+               None,
+               'test-section-reference-at-beginning-of-line-and-after-a-sentence'),
+              ('Computer code', 3, None, 'computer-code'),
+              ('Subsubsection heading before code',
+               3,
+               None,
+               'subsubsection-heading-before-code'),
+              ('Running OS commands', 3, None, 'running-os-commands'),
+              ('Footnotes', 3, None, 'footnotes'),
+              ('Subsection 2: Testing figures', 2, 'subsec:ex', 'subsec:ex'),
+              ('The $\\theta$ parameter (not $\\nabla$?)',
+               2,
+               'decay:sec:theta',
+               'decay:sec:theta'),
+              ('Custom Environments', 2, None, 'custom-environments'),
+              ('Tables', 2, 'subsec:table', 'subsec:table'),
+              ('A test of verbatim words in heading with subscript $a_i$: '
+               '`my_file_v1` and `my_file_v2`',
+               2,
+               None,
+               'a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2'),
+              ('_Just bold_', 2, None, '_just-bold_'),
+              ('*Just emphasize*', 2, None, 'just-emphasize'),
+              ('`Just verbatim`', 2, None, 'just-verbatim'),
+              ('_Bold_ beginning', 2, None, '_bold_-beginning'),
+              ('*Emphasize* beginning', 2, None, 'emphasize-beginning'),
+              ('`Verbatim` beginning', 2, None, 'verbatim-beginning'),
+              ('Maybe _bold end_', 2, None, 'maybe-_bold-end_'),
+              ('Maybe *emphasize end*', 2, None, 'maybe-emphasize-end'),
+              ('Maybe `verbatim end`', 2, None, 'maybe-verbatim-end'),
+              ('The middle has _bold_ word',
+               2,
+               None,
+               'the-middle-has-_bold_-word'),
+              ('The middle has *emphasize* word',
+               2,
+               None,
+               'the-middle-has-emphasize-word'),
+              ('The middle has `verbatim` word',
+               2,
+               None,
+               'the-middle-has-verbatim-word'),
+              ('Bibliography test', 2, None, 'bibliography-test'),
+              ('Example 1: Examples can be typeset as exercises',
+               2,
+               'Example',
+               'Example'),
+              ('User-defined environments',
+               2,
+               None,
+               'user-defined-environments'),
+              ('Example 1: A test function', 2, 'ex:test:1p1', 'ex:test:1p1'),
+              ('Example 2: Addition', 2, 'ex:math:1p1', 'ex:math:1p1'),
+              ('URLs', 2, 'subsubsec:ex', 'subsubsec:ex'),
+              ('LaTeX Mathematics', 1, None, 'latex-mathematics'),
+              ('Exercises', 1, None, 'exercises'),
+              ('Problem 2: Flip a Coin', 2, 'demo:ex:1', 'demo:ex:1'),
+              ('My remarks', 3, None, 'my-remarks'),
+              ('Remarks', 3, None, 'remarks'),
+              ('Not an exercise', 2, None, 'not-an-exercise'),
+              ('Exercise 3: Test of plain text exercise',
+               2,
+               'my:exer1',
+               'my:exer1'),
+              ('Project 4: Compute a Probability', 2, 'demo:ex:2', 'demo:ex:2'),
+              ('Project 5: Explore Distributions of Random Circles',
+               2,
+               'proj:circle1',
+               'proj:circle1'),
+              ('Remarks', 3, None, 'remarks'),
+              ('Exercise 6: Determine some Distance',
+               2,
+               'exer:dist',
+               'exer:dist'),
+              ('Remarks', 3, None, 'remarks'),
+              ('Some exercise without the "Exercise:" prefix',
+               2,
+               None,
+               'some-exercise-without-the-exercise-prefix'),
+              ('Exercise 8: Solution of differential equation',
+               2,
+               'sec:this:exer:de',
+               'sec:this:exer:de'),
+              ('Example 9: Just an example',
+               2,
+               None,
+               'example-9-just-an-example'),
+              ('Here goes another section',
+               1,
+               None,
+               'here-goes-another-section'),
+              ('More Exercises', 1, None, 'more-exercises'),
+              ('Exercise 10: Make references to projects and problems',
+               2,
+               'exer:some:formula',
+               'exer:some:formula'),
+              ('Project 11: References in a headings do not work well in html',
+               2,
+               'exer:you',
+               'exer:you'),
+              ('References', 1, None, 'references'),
+              ('Appendix: Just for testing; part I', 1, 'app1', 'app1'),
+              ('A subsection within an appendix',
+               2,
+               None,
+               'a-subsection-within-an-appendix'),
+              ('Appendix: Just for testing; part II', 1, 'app2', 'app2'),
+              ('Appendix: Testing identical titles',
+               2,
+               None,
+               'appendix-testing-identical-titles'),
+              ('Appendix: Testing identical titles',
+               2,
+               'test:title:id1',
+               'test:title:id1'),
+              ('Appendix: Testing identical titles',
+               2,
+               'test:title:id2',
+               'test:title:id2'),
+              ('Appendix: Testing identical titles',
+               2,
+               None,
+               'appendix-testing-identical-titles'),
+              ('Appendix: Testing inline comments',
+               2,
+               None,
+               'appendix-testing-inline-comments'),
+              ('Appendix: Testing headings ending with `verbatim inline`',
+               2,
+               None,
+               'appendix-testing-headings-ending-with-verbatim-inline')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<a name="part0000"></a>
+<!-- ------------------- main content ---------------------- -->
+<center>
+<h1>A Document for Testing DocOnce</h1>
+</center>  <!-- document title -->
+<p></p>
+<!-- author(s): Hans Petter Langtangen, Kaare Dump, A. Dummy Author, I. S. Overworked and Outburned, and J. Doe -->
+<center>
+<b>Hans Petter Langtangen</b> [1, 2] (<tt>hpl at simula.no</tt>)
+</center>
+<center>
+<b>Kaare Dump</b> [3]
+</center>
+<center>
+<b>A. Dummy Author</b> 
+</center>
+<center>
+<b>I. S. Overworked and Outburned</b> [4, 5, 6, 7]
+</center>
+<center>
+<b>J. Doe</b>  (<tt>j_doe at cyberspace.com</tt>)
+</center>
+<p><!-- institution(s) --></p>
+<center>
+[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b>
+</center>
+<center>
+[2] <b>Department of Informatics, University of Oslo</b>
+</center>
+<center>
+[3] <b>Segfault, Cyberspace</b>
+</center>
+<center>
+[4] <b>Inst1</b>
+</center>
+<center>
+[5] <b>Inst2, Somewhere</b>
+</center>
+<center>
+[6] <b>Third Inst, Elsewhere</b>
+</center>
+<center>
+[7] <b>Fourth Inst</b>
+</center>
+<br>
+<center>
+<h4>Jan 32, 2100</h4>
+</center> <!-- date -->
+<br>
+<p></p>
+<h1 id="table_of_contents">Table of contents</h1>
+<p></p>
+<a href="._testdoc001.html#sec1"> Section 1 </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#subsec1"> Subsection 1 </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#subsec:ex"> Subsection 2: Testing figures </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#custom-environments"> Custom Environments </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#subsec:table"> Tables </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#_just-bold_"> <b>Just bold</b> </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#just-emphasize"> <em>Just emphasize</em> </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#just-verbatim"> <code>Just verbatim</code> </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#_bold_-beginning"> <b>Bold</b> beginning </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#emphasize-beginning"> <em>Emphasize</em> beginning </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#verbatim-beginning"> <code>Verbatim</code> beginning </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#maybe-_bold-end_"> Maybe <b>bold end</b> </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#maybe-emphasize-end"> Maybe <em>emphasize end</em> </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#maybe-verbatim-end"> Maybe <code>verbatim end</code> </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#the-middle-has-<b>bold</b>-word"> The middle has <b>bold</b> word </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#the-middle-has-emphasize-word"> The middle has <em>emphasize</em> word </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#the-middle-has-verbatim-word"> The middle has <code>verbatim</code> word </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#bibliography-test"> Bibliography test </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#Example"> Example 1: Examples can be typeset as exercises </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#user-defined-environments"> User-defined environments </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#ex:test:1p1"> Example 1: A test function </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#ex:math:1p1"> Example 2: Addition </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#subsubsec:ex"> URLs </a>
+<br>
+<a href="._testdoc002.html#latex-mathematics"> LaTeX Mathematics </a>
+<br>
+<a href="._testdoc002.html#exercises"> Exercises </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#demo:ex:1"> Problem 2: Flip a Coin </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#not-an-exercise"> Not an exercise </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#my:exer1"> Exercise 3: Test of plain text exercise </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#demo:ex:2"> Project 4: Compute a Probability </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#proj:circle1"> Project 5: Explore Distributions of Random Circles </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#exer:dist"> Exercise 6: Determine some Distance </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#some-exercise-without-the-exercise-prefix"> Some exercise without the "Exercise:" prefix </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#sec:this:exer:de"> Exercise 8: Solution of differential equation </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#example-9-just-an-example"> Example 9: Just an example </a>
+<br>
+<a href="._testdoc002.html#here-goes-another-section"> Here goes another section </a>
+<br>
+<a href="._testdoc002.html#more-exercises"> More Exercises </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#exer:some:formula"> Exercise 10: Make references to projects and problems </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#exer:you"> Project 11: References in a headings do not work well in html </a>
+<br>
+<a href="._testdoc002.html#references"> References </a>
+<br>
+<a href="._testdoc002.html#app1"> Appendix: Just for testing; part I </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#a-subsection-within-an-appendix"> A subsection within an appendix </a>
+<br>
+<a href="._testdoc002.html#app2"> Appendix: Just for testing; part II </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc003.html#appendix-testing-identical-titles"> Appendix: Testing identical titles </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#test:title:id1"> Appendix: Testing identical titles </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#test:title:id2"> Appendix: Testing identical titles </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc003.html#appendix-testing-identical-titles"> Appendix: Testing identical titles </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc003.html#appendix-testing-inline-comments"> Appendix: Testing inline comments </a>
+<br>
+&nbsp; &nbsp; &nbsp; <a href="._testdoc003.html#appendix-testing-headings-ending-with-verbatim-inline"> Appendix: Testing headings ending with <code>verbatim inline</code> </a>
+<br>
+<p></p>
+<p>
+<!-- begin bottom navigation -->
+<table style="width: 100%"><tr><td>
+</td><td>
+\
+<div style="text-align: right;"><a href="._testdoc001.html"><img src="https://hplgit.github.io/doconce/bundled/html_images/next2.png" border=0 alt="Next &raquo;"></a></div>
+</td></tr></table>
+<!-- end bottom navigation -->
+</p>
+
+<!-- ------------------- end of main content --------------- -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+TITLE: List of stand-alone files with exercises
+
+# Edit FILE_EXTENSIONS to the type of documents that will
+# be listed in the this index
+<%
+FILE_EXTENSIONS = ['.tex', '.ipynb']
+#FILE_EXTENSIONS = ['.tex', '.ipynb', '.do.txt', '.html']
+%>
+
+% for EXT in FILE_EXTENSIONS:
+`exercise_1${EXT}`": "exercise_1${EXT}
+% endfor
+<linebreak>
+
+% for EXT in FILE_EXTENSIONS:
+`flip_coin${EXT}`": "flip_coin${EXT}
+% endfor
+<linebreak>
+
+% for EXT in FILE_EXTENSIONS:
+`myexer1${EXT}`": "myexer1${EXT}
+% endfor
+<linebreak>
+
+% for EXT in FILE_EXTENSIONS:
+`exercise_4${EXT}`": "exercise_4${EXT}
+% endfor
+<linebreak>
+
+% for EXT in FILE_EXTENSIONS:
+`norm${EXT}`": "norm${EXT}
+% endfor
+<linebreak>
+
+% for EXT in FILE_EXTENSIONS:
+`subexer_a${EXT}`": "subexer_a${EXT}
+% endfor
+<linebreak>
+
+% for EXT in FILE_EXTENSIONS:
+`exercise_7${EXT}`": "exercise_7${EXT}
+% endfor
+<linebreak>
+
+% for EXT in FILE_EXTENSIONS:
+`exercise_8${EXT}`": "exercise_8${EXT}
+% endfor
+<linebreak>
+
+% for EXT in FILE_EXTENSIONS:
+`exercise_9${EXT}`": "exercise_9${EXT}
+% endfor
+<linebreak>
+
+% for EXT in FILE_EXTENSIONS:
+`verify_formula${EXT}`": "verify_formula${EXT}
+% endfor
+<linebreak>
+
+% for EXT in FILE_EXTENSIONS:
+`selc_composed${EXT}`": "selc_composed${EXT}
+% endfor
+<linebreak>
+

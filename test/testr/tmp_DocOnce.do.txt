@@ -1,0 +1,102 @@
+
+TITLE: My Test of Class DocOnce
+AUTHOR: Hans Petter Langtangen; Simula Research Laboratory; Dept. of Informatics, Univ. of Oslo
+DATE: Jan 32, 2100
+
+
+
+======= First Section =======
+
+
+Here is some
+text for section 1.
+
+This is a *first* example of using the _DocWriter
+module_ for writing documents from *Python* scripts.
+It could be a nice tool since we do not need to bother
+with special typesetting, such as `fixed width fonts`
+in plain text.
+
+===== First Subsection =====
+
+Some text for the subsection.
+
+__Test of a Paragraph.__ 
+Some paragraph text taken from "Documenting Python": The Python language
+has a substantial body of documentation, much of it contributed by various
+authors. The markup used for the Python documentation is based on
+LaTeX and requires a significant set of macros written specifically
+for documenting Python. This document describes the macros introduced
+to support Python documentation and how they should be used to support
+a wide range of output formats.
+
+This document describes the document classes and special markup used
+in the Python documentation. Authors may use this guide, in
+conjunction with the template files provided with the distribution, to
+create or maintain whole documents or sections.
+
+If you're interested in contributing to Python's documentation,
+there's no need to learn LaTeX if you're not so inclined; plain text
+contributions are more than welcome as well.
+Here is an enumerate list:
+o item1
+o item2
+
+    o subitem1
+    o subitem2
+
+o item3
+
+    o subitem3
+    o subitem4
+...with some trailing text.
+=== First Subsubsection with an Itemize List ===
+
+
+* item1
+* item2
+
+    * subitem1
+    * subitem2
+
+* item3
+
+    * subitem3
+    * subitem4
+Here is some Python code:
+!bc
+
+class A:
+    pass
+
+class B(A):
+    pass
+
+b = B()
+b.item = 0  # create a new attribute
+
+!ec
+
+======= Second Section =======
+
+Here is a description list:
+- keyword1:  item1
+- keyword2:  item2 goes here, with a colon : and some text after
+
+    - key3:  subitem1
+    - key4:  subitem2
+
+- key5:  item3
+
+    - key6:  subitem3
+    - key7:  subitem4
+
+
+And here is a table:
+
+   |---------------------------------------|
+   | a                 | b                 |
+   | c                 | d                 |
+   | e                 | and a longer text |
+   |---------------------------------------|
+

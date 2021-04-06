@@ -1,0 +1,291 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/doconce/doconce/)
+%%
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: https://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: https://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED myfile
+%%      doconce ptex2tex myfile envir=minted
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples). If doconce ptex2tex has envir=minted, it enables the
+%% minted style without needing -DMINTED.
+% #endif
+% #define PREAMBLE
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+chapterprefix=true,      % "Chapter" word at beginning of each chapter
+open=right,              % start new chapters on odd-numbered pages
+10pt]{book}
+\listfiles               %  print all files needed to compile this document
+\usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+\usepackage{graphicx}
+\usepackage{ptex2tex}
+% #ifdef MINTED
+\usepackage{minted}
+\usemintedstyle{default}
+% #endif
+\usepackage{fancyvrb}
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+\setcounter{tocdepth}{3}  % levels in table of contents
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+% Redefine double page clear to make it a blank page without headers
+% (from BYUTextbook)
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+\hbox{}
+\thispagestyle{empty}
+\newpage
+\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+% These commands fiddle with the space left for page numbers in the TOC
+% (from BYUTextbook)
+\makeatletter
+%\renewcommand{\@pnumwidth}{2em}
+%\renewcommand{\@tocrmarg}{2.85em}
+\makeatother
+% Make sure blank even-numbered pages before new chapters are
+% totally blank with no header
+\newcommand{\clearemptydoublepage}{\clearpage{\pagestyle{empty}\cleardoublepage}}
+%\let\cleardoublepage\clearemptydoublepage % caused error in the toc
+% --- end of standard preamble for documents ---
+% References to labels in external documents:
+\usepackage{xr}
+\externaldocument{testdoc}
+% Add external .aux files to \listfiles list:
+\makeatletter
+\@addtofilelist{testdoc.aux}
+\makeatother
+% insert custom LaTeX commands...
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+%-------------------- end preamble ----------------------
+\begin{document}
+% matching end for #ifdef PREAMBLE
+% #endif
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+% ------------------- main content ----------------------
+% ----------------- title -------------------------
+\thispagestyle{empty}
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Test of one author at one institution
+\end{spacing}
+}
+\end{center}
+% ----------------- author(s) -------------------------
+\begin{center}
+{\bf John Doe (\texttt{doe@cyberspace.net})}
+\end{center}
+    \begin{center}
+% List of all institutions:
+\centerline{{\small Cyberspace Inc.}}
+\end{center}
+    
+% ----------------- end author(s) -------------------------
+% --- begin date ---
+\begin{center}
+Jan 32, 2100
+\end{center}
+% --- end date ---
+\vspace{1cm}
+% Externaldocument: testdoc
+\chapter{Generalized References}
+\label{genrefs}
+Sometimes a series of individual documents may be assembled to one
+large document. The assembly impacts how references to sections
+are written: when referring to a section in the same document, a label
+can be used, while references to sections in other documents are
+written differently, sometimes involving a link (URL) and a citation.
+Especially if both the individual documents and the large assembly document
+are to exist side by side, a flexible way of referencing is needed.
+For this purpose, DocOnce offers \emph{generalized references} which allows
+a reference to have two different formulations, one for internal
+references and one for external references. Since {\LaTeX} supports
+references to labels in external documents via the \texttt{xr} package,
+the generalized references in DocOnce has a syntax that may utilize
+the \texttt{xr} feature in {\LaTeX}.
+The syntax of generalized references reads
+\bccq
+ref[internal][cite][external]
+
+\eccq
+
+If all standard \texttt{ref} references (with curly braces)
+in the text \texttt{internal} are references
+to labels in the present document, the above \texttt{ref} command is replaced
+by the text \texttt{internal}. Otherwise, if cite is non-empty and the format
+is \texttt{latex} or \texttt{pdflatex} one assumes that the references in \texttt{internal}
+are to external documents declared by a comment line \Verb!# Externaldocuments: testdoc, mydoc! (usually after the title, authors,
+and date). In this case the output text is \texttt{internal cite} and the
+{\LaTeX} package \texttt{xr} is used to handle the labels in the external documents.
+When referring to a complete chapter (not a section in it), which
+corresponds to a complete external document, it does not make sense
+to write out \texttt{internal cite} since the \texttt{internal} reference is a
+chapter number. In such cases, the \texttt{internal} syntax can be used,
+and if the label is in another {\LaTeX} document, the output is just \texttt{cite}.
+For all
+output formats other than \texttt{latex} and \texttt{pdflatex}, the \texttt{external}
+text will be the output.
+Here is an example on a specific generalized reference to a section
+in a document:
+\bccq
+As explained in
+ref[Section ref{subsec:ex}][in "Langtangen, 2012":
+"https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex"
+cite{testdoc:12}][a "section":
+"https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex" in
+the document "A Document for Testing DocOnce":
+"https://hplgit.github.io/doconce/test/demo_testdoc.html"
+cite{testdoc:12}], DocOnce documents may include tables.
+
+\eccq
+
+With \texttt{latex} or \texttt{pdflatex} as output, this translates to
+\bccq
+As explained in
+Section ref{subsec:ex}, DocOnce documents may include tables.
+
+\eccq
+
+if the label \Verb!{subsec:ex}! appears in the present DocOnce source, and
+otherwise
+\bccq
+As explained in
+Section ref{subsec:ex} in "Langtangen, 2012":
+"https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex"
+cite{testdoc:12}, DocOnce documents may include tables.
+
+\eccq
+
+In a format different from \texttt{latex} and \texttt{pdflatex}, the effective DocOnce
+text becomes
+\bccq
+As explained in
+a "section":
+"https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex" in
+the document "A Document for Testing DocOnce":
+"https://hplgit.github.io/doconce/test/demo_testdoc.html"
+cite{testdoc:12}, DocOnce documents may include tables.
+
+\eccq
+
+The rendered text in the current format \texttt{latex} becomes
+
+\begin{quote}
+As explained in
+Section~\ref{subsec:ex}in \href{{https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex}}{Langtangen, 2012}
+\cite{testdoc:12}, DocOnce documents may include tables.
+\end{quote}
+
+A reference to an entire external document, which is usually a chapter
+if the reference is internal in the DocOnce source, applies the
+\texttt{refch} syntax:
+\bccq
+As explained in
+refch[Chapter ref{ch:testdoc}]["Langtangen, 2012":
+"https://hplgit.github.io/doconce/test/demo_testdoc.html"
+cite{testdoc:12}][the document
+"A Document for Testing DocOnce":
+"https://hplgit.github.io/doconce/test/demo_testdoc.html"
+cite{testdoc:12}], DocOnce documents may include tables.
+
+\eccq
+
+The output now if \texttt{ch:testdoc} is not a label in the document,
+becomes in the \texttt{latex} and \texttt{pdflatex} case
+\bccq
+As explained in
+"Langtangen, 2012":
+"https://hplgit.github.io/doconce/test/demo_testdoc.html"
+cite{testdoc:12}, DocOnce documents may include tables.
+
+\eccq
+
+That is, the internal reference \texttt{Chapter ...} is omitted since
+it is not meaningful to refer to an external document as "Chapter".
+The resulting rendered text in the current format \texttt{latex} becomes
+
+\begin{quote}
+As explained in
+\href{{https://hplgit.github.io/doconce/test/demo_testdoc.html}}{Langtangen, 2012}
+\cite{testdoc:12}, DocOnce documents may include tables.
+\end{quote}
+
+Note that {\LaTeX} cannot
+have links to local files, so a complete URL on the form
+\texttt{https://...} must be used.
+And here is another example with internal references only:
+\bccq
+Generalized references are described in ref[Section ref{genrefs}][dummy1][
+dummy2].
+
+\eccq
+
+The text is rendered to
+
+\begin{quote}
+Generalized references are described in
+Section~\ref{genrefs}.
+\end{quote}
+
+\chapter{Test of math}
+% Here we test the chapter heading to see if latex output then has
+% book style rather than article style.
+Inline math, $a=b$, is the only math in this document.
+% Need BIBFILE because of \cite{} examples
+\clearemptydoublepage
+\bibliographystyle{plain}
+\bibliography{papers}
+% ------------------- end of main content ---------------
+% #ifdef PREAMBLE
+\end{document}
+% #endif
+

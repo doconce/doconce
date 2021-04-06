@@ -10,7 +10,7 @@ the tests works. This script puts all results in a file test.v, which
 is to be compared to the reference data in test.r.
 """
 
-import subprocess, os, sys, re, doconce.common, time
+import subprocess, os, sys, shutil, re, doconce.common, time
 
 # recommendation: remove installation and reinstall (to test setup.py)
 
@@ -36,6 +36,20 @@ def add(filename, logfilename):
         f.close()
         log.write(fstr)
     log.close()
+
+def cp2logfolder(logfilename, logfolder, applyregex=True):
+    print('...copying file', logfilename)
+    if not os.path.isfile(logfilename):
+        print('Could not open ' + logfilename)
+        return
+    if not os.path.isdir(logfolder):
+        raise IOError('Could not find ' + logfolder)
+    filename_out = logfilename.replace('/','_') #do not copy folders 
+    filename_out = os.path.join(logfolder,filename_out)
+    shutil.copyfile(logfilename, os.path.join(logfolder,filename_out))
+    if applyregex:
+        apply_regex(filename_out, filename_out)
+
 
 def clean_and_make(append=True):
     print('\n\nCleaning....................................')
@@ -105,6 +119,9 @@ def apply_regex(logfilename, logfilenameout=None):
 def run():
     thisdir = os.getcwd()
     logfilename = os.path.join(thisdir, 'test.v')
+    logfolder = os.path.join(thisdir, 'testv')
+    shutil.rmtree(logfolder)
+    os.mkdir(logfolder)
     log = open(logfilename, 'w')
     log.close()  # just touch the file
 
@@ -115,7 +132,12 @@ def run():
     open(logfilename, 'a').close()
     files = '.do.txt', '.html', '.p.tex', '_bigex.tex', '.tex_doconce_ptex2tex', '.tex_direct', '.rst', '.sphinx.rst', '.gwiki', '.mwiki', '.cwiki', '.st', '.epytext', '.txt', '.md', '.ipynb', '.m', '.tmp'
     files = ['testdoc' + ext for ext in files] + [
-        '.testdoc.exerinfo', 'tmp_encodings.txt', 'html_template.do.txt', 'html_template1.html', 'html_template.html', 'template1.html', 'author1.html', 'author1.p.tex', 'author1.rst', 'author1.txt', 'author2_siamltex.tex', 'author2_elsevier.tex', '._testdoc000.html', '._testdoc001.html', '._testdoc002.html', '._testdoc003.html', 'testdoc_wordpress.html', 'testdoc_no_solutions.html', 'testdoc_no_solutions.p.tex', 'mako_test1.html', 'mako_test2.html', 'mako_test3.html', 'mako_test3b.html', 'mako_test4.html', 'automake_sphinx_testdoc.py', 'testdoc_sphinx_index.rst', 'testdoc_sphinx_conf.py', 'automake_sphinx_math_test.py', '.testdoc_html_file_collection', 'make.sh', 'math_test.do.txt', 'math_test.md', 'math_test_html.html', 'math_test_pandoc.html', 'math_test.p.tex', 'math_test.rst', 'testdoc_vagrant.html', '._testdoc_vagrant000.html', '._testdoc_vagrant001.html', '._testdoc_vagrant002.html', '._testdoc000.rst', '._testdoc001.rst', '._testdoc002.rst', 'admon.p.tex', 'admon_colors1.tex', 'admon_colors2.tex', 'admon_mdfbox.tex', 'admon_graybox2.tex', 'admon_grayicon.tex', 'admon_paragraph-footnotesize.tex', 'admon_yellowicon.tex', 'admon_double_envirs.tex', 'admon_colors.html', 'admon_gray.html', 'admon_yellow.html', 'admon_sphinx/admon.html', 'admon_lyx.html', 'admon_paragraph.html', 'admon_apricot.html', 'admon_vagrant.html', 'admon_bootstrap_alert.html', 'admon_bootswatch_panel.html', '._admon_bootstrap_alert001.html', '._admon_bootstrap_alert002.html', 'admon_mwiki.mwiki', 'admon.rst', 'admon_paragraph.txt', 'locale.do.txt', 'locale.html', 'locale.tex', 'slides1.do.txt', 'slides1_reveal.html', 'tmp_slides_html_all.sh', 'slides1_1st.html', 'slides1_deck.html', 'slides1_remark.html', 'slides1.tex', 'slides1_handout.tex', 'slides2.do.txt', 'slides2_reveal.html', 'slides2.p.tex', 'slides2.tex', 'slides3.do.txt', 'slides3_reveal.html', '._slides3-solarized3001.html', 'slides3.p.tex', 'slides3.tex', 'table_1.csv', 'table_2.csv', 'table_3.csv', 'table_4.csv', 'testtable.csv', 'testtable.do.txt', 'github_md.md', 'movies.do.txt', 'movies_3choices.html', 'movies.html', 'movies.p.tex', 'movies.tex', 'movies_media9.tex', 'movies.txt', 'movie_player4.html', 'movie_player5.html', 'movie_player6.html', 'encoding3.do.txt', 'encoding3.p.tex-ascii', 'encoding3.html-ascii', 'encoding3.p.tex-ascii-verb', 'encoding3.html-ascii-verb', 'encoding3.p.tex-utf8', 'encoding3.html-utf8', '_genref1.do.txt', '_genref2.do.txt', '_tmp_genref2.do.txt', 'tmp_subst_references.sh', 'Springer_T2/Springer_T2_book.do.txt','Springer_T2/Springer_T2_book.p.tex', 'Springer_T2/Springer_T2_book.tex', 'test_boots.do.txt', 'test_boots.html', '._test_boots001.html', '._test_boots002.html', 'mdinput2do.do.txt', '.testdoc.quiz', 'encoding1.html', 'testdoc_exer.do.txt', 'nbdemo.ipynb', 'nbdemo.do.txt', 'test_copyright.out', 'tailored_conf.py', 'testdoc_code_prefix.html', 'automake_sphinx.log']
+        '.testdoc.exerinfo', 'tmp_encodings.txt', 'html_template.do.txt', 'html_template1.html', 'html_template.html', 'template1.html', 'author1.html', 'author1.p.tex', 'author1.rst', 'author1.txt', 'author2_siamltex.tex', 'author2_elsevier.tex', '._testdoc000.html', '._testdoc001.html', '._testdoc002.html', '._testdoc003.html', 'testdoc_wordpress.html', 'testdoc_no_solutions.html', 'testdoc_no_solutions.p.tex', 'mako_test1.html', 'mako_test2.html', 'mako_test3.html', 'mako_test3b.html', 'mako_test4.html', 'automake_sphinx_testdoc.py', 'testdoc_sphinx_index.rst', 'testdoc_sphinx_conf.py', 'automake_sphinx_math_test.py', '.testdoc_html_file_collection', 'make.sh', 'math_test.do.txt', 'math_test.md', 'math_test_html.html', 'math_test_pandoc.html', 'math_test.p.tex', 'math_test.rst', 'testdoc_vagrant.html', '._testdoc_vagrant000.html', '._testdoc_vagrant001.html', '._testdoc_vagrant002.html', '._testdoc000.rst', '._testdoc001.rst', '._testdoc002.rst', 'admon.p.tex', 'admon_colors1.tex', 'admon_colors2.tex', 'admon_mdfbox.tex', 'admon_graybox2.tex', 'admon_grayicon.tex', 'admon_paragraph-footnotesize.tex', 'admon_yellowicon.tex', 'admon_double_envirs.tex', 'admon_colors.html', 'admon_gray.html', 'admon_yellow.html', 'admon_sphinx/admon.html', 'admon_lyx.html', 'admon_paragraph.html', 'admon_apricot.html', 'admon_vagrant.html', 'admon_bootstrap_alert.html', 'admon_bootswatch_panel.html', '._admon_bootstrap_alert001.html', 
+        #'_admon_bootstrap_alert001','locale.do.txt', 'locale.html', 'locale.tex', 
+        'admon_mwiki.mwiki', 'admon.rst', 'admon_paragraph.txt', 'slides1.do.txt', 'slides1_reveal.html', 'tmp_slides_html_all.sh', 'slides1_1st.html', 'slides1_deck.html', 'slides1_remark.html', 'slides1.tex', 'slides1_handout.tex', 'slides2.do.txt', 'slides2_reveal.html', 'slides2.p.tex', 'slides2.tex', 'slides3.do.txt', 'slides3_reveal.html', '._slides3-solarized3001.html', 'slides3.p.tex', 'slides3.tex', 'table_1.csv', 'table_2.csv', 'table_3.csv', 'table_4.csv', 'testtable.csv', 'testtable.do.txt', 'github_md.md', 'movies.do.txt', 'movies_3choices.html', 'movies.html', 'movies.p.tex', 'movies.tex', 'movies_media9.tex', 'movies.txt', 'movie_player4.html', 'movie_player5.html', 'movie_player6.html', 'encoding3.do.txt', 'encoding3.p.tex-ascii', 'encoding3.html-ascii', 'encoding3.p.tex-ascii-verb', 'encoding3.html-ascii-verb', 'encoding3.p.tex-utf8', 'encoding3.html-utf8', 
+        #'_genref1.do.txt', '_genref2.do.txt', '_tmp_genref2.do.txt', 'Springer_T2/Springer_T2_book.p.tex', 
+        'tmp_subst_references.sh', 'Springer_T2/Springer_T2_book.do.txt',
+        'Springer_T2/Springer_T2_book.tex', 'test_boots.do.txt', 'test_boots.html', '._test_boots001.html', '._test_boots002.html', 'mdinput2do.do.txt', '.testdoc.quiz', 'encoding1.html', 'testdoc_exer.do.txt', 'nbdemo.ipynb', 'nbdemo.do.txt', 'test_copyright.out', 'tailored_conf.py', 'testdoc_code_prefix.html', 'automake_sphinx.log']
     files.insert(1, '_testdoc.do.txt')
     standalone_exercises = [
         'exercise_1.do.txt', 'selc_composed.do.txt',
@@ -135,6 +157,7 @@ def run():
 
     for f in files:
         add(f, logfilename)
+        cp2logfolder(f, logfolder)
 
     # Drop tutorial
     """
@@ -163,6 +186,7 @@ def run():
             'tmp_HTML.html'
     for f in files:
         add(f, logfilename)
+        cp2logfolder(f, logfolder)
 
     # test manual:
     """
@@ -189,10 +213,12 @@ def run():
     clean_and_make()
 
     add('make.sh', logfilename)
+    cp2logfolder('make.sh', logfolder)
     files = '.do.txt', '.html', '.tex', '.rst', '.sphinx.rst', '.gwiki', '.mwiki', '.cwiki', '.st', '.epytext', '.txt', '.md'
     files = ['quickref' + ext for ext in files]
     for f in files:
         add(f, logfilename)
+        cp2logfolder(f, logfolder)
     
     os.chdir(thisdir)
 
@@ -201,6 +227,13 @@ def run():
     time.sleep(5)
     apply_regex(logfilename)
 
+    print("Check the generated test.v file with e.g.: ")
+    print("meld test.r test.v")
+    print("To remove untracked files run: ")
+    print("git clean -f -d ..")
+    print("To remove the temporary files run: ")
+    print("rm -rf 0*md 0*ipynb tmp_* *~ ")
+    print("find . -mindepth 1 -maxdepth 1 -name '.*' -not -name '.ptex2tex.cfg' -not -name '.dict4spell.txt' -delete")
 
 if __name__ == "__main__":
     run()

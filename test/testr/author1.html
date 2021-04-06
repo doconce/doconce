@@ -1,0 +1,483 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/doconce/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Test of one author at one institution">
+<title>Test of one author at one institution</title>
+<style type="text/css">
+/* blueish style */
+body {
+  margin-top: 1.0em;
+  background-color: #ffffff;
+  font-family: Helvetica, Arial, FreeSans, san-serif;
+  color: #000000;
+}
+h1 { font-size: 1.8em; color: #1e36ce; }
+h2 { font-size: 1.6em; color: #1e36ce; }
+h3 { font-size: 1.4em; color: #1e36ce; }
+h4 { font-size: 1.2em; color: #1e36ce; }
+a { color: #1e36ce; text-decoration:none; }
+tt { font-family: "Courier New", Courier; }
+p { text-indent: 0px; }
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-style: normal; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa; }
+/* pre style removed because it will interfer with pygments */
+div.highlight {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    line-height: 1.21429em;
+}
+div.cell {
+    width: 100%;
+    padding: 5px 5px 5px 0;
+    margin: 0;
+    outline: none;
+}
+div.input {
+    page-break-inside: avoid;
+    box-orient: horizontal;
+    box-align: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+div.inner_cell {
+    box-orient: vertical;
+    box-align: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    box-flex: 1;
+    flex: 1;
+}
+div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 4px;
+    background: #f7f7f7;
+    line-height: 1.21429em;
+}
+div.input_area > div.highlight {
+    margin: .4em;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+}
+div.output_wrapper {
+    position: relative;
+    box-orient: vertical;
+    box-align: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.output {
+    box-orient: vertical;
+    box-align: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+div.output_area {
+    padding: 0;
+    page-break-inside: avoid;
+    box-orient: horizontal;
+    box-align: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+div.output_subarea {
+    padding: .4em .4em 0 .4em;
+    box-flex: 1;
+    flex: 1;
+}
+div.output_text {
+    text-align: left;
+    color: #000;
+    line-height: 1.21429em;
+}
+div { text-align: justify; text-justify: inter-word; }
+</style>
+</head>
+
+<!-- tocinfo
+{'highest level': 0,
+ 'sections': [('Generalized References', 0, 'genrefs', 'genrefs'),
+              ('Test of math', 0, None, 'test-of-math')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+<center>
+<h1>Test of one author at one institution</h1>
+</center>  <!-- document title -->
+<p></p>
+<!-- author(s): John Doe -->
+<center>
+<b>John Doe</b>  (<tt>doe at cyberspace.net</tt>)
+</center>
+<p><!-- institution --></p>
+<center>
+<b>Cyberspace Inc.</b>
+</center>
+<br>
+<center>
+<h4>Jan 32, 2100</h4>
+</center> <!-- date -->
+<br>
+<p></p>
+<!-- Externaldocument: testdoc -->
+<p></p>
+<center>
+<h1 id="genrefs">Generalized References</h1>
+</center> <hr>
+<p></p>
+Sometimes a series of individual documents may be assembled to one
+large document. The assembly impacts how references to sections
+are written: when referring to a section in the same document, a label
+can be used, while references to sections in other documents are
+written differently, sometimes involving a link (URL) and a citation.
+Especially if both the individual documents and the large assembly document
+are to exist side by side, a flexible way of referencing is needed.
+For this purpose, DocOnce offers <em>generalized references</em> which allows
+a reference to have two different formulations, one for internal
+references and one for external references. Since LaTeX supports
+references to labels in external documents via the <code>xr</code> package,
+the generalized references in DocOnce has a syntax that may utilize
+the <code>xr</code> feature in LaTeX.
+<p></p>
+The syntax of generalized references reads
+
+<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <blockquote>
+<div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">ref[internal][cite][external]
+</pre>
+</div>
+</blockquote>      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+If all standard <code>ref</code> references (with curly braces)
+in the text <code>internal</code> are references
+to labels in the present document, the above <code>ref</code> command is replaced
+by the text <code>internal</code>. Otherwise, if cite is non-empty and the format
+is <code>latex</code> or <code>pdflatex</code> one assumes that the references in <code>internal</code>
+are to external documents declared by a comment line <code>#
+Externaldocuments: testdoc, mydoc</code> (usually after the title, authors,
+and date). In this case the output text is <code>internal cite</code> and the
+LaTeX package <code>xr</code> is used to handle the labels in the external documents.
+When referring to a complete chapter (not a section in it), which
+corresponds to a complete external document, it does not make sense
+to write out <code>internal cite</code> since the <code>internal</code> reference is a
+chapter number. In such cases, the <code>internal</code> syntax can be used,
+and if the label is in another LaTeX document, the output is just <code>cite</code>.
+For all
+output formats other than <code>latex</code> and <code>pdflatex</code>, the <code>external</code>
+text will be the output.
+<p></p>
+Here is an example on a specific generalized reference to a section
+in a document:
+
+<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <blockquote>
+<div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">As explained in
+ref[Section ref{subsec:ex}][in &quot;Langtangen, 2012&quot;:
+&quot;https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex&quot;
+cite{testdoc:12}][a &quot;section&quot;:
+&quot;https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex&quot; in
+the document &quot;A Document for Testing DocOnce&quot;:
+&quot;https://hplgit.github.io/doconce/test/demo_testdoc.html&quot;
+cite{testdoc:12}], DocOnce documents may include tables.
+</pre>
+</div>
+</blockquote>      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+With <code>latex</code> or <code>pdflatex</code> as output, this translates to
+
+<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <blockquote>
+<div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">As explained in
+Section ref{subsec:ex}, DocOnce documents may include tables.
+</pre>
+</div>
+</blockquote>      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+if the label <code>{subsec:ex}</code> appears in the present DocOnce source, and
+otherwise
+
+<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <blockquote>
+<div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">As explained in
+Section ref{subsec:ex} in &quot;Langtangen, 2012&quot;:
+&quot;https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex&quot;
+cite{testdoc:12}, DocOnce documents may include tables.
+</pre>
+</div>
+</blockquote>      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+In a format different from <code>latex</code> and <code>pdflatex</code>, the effective DocOnce
+text becomes
+
+<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <blockquote>
+<div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">As explained in
+a &quot;section&quot;:
+&quot;https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex&quot; in
+the document &quot;A Document for Testing DocOnce&quot;:
+&quot;https://hplgit.github.io/doconce/test/demo_testdoc.html&quot;
+cite{testdoc:12}, DocOnce documents may include tables.
+</pre>
+</div>
+</blockquote>      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+The rendered text in the current format <code>html</code> becomes
+<p></p>
+<blockquote>
+    As explained in
+    a <a href="https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex" target="_self">section</a> in
+    the document <a href="https://hplgit.github.io/doconce/test/demo_testdoc.html" target="_self">A Document for Testing DocOnce</a>
+    <a href="#testdoc:12">[1]</a>, DocOnce documents may include tables.
+</blockquote>
+
+<p></p>
+A reference to an entire external document, which is usually a chapter
+if the reference is internal in the DocOnce source, applies the
+<code>refch</code> syntax:
+<p></p>
+
+<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <blockquote>
+<div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">As explained in
+refch[Chapter ref{ch:testdoc}][&quot;Langtangen, 2012&quot;:
+&quot;https://hplgit.github.io/doconce/test/demo_testdoc.html&quot;
+cite{testdoc:12}][the document
+&quot;A Document for Testing DocOnce&quot;:
+&quot;https://hplgit.github.io/doconce/test/demo_testdoc.html&quot;
+cite{testdoc:12}], DocOnce documents may include tables.
+</pre>
+</div>
+</blockquote>      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+The output now if <code>ch:testdoc</code> is not a label in the document,
+becomes in the <code>latex</code> and <code>pdflatex</code> case
+<p></p>
+
+<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <blockquote>
+<div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">As explained in
+&quot;Langtangen, 2012&quot;:
+&quot;https://hplgit.github.io/doconce/test/demo_testdoc.html&quot;
+cite{testdoc:12}, DocOnce documents may include tables.
+</pre>
+</div>
+</blockquote>      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+That is, the internal reference <code>Chapter ...</code> is omitted since
+it is not meaningful to refer to an external document as "Chapter".
+The resulting rendered text in the current format <code>html</code> becomes
+<p></p>
+<blockquote>
+    As explained in
+    the document
+    <a href="https://hplgit.github.io/doconce/test/demo_testdoc.html" target="_self">A Document for Testing DocOnce</a>
+    <a href="#testdoc:12">[1]</a>, DocOnce documents may include tables.
+</blockquote>
+
+<p></p>
+Note that LaTeX cannot
+have links to local files, so a complete URL on the form
+<code>https://...</code> must be used.
+<p></p>
+And here is another example with internal references only:
+<p></p>
+
+<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <blockquote>
+<div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">Generalized references are described in ref[Section ref{genrefs}][dummy1][
+dummy2].
+</pre>
+</div>
+</blockquote>      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+The text is rendered to
+<p></p>
+<blockquote>
+    Generalized references are described in
+    the section <a href="#genrefs">Generalized References</a>.
+</blockquote>
+
+<p></p>
+<center>
+<h1 id="test-of-math">Test of math </h1>
+</center> <hr>
+<p></p>
+<!-- Here we test the chapter heading to see if latex output then has -->
+<!-- book style rather than article style. -->
+<p></p>
+Inline math, \( a=b \), is the only math in this document.
+<p></p>
+<!-- Need BIBFILE because of cite{} examples -->
+<p></p>
+<!-- begin bibliography -->
+<ol>
+ <li> <div id="testdoc:12"></div> <b>H. P. Langtangen</b>. 
+    A Document for Testing Doconce,
+    <em>Simula Research Laboratory</em>,
+    2015,
+    <a href="http://hplgit.github.io/doconce/test/demo_testdoc.html" target="_self"><tt>http://hplgit.github.io/doconce/test/demo_testdoc.html</tt></a>.</li>
+</ol>
+<!-- end bibliography -->
+<!-- ------------------- end of main content --------------- -->
+</body>
+</html>
+    
+

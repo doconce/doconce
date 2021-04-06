@@ -1,0 +1,291 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/doconce/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Test of the Bootstrap style">
+<title>Test of the Bootstrap style</title>
+<!-- Bootstrap style: bootswatch_journal -->
+<link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/journal/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+<style type="text/css">
+/* Let inline verbatim have the same color as the surroundings */
+code { color: inherit; background-color: transparent; }
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:60px;      /* fixed header height for style bootswatch_journal */
+  margin:-60px 0 0; /* negative fixed header height */
+}
+</style>
+</head>
+
+<!-- tocinfo
+{'highest level': 0,
+ 'sections': [('More details on writing DocOnce documents with Bootstrap '
+               'layout',
+               0,
+               None,
+               'more-details-on-writing-doconce-documents-with-bootstrap-layout'),
+              ('Demonstrations of admons', 1, None, 'demonstrations-of-admons'),
+              ('Horizontal alignment of document elements',
+               1,
+               'sec:examples',
+               'sec:examples'),
+              ('Principles of grid structures',
+               2,
+               None,
+               'principles-of-grid-structures'),
+              ('Example on a 1x3 grid structure',
+               2,
+               None,
+               'example-on-a-1x3-grid-structure'),
+              ('Variation of the previous grid structure using panels',
+               2,
+               None,
+               'variation-of-the-previous-grid-structure-using-panels')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="test_boots.html">Test of the Bootstrap style</a>
+  </div>
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#more-details-on-writing-doconce-documents-with-bootstrap-layout" style="font-size: 80%;"><b>More details on writing DocOnce documents with Bootstrap layout</b></a></li>
+     <!-- navigation toc: --> <li><a href="#demonstrations-of-admons" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Demonstrations of admons</a></li>
+     <!-- navigation toc: --> <li><a href="._test_boots002.html#sec:examples" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Horizontal alignment of document elements</a></li>
+     <!-- navigation toc: --> <li><a href="._test_boots002.html#principles-of-grid-structures" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Principles of grid structures</a></li>
+     <!-- navigation toc: --> <li><a href="._test_boots002.html#example-on-a-1x3-grid-structure" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example on a 1x3 grid structure</a></li>
+     <!-- navigation toc: --> <li><a href="._test_boots002.html#variation-of-the-previous-grid-structure-using-panels" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Variation of the previous grid structure using panels</a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+<div class="container">
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+<a name="part0001"></a>
+<!-- !split -->
+<center>
+<h1 id="more-details-on-writing-doconce-documents-with-bootstrap-layout" class="anchor">More details on writing DocOnce documents with Bootstrap layout </h1>
+</center> <!-- chapter heading -->
+<p></p>
+<h1 id="demonstrations-of-admons" class="anchor">Demonstrations of admons </h1>
+<p></p>
+The Bootstrap/Bootswatch styles support two kinds of admons:
+<p></p>
+<ul>
+ <li> alert admons (<code>bootstrap_alert</code>) with colored background (default)</li>
+ <li> panel admon (<code>bootstrap_panel</code>) where only the title has colored background</li>
+</ul>
+Below are some examples on admons.
+<p></p>
+<div class="panel panel-warning">
+  <div class="panel-heading">
+  <h3 class="panel-title">Warning: recall to prefix module functions</h3>
+  </div>
+<div class="panel-body">
+<!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+<p></p>
+
+<!-- code=ipy (!bc ipy) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;"><span style="color: #000080; font-weight: bold">In [1]: </span><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+
+<span style="color: #000080; font-weight: bold">In [2]: </span>x <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">0</span>, <span style="color: #666666">4*</span>np<span style="color: #666666">.</span>pi, <span style="color: #666666">11</span>)
+
+<span style="color: #000080; font-weight: bold">In [3]: </span>y <span style="color: #666666">=</span> exp(<span style="color: #666666">-0.1*</span>x)<span style="color: #666666">*</span>sin(x)
+<span style="color: #0044DD">---------------------------------------------------------------------------</span>
+<span style="color: #D2413A; font-weight: bold">NameError</span>                                 Traceback (most recent call last)
+<span style="color: #0000FF; font-weight: bold">&lt;ipython-input-3-c1040545fa6c&gt;</span> in <span style="color: #999999; font-weight: bold">&lt;module&gt;</span><span style="color: #008000; font-weight: bold">()</span>
+<span style="color: #D2413A; font-weight: bold">----&gt; </span><span style="color: #666666">1</span> y <span style="color: #666666">=</span> exp(<span style="color: #666666">-0.1*</span>x)<span style="color: #666666">*</span>sin(x)
+
+<span style="color: #D2413A; font-weight: bold">NameError</span>: name &#39;exp&#39; is not defined
+
+<span style="color: #000080; font-weight: bold">In [4]: </span>y <span style="color: #666666">=</span> np<span style="color: #666666">.</span>exp(<span style="color: #666666">-0.1*</span>x)<span style="color: #666666">*</span>np<span style="color: #666666">.</span>sin(x)
+
+<span style="color: #000080; font-weight: bold">In [5]: </span>y
+<span style="color: #000080; font-weight: bold">Out[5]:</span>
+<span style="color: #888888">array([  0.00000000e+00,   8.38747563e-01,   4.57160372e-01,</span>
+<span style="color: #888888">        -4.03174933e-01,  -5.75315545e-01,  -1.30666897e-16,</span>
+<span style="color: #888888">         4.47461836e-01,   2.43889614e-01,  -2.15089026e-01,</span>
+<span style="color: #888888">        -3.06923992e-01,  -1.39418467e-16])</span>
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p></p>
+This is the admon for warnings or paying attention.
+</div>
+</div>
+
+<p></p>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Information</h3>
+  </div>
+<div class="panel-body">
+<!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+This is the notice admon with nice-to-have information.
+</div>
+</div>
+
+<p></p>
+<div class="panel panel-success">
+  <div class="panel-heading">
+  <h3 class="panel-title">Testing the understanding</h3>
+  </div>
+<div class="panel-body">
+<!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+How many admon styles are supported by the DocOnce Boostrap and Bootswatch
+styles?
+</div>
+</div>
+
+<p></p>
+<div class="panel panel-danger">
+  <div class="panel-heading">
+  <h3 class="panel-title">Summary</h3>
+  </div>
+<div class="panel-body">
+<!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+DocOnce supports the following elements of Bootstrap elements:
+<p></p>
+<ul>
+ <li> Admons</li>
+ <li> Panels (via admons)</li>
+ <li> Jumbotron for title and intro</li>
+ <li> Columns of content (grid structure via the <code>slidecell</code> environment)</li>
+ <li> Tooltips via footnotes</li>
+</ul>
+</div>
+</div>
+
+<p></p>
+Tables, first with math headings:
+<p></p>
+<div class="row">
+  <div class="col-xs-5">
+    <table class="table table-striped table-hover table-condensed">
+<thead>
+<tr><td align="left">\( i \)</td> <td align="right">\( h_i \)</td> <td align="right">\( \bar T_i \)</td> <td align="right"><code>L_i</code></td> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   0          </td> <td align="right">   0            </td> <td align="right">   288               </td> <td align="right">   -0.0065             </td> </tr>
+<tr><td align="left">   1          </td> <td align="right">   11,000       </td> <td align="right">   216               </td> <td align="right">   0.0                 </td> </tr>
+<tr><td align="left">   2          </td> <td align="right">   20,000       </td> <td align="right">   216               </td> <td align="right">   0.001               </td> </tr>
+<tr><td align="left">   3          </td> <td align="right">   32,000       </td> <td align="right">   228               </td> <td align="right">   0.0028              </td> </tr>
+<tr><td align="left">   4          </td> <td align="right">   47,000       </td> <td align="right">   270               </td> <td align="right">   0.0                 </td> </tr>
+<tr><td align="left">   5          </td> <td align="right">   51,000       </td> <td align="right">   270               </td> <td align="right">   -0.0028             </td> </tr>
+<tr><td align="left">   6          </td> <td align="right">   71,000       </td> <td align="right">   214               </td> <td align="right">   <code>NaN</code>    </td> </tr>
+</tbody>
+    </table>
+  </div> <!-- col-xs-5 -->
+</div> <!-- cell row -->
+<p></p>
+And then with plain words:
+<p></p>
+<div class="row">
+  <div class="col-xs-4">
+    <table class="table table-striped table-hover table-condensed">
+<thead>
+<tr><td align="left"><b>i</b></td> <td align="right"><b>height</b></td> <td align="right"><b>Temperature</b></td> <td align="right"><b>       L        </b></td> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   0    </td> <td align="right">   0         </td> <td align="right">   288            </td> <td align="right">   -0.0065             </td> </tr>
+<tr><td align="left">   1    </td> <td align="right">   11,000    </td> <td align="right">   216            </td> <td align="right">   0.0                 </td> </tr>
+<tr><td align="left">   2    </td> <td align="right">   20,000    </td> <td align="right">   216            </td> <td align="right">   0.001               </td> </tr>
+<tr><td align="left">   3    </td> <td align="right">   32,000    </td> <td align="right">   228            </td> <td align="right">   0.0028              </td> </tr>
+<tr><td align="left">   4    </td> <td align="right">   47,000    </td> <td align="right">   270            </td> <td align="right">   0.0                 </td> </tr>
+<tr><td align="left">   5    </td> <td align="right">   51,000    </td> <td align="right">   270            </td> <td align="right">   -0.0028             </td> </tr>
+<tr><td align="left">   6    </td> <td align="right">   71,000    </td> <td align="right">   214            </td> <td align="right">   <code>NaN</code>    </td> </tr>
+</tbody>
+    </table>
+  </div> <!-- col-xs-4 -->
+</div> <!-- cell row -->
+<p></p>
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pager">
+
+  <li class="previous">
+    <a href="._test_boots000.html">&larr; Prev</a>
+  </li>
+
+  <li class="next">
+    <a href="._test_boots002.html">Next &rarr;</a>
+  </li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<!-- Bootstrap footer
+<footer>
+<a href="https://..."><img width="250" align=right src="https://..."></a>
+</footer>
+-->
+</body>
+</html>
+    
+

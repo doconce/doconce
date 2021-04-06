@@ -1,0 +1,17 @@
+TITLE: Problem 2.1: Add numbers
+AUTHOR: Jane Doe Email:jane.doe@cyberspace.net
+DATE: Due Jan 32, 2100
+
+# Logical name of exercise: add
+
+
+
+Compute
+
+!bt
+\[ 1 + 1 \]
+!et
+
+
+
+

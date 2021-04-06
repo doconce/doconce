@@ -1,0 +1,1346 @@
+<html>
+<head>
+<!-- Bootstrap style: vagrant 1.0 web pages -->
+
+<!--
+This style is adopted from the (now old) vagrant 1.0 web pages.
+
+This style file should be copied and the following elements edited:
+
+Logo heading:
+
+ LogoWord
+ withSubWord
+
+Navigation links at the top:
+
+ GO TO 1
+ GO TO 2
+
+Footer at the end
+-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
+
+<title>A Document for Testing DocOnce</title>
+
+<!-- If you copy the css subdirectory (and, e.g., make optional edits):
+<link rel="stylesheet" href="css/twitter_bootstrap.css">
+<link rel="stylesheet" href="css/vagrant.css">
+Otherwise, rely on the URLs below (vagrant.css adapted to Doconce layout)
+-->
+
+<link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/twitter_bootstrap.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/vagrant.css">
+
+<!-- Define color of headings here (last definition counts) -->
+<style type="text/css">
+h1, h2, h3, h4, h5, h6 {
+  color: #000;     /* black */
+  color: #999;     /* gray */
+  color: #005580;  /* dark blue */
+  color: #08c;     /* characteristic blue */
+</style>
+
+<!-- Tools for embedded Bokeh plots -->
+<link rel="stylesheet"
+      href="https://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.css"
+      type="text/css" />
+<script type="text/javascript"
+	src="https://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.js">
+</script>
+<script type="text/javascript">
+  Bokeh.set_log_level("info");
+</script>
+
+
+</head>
+<body>
+
+<div class="container">
+ <div class="row Header with-border">
+  <div class="span3 Module logo">
+   <h1><a href="/">LogoWord<span class="subtitle">withSubWord</span></a></h1>
+  </div>
+  <div class="span9">
+   <div class="Module navigation">
+   <!-- Navigation at the top of the page -->
+    <ul>
+     <li> <a href="">GO TO 1</a></li>
+     <li> <a href="">GO TO 2</a></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+<!-- Here goes the table of contents in the sidebar
+     <li class="active"> means dark blue background for current section
+-->
+<div class="row">
+ <div class="span3 Module sidebar">
+  <div class="well" style="padding: 8px 0px;">
+   <ul class="nav nav-list">
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant000.html#table_of_contents" style="font-size: 80%;"><b>Table of contents</b></a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#sec1" style="font-size: 80%;"><b>Section 1</b></a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#subsec1" style="font-size: 80%;">Subsection 1</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#subsec:ex" style="font-size: 80%;">Subsection 2: Testing figures</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#decay:sec:theta" style="font-size: 80%;">The \( \theta \) parameter (not \( \nabla \)?)</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#custom-environments" style="font-size: 80%;">Custom Environments</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#subsec:table" style="font-size: 80%;">Tables</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2" style="font-size: 80%;">A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code></a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#_just-bold_" style="font-size: 80%;"><b>Just bold</b></a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#just-emphasize" style="font-size: 80%;"><em>Just emphasize</em></a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#just-verbatim" style="font-size: 80%;"><code>Just verbatim</code></a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#_bold_-beginning" style="font-size: 80%;"><b>Bold</b> beginning</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#emphasize-beginning" style="font-size: 80%;"><em>Emphasize</em> beginning</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#verbatim-beginning" style="font-size: 80%;"><code>Verbatim</code> beginning</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#maybe-_bold-end_" style="font-size: 80%;">Maybe <b>bold end</b></a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#maybe-emphasize-end" style="font-size: 80%;">Maybe <em>emphasize end</em></a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#maybe-verbatim-end" style="font-size: 80%;">Maybe <code>verbatim end</code></a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#the-middle-has-<b>bold</b>-word" style="font-size: 80%;">The middle has <b>bold</b> word</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#the-middle-has-emphasize-word" style="font-size: 80%;">The middle has <em>emphasize</em> word</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#the-middle-has-verbatim-word" style="font-size: 80%;">The middle has <code>verbatim</code> word</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#bibliography-test" style="font-size: 80%;">Bibliography test</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#Example" style="font-size: 80%;">Example 1: Examples can be typeset as exercises</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#user-defined-environments" style="font-size: 80%;">User-defined environments</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#ex:test:1p1" style="font-size: 80%;">Example 1: A test function</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#ex:math:1p1" style="font-size: 80%;">Example 2: Addition</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#subsubsec:ex" style="font-size: 80%;">URLs</a></li>
+     </ul>
+     <!-- navigation toc: --> <li><a href="#latex-mathematics" style="font-size: 80%;"><b>LaTeX Mathematics</b></a></li>
+     <!-- navigation toc: --> <li><a href="#exercises" style="font-size: 80%;"><b>Exercises</b></a></li>
+     <ul class="nav">
+     <!-- navigation toc: --> <li><a href="#demo:ex:1" style="font-size: 80%;">Problem 2: Flip a Coin</a></li>
+     <!-- navigation toc: --> <li><a href="#not-an-exercise" style="font-size: 80%;">Not an exercise</a></li>
+     <!-- navigation toc: --> <li><a href="#my:exer1" style="font-size: 80%;">Exercise 3: Test of plain text exercise</a></li>
+     <!-- navigation toc: --> <li><a href="#demo:ex:2" style="font-size: 80%;">Project 4: Compute a Probability</a></li>
+     <!-- navigation toc: --> <li><a href="#proj:circle1" style="font-size: 80%;">Project 5: Explore Distributions of Random Circles</a></li>
+     <!-- navigation toc: --> <li><a href="#exer:dist" style="font-size: 80%;">Exercise 6: Determine some Distance</a></li>
+     <!-- navigation toc: --> <li><a href="#some-exercise-without-the-exercise-prefix" style="font-size: 80%;">Some exercise without the "Exercise:" prefix</a></li>
+     <!-- navigation toc: --> <li><a href="#sec:this:exer:de" style="font-size: 80%;">Exercise 8: Solution of differential equation</a></li>
+     <!-- navigation toc: --> <li><a href="#example-9-just-an-example" style="font-size: 80%;">Example 9: Just an example</a></li>
+     </ul>
+     <!-- navigation toc: --> <li><a href="#here-goes-another-section" style="font-size: 80%;"><b>Here goes another section</b></a></li>
+     <!-- navigation toc: --> <li><a href="#more-exercises" style="font-size: 80%;"><b>More Exercises</b></a></li>
+     <ul class="nav">
+     <!-- navigation toc: --> <li><a href="#exer:some:formula" style="font-size: 80%;">Exercise 10: Make references to projects and problems</a></li>
+     <!-- navigation toc: --> <li><a href="#exer:you" style="font-size: 80%;">Project 11: References in a headings do not work well in html</a></li>
+     </ul>
+     <!-- navigation toc: --> <li><a href="#references" style="font-size: 80%;"><b>References</b></a></li>
+     <!-- navigation toc: --> <li><a href="#app1" style="font-size: 80%;"><b>Appendix: Just for testing; part I</b></a></li>
+     <ul class="nav">
+     <!-- navigation toc: --> <li><a href="#a-subsection-within-an-appendix" style="font-size: 80%;">A subsection within an appendix</a></li>
+     </ul>
+     <!-- navigation toc: --> <li><a href="#app2" style="font-size: 80%;"><b>Appendix: Just for testing; part II</b></a></li>
+     <ul class="nav">
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-identical-titles" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
+     <!-- navigation toc: --> <li><a href="#test:title:id1" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
+     <!-- navigation toc: --> <li><a href="#test:title:id2" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-identical-titles" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-inline-comments" style="font-size: 80%;">Appendix: Testing inline comments</a></li>
+     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-headings-ending-with-verbatim-inline" style="font-size: 80%;">Appendix: Testing headings ending with <code>verbatim inline</code></a></li>
+
+   </ul>
+  </div>
+ </div>
+
+ <div class="span9">
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [('Table of contents',
+               1,
+               'table_of_contents',
+               'table_of_contents'),
+              ('Section 1', 1, 'sec1', 'sec1'),
+              ('Here is a list with subsubsection heading',
+               3,
+               None,
+               'here-is-a-list-with-subsubsection-heading'),
+              ('Subsection 1', 2, 'subsec1', 'subsec1'),
+              ('Test Section reference at beginning of line and after a '
+               'sentence',
+               3,
+               None,
+               'test-section-reference-at-beginning-of-line-and-after-a-sentence'),
+              ('Computer code', 3, None, 'computer-code'),
+              ('Subsubsection heading before code',
+               3,
+               None,
+               'subsubsection-heading-before-code'),
+              ('Running OS commands', 3, None, 'running-os-commands'),
+              ('Footnotes', 3, None, 'footnotes'),
+              ('Subsection 2: Testing figures', 2, 'subsec:ex', 'subsec:ex'),
+              ('The $\\theta$ parameter (not $\\nabla$?)',
+               2,
+               'decay:sec:theta',
+               'decay:sec:theta'),
+              ('Custom Environments', 2, None, 'custom-environments'),
+              ('Tables', 2, 'subsec:table', 'subsec:table'),
+              ('A test of verbatim words in heading with subscript $a_i$: '
+               '`my_file_v1` and `my_file_v2`',
+               2,
+               None,
+               'a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2'),
+              ('_Just bold_', 2, None, '_just-bold_'),
+              ('*Just emphasize*', 2, None, 'just-emphasize'),
+              ('`Just verbatim`', 2, None, 'just-verbatim'),
+              ('_Bold_ beginning', 2, None, '_bold_-beginning'),
+              ('*Emphasize* beginning', 2, None, 'emphasize-beginning'),
+              ('`Verbatim` beginning', 2, None, 'verbatim-beginning'),
+              ('Maybe _bold end_', 2, None, 'maybe-_bold-end_'),
+              ('Maybe *emphasize end*', 2, None, 'maybe-emphasize-end'),
+              ('Maybe `verbatim end`', 2, None, 'maybe-verbatim-end'),
+              ('The middle has _bold_ word',
+               2,
+               None,
+               'the-middle-has-_bold_-word'),
+              ('The middle has *emphasize* word',
+               2,
+               None,
+               'the-middle-has-emphasize-word'),
+              ('The middle has `verbatim` word',
+               2,
+               None,
+               'the-middle-has-verbatim-word'),
+              ('Bibliography test', 2, None, 'bibliography-test'),
+              ('Example 1: Examples can be typeset as exercises',
+               2,
+               'Example',
+               'Example'),
+              ('User-defined environments',
+               2,
+               None,
+               'user-defined-environments'),
+              ('Example 1: A test function', 2, 'ex:test:1p1', 'ex:test:1p1'),
+              ('Example 2: Addition', 2, 'ex:math:1p1', 'ex:math:1p1'),
+              ('URLs', 2, 'subsubsec:ex', 'subsubsec:ex'),
+              ('LaTeX Mathematics', 1, None, 'latex-mathematics'),
+              ('Exercises', 1, None, 'exercises'),
+              ('Problem 2: Flip a Coin', 2, 'demo:ex:1', 'demo:ex:1'),
+              ('My remarks', 3, None, 'my-remarks'),
+              ('Remarks', 3, None, 'remarks'),
+              ('Not an exercise', 2, None, 'not-an-exercise'),
+              ('Exercise 3: Test of plain text exercise',
+               2,
+               'my:exer1',
+               'my:exer1'),
+              ('Project 4: Compute a Probability', 2, 'demo:ex:2', 'demo:ex:2'),
+              ('Project 5: Explore Distributions of Random Circles',
+               2,
+               'proj:circle1',
+               'proj:circle1'),
+              ('Remarks', 3, None, 'remarks'),
+              ('Exercise 6: Determine some Distance',
+               2,
+               'exer:dist',
+               'exer:dist'),
+              ('Remarks', 3, None, 'remarks'),
+              ('Some exercise without the "Exercise:" prefix',
+               2,
+               None,
+               'some-exercise-without-the-exercise-prefix'),
+              ('Exercise 8: Solution of differential equation',
+               2,
+               'sec:this:exer:de',
+               'sec:this:exer:de'),
+              ('Example 9: Just an example',
+               2,
+               None,
+               'example-9-just-an-example'),
+              ('Here goes another section',
+               1,
+               None,
+               'here-goes-another-section'),
+              ('More Exercises', 1, None, 'more-exercises'),
+              ('Exercise 10: Make references to projects and problems',
+               2,
+               'exer:some:formula',
+               'exer:some:formula'),
+              ('Project 11: References in a headings do not work well in html',
+               2,
+               'exer:you',
+               'exer:you'),
+              ('References', 1, None, 'references'),
+              ('Appendix: Just for testing; part I', 1, 'app1', 'app1'),
+              ('A subsection within an appendix',
+               2,
+               None,
+               'a-subsection-within-an-appendix'),
+              ('Appendix: Just for testing; part II', 1, 'app2', 'app2'),
+              ('Appendix: Testing identical titles',
+               2,
+               None,
+               'appendix-testing-identical-titles'),
+              ('Appendix: Testing identical titles',
+               2,
+               'test:title:id1',
+               'test:title:id1'),
+              ('Appendix: Testing identical titles',
+               2,
+               'test:title:id2',
+               'test:title:id2'),
+              ('Appendix: Testing identical titles',
+               2,
+               None,
+               'appendix-testing-identical-titles'),
+              ('Appendix: Testing inline comments',
+               2,
+               None,
+               'appendix-testing-inline-comments'),
+              ('Appendix: Testing headings ending with `verbatim inline`',
+               2,
+               None,
+               'appendix-testing-headings-ending-with-verbatim-inline')]}
+end of tocinfo -->
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<a name="part0002"></a>
+<!-- !split and check if these extra words are included properly in the comment -->
+<p></p>
+<h1 id="latex-mathematics" class="anchor">LaTeX Mathematics </h1>
+<p></p>
+Here is an equation without label using backslash-bracket environment:
+$$ a = b + c $$
+
+<p></p>
+or with number and label, as in <a href="#mjx-eqn-12">(12)</a>, using the equation environment:
+<p></p>
+$$
+\begin{equation}
+{\partial u\over\partial t} = \nabla^2 u \tag{12}
+\end{equation}
+$$
+
+<p></p>
+We can refer to this equation by <a href="#mjx-eqn-12">(12)</a>.
+<p></p>
+Here is a system without equation numbers, using the align-asterisk environment:
+<p></p>
+$$
+\begin{align*}
+\pmb{a} &= \pmb{q}\times\pmb{n} \\ 
+b &= \nabla^2 u + \nabla^4 v
+\end{align*}
+$$
+
+<p></p>
+And here is a system of equations with labels in an align environment:
+<p></p>
+$$
+\begin{align}
+a &= q + 4 + 5+ 6 \tag{13} \\ 
+b &= \nabla^2 u + \nabla^4 x \tag{14}
+\end{align}
+
+$$
+
+We can refer to <a href="#mjx-eqn-13">(13)</a>-<a href="#mjx-eqn-14">(14)</a>. They are a bit simpler than
+the Navier&ndash;Stokes equations. And test LaTeX hyphen in <code>CG-2</code>.
+Also test \( a_{i-j} \) as well as \( kx-wt \).
+<p></p>
+Testing <code>alignat</code> environment:
+<p></p>
+$$
+\begin{alignat}{2}
+a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \tag{15} \\ 
+b &= \nabla^2 u + \nabla^4 x & x\in\Omega \tag{16}
+\end{alignat}
+$$
+
+<p></p>
+More mathematical typesetting is demonstrated in the coming exercises.
+<p></p>
+Below, we have <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#demo:ex:2">Project 4: Compute a Probability</a>,
+as well as <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 11: References in a headings do not work well in html</a>, and in
+between there we have <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.
+<p></p>
+<h1 id="exercises" class="anchor">Exercises </h1>
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="demo:ex:1" class="anchor">Problem 2: Flip a Coin</h2>
+<!-- keywords = random numbers; Monte Carlo simulation; ipynb -->
+<p></p>
+<!-- Torture tests -->
+<p></p>
+<b>a)</b>
+Make a program that simulates flipping a coin \( N \) times.
+Print out &quot;tail&quot; or &quot;head&quot; for each flip and
+let the program count the number of heads.
+<p></p>
+<!-- --- begin hint in exercise --- -->
+<p></p>
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_2_1" style="font-size: 80%;"></a>
+<a href="#exer_2_1" data-toggle="collapse">
+<b>Hint 1.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_2_1">
+<p></p>
+Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.
+<p></p>
+</div></p>
+</div>
+</p>
+<p></p>
+<!-- --- end hint in exercise --- -->
+<p></p>
+<!-- --- begin hint in exercise --- -->
+<p></p>
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_2_2" style="font-size: 80%;"></a>
+<a href="#exer_2_2" data-toggle="collapse">
+<b>Hint 2.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_2_2">
+<p></p>
+Draw an integer among \( \{1,2\} \) with
+<code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.
+<p></p>
+</div></p>
+</div>
+</p>
+<p></p>
+<!-- --- end hint in exercise --- -->
+<p></p>
+<!-- --- begin answer of exercise --- -->
+<p></p>
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_2_3" style="font-size: 80%;"></a>
+<a href="#exer_2_3" data-toggle="collapse">
+<b>Answer.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_2_3">
+<p></p>
+If the <code>random.random()</code> function returns a number \( < 1/2 \), let it be
+head, otherwise tail. Repeat this \( N \) number of times.
+</div></p>
+</div>
+</p>
+<p></p>
+<!-- --- end answer of exercise --- -->
+<p></p>
+<!-- --- begin solution of exercise --- -->
+<p></p>
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_2_5" style="font-size: 80%;"></a>
+<a href="#exer_2_5" data-toggle="collapse">
+<b>Solution.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_2_5">
+<p></p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">sys</span><span style="color: #666666">,</span> <span style="color: #0000FF; font-weight: bold">random</span>
+N <span style="color: #666666">=</span> <span style="color: #008000">int</span>(sys<span style="color: #666666">.</span>argv[<span style="color: #666666">1</span>])
+heads <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+<span style="color: #008000; font-weight: bold">for</span> i <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(N):
+    r <span style="color: #666666">=</span> random<span style="color: #666666">.</span>random()
+    <span style="color: #008000; font-weight: bold">if</span> r <span style="color: #666666">&lt;=</span> <span style="color: #666666">0.5</span>:
+        heads <span style="color: #666666">+=</span> <span style="color: #666666">1</span>
+<span style="color: #008000">print</span>(<span style="color: #BA2121">&#39;Flipping a coin </span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121"> times gave </span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121"> heads&#39;</span> <span style="color: #666666">%</span> (N, heads))
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></p>
+</div>
+</p>
+<p></p>
+<!-- --- end solution of exercise --- -->
+<p></p>
+<b>b)</b>
+Vectorize the code in a) using boolean indexing.
+<p></p>
+Vectorized code can be written in many ways.
+Sometimes the code is less intuitive, sometimes not.
+At least there is not much to find in the section <a href="._testdoc_vagrant001.html#sec1">Section 1</a>.
+<p></p>
+<b>c)</b>
+Vectorize the code in a) using <code>numpy.sum</code>.
+<p></p>
+<!-- --- begin answer of exercise --- -->
+<p></p>
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_2_4" style="font-size: 80%;"></a>
+<a href="#exer_2_4" data-toggle="collapse">
+<b>Answer.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_2_4">
+<p></p>
+<code>np.sum(np.where(r &lt;= 0.5, 1, 0))</code> or <code>np.sum(r &lt;= 0.5)</code>.
+</div></p>
+</div>
+</p>
+<p></p>
+<!-- --- end answer of exercise --- -->
+<p></p>
+In this latter subexercise, we have an
+example where the code is easy to read.
+<p></p>
+<h3 id="my-remarks" class="anchor">My remarks </h3>
+<p></p>
+Remarks with such a subsubsection is treated as more text
+after the last subexercise. Test a list too:
+<p></p>
+<ol>
+<li> Mark 1.</li>
+<li> Mark 2.</li>
+</ol>
+Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
+<p></p>
+<!-- Closing remarks for this Problem -->
+<p></p>
+<h3 id="remarks" class="anchor">Remarks </h3>
+<p></p>
+These are the exercise remarks, appearing at the very end.
+<p></p>
+<!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
+<p></p>
+<!-- --- end exercise --- -->
+<p></p>
+<h2 id="not-an-exercise" class="anchor">Not an exercise </h2>
+<p></p>
+Should be possible to stick a normal section in the middle of many
+exercises.
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="my:exer1" class="anchor">Exercise 3: Test of plain text exercise</h2>
+<p></p>
+Very short exercise. What is the capital
+of Norway?
+Filename: <code>myexer1</code>.
+<p></p>
+<!-- --- end exercise --- -->
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="demo:ex:2" class="anchor">Project 4: Compute a Probability</h2>
+<p></p>
+<!-- Minimalistic exercise -->
+<p></p>
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval \( [0,1) \)?
+<p></p>
+At the end we have a list because that caused problems in LaTeX
+in previous DocOnce versions:
+<p></p>
+<ol>
+<li> item1</li>
+<li> item2</li>
+</ol>
+<!-- --- begin hint in exercise --- -->
+<p></p>
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_4_1" style="font-size: 80%;"></a>
+<a href="#exer_4_1" data-toggle="collapse">
+<b>Hint.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_4_1">
+<p></p>
+To answer this question empirically, let a program
+draw \( N \) such random numbers using Python's standard <code>random</code> module,
+count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and
+compute the probability as \( M/N \).
+<p></p>
+</div></p>
+</div>
+</p>
+<p></p>
+<!-- --- end hint in exercise --- -->
+<p></p>
+<!-- --- end exercise --- -->
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="proj:circle1" class="anchor">Project 5: Explore Distributions of Random Circles</h2>
+<!-- keywords = ipynb -->
+<p></p>
+The formula for a circle is given by
+<p></p>
+$$
+\begin{align}
+x &= x_0 + R\cos 2\pi t,
+\tag{17}\\ 
+y &= y_0 + R\sin 2\pi t,
+\tag{18}
+\end{align}
+$$
+
+where \( R \) is the radius of the circle, \( (x_0,y_0) \) is the
+center point, and \( t \) is a parameter in the unit interval \( [0,1] \).
+For any \( t \), \( (x,y) \) computed from <a href="#mjx-eqn-17">(17)</a>-<a href="#mjx-eqn-18">(18)</a>
+is a point on the circle.
+The formula can be used to generate <code>n</code> points on a circle:
+<p></p>
+
+<!-- code=python (!bc pypro) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">circle</span>(R, x0, y0, n<span style="color: #666666">=501</span>):
+    t <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">0</span>, <span style="color: #666666">1</span>, n)
+    x <span style="color: #666666">=</span> x0 <span style="color: #666666">+</span> R<span style="color: #666666">*</span>np<span style="color: #666666">.</span>cos(<span style="color: #666666">2*</span>np<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>t)
+    y <span style="color: #666666">=</span> y0 <span style="color: #666666">+</span> R<span style="color: #666666">*</span>np<span style="color: #666666">.</span>sin(<span style="color: #666666">2*</span>np<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>t)
+    <span style="color: #008000; font-weight: bold">return</span> x, y
+
+x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2.0</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>)
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p></p>
+<!-- Often in an exercise we have some comments about the solution -->
+<!-- which we normally want to keep where they are. -->
+<p></p>
+The goal of this project is to draw \( N \) circles with random
+center and radius. Plot each circle using the <code>circle</code> function
+above.
+<p></p>
+<b>a)</b>
+Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
+<p></p>
+<!-- --- begin hint in exercise --- -->
+<p></p>
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_5_1" style="font-size: 80%;"></a>
+<a href="#exer_5_1" data-toggle="collapse">
+<b>Hint.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_5_1">
+<p></p>
+Use the <code>numpy.random</code> module to draw the
+\( x_0 \), \( y_0 \), and \( R \) quantities.
+<p></p>
+</div></p>
+</div>
+</p>
+<p></p>
+<!-- --- end hint in exercise --- -->
+<p></p>
+<!-- --- begin answer of exercise --- -->
+<p></p>
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_5_2" style="font-size: 80%;"></a>
+<a href="#exer_5_2" data-toggle="collapse">
+<b>Answer.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_5_2">
+<p></p>
+Here goes the short answer to part a).
+</div></p>
+</div>
+</p>
+<p></p>
+<!-- --- end answer of exercise --- -->
+<p></p>
+<!-- --- begin solution of exercise --- -->
+<p></p>
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_5_3" style="font-size: 80%;"></a>
+<a href="#exer_5_3" data-toggle="collapse">
+<b>Solution.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_5_3">
+<p></p>
+Here goes a full solution to part a).
+</div></p>
+</div>
+</p>
+<p></p>
+<!-- --- end solution of exercise --- -->
+<p></p>
+<b>b)</b>
+Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed.
+Filename: <code>norm</code>.
+<p></p>
+<b>c)</b>
+Let \( R \) and \( (x_0,y_0) \) be normally distributed.
+<p></p>
+Filename: <code>circles</code>.
+<p></p>
+<!-- Closing remarks for this Project -->
+<p></p>
+<h3 id="remarks" class="anchor">Remarks </h3>
+<p></p>
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+<p></p>
+<!-- --- end exercise --- -->
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="exer:dist" class="anchor">Exercise 6: Determine some Distance</h2>
+<p></p>
+Intro to this exercise. Questions are in subexercises below.
+<p></p>
+<!-- --- begin solution of exercise --- -->
+<p></p>
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_6_5" style="font-size: 80%;"></a>
+<a href="#exer_6_5" data-toggle="collapse">
+<b>Solution.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_6_5">
+<p></p>
+Here goes a full solution of the whole exercise.
+With some math \( a=b \) in this solution:
+$$ \hbox{math in solution: } a = b $$
+
+And code <code>a=b</code> in this solution:
+
+<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <blockquote>
+<div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">a = b  # code in solution
+</pre>
+</div>
+</blockquote>      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+End of solution is here.
+<p></p>
+</div></p>
+</div>
+</p>
+<p></p>
+<!-- --- end solution of exercise --- -->
+<p></p>
+<b>a)</b>
+Subexercises are numbered a), b), etc.
+<p></p>
+<!-- --- begin hint in exercise --- -->
+<p></p>
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_6_1" style="font-size: 80%;"></a>
+<a href="#exer_6_1" data-toggle="collapse">
+<b>Hint 1.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_6_1">
+<p></p>
+First hint to subexercise a).
+With math \( a=b \) in hint:
+<p></p>
+$$ a=b. $$
+
+And with code (in plain verbatim) returning \( x+1 \) in hint:
+<p></p>
+
+<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <blockquote>
+<div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">def func(x):
+    return x + 1  # with code in hint
+</pre>
+</div>
+</blockquote>      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p></p>
+</div></p>
+</div>
+</p>
+<p></p>
+<!-- --- end hint in exercise --- -->
+<p></p>
+<!-- --- begin hint in exercise --- -->
+<p></p>
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_6_2" style="font-size: 80%;"></a>
+<a href="#exer_6_2" data-toggle="collapse">
+<b>Hint 2.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_6_2">
+<p></p>
+Second hint to subexercise a).
+<p></p>
+Test list in hint:
+<p></p>
+<ol>
+<li> item1</li>
+<li> item2</li>
+</ol>
+</div></p>
+</div>
+</p>
+<p></p>
+<!-- --- end hint in exercise --- -->
+Filename: <code>subexer_a.pdf</code>.
+<p></p>
+<!-- --- begin answer of exercise --- -->
+<p></p>
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_6_4" style="font-size: 80%;"></a>
+<a href="#exer_6_4" data-toggle="collapse">
+<b>Answer.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_6_4">
+<p></p>
+Short answer to subexercise a).
+With math in answer: \( a=b \).
+</div></p>
+</div>
+</p>
+<p></p>
+<!-- --- end answer of exercise --- -->
+<p></p>
+<b>b)</b>
+Here goes the text for subexercise b).
+<p></p>
+Some math \( \cos^2 x + \sin^2 x = 1 \) written one a single line:
+<p></p>
+$$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
+
+<p></p>
+<!-- --- begin hint in exercise --- -->
+<p></p>
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_6_3" style="font-size: 80%;"></a>
+<a href="#exer_6_3" data-toggle="collapse">
+<b>Hint.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_6_3">
+<p></p>
+A hint for this subexercise.
+<p></p>
+</div></p>
+</div>
+</p>
+<p></p>
+<!-- --- end hint in exercise --- -->
+Filename: <code>subexer_b.pdf</code>.
+<p></p>
+<!-- --- begin solution of exercise --- -->
+<p></p>
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_6_6" style="font-size: 80%;"></a>
+<a href="#exer_6_6" data-toggle="collapse">
+<b>Solution.</b>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_6_6">
+<p></p>
+Here goes the solution of this subexercise.
+</div></p>
+</div>
+</p>
+<p></p>
+<!-- --- end solution of exercise --- -->
+<p></p>
+<!-- No meaning in this weired test example: -->
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+<p></p>
+Test list in exercise:
+<p></p>
+<ol>
+<li> item1</li>
+<li> item2
+<!-- Closing remarks for this Exercise --></li>
+</ol>
+<h3 id="remarks" class="anchor">Remarks </h3>
+<p></p>
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+<p></p>
+<!-- --- end exercise --- -->
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="some-exercise-without-the-exercise-prefix" class="anchor">Some exercise without the "Exercise:" prefix </h2>
+<p></p>
+<!-- Another minimalistic exercise -->
+<p></p>
+Just some text. And some math saying that \( e^0=1 \) on a single line,
+to test that math block insertion is correct:
+<p></p>
+$$ \exp{(0)} = 1 $$
+
+<p></p>
+And a test that the code <code>lambda x: x+2</code> is correctly placed here:
+<p></p>
+
+<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <blockquote>
+<div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">lambda x: x+2
+</pre>
+</div>
+</blockquote>      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p></p>
+<!-- Have some comments at the end of the exercise to see that -->
+<!-- the Filename: ... is written correctly. -->
+<!-- --- end exercise --- -->
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="sec:this:exer:de" class="anchor">Exercise 8: Solution of differential equation</h2>
+<p></p>
+<!-- begin quiz -->
+Given
+<p></p>
+$$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
+
+What is the solution of this equation?</p>
+
+<p>
+<a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
+ data-target="#quiz_id_1_A" style="font-size: 80%;"></a>
+<a href="#quiz_id_1_A" data-toggle="collapse">
+&nbsp;<b>Choice A:</b>
+\( y=e^{-y} \)
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="quiz_id_1_A">
+<img src="https://raw.github.com/doconce/doconce/master/bundled/html_images/correct.gif">
+Correct!
+</div></p>
+</div>
+</p>
+
+<p>
+<a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
+ data-target="#quiz_id_1_B" style="font-size: 80%;"></a>
+<a href="#quiz_id_1_B" data-toggle="collapse">
+&nbsp;<b>Choice B:</b>
+\( y=e^{y} \)
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="quiz_id_1_B">
+<img src="https://raw.github.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
+Almost, but the sign is wrong (note the minus!).
+</div></p>
+</div>
+</p>
+
+<p>
+<a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
+ data-target="#quiz_id_1_C" style="font-size: 80%;"></a>
+<a href="#quiz_id_1_C" data-toggle="collapse">
+&nbsp;<b>Choice C:</b>
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;"><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">math</span> <span style="color: #008000; font-weight: bold">import</span> exp
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">f</span>(x):
+    <span style="color: #008000; font-weight: bold">return</span> exp(x)
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="quiz_id_1_C">
+<img src="https://raw.github.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
+Ooops, forgot a minus: <code>exp(-x)</code>, otherwise this Python code
+must be considered as a good answer. It is more natural,
+though, to write the solution to the problem
+in mathematical notation:
+<p></p>
+$$ y(x) = e^{-y}.$$
+</div></p>
+</div>
+</p>
+
+<p>
+<a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
+ data-target="#quiz_id_1_D" style="font-size: 80%;"></a>
+<a href="#quiz_id_1_D" data-toggle="collapse">
+&nbsp;<b>Choice D:</b>
+The solution cannot be found because there is a derivative in the equation.
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="quiz_id_1_D">
+<img src="https://raw.github.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
+Equations with derivatives can be solved;
+they are termed <em>differential
+equations</em>.
+</div></p>
+</div>
+</p>
+
+<p>
+<a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
+ data-target="#quiz_id_1_E" style="font-size: 80%;"></a>
+<a href="#quiz_id_1_E" data-toggle="collapse">
+&nbsp;<b>Choice E:</b>
+The equation is meaningless: an equation must be an equation
+for \( x \) or \( y \), not a function \( y(x) \).
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="quiz_id_1_E">
+<img src="https://raw.github.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
+Equations where the unknown is a function, as \( y(x) \)
+here, are called <em>differential equations</em>, and are solved by
+special techniques.
+</div></p>
+</div>
+</p>
+<!-- end quiz -->
+
+<p></p>
+<!-- --- end exercise --- -->
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="example-9-just-an-example" class="anchor">Example 9: Just an example </h2>
+<p></p>
+<!-- This example needs the --examples_as_exercises option, otherwise -->
+<!-- it is just typeset as it is written. -->
+<p></p>
+<b>a)</b>
+What is the capital of Norway?
+<p></p>
+<b>Answer.</b>
+Oslo.
+<p></p>
+<!-- --- end exercise --- -->
+<p></p>
+<h1 id="here-goes-another-section" class="anchor">Here goes another section </h1>
+<p></p>
+With some text, before we continue with exercises.
+<p></p>
+<h1 id="more-exercises" class="anchor">More Exercises </h1>
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="exer:some:formula" class="anchor">Exercise 10: Make references to projects and problems</h2>
+<p></p>
+<!-- Test comments not at the end only -->
+Pick a statement from <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 2: Flip a Coin</a>
+and verify it.
+<p></p>
+Test list at the end of an exercise without other elements (like subexercise,
+hint, etc.):
+<p></p>
+<ol>
+<li> item1</li>
+<li> item2</li>
+</ol>
+Filename: <code>verify_formula.py</code>.
+<p></p>
+<!-- --- end exercise --- -->
+<p></p>
+<!-- --- begin exercise --- -->
+<p></p>
+<h2 id="exer:you" class="anchor">Project 11: References in a headings do not work well in html</h2>
+<p></p>
+Refer to the previous exercise as <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>,
+the two before that as <a href="#demo:ex:2">Project 4: Compute a Probability</a> and <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a>,
+and this one as <a href="#exer:you">Project 11: References in a headings do not work well in html</a>.
+Filename: <code>selc_composed.pdf</code>.
+<p></p>
+<!-- --- end exercise --- -->
+<p></p>
+<h1 id="references" class="anchor">References </h1>
+<p></p>
+<!-- begin bibliography -->
+<ol>
+ <li> <div id="Langtangen_Pedersen_2002"></div> <b>H. P. Langtangen and G. Pedersen</b>. 
+    Propagation of Large Destructive Waves,
+    <em>International Journal of Applied Mechanics and Engineering</em>,
+    7(1),
+    pp. 187-204,
+    2002.</li>
+ <li> <div id="Langtangen_et_al_2002"></div> <b>H. P. Langtangen, K.-A. Mardal and R. Winther</b>. 
+    Numerical Methods for Incompressible Viscous Flow,
+    <em>Advances in Water Resources</em>,
+    25,
+    pp. 1125-1146,
+    2002.</li>
+ <li> <div id="Langtangen_1994a"></div> <b>H. P. Langtangen</b>. 
+    Numerical Solution of First Passage Problems in Random Vibrations,
+    <em>SIAM Journal of Scientific and Statistical Computing</em>,
+    15,
+    pp. 997-996,
+    1994.</li>
+ <li> <div id="Mardal_et_al_2003a"></div> <b>K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen</b>. 
+    Software Tools for Multigrid Methods,
+    <em>Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming</em>,
+    edited by <b>H. P. Langtangen and A. Tveito</b>,
+    Springer,
+    2003,
+    Edited book,
+    <a href="http://some.where.org" target="_self"><tt>http://some.where.org</tt></a>.</li>
+ <li> <div id="Langtangen_1988d"></div> <b>H. P. Langtangen</b>. 
+    The FEMDEQS Program System,
+    <em>Department of Mathematics, University of Oslo</em>,
+    1989,
+    <a href="http://www.math.uio.no/old/days/hpl/femdeqs.pdf" target="_self"><tt>http://www.math.uio.no/old/days/hpl/femdeqs.pdf</tt></a>.</li>
+ <li> <div id="Langtangen_1992c"></div> <b>H. P. Langtangen</b>. 
+    Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,
+    <em>SIAM Journal on Scientific Computing</em>,
+    13,
+    pp. 1394-1417,
+    1992.</li>
+ <li> <div id="Mortensen_et_al_2011"></div> <b>M. Mortensen, H. P. Langtangen and G. N. Wells</b>. 
+    A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,
+    <em>Advances in Water Resources</em>,
+    34(9),
+    <a href="https://dx.doi.org/10.1016/j.advwatres.2011.02.013" target="_self">doi: 10.1016/j.advwatres.2011.02.013</a>,
+    2011.</li>
+ <li> <div id="Glimsdal_et_al_20006"></div> <b>S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt</b>. 
+    Propagation of the Dec.&nbsp;26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,
+    <em>International Journal of Fluid Mechanics Research</em>,
+    33(1),
+    pp. 15-43,
+    2006.</li>
+ <li> <div id="Rahman_et_al_2006b"></div> <b>S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen</b>. 
+    Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,
+    <em>Physical Review B: Condensed Matter and Materials Physics</em>,
+    74,
+    2006,
+    035308.</li>
+<li> <div id="Haga_et_al_2011a"></div> <b>J. B. Haga, H. Osnes and H. P. Langtangen</b>. 
+    On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
+    <em>International Journal of Analytical and Numerical Methods in Geomechanics</em>,
+    <a href="https://dx.doi.org/10.1002/nag.1062" target="_self">doi: 10.1002/nag.1062</a>,
+    2011,
+    <a href="http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract" target="_self"><tt>http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract</tt></a>.</li>
+<li> <div id="Langtangen_2003a"></div> <b>H. P. Langtangen</b>. 
+    <em>Computational Partial Differential Equations - Numerical Methods and Diffpack Programming</em>,
+    second edition,
+    <em>Texts in Computational Science and Engineering</em>,
+    Springer,
+    2003.</li>
+<li> <div id="Langtangen_2008a"></div> <b>H. P. Langtangen</b>. 
+    <em>Python Scripting for Computational Science</em>,
+    third edition,
+    <em>Texts in Computational Science and Engineering</em>,
+    Springer,
+    2008.</li>
+<li> <div id="Langtangen:95"></div> <b>H. P. Langtangen and G. Pedersen</b>. 
+    Finite Elements for the Boussinesq Wave Equations,
+    Waves and Non-linear Processes in Hydrodynamics,
+    edited by <b>J. Grue, B. Gjevik and J. E. Weber</b>,
+    Kluwer Academic Publishers,
+    pp. pp. 117-126,
+    1995,
+    <a href="http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310" target="_self"><tt>http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310</tt></a>.</li>
+<li> <div id="Langtangen_2012"></div> <b>H. P. Langtangen</b>. 
+    <em>A Primer on Scientific Programming With Python</em>,
+    third edition,
+    <em>Texts in Computational Science and Engineering</em>,
+    Springer,
+    2012.</li>
+<li> <div id="Jeberg_et_al_2004"></div> <b>P. V. Jeberg, H. P. Langtangen and C. B. Terp</b>. 
+    Optimization With Diffpack: Practical Example From Welding,
+    <em>Simula Research Laboratory</em>,
+    2004,
+    Internal report.</li>
+<li> <div id="Langtangen_1989e"></div> <b>H. P. Langtangen</b>. 
+    Computational Methods for Two-Phase Flow in Oil Reservoirs,
+    Ph.D. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1989,
+    Dr.&nbsp;Scient.&nbsp;thesis..</li>
+<li> <div id="Langtangen_talk_2007a"></div> <b>H. P. Langtangen</b>. 
+    Computational Modeling of Huge Tsunamis From Asteroid Impacts,
+    2007,
+    Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China.</li>
+<li> <div id="Langtangen:85"></div> <b>H. P. Langtangen</b>. 
+    Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,
+    M.Sc. Thesis,
+    Mechanics Division, Department of Mathematics, University of Oslo,
+    1985,
+    Cand.Scient. thesis.</li>
+<li> <div id="Langtangen:91"></div> <b>H. P. Langtangen and A. Tveito</b>. 
+    Numerical Methods in Continuum Mechanics,
+    <em>Center for Industrial Research</em>,
+    1991,
+    Lecture notes for a course (ME-IN 324). 286 pages..</li>
+<li> <div id="Langtangen:94b"></div> <b>H. P. Langtangen</b>. 
+    Diffpack: Software for Partial Differential Equations,
+    <em>Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA</em>,
+    edited by <b>A. Vermeulen</b>,
+    1994.</li>
+</ol>
+<!-- end bibliography -->
+<p></p>
+<h1 id="app1" class="anchor">Appendix: Just for testing; part I</h1>
+<p></p>
+This is the first appendix.
+<p></p>
+<h2 id="a-subsection-within-an-appendix" class="anchor">A subsection within an appendix </h2>
+<p></p>
+Some text.
+<p></p>
+<h1 id="app2" class="anchor">Appendix: Just for testing; part II</h1>
+<p></p>
+This is more stuff for an appendix.
+<p></p>
+<h2 id="appendix-testing-identical-titles" class="anchor">Appendix: Testing identical titles </h2>
+<p></p>
+Without label.
+<p></p>
+<h2 id="test:title:id1" class="anchor">Appendix: Testing identical titles</h2>
+<p></p>
+With label.
+<p></p>
+<h2 id="test:title:id2" class="anchor">Appendix: Testing identical titles</h2>
+<p></p>
+What about inserting a quiz?
+<p></p>
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pager">
+
+  <li class="previous">
+    <a href="._testdoc_vagrant001.html">&larr; Prev</a>
+  </li>
+
+  <li class="next">
+    <a href="._testdoc_vagrant003.html">Next &rarr;</a>
+  </li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+ </div>
+
+ <div class="row Footer">
+  <div class="span12">
+  <!-- footer --> Here goes a footer, if desired, maybe with author(s) and a copyright &copy;
+  </div>
+ </div>
+</div>
+</body>
+</html>

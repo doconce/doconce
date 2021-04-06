@@ -1,0 +1,329 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/doconce/doconce/)
+%%
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: https://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: https://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED myfile
+%%      doconce ptex2tex myfile envir=minted
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples). If doconce ptex2tex has envir=minted, it enables the
+%% minted style without needing -DMINTED.
+% #endif
+% #define PREAMBLE
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+\listfiles               %  print all files needed to compile this document
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+\usepackage[pdftex]{graphicx}
+\usepackage{fancybox}  % make sure fancybox is loaded before fancyvrb
+%\setlength{\fboxsep}{8pt}  % may clash with need in pre/cod envirs
+% Movies are handled by the href package
+\newenvironment{doconce:movie}{}{}
+\newcounter{doconce:movie:counter}
+\usepackage{animate}
+\usepackage{ptex2tex}
+% #ifdef MINTED
+\usepackage{minted}
+\usemintedstyle{default}
+% #endif
+\usepackage{fancyvrb}
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+\setcounter{tocdepth}{2}  % levels in table of contents
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+% --- end of standard preamble for documents ---
+% insert custom LaTeX commands...
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+%-------------------- end preamble ----------------------
+\begin{document}
+% matching end for #ifdef PREAMBLE
+% #endif
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+% ------------------- main content ----------------------
+% ----------------- title -------------------------
+\thispagestyle{empty}
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+This is a demo of movies in DocOnce
+\end{spacing}
+}
+\end{center}
+% ----------------- author(s) -------------------------
+\begin{center}
+{\bf HPL${}^{}$} \\ [0mm]
+\end{center}
+\begin{center}
+% List of all institutions:
+\end{center}
+    
+% ----------------- end author(s) -------------------------
+% --- begin date ---
+\begin{center}
+Jan 32, 2100
+\end{center}
+% --- end date ---
+\vspace{1cm}
+Here is a movie in WebM format.
+\begin{doconce:movie}
+\refstepcounter{doconce:movie:counter}
+\begin{quote}
+% link to external viewer
+Movie \arabic{doconce:movie:counter}: 1D wave in WebM. \href{run:../doc/src/manual/mov/wave.webm}{\nolinkurl{../doc/src/manual/mov/wave.webm}}
+\end{quote}
+\end{doconce:movie}
+Here is the same movie in Ogg format:
+\begin{doconce:movie}
+\refstepcounter{doconce:movie:counter}
+\begin{quote}
+% link to external viewer
+Movie \arabic{doconce:movie:counter}: 1D wave in Ogg. \href{run:../doc/src/manual/mov/wave.ogg}{\nolinkurl{../doc/src/manual/mov/wave.ogg}}
+\end{quote}
+\end{doconce:movie}
+Here is the same movie in MP4 format:
+\begin{doconce:movie}
+\refstepcounter{doconce:movie:counter}
+\begin{quote}
+% link to external viewer
+Movie \arabic{doconce:movie:counter}: 1D wave in MP4. \href{run:../doc/src/manual/mov/wave.mp4}{\nolinkurl{../doc/src/manual/mov/wave.mp4}}
+\end{quote}
+\end{doconce:movie}
+Here is the same movie in Flash format:
+\begin{doconce:movie}
+\refstepcounter{doconce:movie:counter}
+\begin{quote}
+% link to external viewer
+Movie \arabic{doconce:movie:counter}: 1D wave in Flash. \href{run:../doc/src/manual/mov/wave.flv}{\nolinkurl{../doc/src/manual/mov/wave.flv}}
+\end{quote}
+\end{doconce:movie}
+And here is a collection of images shown as an animation
+(\Verb!frame_*.png!):
+\begin{doconce:movie}
+\refstepcounter{doconce:movie:counter}
+\begin{center}
+\begin{animateinline}[controls,loop]{1} % frames: ../doc/src/manual/mov/wave_frames/frame_0080.png -> ../doc/src/manual/mov/wave_frames/frame_0129.png
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0080.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0081.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0082.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0083.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0084.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0085.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0086.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0087.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0088.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0089.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0090.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0091.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0092.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0093.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0094.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0095.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0096.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0097.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0098.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0099.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0100.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0101.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0102.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0103.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0104.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0105.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0106.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0107.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0108.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0109.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0110.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0111.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0112.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0113.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0114.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0115.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0116.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0117.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0118.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0119.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0120.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0121.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0122.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0123.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0124.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0125.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0126.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0127.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0128.png}
+\newframe
+\includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0129.png}
+\end{animateinline}
+\end{center}
+\begin{center}  % movie caption
+Movie \arabic{doconce:movie:counter}: Animated collection of images.
+\end{center}
+\end{doconce:movie}
+Here is the same collection, but with images in cyberspace, given as URLs:
+\bccq
+https://hplgit.github.io/animate/..../frame_%04d.png:80->129
+
+\eccq
+
+\begin{doconce:movie}
+\refstepcounter{doconce:movie:counter}
+\begin{center}
+Taking images to animate from cyberspace. \Verb!https://hplgit.github.io/animate/doc/pub/mov-animate/frames/frame_%04d.png:80->129!: load \href{{file:///X/X/movie_player1.html}}{\nolinkurl{movie_player1.html}} into a browser
+\end{center}
+\begin{center}  % movie caption
+Movie \arabic{doconce:movie:counter}: Taking images to animate from cyberspace.
+\end{center}
+\end{doconce:movie}
+The movie above in MPEG format, typeset in a box:
+
+\begin{center}
+\begin{Sbox}
+\begin{minipage}{0.85\linewidth}
+\begin{doconce:movie}
+\refstepcounter{doconce:movie:counter}
+\begin{quote}
+% link to external viewer
+Movie \arabic{doconce:movie:counter}: 1D wave in MPEG. \label{mov:wave} \href{run:../doc/src/manual/mov/wave.mpeg}{\nolinkurl{../doc/src/manual/mov/wave.mpeg}}
+\end{quote}
+\end{doconce:movie}
+\end{minipage}
+\end{Sbox}
+\fbox{\TheSbox}
+\end{center}
+Here is the same movie in AVI format:
+\begin{doconce:movie}
+\refstepcounter{doconce:movie:counter}
+\begin{quote}
+% link to external viewer
+Movie \arabic{doconce:movie:counter}: 1D wave in AVI. \href{run:../doc/src/manual/mov/wave.avi}{\nolinkurl{../doc/src/manual/mov/wave.avi}}
+\end{quote}
+\end{doconce:movie}
+Here is the same movie, but with a URL to GitHub:
+\begin{doconce:movie}
+\refstepcounter{doconce:movie:counter}
+\begin{quote}
+% link to web movie
+Movie \arabic{doconce:movie:counter}:  \href{https://hplgit.github.io/animate/doc/pub/mov-animate/demo.ogg}{\nolinkurl{https://hplgit.github.io/animate/doc/pub/mov-animate/demo.ogg}}
+\end{quote}
+\end{doconce:movie}
+Here is a YouTube video:
+\begin{doconce:movie}
+\refstepcounter{doconce:movie:counter}
+\begin{center}
+\href{{https://www.youtube.com/watch?v=_O7iUiftbKU}}{\nolinkurl{https://www.youtube.com/watch?v=_O7iUiftbKU}}
+\end{center}
+\begin{center}  % movie caption
+Movie \arabic{doconce:movie:counter}: YouTube movie.
+\end{center}
+\end{doconce:movie}
+And a vimeo video:
+\begin{doconce:movie}
+\refstepcounter{doconce:movie:counter}
+\begin{center}\href{{https://vimeo.com/55562330}}{\nolinkurl{https://vimeo.com/55562330}}\end{center}
+\begin{center}  % movie caption
+Movie \arabic{doconce:movie:counter}: Vimeo movie.
+\end{center}
+\end{doconce:movie}
+Finally, let us demonstrate referencing the movie~\ref{mov:wave}.
+% ------------------- end of main content ---------------
+% #ifdef PREAMBLE
+\end{document}
+% #endif
+

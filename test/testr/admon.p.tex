@@ -1,0 +1,596 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/doconce/doconce/)
+%%
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: https://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: https://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED myfile
+%%      doconce ptex2tex myfile envir=minted
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples). If doconce ptex2tex has envir=minted, it enables the
+%% minted style without needing -DMINTED.
+% #endif
+% #define PREAMBLE
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+\listfiles               %  print all files needed to compile this document
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+\usepackage[pdftex]{graphicx}
+\usepackage{fancybox}  % make sure fancybox is loaded before fancyvrb
+%\setlength{\fboxsep}{8pt}  % may clash with need in pre/cod envirs
+\usepackage{ptex2tex}
+% #ifdef MINTED
+\usepackage{minted}
+\usemintedstyle{default}
+% #endif
+\usepackage{fancyvrb}
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+\setcounter{tocdepth}{2}  % levels in table of contents
+% Tricks for having figures close to where they are defined:
+% 1. define less restrictive rules for where to put figures
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.95}
+\renewcommand{\textfraction}{0}
+\renewcommand{\floatpagefraction}{0.75}
+% floatpagefraction must always be less than topfraction!
+% 2. ensure all figures are flushed before next section
+\usepackage[section]{placeins}
+% 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
+%\usepackage{float}\restylefloat{figure}
+% --- fancyhdr package for fancy headers ---
+\usepackage{fancyhdr}
+\fancyhf{} % sets both header and footer to nothing
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[LE,RO]{\thepage}
+% Ensure copyright on titlepage (article style) and chapter pages (book style)
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{{\footnotesize \copyright\ 2021, H. P. Langtangen. Made with \href{https://github.com/doconce/doconce}{DocOnce}}}
+%  \renewcommand{\footrulewidth}{0mm}
+  \renewcommand{\headrulewidth}{0mm}
+}
+% Ensure copyright on titlepages with \thispagestyle{empty}
+\fancypagestyle{empty}{
+  \fancyhf{}
+  \fancyfoot[C]{{\footnotesize \copyright\ 2021, H. P. Langtangen. Made with \href{https://github.com/doconce/doconce}{DocOnce}}}
+  \renewcommand{\footrulewidth}{0mm}
+  \renewcommand{\headrulewidth}{0mm}
+}
+\pagestyle{fancy}
+\usepackage[framemethod=TikZ]{mdframed}
+% --- begin definitions of admonition environments ---
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "notice" admon
+\definecolor{mdfbox_notice_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_notice_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_notice_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{notice_mdfboxmdframed}
+\newenvironment{notice_mdfboxadmon}[1][]{
+\begin{notice_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{notice_mdfboxmdframed}
+}
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "summary" admon
+\definecolor{mdfbox_summary_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_summary_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_summary_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{summary_mdfboxmdframed}
+\newenvironment{summary_mdfboxadmon}[1][]{
+\begin{summary_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{summary_mdfboxmdframed}
+}
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "warning" admon
+\definecolor{mdfbox_warning_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_warning_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_warning_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{warning_mdfboxmdframed}
+\newenvironment{warning_mdfboxadmon}[1][]{
+\begin{warning_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{warning_mdfboxmdframed}
+}
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "question" admon
+\definecolor{mdfbox_question_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_question_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_question_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{question_mdfboxmdframed}
+\newenvironment{question_mdfboxadmon}[1][]{
+\begin{question_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{question_mdfboxmdframed}
+}
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "block" admon
+\definecolor{mdfbox_block_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_block_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_block_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{block_mdfboxmdframed}
+\newenvironment{block_mdfboxadmon}[1][]{
+\begin{block_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{block_mdfboxmdframed}
+}
+% --- end of definitions of admonition environments ---
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+% --- end of standard preamble for documents ---
+% insert custom LaTeX commands...
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+%-------------------- end preamble ----------------------
+\begin{document}
+% matching end for #ifdef PREAMBLE
+% #endif
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+\input{newcommands_bfmath}
+\input{newcommands_replace}
+% ------------------- main content ----------------------
+% ----------------- title -------------------------
+\thispagestyle{empty}
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Testing admons
+\end{spacing}
+}
+\end{center}
+% ----------------- author(s) -------------------------
+\begin{center}
+{\bf H. P. Langtangen${}^{}$} \\ [0mm]
+\end{center}
+\begin{center}
+% List of all institutions:
+\end{center}
+    
+% ----------------- end author(s) -------------------------
+% --- begin date ---
+\begin{center}
+Jan 32, 2100
+\end{center}
+% --- end date ---
+\vspace{1cm}
+% !split
+\section{Introduction}
+First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+\subsection{Code}
+Need some code outside admons for color and font comparisons:
+\bpycod
+def some_code(x):
+    return sin(x)*exp(1-x)
+
+\epycod
+
+And some plain text verbatim:
+\bccq
+x=1.0 y=0.9 z=0.4
+x=1.1 y=0.3 z=0.1
+
+\eccq
+
+\subsection{Quotes and boxes}
+Here is a plain quote environment.
+
+\begin{quote}
+Sayre's law states that
+``in any dispute the intensity of feeling is inversely
+proportional to the value of the issues at stake.'' \\
+By way of corollary, it adds: \\
+``That is why academic politics are so bitter.'' \\
+\emph{Source}: \href{{https://en.wikipedia.org/wiki/Sayre's_law}}{wikipedia}
+\end{quote}
+
+Does quotes with title also work? No...cannot work in {\LaTeX} and HTML
+and then it does not make sense to support it.
+A plain \emph{box} is sometimes useful. Let's show it here for comparison
+with admons (especially the block admon has much in common with a box).
+The box is more aimed at framing a law or an equation.
+First a simple block with text, an equation, and a list:
+
+\begin{center}
+\begin{Sbox}
+\begin{minipage}{0.85\linewidth}
+A generic equation
+\[ f(x) = 0 \]
+must be solved by a numerical method, such as
+\begin{itemize}
+ \item Newton's method
+ \item The Bisection method
+ \item Fixed-point (Picard) iteration by rewriting $f(x)=x - g(x)$
+ \item The Secant method
+\end{itemize}
+\noindent
+\end{minipage}
+\end{Sbox}
+\fbox{\TheSbox}
+\end{center}
+Now test a box with equation only (note that this line continues the
+box, it is not a new paragraph):
+
+\begin{center}
+\begin{Sbox}
+\begin{minipage}{0.85\linewidth}
+\begin{equation} f(x) = \sin(x)e^{1-x} \end{equation}
+\end{minipage}
+\end{Sbox}
+\fbox{\TheSbox}
+\end{center}
+\\paragraph{Hint.}\n
+Newton's method requires a good start vector to converge fast.
+
+
+Let's begin a new paragraph and show a box with code only:
+
+\begin{center}
+\begin{Sbox}
+\begin{minipage}{0.85\linewidth}
+\bpycod
+def some_code(x):
+    return sin(x)*exp(1-x)
+
+\epycod
+\end{minipage}
+\end{Sbox}
+\fbox{\TheSbox}
+\end{center}
+\subsection{Admonitions}
+Let us start with a plain warning environment.
+
+\begin{warning_mdfboxadmon}[Warning.]
+And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+\begin{itemize}
+  \item and a list
+  \item with items
+\end{itemize}
+\noindent
+We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+\end{warning_mdfboxadmon} % title: Warning.
+
+
+Test warning with title:
+
+\begin{warning_mdfboxadmon}[{\large Title ending with math $\sqrt{2}\approx 1.4$}.]
+{\large And here comes some text with bad news in larger font.
+Also some code:
+\bpycod2
+def f(x):
+    return x
+
+\epycod2
+
+And a complete program
+\bpypro2
+print("Hello, World!")
+
+\epypro2
+\par}
+\end{warning_mdfboxadmon} % title: {\large Title ending with math $\sqrt{2}\approx 1.4$}.
+
+
+Test warning with large title with math:
+
+\begin{warning_mdfboxadmon}[{\large Watch out for $\nabla\cdot\bm{u}=0$ equations}.]
+{\large Divergence freedom is often problematic from a numerical point
+of view.
+\par}
+\end{warning_mdfboxadmon} % title: {\large Watch out for $\nabla\cdot\bm{u}=0$ equations}.
+
+
+Then we test a block, which is guaranteed to never have any admon icon.
+
+\begin{block_mdfboxadmon}[Block with title.]
+\vspace{0.5mm}\par\noindent
+{\footnotesize Here is a block of text with title. It is typeset
+\emph{without any icon} and is useful when you want some admons with icon
+and some without. With the small font size, as used here, one can have
+more comment-style text or text that really goes deeper or talks
+about fun facts that are not strictly necessary for the main flow
+of understanding.
+\par}
+\end{block_mdfboxadmon} % title: Block with title.
+
+
+
+\begin{block_mdfboxadmon}[]
+Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+\end{block_mdfboxadmon} % title: 
+
+
+% Note that the final ! does not appear in Sphinx and reST since
+% those formats automatically add : to the admonition title.
+
+\begin{notice_mdfboxadmon}[Note eventually!]
+Ah, we are soon close to the end (with illegal font size specification!).
+But first a bit of math where we define $\theta$ and $\bm{r}$:
+\begin{align*}
+\theta &= q^2,\\
+\bm{r} &= \varrho\bm{i}
+\end{align*}
+\end{notice_mdfboxadmon} % title: Note eventually!
+
+
+% Test one word with a number
+
+\begin{notice_mdfboxadmon}[Point1.]
+Ah, we are soon close to the end.
+\end{notice_mdfboxadmon} % title: Point1.
+
+
+
+\begin{question_mdfboxadmon}[Question.]
+So, how many admonition environments does DocOnce support?
+\end{question_mdfboxadmon} % title: Question.
+
+
+
+\begin{question_mdfboxadmon}[Question.]
+\begin{enumerate}
+ \item Once more, how many admonition environments does DocOnce support?
+\end{enumerate}
+\noindent
+\end{question_mdfboxadmon} % title: Question.
+
+
+
+\begin{warning_mdfboxadmon}[Tip.]
+It is of outmost important to
+\begin{enumerate}
+\item stay cool
+\item read hints and tips carefully
+\end{enumerate}
+\noindent
+Because here the thing is to do
+\bpycod2
+import urllib
+
+def grab(url, filename):
+    urllib.urlretrieve(url, filename=filename)
+
+\epycod2
+\end{warning_mdfboxadmon} % title: Tip.
+
+
+Next is a warning without a title ("none" implies no title).
+
+\begin{warning_mdfboxadmon}[]
+And here comes some text with bad news.
+\end{warning_mdfboxadmon} % title: 
+
+
+\subsection{Going deeper environments}
+Here is a long notice environment with a custom title and much
+text, math and code.
+
+\begin{notice_mdfboxadmon}[Going deeper.]
+We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the {\LaTeX} environment should handle with ease.
+Let us start with some equations:
+\begin{align*}
+\Ddt{u} &= 0
+\\
+\half &= \halfi\\
+\half\x &= \normalvec
+\end{align*}
+The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+\bpycod2
+def Dudt(u):
+    r = diff(u, t) + u*grad(u)
+    return r
+
+half = 0.5
+x = 2*n
+
+\epycod2
+
+And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+\bpycod2
+class Diff:
+    def __init__(self, f, h=1E-5):
+        self.f = f
+        self.h = float(h)
+
+class Forward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x))/h
+
+class Backward1(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x) - f(x-h))/h
+
+class Central2(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (f(x+h) - f(x-h))/(2*h)
+
+class Central4(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (4./3)*(f(x+h)   - f(x-h))  /(2*h) - \
+               (1./3)*(f(x+2*h) - f(x-2*h))/(4*h)
+
+class Central6(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (3./2) *(f(x+h)   - f(x-h))  /(2*h) - \
+               (3./5) *(f(x+2*h) - f(x-2*h))/(4*h) + \
+               (1./10)*(f(x+3*h) - f(x-3*h))/(6*h)
+
+class Forward3(Diff):
+    def __call__(self, x):
+        f, h = self.f, self.h
+        return (-(1./6)*f(x+2*h) + f(x+h) - 0.5*f(x) - \
+                (1./3)*f(x-h))/h
+
+\epycod2
+
+And then we add a figure too.
+\vspace{6mm}
+% inline figure
+\centerline{\includegraphics[width=0.7\linewidth]{../doc/src/manual/fig/wave1D.pdf}}
+\vspace{6mm}
+\end{notice_mdfboxadmon} % title: Going deeper.
+
+
+\subsection{The end}
+A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+
+\begin{summary_mdfboxadmon}[Concluding remarks for the novice.]
+We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+\end{summary_mdfboxadmon} % title: Concluding remarks for the novice.
+
+
+\paragraph{Remark.}
+The \texttt{remarks} and \texttt{hint} environments are not allowed outside
+exercises (and problems and projects too).
+% ------------------- end of main content ---------------
+% #ifdef PREAMBLE
+\end{document}
+% #endif
+

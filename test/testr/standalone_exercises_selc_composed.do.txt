@@ -1,0 +1,16 @@
+TITLE: Project 11: References to Project ref{demo:ex:2} in a heading works for plain
+AUTHOR: Jane Doe Email:jane.doe@cyberspace.net
+DATE: Due Jan 32, 2100
+
+# Logical name of exercise: selc_composed
+# This document contains references to a parent document (../testdoc).
+# These references will work for latex (using the xr package and
+# a compiled parent document (with ../testdoc.aux file), but other formats
+# will have missing references.
+# Externaldocuments: ../testdoc
+
+
+
+Refer to the previous exercise as Exercise ref{exer:some:formula},
+the two before that as Projects ref{demo:ex:2} and ref{proj:circle1},
+and this one as Project ref{exer:you}.
