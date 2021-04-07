@@ -4,13 +4,11 @@
 end of tocinfo -->
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-Verbatim blocks with non-ASCII text does not work for HTML, but it works
-for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
-<p></p>
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
+
 <pre>a = 1  # Value suggested by Åsmund Ødegård.
 </pre>
-<p></p>
+
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -94,14 +92,16 @@ str>>> The code blocks:
 0:
 a = 1  # Value suggested by Åsmund Ødegård.
 
-------------
 
 
 ************************************************************
 str>>> The code block types:
 
 
-The tex blocks:
+
+************************************************************
+str>>> The tex blocks:
+
 
 
 
@@ -306,9 +306,9 @@ for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
 ************************************************************
 str>>> The file after all inline substitutions:
 
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-Verbatim blocks with non-ASCII text does not work for HTML, but it works
-for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+
+
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
 
 <p></p>
 0 <<<!!CODE_BLOCK 
@@ -319,9 +319,9 @@ for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
 ************************************************************
 str>>> The file after typesetting of tables:
 
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-Verbatim blocks with non-ASCII text does not work for HTML, but it works
-for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+
+
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
 
 <p></p>
 0 <<<!!CODE_BLOCK 
@@ -330,11 +330,11 @@ for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
 
 
 ************************************************************
-str>>> The file after commenting out !split, !bpop, !epop, !bslidecell, !eslidecell, !bnotes, !enotes:
+str>>> The file after commenting out !commands
 
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-Verbatim blocks with non-ASCII text does not work for HTML, but it works
-for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+
+
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
 
 <p></p>
 0 <<<!!CODE_BLOCK 
@@ -346,9 +346,7 @@ for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
 str>>> File before call to insert_code_blocks (format html):
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-Verbatim blocks with non-ASCII text does not work for HTML, but it works
-for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
 <p></p>
 <pre>a = 1  # Value suggested by Åsmund Ødegård.
 </pre>
@@ -360,9 +358,7 @@ for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
 str>>> File after call to insert_code_and tex (format html):
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-Verbatim blocks with non-ASCII text does not work for HTML, but it works
-for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
 <p></p>
 <pre>a = 1  # Value suggested by Åsmund Ødegård.
 </pre>
@@ -374,9 +370,7 @@ for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
 str>>> After replacement of !bc and !ec (pygmentized code):
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-Verbatim blocks with non-ASCII text does not work for HTML, but it works
-for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
 <p></p>
 <pre>a = 1  # Value suggested by Åsmund Ødegård.
 </pre>
@@ -393,13 +387,11 @@ str>>> The file after inserting intro/outro and tex/code blocks, and fixing last
 end of tocinfo -->
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-Verbatim blocks with non-ASCII text does not work for HTML, but it works
-for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
-<p></p>
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
+
 <pre>a = 1  # Value suggested by Åsmund Ødegård.
 </pre>
-<p></p>
+
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -413,13 +405,11 @@ str>>> The file after typesetting of admons and the rest of the !b/!e environmen
 end of tocinfo -->
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-Verbatim blocks with non-ASCII text does not work for HTML, but it works
-for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
-<p></p>
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
+
 <pre>a = 1  # Value suggested by Åsmund Ødegård.
 </pre>
-<p></p>
+
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -433,13 +423,11 @@ str>>> The file after potential removal of solutions, answers, hints, etc.:
 end of tocinfo -->
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-Verbatim blocks with non-ASCII text does not work for HTML, but it works
-for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
-<p></p>
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
+
 <pre>a = 1  # Value suggested by Åsmund Ødegård.
 </pre>
-<p></p>
+
 <!-- ------------------- end of main content --------------- -->
 
 

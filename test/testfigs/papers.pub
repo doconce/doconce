@@ -1,0 +1,203 @@
+* articles
+** Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process
+   key:       Langtangen_1992c
+   author:    H. P. Langtangen
+   year:      1992
+   journal:   SIAM Journal on Scientific Computing
+   volume:    13
+   pages:     1394-1417
+   status:    published
+   entrytype: article
+** Numerical Solution of First Passage Problems in Random Vibrations
+   key:       Langtangen_1994a
+   author:    H. P. Langtangen
+   year:      1994
+   journal:   SIAM Journal of Scientific and Statistical Computing
+   volume:    15
+   pages:     997-996
+   status:    published
+   entrytype: article
+** A {FEniCS}-Based Programming Framework for Modeling Turbulent Flow by the {Reynolds}-Averaged {Navier-Stokes} Equations
+   key:       Mortensen_et_al_2011
+   author:    M. Mortensen, H. P. Langtangen, G. N. Wells
+   year:      2011
+   journal:   Advances in Water Resources
+   volume:    34
+   number:    9
+   doi:       10.1016/j.advwatres.2011.02.013
+   status:    published
+   entrytype: article
+** Propagation of Large Destructive Waves
+   key:       Langtangen_Pedersen_2002
+   author:    H. P. Langtangen, G. Pedersen
+   year:      2002
+   journal:   International Journal of Applied Mechanics and Engineering
+   volume:    7
+   number:    1
+   pages:     187-204
+   status:    published
+   entrytype: article
+** Numerical Methods for Incompressible Viscous Flow
+   key:       Langtangen_et_al_2002
+   author:    H. P. Langtangen, K.-A. Mardal, R. Winther
+   year:      2002
+   journal:   Advances in Water Resources
+   volume:    25
+   pages:     1125-1146
+   status:    published
+   entrytype: article
+** Propagation of the {Dec.~26}, 2004 {Indian Ocean Tsunami}: Effects of Dispersion and Source Characteristics
+   key:       Glimsdal_et_al_20006
+   author:    S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen, F. L{\o}vholt
+   year:      2006
+   journal:   International Journal of Fluid Mechanics Research
+   volume:    33
+   number:    1
+   pages:     15--43
+   status:    published
+   entrytype: article
+** Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel
+   key:       Rahman_et_al_2006b
+   author:    S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams, H. P. Langtangen
+   year:      2006
+   journal:   Physical Review B: Condensed Matter and Materials Physics
+   volume:    74
+   status:    published
+   entrytype: article
+   note:      035308
+** On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media
+   key:       Haga_et_al_2011a
+   author:    J. B. Haga, H. Osnes, H. P. Langtangen
+   year:      2011
+   journal:   International Journal of Analytical and Numerical Methods in Geomechanics
+   doi:       10.1002/nag.1062
+   url:       http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract
+   status:    published
+   entrytype: article
+* books
+** Computational Partial Differential Equations - Numerical Methods and {Diffpack} Programming
+   key:       Langtangen_2003a
+   author:    H. P. Langtangen
+   year:      2003
+   publisher: Springer
+   status:    published
+   edition:   second
+   entrytype: book
+   series:    Texts in Computational Science and Engineering
+** {P}ython Scripting for Computational Science
+   key:       Langtangen_2008a
+   author:    H. P. Langtangen
+   year:      2008
+   publisher: Springer
+   status:    published
+   edition:   Third
+   entrytype: book
+   series:    Texts in Computational Science and Engineering
+** A Primer on Scientific Programming With {P}ython
+   key:       Langtangen_2012
+   author:    H. P. Langtangen
+   year:      2012
+   publisher: Springer
+   status:    published
+   edition:   Third
+   entrytype: book
+   series:    Texts in Computational Science and Engineering
+* chapters
+** Finite Elements for the {Boussinesq} Wave Equations
+   key:       Langtangen:95
+   author:    H. P. Langtangen, G. Pedersen
+   editor:    J. Grue, B. Gjevik, J. E. Weber
+   year:      1995
+   booktitle: Waves and Non-linear Processes in Hydrodynamics
+   publisher: Kluwer Academic Publishers
+   pages:     117-126
+   url:       http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310
+   status:    published
+   entrytype: inbook
+* proceedings
+** Software Tools for Multigrid Methods
+   key:          Mardal_et_al_2003a
+   author:       K.-A. Mardal, G. W. Zumbusch, H. P. Langtangen
+   editor:       H. P. Langtangen, A. Tveito
+   year:         2003
+   booktitle:    Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming
+   publisher:    Springer
+   pages:        97-152
+   url:          \url{http://some.where.org}
+   status:       published
+   entrytype:    inproceedings
+   howpublished: Edited book
+   series:       Lecture Notes in Computational Science and Engineering
+** {Diffpack}: Software for Partial Differential Equations
+   key:       Langtangen:94b
+   author:    H. P. Langtangen
+   editor:    A. Vermeulen
+   year:      1994
+   booktitle: Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA
+   pdf:       http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.22.5735&rep=rep1&type=pdf
+   status:    published
+   entrytype: inproceedings
+* reports
+** Optimization With {Diffpack}: Practical Example From Welding
+   key:          Jeberg_et_al_2004
+   author:       P. V. Jeberg, H. P. Langtangen, C. B. Terp
+   year:         2004
+   institution:  Simula Research Laboratory
+   status:       published
+   entrytype:    techreport
+   howpublished: Internal report
+   type:         Report 2004-12
+** The {FEMDEQS} Program System
+   key:         Langtangen_1988d
+   author:      H. P. Langtangen
+   year:        1989
+   institution: Department of Mathematics, University of Oslo
+   url:         http://www.math.uio.no/old/days/hpl/femdeqs.pdf
+   status:      published
+   entrytype:   techreport
+   type:        Research Report in Mechanics
+** Numerical Methods in Continuum Mechanics
+   key:         Langtangen:91
+   author:      H. P. Langtangen, A. Tveito
+   year:        1991
+   institution: Center for Industrial Research
+   status:      published
+   entrytype:   techreport
+   note:        Lecture notes for a course (ME-IN 324). 286 pages.
+   type:        SI-Report
+** A Document for Testing Doconce
+   key:         testdoc:12
+   author:      H. P. Langtangen
+   year:        2015
+   institution: Simula Research Laboratory
+   url:         http://hplgit.github.io/doconce/test/demo_testdoc.html
+   status:      published
+   entrytype:   techreport
+* theses
+** Computational Methods for Two-Phase Flow in Oil Reservoirs
+   key:        Langtangen_1989e
+   author:     H. P. Langtangen
+   year:       1989
+   status:     published
+   entrytype:  phdthesis
+   note:       Dr.~Scient.~thesis.
+   school:     Mechanics Division, Department of Mathematics, University of Oslo
+   thesistype: phd
+** Solution of the {Navier-Stokes} Equations With the Finite Element Method in Two and Three Dimensions
+   key:        Langtangen:85
+   author:     H. P. Langtangen
+   year:       1985
+   status:     published
+   entrytype:  mastersthesis
+   note:       Cand.Scient. thesis
+   school:     Mechanics Division, Department of Mathematics, University of Oslo
+   thesistype: msc
+* misc
+** Computational Modeling of Huge Tsunamis From Asteroid Impacts
+   key:          Langtangen_talk_2007a
+   author:       H. P. Langtangen
+   year:         2007
+   status:       published
+   entrytype:    misc
+   howpublished: Invited keynote lecture at the \emph{International conference on Computational Science 2007 (ICCS'07)}, Beijing, China
+   month:        May

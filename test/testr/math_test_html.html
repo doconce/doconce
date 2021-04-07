@@ -226,12 +226,12 @@ $$
 <center>
 <h1>How various formats can deal with LaTeX math</h1>
 </center>  <!-- document title -->
-<p></p>
+
 <!-- author(s): Hans Petter Langtangen -->
 <center>
 <b>Hans Petter Langtangen</b> [1, 2]
 </center>
-<p><!-- institution(s) --></p>
+<!-- institution(s) -->
 <center>
 [1] <b>Simula Research Laboratory</b>
 </center>
@@ -243,35 +243,21 @@ $$
 <h4>Jan 32, 2100</h4>
 </center> <!-- date -->
 <br>
-<p></p>
-<b>Summary.</b> The purpose of this document is to test LaTeX math in DocOnce with
-various output formats.  Most LaTeX math constructions are renedered
-correctly by MathJax in plain HTML, but some combinations of
-constructions may fail.  Unfortunately, only a subset of what works in
-html MathJax also works in sphinx MathJax. The same is true for
-markdown MathJax expresions (e.g., Jupyter notebooks).  Tests and
-examples are provided to illustrate what may go wrong.
-<p></p>
-The recommendation for writing math that translates to MathJax in
-html, sphinx, and markdown is to stick to the environments <code>\[
-... \]</code>, <code>equation</code>, <code>equation*</code>, <code>align</code>, <code>align*</code>, <code>alignat</code>, and
-<code>alignat*</code> only. Test the math with sphinx output; if it works in that
-format, it should work elsewhere too.
-<p></p>
-The current version of the document is translated from DocOnce source
-to the format <b>html</b>.
-<p></p>
+
+<p>
+<b>Summary.</b> The purpose of this document is to test LaTeX math in DocOnce with various output formats.  Most LaTeX math constructions are renedered correctly by MathJax in plain HTML, but some combinations of constructions may fail.  Unfortunately, only a subset of what works in html MathJax also works in sphinx MathJax. The same is true for markdown MathJax expresions (e.g., Jupyter notebooks).  Tests and examples are provided to illustrate what may go wrong.</p>
+
+<p>The recommendation for writing math that translates to MathJax in html, sphinx, and markdown is to stick to the environments <code>\[ ... \]</code>, <code>equation</code>, <code>equation*</code>, <code>align</code>, <code>align*</code>, <code>alignat</code>, and <code>alignat*</code> only. Test the math with sphinx output; if it works in that format, it should work elsewhere too.</p>
+
+<p>The current version of the document is translated from DocOnce source to the format <b>html</b>.</p>
 <h1 id="test-of-equation-environments">Test of equation environments </h1>
-<p></p>
 <h2 id="test-1-inline-math">Test 1: Inline math </h2>
-<p></p>
-We can get an inline equation
-<code>$u(t)=e^{-at}$</code> rendered as \( u(t)=e^{-at} \).
-<p></p>
+
+<p>We can get an inline equation <code>$u(t)=e^{-at}$</code> rendered as \( u(t)=e^{-at} \).</p>
 <h2 id="test-2-a-single-equation-with-label">Test 2: A single equation with label </h2>
-<p></p>
-An equation with number,
-<p></p>
+
+<p>An equation with number,</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -297,14 +283,14 @@ An equation with number,
   </div>
 </div>
 
-looks like
-<p></p>
+<p>looks like</p>
+
 $$
 \begin{equation} u(t)=e^{-at} \label{_eq1a}\end{equation}
 $$
 
-Maybe this multi-line version is what we actually prefer to write:
-<p></p>
+<p>Maybe this multi-line version is what we actually prefer to write:</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -333,22 +319,19 @@ label<span style="color: #008000">{</span>eq1b<span style="color: #008000">}</sp
   </div>
 </div>
 
-The result is the same:
-<p></p>
+<p>The result is the same:</p>
+
 $$
 \begin{equation}
 u(t)=e^{-at} \label{_eq1b}
 \end{equation}
 $$
 
-We can refer to this equation through its label <code>eq1b</code>: \eqref{_eq1b}.
-<p></p>
+<p>We can refer to this equation through its label <code>eq1b</code>: \eqref{_eq1b}.</p>
 <h2 id="test-3-multiple-aligned-equations-without-label-and-number">Test 3: Multiple, aligned equations without label and number </h2>
-<p></p>
-MathJax has historically had some problems with rendering many LaTeX
-math environments, but the <code>align*</code> and <code>align</code> environments have
-always worked.
-<p></p>
+
+<p>MathJax has historically had some problems with rendering many LaTeX math environments, but the <code>align*</code> and <code>align</code> environments have always worked.</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -377,20 +360,18 @@ v(t) - 1 <span style="color: #008000">&amp;</span>= <span style="color: #008000;
   </div>
 </div>
 
-Result:
-<p></p>
+<p>Result:</p>
+
 $$
 \begin{align*}
 u(t)&=e^{-at}\\ 
 v(t) - 1 &= \frac{du}{dt}
 \end{align*}
 $$
-
-<p></p>
 <h2 id="test-4-multiple-aligned-equations-with-label">Test 4: Multiple, aligned equations with label </h2>
-<p></p>
-Here, we use <code>align</code> with user-prescribed labels:
-<p></p>
+
+<p>Here, we use <code>align</code> with user-prescribed labels:</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -421,8 +402,8 @@ label<span style="color: #008000">{</span>eq3b<span style="color: #008000">}</sp
   </div>
 </div>
 
-Result:
-<p></p>
+<p>Result:</p>
+
 $$
 \begin{align}
 u(t)&=e^{-at}
@@ -432,16 +413,11 @@ v(t) - 1 &= \frac{du}{dt}
 \end{align}
 $$
 
-We can refer to the last equations as the system \eqref{_eq2b}-\eqref{_eq3b}.
-<p></p>
+<p>We can refer to the last equations as the system \eqref{_eq2b}-\eqref{_eq3b}.</p>
 <h2 id="test-5-multiple-aligned-equations-without-label">Test 5: Multiple, aligned equations without label </h2>
-<p></p>
-In LaTeX, equations within an <code>align</code> environment is automatically
-given numbers.  To ensure that an html document with MathJax gets the
-same equation numbers as its latex/pdflatex companion, DocOnce
-generates labels in equations where there is no label prescribed. For
-example,
-<p></p>
+
+<p>In LaTeX, equations within an <code>align</code> environment is automatically given numbers.  To ensure that an html document with MathJax gets the same equation numbers as its latex/pdflatex companion, DocOnce generates labels in equations where there is no label prescribed. For example,</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -471,8 +447,8 @@ v(t) - 1 <span style="color: #008000">&amp;</span>= <span style="color: #008000;
   </div>
 </div>
 
-is edited to something like
-<p></p>
+<p>is edited to something like</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -503,8 +479,8 @@ label<span style="color: #008000">{_</span>auto6<span style="color: #008000">}</
   </div>
 </div>
 
-and the output gets the two equation numbered.
-<p></p>
+<p>and the output gets the two equation numbered.</p>
+
 $$
 \begin{align}
 u(t)&=e^{-at}
@@ -513,12 +489,10 @@ v(t) - 1 &= \frac{du}{dt}
 \label{_auto2}
 \end{align}
 $$
-
-<p></p>
 <h2 id="test-6-multiple-aligned-equations-with-multiple-alignments">Test 6: Multiple, aligned equations with multiple alignments </h2>
-<p></p>
-The <code>align</code> environment can be used with two <code>&</code> alignment characters, e.g.,
-<p></p>
+
+<p>The <code>align</code> environment can be used with two <code>&</code> alignment characters, e.g.,</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -548,8 +522,8 @@ u(0,t) <span style="color: #008000">&amp;</span>= u<span style="color: #008000">
   </div>
 </div>
 
-The result in html becomes
-<p></p>
+<p>The result in html becomes</p>
+
 $$
 \begin{align}
 \frac{\partial u}{\partial t} &= \nabla^2 u, & x\in (0,L),
@@ -560,9 +534,8 @@ u(0,t) &= u_0(x), & x\in [0,L]
 \end{align}
 $$
 
-<p></p>
-A better solution is usually to use an <code>alignat</code> environment:
-<p></p>
+<p>A better solution is usually to use an <code>alignat</code> environment:</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -592,8 +565,8 @@ u(0,t) <span style="color: #008000">&amp;</span>= u<span style="color: #008000">
   </div>
 </div>
 
-with the rendered result
-<p></p>
+<p>with the rendered result</p>
+
 $$
 \begin{alignat}{2}
 \frac{\partial u}{\partial t} &= \nabla^2 u, & x\in (0,L),
@@ -601,12 +574,10 @@ $$
 u(0,t) &= u_0(x), & x\in [0,L]
 \end{alignat}
 $$
-
-<p></p>
 <h2 id="test-7-multiple-aligned-eqnarray-equations-without-label">Test 7: Multiple, aligned eqnarray equations without label </h2>
-<p></p>
-Let us try the old <code>eqnarray*</code> environment.
-<p></p>
+
+<p>Let us try the old <code>eqnarray*</code> environment.</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -635,20 +606,18 @@ v(t) - 1 <span style="color: #008000">&amp;</span>=<span style="color: #008000">
   </div>
 </div>
 
-which results in
-<p></p>
+<p>which results in</p>
+
 $$
 \begin{eqnarray*}
 u(t)&=& e^{-at}\\ 
 v(t) - 1 &=& \frac{du}{dt}
 \end{eqnarray*}
 $$
-
-<p></p>
 <h2 id="test-8-multiple-eqnarrayed-equations-with-label">Test 8: Multiple, eqnarrayed equations with label </h2>
-<p></p>
-Here we use <code>eqnarray</code> with labels:
-<p></p>
+
+<p>Here we use <code>eqnarray</code> with labels:</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -679,8 +648,8 @@ label<span style="color: #008000">{</span>eq3c<span style="color: #008000">}</sp
   </div>
 </div>
 
-which results in
-<p></p>
+<p>which results in</p>
+
 $$
 \begin{eqnarray}
 u(t)&=& e^{-at} \label{_eq2c}\\ 
@@ -688,13 +657,11 @@ v(t) - 1 &=& \frac{du}{dt} \label{_eq3c}
 \end{eqnarray}
 $$
 
-Can we refer to the last equations as the system \eqref{_eq2c}-\eqref{_eq3c}
-in the html format?
-<p></p>
+<p>Can we refer to the last equations as the system \eqref{_eq2c}-\eqref{_eq3c} in the html format?</p>
 <h2 id="test-9-the-multiline-environment-with-label-and-number">Test 9: The <code>multiline</code> environment with label and number </h2>
-<p></p>
-The LaTeX code
-<p></p>
+
+<p>The LaTeX code</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -725,8 +692,8 @@ label<span style="color: #008000">{</span>multiline:eq1<span style="color: #0080
   </div>
 </div>
 
-gets rendered as
-<p></p>
+<p>gets rendered as</p>
+
 $$
 \begin{multline}
 \int_a^b f(x)dx = \sum_{j=0}^{n} \frac{1}{2} h(f(a+jh) +
@@ -736,14 +703,11 @@ f(a+(j+1)h)) \\
 \end{multline}
 $$
 
-and we can hopefully refer to the Trapezoidal rule
-as the formula \eqref{_multiline:eq1}.
-<p></p>
+<p>and we can hopefully refer to the Trapezoidal rule as the formula \eqref{_multiline:eq1}.</p>
 <h2 id="test-10-splitting-equations-using-a-split-environment">Test 10: Splitting equations using a split environment </h2>
-<p></p>
-Although <code>align</code> can be used to split too long equations, a more obvious
-command is <code>split</code>:
-<p></p>
+
+<p>Although <code>align</code> can be used to split too long equations, a more obvious command is <code>split</code>:</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -775,9 +739,8 @@ f(a+(j+1)h)) <span style="color: #008000; font-weight: bold">\\</span>
   </div>
 </div>
 
-<p></p>
-The result becomes
-<p></p>
+<p>The result becomes</p>
+
 $$
 \begin{equation}
 \begin{split}
@@ -788,12 +751,10 @@ f(a+(j+1)h)) \\
 \label{_auto5}
 \end{equation}
 $$
-
-<p></p>
 <h2 id="test-11-newcommands-and-boldface-bm-vs-pmb">Test 11: Newcommands and boldface bm vs pmb </h2>
-<p></p>
-First we use the plain old pmb package for bold math. The formula
-<p></p>
+
+<p>First we use the plain old pmb package for bold math. The formula</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -821,18 +782,16 @@ First we use the plain old pmb package for bold math. The formula
   </div>
 </div>
 
-and the inline expression <code>$\nabla\u (\pmb{x})\cdot\pmb{n}$</code>
-(with suitable newcommands using pmb)
-get rendered as
-<p></p>
+<p>and the inline expression <code>$\nabla\u (\pmb{x})\cdot\pmb{n}$</code> (with suitable newcommands using pmb) get rendered as</p>
+
 $$ \frac{\partial\u}{\partial t} +
 \u\cdot\nabla\u = \nu\nabla^2\u -
 \frac{1}{\varrho}\nabla p,$$
 
-and \( \nabla\u (\pmb{x})\cdot\pmb{n} \).
-<p></p>
-Somewhat nicer fonts may appear with the more modern <code>\bm</code> command:
-<p></p>
+<p>and \( \nabla\u (\pmb{x})\cdot\pmb{n} \).</p>
+
+<p>Somewhat nicer fonts may appear with the more modern <code>\bm</code> command:</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -860,14 +819,14 @@ Somewhat nicer fonts may appear with the more modern <code>\bm</code> command:
   </div>
 </div>
 
-(backslash <code>ubm</code> is a newcommand for bold math \( u \)), for which we get
-<p></p>
+<p>(backslash <code>ubm</code> is a newcommand for bold math \( u \)), for which we get</p>
+
 $$ \frac{\partial\ubm}{\partial t} +
 \ubm\cdot\nabla\ubm = \nu\nabla^2\ubm -
 \frac{1}{\varrho}\nabla p.$$
 
-Moreover,
-<p></p>
+<p>Moreover,</p>
+
 
 <!-- code=text (!bc ccq) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -892,26 +851,21 @@ Moreover,
   </div>
 </div>
 
-becomes \( \nabla\boldsymbol{u}(\boldsymbol{x})\cdot\boldsymbol{n} \).
-<p></p>
+<p>becomes \( \nabla\boldsymbol{u}(\boldsymbol{x})\cdot\boldsymbol{n} \).</p>
+
 <div class="alert alert-block alert-warning alert-text-normal">
 <b>Warning</b>
 <p>
-Note: for the html format, <code>\bm</code> was substituted by DocOnce
-to <code>\boldsymbol</code>.
+<p>Note: for the html format, <code>\bm</code> was substituted by DocOnce to <code>\boldsymbol</code>.</p>
 </div>
 
-<p></p>
 <h1 id="problematic-equations">Problematic equations </h1>
-<p></p>
-Finally, we collect some problematic formulas in MathJax. They all work
-fine in LaTeX. Most of them look fine in html too, but some fail in
-sphinx, ipynb, or markdown.
-<p></p>
+
+<p>Finally, we collect some problematic formulas in MathJax. They all work fine in LaTeX. Most of them look fine in html too, but some fail in sphinx, ipynb, or markdown.</p>
 <h2 id="colored-terms-in-equations">Colored terms in equations </h2>
-<p></p>
-The LaTeX code
-<p></p>
+
+<p>The LaTeX code</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -939,20 +893,15 @@ The LaTeX code
   </div>
 </div>
 
-<p></p>
-results in
-<p></p>
+<p>results in</p>
+
 $$ {\color{blue}\frac{\partial\u}{\partial t}} +
 \nabla\cdot\nabla\u = \nu\nabla^2\u -
 \frac{1}{\varrho}\nabla p,$$
-
-<p></p>
 <h2 id="bar-over-symbols">Bar over symbols </h2>
-<p></p>
-Sometimes one must be extra careful with the LaTeX syntax to get sphinx MathJax
-to render a formula correctly. Consider the combination of a bar over a
-bold math symbol:
-<p></p>
+
+<p>Sometimes one must be extra careful with the LaTeX syntax to get sphinx MathJax to render a formula correctly. Consider the combination of a bar over a bold math symbol:</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -978,14 +927,12 @@ bold math symbol:
   </div>
 </div>
 
-<p></p>
-which for html output results in
-<p></p>
+<p>which for html output results in</p>
+
 $$ \bar\f = f_c^{-1}\f.$$
 
-<p></p>
-With sphinx, this formula is not rendered. However, using curly braces for the bar,
-<p></p>
+<p>With sphinx, this formula is not rendered. However, using curly braces for the bar,</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -1011,17 +958,13 @@ With sphinx, this formula is not rendered. However, using curly braces for the b
   </div>
 </div>
 
-<p></p>
-makes the output correct also for sphinx:
-<p></p>
-$$ \bar{\f} = f_c^{-1}\f,$$
+<p>makes the output correct also for sphinx:</p>
 
-<p></p>
+$$ \bar{\f} = f_c^{-1}\f,$$
 <h2 id="matrix-formulas">Matrix formulas </h2>
-<p></p>
-Here is an <code>align</code> environment with a label and the <code>pmatrix</code>
-environment for matrices and vectors in LaTeX.
-<p></p>
+
+<p>Here is an <code>align</code> environment with a label and the <code>pmatrix</code> environment for matrices and vectors in LaTeX.</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -1082,9 +1025,8 @@ v<span style="color: #008000">_</span>4
   </div>
 </div>
 
-<p></p>
-which becomes
-<p></p>
+<p>which becomes</p>
+
 $$
 \begin{align}
 \begin{pmatrix}
@@ -1123,9 +1065,8 @@ v_4
 \end{pmatrix}
 \end{align}$$
 
-<p></p>
-The same matrices without labels in an <code>align*</code> environment:
-<p></p>
+<p>The same matrices without labels in an <code>align*</code> environment:</p>
+
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -1185,9 +1126,8 @@ v<span style="color: #008000">_</span>4
   </div>
 </div>
 
-<p></p>
-The rendered result becomes
-<p></p>
+<p>The rendered result becomes</p>
+
 $$
 \begin{align*}
 \begin{pmatrix}

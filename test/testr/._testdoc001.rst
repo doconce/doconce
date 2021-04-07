@@ -16,8 +16,7 @@ Here is a nested list:
 
   * item2
 
-  * item3 which continues
-    on the next line to test that feature
+  * item3 which continues on the next line to test that feature
 
   * and a sublist
 
@@ -29,8 +28,7 @@ Here is a nested list:
 
    a. first item
 
-   b. second item,
-      continuing on a new line
+   b. second item, continuing on a new line
 
 **Here is a list with paragraph heading.**
 
@@ -439,8 +437,7 @@ They are used in different flavors, now in
 
  * even with math :math:`\nabla^2u` [#math1]_
 
- * and code ``h[i] += 1`` [#code]_
-   (*must* have space between inline code and footnote!)
+ * and code ``h[i] += 1`` [#code]_ (*must* have space between inline code and footnote!)
 
  * and `links <https://google.com>`__ [#google-search]_
 

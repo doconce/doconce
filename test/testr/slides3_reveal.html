@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-
+<html>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -45,7 +46,7 @@
 var link = document.createElement( 'link' );
 link.rel = 'stylesheet';
 link.type = 'text/css';
-link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+link.href = window.location.search.match( /print-pdf/gi ) ? \'css/print/pdf.css\' : 'css/print/paper.css';
 document.getElementsByTagName( 'head' )[0].appendChild( link );
 </script>
 
@@ -80,6 +81,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
 
 
+
 <!-- Styles for table layout of slides -->
 <style type="text/css">
 td.padding {
@@ -91,6 +93,7 @@ td.padding {
 </style>
 
 </head>
+
 
 <body>
 <div class="reveal">
@@ -117,7 +120,6 @@ MathJax.Hub.Config({
 </script>
 
 
-    
 
 
 
@@ -126,12 +128,12 @@ MathJax.Hub.Config({
 <center>
 <h1 style="text-align: center;">On Schemes for Exponential Decay</h1>
 </center>  <!-- document title -->
-<p></p>
+
 <!-- author(s): Hans Petter Langtangen -->
 <center>
 <b>Hans Petter Langtangen</b> [1, 2]
 </center>
-<p><!-- institution(s) --></p>
+<!-- institution(s) -->
 <center>
 [1] <b>Center for Biomedical Computing, Simula Research Laboratory</b>
 </center>
@@ -143,65 +145,53 @@ MathJax.Hub.Config({
 <h4>Jan 32, 2100</h4>
 </center> <!-- date -->
 <br>
-<p></p>
+
 <br /><br /><center>
 <p><img src="../doc/src/slides/fig/CN_logo.png" align="bottom" width=300></p>
-</center>
+<p></center></p>
 <br /><br/>
-<p></p>
 </section>
 
 
 <section>
 <h2 id="goal">Goal </h2>
-<p></p>
-The primary goal of this demo talk is to demonstrate how to write
-talks with <a href="https://github.com/doconce/doconce" target="_self">DocOnce</a>
-and get them rendered in numerous HTML formats.
+
+<p>The primary goal of this demo talk is to demonstrate how to write talks with <a href="https://github.com/doconce/doconce" target="_self">DocOnce</a> and get them rendered in numerous HTML formats.</p>
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Layout</b>
 <p>
-This version
-utilizes reveal slides with the theme beigesmall.
+<p>This version utilizes reveal slides with the theme beigesmall.</p>
 </div>
 
-<p></p>
+
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Notice</b>
 <p>
-Speaker notes show up by
-pressing "s".
+<p>Speaker notes show up by pressing "s".</p>
 </div>
 
-<p></p>
+
 <aside class="notes">
 <!-- click "s" to activate -->
 
-The talk investigates the accuracy of three finite difference
-schemes for the ordinary differential equation \( u'=-au \) with the
-aid of numerical experiments. Numerical artifacts are in particular
-demonstrated.
+<p>The talk investigates the accuracy of three finite difference schemes for the ordinary differential equation \( u'=-au \) with the aid of numerical experiments. Numerical artifacts are in particular demonstrated.</p>
 
 </aside>
-
-<p></p>
 </section>
 
 
 <section>
 <h1 id="methods">Methods </h1>
-<p></p>
 </section>
 
 
 <section>
 <h2 id="mathematical-problem">Mathematical problem </h2>
-<p></p>
+
 
 <table border="0">
 <tr>
 <td class="padding">
-<p></p>
 <p>&nbsp;<br>
 $$
 \begin{align}
@@ -213,7 +203,7 @@ u(0)  &= I,
 $$
 <p>&nbsp;<br>
 
-<p></p>
+
 <ul>
  <p><li> \( t\in (0,T] \)</li>
  <p><li> \( a \), \( I \), and \( T \) are prescribed parameters</li>
@@ -224,61 +214,49 @@ $$
 <td class="padding">
 <br /><br /><center>
 <p><img src="../doc/src/slides/fig/teacher2.jpg" align="bottom" width=250></p>
-</center>
+<p></center></p>
 <br /><br/>
 </td>
 </tr>
 </table>
-
-<p></p>
-
-<p></p>
 </section>
 
 
 <section>
 <h2 id="numerical-solution-method">Numerical solution method </h2>
-<p></p>
 
 <ul>
  <p><li class="fragment"> Mesh in time: \( 0= t_0 < t_1 \cdots < t_N=T \)</li>
  <p><li class="fragment"> Assume constant \( \Delta t = t_{n}-t_{n-1} \)</li>
  <p><li class="fragment"> \( u^n \): numerical approx to the exact solution at \( t_n \)</li>
 </ul>
-<p></p>
+<p>
+
 
 <p class="fragment">
-
-Numerical scheme:
-&nbsp;<br>&nbsp;<br>
+Numerical scheme:</p>
+&nbsp;<br>
 $$
    u^{n+1} = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}u^n,
    \quad n=0,1,\ldots,N-1
    $$
-&nbsp;<br>&nbsp;<br>
-
-
+&nbsp;<br>
 </p>
-
-<p></p>
 </section>
 
 
 <section>
-<p></p>
 <h2 id="forward-euler-explained">Forward Euler explained </h2>
-<p></p>
+
 <iframe width="640" height="480" src="https://www.youtube.com/embed/PtJrPEIHNJw" frameborder="0" allowfullscreen></iframe>
-<p></p>
 </section>
 
 
 <section>
-<p></p>
 <h2 id="implementation">Implementation </h2>
-<p></p>
-The numerical method is implemented in a Python function:
-<p></p>
+
+<p>The numerical method is implemented in a Python function:</p>
+
 
 <!-- code=python (!bc pycod) typeset with pygments style "emacs" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -312,45 +290,37 @@ The numerical method is implemented in a Python function:
     </div>
   </div>
 </div>
-
-<p></p>
 </section>
 
 
 <section>
 <h1 id="selected-results">Selected results </h1>
 <!-- Short title: Results -->
-<p></p>
 </section>
 
 
 <section>
 <h2 id="the-crank-nicolson-method">The Crank-Nicolson method </h2>
-<p></p>
+
 <br /><br /><center>
 <p><img src="../doc/src/slides/fig/CN.png" align="bottom" width=600></p>
-</center>
+<p></center></p>
 <br /><br/>
-<p></p>
 </section>
 
 
 <section>
 <h2 id="the-artifacts-can-be-explained-by-some-theory">The artifacts can be explained by some theory </h2>
-<p></p>
+
 
 <p class="fragment">
+Exact solution of the scheme:</p>
 
-Exact solution of the scheme:
-</p>
-&nbsp;<br>&nbsp;<br>
+&nbsp;<br>
 $$ u^n = A^n,\quad A = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}\thinspace .$$
-&nbsp;<br>&nbsp;<br>
-
-
+&nbsp;<br>
 </p>
 
-<p></p>
 
 <ul>
  <p><li class="fragment"> Stability: \( |A| < 1 \)</li>
@@ -359,13 +329,12 @@ $$ u^n = A^n,\quad A = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}\thi
  <p><li class="fragment"> \( \Delta t < 1/a \) for Forward Euler (\( \theta=0 \))</li>
  <p><li class="fragment"> \( \Delta t < 2/a \) for Crank-Nicolson (\( \theta=1/2 \))</li>
 </ul>
-<p></p>
+<p>
 
 <div class="fragment alert alert-block alert-summary alert-text-normal">
 <b>Concluding remarks:</b>
 <p>
-Only the Backward Euler scheme is guaranteed to always give
-qualitatively correct results.
+<p>Only the Backward Euler scheme is guaranteed to always give qualitatively correct results.</p>
 </div>
 </section>
 
@@ -450,13 +419,13 @@ Reveal.initialize({
     viewDistance: 3,
 
     // Parallax background image
-    //parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+    //parallaxBackgroundImage: \'\', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
 
     // Parallax background size
     //parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
 
     theme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
-    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+    transition: Reveal.getQueryHash().transition || \'default\', // default/cube/page/concave/zoom/linear/none
 
 });
 
@@ -509,6 +478,7 @@ Reveal.initialize({
 <img src="somelogo.png">
 </div>
      end footer logo -->
+
 
 
 

@@ -21,16 +21,11 @@ MathJax.Hub.Config({
 
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-<p></p>
-This block (in format html)
-triggers use of <code>mako</code>. For all formats, <code>mako</code> has
-problem with non-ASCII characters anywhere in the text. The remedy
-for all formats is to read the file with UTF-8 encoding. With --debug
-one can see the internal str/unicode representation of the text
-through the various stages of the text transformation process.
-<p></p>
-\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
+
+<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+
+<p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -119,13 +114,22 @@ through the various stages of the text transformation process.
 $b = 1$ is a value suggested by Åsmund Ødegård.
 
 
-The code blocks:
+
+************************************************************
+str>>> The code blocks:
 
 
-The code block types:
 
 
-The tex blocks:
+************************************************************
+str>>> The code block types:
+
+
+
+
+************************************************************
+str>>> The tex blocks:
+
 
 
 
@@ -282,33 +286,32 @@ $b = 1$ is a value suggested by &#197;smund &#216;deg&#229;rd.
 *************** Working with tag "math"
 
 
-Found 1 occurences of "math":
-findall list: [('\n', '\n', 'b = 1', ' ', ' ')]
+Found 1 occurrences of "math":
+findall list: [('>', '>', 'b = 1', ' ', ' ')]
 
 
 math is to be replaced using \g<begin>\( \g<subst> \)\g<end>
 
 
-First occurence: "
-$b = 1$ "
-groups: ('\n', '\n', 'b = 1', ' ', ' ')
-named groups: {'begin': '\n', 'subst': 'b = 1', 'end': ' '}
+First occurrence: ">$b = 1$ "
+groups: ('>', '>', 'b = 1', ' ', ' ')
+named groups: {'begin': '>', 'subst': 'b = 1', 'end': ' '}
 
 
 
 **** The file after 1 "math" substitutions ***
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 
 <p></p>
-This block (in format html)
-triggers use of `mako`. For all formats, `mako` has
-problem with non-ASCII characters anywhere in the text. The remedy
-for all formats is to read the file with UTF-8 encoding. With --debug
-one can see the internal str/unicode representation of the text
-through the various stages of the text transformation process.
+
+
+
+
+
+<p>This block (in format html) triggers use of `mako`. For all formats, `mako` has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
 
 <p></p>
-\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.
+<p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 
 --------------------------------------------------------------------------------
 
@@ -335,32 +338,32 @@ through the various stages of the text transformation process.
 *************** Working with tag "verbatim"
 
 
-Found 2 occurences of "verbatim":
+Found 2 occurrences of "verbatim":
 findall list: [(' ', ' ', 'mako', '.', '.'), (' ', ' ', 'mako', ' ', ' ')]
 
 
 verbatim is to be replaced using <function html_verbatim at XXX>
 
 
-First occurence: " `mako`."
+First occurrence: " `mako`."
 groups: (' ', ' ', 'mako', '.', '.')
 named groups: {'begin': ' ', 'subst': 'mako', 'end': '.'}
 
 
 
 **** The file after 2 "verbatim" substitutions ***
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 
 <p></p>
-This block (in format html)
-triggers use of <code>mako</code>. For all formats, <code>mako</code> has
-problem with non-ASCII characters anywhere in the text. The remedy
-for all formats is to read the file with UTF-8 encoding. With --debug
-one can see the internal str/unicode representation of the text
-through the various stages of the text transformation process.
+
+
+
+
+
+<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
 
 <p></p>
-\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.
+<p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 
 --------------------------------------------------------------------------------
 
@@ -427,68 +430,63 @@ through the various stages of the text transformation process.
 ************************************************************
 str>>> The file after all inline substitutions:
 
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 
 <p></p>
-This block (in format html)
-triggers use of <code>mako</code>. For all formats, <code>mako</code> has
-problem with non-ASCII characters anywhere in the text. The remedy
-for all formats is to read the file with UTF-8 encoding. With --debug
-one can see the internal str/unicode representation of the text
-through the various stages of the text transformation process.
+
+
+
+
+
+<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
 
 <p></p>
-\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.
+<p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 
 
 ************************************************************
 str>>> The file after typesetting of tables:
 
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 
 <p></p>
-This block (in format html)
-triggers use of <code>mako</code>. For all formats, <code>mako</code> has
-problem with non-ASCII characters anywhere in the text. The remedy
-for all formats is to read the file with UTF-8 encoding. With --debug
-one can see the internal str/unicode representation of the text
-through the various stages of the text transformation process.
+
+
+
+
+
+<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
 
 <p></p>
-\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.
+<p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 
 
 ************************************************************
-str>>> The file after commenting out !split, !bpop, !epop, !bslidecell, !eslidecell, !bnotes, !enotes:
+str>>> The file after commenting out !commands
 
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-
-<p></p>
-This block (in format html)
-triggers use of <code>mako</code>. For all formats, <code>mako</code> has
-problem with non-ASCII characters anywhere in the text. The remedy
-for all formats is to read the file with UTF-8 encoding. With --debug
-one can see the internal str/unicode representation of the text
-through the various stages of the text transformation process.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 
 <p></p>
-\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.
+
+
+
+
+
+<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+
+<p></p>
+<p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 
 
 ************************************************************
 str>>> File before call to insert_code_blocks (format html):
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 <p></p>
-This block (in format html)
-triggers use of <code>mako</code>. For all formats, <code>mako</code> has
-problem with non-ASCII characters anywhere in the text. The remedy
-for all formats is to read the file with UTF-8 encoding. With --debug
-one can see the internal str/unicode representation of the text
-through the various stages of the text transformation process.
+<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
 <p></p>
-\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.
+<p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -496,16 +494,11 @@ through the various stages of the text transformation process.
 str>>> File after call to insert_code_and tex (format html):
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 <p></p>
-This block (in format html)
-triggers use of <code>mako</code>. For all formats, <code>mako</code> has
-problem with non-ASCII characters anywhere in the text. The remedy
-for all formats is to read the file with UTF-8 encoding. With --debug
-one can see the internal str/unicode representation of the text
-through the various stages of the text transformation process.
+<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
 <p></p>
-\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.
+<p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -513,16 +506,11 @@ through the various stages of the text transformation process.
 str>>> After replacement of !bc and !ec (pygmentized code):
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 <p></p>
-This block (in format html)
-triggers use of <code>mako</code>. For all formats, <code>mako</code> has
-problem with non-ASCII characters anywhere in the text. The remedy
-for all formats is to read the file with UTF-8 encoding. With --debug
-one can see the internal str/unicode representation of the text
-through the various stages of the text transformation process.
+<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
 <p></p>
-\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.
+<p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -552,16 +540,11 @@ MathJax.Hub.Config({
 
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-<p></p>
-This block (in format html)
-triggers use of <code>mako</code>. For all formats, <code>mako</code> has
-problem with non-ASCII characters anywhere in the text. The remedy
-for all formats is to read the file with UTF-8 encoding. With --debug
-one can see the internal str/unicode representation of the text
-through the various stages of the text transformation process.
-<p></p>
-\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
+
+<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+
+<p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -592,16 +575,11 @@ MathJax.Hub.Config({
 
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-<p></p>
-This block (in format html)
-triggers use of <code>mako</code>. For all formats, <code>mako</code> has
-problem with non-ASCII characters anywhere in the text. The remedy
-for all formats is to read the file with UTF-8 encoding. With --debug
-one can see the internal str/unicode representation of the text
-through the various stages of the text transformation process.
-<p></p>
-\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
+
+<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+
+<p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -632,16 +610,11 @@ MathJax.Hub.Config({
 
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-<p></p>
-This block (in format html)
-triggers use of <code>mako</code>. For all formats, <code>mako</code> has
-problem with non-ASCII characters anywhere in the text. The remedy
-for all formats is to read the file with UTF-8 encoding. With --debug
-one can see the internal str/unicode representation of the text
-through the various stages of the text transformation process.
-<p></p>
-\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
+
+<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+
+<p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
 
 

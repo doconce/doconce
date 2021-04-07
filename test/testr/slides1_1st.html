@@ -1,6 +1,7 @@
 <!--
 Automatically generated HTML file from DocOnce source
 (https://github.com/doconce/doconce/)
+doconce format html slides1.do.txt --pygments_html_style=perldoc --keep_pygments_html_bg --html_raw_github_url=raw.github
 -->
 <html>
 <head>
@@ -129,6 +130,14 @@ div.output_text {
 .alert-warning { background-image: url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_gray_warning.png); }
 .alert-question {background-image:url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_gray_question.png); }
 div { text-align: justify; text-justify: inter-word; }
+.tab {
+  padding-left: 1.5em;
+}
+div.toc p,a {
+  line-height: 1.3;
+  margin-top: 1.1;
+  margin-bottom: 1.1;
+}
 </style>
 </head>
 
@@ -174,17 +183,16 @@ MathJax.Hub.Config({
 </script>
 
 
-    
 <!-- ------------------- main content ---------------------- -->
 <center>
 <h1>Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides</h1>
 </center>  <!-- document title -->
-<p></p>
+
 <!-- author(s): Hans Petter Langtangen -->
 <center>
 <b>Hans Petter Langtangen</b> [1, 2]
 </center>
-<p><!-- institution(s) --></p>
+<!-- institution(s) -->
 <center>
 [1] <b>Simula Research Laboratory</b>
 </center>
@@ -196,14 +204,14 @@ MathJax.Hub.Config({
 <h4>Jan 32, 2100</h4>
 </center> <!-- date -->
 <br>
-<p></p>
+
 <!-- !split -->
 <h1 id="this-is-the-first-section">This is the first section </h1>
 <!-- Short title: First -->
-<p></p>
+
 <!-- !split -->
 <h2 id="figure-and-bullet-list">Figure and bullet list </h2>
-<p></p>
+
 <!-- !bslidecell 00  0.60 -->
 <!-- !bpop -->
 <div class="alert alert-block alert-block alert-text-small">
@@ -218,39 +226,37 @@ MathJax.Hub.Config({
 
 <!-- !epop -->
 <!-- !eslidecell -->
-<p></p>
+
 <!-- !bslidecell 01 -->
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
 <br /><br /><center>
-<p><img src="../doc/src/manual/fig/wave1D.png" align="bottom" width=300></p>
-</center>
+<p><img src="testfigs/wave1D.png" align="bottom" width=300></p>
+<p></center></p>
 <br /><br/>
 </div>
 
 <!-- !eslidecell -->
-<p></p>
+
 <!-- !split -->
 <h2 id="slide-with-pop-ups-in-red-and-notes">Slide with pop-ups in red and notes </h2>
-<p></p>
+
 <!-- begin inline comment -->
 <font color="red">(<b>hpl 1</b>: Comments are typeset as usual in DocOnce.)</font>
 <!-- end inline comment -->
-<p></p>
+
 <!-- !bpop highlight-red -->
-Here we have a paragraph to pop up in red.<br />
-And a line more
+<p>Here we have a paragraph to pop up in red.<br /> And a line more</p>
 <!-- !epop -->
-<p></p>
+
 <!-- !bnotes -->
-One can also have ordinary notes.
-Over multiple lines.
+<p>One can also have ordinary notes. Over multiple lines.</p>
 <!-- !enotes -->
-<p></p>
+
 <!-- !split -->
 <h2 id="a-latex-document">A LaTeX document </h2>
-<p></p>
+
 <!-- !bpop -->
 
 <!-- code=latex (!bc latex) typeset with pygments style "perldoc" -->
@@ -284,16 +290,16 @@ Jane Doe<span style="color: #8B008B; font-weight: bold">\footnote</span><span st
 </div>
 
 <!-- !epop -->
-<p></p>
+
 <!-- !bpop -->
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Notice</b>
 <p>
-LaTeX has a lot of backslashes.
+<p>LaTeX has a lot of backslashes.</p>
 </div>
 
 <!-- !epop -->
-<p></p>
+
 <!-- !bpop -->
 
 <!-- code=latex (!bc latex) typeset with pygments style "perldoc" -->
@@ -321,10 +327,10 @@ bla-bla
 </div>
 
 <!-- !epop -->
-<p></p>
+
 <!-- !split -->
 <h2 id="an-html-document">An HTML document </h2>
-<p></p>
+
 
 <!-- code=html (!bc html) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -352,36 +358,35 @@ bla-bla
   </div>
 </div>
 
-<p></p>
+
 <!-- !split -->
 <h1 id="second-section">Second section </h1>
-<p></p>
+
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
 <br /><br /><center>
-<p><img src="../doc/src/manual/fig/wave1D.png" align="bottom" width=600></p>
-</center>
+<p><img src="testfigs/wave1D.png" align="bottom" width=600></p>
+<p></center></p>
 <br /><br/>
 </div>
 
-<p></p>
+
 <!-- !split -->
 <h2 id="some-math-and-computer-code">Some math and computer code </h2>
-<p></p>
+
 <div class="alert alert-block alert-block alert-text-normal">
 <b>A simple, mathematical formula where \( t\in [0,\pi] \):</b>
 <p>
 $$ f(x,y,t) = e^{-xt}\sin\pi y $$
 </div>
 
-<p></p>
+
 <div class="alert alert-block alert-block alert-text-normal">
 <b>Bash demanded more of DocOnce than Python, so let's do Bash:</b>
 <p>
-First, inline <code>$? != 0</code>, then comments with dollar variables (and minted
-style):
-<p></p>
+<p>First, inline <code>$? != 0</code>, then comments with dollar variables (and minted style):</p>
+
 
 <!-- code=bash (!bc shcod) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -410,10 +415,10 @@ style):
 </div>
 </div>
 
-<p></p>
+
 <!-- !split -->
 <h2 id="pop-ups-inside-code-blocks-for-beamer-slides-only">Pop ups inside code blocks (for Beamer slides only) </h2>
-<p></p>
+
 
 <!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -443,12 +448,12 @@ style):
   </div>
 </div>
 
-<p></p>
+
 <!-- !split -->
 <h2 id="various-admon-blocks">Various admon blocks </h2>
-<p></p>
-Can use admons to simulate blocks:
-<p></p>
+
+<p>Can use admons to simulate blocks:</p>
+
 <!-- !bpop -->
 <div class="alert alert-block alert-notice alert-text-large">
 <b>Key PDE (with large title and math font):</b>
@@ -457,25 +462,21 @@ $$ \frac{\partial u}{\partial t} = \nabla^2 u $$
 </div>
 
 <!-- !epop -->
-<p></p>
+
 <!-- !bpop -->
 <div class="alert alert-block alert-summary alert-text-normal">
 <b></b>
 <p>
-Just some block with text and a conclusion that something is important.
-This one pops up after the rest of the slide.
+<p>Just some block with text and a conclusion that something is important. This one pops up after the rest of the slide.</p>
 </div>
 
 <!-- !epop -->
-<p></p>
+
 <!-- !bpop -->
 <div class="alert alert-block alert-warning alert-text-small">
 <b>Warning</b>
 <p>
-Can use, e.g., a warning admon to have my own notes, preferably
-inside preprocess/mako if statements to turn notes on and off.
-This one is typeset in a small font and with the default
-title (Warning) since no title is specified.
+<p>Can use, e.g., a warning admon to have my own notes, preferably inside preprocess/mako if statements to turn notes on and off. This one is typeset in a small font and with the default title (Warning) since no title is specified.</p>
 </div>
 
 <!-- !epop -->

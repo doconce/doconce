@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-
+<html>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -121,12 +122,17 @@ hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
  .slide .alert-block > p, .alert-block > ul {margin-bottom:0}
  /*.slide .alert li {margin-top: 1em}*/
  .deck .alert-block p+p {margin-top:5px}
- /*.slide .alert-notice { background-image: url(https://hplgit.github.io/doconce/bundled/html_images//small_gray_notice.png); }
- .slide .alert-summary  { background-image:url(https://hplgit.github.io/doconce/bundled/html_images//small_gray_summary.png); }
- .slide .alert-warning { background-image: url(https://hplgit.github.io/doconce/bundled/html_images//small_gray_warning.png); }
- .slide .alert-question {background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_question.png); } */
+ /*.slide .alert-notice { background-image: url(https://hplgit.github.io/doconce/
+ bundled/html_images//small_gray_notice.png); }
+ .slide .alert-summary  { background-image:url(https://hplgit.github.io/doconce/
+ bundled/html_images//small_gray_summary.png); }
+ .slide .alert-warning { background-image: url(https://hplgit.github.io/doconce/
+ bundled/html_images//small_gray_warning.png); }
+ .slide .alert-question {background-image:url(https://hplgit.github.io/doconce/
+ bundled/html_images/small_gray_question.png); } */
 
 </style>
+
 
 
 
@@ -167,21 +173,18 @@ MathJax.Hub.Config({
 </script>
 
 
-    
 
 
 
 <section class="slide">
 <!-- ------------------- main content ---------------------- -->
-<center>
-<h1 style="text-align: center;">Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides</h1>
-</center>  <!-- document title -->
-<p></p>
+<h2 style="text-align: center;">Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides</h2>  <!-- document title -->
+
 <!-- author(s): Hans Petter Langtangen -->
 <center>
 <b style="font-weight: bold">Hans Petter Langtangen</b> [1, 2]
 </center>
-<p><!-- institution(s) --></p>
+<!-- institution(s) -->
 <center>
 [1] <b style="font-weight: bold">Simula Research Laboratory</b>
 </center>
@@ -189,31 +192,27 @@ MathJax.Hub.Config({
 [2] <b style="font-weight: bold">University of Oslo</b>
 </center>
 <br>
-<center>
-<h4>Jan 32, 2100</h4>
-</center> <!-- date -->
+<center><b style="font-weight: bold">Jan 32, 2100</b></center> <!-- date -->
 <br>
-<p></p>
 </section>
 
 
 <section class="slide">
 <h1 id="this-is-the-first-section">This is the first section </h1>
 <!-- Short title: First -->
-<p></p>
 </section>
 
 
 <section class="slide">
 <h2 id="figure-and-bullet-list">Figure and bullet list </h2>
-<p></p>
+
 
 <table border="0">
 <tr>
 <td class="padding">
-
 <div class="slide alert alert-block alert-block alert-text-small">
 <b style="font-weight: bold">Title with comma, and brackets: \( [a,b] \)</b>
+<p>
 <ul>
 
 <p><li class="slide"> Here is a <em>wave signal</em> \( f(x-ct) \)</li>
@@ -223,61 +222,47 @@ MathJax.Hub.Config({
 <p><li class="slide"> But here it is just a figure</li>
 </ul>
 </div>
-
-
 </td>
 <td class="padding">
 <div class="alert alert-block alert-block alert-text-normal">
 <b style="font-weight: bold"></b>
 <p>
 <br /><br /><center>
-<p><img src="../doc/src/manual/fig/wave1D.png" align="bottom" width=300></p>
-</center>
+<p><img src="testfigs/wave1D.png" align="bottom" width=300></p>
+<p></center></p>
 <br /><br/>
 </div>
 
 </td>
 </tr>
 </table>
-
-<p></p>
-
-<p></p>
 </section>
 
 
 <section class="slide">
 <h2 id="slide-with-pop-ups-in-red-and-notes">Slide with pop-ups in red and notes </h2>
-<p></p>
+
 <!-- begin inline comment -->
 <font color="red">(<b style="font-weight: bold">hpl 1</b>: Comments are typeset as usual in DocOnce.)</font>
 <!-- end inline comment -->
-<p></p>
+
 
 <p class="slide">
-
-Here we have a paragraph to pop up in red.<br />
-And a line more
-
+Here we have a paragraph to pop up in red.<br /> And a line more</p>
 </p>
 
-<p></p>
+
 <div class="notes">
 <!-- press "n" to activate -->
 
-One can also have ordinary notes.
-Over multiple lines.
+<p>One can also have ordinary notes. Over multiple lines.</p>
 
 </div>
-
-<p></p>
 </section>
 
 
 <section class="slide">
 <h2 id="a-latex-document">A LaTeX document </h2>
-<p></p>
-
 
 <!-- code=latex (!bc latex) typeset with pygments style "emacs" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -309,16 +294,11 @@ Jane Doe<span style="color: #AA22FF; font-weight: bold">\footnote</span><span st
   </div>
 </div>
 
-<p></p>
-
 <div class="slide alert alert-block alert-notice alert-text-normal">
 <b style="font-weight: bold">Notice</b>
 <p>
-LaTeX has a lot of backslashes.
+<p>LaTeX has a lot of backslashes.</p>
 </div>
-
-<p></p>
-
 
 <!-- code=latex (!bc latex) typeset with pygments style "emacs" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -343,14 +323,12 @@ bla-bla
     </div>
   </div>
 </div>
-
-<p></p>
 </section>
 
 
 <section class="slide">
 <h2 id="an-html-document">An HTML document </h2>
-<p></p>
+
 
 <!-- code=html (!bc html) typeset with pygments style "emacs" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -377,44 +355,40 @@ bla-bla
     </div>
   </div>
 </div>
-
-<p></p>
 </section>
 
 
 <section class="slide">
 <h1 id="second-section">Second section </h1>
-<p></p>
+
 <div class="alert alert-block alert-block alert-text-normal">
 <b style="font-weight: bold"></b>
 <p>
 <br /><br /><center>
-<p><img src="../doc/src/manual/fig/wave1D.png" align="bottom" width=600></p>
-</center>
+<p><img src="testfigs/wave1D.png" align="bottom" width=600></p>
+<p></center></p>
 <br /><br/>
 </div>
-
-<p></p>
 </section>
 
 
 <section class="slide">
 <h2 id="some-math-and-computer-code">Some math and computer code </h2>
-<p></p>
+
 <div class="alert alert-block alert-block alert-text-normal">
 <b style="font-weight: bold">A simple, mathematical formula where \( t\in [0,\pi] \):</b>
+<p>
 <p>&nbsp;<br>
 $$ f(x,y,t) = e^{-xt}\sin\pi y $$
 <p>&nbsp;<br>
 </div>
 
-<p></p>
+
 <div class="alert alert-block alert-block alert-text-normal">
 <b style="font-weight: bold">Bash demanded more of DocOnce than Python, so let's do Bash:</b>
 <p>
-First, inline <code>$? != 0</code>, then comments with dollar variables (and minted
-style):
-<p></p>
+<p>First, inline <code>$? != 0</code>, then comments with dollar variables (and minted style):</p>
+
 
 <!-- code=bash (!bc shcod) typeset with pygments style "emacs" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -442,14 +416,12 @@ style):
   </div>
 </div>
 </div>
-
-<p></p>
 </section>
 
 
 <section class="slide">
 <h2 id="pop-ups-inside-code-blocks-for-beamer-slides-only">Pop ups inside code blocks (for Beamer slides only) </h2>
-<p></p>
+
 
 <!-- code=python (!bc pycod) typeset with pygments style "emacs" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -478,42 +450,32 @@ style):
     </div>
   </div>
 </div>
-
-<p></p>
 </section>
 
 
 <section class="slide">
 <h2 id="various-admon-blocks">Various admon blocks </h2>
-<p></p>
-Can use admons to simulate blocks:
-<p></p>
+
+<p>Can use admons to simulate blocks:</p>
 
 <div class="slide alert alert-block alert-notice alert-text-large">
 <b style="font-weight: bold">Key PDE (with large title and math font):</b>
+<p>
 <p>&nbsp;<br>
 $$ \frac{\partial u}{\partial t} = \nabla^2 u $$
 <p>&nbsp;<br>
 </div>
 
-<p></p>
-
 <div class="slide alert alert-block alert-summary alert-text-normal">
 <b style="font-weight: bold"></b>
 <p>
-Just some block with text and a conclusion that something is important.
-This one pops up after the rest of the slide.
+<p>Just some block with text and a conclusion that something is important. This one pops up after the rest of the slide.</p>
 </div>
-
-<p></p>
 
 <div class="slide alert alert-block alert-warning alert-text-small">
 <b style="font-weight: bold">Warning</b>
 <p>
-Can use, e.g., a warning admon to have my own notes, preferably
-inside preprocess/mako if statements to turn notes on and off.
-This one is typeset in a small font and with the default
-title (Warning) since no title is specified.
+<p>Can use, e.g., a warning admon to have my own notes, preferably inside preprocess/mako if statements to turn notes on and off. This one is typeset in a small font and with the default title (Warning) since no title is specified.</p>
 </div>
 </section>
 
@@ -587,311 +549,6 @@ title (Warning) since no title is specified.
 </script>
 
 
+
 </body>
 </html>
-deck.js:
-boilerplate.html
-CHANGELOG.md
-core
-extensions
-introduction
-jquery.min.js
-Makefile
-MIT-license.txt
-modernizr.custom.js
-README.md
-test
-themes
-
-deck.js/core:
-deck.core.css
-deck.core.js
-deck.core.scss
-print.css
-print.scss
-
-deck.js/extensions:
-codemirror
-deck.annotate.js
-goto
-menu
-navigation
-notes
-pointer
-presenterview
-scale
-status
-
-deck.js/extensions/codemirror:
-codemirror.js
-CONTRIBUTORS.txt
-deck.codemirror.css
-deck.codemirror.js
-deck.codemirror.scss
-introduction
-MIT-LICENSE.txt
-mode
-README.md
-themes
-VERSION.txt
-
-deck.js/extensions/codemirror/introduction:
-index.html
-introduction.css
-introduction.js
-introduction.scss
-modernizr.custom.js
-
-deck.js/extensions/codemirror/mode:
-clike
-clojure
-coffeescript
-css
-diff
-haskell
-htmlmixed
-javascript
-lua
-php
-plsql
-python
-r
-rst
-ruby
-scheme
-smalltalk
-sparql
-stex
-velocity
-xml
-xmlpure
-yaml
-
-deck.js/extensions/codemirror/mode/clike:
-clike.js
-index.html
-
-deck.js/extensions/codemirror/mode/clojure:
-clojure.js
-index.html
-
-deck.js/extensions/codemirror/mode/coffeescript:
-coffeescript.js
-index.html
-LICENSE
-
-deck.js/extensions/codemirror/mode/css:
-css.js
-index.html
-
-deck.js/extensions/codemirror/mode/diff:
-diff.css
-diff.js
-index.html
-
-deck.js/extensions/codemirror/mode/haskell:
-haskell.js
-index.html
-
-deck.js/extensions/codemirror/mode/htmlmixed:
-htmlmixed.js
-index.html
-
-deck.js/extensions/codemirror/mode/javascript:
-index.html
-javascript.js
-
-deck.js/extensions/codemirror/mode/lua:
-index.html
-lua.js
-
-deck.js/extensions/codemirror/mode/php:
-index.html
-php.js
-
-deck.js/extensions/codemirror/mode/plsql:
-index.html
-plsql.js
-
-deck.js/extensions/codemirror/mode/python:
-index.html
-LICENSE.txt
-python.js
-
-deck.js/extensions/codemirror/mode/r:
-index.html
-LICENSE
-r.js
-
-deck.js/extensions/codemirror/mode/rst:
-index.html
-rst.css
-rst.js
-
-deck.js/extensions/codemirror/mode/ruby:
-index.html
-LICENSE
-ruby.js
-
-deck.js/extensions/codemirror/mode/scheme:
-index.html
-scheme.js
-
-deck.js/extensions/codemirror/mode/smalltalk:
-index.html
-smalltalk.js
-
-deck.js/extensions/codemirror/mode/sparql:
-index.html
-sparql.js
-
-deck.js/extensions/codemirror/mode/stex:
-index.html
-stex.js
-
-deck.js/extensions/codemirror/mode/velocity:
-index.html
-velocity.js
-
-deck.js/extensions/codemirror/mode/xml:
-index.html
-xml.js
-
-deck.js/extensions/codemirror/mode/xmlpure:
-index.html
-xmlpure.js
-
-deck.js/extensions/codemirror/mode/yaml:
-index.html
-yaml.js
-
-deck.js/extensions/codemirror/themes:
-cobalt.css
-default.css
-elegant.css
-lesser-dark.css
-neat.css
-night.css
-
-deck.js/extensions/deck.annotate.js:
-bower.json
-deck.annotate.css
-deck.annotate.js
-example.png
-README.md
-
-deck.js/extensions/goto:
-deck.goto.css
-deck.goto.html
-deck.goto.js
-deck.goto.scss
-
-deck.js/extensions/menu:
-deck.menu.css
-deck.menu.js
-deck.menu.scss
-
-deck.js/extensions/navigation:
-deck.navigation.css
-deck.navigation.html
-deck.navigation.js
-deck.navigation.scss
-
-deck.js/extensions/notes:
-deck.notes.css
-deck.notes.js
-README.md
-
-deck.js/extensions/pointer:
-deck.pointer.css
-deck.pointer.js
-
-deck.js/extensions/presenterview:
-deck.presenterview.css
-deck.presenterview.html
-deck.presenterview.js
-iframe.html
-presenterwindow.js
-README.md
-TODO
-
-deck.js/extensions/scale:
-deck.scale.css
-deck.scale.js
-deck.scale.scss
-
-deck.js/extensions/status:
-deck.status.css
-deck.status.html
-deck.status.js
-deck.status.scss
-
-deck.js/introduction:
-index.html
-
-deck.js/test:
-fixtures
-index.html
-lib
-settings.js
-spec.core.js
-spec.goto.js
-spec.menu.js
-spec.navigation.js
-spec.scale.js
-spec.status.js
-
-deck.js/test/fixtures:
-empty.html
-nesteds.html
-standard.html
-
-deck.js/test/lib:
-jasmine.css
-jasmine-html.js
-jasmine-jquery.js
-jasmine.js
-
-deck.js/themes:
-images
-style
-transition
-
-deck.js/themes/images:
-cbc_footer.png
-cbc_symbol.png
-simula_footer.png
-simula_logo.png
-simula_symbol.png
-uio_footer.png
-uio_symbol.png
-
-deck.js/themes/style:
-beamer.css
-beamer.scss
-cbc.css
-mnml.css
-neon.css
-neon.scss
-_reset.scss
-sandstone.aurora.css
-sandstone.css
-sandstone.dark.css
-sandstone.default.css
-sandstone.firefox.css
-sandstone.light.css
-sandstone.mdn.css
-sandstone.nightly.css
-sandstone.scss
-swiss.css
-swiss.scss
-web-2.0.css
-web-2.0.scss
-
-deck.js/themes/transition:
-fade.css
-fade.scss
-horizontal-slide.css
-horizontal-slide.scss
-vertical-slide.css
-vertical-slide.scss

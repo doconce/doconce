@@ -4,8 +4,8 @@
 end of tocinfo -->
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-<p></p>
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
+
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -60,13 +60,22 @@ Text with a name like Åsmund Ødegård works in general.
 
 
 
-The code blocks:
+
+************************************************************
+str>>> The code blocks:
 
 
-The code block types:
 
 
-The tex blocks:
+************************************************************
+str>>> The code block types:
+
+
+
+
+************************************************************
+str>>> The tex blocks:
+
 
 
 
@@ -241,7 +250,7 @@ Text with a name like &#197;smund &#216;deg&#229;rd works in general.
 ************************************************************
 str>>> The file after all inline substitutions:
 
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 
 <p></p>
 
@@ -249,15 +258,15 @@ Text with a name like &#197;smund &#216;deg&#229;rd works in general.
 ************************************************************
 str>>> The file after typesetting of tables:
 
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 
 <p></p>
 
 
 ************************************************************
-str>>> The file after commenting out !split, !bpop, !epop, !bslidecell, !eslidecell, !bnotes, !enotes:
+str>>> The file after commenting out !commands
 
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 
 <p></p>
 
@@ -266,7 +275,7 @@ Text with a name like &#197;smund &#216;deg&#229;rd works in general.
 str>>> File before call to insert_code_blocks (format html):
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 <p></p>
 <!-- ------------------- end of main content --------------- -->
 
@@ -275,7 +284,7 @@ Text with a name like &#197;smund &#216;deg&#229;rd works in general.
 str>>> File after call to insert_code_and tex (format html):
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 <p></p>
 <!-- ------------------- end of main content --------------- -->
 
@@ -284,7 +293,7 @@ Text with a name like &#197;smund &#216;deg&#229;rd works in general.
 str>>> After replacement of !bc and !ec (pygmentized code):
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 <p></p>
 <!-- ------------------- end of main content --------------- -->
 
@@ -298,8 +307,8 @@ str>>> The file after inserting intro/outro and tex/code blocks, and fixing last
 end of tocinfo -->
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-<p></p>
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
+
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -313,8 +322,8 @@ str>>> The file after typesetting of admons and the rest of the !b/!e environmen
 end of tocinfo -->
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-<p></p>
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
+
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -328,8 +337,8 @@ str>>> The file after potential removal of solutions, answers, hints, etc.:
 end of tocinfo -->
 
 <!-- ------------------- main content ---------------------- -->
-Text with a name like &#197;smund &#216;deg&#229;rd works in general.
-<p></p>
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
+
 <!-- ------------------- end of main content --------------- -->
 
 

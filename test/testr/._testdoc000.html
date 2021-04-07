@@ -1,6 +1,7 @@
 <!--
 Automatically generated HTML file from DocOnce source
 (https://github.com/doconce/doconce/)
+doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg --html_raw_github_url=raw.github
 -->
 <html>
 <head>
@@ -69,6 +70,14 @@ hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa; }
 .alert-warning { background-image: url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_yellow_warning.png); }
 .alert-question {background-image:url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_yellow_question.png); }
 div { text-align: justify; text-justify: inter-word; }
+.tab {
+  padding-left: 1.5em;
+}
+div.toc p,a {
+  line-height: 1.3;
+  margin-top: 1.1;
+  margin-bottom: 1.1;
+}
 </style>
 <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
 <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
@@ -261,13 +270,12 @@ MathJax.Hub.Config({
 </script>
 
 
-    
 <a name="part0000"></a>
 <!-- ------------------- main content ---------------------- -->
 <center>
 <h1>A Document for Testing DocOnce</h1>
 </center>  <!-- document title -->
-<p></p>
+
 <!-- author(s): Hans Petter Langtangen, Kaare Dump, A. Dummy Author, I. S. Overworked and Outburned, and J. Doe -->
 <center>
 <b>Hans Petter Langtangen</b> [1, 2] (<tt>hpl at simula.no</tt>)
@@ -284,7 +292,7 @@ MathJax.Hub.Config({
 <center>
 <b>J. Doe</b>  (<tt>j_doe at cyberspace.com</tt>)
 </center>
-<p><!-- institution(s) --></p>
+<!-- institution(s) -->
 <center>
 [1] <b>Center for Biomedical Computing, Simula Research Laboratory</b>
 </center>
@@ -311,110 +319,62 @@ MathJax.Hub.Config({
 <h4>Jan 32, 2100</h4>
 </center> <!-- date -->
 <br>
-<p></p>
 <h1 id="table_of_contents">Table of contents</h1>
-<p></p>
-<a href="._testdoc001.html#sec1"> Section 1 </a>
+
+<div class='toc'>
+<p><a href="._testdoc001.html#sec1"> Section 1 </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#subsec1"> Subsection 1 </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#subsec:ex"> Subsection 2: Testing figures </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#custom-environments"> Custom Environments </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#subsec:table"> Tables </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#_just-bold_"> <b>Just bold</b> </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#just-emphasize"> <em>Just emphasize</em> </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#just-verbatim"> <code>Just verbatim</code> </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#_bold_-beginning"> <b>Bold</b> beginning </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#emphasize-beginning"> <em>Emphasize</em> beginning </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#verbatim-beginning"> <code>Verbatim</code> beginning </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#maybe-_bold-end_"> Maybe <b>bold end</b> </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#maybe-emphasize-end"> Maybe <em>emphasize end</em> </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#maybe-verbatim-end"> Maybe <code>verbatim end</code> </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#the-middle-has-<b>bold</b>-word"> The middle has <b>bold</b> word </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#the-middle-has-emphasize-word"> The middle has <em>emphasize</em> word </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#the-middle-has-verbatim-word"> The middle has <code>verbatim</code> word </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#bibliography-test"> Bibliography test </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#Example"> Example 1: Examples can be typeset as exercises </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#user-defined-environments"> User-defined environments </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#ex:test:1p1"> Example 1: A test function </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#ex:math:1p1"> Example 2: Addition </a></p>
+<p><span class="tab"> <a href="._testdoc001.html#subsubsec:ex"> URLs </a></p>
+<p><a href="._testdoc002.html#latex-mathematics"> LaTeX Mathematics </a></p>
+<p><a href="._testdoc002.html#exercises"> Exercises </a></p>
+<p><span class="tab"> <a href="._testdoc002.html#demo:ex:1"> Problem 2: Flip a Coin </a></p>
+<p><span class="tab"> <a href="._testdoc002.html#not-an-exercise"> Not an exercise </a></p>
+<p><span class="tab"> <a href="._testdoc002.html#my:exer1"> Exercise 3: Test of plain text exercise </a></p>
+<p><span class="tab"> <a href="._testdoc002.html#demo:ex:2"> Project 4: Compute a Probability </a></p>
+<p><span class="tab"> <a href="._testdoc002.html#proj:circle1"> Project 5: Explore Distributions of Random Circles </a></p>
+<p><span class="tab"> <a href="._testdoc002.html#exer:dist"> Exercise 6: Determine some Distance </a></p>
+<p><span class="tab"> <a href="._testdoc002.html#some-exercise-without-the-exercise-prefix"> Some exercise without the "Exercise:" prefix </a></p>
+<p><span class="tab"> <a href="._testdoc002.html#sec:this:exer:de"> Exercise 8: Solution of differential equation </a></p>
+<p><span class="tab"> <a href="._testdoc002.html#example-9-just-an-example"> Example 9: Just an example </a></p>
+<p><a href="._testdoc002.html#here-goes-another-section"> Here goes another section </a></p>
+<p><a href="._testdoc002.html#more-exercises"> More Exercises </a></p>
+<p><span class="tab"> <a href="._testdoc002.html#exer:some:formula"> Exercise 10: Make references to projects and problems </a></p>
+<p><span class="tab"> <a href="._testdoc002.html#exer:you"> Project 11: References in a headings do not work well in html </a></p>
+<p><a href="._testdoc002.html#references"> References </a></p>
+<p><a href="._testdoc002.html#app1"> Appendix: Just for testing; part I </a></p>
+<p><span class="tab"> <a href="._testdoc002.html#a-subsection-within-an-appendix"> A subsection within an appendix </a></p>
+<p><a href="._testdoc002.html#app2"> Appendix: Just for testing; part II </a></p>
+<p><span class="tab"> <a href="._testdoc003.html#appendix-testing-identical-titles"> Appendix: Testing identical titles </a></p>
+<p><span class="tab"> <a href="._testdoc002.html#test:title:id1"> Appendix: Testing identical titles </a></p>
+<p><span class="tab"> <a href="._testdoc002.html#test:title:id2"> Appendix: Testing identical titles </a></p>
+<p><span class="tab"> <a href="._testdoc003.html#appendix-testing-identical-titles"> Appendix: Testing identical titles </a></p>
+<p><span class="tab"> <a href="._testdoc003.html#appendix-testing-inline-comments"> Appendix: Testing inline comments </a></p>
+<p><span class="tab"> <a href="._testdoc003.html#appendix-testing-headings-ending-with-verbatim-inline"> Appendix: Testing headings ending with <code>verbatim inline</code> </a></p>
+<p></div></p>
 <br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#subsec1"> Subsection 1 </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#subsec:ex"> Subsection 2: Testing figures </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#custom-environments"> Custom Environments </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#subsec:table"> Tables </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#_just-bold_"> <b>Just bold</b> </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#just-emphasize"> <em>Just emphasize</em> </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#just-verbatim"> <code>Just verbatim</code> </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#_bold_-beginning"> <b>Bold</b> beginning </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#emphasize-beginning"> <em>Emphasize</em> beginning </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#verbatim-beginning"> <code>Verbatim</code> beginning </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#maybe-_bold-end_"> Maybe <b>bold end</b> </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#maybe-emphasize-end"> Maybe <em>emphasize end</em> </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#maybe-verbatim-end"> Maybe <code>verbatim end</code> </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#the-middle-has-<b>bold</b>-word"> The middle has <b>bold</b> word </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#the-middle-has-emphasize-word"> The middle has <em>emphasize</em> word </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#the-middle-has-verbatim-word"> The middle has <code>verbatim</code> word </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#bibliography-test"> Bibliography test </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#Example"> Example 1: Examples can be typeset as exercises </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#user-defined-environments"> User-defined environments </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#ex:test:1p1"> Example 1: A test function </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#ex:math:1p1"> Example 2: Addition </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc001.html#subsubsec:ex"> URLs </a>
-<br>
-<a href="._testdoc002.html#latex-mathematics"> LaTeX Mathematics </a>
-<br>
-<a href="._testdoc002.html#exercises"> Exercises </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#demo:ex:1"> Problem 2: Flip a Coin </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#not-an-exercise"> Not an exercise </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#my:exer1"> Exercise 3: Test of plain text exercise </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#demo:ex:2"> Project 4: Compute a Probability </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#proj:circle1"> Project 5: Explore Distributions of Random Circles </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#exer:dist"> Exercise 6: Determine some Distance </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#some-exercise-without-the-exercise-prefix"> Some exercise without the "Exercise:" prefix </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#sec:this:exer:de"> Exercise 8: Solution of differential equation </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#example-9-just-an-example"> Example 9: Just an example </a>
-<br>
-<a href="._testdoc002.html#here-goes-another-section"> Here goes another section </a>
-<br>
-<a href="._testdoc002.html#more-exercises"> More Exercises </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#exer:some:formula"> Exercise 10: Make references to projects and problems </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#exer:you"> Project 11: References in a headings do not work well in html </a>
-<br>
-<a href="._testdoc002.html#references"> References </a>
-<br>
-<a href="._testdoc002.html#app1"> Appendix: Just for testing; part I </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#a-subsection-within-an-appendix"> A subsection within an appendix </a>
-<br>
-<a href="._testdoc002.html#app2"> Appendix: Just for testing; part II </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc003.html#appendix-testing-identical-titles"> Appendix: Testing identical titles </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#test:title:id1"> Appendix: Testing identical titles </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc002.html#test:title:id2"> Appendix: Testing identical titles </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc003.html#appendix-testing-identical-titles"> Appendix: Testing identical titles </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc003.html#appendix-testing-inline-comments"> Appendix: Testing inline comments </a>
-<br>
-&nbsp; &nbsp; &nbsp; <a href="._testdoc003.html#appendix-testing-headings-ending-with-verbatim-inline"> Appendix: Testing headings ending with <code>verbatim inline</code> </a>
-<br>
-<p></p>
+
 <p>
 <!-- begin bottom navigation -->
 <table style="width: 100%"><tr><td>

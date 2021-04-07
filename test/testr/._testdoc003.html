@@ -1,6 +1,7 @@
 <!--
 Automatically generated HTML file from DocOnce source
 (https://github.com/doconce/doconce/)
+doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg --html_raw_github_url=raw.github
 -->
 <html>
 <head>
@@ -69,6 +70,14 @@ hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa; }
 .alert-warning { background-image: url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_yellow_warning.png); }
 .alert-question {background-image:url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_yellow_question.png); }
 div { text-align: justify; text-justify: inter-word; }
+.tab {
+  padding-left: 1.5em;
+}
+div.toc p,a {
+  line-height: 1.3;
+  margin-top: 1.1;
+  margin-bottom: 1.1;
+}
 </style>
 <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
 <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
@@ -261,7 +270,6 @@ MathJax.Hub.Config({
 </script>
 
 
-    
 <a name="part0003"></a>
 <!-- !split -->
 <h2>Test of quizzes</h2>
@@ -269,149 +277,84 @@ MathJax.Hub.Config({
 <!-- begin quiz -->
 <hr>
 <p>
-<b>Fundamental test:</b> What is the capital of Norway?</p>
+<b>Question:</b> <p>[Fundamental test:] What is the capital of Norway?</p></p>
 
-<p><div title="Wrong! Stockholm is the capital of Sweden."><b>Answer 1:</b>
-Stockholm
+<p><div title="Wrong!  Stockholm is the capital of Sweden. "><b>Choice A:</b>
+<p>[Answer 1:] Stockholm</p>
 </div></p>
 
-<p><div title="Wrong! "><b>Answer 2:</b>
-London
+<p><div title="Wrong! "><b>Choice B:</b>
+<p>[Answer 2:] London</p>
 </div></p>
 
-<p><div title="Right! "><b>Answer 3:</b>
-Oslo
+<p><div title="Right! "><b>Choice C:</b>
+<p>[Answer 3:] Oslo</p>
 </div></p>
 
-<p><div title="Wrong! Those from Bergen would claim so, but nobody else."><b>Choice D:</b>
-Bergen
+<p><div title="Wrong!  Those from Bergen would claim so, but nobody else. "><b>Choice D:</b>
+<p>Bergen</p>
 </div></p>
 <hr>
 <!-- end quiz -->
 
-<p></p>
 <h2 id="appendix-testing-identical-titles">Appendix: Testing identical titles </h2>
-<p></p>
-Without label.
-<p></p>
+
+<p>Without label.</p>
+
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Tip</b>
 <p>
-Here is a tip or hint box, typeset as a notice box.
+<p>Here is a tip or hint box, typeset as a notice box.</p>
 </div>
 
-<p></p>
-Need a lot of text to surround the summary box.
-Version control systems allow you to record the history of files
-and share files among several computers and collaborators in a
-professional way. File changes on one computer are updated or
-merged with changes on another computer. Especially when working
-with programs or technical reports it is essential
-to have changes documented and to
-ensure that every computer and person involved in the project
-have the latest updates of the files.
-Greg Wilson' excellent <a href="https://software-carpentry.org/2010/07/script-for-introduction-to-version-control/" target="_self">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly
-from using version control systems.
-<p></p>
+
+<p>Need a lot of text to surround the summary box. Version control systems allow you to record the history of files and share files among several computers and collaborators in a professional way. File changes on one computer are updated or merged with changes on another computer. Especially when working with programs or technical reports it is essential to have changes documented and to ensure that every computer and person involved in the project have the latest updates of the files. Greg Wilson' excellent <a href="https://software-carpentry.org/2010/07/script-for-introduction-to-version-control/" target="_self">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly from using version control systems.</p>
+
 <div class="alert alert-block alert-summary alert-text-normal">
 <b>Summary</b>
 <p>
-<b>Bold remark:</b> Make some text with this summary.
-Much testing in this document, otherwise stupid content.
-Much testing in this document, otherwise stupid content.
-Much testing in this document, otherwise stupid content.
-Much testing in this document, otherwise stupid content.
-Much testing in this document, otherwise stupid content.
-Much testing in this document, otherwise stupid content.
-Much testing in this document, otherwise stupid content.
-Much testing in this document, otherwise stupid content.
-Much testing in this document, otherwise stupid content.
+<p><b>Bold remark:</b> Make some text with this summary. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content.</p>
 </div>
 
-<p></p>
-Projects that you want to share among several computers or project
-workers are today most conveniently stored at some web site "in the
-cloud" and updated through communication with that site. I strongly
-recommend you to use such sites for all serious programming and
-scientific writing work - and all other important files.
-<p></p>
-The simplest services for hosting project files are <a href="https://dropbox.com" target="_self">Dropbox</a> and <a href="https://drive.google.com" target="_self">Google Drive</a>.
-It is very easy to get started with these systems, and they allow you
-to share files among laptops and mobile units with as many users as
-you want. The systems offer a kind of version control in that the
-files are stored frequently (several times per minute), and you can go
-back to previous versions for the last 30 days. However, it is
-challenging  to find the right version from the past when there are
-so many of them.
-<p></p>
-More seriously, when several people may edit files simultaneously, it
-can be difficult detect who did what when, roll back to previous
-versions, and to manually merge the edits when these are
-incompatible. Then one needs more sophisticated tools than Dropbox or
-Google Drive: project hosting services with true version control
-systems.  The following text aims at providing you with the minimum
-information to started with such systems. Numerous other tutorials
-contain more comprehensive material and in-depth explanations of the
-concepts and tools.
-<p></p>
-The idea with project hosting services is that you have the files
-associated with a project in the cloud. Many people may share these
-files.  Every time you want to work on the project you explicitly
-update your version of the files, edit the files as you like, and
-synchronize the files with the "master version" at the site where the
-project is hosted.  If you at some point need to go back to a
-version of the files at some particular point in the past,
-this is an easy operation. You can also use tools to see
-what various people have done with the files in the various versions.
-<p></p>
-All these services are very similar. Below we describe how you get
-started with Bitbucket, GitHub, and Googlecode. Launchpad works very
-similarly to the latter three. All the project hosting services have
-excellent introductions available at their web sites, but the recipes
-below are much shorter and aim at getting you started as quickly as
-possible by concentrating on the most important need-to-know steps.
-The Git tutorials we refer to later in this document contain more
-detailed information and constitute of course very valuable readings
-when you use version control systems every day. The point now is
-to get started.
-<p></p>
+
+<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site "in the cloud" and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
+
+<p>The simplest services for hosting project files are <a href="https://dropbox.com" target="_self">Dropbox</a> and <a href="https://drive.google.com" target="_self">Google Drive</a>. It is very easy to get started with these systems, and they allow you to share files among laptops and mobile units with as many users as you want. The systems offer a kind of version control in that the files are stored frequently (several times per minute), and you can go back to previous versions for the last 30 days. However, it is challenging  to find the right version from the past when there are so many of them.</p>
+
+<p>More seriously, when several people may edit files simultaneously, it can be difficult detect who did what when, roll back to previous versions, and to manually merge the edits when these are incompatible. Then one needs more sophisticated tools than Dropbox or Google Drive: project hosting services with true version control systems.  The following text aims at providing you with the minimum information to started with such systems. Numerous other tutorials contain more comprehensive material and in-depth explanations of the concepts and tools.</p>
+
+<p>The idea with project hosting services is that you have the files associated with a project in the cloud. Many people may share these files.  Every time you want to work on the project you explicitly update your version of the files, edit the files as you like, and synchronize the files with the "master version" at the site where the project is hosted.  If you at some point need to go back to a version of the files at some particular point in the past, this is an easy operation. You can also use tools to see what various people have done with the files in the various versions.</p>
+
+<p>All these services are very similar. Below we describe how you get started with Bitbucket, GitHub, and Googlecode. Launchpad works very similarly to the latter three. All the project hosting services have excellent introductions available at their web sites, but the recipes below are much shorter and aim at getting you started as quickly as possible by concentrating on the most important need-to-know steps. The Git tutorials we refer to later in this document contain more detailed information and constitute of course very valuable readings when you use version control systems every day. The point now is to get started.</p>
 <h2 id="appendix-testing-inline-comments">Appendix: Testing inline comments </h2>
-<p></p>
+
 <!-- Names can be [ A-Za-z0-9_'+-]+ -->
-<p></p>
-Projects that you want to share among several computers or project
-workers are today most conveniently stored at some web site "in the
-cloud" and updated through communication with that
-site. 
+
+<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site "in the cloud" and updated through communication with that site. 
 <!-- begin inline comment -->
 <font color="red">(<b>hpl's semi opinion 1</b>: not sure if in the cloud is understood by all.)</font>
 <!-- end inline comment -->
- I strongly recommend you to use such sites for all serious
-programming and scientific writing work - and all other important
-files.
-<p></p>
-The simplest services for hosting project files is Dropbox. 
+ I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
+
+<p>The simplest services for hosting project files is Dropbox. 
 <!-- begin inline comment -->
 <font color="red">(<b>mp 2</b>: Simply go to <a href="https://dropbox.com" target="_self"><tt>https://dropbox.com</tt></a> and watch the video. It explains how files, like <code>myfile.py</code>, perhaps containing much math, like \( \partial u/\partial t \), are easily communicated between machines.)</font>
 <!-- end inline comment -->
- It
-is very easy to get started with Dropbox, and it allows you to share
-files among  <font color="red">(<b>hpl 3</b>:)</font> <del> laptops and mobile units </del> <font color="red">computers, tablets, and phones</font>.
-<p></p>
+ It is very easy to get started with Dropbox, and it allows you to share files among  <font color="red">(<b>hpl 3</b>:)</font> <del> laptops and mobile units </del> <font color="red">computers, tablets, and phones</font>.</p>
+
 <!-- Test horizontal rule -->
-<p></p>
+
 <hr>
-<p></p>
+
 <!-- Coments for editing -->
-<p></p>
-First<font color="red">, (<b>edit 4</b>: add comma)</font> consider a quantity \( Q \).  <font color="red">(<b>edit 5</b>:)</font> <del> To this end, </del> <font color="red">We note that</font>
-\( Q>0 \), because  <font color="red">(<b>edit 6</b>:)</font> <del> a </del> negative  <font color="red">(<b>edit 7</b>:)</font> <del> quantity is </del> <font color="red">quantities are</font>  <font color="red">(<b>edit 8</b>:)</font> <del> just </del> negative.  <font color="red">(<b>edit 9</b>:) This comes as no surprise.</font>
-<p></p>
+
+<p>First<font color="red">, (<b>edit 4</b>: add comma)</font> consider a quantity \( Q \).  <font color="red">(<b>edit 5</b>:)</font> <del> To this end, </del> <font color="red">We note that</font> \( Q>0 \), because  <font color="red">(<b>edit 6</b>:)</font> <del> a </del> negative  <font color="red">(<b>edit 7</b>:)</font> <del> quantity is </del> <font color="red">quantities are</font>  <font color="red">(<b>edit 8</b>:)</font> <del> just </del> negative.  <font color="red">(<b>edit 9</b>:) This comes as no surprise.</font></p>
+
 <!-- Test tailored latex figure references with page number -->
-Let us refer to Figure <a href="._testdoc001.html#fig:impact">1</a> again.
-<p></p>
-Test references in a list:
-<p></p>
+<p>Let us refer to Figure <a href="._testdoc001.html#fig:impact">1</a> again.</p>
+
+<p>Test references in a list:</p>
+
 <p><table border="0">
 
  </tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> <a href="._testdoc001.html#sec1">Section 1</a></li>
@@ -420,27 +363,21 @@ Test references in a list:
 </td></tr></table>
 
 <h2 id="appendix-testing-headings-ending-with-verbatim-inline">Appendix: Testing headings ending with <code>verbatim inline</code> </h2>
-<p></p>
-The point here is to test 1) <code>verbatim</code> code in headings, and 2)
-ending a heading with verbatim code as this triggers a special
-case in LaTeX.
-<p></p>
-We also test mdash&mdash;used as alternative to hyphen without spaces around,
-or in quotes:
-<p></p>
+
+<p>The point here is to test 1) <code>verbatim</code> code in headings, and 2) ending a heading with verbatim code as this triggers a special case in LaTeX.</p>
+
+<p>We also test mdash&mdash;used as alternative to hyphen without spaces around, or in quotes:</p>
+
 <blockquote>
-    <em>Fun is fun</em>.&mdash;Unknown.
+    <p><em>Fun is fun</em>.&mdash;Unknown.</p>
 </blockquote>
 
-<p></p>
-The ndash should also be tested &ndash; as in the Hanson&ndash;Nilson equations
-on page 277&ndash;278.
-<p></p>
-And finally, what about admons, quotes, and boxes? They are tested
-in a separate document: <code>admon.do.txt</code>.
-<p></p>
-<p id="def_footnote_5"><a href="._testdoc001.html#link_footnote_5"><b>5:</b></a> Not much to add here, but the footnote
-is at the end with only one newline.</p>
+
+<p>The ndash should also be tested &ndash; as in the Hanson&ndash;Nilson equations on page 277&ndash;278.</p>
+
+<p>And finally, what about admons, quotes, and boxes? They are tested in a separate document: <code>admon.do.txt</code>.</p>
+
+<p><p id="def_footnote_5"><a href="._testdoc001.html#link_footnote_5"><b>5:</b></a> Not much to add here, but the footnote is at the end with only one newline.</p></p>
 <p>
 <!-- begin bottom navigation -->
 <table style="width: 100%"><tr><td>
