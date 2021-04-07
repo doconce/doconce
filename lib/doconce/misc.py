@@ -7206,7 +7206,7 @@ def find_file_with_extensions(filename_in, allowed_extensions=['']):
             break
     if ext == None:
         print('*** error: could not find any file "%s*"' % filename_in)
-        print('    with extensions %s' % ' , '.join(allowed_extensions))
+        print('    with extensions "%s"' % '" , "'.join(allowed_extensions))
         dirname, basename = None, None
         #_abort()
     # Remove initial '.' or  './'
