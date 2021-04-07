@@ -104,17 +104,21 @@ def test_fix_media_src():
                    '"Figure reference: [ch1:figure](ch1:figure.html#ch1:figure)\n",\n'
                    '"<!-- dom:FIGURE: [mypic.png, width=500] Figure and label <div id=\"ch1:figure\"></div> -->\n",'
                    '   "<div id=\"ch1:figure\"></div>\n",'
-                   '   "<img src=\"mypic.png\" width=500><p style=\"font-size: 0.9em\"><i>Figure 1: Figure and label</i></p>\n",'
+                   '   "<img src=\"mypic.png\" width=500><p style=\"font-size: 0.9em\">'
+                   '<i>Figure 1: Figure and label</i></p>\n",'
                    '   "<!-- end figure -->"\n]')
-    dirname, dest = '', ''
-    out = fix_media_src(media_ipynb, dirname, dest)
+    out = fix_media_src(media_ipynb, dirname='', dest='')
     assert out == media_ipynb
-    dirname, dest = './', './'
-    out = fix_media_src(media_ipynb, dirname, dest)
+    out = fix_media_src(media_ipynb, dirname='./', dest='./')
     assert out == media_ipynb
-    dirname, dest = '.', '.'
-    out = fix_media_src(media_ipynb, dirname, dest)
+    out = fix_media_src(media_ipynb, dirname='.', dest='.')
     assert out == media_ipynb
+    assert '<!-- dom:FIGURE: [../../mypic.png,' in fix_media_src(media_ipynb, dirname='..', dest='whatever')
+    assert '<!-- dom:FIGURE: [folder/mypic.png,' in fix_media_src(media_ipynb, dirname='folder', dest='')
+    media_ipynb = '<img src=\\"wave1D_ipynb.png\\" width=500><p style=\\"font-size: 0.9em\\">'
+    assert fix_media_src(media_ipynb, dirname='folder', dest='folder/sub') == media_ipynb.replace('\"wave1D_','\"../wave1D_')
+    assert fix_media_src(media_ipynb, dirname='folder/sub', dest='folder') == media_ipynb.replace('\"wave1D_','\"sub/wave1D_')
+    assert fix_media_src(media_ipynb, dirname='folder/sub', dest='') == media_ipynb.replace('\"wave1D_','\"folder/sub/wave1D_')
     # TODO more examples
     pass
 
@@ -171,9 +175,9 @@ def cp_testdoc(dest):
     shutil.copy('_testdoc.do.txt', dest)
     shutil.copy('userdef_environments.py', dest)
     shutil.copy('bokeh_test.html', dest)
-    shutil.copy('papers.pub', dest)
+    shutil.copy('testfigs/papers.pub', dest)
 
-def AAAAAtest_doconce_format_html(tdir):
+def test_doconce_format_html(tdir):
     # cp files
     cp_testdoc(dest=tdir)
     # run doconce format html
@@ -197,7 +201,7 @@ def AAAAAtest_doconce_format_html(tdir):
     # TODO test from a different directory
     pass
 
-def AAAtest_doconce_jupyterbook(tdir):
+def test_doconce_jupyterbook(tdir):
     cp_testdoc(dest=tdir)
     # doconce jupyterbook
     # check that it fails

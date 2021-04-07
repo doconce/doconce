@@ -8,19 +8,7 @@ standard_library.install_aliases()
 #from builtins import str
 from builtins import range
 from past.builtins import basestring
-#from past.utils import old_div
-import os, sys, re#,shutil, glob, time, subprocess, codecs
-#from doconce import globals
-#from functools import reduce
-# ---- Import a pygments syntax highlighter for DocOnce ----
-#from pygments.lexers import get_lexer_by_name
-#from pygments.lexer import RegexLexer, \
-#     bygroups, include, using, this, do_insertions
-#from pygments.token import Punctuation, Text, Comment, Keyword, \
-#     Name, String, Generic, Operator, Number, Whitespace, Literal
-#from pygments.formatters import HtmlFormatter
-#from pygments import highlight
-#from pygments.styles import get_all_styles
+import os, sys, re
 from .misc import get_header_parts_footer, misc_option, remove_verbatim_blocks, \
     copy_latex_packages, copy_datafiles, tablify, get_header_parts_footer, doconce_split_html, \
     errwarn, _abort
