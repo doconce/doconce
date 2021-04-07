@@ -168,6 +168,28 @@ def test_typeset_lists():
 
 
 
+### functions in slides.py
+def test_get_package_data():
+    from doconce.slides import get_package_data
+    data = get_package_data('deck.js-latest.zip', os.path.join('deck.js-latest','boilerplate.html'))
+    assert '<!DOCTYPE html>' in data
+    assert 'deck.menu.css' in data
+    data = get_package_data('csss.zip', os.path.join('csss', 'theme.css'))
+    assert '.slide h1 {' in data
+
+def test_get_deck_header():
+    from doconce.slides import get_deck_header
+    output = get_deck_header()
+    assert 'imakewebthings/deck.js' in output
+    assert 'deck.js-latest/' in output
+
+def test_get_deck_footer():
+    from doconce.slides import get_deck_footer
+    output = get_deck_footer()
+    assert 'Begin extension snippets' in output
+
+
+
 ### system test
 def cp_testdoc(dest):
     shutil.copy('testdoc.do.txt', dest)
@@ -248,6 +270,24 @@ def test_doconce_jupyterbook(tdir):
             assert out.returncode == 0
             assert os.path.exists(os.path.join(tdir, '_toc.yml'))
             assert os.path.exists(os.path.join(tdir, '01_testdoc.md'))
+
+def test_doconce_html_slides(tdir):
+    # cp files
+    cp_testdoc(dest=tdir)
+    # first run doconce format html
+    out = subprocess.run(['doconce','format', 'html', 'testdoc.do.txt', '--examples_as_exercises'],
+                         cwd=tdir,  # NB: main process stays in curr dir, subprocesses in tdir
+                         stdout=subprocess.PIPE,
+                         stderr=subprocess.STDOUT,  # can do this in debugger mode: print(out.stdout)
+                         encoding='utf8')
+    assert out.returncode == 0
+    out = subprocess.run(['doconce', 'html_slides', 'testdoc.do.txt', 'deck'],
+                         cwd=tdir,  # NB: main process stays in curr dir, subprocesses in tdir
+                         stdout=subprocess.PIPE,
+                         stderr=subprocess.STDOUT,  # can do this in debugger mode: print(out.stdout)
+                         encoding='utf8')
+    assert out.returncode == 0
+
 
 def test_html_remove_whitespace():
     from doconce.html import html_remove_whitespace

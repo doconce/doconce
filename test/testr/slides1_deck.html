@@ -8,89 +8,32 @@
 <title>Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides</title>
 
 
-
 <!-- deck.js: https://github.com/imakewebthings/deck.js -->
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=1024, user-scalable=no">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no"><!-- Required stylesheet -->
+  <link rel="stylesheet" media="screen" href="deck.js-latest/core/deck.core.css">
 
-<!-- Required stylesheet -->
-<link rel="stylesheet" href="deck.js/core/deck.core.css">
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" media="screen" href="deck.js-latest/extensions/goto/deck.goto.css">
+  <link rel="stylesheet" media="screen" href="deck.js-latest/extensions/menu/deck.menu.css">
+  <link rel="stylesheet" media="screen" href="deck.js-latest/extensions/navigation/deck.navigation.css">
+  <link rel="stylesheet" media="screen" href="deck.js-latest/extensions/status/deck.status.css">
+  <link rel="stylesheet" media="screen" href="deck.js-latest/extensions/scale/deck.scale.css">
 
-<!-- Extension CSS files go here. Remove or add as needed.
-deck.goto: Adds a shortcut key to jump to any slide number.
-Hit g, type in the slide number, and hit enter.
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="deck.js-latest/themes/style/web-2.0.css">
 
-deck.hash: Enables internal linking within slides, deep
-linking to individual slides, and updates the address bar and
-a permalink anchor with each slide change.
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="deck.js-latest/themes/transition/horizontal-slide.css">
 
-deck.menu: Adds a menu view, letting you see all slides in a grid.
-Hit m to toggle to menu view, continue navigating your deck,
-and hit m to return to normal view. Touch devices can double-tap
-the deck to switch between views.
+  <!-- Basic black and white print styles -->
+  <link rel="stylesheet" media="print" href="deck.js-latest/core/print.css">
 
-deck.navigation: Adds clickable left and right buttons for the
-less keyboard inclined.
+  <!-- Required Modernizr file -->
+  <script src="deck.js-latest/modernizr.custom.js"></script>
 
-deck.status: Adds a page number indicator. (current/total).
-
-deck.scale: Scales each slide to fit within the deck container
-using CSS Transforms for those browsers that support them.
-
-deck.pointer: Turn mouse into laser pointer (toggle with p).
-(Requires https://github.com/mikeharris100/deck.pointer.js)
--->
-
-<link rel="stylesheet" href="deck.js/extensions/menu/deck.menu.css">
-<link rel="stylesheet" href="deck.js/extensions/navigation/deck.navigation.css">
-<link rel="stylesheet" href="deck.js/extensions/scale/deck.scale.css">
-<link rel="stylesheet" href="deck.js/extensions/pointer/deck.pointer.css">
-<link rel="stylesheet" href="deck.js/extensions/notes/deck.notes.css">
-<!--
-<link rel="stylesheet" href="deck.js/extensions/goto/deck.goto.css">
-<link rel="stylesheet" href="deck.js/extensions/hash/deck.hash.css">
-<link rel="stylesheet" href="deck.js/extensions/status/deck.status.css">
--->
-
-<!-- Style theme. More available in themes/style/ or create your own. -->
-<link rel="stylesheet" href="deck.js/themes/style/web-2.0.css">
-
-<!--
-<link rel="stylesheet" href="deck.js/themes/style/neon.css">
-<link rel="stylesheet" href="deck.js/themes/style/swiss.css">
-<link rel="stylesheet" href="deck.js/themes/style/web-2.0.css">
-
-git clone git://github.com/duijf/mnml.git
-<link rel="stylesheet" href="deck.js/themes/style/mnml.css">
-
-git://github.com/groovecoder/deckjs-theme-mozilla.git
-<link rel="stylesheet" href="deck.js/themes/style/sandstone.css">
-<link rel="stylesheet" href="deck.js/themes/style/sandstone.aurora.css">
-<link rel="stylesheet" href="deck.js/themes/style/sandstone.dark.css">
-<link rel="stylesheet" href="deck.js/themes/style/sandstone.default.css">
-<link rel="stylesheet" href="deck.js/themes/style/sandstone.firefox.css">
-<link rel="stylesheet" href="deck.js/themes/style/sandstone.light.css">
-<link rel="stylesheet" href="deck.js/themes/style/sandstone.mdn.css">
-<link rel="stylesheet" href="deck.js/themes/style/sandstone.nightly.css">
-<link rel="stylesheet" href="deck.js/themes/style/sandstone.cbc.css">
-
-git://github.com/barraq/deck.ext.js.git
-<link rel="stylesheet" href="deck.js/themes/style/beamer.css">
--->
-
-<!--
-Transition theme. More available in /themes/transition/ or create your own. -->
-<!--
-<link rel="stylesheet" href="deck.js/themes/transition/horizontal-slide.css">
-<link rel="stylesheet" href="deck.js/themes/transition/fade.css">
-<link rel="stylesheet" href="deck.js/themes/transition/vertical-slide.css">
-<link rel="stylesheet" href="deck.js/themes/transition/horizontal-slide.css">
--->
-
-<!-- Required Modernizr file -->
-<script src="deck.js/modernizr.custom.js"></script>
 
 <style type="text/css">
 /* Override h1, h2, ... styles */
@@ -100,7 +43,6 @@ h3 { font-size: 1.4em; }
 h4 { font-size: 1.3em; }
 h1, h2, h3, h4 { font-weight: bold; line-height: 1.2; }
 body { overflow: auto; } /* vertical scrolling */
-
 hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
 hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
@@ -480,74 +422,52 @@ $$ \frac{\partial u}{\partial t} = \nabla^2 u $$
 </section>
 
 
-
-
 <footer>
 <!-- Here goes a footer -->
 </footer>
 
 <!-- Begin extension snippets. Add or remove as needed. -->
 
-<!-- deck.navigation snippet -->
-<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
-<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+    <!-- deck.navigation snippet -->
+    <div aria-role="navigation">
+      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+    </div>
 
-<!-- deck.status snippet
-<p class="deck-status">
-    <span class="deck-status-current"></span>
-    /
-    <span class="deck-status-total"></span>
-</p>
--->
+    <!-- deck.status snippet -->
+    <p class="deck-status" aria-role="status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
 
-<!-- deck.goto snippet
-<form action="." method="get" class="goto-form">
-    <label for="goto-slide">Go to slide:</label>
-    <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
-    <datalist id="goto-datalist"></datalist>
-    <input type="submit" value="Go">
-</form>
--->
+    <!-- deck.goto snippet -->
+    <form action="." method="get" class="goto-form">
+      <label for="goto-slide">Go to slide:</label>
+      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+      <datalist id="goto-datalist"></datalist>
+      <input type="submit" value="Go">
+    </form>
 
-<!-- deck.hash snippet
-<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
--->
-
-<!-- End extension snippets. -->
-
+    <!-- End extension snippets. -->
 
 <!-- Required JS files. -->
-<script src="deck.js/jquery.min.js"></script>
-<script src="deck.js/core/deck.core.js"></script>
+<script src="deck.js-latest/jquery.min.js"></script>
+<script src="deck.js-latest/core/deck.core.js"></script>
 
 <!-- Extension JS files. Add or remove as needed. -->
-<script src="deck.js/core/deck.core.js"></script>
-<script src="deck.js/extensions/hash/deck.hash.js"></script>
-<script src="deck.js/extensions/menu/deck.menu.js"></script>
-<script src="deck.js/extensions/goto/deck.goto.js"></script>
-<script src="deck.js/extensions/status/deck.status.js"></script>
-<script src="deck.js/extensions/navigation/deck.navigation.js"></script>
-<script src="deck.js/extensions/scale/deck.scale.js"></script>
-<script src="deck.js/extensions/notes/deck.notes.js"></script>
-
-<!-- From https://github.com/mikeharris100/deck.pointer.js -->
-<script src="deck.js/extensions/pointer/deck.pointer.js"></script>
-
-<!-- From https://github.com/stvnwrgs/presenterview
-<script type="text/javascript" src="deck.js/extensions/presenterview/deck.presenterview.js"></script> -->
-
-<!-- From https://github.com/nemec/deck.annotate.js
-<script type="text/javascript" src="deck.js/extensions/deck.annotate.js/deck.annotate.js"></script>
--->
-
+<script src="deck.js-latest/extensions/menu/deck.menu.js"></script>
+<script src="deck.js-latest/extensions/goto/deck.goto.js"></script>
+<script src="deck.js-latest/extensions/status/deck.status.js"></script>
+<script src="deck.js-latest/extensions/navigation/deck.navigation.js"></script>
+<script src="deck.js-latest/extensions/scale/deck.scale.js"></script>
 
 <!-- Initialize the deck. You can put this in an external file if desired. -->
 <script>
-    $(function() {
-        $.deck('.slide');
-    });
+  $(function() {
+    $.deck('.slide');
+  });
 </script>
-
 
 
 </body>

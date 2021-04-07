@@ -13,6 +13,9 @@ from .misc import get_header_parts_footer, misc_option, remove_verbatim_blocks, 
     copy_latex_packages, copy_datafiles, tablify, get_header_parts_footer, doconce_split_html, \
     errwarn, _abort
 from .html import html_remove_whitespace, add_to_file_collection
+import pkgutil
+from io import BytesIO
+import zipfile
 
 reveal_files = 'reveal.js.zip'
 csss_files = 'csss.zip'
@@ -252,6 +255,125 @@ def slides_html():
         f.write(filestr)
         f.close()
         print('slides written to ' + filename)
+
+
+css_deck = ('\n'
+            '<style type="text/css">\n'
+            '/* Override h1, h2, ... styles */\n'
+            'h1 { font-size: 2.8em; }\n'
+            'h2 { font-size: 1.5em; }\n'
+            'h3 { font-size: 1.4em; }\n'
+            'h4 { font-size: 1.3em; }\n'
+            'h1, h2, h3, h4 { font-weight: bold; line-height: 1.2; }\n'
+            'body { overflow: auto; } /* vertical scrolling */\n'
+            'hr { border: 0; width: 80%%; border-bottom: 1px solid #aaa}\n'
+            'p.caption { width: 80%%; font-size: 60%%; font-style: italic; text-align: left; }\n'
+            'hr.figure { border: 0; width: 80%%; border-bottom: 1px solid #aaa}\n'
+            '.slide .alert-text-small   { font-size: 80%%;  }\n'
+            '.slide .alert-text-large   { font-size: 130%%; }\n'
+            '.slide .alert-text-normal  { font-size: 90%%;  }\n'
+            '.slide .alert {\n'
+            '     padding:8px 35px 8px 14px; margin-bottom:18px;\n'
+            '     text-shadow:0 1px 0 rgba(255,255,255,0.5);\n'
+            '     border:5px solid #bababa;\n'
+            '       -webkit-border-radius:14px; -moz-border-radius:14px;\n'
+            '     border-radius:14px\n'
+            '     background-position: 10px 10px;\n'
+            '     background-repeat: no-repeat;\n'
+            '     background-size: 38px;\n'
+            '     padding-left: 30px; /* 55px; if icon */\n'
+            ' }\n'
+            ' .slide .alert-block {padding-top:14px; padding-bottom:14px}\n'
+            ' .slide .alert-block > p, .alert-block > ul {margin-bottom:0}\n'
+            ' /*.slide .alert li {margin-top: 1em}*/\n'
+            ' .deck .alert-block p+p {margin-top:5px}\n'
+            ' /*.slide .alert-notice { background-image: url(https://hplgit.github.io/doconce/\n'
+            ' bundled/html_images//small_gray_notice.png); }\n'
+            ' .slide .alert-summary  { background-image:url(https://hplgit.github.io/doconce/\n'
+            ' bundled/html_images//small_gray_summary.png); }\n'
+            ' .slide .alert-warning { background-image: url(https://hplgit.github.io/doconce/\n'
+            ' bundled/html_images//small_gray_warning.png); }\n'
+            ' .slide .alert-question {background-image:url(https://hplgit.github.io/doconce/\n'
+            ' bundled/html_images/small_gray_question.png); } */\n'
+            '\n'
+            '</style>\n'
+            '\n\n')
+
+def get_package_data(pkg_data, data_file):
+    """Read a file inside a package data zip
+
+    The `setup.py` uses a `package_data` keyword to store
+    package data. This function loads a `pkg_data` zip file,
+    and reads a file therein.
+    :param str pkg_data: a package data file listed in `setup.py` > `package_data`
+    :param str data_file: a file in pkg_data
+    :return: file read out from the zip package
+    :rtype: str
+    """
+    # Get the zip file in the package data
+    try:
+        package_data = pkgutil.get_data('doconce', pkg_data)
+        fobject = BytesIO(package_data)
+        zip_obj = zipfile.ZipFile(fobject)
+    except IOError as e:
+        errwarn('*** error: %s' % str(e))
+        errwarn('*** could not retrieve the package data %s' % pkg_data)
+        _abort()
+    # Get a file inside the zip package, e.g. the deck.js boilerplate
+    boilerplate = zip_obj.read(data_file).decode('utf-8')
+    if not boilerplate:
+        errwarn('*** error: could not retrieve the boilerplate from Deck.js %s ' % fname)
+        _abort()
+    return boilerplate
+
+
+def get_deck_header(info='<!-- deck.js: https://github.com/imakewebthings/deck.js -->\n',
+                         css_overrides=css_deck):
+    """Extract the header of the boilerplate from deck.js
+
+    The boilerplate file is stored in the unzipped deck.js-latest.zip file
+    :param str info: comment or code to add on top of the header
+    :param str css_overrides: css code to append to boilerplate
+    :return: processed boilerplate
+    :rtype: str
+    """
+    # Get the deck.js boilerplate
+    deck_folder = deck_files.replace('.zip', '') + '/'
+    fname = os.path.join(deck_folder, 'boilerplate.html')
+    boilerplate = get_package_data(deck_files, data_file=fname)
+    # Fix the paths to resources in links i.e. add 'deck-latest.js/' in all href/src
+    boilerplate = boilerplate.replace('href="', 'href="' + deck_folder)
+    boilerplate = boilerplate.replace('src="', 'src="' + deck_folder)
+    boilerplate.replace('"'+deck_folder+'#"', '"#"')
+    # Get the section within the <head> tags, but remove the <title> tag
+    output = boilerplate[boilerplate.find('<head>')+6:boilerplate.find('</head>')]
+    output = re.sub(r'\s*<title>[^<>]*</title>\s*', '', output)
+    output = info + output + '\n' + css_overrides
+    return output
+
+def get_deck_footer(info='<footer>\n<!-- Here goes a footer -->\n</footer>\n\n'):
+    """Extract the footer of the boilerplate from deck.js
+
+    The boilerplate file is stored in the unzipped deck.js-latest.zip file
+    :return: processed boilerplate
+    :rtype: str
+    """
+    # Get the deck.js boilerplate
+    deck_folder = deck_files.replace('.zip', '') + '/'
+    fname = os.path.join(deck_folder, 'boilerplate.html')
+    boilerplate = get_package_data(deck_files, data_file=fname)
+    # Fix the paths to resources in scripts i.e. add 'deck-latest.js/' in all href/src
+    boilerplate = boilerplate.replace('href="', 'href="' + deck_folder)
+    boilerplate = boilerplate.replace('src="', 'src="' + deck_folder)
+    boilerplate.replace('"' + deck_folder + '#"', '"#"')
+    # Get the extension snippets part of the boilerplate
+    output = boilerplate[boilerplate.find('<!-- Begin extension snippets'):
+                           boilerplate.rfind('<!-- End extension snippets. -->') +
+                           len('<!-- End extension snippets. -->')]
+    # Append the section of the body with the <script> tags
+    output += boilerplate[boilerplate.rfind('</div>') + 6:boilerplate.rfind('</body>')]
+    output = info + output
+    return output
 
 
 def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='reveal'):
@@ -1230,131 +1352,7 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
             slide_envir_end='</section>',
             pop=('slide', 'li'),
             notes='<div class="notes">\n<!-- press "n" to activate -->\n\\g<1>\n</div>\n',
-            head_header=('\n'
-                         '<!-- deck.js: https://github.com/imakewebthings/deck.js -->\n'
-                         '\n'
-                         '<meta charset="utf-8">\n'
-                         '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">\n'
-                         '<meta name="viewport" content="width=1024, user-scalable=no">\n'
-                         '\n'
-                         '<!-- Required stylesheet -->\n'
-                         '<link rel="stylesheet" href="deck.js/core/deck.core.css">\n'
-                         '\n'
-                         '<!-- Extension CSS files go here. Remove or add as needed.\n'
-                         'deck.goto: Adds a shortcut key to jump to any slide number.\n'
-                         'Hit g, type in the slide number, and hit enter.\n'
-                         '\n'
-                         'deck.hash: Enables internal linking within slides, deep\n'
-                         'linking to individual slides, and updates the address bar and\n'
-                         'a permalink anchor with each slide change.\n'
-                         '\n'
-                         'deck.menu: Adds a menu view, letting you see all slides in a grid.\n'
-                         'Hit m to toggle to menu view, continue navigating your deck,\n'
-                         'and hit m to return to normal view. Touch devices can double-tap\n'
-                         'the deck to switch between views.\n'
-                         '\n'
-                         'deck.navigation: Adds clickable left and right buttons for the\n'
-                         'less keyboard inclined.\n'
-                         '\n'
-                         'deck.status: Adds a page number indicator. (current/total).\n'
-                         '\n'
-                         'deck.scale: Scales each slide to fit within the deck container\n'
-                         'using CSS Transforms for those browsers that support them.\n'
-                         '\n'
-                         'deck.pointer: Turn mouse into laser pointer (toggle with p).\n'
-                         '(Requires https://github.com/mikeharris100/deck.pointer.js)\n'
-                         '-->\n'
-                         '\n'
-                         '<link rel="stylesheet" href="deck.js/extensions/menu/deck.menu.css">\n'
-                         '<link rel="stylesheet" href="deck.js/extensions/navigation/deck.navigation.css">\n'
-                         '<link rel="stylesheet" href="deck.js/extensions/scale/deck.scale.css">\n'
-                         '<link rel="stylesheet" href="deck.js/extensions/pointer/deck.pointer.css">\n'
-                         '<link rel="stylesheet" href="deck.js/extensions/notes/deck.notes.css">\n'
-                         '<!--\n'
-                         '<link rel="stylesheet" href="deck.js/extensions/goto/deck.goto.css">\n'
-                         '<link rel="stylesheet" href="deck.js/extensions/hash/deck.hash.css">\n'
-                         '<link rel="stylesheet" href="deck.js/extensions/status/deck.status.css">\n'
-                         '-->\n'
-                         '\n'
-                         '<!-- Style theme. More available in themes/style/ or create your own. -->\n'
-                         '<link rel="stylesheet" href="deck.js/themes/style/%(theme)s.css">\n'
-                         '\n'
-                         '<!--\n'
-                         '<link rel="stylesheet" href="deck.js/themes/style/neon.css">\n'
-                         '<link rel="stylesheet" href="deck.js/themes/style/swiss.css">\n'
-                         '<link rel="stylesheet" href="deck.js/themes/style/web-2.0.css">\n'
-                         '\n'
-                         'git clone git://github.com/duijf/mnml.git\n'
-                         '<link rel="stylesheet" href="deck.js/themes/style/mnml.css">\n'
-                         '\n'
-                         'git://github.com/groovecoder/deckjs-theme-mozilla.git\n'
-                         '<link rel="stylesheet" href="deck.js/themes/style/sandstone.css">\n'
-                         '<link rel="stylesheet" href="deck.js/themes/style/sandstone.aurora.css">\n'
-                         '<link rel="stylesheet" href="deck.js/themes/style/sandstone.dark.css">\n'
-                         '<link rel="stylesheet" href="deck.js/themes/style/sandstone.default.css">\n'
-                         '<link rel="stylesheet" href="deck.js/themes/style/sandstone.firefox.css">\n'
-                         '<link rel="stylesheet" href="deck.js/themes/style/sandstone.light.css">\n'
-                         '<link rel="stylesheet" href="deck.js/themes/style/sandstone.mdn.css">\n'
-                         '<link rel="stylesheet" href="deck.js/themes/style/sandstone.nightly.css">\n'
-                         '<link rel="stylesheet" href="deck.js/themes/style/sandstone.cbc.css">\n'
-                         '\n'
-                         'git://github.com/barraq/deck.ext.js.git\n'
-                         '<link rel="stylesheet" href="deck.js/themes/style/beamer.css">\n'
-                         '-->\n'
-                         '\n'
-                         '<!--\n'
-                         'Transition theme. More available in /themes/transition/ or create your own. -->\n'
-                         '<!--\n'
-                         '<link rel="stylesheet" href="deck.js/themes/transition/horizontal-slide.css">\n'
-                         '<link rel="stylesheet" href="deck.js/themes/transition/fade.css">\n'
-                         '<link rel="stylesheet" href="deck.js/themes/transition/vertical-slide.css">\n'
-                         '<link rel="stylesheet" href="deck.js/themes/transition/horizontal-slide.css">\n'
-                         '-->\n'
-                         '\n'
-                         '<!-- Required Modernizr file -->\n'
-                         '<script src="deck.js/modernizr.custom.js"></script>\n'
-                         '\n'
-                         '<style type="text/css">\n'
-                         '/* Override h1, h2, ... styles */\n'
-                         'h1 { font-size: 2.8em; }\n'
-                         'h2 { font-size: 1.5em; }\n'
-                         'h3 { font-size: 1.4em; }\n'
-                         'h4 { font-size: 1.3em; }\n'
-                         'h1, h2, h3, h4 { font-weight: bold; line-height: 1.2; }\n'
-                         'body { overflow: auto; } /* vertical scrolling */\n'
-                         '\n'
-                         'hr { border: 0; width: 80%%; border-bottom: 1px solid #aaa}\n'
-                         'p.caption { width: 80%%; font-size: 60%%; font-style: italic; text-align: left; }\n'
-                         'hr.figure { border: 0; width: 80%%; border-bottom: 1px solid #aaa}\n'
-                         '.slide .alert-text-small   { font-size: 80%%;  }\n'
-                         '.slide .alert-text-large   { font-size: 130%%; }\n'
-                         '.slide .alert-text-normal  { font-size: 90%%;  }\n'
-                         '.slide .alert {\n'
-                         '     padding:8px 35px 8px 14px; margin-bottom:18px;\n'
-                         '     text-shadow:0 1px 0 rgba(255,255,255,0.5);\n'
-                         '     border:5px solid #bababa;\n'
-                         '       -webkit-border-radius:14px; -moz-border-radius:14px;\n'
-                         '     border-radius:14px\n'
-                         '     background-position: 10px 10px;\n'
-                         '     background-repeat: no-repeat;\n'
-                         '     background-size: 38px;\n'
-                         '     padding-left: 30px; /* 55px; if icon */\n'
-                         ' }\n'
-                         ' .slide .alert-block {padding-top:14px; padding-bottom:14px}\n'
-                         ' .slide .alert-block > p, .alert-block > ul {margin-bottom:0}\n'
-                         ' /*.slide .alert li {margin-top: 1em}*/\n'
-                         ' .deck .alert-block p+p {margin-top:5px}\n'
-                         ' /*.slide .alert-notice { background-image: url(https://hplgit.github.io/doconce/\n'
-                         ' bundled/html_images//small_gray_notice.png); }\n'
-                         ' .slide .alert-summary  { background-image:url(https://hplgit.github.io/doconce/\n'
-                         ' bundled/html_images//small_gray_summary.png); }\n'
-                         ' .slide .alert-warning { background-image: url(https://hplgit.github.io/doconce/\n'
-                         ' bundled/html_images//small_gray_warning.png); }\n'
-                         ' .slide .alert-question {background-image:url(https://hplgit.github.io/doconce/\n'
-                         ' bundled/html_images/small_gray_question.png); } */\n'
-                         '\n'
-                         '</style>\n'
-                         '\n\n'),
+            head_header=get_deck_header(),
             body_header=('<body class="deck-container">\n'
                          '\n'
                          '<header>\n'
@@ -1362,74 +1360,7 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
                          '</header>\n'
                          '\n'
                          '<!-- do not use the article tag - it gives strange sizings -->\n'),
-            footer=('\n'
-                    '\n'
-                    '<footer>\n'
-                    '<!-- Here goes a footer -->\n'
-                    '</footer>\n'
-                    '\n'
-                    '<!-- Begin extension snippets. Add or remove as needed. -->\n'
-                    '\n'
-                    '<!-- deck.navigation snippet -->\n'
-                    '<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>\n'
-                    '<a href="#" class="deck-next-link" title="Next">&#8594;</a>\n'
-                    '\n'
-                    '<!-- deck.status snippet\n'
-                    '<p class="deck-status">\n'
-                    '    <span class="deck-status-current"></span>\n'
-                    '    /\n'
-                    '    <span class="deck-status-total"></span>\n'
-                    '</p>\n'
-                    '-->\n'
-                    '\n'
-                    '<!-- deck.goto snippet\n'
-                    '<form action="." method="get" class="goto-form">\n'
-                    '    <label for="goto-slide">Go to slide:</label>\n'
-                    '    <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">\n'
-                    '    <datalist id="goto-datalist"></datalist>\n'
-                    '    <input type="submit" value="Go">\n'
-                    '</form>\n'
-                    '-->\n'
-                    '\n'
-                    '<!-- deck.hash snippet\n'
-                    '<a href="." title="Permalink to this slide" class="deck-permalink">#</a>\n'
-                    '-->\n'
-                    '\n'
-                    '<!-- End extension snippets. -->\n'
-                    '\n'
-                    '\n'
-                    '<!-- Required JS files. -->\n'
-                    '<script src="deck.js/jquery.min.js"></script>\n'
-                    '<script src="deck.js/core/deck.core.js"></script>\n'
-                    '\n'
-                    '<!-- Extension JS files. Add or remove as needed. -->\n'
-                    '<script src="deck.js/core/deck.core.js"></script>\n'
-                    '<script src="deck.js/extensions/hash/deck.hash.js"></script>\n'
-                    '<script src="deck.js/extensions/menu/deck.menu.js"></script>\n'
-                    '<script src="deck.js/extensions/goto/deck.goto.js"></script>\n'
-                    '<script src="deck.js/extensions/status/deck.status.js"></script>\n'
-                    '<script src="deck.js/extensions/navigation/deck.navigation.js"></script>\n'
-                    '<script src="deck.js/extensions/scale/deck.scale.js"></script>\n'
-                    '<script src="deck.js/extensions/notes/deck.notes.js"></script>\n'
-                    '\n'
-                    '<!-- From https://github.com/mikeharris100/deck.pointer.js -->\n'
-                    '<script src="deck.js/extensions/pointer/deck.pointer.js"></script>\n'
-                    '\n'
-                    '<!-- From https://github.com/stvnwrgs/presenterview\n'
-                    '<script type="text/javascript" src="deck.js/extensions/presenterview/deck.presenterview.js"></script> -->\n'
-                    '\n'
-                    '<!-- From https://github.com/nemec/deck.annotate.js\n'
-                    '<script type="text/javascript" src="deck.js/extensions/deck.annotate.js/deck.annotate.js"></script>\n'
-                    '-->\n'
-                    '\n'
-                    '\n'
-                    '<!-- Initialize the deck. You can put this in an external file if desired. -->\n'
-                    '<script>\n'
-                    '    $(function() {\n'
-                    '        $.deck(\'.slide\');\n'
-                    '    });\n'
-                    '</script>\n'
-                    '\n'),
+            footer=get_deck_footer(),
             theme=None,
             title=None,
             ),
@@ -1524,7 +1455,7 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
 
     # Path to cbc, simula, uio logo files
     footer_logo_path = dict(reveal='reveal.js/css/images',
-                            deck='deck.js/themes/images')
+                            deck='deck.js-latest/themes/images')
     if footer_logo == 'cbc_footer':
         if slide_tp not in ('reveal', 'deck'):
             raise ValueError('slide type "%s" cannot have --html_footer_logo' ^ slide_tp)
