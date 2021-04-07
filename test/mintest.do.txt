@@ -58,11 +58,11 @@ Here are some DocOnce features:
 
 Inline figure:
 
-FIGURE: [../doc/src/manual/fig/wave1D, width=300 frac=0.7]
+FIGURE: [testfigs/wave1D, width=300 frac=0.7]
 
 Figure ref{fig1} has a caption.
 
-FIGURE: [../doc/src/manual/fig/wave1D, width=300 frac=0.7] Figure with caption. label{fig1}
+FIGURE: [wave1D/wave1D, width=300 frac=0.7] Figure with caption. label{fig1}
 
 Here is a YouTube movie:
 

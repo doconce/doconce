@@ -149,25 +149,54 @@ html_cell = html_cell_wrap + \
             html_cell_output + \
             '</div>\n'
 
-html_toggle_btn = ('\n'
-                      '<script type="text/javascript">\n'
-                      'function show_hide_code%(hash)s(){\n'
-                      '  $("#code%(hash)s").toggle();\n'
-                      '}\n'
-                      '</script>\n'
-                      '<button type="button" onclick="show_hide_code%(hash)s()">Show/Hide code</button>\n'
-                      '<div id="code%(hash)s" style="display:none">\n'
-                      '%(formatted_code)s\n'
-                      '</div>\n')
+html_toggle_btn = (
+            '\n'
+            '<script type="text/javascript">\n'
+            'function show_hide_code%(hash)s(){\n'
+            '  $("#code%(hash)s").toggle();\n'
+            '}\n'
+            '</script>\n'
+            '<button type="button" onclick="show_hide_code%(hash)s()">Show/Hide code</button>\n'
+            '<div id="code%(hash)s" style="display:none">\n'
+            '%(formatted_code)s\n'
+            '</div>\n')
 
-html_sagecell = ('\n<div class="sage_compute">\n'
-                 '<script type="text/x-sage">\n'
-                 '%s\n'
-                 '</script>\n'
-                 '</div>\n')
+html_sagecell = (
+            '\n<div class="sage_compute">\n'
+            '<script type="text/x-sage">\n'
+            '%s\n'
+            '</script>\n'
+            '</div>\n')
+
+html_toc_ = (
+            '<h1 id="table_of_contents">%s</h1>\n'  #toc
+            '%s\n'                                  #hr
+            '<div class=\'toc\'>\n'
+            '%s'                                    #html for chapters/sections/etc
+            '</div>\n<br>')
+
+html_tab = '<span class="tab"> '
 
 
 # Style sheets
+
+css_toc = ( '.tab {\n'
+            '  padding-left: 1.5em;\n'
+            '}\n'
+            'div.toc p,a {\n'
+            '  line-height: 1.3;\n'
+            '  margin-top: 1.1;\n'
+            '  margin-bottom: 1.1;\n'
+            '}\n')
+
+css_style = (
+            '\n'
+             '%s\n'
+             '<style type="text/css">\n'
+             '%s\n'
+             'div { text-align: justify; text-justify: inter-word; }\n') + \
+            css_toc + \
+            '</style>\n'
 
 admon_styles_text = """\
 .alert-text-small   { font-size: 80%%;  }
@@ -1384,9 +1413,8 @@ def html_code(filestr, code_blocks, code_block_types,
 
         header = '<!-- document title -->' in filestr  # will the html file get a header?
         if header:
-            errwarn("""\
-*** warning: TITLE may look strange with a template -
-             it is recommended to comment out the title: #TITLE:""")
+            errwarn(('*** warning: TITLE may look strange with a template -\n'
+                     '             it is recommended to comment out the title: #TITLE:'))
             pattern = r'<center>[\s]*<h1>(.+?)</h1>[\n]</center>  <!-- document title -->'
             m = re.search(pattern, filestr)
             if m:
@@ -2203,8 +2231,7 @@ def html_movie(m):
     return text
 
 
-def html_author(authors_and_institutions, auth2index,
-                inst2index, index2inst, auth2email):
+def html_author(authors_and_institutions, auth2index, inst2index, index2inst, auth2email):
     # Make a short list of author names - can be extracted elsewhere
     # from the HTML code and used in, e.g., footers.
     authors = [author for author in auth2index]
@@ -2235,13 +2262,13 @@ def html_author(authors_and_institutions, auth2index,
         author = list(auth2index.keys())[0]
         text += '\n<center>\n<b>%s</b> %s\n</center>\n\n' % \
             (author, email(author))
-        text += '\n\n<p><!-- institution --></p>\n\n'
+        text += '\n\n<!-- institution -->\n\n'
         text += '<center>\n<b>%s</b>\n</center>\n\n' % (index2inst[1])
     else:
         for author in auth2index:
             text += '\n<center>\n<b>%s</b> %s%s\n</center>\n\n' % \
                 (author, str(auth2index[author]), email(author))
-        text += '\n\n<p><!-- institution(s) --></p>\n\n'
+        text += '\n\n<!-- institution(s) -->\n\n'
         for index in index2inst:
             text += '<center>\n[%d] <b>%s</b>\n</center>\n\n' % \
                     (index, index2inst[index])
@@ -2484,7 +2511,7 @@ def html_toc(sections, filestr):
             (toc, level_min, 'table_of_contents', 'table_of_contents'))
     #hr = '<hr>'
     hr = ''
-    s = '<h1 id="table_of_contents">%s</h1>\n\n%s\n' % (toc, hr)
+    s = ''
     # (we add class="anchor" in the calling code the above heading, if necessary)
     for i in range(len(sections)):
         title, level, label = sections[i]
@@ -2492,10 +2519,12 @@ def html_toc(sections, filestr):
             href = label
         else:
             href = string2href(title)
-        indent = '&nbsp; '*(3*(level - level_min))
+        indent = ((level - level_min))
         if level <= toc_depth:
-            s += indent + '<a href="#%s">%s</a>' % (href, title ) + '\n<br>\n'
+            s += '<p>' + (html_tab * indent) + \
+                 '<a href="#%s">%s</a>' % (href, title ) + '</p>\n'#'<br>\n'
         extended_sections.append((title.strip(), level, label, href))
+    s = html_toc_ % (toc, hr, s)
     #s += '<p>%s\n</p>\n' % hr
     # Store for later use in navigation panels etc.
     global tocinfo
@@ -3093,13 +3122,7 @@ def define(FILENAME_EXTENSION,
                 css += admon_styles_text.replace('%%', '%')
                 break
 
-    style = """
-%s
-<style type="text/css">
-%s
-div { text-align: justify; text-justify: inter-word; }
-</style>
-""" % (css_links, css)
+    style = css_style % (css_links, css)
     css_filename = option('css=')
     if css_filename:
         style = ''
@@ -3346,27 +3369,23 @@ body { %s; }
                     '</script>\n')
 
     if '!bu-' in filestr:
-        scripts += """
-<!-- USER-DEFINED ENVIRONMENTS -->
-"""
+        scripts += "\n<!-- USER-DEFINED ENVIRONMENTS -->\n"
 
     # Had to take DOCTYPE out from 1st line to load css files from github...
     # <!DOCTYPE html>
-    INTRO['html'] = """\
-<!--
-Automatically generated HTML file from DocOnce source
-(https://github.com/doconce/doconce/)
--->
-<html>
-<head>
-%s
-<title>%s</title>
-%s
-%s
-</head>
-<body>
-
-    """ % (meta_tags, title, style, scripts)
+    INTRO['html'] = ('<!--\n'
+                     'Automatically generated HTML file from DocOnce source\n'
+                     '(https://github.com/doconce/doconce/)\n'
+                     'doconce format html %s %s\n'
+                     '-->\n'
+                     '<html>\n'
+                     '<head>\n'
+                     '%s\n'
+                     '<title>%s</title>\n'
+                     '%s\n'
+                     '%s\n'
+                     '</head>\n'
+                     '<body>\n\n') % (globals.filename, ' '.join(sys.argv[1:]), meta_tags, title, style, scripts)
 
     OUTRO['html'] = ''
     if html_style.startswith('boots'):

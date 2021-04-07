@@ -1,5 +1,5 @@
 #!/bin/bash -x
-set -x
+#set -x
 #export PS4='+ l.${LINENO}: ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 function system {
   "$@"

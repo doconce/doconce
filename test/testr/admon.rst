@@ -379,7 +379,7 @@ text, math and code.
    
    And then we add a figure too.
    
-   .. figure:: ../doc/src/manual/fig/wave1D.png
+   .. figure:: testfigs/wave1D.png
       :width: 400
 
 

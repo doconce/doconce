@@ -139,8 +139,4 @@ Test of math
 
 Inline math, a=b, is the only math in this document.
 
- 1. _H. P. Langtangen_. 
-    A Document for Testing Doconce,
-    *Simula Research Laboratory*,
-    2015,
-    http://hplgit.github.io/doconce/test/demo_testdoc.html.
+ 1. _H. P. Langtangen_.  A Document for Testing Doconce, *Simula Research Laboratory*, 2015, http://hplgit.github.io/doconce/test/demo_testdoc.html.

@@ -35,7 +35,7 @@ setuptools.setup(
         'jupyter_client'
         ],
     #data_files=[(os.path.join("share", "man", "man1"),[man_filename,]),],
-    package_data = {'': ['sphinx_themes.zip', 'html_images.zip', 'reveal.js.zip', 'deck.js.zip', 'csss.zip', 'latex_styles.zip']},
+    package_data = {'': ['sphinx_themes.zip', 'html_images.zip', 'reveal.js.zip', 'deck.js-latest.zip', 'csss.zip', 'latex_styles.zip']},
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',

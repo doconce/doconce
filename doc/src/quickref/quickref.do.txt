@@ -244,7 +244,7 @@ after `&` will result in wrong typesetting of the ampersand in the `html`,
 `latex`, and `pdflatex` formats.
 
 Emojis, as defined in URL: "http://www.emoji-cheat-sheet.com", can be
-inserted in the text, as (e.g.) `:dizzy_face:` with blank or newline
+inserted in the text, as (e.g.) `:dizzy_face:` with blank
 before or after :dizzy_face: Only the `pdflatex`, `html`, and `pandoc` output
 formats translate emoji specifications to images, while all other
 formats leave the textual specification in the document. The

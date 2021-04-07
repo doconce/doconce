@@ -50,12 +50,13 @@ def cp2logfolder(logfilename, logfolder, applyregex=True):
     if applyregex:
         apply_regex(filename_out, filename_out)
 
-
-def clean_and_make(append=True):
+def run_clean():
     print('\n\nCleaning....................................')
-    failure = os.system('sh -x clean.sh > /dev/null')
+    failure = os.system('sh clean.sh > /dev/null')
     if failure:
         raise OSError('Could not run clean.sh successfully')
+
+def run_make(append=True):
     print('\n\nRunning make.sh...............................\nin', os.getcwd())
     failure, output = subprocess.getstatusoutput('bash -x make.sh')
     system_output.append(output)
@@ -72,7 +73,6 @@ def apply_regex(logfilename, logfilenameout=None):
         logfilenameout = logfilename
     with open(logfilename, 'r') as fin:
         text = fin.read()
-    text += '\n\n'.join(system_output)
     date = r'[A-Z][a-z][a-z], \d?\d [A-Z][a-z][a-z] \d\d\d\d \(\d\d:\d\d\)'
     text = re.sub(date, r'Jan 32, 2100', text)
     date = r'[A-Z][a-z][a-z] \d?\d, \d\d\d\d'
@@ -120,14 +120,17 @@ def run():
     thisdir = os.getcwd()
     logfilename = os.path.join(thisdir, 'test.v')
     logfolder = os.path.join(thisdir, 'testv')
-    shutil.rmtree(logfolder)
+    if os.path.isdir(logfolder):
+        shutil.rmtree(logfolder)
     os.mkdir(logfolder)
+    os.symlink(os.path.join(os.getcwd(),'testfigs'), os.path.join(logfolder,'testfigs'))
     log = open(logfilename, 'w')
     log.close()  # just touch the file
 
     # test multiple authors, figure, movie, math, encodings, etc:
     print('...running ./make.sh in test')  # works only under Unix...
-    clean_and_make(append=False)
+    run_clean()
+    run_make()
 
     open(logfilename, 'a').close()
     files = '.do.txt', '.html', '.p.tex', '_bigex.tex', '.tex_doconce_ptex2tex', '.tex_direct', '.rst', '.sphinx.rst', '.gwiki', '.mwiki', '.cwiki', '.st', '.epytext', '.txt', '.md', '.ipynb', '.m', '.tmp'
@@ -138,7 +141,6 @@ def run():
         #'_genref1.do.txt', '_genref2.do.txt', '_tmp_genref2.do.txt', 'Springer_T2/Springer_T2_book.p.tex', 
         'tmp_subst_references.sh', 'Springer_T2/Springer_T2_book.do.txt',
         'Springer_T2/Springer_T2_book.tex', 'test_boots.do.txt', 'test_boots.html', '._test_boots001.html', '._test_boots002.html', 'mdinput2do.do.txt', '.testdoc.quiz', 'encoding1.html', 'testdoc_exer.do.txt', 'nbdemo.ipynb', 'nbdemo.do.txt', 'test_copyright.out', 'tailored_conf.py', 'testdoc_code_prefix.html', 'automake_sphinx.log']
-    files.insert(1, '_testdoc.do.txt')
     standalone_exercises = [
         'exercise_1.do.txt', 'selc_composed.do.txt',
         'subexer_a.do.txt',  'exercise_4.do.txt', 'verify_formula.do.txt',
@@ -150,9 +152,8 @@ def run():
     files += standalone_exercises
     standalone_exercises = ['Chapter_2.1.do.txt', 'Chapter_2.2.do.txt',
                             'index.do.txt', 'make.py',]
-    standalone_exercises = [os.path.join('Springer_T2',
-                                         'standalone_exercises', f) for f
-                            in standalone_exercises]
+    standalone_exercises = [os.path.join('Springer_T2','standalone_exercises', f)
+                            for f in standalone_exercises]
     files += standalone_exercises
 
     for f in files:
@@ -166,7 +167,8 @@ def run():
     os.chdir(tutdir)
 
     print('...running ./make.sh in doc/tutorial')  # works only under Unix...
-    clean_and_make()
+    run_clean()
+    run_make()
 
     add('make.sh', logfilename)
     os.chdir('demo')
@@ -186,6 +188,7 @@ def run():
             'tmp_HTML.html'
     for f in files:
         add(f, logfilename)
+    for f in files:
         cp2logfolder(f, logfolder)
 
     # test manual:
@@ -193,24 +196,25 @@ def run():
     mandir = os.path.join(os.pardir, 'doc', 'manual')
     print('cd', mandir)
     os.chdir(mandir)
-
-    clean_and_make()
+    run_clean()
+    run_make()
 
     add('make.sh', logfilename)
     files = '.do.txt', '.html', '.p.tex', '.rst', '.sphinx.rst', '.gwiki', '.mwiki', '.cwiki', '.st', '.epytext', '.txt', '.md'
     files = ['manual' + ext for ext in files]
     for f in files:
         add(f, logfilename)
+        cp2logfolder(f, logfolder)
     add('install.do.txt', logfilename)
-    """
     os.chdir(thisdir)
+    """
 
-    # test quickref:
-    quickdir = os.path.join(os.pardir, 'doc', 'src', 'quickref')
+    # test quickref: #too big, it slows down the diff
+    """quickdir = os.path.join(os.pardir, 'doc', 'src', 'quickref')
     print('cd', quickdir)
     os.chdir(quickdir)
-
-    clean_and_make()
+    run_clean()
+    run_make()
 
     add('make.sh', logfilename)
     cp2logfolder('make.sh', logfolder)
@@ -219,8 +223,8 @@ def run():
     for f in files:
         add(f, logfilename)
         cp2logfolder(f, logfolder)
-    
     os.chdir(thisdir)
+    """
 
     # Clean log file using regex
     import time

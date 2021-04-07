@@ -31,16 +31,14 @@ Here is a nested list:
 
   * item1
   * item2
-  * item3 which continues
-    on the next line to test that feature
+  * item3 which continues on the next line to test that feature
   * and a sublist
     * with indented subitem1
     * and a subitem2
 
   * and perhaps an ordered sublist
    a. first item
-   b. second item,
-      continuing on a new line
+   b. second item, continuing on a new line
 
 
 *Here is a list with paragraph heading.*
@@ -454,8 +452,7 @@ They are used in different flavors, now in
 
  * list items (note below that footnotes work after math, verbatim, and URLs - bin fact old and emphasize too!)
  * even with math $\nabla^2u$[^math1]
- * and code `h[i] += 1`[^code]
-   (*must* have space between inline code and footnote!)
+ * and code `h[i] += 1`[^code] (*must* have space between inline code and footnote!)
  * and [links](https://google.com)[^google-search]
 
 which gives flexibility in writing.

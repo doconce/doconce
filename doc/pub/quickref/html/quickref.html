@@ -333,7 +333,7 @@ preserve the spaces: Guns &amp; Roses. Failing to have spaces before and
 after <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> will result in wrong typesetting of the ampersand in the <code class="docutils literal notranslate"><span class="pre">html</span></code>,
 <code class="docutils literal notranslate"><span class="pre">latex</span></code>, and <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> formats.</p>
 <p>Emojis, as defined in <a class="reference external" href="http://www.emoji-cheat-sheet.com">http://www.emoji-cheat-sheet.com</a>, can be
-inserted in the text, as (e.g.) <code class="docutils literal notranslate"><span class="pre">:dizzy_face:</span></code> with blank or newline
+inserted in the text, as (e.g.) <code class="docutils literal notranslate"><span class="pre">:dizzy_face:</span></code> with blank
 before or after :dizzy_face: Only the <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code>, <code class="docutils literal notranslate"><span class="pre">html</span></code>, and <code class="docutils literal notranslate"><span class="pre">pandoc</span></code> output
 formats translate emoji specifications to images, while all other
 formats leave the textual specification in the document. The
@@ -404,9 +404,7 @@ right below the line above.</p>
 <p>Here is an enumeration list:</p>
 <ol class="arabic simple">
 <li><p>item1</p></li>
-<li><p>item2
-may appear on
-multiple lines</p></li>
+<li><p>item2 may appear on multiple lines</p></li>
 </ol>
 <blockquote>
 <div><ol class="loweralpha simple">
@@ -420,13 +418,11 @@ multiple lines</p></li>
 <p>And finally a description list:</p>
 <blockquote>
 <div><dl class="simple">
-<dt>keyword1:</dt><dd><p>followed by
-some text
-over multiple
-lines</p>
+<dt>keyword1:</dt><dd><p>followed by some text over multiple lines</p>
 </dd>
-<dt>keyword2:</dt><dd><p>followed by text on the next line</p>
-</dd>
+</dl>
+<p>keyword2:  followed by text on the next line</p>
+<dl class="simple">
 <dt>keyword3:</dt><dd><p>and its description may fit on one line</p>
 </dd>
 </dl>
@@ -611,12 +607,8 @@ The lines up to and including (the first) <code class="docutils literal notransl
 <p>Important warnings:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>A code block must come after a plain sentence (at least for successful
-output in reStructredText), not directly after a section/paragraph heading,
-table, comment, figure, or movie.</p></li>
-<li><p>Verbatim code blocks inside lists can be ugly when typeset in some
-output formats. A more robust approach is to replace the list with
-paragraphs that include headings.</p></li>
+<li><p>A code block must come after a plain sentence (at least for successful output in reStructredText), not directly after a section/paragraph heading, table, comment, figure, or movie.</p></li>
+<li><p>Verbatim code blocks inside lists can be ugly when typeset in some output formats. A more robust approach is to replace the list with paragraphs that include headings.</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -690,81 +682,29 @@ points are so important that we list them <em>before</em> we list typical
 DocOnce syntax!</p>
 <p>Any LaTeX syntax in mathematical formulas is accepted when DocOnce
 translates the text to LaTeX, but the following rules should be
-followed when transalting the text to <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>, <code class="docutils literal notranslate"><span class="pre">pandoc</span></code>,
+followed when translating the text to <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>, <code class="docutils literal notranslate"><span class="pre">pandoc</span></code>,
 <code class="docutils literal notranslate"><span class="pre">mwiki</span></code>, <code class="docutils literal notranslate"><span class="pre">html</span></code>, or <code class="docutils literal notranslate"><span class="pre">ipynb</span></code> formats.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>AMS LaTeX mathematics is supported, also for the <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>,
-and <code class="docutils literal notranslate"><span class="pre">ipynb</span></code> formats.</p></li>
-<li><p>If you want LaTeX math blocks to work with <code class="docutils literal notranslate"><span class="pre">latex</span></code>, <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>,
-<code class="docutils literal notranslate"><span class="pre">markdown</span></code>, and <code class="docutils literal notranslate"><span class="pre">ipynb</span></code>, only use
-the following equation environments: <code class="docutils literal notranslate"><span class="pre">\[</span> <span class="pre">...</span> <span class="pre">\]</span></code>,
-<code class="docutils literal notranslate"><span class="pre">equation*</span></code>, <code class="docutils literal notranslate"><span class="pre">equation</span></code>, <code class="docutils literal notranslate"><span class="pre">align*</span></code>, <code class="docutils literal notranslate"><span class="pre">align</span></code>. <code class="docutils literal notranslate"><span class="pre">alignat*</span></code>, <code class="docutils literal notranslate"><span class="pre">alignat</span></code>.
-Other environments, such as <code class="docutils literal notranslate"><span class="pre">split</span></code>, <code class="docutils literal notranslate"><span class="pre">multiline</span></code>, <code class="docutils literal notranslate"><span class="pre">gather</span></code> are
-supported in modern MathJax in HTML and Sphinx, but may have
-rendering problems (to a larger extent than <code class="docutils literal notranslate"><span class="pre">equation</span></code> and <code class="docutils literal notranslate"><span class="pre">align</span></code>).
-DocOnce performs extensions to <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>, <code class="docutils literal notranslate"><span class="pre">ipynb</span></code>,
-and other formats such that
-labels in <code class="docutils literal notranslate"><span class="pre">align</span></code> and <code class="docutils literal notranslate"><span class="pre">alignat</span></code> environments work well.
-If you face problems with fancy LaTeX equation environments in
-web formats, try rewriting with plain <code class="docutils literal notranslate"><span class="pre">align</span></code>, <code class="docutils literal notranslate"><span class="pre">nonumber</span></code>, etc.</p></li>
+<li><p>AMS LaTeX mathematics is supported, also for the <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>, and <code class="docutils literal notranslate"><span class="pre">ipynb</span></code> formats.</p></li>
+<li><p>If you want LaTeX math blocks to work with <code class="docutils literal notranslate"><span class="pre">latex</span></code>, <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>, <code class="docutils literal notranslate"><span class="pre">markdown</span></code>, and <code class="docutils literal notranslate"><span class="pre">ipynb</span></code>, only use the following equation environments: <code class="docutils literal notranslate"><span class="pre">\[</span> <span class="pre">...</span> <span class="pre">\]</span></code>, <code class="docutils literal notranslate"><span class="pre">equation*</span></code>, <code class="docutils literal notranslate"><span class="pre">equation</span></code>, <code class="docutils literal notranslate"><span class="pre">align*</span></code>, <code class="docutils literal notranslate"><span class="pre">align</span></code>. <code class="docutils literal notranslate"><span class="pre">alignat*</span></code>, <code class="docutils literal notranslate"><span class="pre">alignat</span></code>. Other environments, such as <code class="docutils literal notranslate"><span class="pre">split</span></code>, <code class="docutils literal notranslate"><span class="pre">multiline</span></code>, <code class="docutils literal notranslate"><span class="pre">gather</span></code> are supported in modern MathJax in HTML and Sphinx, but may have rendering problems (to a larger extent than <code class="docutils literal notranslate"><span class="pre">equation</span></code> and <code class="docutils literal notranslate"><span class="pre">align</span></code>). DocOnce performs extensions to <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>, <code class="docutils literal notranslate"><span class="pre">ipynb</span></code>, and other formats such that labels in <code class="docutils literal notranslate"><span class="pre">align</span></code> and <code class="docutils literal notranslate"><span class="pre">alignat</span></code> environments work well. If you face problems with fancy LaTeX equation environments in web formats, try rewriting with plain <code class="docutils literal notranslate"><span class="pre">align</span></code>, <code class="docutils literal notranslate"><span class="pre">nonumber</span></code>, etc.</p></li>
 <li><p>Do not use comments inside equations.</p></li>
-<li><p>Newcommands in mathematical formulas are allowed, but not in
-the running text. Newcommands must be defined in files with names
-<code class="docutils literal notranslate"><span class="pre">newcommands*.tex</span></code>. Use <code class="docutils literal notranslate"><span class="pre">\newcommands</span></code> and not <code class="docutils literal notranslate"><span class="pre">\def</span></code>.
-Each newcommand must be defined on a single line.
-Use Mako functions if you need macros in the running text.</p></li>
-<li><p>Use labels and refer to them
-for sections, figures, movies, and equations only.
-MediaWiki (<code class="docutils literal notranslate"><span class="pre">mwiki</span></code>) does not support references to equations.</p></li>
+<li><p>Newcommands in mathematical formulas are allowed, but not in the running text. Newcommands must be defined in files with names <code class="docutils literal notranslate"><span class="pre">newcommands*.tex</span></code>. Use <code class="docutils literal notranslate"><span class="pre">\newcommands</span></code> and not <code class="docutils literal notranslate"><span class="pre">\def</span></code>. Each newcommand must be defined on a single line. Use Mako functions if you need macros in the running text.</p></li>
+<li><p>Use labels and refer to them for sections, figures, movies, and equations only. MediaWiki (<code class="docutils literal notranslate"><span class="pre">mwiki</span></code>) does not support references to equations.</p></li>
 <li><p>Spaces are not allowed in labels.</p></li>
-<li><p>There is just one <code class="docutils literal notranslate"><span class="pre">ref</span></code> command (no <code class="docutils literal notranslate"><span class="pre">\eqref</span></code> for equations) and references to
-equations must use parentheses. Never use the tilde `` `` (non-breaking
-space) character before references to figures, sections, etc., but
-tilde is allowed for references to equations.</p></li>
-<li><p>Never use <code class="docutils literal notranslate"><span class="pre">\pageref</span></code> as pages are not a concept in web documents
-(there is only a <code class="docutils literal notranslate"><span class="pre">ref</span></code> command in DocOnce and it refers to labels).</p></li>
-<li><p>Only figures and movies are floating elements in DocOnce, all other elements
-(code, tables, algorithms) must appear <em>inline</em> without numbers or labels
-for reference <a class="footnote-reference brackets" href="#exception" id="id1">1</a> (refer to inline elements by a section label).
-The reason is that floating elements are in general
-not used in web documents, but we made an exception with figures
-and movies.</p></li>
-<li><p>Keep figure captions shorts as they are used as references in the
-Sphinx format. Avoid inline mathematics since Sphinx will strip it
-away in the figure reference.
-(Many writing styles encourage rich captions that
-explains everything about the figure; this work well
-only in the HTML and LaTeX formats.)</p></li>
-<li><p>You cannot use <code class="docutils literal notranslate"><span class="pre">subfigure</span></code> to combine several image files in one
-figure, but you can combine the files into one file using
-the <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">combine_images</span></code> tool. Refer to individual image files
-in the caption or text by (e.g.) &quot;left&quot; and &quot;right&quot;, or
-&quot;upper left&quot;, &quot;lower right&quot;, etc.</p></li>
-<li><p>Footnotes can be used as usual in LaTeX, but some HTML formats are not
-able to display mathematics or inline verbatim or other formatted
-code (emphasis, boldface, color) in footnotes - keep that in mind.</p></li>
-<li><p>Use plain <code class="docutils literal notranslate"><span class="pre">cite</span></code> for references (e.g., <code class="docutils literal notranslate"><span class="pre">\citeauthor</span></code> has no counterpart
-in DocOnce). The bibliography must be prepared in the Publish format,
-but import from (clean) BibTeX is possible.</p></li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">idx</span></code> for index entries, but put the definitions between paragraphs,
-not inside them (required by Sphinx).</p></li>
-<li><p>Use the <code class="docutils literal notranslate"><span class="pre">\bm</span></code> command (from the <code class="docutils literal notranslate"><span class="pre">bm</span></code> package, always included by DocOnce)
-for boldface in mathematics.</p></li>
-<li><p>Make sure all ordinary text starts in column 1 on each line. Equations
-can be indented. The <code class="docutils literal notranslate"><span class="pre">\begin{}</span></code> and <code class="docutils literal notranslate"><span class="pre">\end{}</span></code> directives should start
-in column 1.</p></li>
-<li><p>If you depend on various LaTeX environments for your writings, you have
-to give these up, or implement <em>user-defined environments</em> in DocOnce.
-For instance, examples are normally typeset as subsections in DocOnce,
-but can also utilize a user-defined example environment.
-Learn about the exercise support in DocOnce for typesetting
-exercises, problems, and projects.</p></li>
-<li><p>Learn about the preprocessors Preprocess and Mako - these are smart
-tools for, e.g., commenting out/in large portions of text and creating
-macros.</p></li>
-<li><p>Use <em>generalized references</em> when referring to companion documents
-that may later become part of this document (or migrated out of this document).</p></li>
+<li><p>There is just one <code class="docutils literal notranslate"><span class="pre">ref</span></code> command (no <code class="docutils literal notranslate"><span class="pre">\eqref</span></code> for equations) and references to equations must use parentheses. Never use the tilde `` `` (non-breaking space) character before references to figures, sections, etc., but tilde is allowed for references to equations.</p></li>
+<li><p>Never use <code class="docutils literal notranslate"><span class="pre">\pageref</span></code> as pages are not a concept in web documents (there is only a <code class="docutils literal notranslate"><span class="pre">ref</span></code> command in DocOnce and it refers to labels).</p></li>
+<li><p>Only figures and movies are floating elements in DocOnce, all other elements (code, tables, algorithms) must appear <em>inline</em> without numbers or labels for reference <a class="footnote-reference brackets" href="#exception" id="id1">1</a> (refer to inline elements by a section label). The reason is that floating elements are in general not used in web documents, but we made an exception with figures and movies.</p></li>
+<li><p>Keep figure captions shorts as they are used as references in the Sphinx format. Avoid inline mathematics since Sphinx will strip it away in the figure reference. (Many writing styles encourage rich captions that explains everything about the figure; this work well only in the HTML and LaTeX formats.)</p></li>
+<li><p>You cannot use <code class="docutils literal notranslate"><span class="pre">subfigure</span></code> to combine several image files in one figure, but you can combine the files into one file using the <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">combine_images</span></code> tool. Refer to individual image files in the caption or text by (e.g.) &quot;left&quot; and &quot;right&quot;, or &quot;upper left&quot;, &quot;lower right&quot;, etc.</p></li>
+<li><p>Footnotes can be used as usual in LaTeX, but some HTML formats are not able to display mathematics or inline verbatim or other formatted code (emphasis, boldface, color) in footnotes - keep that in mind.</p></li>
+<li><p>Use plain <code class="docutils literal notranslate"><span class="pre">cite</span></code> for references (e.g., <code class="docutils literal notranslate"><span class="pre">\citeauthor</span></code> has no counterpart in DocOnce). The bibliography must be prepared in the Publish format, but import from (clean) BibTeX is possible.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">idx</span></code> for index entries, but put the definitions between paragraphs, not inside them (required by Sphinx).</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">\bm</span></code> command (from the <code class="docutils literal notranslate"><span class="pre">bm</span></code> package, always included by DocOnce) for boldface in mathematics.</p></li>
+<li><p>Make sure all ordinary text starts in column 1 on each line. Equations can be indented. The <code class="docutils literal notranslate"><span class="pre">\begin{}</span></code> and <code class="docutils literal notranslate"><span class="pre">\end{}</span></code> directives should start in column 1.</p></li>
+<li><p>If you depend on various LaTeX environments for your writings, you have to give these up, or implement <em>user-defined environments</em> in DocOnce. For instance, examples are normally typeset as subsections in DocOnce, but can also utilize a user-defined example environment. Learn about the exercise support in DocOnce for typesetting exercises, problems, and projects.</p></li>
+<li><p>Learn about the preprocessors Preprocess and Mako - these are smart tools for, e.g., commenting out/in large portions of text and creating macros.</p></li>
+<li><p>Use <em>generalized references</em> when referring to companion documents that may later become part of this document (or migrated out of this document).</p></li>
 <li><p>Follow <a class="reference external" href="https://github.com/doconce/setup4book-doconce">recommendations for DocOnce books</a> if you plan to write a book.</p></li>
 </ul>
 </div></blockquote>
@@ -866,8 +806,7 @@ MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must 
 <blockquote>
 <div><ol class="arabic simple">
 <li><p>A mandatory comma after the figure/movie filename,</p></li>
-<li><p>no comments between <code class="docutils literal notranslate"><span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">height</span></code>, and <code class="docutils literal notranslate"><span class="pre">frac</span></code> and no spaces
-around the <code class="docutils literal notranslate"><span class="pre">=</span></code> characters,</p></li>
+<li><p>no comments between <code class="docutils literal notranslate"><span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">height</span></code>, and <code class="docutils literal notranslate"><span class="pre">frac</span></code> and no spaces around the <code class="docutils literal notranslate"><span class="pre">=</span></code> characters,</p></li>
 <li><p>all of the commands must appear on a single line,</p></li>
 <li><p>there must be a blank line after the command.</p></li>
 </ol>
@@ -927,21 +866,9 @@ syntax:</p>
 <li><p>Each line begins and ends with a vertical bar (pipe symbol).</p></li>
 <li><p>Column data are separated by a vertical bar (pipe symbol).</p></li>
 <li><p>There must be a blank line before and after the table.</p></li>
-<li><p>There may be horizontal rules, i.e., lines with dashes for
-indicating the heading and the end of the table, and these may
-contain characters 'c', 'l', or 'r' for how to align headings or
-columns. The first horizontal rule may indicate how to align
-headings (center, left, right), and the horizontal rule after the
-heading line may indicate how to align the data in the columns
-(center, left, right).
-One can also use <code class="docutils literal notranslate"><span class="pre">X</span></code> for potentially very wide text that must be
-wrapped and left-adjusted (will only affect <code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> where the
-<code class="docutils literal notranslate"><span class="pre">tabularx</span></code> package is then used; <code class="docutils literal notranslate"><span class="pre">X</span></code> means <code class="docutils literal notranslate"><span class="pre">l</span></code> in all other formats).</p></li>
-<li><p>If the horizontal rules are without alignment information there should
-be no vertical bar (pipe symbol) between the columns. Otherwise, such
-a bar indicates a vertical bar between columns in LaTeX.</p></li>
-<li><p>Many output formats are so primitive that heading and column alignment
-have no effect.</p></li>
+<li><p>There may be horizontal rules, i.e., lines with dashes for indicating the heading and the end of the table, and these may contain characters 'c', 'l', or 'r' for how to align headings or columns. The first horizontal rule may indicate how to align headings (center, left, right), and the horizontal rule after the heading line may indicate how to align the data in the columns (center, left, right). One can also use <code class="docutils literal notranslate"><span class="pre">X</span></code> for potentially very wide text that must be wrapped and left-adjusted (will only affect <code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> where the <code class="docutils literal notranslate"><span class="pre">tabularx</span></code> package is then used; <code class="docutils literal notranslate"><span class="pre">X</span></code> means <code class="docutils literal notranslate"><span class="pre">l</span></code> in all other formats).</p></li>
+<li><p>If the horizontal rules are without alignment information there should be no vertical bar (pipe symbol) between the columns. Otherwise, such a bar indicates a vertical bar between columns in LaTeX.</p></li>
+<li><p>Many output formats are so primitive that heading and column alignment have no effect.</p></li>
 </ul>
 </div></blockquote>
 <p>A quick way of generating tables is to place all the entries in a file
@@ -1057,7 +984,7 @@ forthcoming text. The index is only produced for the <code class="docutils liter
 <p>The <code class="docutils literal notranslate"><span class="pre">doconce</span></code> program can be used for a number of purposes besides
 transforming a <code class="docutils literal notranslate"><span class="pre">.do.txt</span></code> file to some format. Here is the
 list of capabilities:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>DocOnce version <span class="m">1</span>.5.7 <span class="o">(</span>from /home/amarin/doconce/venv/lib/python3.6/site-packages/DocOnce-1.5.7-py3.6.egg/doconce<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>DocOnce version <span class="m">1</span>.5.7 <span class="o">(</span>from /home/amarin/doconce/venvsl/lib/python3.6/site-packages/DocOnce-1.5.7-py3.6.egg/doconce<span class="o">)</span>
 Usage: doconce <span class="nb">command</span> <span class="o">[</span>optional arguments<span class="o">]</span>
 commands: <span class="nb">help</span> format find subst replace remove spellcheck apply_inline_edits capitalize change_encoding clean combine_images csv2table diff expand_commands expand_mako extract_exercises find_nonascii_chars fix_bibtex4publish gitdiff grab grep guess_encoding gwiki_figsubst html2doconce html_colorbullets jupyterbook include_map insertdocstr ipynb2doconce latex2doconce latex_dislikes latex_exercise_toc latex_footer latex_header latex_problems latin2html lightclean linkchecker list_fig_src_files list_labels makefile md2html md2latex old2new_format ptex2tex pygmentize ref_external remove_exercise_answers remove_inline_comments replace_from_file slides_beamer slides_html slides_markdown sphinx_dir sphinxfix_localURLs split_html split_rst teamod
 
@@ -1235,9 +1162,7 @@ as ordinary sections and referred to by their section labels.
 Exercise, problem, project, or example sections contains certain <em>elements</em>:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>a headline at the level of a subsection
-containing one of the words &quot;Exercise:&quot;, &quot;Problem:&quot;,
-&quot;Project:&quot;, or &quot;Example:&quot;, followed by a title (required)</p></li>
+<li><p>a headline at the level of a subsection containing one of the words &quot;Exercise:&quot;, &quot;Problem:&quot;, &quot;Project:&quot;, or &quot;Example:&quot;, followed by a title (required)</p></li>
 <li><p>a label (optional)</p></li>
 <li><p>a solution file (optional)</p></li>
 <li><p>name of file with a student solution (optional)</p></li>
@@ -1245,9 +1170,7 @@ containing one of the words &quot;Exercise:&quot;, &quot;Problem:&quot;,
 <li><p>a short answer (optional)</p></li>
 <li><p>a full solution (optional)</p></li>
 <li><p>one or more hints (optional)</p></li>
-<li><p>one or more subexercises (subproblems, subprojects), which can also
-contain a text, a short answer, a full solution, name student file
-to be handed in, and one or more hints (optional)</p></li>
+<li><p>one or more subexercises (subproblems, subprojects), which can also contain a text, a short answer, a full solution, name student file to be handed in, and one or more hints (optional)</p></li>
 </ul>
 </div></blockquote>
 <p>A typical sketch of a a problem without subexercises goes as follows:</p>
@@ -1353,8 +1276,7 @@ the environments:</p>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">block</span></code>, <code class="docutils literal notranslate"><span class="pre">box</span></code>: simpler boxes (<code class="docutils literal notranslate"><span class="pre">block</span></code> may have title but never any icon)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pop</span></code>: text to gradually pop up in slide presentations</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">slidecell</span></code>: indication of cells in a grid layout for elements on a
-slide</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">slidecell</span></code>: indication of cells in a grid layout for elements on a slide</p></li>
 </ul>
 </div></blockquote>
 <p>In addition, the user can define new environments <code class="docutils literal notranslate"><span class="pre">!bc-name</span></code> as

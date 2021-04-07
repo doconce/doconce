@@ -21,7 +21,7 @@ DATE: Today
 
 !bslidecell 01
 !bblock
-FIGURE: [../doc/src/manual/fig/wave1D.png, width=300 frac=0.7]
+FIGURE: [testfigs/wave1D.png, width=300 frac=0.7]
 !eblock
 !eslidecell
 
@@ -88,7 +88,7 @@ bla-bla
 ======= Second section =======
 
 !bblock
-FIGURE: [../doc/src/manual/fig/wave1D.png, width=600 frac=0.8]
+FIGURE: [testfigs/wave1D.png, width=600 frac=0.8]
 !eblock
 
 !split

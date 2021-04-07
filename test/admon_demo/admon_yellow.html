@@ -1,6 +1,7 @@
 <!--
 Automatically generated HTML file from DocOnce source
 (https://github.com/doconce/doconce/)
+doconce format html admon.do.txt --html_admon=yellow --html_admon_shadow --html_box_shadow --cite_doconce --html_raw_github_url=raw.github
 -->
 <html>
 <head>
@@ -129,6 +130,14 @@ div.output_text {
 .alert-warning { background-image: url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_yellow_warning.png); }
 .alert-question {background-image:url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_yellow_question.png); }
 div { text-align: justify; text-justify: inter-word; }
+.tab {
+  padding-left: 1.5em;
+}
+div.toc p,a {
+  line-height: 1.3;
+  margin-top: 1.1;
+  margin-bottom: 1.1;
+}
 </style>
 </head>
 
@@ -162,32 +171,29 @@ MathJax.Hub.Config({
 </script>
 
 
-    
 <!-- ------------------- main content ---------------------- -->
 <center>
 <h1>Testing admons</h1>
 </center>  <!-- document title -->
-<p></p>
+
 <!-- author(s): H. P. Langtangen -->
 <center>
 <b>H. P. Langtangen</b> 
 </center>
-<p><!-- institution(s) --></p>
+<!-- institution(s) -->
 <br>
 <center>
 <h4>Apr 6, 2021</h4>
 </center> <!-- date -->
 <br>
-<p></p>
+
 <!-- !split -->
 <h1 id="introduction">Introduction </h1>
-First some ordinary text to compare font sizes in admonitions
-and the surrounding text.
-<p></p>
+<p>First some ordinary text to compare font sizes in admonitions and the surrounding text.</p>
 <h2 id="code">Code </h2>
-<p></p>
-Need some code outside admons for color and font comparisons:
-<p></p>
+
+<p>Need some code outside admons for color and font comparisons:</p>
+
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -212,9 +218,8 @@ Need some code outside admons for color and font comparisons:
   </div>
 </div>
 
-<p></p>
-And some plain text verbatim:
-<p></p>
+<p>And some plain text verbatim:</p>
+
 
 <!-- code=text (!bc ccq) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -239,40 +244,30 @@ x=1.1 y=0.3 z=0.1
     </div>
   </div>
 </div>
-
-<p></p>
 <h2 id="quotes-and-boxes">Quotes and boxes </h2>
-<p></p>
-Here is a plain quote environment.
-<p></p>
+
+<p>Here is a plain quote environment.</p>
+
 <blockquote>
-    Sayre's law states that
-    &quot;in any dispute the intensity of feeling is inversely
-    proportional to the value of the issues at stake.&quot; <br />
-    By way of corollary, it adds: <br />
-    &quot;That is why academic politics are so bitter.&quot; <br />
-    <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a>
+    <p>Sayre's law states that &quot;in any dispute the intensity of feeling is inversely proportional to the value of the issues at stake.&quot; <br /> By way of corollary, it adds: <br /> &quot;That is why academic politics are so bitter.&quot; <br /> <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a></p>
 </blockquote>
 
-<p></p>
-Does quotes with title also work? No...cannot work in LaTeX and HTML
-and then it does not make sense to support it.
-<p></p>
-A plain <em>box</em> is sometimes useful. Let's show it here for comparison
-with admons (especially the block admon has much in common with a box).
-The box is more aimed at framing a law or an equation.
-<p></p>
-First a simple block with text, an equation, and a list:
-<p></p>
+
+<p>Does quotes with title also work? No...cannot work in LaTeX and HTML and then it does not make sense to support it.</p>
+
+<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison with admons (especially the block admon has much in common with a box). The box is more aimed at framing a law or an equation.</p>
+
+<p>First a simple block with text, an equation, and a list:</p>
+
 
 <!-- begin box -->
 <div style="width: 95%; padding: 10px; border: 1px solid #000; border-radius: 4px; box-shadow: 8px 8px 5px #888888;">
-A generic equation
-<p></p>
+<p>A generic equation</p>
+
 $$ f(x) = 0 $$
 
-must be solved by a numerical method, such as
-<p></p>
+<p>must be solved by a numerical method, such as</p>
+
 <ul>
  <li> Newton's method</li>
  <li> The Bisection method</li>
@@ -282,9 +277,8 @@ must be solved by a numerical method, such as
 </div>
 <!-- end box -->
 
-Now test a box with equation only (note that this line continues the
-box, it is not a new paragraph):
-<p></p>
+<p>Now test a box with equation only (note that this line continues the box, it is not a new paragraph):</p>
+
 
 <!-- begin box -->
 <div style="width: 95%; padding: 10px; border: 1px solid #000; border-radius: 4px; box-shadow: 8px 8px 5px #888888;">
@@ -295,15 +289,15 @@ $$
 </div>
 <!-- end box -->
 
-<p></p>
+
 <b>Hint.</b>
 
-Newton's method requires a good start vector to converge fast.
+<p>Newton's method requires a good start vector to converge fast.</p>
 
 
-<p></p>
-Let's begin a new paragraph and show a box with code only:
-<p></p>
+
+<p>Let's begin a new paragraph and show a box with code only:</p>
+
 
 <!-- begin box -->
 <div style="width: 95%; padding: 10px; border: 1px solid #000; border-radius: 4px; box-shadow: 8px 8px 5px #888888;">
@@ -333,41 +327,32 @@ Let's begin a new paragraph and show a box with code only:
 </div>
 <!-- end box -->
 
-<p></p>
 <h2 id="admonitions">Admonitions </h2>
-<p></p>
-Let us start with a plain warning environment.
-<p></p>
+
+<p>Let us start with a plain warning environment.</p>
+
 <div class="alert alert-block alert-warning alert-text-normal">
 <b>Warning</b>
 <p>
-And here is a warning about something to pay attention to. We
-test how the heading behave and add quite some extra texts
-in comparison with the other admons.
-<p></p>
+<p>And here is a warning about something to pay attention to. We test how the heading behave and add quite some extra texts in comparison with the other admons.</p>
+
 <ul>
   <li> and a list</li>
   <li> with items</li>
 </ul>
-We continue with more text to see how that affects the layout.
-And more and more text.
-And more and more text.
-And more and more text.
-And more and more text.
-And more and more text.
-And more and more text.
+<p>We continue with more text to see how that affects the layout. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text.</p>
 </div>
 
-<p></p>
-Test warning with title:
-<p></p>
+
+<p>Test warning with title:</p>
+
 <div class="alert alert-block alert-warning alert-text-large">
 <b>Title ending with math \( \sqrt{2}\approx 1.4 \)</b>
 <p>
-And here comes some text with bad news in larger font.
-<p></p>
-Also some code:
-<p></p>
+<p>And here comes some text with bad news in larger font.</p>
+
+<p>Also some code:</p>
+
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -392,8 +377,8 @@ Also some code:
   </div>
 </div>
 
-And a complete program
-<p></p>
+<p>And a complete program</p>
+
 
 <!-- code=python (!bc pypro) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -418,48 +403,40 @@ And a complete program
 </div>
 </div>
 
-<p></p>
-Test warning with large title with math:
-<p></p>
+
+<p>Test warning with large title with math:</p>
+
 <div class="alert alert-block alert-warning alert-text-large">
 <b>Watch out for \( \nabla\cdot\boldsymbol{u}=0 \) equations</b>
 <p>
-Divergence freedom is often problematic from a numerical point
-of view.
+<p>Divergence freedom is often problematic from a numerical point of view.</p>
 </div>
 
-<p></p>
-Then we test a block, which is guaranteed to never have any admon icon.
-<p></p>
+
+<p>Then we test a block, which is guaranteed to never have any admon icon.</p>
+
 <div class="alert alert-block alert-block alert-text-small">
 <b>Block with title</b>
 <p>
-Here is a block of text with title. It is typeset
-<em>without any icon</em> and is useful when you want some admons with icon
-and some without. With the small font size, as used here, one can have
-more comment-style text or text that really goes deeper or talks
-about fun facts that are not strictly necessary for the main flow
-of understanding.
+<p>Here is a block of text with title. It is typeset <em>without any icon</em> and is useful when you want some admons with icon and some without. With the small font size, as used here, one can have more comment-style text or text that really goes deeper or talks about fun facts that are not strictly necessary for the main flow of understanding.</p>
 </div>
 
-<p></p>
+
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
-Here is a block of text with no title. As above, it is typeset without any icon
-and is useful when you want some admons with icon and some without.
+<p>Here is a block of text with no title. As above, it is typeset without any icon and is useful when you want some admons with icon and some without.</p>
 </div>
 
-<p></p>
+
 <!-- Note that the final ! does not appear in Sphinx and reST since -->
 <!-- those formats automatically add : to the admonition title. -->
-<p></p>
+
 <div class="alert alert-block alert-notice alert-text-illegal-size">
 <b>Note, eventually!</b>
 <p>
-Ah, we are soon close to the end (with illegal font size specification!).
-But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
-<p></p>
+<p>Ah, we are soon close to the end (with illegal font size specification!). But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):</p>
+
 $$
 \begin{align*}
 \theta &= q^2,\\
@@ -468,23 +445,23 @@ $$
 $$
 </div>
 
-<p></p>
+
 <!-- Test one word with a number -->
-<p></p>
+
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Point1</b>
 <p>
-Ah, we are soon close to the end.
+<p>Ah, we are soon close to the end.</p>
 </div>
 
-<p></p>
+
 <div class="alert alert-block alert-question alert-text-normal">
 <b>Question</b>
 <p>
-So, how many admonition environments does DocOnce support?
+<p>So, how many admonition environments does DocOnce support?</p>
 </div>
 
-<p></p>
+
 <div class="alert alert-block alert-question alert-text-normal">
 <b>Question</b>
 <p>
@@ -493,18 +470,18 @@ So, how many admonition environments does DocOnce support?
 </ol>
 </div>
 
-<p></p>
+
 <div class="alert alert-block alert-warning alert-text-normal">
 <b>Tip</b>
 <p>
-It is of outmost important to
-<p></p>
+<p>It is of outmost important to</p>
+
 <ol>
 <li> stay cool</li>
 <li> read hints and tips carefully</li>
 </ol>
-Because here the thing is to do
-<p></p>
+<p>Because here the thing is to do</p>
+
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -532,32 +509,26 @@ Because here the thing is to do
 </div>
 </div>
 
-<p></p>
-Next is a warning without a title ("none" implies no title).
-<p></p>
+
+<p>Next is a warning without a title ("none" implies no title).</p>
+
 <div class="alert alert-block alert-warning alert-text-normal">
 <b></b>
 <p>
-And here comes some text with bad news.
+<p>And here comes some text with bad news.</p>
 </div>
 
-<p></p>
 <h2 id="going-deeper-environments">Going deeper environments </h2>
-<p></p>
-Here is a long notice environment with a custom title and much
-text, math and code.
-<p></p>
+
+<p>Here is a long notice environment with a custom title and much text, math and code.</p>
+
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Going deeper.</b>
 <p>
-We have some equations that should be preceded by much text, so the
-task is to write and write. The number of words, and not the
-meaning, is what counts here. We need desperately to fill up the
-page in the hope that some admonitions will experience a page break,
-which the LaTeX environment should handle with ease.
-<p></p>
-Let us start with some equations:
-<p></p>
+<p>We have some equations that should be preceded by much text, so the task is to write and write. The number of words, and not the meaning, is what counts here. We need desperately to fill up the page in the hope that some admonitions will experience a page break, which the LaTeX environment should handle with ease.</p>
+
+<p>Let us start with some equations:</p>
+
 $$
 \begin{align*}
 \frac{Du}{dt} &= 0
@@ -567,10 +538,8 @@ $$
 \end{align*}
 $$
 
-<p></p>
-The implementation of such complicated equations in computer
-code is task that this "Going deeper" environment targets.
-<p></p>
+<p>The implementation of such complicated equations in computer code is task that this "Going deeper" environment targets.</p>
+
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -599,9 +568,8 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
   </div>
 </div>
 
-And some more text that can help going into the next page.
-Longer computer code requires vertical space:
-<p></p>
+<p>And some more text that can help going into the next page. Longer computer code requires vertical space:</p>
+
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -662,33 +630,29 @@ Longer computer code requires vertical space:
   </div>
 </div>
 
-And then we add a figure too.
-<p></p>
+<p>And then we add a figure too.</p>
+
 <br /><br /><center>
-<p><img src="../../doc/src/manual/fig/wave1D.png" align="bottom" width=400></p>
-</center>
+<p><img src="testfigs/wave1D.png" align="bottom" width=400></p>
+<p></center></p>
 <br /><br/>
 </div>
 
-<p></p>
 <h2 id="the-end">The end </h2>
-<p></p>
-A bit of text before the summary, which we now call "Concluding remarks,
-for the novice",
-just because we can.
-<p></p>
+
+<p>A bit of text before the summary, which we now call "Concluding remarks, for the novice", just because we can.</p>
+
 <div class="alert alert-block alert-summary alert-text-normal">
 <b>Concluding remarks, for the novice</b>
 <p>
-We can summarize the most important things with admons: they have
-a different typesetting, and they may have a symbol.
-Titles should be optional.
+<p>We can summarize the most important things with admons: they have a different typesetting, and they may have a symbol. Titles should be optional.</p>
 </div>
 
-<p></p>
+
+<p>
 <b>Remark.</b>
-The <code>remarks</code> and <code>hint</code> environments are not allowed outside
-exercises (and problems and projects too).
+</p>
+<p>The <code>remarks</code> and <code>hint</code> environments are not allowed outside exercises (and problems and projects too).</p>
 <!-- ------------------- end of main content --------------- -->
 <center style="font-size:80%">
 <!-- copyright --> &copy; 2021, H. P. Langtangen. Made with <a href="https://github.com/doconce/doconce">DocOnce</a>

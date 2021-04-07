@@ -2587,7 +2587,7 @@ idx{smileys}
 idx{`--no_emoji`}
 
 Emojis are specified by syntax like `:sweat_smile:`, followed by
-whitespace (blank or newline) before and after.
+whitespace before and after.
 The available emoji names are shown at URL: "http://www.emoji-cheat-sheet.com".
 Here is an example: :sweat_smile:
 

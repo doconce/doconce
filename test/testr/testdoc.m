@@ -106,8 +106,7 @@
 % 
 %   * item2
 % 
-%   * item3 which continues
-%     on the next line to test that feature
+%   * item3 which continues on the next line to test that feature
 % 
 %   * and a sublist
 % 
@@ -120,8 +119,7 @@
 % 
 %    # first item
 % 
-%    # second item,
-%       continuing on a new line
+%    # second item, continuing on a new line
 % 
 % 
 % *Here is a list with paragraph heading.* 
@@ -454,8 +452,7 @@ end
 % 
 %  * even with math $\nabla^2u$[^math1]
 % 
-%  * and code |h[i] += 1|[^code]
-%    (_must_ have space between inline code and footnote!)
+%  * and code |h[i] += 1|[^code] (_must_ have space between inline code and footnote!)
 % 
 %  * and links <https://google.com>[^google-search]
 % 
@@ -1335,143 +1332,45 @@ end
 % 
 %% References
 % 
-%  # *H. P. Langtangen and G. Pedersen*. 
-%     Propagation of Large Destructive Waves,
-%     _International Journal of Applied Mechanics and Engineering_,
-%     7(1),
-%     pp. 187-204,
-%     2002.
+%  # *H. P. Langtangen and G. Pedersen*.  Propagation of Large Destructive Waves, _International Journal of Applied Mechanics and Engineering_, 7(1), pp. 187-204, 2002.
 % 
-%  # *H. P. Langtangen, K.-A. Mardal and R. Winther*. 
-%     Numerical Methods for Incompressible Viscous Flow,
-%     _Advances in Water Resources_,
-%     25,
-%     pp. 1125-1146,
-%     2002.
+%  # *H. P. Langtangen, K.-A. Mardal and R. Winther*.  Numerical Methods for Incompressible Viscous Flow, _Advances in Water Resources_, 25, pp. 1125-1146, 2002.
 % 
-%  # *H. P. Langtangen*. 
-%     Numerical Solution of First Passage Problems in Random Vibrations,
-%     _SIAM Journal of Scientific and Statistical Computing_,
-%     15,
-%     pp. 997-996,
-%     1994.
+%  # *H. P. Langtangen*.  Numerical Solution of First Passage Problems in Random Vibrations, _SIAM Journal of Scientific and Statistical Computing_, 15, pp. 997-996, 1994.
 % 
-%  # *K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen*. 
-%     Software Tools for Multigrid Methods,
-%     _Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming_,
-%     edited by *H. P. Langtangen and A. Tveito*,
-%     Springer,
-%     2003,
-%     Edited book,
-%     <http://some.where.org>.
+%  # *K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen*.  Software Tools for Multigrid Methods, _Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming_, edited by *H. P. Langtangen and A. Tveito*, Springer, 2003, Edited book, <http://some.where.org>.
 % 
-%  # *H. P. Langtangen*. 
-%     The FEMDEQS Program System,
-%     _Department of Mathematics, University of Oslo_,
-%     1989,
-%     <http://www.math.uio.no/old/days/hpl/femdeqs.pdf>.
+%  # *H. P. Langtangen*.  The FEMDEQS Program System, _Department of Mathematics, University of Oslo_, 1989, <http://www.math.uio.no/old/days/hpl/femdeqs.pdf>.
 % 
-%  # *H. P. Langtangen*. 
-%     Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process,
-%     _SIAM Journal on Scientific Computing_,
-%     13,
-%     pp. 1394-1417,
-%     1992.
+%  # *H. P. Langtangen*.  Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process, _SIAM Journal on Scientific Computing_, 13, pp. 1394-1417, 1992.
 % 
-%  # *M. Mortensen, H. P. Langtangen and G. N. Wells*. 
-%     A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations,
-%     _Advances in Water Resources_,
-%     34(9),
-%     doi: 10.1016/j.advwatres.2011.02.013 <https://dx.doi.org/10.1016/j.advwatres.2011.02.013>,
-%     2011.
+%  # *M. Mortensen, H. P. Langtangen and G. N. Wells*.  A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations, _Advances in Water Resources_, 34(9), doi: 10.1016/j.advwatres.2011.02.013 <https://dx.doi.org/10.1016/j.advwatres.2011.02.013>, 2011.
 % 
-%  # *S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt*. 
-%     Propagation of the Dec. 26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics,
-%     _International Journal of Fluid Mechanics Research_,
-%     33(1),
-%     pp. 15-43,
-%     2006.
+%  # *S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt*.  Propagation of the Dec. 26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics, _International Journal of Fluid Mechanics Research_, 33(1), pp. 15-43, 2006.
 % 
-%  # *S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen*. 
-%     Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel,
-%     _Physical Review B: Condensed Matter and Materials Physics_,
-%     74,
-%     2006,
-%     035308.
+%  # *S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen*.  Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel, _Physical Review B: Condensed Matter and Materials Physics_, 74, 2006, 035308.
 % 
-% # *J. B. Haga, H. Osnes and H. P. Langtangen*. 
-%     On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media,
-%     _International Journal of Analytical and Numerical Methods in Geomechanics_,
-%     doi: 10.1002/nag.1062 <https://dx.doi.org/10.1002/nag.1062>,
-%     2011,
-%     <http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract>.
+% # *J. B. Haga, H. Osnes and H. P. Langtangen*.  On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media, _International Journal of Analytical and Numerical Methods in Geomechanics_, doi: 10.1002/nag.1062 <https://dx.doi.org/10.1002/nag.1062>, 2011, <http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract>.
 % 
-% # *H. P. Langtangen*. 
-%     _Computational Partial Differential Equations - Numerical Methods and Diffpack Programming_,
-%     second edition,
-%     _Texts in Computational Science and Engineering_,
-%     Springer,
-%     2003.
+% # *H. P. Langtangen*.  _Computational Partial Differential Equations - Numerical Methods and Diffpack Programming_, second edition, _Texts in Computational Science and Engineering_, Springer, 2003.
 % 
-% # *H. P. Langtangen*. 
-%     _Python Scripting for Computational Science_,
-%     third edition,
-%     _Texts in Computational Science and Engineering_,
-%     Springer,
-%     2008.
+% # *H. P. Langtangen*.  _Python Scripting for Computational Science_, third edition, _Texts in Computational Science and Engineering_, Springer, 2008.
 % 
-% # *H. P. Langtangen and G. Pedersen*. 
-%     Finite Elements for the Boussinesq Wave Equations,
-%     Waves and Non-linear Processes in Hydrodynamics,
-%     edited by *J. Grue, B. Gjevik and J. E. Weber*,
-%     Kluwer Academic Publishers,
-%     pp. pp. 117-126,
-%     1995,
-%     <http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310>.
+% # *H. P. Langtangen and G. Pedersen*.  Finite Elements for the Boussinesq Wave Equations, Waves and Non-linear Processes in Hydrodynamics, edited by *J. Grue, B. Gjevik and J. E. Weber*, Kluwer Academic Publishers, pp. pp. 117-126, 1995, <http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310>.
 % 
-% # *H. P. Langtangen*. 
-%     _A Primer on Scientific Programming With Python_,
-%     third edition,
-%     _Texts in Computational Science and Engineering_,
-%     Springer,
-%     2012.
+% # *H. P. Langtangen*.  _A Primer on Scientific Programming With Python_, third edition, _Texts in Computational Science and Engineering_, Springer, 2012.
 % 
-% # *P. V. Jeberg, H. P. Langtangen and C. B. Terp*. 
-%     Optimization With Diffpack: Practical Example From Welding,
-%     _Simula Research Laboratory_,
-%     2004,
-%     Internal report.
+% # *P. V. Jeberg, H. P. Langtangen and C. B. Terp*.  Optimization With Diffpack: Practical Example From Welding, _Simula Research Laboratory_, 2004, Internal report.
 % 
-% # *H. P. Langtangen*. 
-%     Computational Methods for Two-Phase Flow in Oil Reservoirs,
-%     Ph.D. Thesis,
-%     Mechanics Division, Department of Mathematics, University of Oslo,
-%     1989,
-%     Dr. Scient. thesis..
+% # *H. P. Langtangen*.  Computational Methods for Two-Phase Flow in Oil Reservoirs, Ph.D. Thesis, Mechanics Division, Department of Mathematics, University of Oslo, 1989, Dr. Scient. thesis..
 % 
-% # *H. P. Langtangen*. 
-%     Computational Modeling of Huge Tsunamis From Asteroid Impacts,
-%     2007,
-%     Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China.
+% # *H. P. Langtangen*.  Computational Modeling of Huge Tsunamis From Asteroid Impacts, 2007, Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China.
 % 
-% # *H. P. Langtangen*. 
-%     Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions,
-%     M.Sc. Thesis,
-%     Mechanics Division, Department of Mathematics, University of Oslo,
-%     1985,
-%     Cand.Scient. thesis.
+% # *H. P. Langtangen*.  Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions, M.Sc. Thesis, Mechanics Division, Department of Mathematics, University of Oslo, 1985, Cand.Scient. thesis.
 % 
-% # *H. P. Langtangen and A. Tveito*. 
-%     Numerical Methods in Continuum Mechanics,
-%     _Center for Industrial Research_,
-%     1991,
-%     Lecture notes for a course (ME-IN 324). 286 pages..
+% # *H. P. Langtangen and A. Tveito*.  Numerical Methods in Continuum Mechanics, _Center for Industrial Research_, 1991, Lecture notes for a course (ME-IN 324). 286 pages..
 % 
-% # *H. P. Langtangen*. 
-%     Diffpack: Software for Partial Differential Equations,
-%     _Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA_,
-%     edited by *A. Vermeulen*,
-%     1994.
+% # *H. P. Langtangen*.  Diffpack: Software for Partial Differential Equations, _Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA_, edited by *A. Vermeulen*, 1994.
 % 
 %% Appendix: Just for testing; part I
 % 

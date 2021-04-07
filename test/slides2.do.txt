@@ -2,7 +2,7 @@ TITLE: Test slide features
 AUTHOR: Core Dump at Cyber Space Ltd
 DATE: Today
 
-FIGURE: [../doc/src/slides/fig/doconce1b, width=400 frac=0.5]
+FIGURE: [testfigs/doconce1b, width=400 frac=0.5]
 
 !split
 TOC: on
@@ -11,32 +11,32 @@ TOC: on
 ===== Scientific writing for the future needs to address many new media =====
 
 !bslidecell 00 0.4
-FIGURE: [../doc/src/slides/fig/ipad, width=400 frac=0.8]
+FIGURE: [testfigs/ipad, width=400 frac=0.8]
 
-FIGURE: [../doc/src/slides/fig/iphones, width=100 frac=0.3]
+FIGURE: [testfigs/iphones, width=100 frac=0.3]
 
-#FIGURE: [../doc/src/slides/fig/mbair, width=400]
+#FIGURE: [testfigs/mbair, width=400]
 
 !eslidecell
 
 !bslidecell 01 0.6
-FIGURE: [../doc/src/slides/fig/imac, width=350 frac=0.7]
+FIGURE: [testfigs/imac, width=350 frac=0.7]
 !eslidecell
 
 !split
 ===== The book will probably survive =====
 
-FIGURE: [../doc/src/slides/fig/oldbooks, width=800]
+FIGURE: [testfigs/oldbooks, width=800]
 
 !split
 ===== The classical report will survive =====
 
 !bslidecell 00
-FIGURE: [../doc/src/slides/fig/latex_thesis, width=400 frac=1.2]
+FIGURE: [testfigs/latex_thesis, width=400 frac=1.2]
 !eslidecell
 
 !bslidecell 01
-FIGURE: [../doc/src/slides/fig/latex_paper1, width=400 frac=1.2]
+FIGURE: [testfigs/latex_paper1, width=400 frac=1.2]
 !eslidecell
 
 !split
@@ -55,27 +55,27 @@ FIGURE: [../doc/src/slides/fig/latex_paper1, width=400 frac=1.2]
 !epop
 
 !bslidecell 00 0.25
-FIGURE: [../doc/src/slides/fig/LaTeX_logo.jpg, width=120 frac=0.3]
+FIGURE: [testfigs/LaTeX_logo.jpg, width=120 frac=0.3]
 !eslidecell
 
 !bslidecell 01 0.25
-FIGURE: [../doc/src/slides/fig/MS_Word_logo.jpg, width=80 frac=0.2]
+FIGURE: [testfigs/MS_Word_logo.jpg, width=80 frac=0.2]
 !eslidecell
 
 !bslidecell 02 0.5
-FIGURE: [../doc/src/slides/fig/sphinx_logo.png, width=200 frac=0.4]
+FIGURE: [testfigs/sphinx_logo.png, width=200 frac=0.4]
 !eslidecell
 
 !bslidecell 10 0.25
-FIGURE: [../doc/src/slides/fig/markdown_logo.jpg, width=80 frac=0.2]
+FIGURE: [testfigs/markdown_logo.jpg, width=80 frac=0.2]
 !eslidecell
 
 !bslidecell 11 0.25
-FIGURE: [../doc/src/slides/fig/MediaWiki_logo.jpg, width=80 frac=0.2]
+FIGURE: [testfigs/MediaWiki_logo.jpg, width=80 frac=0.2]
 !eslidecell
 
 !bslidecell 12 0.5
-FIGURE: [../doc/src/slides/fig/IPython_logo.png, width=300 frac=0.6]
+FIGURE: [testfigs/IPython_logo.png, width=300 frac=0.6]
 !eslidecell
 
 
@@ -96,7 +96,7 @@ Old days (1985-2005): LaTeX for BW paper output, but now
 !eslidecell
 
 !bslidecell 01
-FIGURE: [../doc/src/slides/fig/jungle_with_mess.jpg, width=500]
+FIGURE: [testfigs/jungle_with_mess.jpg, width=500]
 !eslidecell
 
 !split
@@ -504,7 +504,7 @@ of getting at least three heads out of 5 throws.
    bullet points are not recommended in general, we need
    it here for demonstration purposes
 
-FIGURE: [../doc/src/slides/fig/teacher1, width=100]
+FIGURE: [testfigs/teacher1, width=100]
 
 Key equation:
 
@@ -530,7 +530,7 @@ Last page gets rendered to
  * Key point 1
  * Key point 2
 
-FIGURE: [../doc/src/slides/fig/teacher1, width=100 frac=0.4]
+FIGURE: [testfigs/teacher1, width=100 frac=0.4]
 
 Key equation:
 
@@ -573,7 +573,7 @@ a figure to the right (two cells, numbered 00 and 01).
 |eslidecell
 
 |bslidecell 01
-FIGURE: [../doc/src/slides/fig/broken_pen_and_paper, width=400, frac=0.8]
+FIGURE: [testfigs/broken_pen_and_paper, width=400, frac=0.8]
 |eslidecell
 
 !split
@@ -608,6 +608,6 @@ Last page gets rendered to
 !eslidecell
 
 !bslidecell 01
-FIGURE: [../doc/src/slides/fig/broken_pen_and_paper, width=400]
+FIGURE: [testfigs/broken_pen_and_paper, width=400]
 !eslidecell
 # #endif

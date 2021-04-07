@@ -1,6 +1,7 @@
 <!--
 Automatically generated HTML file from DocOnce source
 (https://github.com/doconce/doconce/)
+doconce format html quickref.do.txt --pygments_html_style=none --no_preprocess --no_abort --html_style=bootswatch_readable
 -->
 <html>
 <head>
@@ -91,7 +92,6 @@ MathJax.Hub.Config({
 </script>
 
 
-    
 <!-- Bootstrap navigation bar -->
 <div class="navbar navbar-default navbar-fixed-top">
   <div class="navbar-header">
@@ -146,12 +146,12 @@ MathJax.Hub.Config({
 <center>
 <h1>DocOnce Quick Reference</h1>
 </center>  <!-- document title -->
-<p></p>
+
 <!-- author(s): Hans Petter Langtangen -->
 <center>
 <b>Hans Petter Langtangen</b> [1, 2]
 </center>
-<p><!-- institution(s) --></p>
+<!-- institution(s) -->
 <center>
 [1] <b>Center for Biomedical Computing, Simula Research Laboratory</b>
 </center>
@@ -163,75 +163,54 @@ MathJax.Hub.Config({
 <h4>Apr 6, 2021</h4>
 </center> <!-- date -->
 <br>
-<p></p>
+
 
 </div> <!-- end jumbotron -->
 <h1 id="table_of_contents">Table of contents</h1>
-<p></p>
-<a href="#supported-formats"> Supported Formats </a>
+
+<div class='toc'>
+<p><a href="#supported-formats"> Supported Formats </a></p>
+<p><a href="#emacs-syntax-support"> Emacs syntax support </a></p>
+<p><a href="#title-authors-and-date"> Title, Authors, and Date </a></p>
+<p><a href="#copyright"> Copyright </a></p>
+<p><a href="#quick:sections"> Section Types </a></p>
+<p><a href="#inline-formatting"> Inline Formatting </a></p>
+<p><a href="#lists"> Lists </a></p>
+<p><a href="#comment-lines"> Comment lines </a></p>
+<p><a href="#inline-comments"> Inline comments </a></p>
+<p><a href="#verbatim-computer-code"> Verbatim/Computer Code </a></p>
+<p><a href="#latex-mathematics"> LaTeX Mathematics </a></p>
+<p><a href="#manual:latex:guide"> Writing Guidelines (Especially for LaTeX Users!) </a></p>
+<p><a href="#hyperlinks"> Hyperlinks </a></p>
+<p><a href="#figures-and-movies"> Figures and Movies </a></p>
+<p><a href="#tables"> Tables </a></p>
+<p><a href="#labels-and-references"> Labels and References </a></p>
+<p><a href="#citations-and-bibliography"> Citations and Bibliography </a></p>
+<p><a href="#generalized-references"> Generalized References </a></p>
+<p><a href="#index-of-keywords"> Index of Keywords </a></p>
+<p><a href="#capabilities-of-the-program-doconce"> Capabilities of The Program <code>doconce</code> </a></p>
+<p><a href="#exercises"> Exercises </a></p>
+<p><a href="#environments"> Environments </a></p>
+<p><a href="#preprocessing"> Preprocessing </a></p>
+<p><a href="#resources"> Resources </a></p>
+</div>
 <br>
-<a href="#emacs-syntax-support"> Emacs syntax support </a>
-<br>
-<a href="#title-authors-and-date"> Title, Authors, and Date </a>
-<br>
-<a href="#copyright"> Copyright </a>
-<br>
-<a href="#quick:sections"> Section Types </a>
-<br>
-<a href="#inline-formatting"> Inline Formatting </a>
-<br>
-<a href="#lists"> Lists </a>
-<br>
-<a href="#comment-lines"> Comment lines </a>
-<br>
-<a href="#inline-comments"> Inline comments </a>
-<br>
-<a href="#verbatim-computer-code"> Verbatim/Computer Code </a>
-<br>
-<a href="#latex-mathematics"> LaTeX Mathematics </a>
-<br>
-<a href="#manual:latex:guide"> Writing Guidelines (Especially for LaTeX Users!) </a>
-<br>
-<a href="#hyperlinks"> Hyperlinks </a>
-<br>
-<a href="#figures-and-movies"> Figures and Movies </a>
-<br>
-<a href="#tables"> Tables </a>
-<br>
-<a href="#labels-and-references"> Labels and References </a>
-<br>
-<a href="#citations-and-bibliography"> Citations and Bibliography </a>
-<br>
-<a href="#generalized-references"> Generalized References </a>
-<br>
-<a href="#index-of-keywords"> Index of Keywords </a>
-<br>
-<a href="#capabilities-of-the-program-doconce"> Capabilities of The Program <code>doconce</code> </a>
-<br>
-<a href="#exercises"> Exercises </a>
-<br>
-<a href="#environments"> Environments </a>
-<br>
-<a href="#preprocessing"> Preprocessing </a>
-<br>
-<a href="#resources"> Resources </a>
-<br>
-<p></p>
+
 <b>WARNING: This quick reference is very incomplete!</b>
-<p></p>
+
+<p>
 <b>Mission.</b>
-Enable writing documentation with much mathematics and
-computer code <em>once, in one place</em> and include it in traditional LaTeX
-books, thesis, and reports, and, without extra efforts, also make
-professional looking web versions with Sphinx or HTML. Other outlets
-include Google's <code>blogger.com</code>, Wikipedia/Wikibooks, IPython/Jupyter
-notebooks, plus a wide variety of other formats for documents without
-mathematics and code.
-<p></p>
+Enable writing documentation with much mathematics and</p>
+<p>computer code <em>once, in one place</em> and include it in traditional LaTeX</p>
+<p>books, thesis, and reports, and, without extra efforts, also make</p>
+<p>professional looking web versions with Sphinx or HTML. Other outlets</p>
+<p>include Google's <code>blogger.com</code>, Wikipedia/Wikibooks, IPython/Jupyter</p>
+<p>notebooks, plus a wide variety of other formats for documents without</p>
+<p>mathematics and code.</p>
 <h2 id="supported-formats" class="anchor">Supported Formats </h2>
-<p></p>
-DocOnce currently translates files to the following formats:
-<p></p>
+
+<p>DocOnce currently translates files to the following formats:</p>
+
 <ul>
  <li> LaTeX (format <code>latex</code> or <code>pdflatex</code>)</li>
  <li> HTML (format <code>html</code>)</li>
@@ -247,27 +226,27 @@ DocOnce currently translates files to the following formats:
  <li> Epydoc (format <code>epydoc</code>)</li>
  <li> StructuredText (format <code>st</code>)</li>
 </ul>
-For documents with much code and mathematics, the best (and most supported)
-formats are <code>latex</code>, <code>pdflatex</code>, <code>sphinx</code>, and <code>html</code>; and to a slightly
-less extent <code>mwiki</code> and <code>pandoc</code>. The HTML format supports blog posts on
-Google and Wordpress.
-<p></p>
+<p>For documents with much code and mathematics, the best (and most supported)</p>
+<p>formats are <code>latex</code>, <code>pdflatex</code>, <code>sphinx</code>, and <code>html</code>; and to a slightly</p>
+<p>less extent <code>mwiki</code> and <code>pandoc</code>. The HTML format supports blog posts on</p>
+<p>Google and Wordpress.</p>
+
 <div class="alert alert-block alert-danger alert-text-normal"><b>Use a text editor with monospace font!</b>
-Some DocOnce constructions are sensitive to whitespace,
-so you <em>must</em> use a text editor with monospace font.
+<p>Some DocOnce constructions are sensitive to whitespace,</p>
+<p>so you <em>must</em> use a text editor with monospace font.</p>
 </div>
 
-<p></p>
 <h2 id="emacs-syntax-support" class="anchor">Emacs syntax support </h2>
-<p></p>
-The file <a href="https://github.com/doconce/doconce/blob/master/misc/.doconce-mode.el" target="_self">.doconce-mode.el</a>
-in the DocOnce source distribution gives a "DocOnce Editing Mode" in
-Emacs. Store the raw version of the file in the home directory and add
-<code>(load-file &quot;~/.doconce-mode.el&quot;)</code> to the <code>.emacs</code> file.
-<p></p>
-Besides syntax highlighting of DocOnce documents, this Emacs mode
-provides a lot of shortcuts for setting up many elements in a document:
-<p></p>
+
+<p>The file ".doconce-mode.el":</p>
+<p>"https://github.com/doconce/doconce/blob/master/misc/.doconce-mode.el"</p>
+<p>in the DocOnce source distribution gives a "DocOnce Editing Mode" in</p>
+<p>Emacs. Store the raw version of the file in the home directory and add</p>
+<p><code>(load-file &quot;~/.doconce-mode.el&quot;)</code> to the <code>.emacs</code> file.</p>
+
+<p>Besides syntax highlighting of DocOnce documents, this Emacs mode</p>
+<p>provides a lot of shortcuts for setting up many elements in a document:</p>
+
 <div class="row">
   <div class="col-xs-8">
     <table class="table table-striped table-hover table-condensed">
@@ -295,13 +274,12 @@ provides a lot of shortcuts for setting up many elements in a document:
     </table>
   </div> <!-- col-xs-8 -->
 </div> <!-- cell row -->
-<p></p>
 <h2 id="title-authors-and-date" class="anchor">Title, Authors, and Date </h2>
-<p></p>
-A typical example of giving a title, a set of authors, a date,
-and an optional table of contents
-reads
-<p></p>
+
+<p>A typical example of giving a title, a set of authors, a date,</p>
+<p>and an optional table of contents</p>
+<p>reads</p>
+
 <pre>TITLE: On an Ultimate Markup Language
 AUTHOR: H. P. Langtangen at Center for Biomedical Computing, Simula Research Laboratory & Dept. of Informatics, Univ. of Oslo
 AUTHOR: Kaare Dump Email: dump@cyb.space.com at Segfault, Cyberspace Inc.
@@ -309,54 +287,52 @@ AUTHOR: A. Dummy Author
 DATE: today
 TOC: on
 </pre>
-The entire title must appear on a single line.
-The author syntax is
+<p>The entire title must appear on a single line.</p>
+<p>The author syntax is</p>
 <pre>name Email: somename@adr.net at institution1 & institution2
 </pre>
-where the email is optional, the "at" keyword is required if one or
-more institutions are to be specified, and the <code>&</code> keyword
-separates the institutions (the keyword <code>and</code> works too).
-Each author specification must appear
-on a single line.
-When more than one author belong to the
-same institution, make sure that the institution is specified in an identical
-way for each author.
-<p></p>
-The date can be set as any text different from <code>today</code> if not the
-current date is wanted, e.g., <code>Feb 22, 2016</code>.
-<p></p>
+<p>where the email is optional, the "at" keyword is required if one or</p>
+<p>more institutions are to be specified, and the <code>&</code> keyword</p>
+<p>separates the institutions (the keyword <code>and</code> works too).</p>
+<p>Each author specification must appear</p>
+<p>on a single line.</p>
+<p>When more than one author belong to the</p>
+<p>same institution, make sure that the institution is specified in an identical</p>
+<p>way for each author.</p>
+
+<p>The date can be set as any text different from <code>today</code> if not the</p>
+<p>current date is wanted, e.g., <code>Feb 22, 2016</code>.</p>
+
 The table of contents is removed by writing <code>TOC: off</code>.
-<p></p>
 <h2 id="copyright" class="anchor">Copyright </h2>
-<p></p>
+
 <!-- Recall to ident AUTHOR commands to avoid interpretation -->
-<p></p>
-Copyright for selected authors and/or institutions are easy to insert as part
-of the <code>AUTHOR</code> command. The copyright syntax is
-<p></p>
+
+<p>Copyright for selected authors and/or institutions are easy to insert as part</p>
+<p>of the <code>AUTHOR</code> command. The copyright syntax is</p>
+
 <pre>{copyright,year1-year2|license}
 </pre>
-and can be placed after the author or after an institution, e.g.,
-<p></p>
+<p>and can be placed after the author or after an institution, e.g.,</p>
+
 <pre> AUTHOR: name Email: somename@adr.net {copyright,2006-present} at inst1
  AUTHOR: name {copyright} at inst1 {copyright}
 </pre>
-The first line gives <code>name</code> a copyright for 2006 up to the present year,
-while the second line gives copyright to <code>name</code> and the institution <code>inst1</code>
-for the present year. The license can be any formulation, but there are
-some convenient abbreviations for Creative Commons (&quot;public domain&quot;)
-licenses: <code>CC BY</code> for Creative Commons Attribution 4.0 license,
-<code>CC BY-NC</code> for Creative Commons Attribution-NonCommercial 4.0 license.
-For example,
-<p></p>
+<p>The first line gives <code>name</code> a copyright for 2006 up to the present year,</p>
+<p>while the second line gives copyright to <code>name</code> and the institution <code>inst1</code></p>
+<p>for the present year. The license can be any formulation, but there are</p>
+<p>some convenient abbreviations for Creative Commons (&quot;public domain&quot;)</p>
+<p>licenses: <code>CC BY</code> for Creative Commons Attribution 4.0 license,</p>
+<p><code>CC BY-NC</code> for Creative Commons Attribution-NonCommercial 4.0 license.</p>
+<p>For example,</p>
+
 <pre> AUTHOR: name1 {copyright|CC BY} at institution1
  AUTHOR: name2 {copyright|CC BY} at institution2
 </pre>
-is a very common copyright for the present year with the Attribution license.
-The copyright must be identical for all authors and institutions.
-<p></p>
+<p>is a very common copyright for the present year with the Attribution license.</p>
+<p>The copyright must be identical for all authors and institutions.</p>
 <h2 id="quick:sections" class="anchor">Section Types</h2>
-<p></p>
+
 <div class="row">
   <div class="col-xs-9">
     <table class="table table-striped table-hover table-condensed">
@@ -377,38 +353,37 @@ The copyright must be identical for all authors and institutions.
     </table>
   </div> <!-- col-xs-9 -->
 </div> <!-- cell row -->
-<p></p>
-Note that abstracts are recognized by starting with <code>__Abstract.__</code> or
-<code>__Summary.__</code> at the beginning of a line and ending with three or
-more <code>=</code> signs of the next heading.
-<p></p>
-The <code>Exercise:</code> keyword can be substituted by <code>Problem:</code> or <code>Project:</code>.
-A recommended convention is that an exercise is tied to the text,
-a problem can stand on its own, and a project is a comprehensive
-problem.
-<p></p>
+
+<p>Note that abstracts are recognized by starting with <code>__Abstract.__</code> or</p>
+<p><code>__Summary.__</code> at the beginning of a line and ending with three or</p>
+<p>more <code>=</code> signs of the next heading.</p>
+
+<p>The <code>Exercise:</code> keyword can be substituted by <code>Problem:</code> or <code>Project:</code>.</p>
+<p>A recommended convention is that an exercise is tied to the text,</p>
+<p>a problem can stand on its own, and a project is a comprehensive</p>
+<p>problem.</p>
 <h2 id="inline-formatting" class="anchor">Inline Formatting </h2>
-<p></p>
-Words surrounded by <code>*</code> are emphasized: <code>*emphasized words*</code> becomes
-<em>emphasized words</em>. Similarly, an underscore surrounds words that
-appear in boldface: <code>_boldface_</code> becomes <b>boldface</b>. Colored words
-are also possible: the text
-<p></p>
+
+<p>Words surrounded by <code>*</code> are emphasized: <code>*emphasized words*</code> becomes</p>
+<p><em>emphasized words</em>. Similarly, an underscore surrounds words that</p>
+<p>appear in boldface: <code>_boldface_</code> becomes <b>boldface</b>. Colored words</p>
+<p>are also possible: the text</p>
+
 <pre>`color{red}{two red words}`
 </pre>
-becomes <font color="red">two red words</font>.
-<p></p>
-Quotations appear inside double backticks and double single quotes:
-<p></p>
+<p>becomes <font color="red">two red words</font>.</p>
+
+<p>Quotations appear inside double backticks and double single quotes:</p>
+
 <pre>This is a sentence with ``words to be quoted''.
 </pre>
-<p></p>
+
 A forced linebreak is specified by <code>&lt;linebreak&gt;</code> at the point where the
-linebreak in the output is wanted.
-<p></p>
-Footnotes use a label in the text with the footnote text separate,
-preferably after the paragraph where the footnote appears:
-<p></p>
+<p>linebreak in the output is wanted.</p>
+
+<p>Footnotes use a label in the text with the footnote text separate,</p>
+<p>preferably after the paragraph where the footnote appears:</p>
+
 <pre>Differentiating[^diff2] this equation leads
 to a new and much simpler equation.
 
@@ -417,61 +392,60 @@ $\nabla\cdot$ on both sides.
 
 Here comes a new paragraph...
 </pre>
-<p></p>
-Non-breaking space is inserted using the tilde character as in LaTeX:
-<p></p>
+
+<p>Non-breaking space is inserted using the tilde character as in LaTeX:</p>
+
 <pre>This distance corresponds to 7.5~km, which is traveled in $7.5/5$~s.
 </pre>
-<p></p>
-A horizontal rule for separating content vertically, like this:
-<p></p>
+
+<p>A horizontal rule for separating content vertically, like this:</p>
+
 <hr>
-<p></p>
-is typeset as four or more hyphens on a single line:
-<p></p>
+
+<p>is typeset as four or more hyphens on a single line:</p>
+
 <pre>---------
 </pre>
-<p></p>
-The <code>latex</code>, <code>pdflatex</code>, <code>sphinx</code>, and <code>html</code> formats support em-dash,
-indicated by three hyphens: <code>---</code>. Here is an example:
-<p></p>
+
+<p>The <code>latex</code>, <code>pdflatex</code>, <code>sphinx</code>, and <code>html</code> formats support em-dash,</p>
+<p>indicated by three hyphens: <code>---</code>. Here is an example:</p>
+
 <pre>The em-dash is used - without spaces - as alternative to hyphen with
 space around in sentences---this way, or in quotes:
 *Premature optimization is the root of all evil.*--- Donald Knuth.
 </pre>
-This text is in the html rendered as
-<p></p>
-The em-dash is used - without spaces - as alternative to hyphen with
-space around in sentences&mdash;this way, or in quotes:
-<em>Premature optimization is the root of all evil.</em>&mdash; Donald Knuth.
-<p></p>
-The en-dash consists of two hyphens, either with blanks on both sides &ndash; for
-something in the middle of a sentence &ndash; or in number ranges like 240&ndash;249.
-LaTeX writes are used to and fond of en-dash.
-<p></p>
-An ampersand, as in Guns &amp; Roses or Texas A&amp;M, is written as a
-plain <code>&</code> <em>with space(s) on both sides</em>. Single upper case letters on each
-side of <code>&</code>, as in <code>Texas A & M</code>, remove the spaces and result in
-Texas A&amp;M, while words on both sides of <code>&</code>, as in <code>Guns & Roses</code>,
-preserve the spaces: Guns &amp; Roses. Failing to have spaces before and
-after <code>&</code> will result in wrong typesetting of the ampersand in the <code>html</code>,
-<code>latex</code>, and <code>pdflatex</code> formats.
-<p></p>
-Emojis, as defined in <a href="http://www.emoji-cheat-sheet.com" target="_self"><tt>http://www.emoji-cheat-sheet.com</tt></a>, can be
-inserted in the text, as (e.g.) <code>:dizzy_face:</code> with blank or newline
-before or after <img src="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/emoji/png/dizzy_face.png" width="22px" height="22px" align="center"> Only the <code>pdflatex</code>, <code>html</code>, and <code>pandoc</code> output
-formats translate emoji specifications to images, while all other
-formats leave the textual specification in the document. The
-command-line option <code>--no_emoji</code> removes all emojis from the output
-document.
-<p></p>
+<p>This text is in the html rendered as</p>
+
+<p>The em-dash is used - without spaces - as alternative to hyphen with</p>
+<p>space around in sentences&mdash;this way, or in quotes:</p>
+<p><em>Premature optimization is the root of all evil.</em>&mdash; Donald Knuth.</p>
+
+<p>The en-dash consists of two hyphens, either with blanks on both sides &ndash; for</p>
+<p>something in the middle of a sentence &ndash; or in number ranges like 240&ndash;249.</p>
+<p>LaTeX writes are used to and fond of en-dash.</p>
+
+<p>An ampersand, as in Guns &amp; Roses or Texas A&amp;M, is written as a</p>
+<p>plain <code>&</code> <em>with space(s) on both sides</em>. Single upper case letters on each</p>
+<p>side of <code>&</code>, as in <code>Texas A & M</code>, remove the spaces and result in</p>
+<p>Texas A&amp;M, while words on both sides of <code>&</code>, as in <code>Guns & Roses</code>,</p>
+<p>preserve the spaces: Guns &amp; Roses. Failing to have spaces before and</p>
+<p>after <code>&</code> will result in wrong typesetting of the ampersand in the <code>html</code>,</p>
+<p><code>latex</code>, and <code>pdflatex</code> formats.</p>
+
+<p>Emojis, as defined in <a href="http://www.emoji-cheat-sheet.com" target="_self"><tt>http://www.emoji-cheat-sheet.com</tt></a>, can be</p>
+<p>inserted in the text, as (e.g.) <code>:dizzy_face:</code> with blank</p>
+<p>before or after <img src="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/emoji/png/dizzy_face.png" width="22px" height="22px" align="center"> Only the <code>pdflatex</code>, <code>html</code>, and <code>pandoc</code> output</p>
+<p>formats translate emoji specifications to images, while all other</p>
+<p>formats leave the textual specification in the document. The</p>
+<p>command-line option <code>--no_emoji</code> removes all emojis from the output</p>
+<p>document.</p>
 <h2 id="lists" class="anchor">Lists </h2>
-<p></p>
-There are three types of lists: <em>bullet lists</em>, where each item starts
-with <code>*</code>, <em>enumeration lists</em>, where each item starts with <code>o</code> and gets
-consecutive numbers,
-and <em>description</em> lists, where each item starts with <code>-</code> followed
-by a keyword and a colon.
+
+<p>There are three types of lists: <em>bullet lists</em>, where each item starts</p>
+<p>with <code>*</code>, <em>enumeration lists</em>, where each item starts with <code>o</code> and gets</p>
+<p>consecutive numbers,</p>
+<p>and <em>description</em> lists, where each item starts with <code>-</code> followed</p>
+<p>by a keyword and a colon.</p>
 <pre>Here is a bullet list:
 
  * item1
@@ -505,10 +479,10 @@ And finally a description list:
    followed by text on the next line
  - keyword3: and its description may fit on one line
 </pre>
-The code above follows.
-<p></p>
-Here is a bullet list:
-<p></p>
+<p>The code above follows.</p>
+
+<p>Here is a bullet list:</p>
+
 <ul>
  <li> item1</li>
  <li> item2</li>
@@ -518,108 +492,101 @@ Here is a bullet list:
 </ul>
  <li> item3</li>
 </ul>
-Note that sublists are consistently indented by one or more blanks as
-shown: bullets must exactly match and continuation lines must start
-right below the line above.
-<p></p>
-Here is an enumeration list:
-<p></p>
+<p>Note that sublists are consistently indented by one or more blanks as</p>
+<p>shown: bullets must exactly match and continuation lines must start</p>
+<p>right below the line above.</p>
+
+<p>Here is an enumeration list:</p>
+
 <ol>
 <li> item1</li>
-<li> item2
-   may appear on
-   multiple lines
+<li> item2 may appear on multiple lines
 <ol type="a"></li>
  <li> subitem1 of item2</li>
  <li> subitem2 of item2</li>
 </ol>
 <li> item3</li>
 </ol>
-And finally a description list:
-<p></p>
+<p>And finally a description list:</p>
+
 <dl>
  <dt>keyword1:<dd> 
-   followed by
-   some text
-   over multiple
-   lines
- <dt>keyword2:<dd> 
-   followed by text on the next line
+<p>   followed by some text over multiple lines</p>
+ <dt>keyword2:<dd>  followed by text on the next line
  <dt>keyword3:<dd> 
-   and its description may fit on one line
+<p>   and its description may fit on one line</p>
 </dl>
 <div class="alert alert-block alert-danger alert-text-normal"><b>No indentation - except in lists!</b>
-DocOnce syntax is sensitive to whitespace.
-No lines should be indented, only lines belonging to lists.
-Indented lines may give strange output in some formats.
+<p>DocOnce syntax is sensitive to whitespace.</p>
+<p>No lines should be indented, only lines belonging to lists.</p>
+<p>Indented lines may give strange output in some formats.</p>
 </div>
 
-<p></p>
 <h2 id="comment-lines" class="anchor">Comment lines </h2>
-<p></p>
-Lines starting with <code>#</code> are treated as comments in the document and
-translated to the proper syntax for comments in the output
-document. Such comment lines should not appear before LaTeX math
-blocks, verbatim code blocks, or lists if the formats <code>rst</code> and
-<code>sphinx</code> are desired.
-<p></p>
-Comment lines starting with <code>##</code> are not propagated to the output
-document and can be used for comments that are only of interest in
-the DocOnce file.
-<p></p>
-Large portions of text can be left out using Preprocess. Just place
-<code># #ifdef EXTRA</code> and <code># #endif</code> around the text. The command line
-option <code>-DEXTRA</code> will bring the text alive again.
-<p></p>
-When using the Mako preprocessor one can also place comments in
-the DocOnce source file that will be removed by Mako before
-DocOnce starts processing the file.
-<p></p>
+
+<p>Lines starting with <code>#</code> are treated as comments in the document and</p>
+<p>translated to the proper syntax for comments in the output</p>
+<p>document. Such comment lines should not appear before LaTeX math</p>
+<p>blocks, verbatim code blocks, or lists if the formats <code>rst</code> and</p>
+<p><code>sphinx</code> are desired.</p>
+
+<p>Comment lines starting with <code>##</code> are not propagated to the output</p>
+<p>document and can be used for comments that are only of interest in</p>
+<p>the DocOnce file.</p>
+
+<p>Large portions of text can be left out using Preprocess. Just place</p>
+<p><code># #ifdef EXTRA</code> and <code># #endif</code> around the text. The command line</p>
+<p>option <code>-DEXTRA</code> will bring the text alive again.</p>
+
+<p>When using the Mako preprocessor one can also place comments in</p>
+<p>the DocOnce source file that will be removed by Mako before</p>
+<p>DocOnce starts processing the file.</p>
 <h2 id="inline-comments" class="anchor">Inline comments </h2>
-<p></p>
-Inline comments meant as messages or notes, to authors during development
-in particular,
-are enabled by the syntax
+
+<p>Inline comments meant as messages or notes, to authors during development</p>
+<p>in particular,</p>
+<p>are enabled by the syntax</p>
 <pre>[name: running text]
 </pre>
-where <code>name</code> is the name or ID of an author or reader making the comment,
-and <code>running text</code> is the comment. The name can contain upper and lower
-case characters, digits, single quote, <code>+</code> and <code>-</code>, as well
-as space. Here goes an example.
-<p></p>
+<p>where <code>name</code> is the name or ID of an author or reader making the comment,</p>
+<p>and <code>running text</code> is the comment. The name can contain upper and lower</p>
+<p>case characters, digits, single quote, <code>+</code> and <code>-</code>, as well</p>
+<p>as space. Here goes an example.</p>
+
 <pre>Some running text. [hpl: There must be a space after the colon,
 but the running text can occupy multiple lines.]
 </pre>
-which is rendered as
-<p></p>
+<p>which is rendered as</p>
+
 <blockquote>
-    Some running text. 
+    <p>Some running text. 
     <!-- begin inline comment -->
-    <font color="red">(<b>hpl 1</b>: There must be a space after the colon, but the running text can occupy multiple lines.)</font>
+    <font color="red">(<b>hpl 1</b>: There must be a space after the colon,</p> <p>but the running text can occupy multiple lines.)</font>
     <!-- end inline comment -->
+    </p>
 </blockquote>
 
-<p></p>
-The inline comments have simple typesetting in most formats, typically
-boldface name, a comment number, with everything surrounded by
-parenthesis.  However, with LaTeX output and the <code>--latex_todonotes</code>
-option to <code>doconce format</code>, colorful margin or inline boxes (using the
-<code>todonotes</code> package) make it very easy to spot the comments.
-<p></p>
-Running
+
+<p>The inline comments have simple typesetting in most formats, typically</p>
+<p>boldface name, a comment number, with everything surrounded by</p>
+<p>parenthesis.  However, with LaTeX output and the <code>--latex_todonotes</code></p>
+<p>option to <code>doconce format</code>, colorful margin or inline boxes (using the</p>
+<p><code>todonotes</code> package) make it very easy to spot the comments.</p>
+
+<p>Running</p>
 <pre>doconce format html mydoc.do.txt --skip_inline_comments
 </pre>
-removes all inline comments from the output. This feature makes it easy
-to turn on and off notes to authors during the development of the document.
-<p></p>
-All inline comments to readers can also be physically
-removed from the DocOnce source by
+<p>removes all inline comments from the output. This feature makes it easy</p>
+<p>to turn on and off notes to authors during the development of the document.</p>
+
+<p>All inline comments to readers can also be physically</p>
+<p>removed from the DocOnce source by</p>
 <pre>doconce remove_inline_comments mydoc.do.txt
 </pre>
-<p></p>
-Inline comments can also be used to markup edits. There are add, delete, and
-replacement comments for editing:
-<p></p>
+
+<p>Inline comments can also be used to markup edits. There are add, delete, and</p>
+<p>replacement comments for editing:</p>
+
 <pre>[add: ,]
 [add: .]
 [add: ;]
@@ -632,151 +599,146 @@ replacement comments for editing:
 [edit: some text -> some replacement for text]
 [name: some text -> some replacement for text]
 </pre>
-<p></p>
-For example, the text
-<p></p>
+
+<p>For example, the text</p>
+
 <pre>First consider a quantity $Q$. Without loss of generality, we assume
 $Q>0$. There are three, fundamental, basic property of $Q$.
 </pre>
-can be edited as
-<p></p>
+<p>can be edited as</p>
+
 <pre>First[add: ,] consider [edit: a quantity -> the flux]
 [del: $Q$. Without loss of generality,
 we assume] $Q>0$. There are three[del: ,] fundamental[del: , basic]
 [edit: property -> properties] of $Q$. [add: These are not
 important for the following discussion.]
 </pre>
-which in the html output format results in
-<p></p>
+<p>which in the html output format results in</p>
+
 <blockquote>
-    First<font color="red">, (<b>edit 2</b>: add comma)</font> consider  <font color="red">(<b>edit 3</b>:)</font> <del> a quantity </del> <font color="red">the flux</font>
-     <font color="red">(<b>edit 4</b>:)</font> <del> \( Q \). Without loss of generality,
-    we assume </del> \( Q>0 \). There are three <font color="red"> (<b>edit 5</b>: delete comma)</font> fundamental <font color="red">(<b>edit 6</b>:)</font> <del> , basic </del>
-     <font color="red">(<b>edit 7</b>:)</font> <del> property </del> <font color="red">properties</font> of \( Q \).  <font color="red">(<b>edit 8</b>:) These are not
-    important for the following discussion.</font>
+    <p>First<font color="red">, (<b>edit 2</b>: add comma)</font> consider  <font color="red">(<b>edit 3</b>:)</font> <del> a quantity </del> <font color="red">the flux</font></p>
+    <p> <font color="red">(<b>edit 4</b>:)</font> <del> \( Q \). Without loss of generality,</p>
+    <p>we assume </del> \( Q>0 \). There are three <font color="red"> (<b>edit 5</b>: delete comma)</font> fundamental <font color="red">(<b>edit 6</b>:)</font> <del> , basic </del></p>
+    <p> <font color="red">(<b>edit 7</b>:)</font> <del> property </del> <font color="red">properties</font> of \( Q \).  <font color="red">(<b>edit 8</b>:) These are not</p>
+    <p>important for the following discussion.</font></p>
 </blockquote>
 
-<p></p>
-To implement these edits, run
-<p></p>
+
+<p>To implement these edits, run</p>
+
 <pre>Terminal> doconce apply_edit_comments mydoc.do.txt
 </pre>
-<p></p>
 <h2 id="verbatim-computer-code" class="anchor">Verbatim/Computer Code </h2>
-<p></p>
-Inline verbatim code is typeset within back-ticks, as in
+
+<p>Inline verbatim code is typeset within back-ticks, as in</p>
 <pre>Some sentence with `words in verbatim style`.
 </pre>
-resulting in Some sentence with <code>words in verbatim style</code>.
-<p></p>
-Multi-line blocks of verbatim text, typically computer code, is typeset
+<p>resulting in Some sentence with <code>words in verbatim style</code>.</p>
+
+<p>Multi-line blocks of verbatim text, typically computer code, is typeset</p>
 in between <code>!bc xxx</code> and <code>!ec</code> directives, which must appear on the
-beginning of the line. A specification <code>xxx</code> indicates what verbatim
-formatting style that is to be used. Typical values for <code>xxx</code> are
-nothing, <code>cod</code> for a code snippet, <code>pro</code> for a complete program,
-<code>sys</code> for a terminal session, <code>dat</code> for a data file (or output from a
-program),
-<code>Xpro</code> or <code>Xcod</code> for a program or code snipped, respectively,
-in programming <code>X</code>, where <code>X</code> may be <code>py</code> for Python,
-<code>cy</code> for Cython, <code>sh</code> for Bash or other Unix shells,
-<code>f</code> for Fortran, <code>c</code> for C, <code>cpp</code> for C++, <code>m</code> for MATLAB,
-<code>pl</code> for Perl. For output in <code>latex</code> one can let <code>xxx</code> reflect any
-defined verbatim environment in the <code>ptex2tex</code> configuration file
-(<code>.ptex2tex.cfg</code>). For <code>sphinx</code> output one can insert a comment
+<p>beginning of the line. A specification <code>xxx</code> indicates what verbatim</p>
+<p>formatting style that is to be used. Typical values for <code>xxx</code> are</p>
+<p>nothing, <code>cod</code> for a code snippet, <code>pro</code> for a complete program,</p>
+<p><code>sys</code> for a terminal session, <code>dat</code> for a data file (or output from a</p>
+<p>program),</p>
+<p><code>Xpro</code> or <code>Xcod</code> for a program or code snipped, respectively,</p>
+<p>in programming <code>X</code>, where <code>X</code> may be <code>py</code> for Python,</p>
+<p><code>cy</code> for Cython, <code>sh</code> for Bash or other Unix shells,</p>
+<p><code>f</code> for Fortran, <code>c</code> for C, <code>cpp</code> for C++, <code>m</code> for MATLAB,</p>
+<p><code>pl</code> for Perl. For output in <code>latex</code> one can let <code>xxx</code> reflect any</p>
+<p>defined verbatim environment in the <code>ptex2tex</code> configuration file</p>
+<p>(<code>.ptex2tex.cfg</code>). For <code>sphinx</code> output one can insert a comment</p>
 <pre># sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
 </pre>
-that maps environments (<code>xxx</code>) onto valid language types for
-Pygments (which is what <code>sphinx</code> applies to typeset computer code).
-<p></p>
-The <code>xxx</code> specifier has only effect for <code>latex</code> and
-<code>sphinx</code> output. All other formats use a fixed monospace font for all
-kinds of verbatim output.
-<p></p>
-Here is an example of computer code (see the source of this document
-for exact syntax):
-<p></p>
+<p>that maps environments (<code>xxx</code>) onto valid language types for</p>
+<p>Pygments (which is what <code>sphinx</code> applies to typeset computer code).</p>
+
+<p>The <code>xxx</code> specifier has only effect for <code>latex</code> and</p>
+<p><code>sphinx</code> output. All other formats use a fixed monospace font for all</p>
+<p>kinds of verbatim output.</p>
+
+<p>Here is an example of computer code (see the source of this document</p>
+<p>for exact syntax):</p>
+
 <pre>from numpy import sin, cos, exp, pi
 
 def f(x, y, z, t):
     return exp(-t)*sin(pi*x)*sin(pi*y)*cos(2*pi*z)
 </pre>
-<p></p>
+
 <!-- When showing copy from file in !bc envir, indent a character - otherwise -->
 <!-- ptex2tex is confused and starts copying... -->
-Computer code can also be copied from a file:
+<p>Computer code can also be copied from a file:</p>
 <pre> @@@CODE doconce_program.sh
  @@@CODE doconce_program.sh  fromto: doconce clean@^doconce split_rst
  @@@CODE doconce_program.sh  from-to: doconce clean@^doconce split_rst
  @@@CODE doconce_program.sh  envir=shpro fromto: name=@
 </pre>
-The <code>@@@CODE</code> identifier must appear at the very beginning of the line.
-The first line copies the complete file <code>doconce_program.sh</code>.
-The second line copies from the first line matching the <em>regular
-expression</em> <code>doconce clean</code> up to, but not including, the line
-matching the <em>regular expression</em> <code>^doconce split_rst</code>.
-The third line behaves as the second, but the line matching
-the first regular expression is not copied (this construction is often
-used for copying text between begin-end comment pair in the file).
-<p></p>
+<p>The <code>@@@CODE</code> identifier must appear at the very beginning of the line.</p>
+<p>The first line copies the complete file <code>doconce_program.sh</code>.</p>
+<p>The second line copies from the first line matching the <em>regular</p>
+<p>expression</em> <code>doconce clean</code> up to, but not including, the line</p>
+<p>matching the <em>regular expression</em> <code>^doconce split_rst</code>.</p>
+<p>The third line behaves as the second, but the line matching</p>
+<p>the first regular expression is not copied (this construction is often</p>
+<p>used for copying text between begin-end comment pair in the file).</p>
+
 The copied lines from file are in this example put inside <code>!bc shpro</code>
 and <code>!ec</code> directives, if a complete file is copied, while the
 directives become <code>!bc shcod</code> and <code>!ec</code> when a code snippet is copied
-from a file. In general, for a filename extension <code>.X</code>, the environment
+<p>from a file. In general, for a filename extension <code>.X</code>, the environment</p>
 becomes <code>!bc Xpro</code> or <code>!bc Xcod</code> for a complete program or snippet,
-respectively. The enivorments (<code>Xcod</code> and <code>Xpro</code>) are only active for
-<code>latex</code>, <code>pdflatex</code>, html`, and <code>sphinx</code> output.  The fourth line
-above specifies the code environment explicitly (<code>envir=shpro</code>) such
-that it indicates a complete shell program (<code>shpro</code>) even if we copy a
-part of the file (here from <code>name=</code> until the end of the file).
+<p>respectively. The enivorments (<code>Xcod</code> and <code>Xpro</code>) are only active for</p>
+<p><code>latex</code>, <code>pdflatex</code>, html`, and <code>sphinx</code> output.  The fourth line</p>
+<p>above specifies the code environment explicitly (<code>envir=shpro</code>) such</p>
+<p>that it indicates a complete shell program (<code>shpro</code>) even if we copy a</p>
+<p>part of the file (here from <code>name=</code> until the end of the file).</p>
 Copying a part of a file will by default lead to <code>!bc shcod</code>, which indicates a
-code snippet that normally needs more code to run properly.
-<p></p>
-The <code>--code_prefix=text</code> option adds a path <code>text</code> to the filename specified
-in the <code>@@@CODE</code> command (URLs work). For example
-<p></p>
+<p>code snippet that normally needs more code to run properly.</p>
+
+<p>The <code>--code_prefix=text</code> option adds a path <code>text</code> to the filename specified</p>
+<p>in the <code>@@@CODE</code> command (URLs work). For example</p>
+
 <pre> @@@CODE src/myfile.py
 </pre>
-and <code>--code_prefix=http://some.place.net</code>, the file
-<p></p>
+<p>and <code>--code_prefix=http://some.place.net</code>, the file</p>
+
 <pre>http://some.place.net/src/myfile.py
 </pre>
-will be included. If source files have a header with author, email, etc.,
-one can remove this header by the option <code>'--code_skip_until=# ---</code>.
-The lines up to and including (the first) <code># ---</code> will then be excluded.
-<p></p>
-Important warnings:
-<p></p>
+<p>will be included. If source files have a header with author, email, etc.,</p>
+<p>one can remove this header by the option <code>'--code_skip_until=# ---</code>.</p>
+<p>The lines up to and including (the first) <code># ---</code> will then be excluded.</p>
+
+<p>Important warnings:</p>
+
 <ul>
- <li> A code block must come after a plain sentence (at least for successful
-   output in reStructredText), not directly after a section/paragraph heading,
-   table, comment, figure, or movie.</li>
- <li> Verbatim code blocks inside lists can be ugly when typeset in some
-   output formats. A more robust approach is to replace the list with
-   paragraphs that include headings.</li>
+ <li> A code block must come after a plain sentence (at least for successful output in reStructredText), not directly after a section/paragraph heading, table, comment, figure, or movie.</li>
+ <li> Verbatim code blocks inside lists can be ugly when typeset in some output formats. A more robust approach is to replace the list with paragraphs that include headings.</li>
 </ul>
 <h2 id="latex-mathematics" class="anchor">LaTeX Mathematics </h2>
-<p></p>
-DocOnce supports inline mathematics and blocks of mathematics, using
-standard LaTeX syntax. The output formats <code>html</code>, <code>sphinx</code>, <code>latex</code>,
-pdflatex`, <code>pandoc</code>, and <code>mwiki</code> work with this syntax while all other
-formats will just display the raw LaTeX code.
-<p></p>
-Inline expressions are written in the standard
-LaTeX way with the mathematics surrounded by dollar signs, as in
-\( Ax=b \). To help increase readability in other formats than <code>sphinx</code>,
-<code>latex</code>, and <code>pdflatex</code>, inline mathematics may have a more human
-readable companion expression. The syntax is like
+
+<p>DocOnce supports inline mathematics and blocks of mathematics, using</p>
+<p>standard LaTeX syntax. The output formats <code>html</code>, <code>sphinx</code>, <code>latex</code>,</p>
+<p>pdflatex`, <code>pandoc</code>, and <code>mwiki</code> work with this syntax while all other</p>
+<p>formats will just display the raw LaTeX code.</p>
+
+<p>Inline expressions are written in the standard</p>
+<p>LaTeX way with the mathematics surrounded by dollar signs, as in</p>
+<p>\( Ax=b \). To help increase readability in other formats than <code>sphinx</code>,</p>
+<p><code>latex</code>, and <code>pdflatex</code>, inline mathematics may have a more human</p>
+<p>readable companion expression. The syntax is like</p>
 <pre>$\sin(\norm{\bf u})$|$sin(||u||)$
 </pre>
-That is, the LaTeX expression appears to the left of a vertical bar (pipe
-symbol) and the more readable expression appears to the right. Both
-expressions are surrounded by dollar signs.
-<p></p>
-Blocks of LaTeX mathematics are written within
+<p>That is, the LaTeX expression appears to the left of a vertical bar (pipe</p>
+<p>symbol) and the more readable expression appears to the right. Both</p>
+<p>expressions are surrounded by dollar signs.</p>
+
+<p>Blocks of LaTeX mathematics are written within</p>
 <code>!bt</code>
-and
+<p>and</p>
 <code>!et</code> (begin/end TeX) directives starting on the beginning of a line:
-<p></p>
+
 <pre>!bt
 \begin{align*}
 \nabla\cdot \pmb{u} &= 0,\\ 
@@ -784,9 +746,9 @@ and
 \end{align*}
 !et
 </pre>
-<p></p>
-This LaTeX code gets rendered as
-<p></p>
+
+<p>This LaTeX code gets rendered as</p>
+
 $$
 \begin{align*}
 \nabla\cdot \pmb{u} &= 0,\\ 
@@ -794,172 +756,120 @@ $$
 \end{align*}
 $$
 
-Here is a single equation:
-<p></p>
+<p>Here is a single equation:</p>
+
 <pre>!bt
 \[ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.\]
 !et
 </pre>
-which results in
-<p></p>
+<p>which results in</p>
+
 $$ \frac{\partial\pmb{u}}{\partial t} + \pmb{u}\cdot\nabla\pmb{u} = 0.$$
 
-<p></p>
+<p>
 <b>LaTeX Newcommands.</b>
-The author can define <code>newcommand</code> statements in files with names
-<code>newcommands*.tex</code>. Such commands should only be used for mathematics
-(other LaTeX constructions are only understood by LaTeX itself).
-The convention is that <code>newcommands_keep.tex</code>
-contains the newcommands that are kept in the document, while
-those in <code>newcommands_replace.tex</code> will be replaced by their full
-LaTeX code. This conventions helps make readable documents in formats
-without LaTeX support. For <code>html</code>, <code>sphinx</code>, <code>latex</code>, <code>pdflatex</code>,
-<code>mwiki</code>, <code>ipynb</code>, and <code>pandoc</code>, the mathematics in newcommands is
-rendered nicely anyway. If you desire <code>newcommand</code> outside LaTeX
-mathematics, simply use a Mako variable or a Mako function (which
-will be much more flexible and powerful).
-<p></p>
+</p>
+<p>The author can define <code>newcommand</code> statements in files with names</p>
+<p><code>newcommands*.tex</code>. Such commands should only be used for mathematics</p>
+<p>(other LaTeX constructions are only understood by LaTeX itself).</p>
+<p>The convention is that <code>newcommands_keep.tex</code></p>
+<p>contains the newcommands that are kept in the document, while</p>
+<p>those in <code>newcommands_replace.tex</code> will be replaced by their full</p>
+<p>LaTeX code. This conventions helps make readable documents in formats</p>
+<p>without LaTeX support. For <code>html</code>, <code>sphinx</code>, <code>latex</code>, <code>pdflatex</code>,</p>
+<p><code>mwiki</code>, <code>ipynb</code>, and <code>pandoc</code>, the mathematics in newcommands is</p>
+<p>rendered nicely anyway. If you desire <code>newcommand</code> outside LaTeX</p>
+<p>mathematics, simply use a Mako variable or a Mako function (which</p>
+<p>will be much more flexible and powerful).</p>
+
 <!-- include with mako must be in this root tree, so we need a link, see make.sh -->
-<p></p>
 <h2 id="manual:latex:guide" class="anchor">Writing Guidelines (Especially for LaTeX Users!)</h2>
-<p></p>
-LaTeX writers often have their own writing habits and have preferred
-LaTeX packages. DocOnce is a simpler format and
-corresponds to writing in quite plain LaTeX and making the ascii text
-look nice (be careful with the use of white space!). This means that
-although DocOnce has borrowed a lot from LaTeX, there are a few points
-LaTeX writers should pay attention to. Experience shows that these
-points are so important that we list them <em>before</em> we list typical
-DocOnce syntax!
-<p></p>
-Any LaTeX syntax in mathematical formulas is accepted when DocOnce
-translates the text to LaTeX, but the following rules should be
-followed when transalting the text to <code>sphinx</code>, <code>pandoc</code>,
-<code>mwiki</code>, <code>html</code>, or <code>ipynb</code> formats.
-<p></p>
+
+<p>LaTeX writers often have their own writing habits and have preferred</p>
+<p>LaTeX packages. DocOnce is a simpler format and</p>
+<p>corresponds to writing in quite plain LaTeX and making the ascii text</p>
+<p>look nice (be careful with the use of white space!). This means that</p>
+<p>although DocOnce has borrowed a lot from LaTeX, there are a few points</p>
+<p>LaTeX writers should pay attention to. Experience shows that these</p>
+<p>points are so important that we list them <em>before</em> we list typical</p>
+<p>DocOnce syntax!</p>
+
+<p>Any LaTeX syntax in mathematical formulas is accepted when DocOnce</p>
+<p>translates the text to LaTeX, but the following rules should be</p>
+<p>followed when translating the text to <code>sphinx</code>, <code>pandoc</code>,</p>
+<p><code>mwiki</code>, <code>html</code>, or <code>ipynb</code> formats.</p>
+
 <ul>
- <li> AMS LaTeX mathematics is supported, also for the <code>html</code>, <code>sphinx</code>,
-   and <code>ipynb</code> formats.</li>
- <li> If you want LaTeX math blocks to work with <code>latex</code>, <code>html</code>, <code>sphinx</code>,
-   <code>markdown</code>, and <code>ipynb</code>, only use
-   the following equation environments: <code>\[ ... \]</code>,
-   <code>equation*</code>, <code>equation</code>, <code>align*</code>, <code>align</code>. <code>alignat*</code>, <code>alignat</code>.
-   Other environments, such as <code>split</code>, <code>multiline</code>, <code>gather</code> are
-   supported in modern MathJax in HTML and Sphinx, but may have
-   rendering problems (to a larger extent than <code>equation</code> and <code>align</code>).
-   DocOnce performs extensions to <code>sphinx</code>, <code>ipynb</code>,
-   and other formats such that
-   labels in <code>align</code> and <code>alignat</code> environments work well.
-   If you face problems with fancy LaTeX equation environments in
-   web formats, try rewriting with plain <code>align</code>, <code>nonumber</code>, etc.</li>
+ <li> AMS LaTeX mathematics is supported, also for the <code>html</code>, <code>sphinx</code>, and <code>ipynb</code> formats.</li>
+ <li> If you want LaTeX math blocks to work with <code>latex</code>, <code>html</code>, <code>sphinx</code>, <code>markdown</code>, and <code>ipynb</code>, only use the following equation environments: <code>\[ ... \]</code>, <code>equation*</code>, <code>equation</code>, <code>align*</code>, <code>align</code>. <code>alignat*</code>, <code>alignat</code>. Other environments, such as <code>split</code>, <code>multiline</code>, <code>gather</code> are supported in modern MathJax in HTML and Sphinx, but may have rendering problems (to a larger extent than <code>equation</code> and <code>align</code>). DocOnce performs extensions to <code>sphinx</code>, <code>ipynb</code>, and other formats such that labels in <code>align</code> and <code>alignat</code> environments work well. If you face problems with fancy LaTeX equation environments in web formats, try rewriting with plain <code>align</code>, <code>nonumber</code>, etc.</li>
  <li> Do not use comments inside equations.</li>
- <li> Newcommands in mathematical formulas are allowed, but not in
-   the running text. Newcommands must be defined in files with names
-   <code>newcommands*.tex</code>. Use <code>\newcommands</code> and not <code>\def</code>.
-   Each newcommand must be defined on a single line.
-   Use Mako functions if you need macros in the running text.</li>
- <li> Use labels and refer to them
-   for sections, figures, movies, and equations only.
-   MediaWiki (<code>mwiki</code>) does not support references to equations.</li>
+ <li> Newcommands in mathematical formulas are allowed, but not in the running text. Newcommands must be defined in files with names <code>newcommands*.tex</code>. Use <code>\newcommands</code> and not <code>\def</code>. Each newcommand must be defined on a single line. Use Mako functions if you need macros in the running text.</li>
+ <li> Use labels and refer to them for sections, figures, movies, and equations only. MediaWiki (<code>mwiki</code>) does not support references to equations.</li>
  <li> Spaces are not allowed in labels.</li>
- <li> There is just one <code>ref</code> command (no <code>\eqref</code> for equations) and references to
-   equations must use parentheses. Never use the tilde <code>&nbsp;</code> (non-breaking
-   space) character before references to figures, sections, etc., but
-   tilde is allowed for references to equations.</li>
- <li> Never use <code>\pageref</code> as pages are not a concept in web documents
-   (there is only a <code>ref</code> command in DocOnce and it refers to labels).</li>
- <li> Only figures and movies are floating elements in DocOnce, all other elements
-   (code, tables, algorithms) must appear <em>inline</em> without numbers or labels
-   for reference <button type="button" class="btn btn-primary btn-xs" rel="tooltip" data-placement="top" title="There is an exception: by using user-defined environments within !bu-name and !eu-name directives, it is possible to label any type of text and refer to it. For example, one can have environments for examples, tables, code snippets, theorems, lemmas, etc. One can also use Mako functions to implement environments."><a href="#def_footnote_1" id="link_footnote_1" style="color: white">1</a></button> (refer to inline elements by a section label).
-   The reason is that floating elements are in general
-   not used in web documents, but we made an exception with figures
-   and movies.</li>
- <li> Keep figure captions shorts as they are used as references in the
-   Sphinx format. Avoid inline mathematics since Sphinx will strip it
-   away in the figure reference.
-   (Many writing styles encourage rich captions that
-   explains everything about the figure; this work well
-   only in the HTML and LaTeX formats.)</li>
- <li> You cannot use <code>subfigure</code> to combine several image files in one
-   figure, but you can combine the files into one file using
-   the <code>doconce combine_images</code> tool. Refer to individual image files
-   in the caption or text by (e.g.) &quot;left&quot; and &quot;right&quot;, or
-   &quot;upper left&quot;, &quot;lower right&quot;, etc.</li>
- <li> Footnotes can be used as usual in LaTeX, but some HTML formats are not
-   able to display mathematics or inline verbatim or other formatted
-   code (emphasis, boldface, color) in footnotes - keep that in mind.</li>
- <li> Use plain <code>cite</code> for references (e.g., <code>\citeauthor</code> has no counterpart
-   in DocOnce). The bibliography must be prepared in the Publish format,
-   but import from (clean) BibTeX is possible.</li>
- <li> Use <code>idx</code> for index entries, but put the definitions between paragraphs,
-   not inside them (required by Sphinx).</li>
- <li> Use the <code>\bm</code> command (from the <code>bm</code> package, always included by DocOnce)
-   for boldface in mathematics.</li>
- <li> Make sure all ordinary text starts in column 1 on each line. Equations
-   can be indented. The <code>\begin{}</code> and <code>\end{}</code> directives should start
-   in column 1.</li>
- <li> If you depend on various LaTeX environments for your writings, you have
-   to give these up, or implement <em>user-defined environments</em> in DocOnce.
-   For instance, examples are normally typeset as subsections in DocOnce,
-   but can also utilize a user-defined example environment.
-   Learn about the exercise support in DocOnce for typesetting
-   exercises, problems, and projects.</li>
- <li> Learn about the preprocessors Preprocess and Mako - these are smart
-   tools for, e.g., commenting out/in large portions of text and creating
-   macros.</li>
- <li> Use <em>generalized references</em> when referring to companion documents
-   that may later become part of this document (or migrated out of this document).</li>
+ <li> There is just one <code>ref</code> command (no <code>\eqref</code> for equations) and references to equations must use parentheses. Never use the tilde <code>&nbsp;</code> (non-breaking space) character before references to figures, sections, etc., but tilde is allowed for references to equations.</li>
+ <li> Never use <code>\pageref</code> as pages are not a concept in web documents (there is only a <code>ref</code> command in DocOnce and it refers to labels).</li>
+ <li> Only figures and movies are floating elements in DocOnce, all other elements (code, tables, algorithms) must appear <em>inline</em> without numbers or labels for reference <button type="button" class="btn btn-primary btn-xs" rel="tooltip" data-placement="top" title="There is an exception: by using user-defined environments within !bu-name and !eu-name directives, it is possible to label any type of text and refer to it. For example, one can have environments for examples, tables, code snippets, theorems, lemmas, etc. One can also use Mako functions to implement environments."><a href="#def_footnote_1" id="link_footnote_1" style="color: white">1</a></button> (refer to inline elements by a section label). The reason is that floating elements are in general not used in web documents, but we made an exception with figures and movies.</li>
+ <li> Keep figure captions shorts as they are used as references in the Sphinx format. Avoid inline mathematics since Sphinx will strip it away in the figure reference. (Many writing styles encourage rich captions that explains everything about the figure; this work well only in the HTML and LaTeX formats.)</li>
+ <li> You cannot use <code>subfigure</code> to combine several image files in one figure, but you can combine the files into one file using the <code>doconce combine_images</code> tool. Refer to individual image files in the caption or text by (e.g.) &quot;left&quot; and &quot;right&quot;, or &quot;upper left&quot;, &quot;lower right&quot;, etc.</li>
+ <li> Footnotes can be used as usual in LaTeX, but some HTML formats are not able to display mathematics or inline verbatim or other formatted code (emphasis, boldface, color) in footnotes - keep that in mind.</li>
+ <li> Use plain <code>cite</code> for references (e.g., <code>\citeauthor</code> has no counterpart in DocOnce). The bibliography must be prepared in the Publish format, but import from (clean) BibTeX is possible.</li>
+ <li> Use <code>idx</code> for index entries, but put the definitions between paragraphs, not inside them (required by Sphinx).</li>
+ <li> Use the <code>\bm</code> command (from the <code>bm</code> package, always included by DocOnce) for boldface in mathematics.</li>
+ <li> Make sure all ordinary text starts in column 1 on each line. Equations can be indented. The <code>\begin{}</code> and <code>\end{}</code> directives should start in column 1.</li>
+ <li> If you depend on various LaTeX environments for your writings, you have to give these up, or implement <em>user-defined environments</em> in DocOnce. For instance, examples are normally typeset as subsections in DocOnce, but can also utilize a user-defined example environment. Learn about the exercise support in DocOnce for typesetting exercises, problems, and projects.</li>
+ <li> Learn about the preprocessors Preprocess and Mako - these are smart tools for, e.g., commenting out/in large portions of text and creating macros.</li>
+ <li> Use <em>generalized references</em> when referring to companion documents that may later become part of this document (or migrated out of this document).</li>
  <li> Follow <a href="https://github.com/doconce/setup4book-doconce" target="_self">recommendations for DocOnce books</a> if you plan to write a book.</li>
 </ul>
-<p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> There is an exception: by using <em>user-defined environments</em>
+<p><p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> There is an exception: by using <em>user-defined environments</em></p>
 within <code>!bu-name</code> and <code>!eu-name</code> directives, it is possible to
-label any type of text and refer to it. For example, one can have
-environments for examples, tables, code snippets, theorems, lemmas, etc.
-One can also use Mako functions to implement environments.</p>
-<p></p>
+<p>label any type of text and refer to it. For example, one can have</p>
+<p>environments for examples, tables, code snippets, theorems, lemmas, etc.</p>
+<p>One can also use Mako functions to implement environments.</p></p>
+
 <div class="alert alert-block alert-success alert-text-normal"><b>Use the preprocessor to tailor output</b>
-If you really need special LaTeX constructs in the LaTeX output
-from DocOnce, you may use use preprocessor if-tests on
-the format (typically <code>#if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)</code>) to
-include such special LaTeX code. With an else clause you can easily
-create corresponding constructions for other formats. This way
-of using Preprocess or Mako
-allows you to use advanced LaTeX features (or HTML features for the HTML formats)
-to fine tune the resulting
-document. More tuning can be done by automatic editing of the
-output file (e.g., <code>.tex</code> or <code>.html</code>) produced by DocOnce using
-your own scripts or the <code>doconce replace</code> and <code>doconce subst</code> commands.
+<p>If you really need special LaTeX constructs in the LaTeX output</p>
+<p>from DocOnce, you may use use preprocessor if-tests on</p>
+<p>the format (typically <code>#if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)</code>) to</p>
+<p>include such special LaTeX code. With an else clause you can easily</p>
+<p>create corresponding constructions for other formats. This way</p>
+<p>of using Preprocess or Mako</p>
+<p>allows you to use advanced LaTeX features (or HTML features for the HTML formats)</p>
+<p>to fine tune the resulting</p>
+<p>document. More tuning can be done by automatic editing of the</p>
+<p>output file (e.g., <code>.tex</code> or <code>.html</code>) produced by DocOnce using</p>
+<p>your own scripts or the <code>doconce replace</code> and <code>doconce subst</code> commands.</p>
 </div>
 
-<p></p>
+
 <div class="alert alert-block alert-success alert-text-normal"><b>Autotranslation of LaTeX to DocOnce?</b>
-The tool <code>doconce latex2doconce</code> may help you translate LaTeX files
-to DocOnce syntax. However, if you use computer code in floating
-list environments, special packages for typesetting algorithms,
-example environments, <code>subfigure</code> in figures,
-or a lot of newcommands in the running text, there will be need for
-a lot of manual edits and adjustments.
-<p></p>
-For examples, figure environments can only be translated by
-<code>doconce latex2doconce</code> if the label is inside the caption and
-the figure is typeset like
-<p></p>
+<p>The tool <code>doconce latex2doconce</code> may help you translate LaTeX files</p>
+<p>to DocOnce syntax. However, if you use computer code in floating</p>
+<p>list environments, special packages for typesetting algorithms,</p>
+<p>example environments, <code>subfigure</code> in figures,</p>
+<p>or a lot of newcommands in the running text, there will be need for</p>
+<p>a lot of manual edits and adjustments.</p>
+
+<p>For examples, figure environments can only be translated by</p>
+<p><code>doconce latex2doconce</code> if the label is inside the caption and</p>
+<p>the figure is typeset like</p>
+
 <pre>\begin{figure}
   \centering
   \includegraphics[width=0.55\linewidth]{figs/myfig.pdf}
   \caption{This is a figure. \labe{myfig}}
 \end{figure}
 </pre>
-If the LaTeX text is consistent with respect to the placement of the label, a
-simple script can autoedit the label inside the caption, but many
-LaTeX writers put the label at different places in different figures,
-and then it becomes more difficult to autoedit figures and translate
-them to the DocOnce <code>FIGURE:</code> syntax.
-<p></p>
-Tables are hard to interpret and translate because headings and
-caption can be typeset in many different ways. The type of table
-that is recognized looks like
-<p></p>
+<p>If the LaTeX text is consistent with respect to the placement of the label, a</p>
+<p>simple script can autoedit the label inside the caption, but many</p>
+<p>LaTeX writers put the label at different places in different figures,</p>
+<p>and then it becomes more difficult to autoedit figures and translate</p>
+<p>them to the DocOnce <code>FIGURE:</code> syntax.</p>
+
+<p>Tables are hard to interpret and translate because headings and</p>
+<p>caption can be typeset in many different ways. The type of table</p>
+<p>that is recognized looks like</p>
+
 <pre>\begin{table}
 \caption{Here goes the caption.}
 \begin{tabular}{lr}
@@ -970,22 +880,21 @@ that is recognized looks like
 \end{tabular}
 \end{table}
 </pre>
-Recall that table captions do not make sense in DocOnce since tables
-must be inlined and explained in the surrounding text.
-<p></p>
-Footnotes are also problematic for <code>doconce latex2doconce</code> since DocOnce
-footnotes must have the explanation outside the paragraph where the
-footnote is used. This calls for manual work. The translator from
-LaTeX to DocOnce will insert <code>_PROBLEM_</code> and mark footnotes. One
-solution is to avoid footnotes in the LaTeX document if fully automatic
-translation is desired.
+<p>Recall that table captions do not make sense in DocOnce since tables</p>
+<p>must be inlined and explained in the surrounding text.</p>
+
+<p>Footnotes are also problematic for <code>doconce latex2doconce</code> since DocOnce</p>
+<p>footnotes must have the explanation outside the paragraph where the</p>
+<p>footnote is used. This calls for manual work. The translator from</p>
+<p>LaTeX to DocOnce will insert <code>_PROBLEM_</code> and mark footnotes. One</p>
+<p>solution is to avoid footnotes in the LaTeX document if fully automatic</p>
+<p>translation is desired.</p>
 </div>
 
-<p></p>
 <h2 id="hyperlinks" class="anchor">Hyperlinks </h2>
-<p></p>
-Links use either a link text or the raw URL:
-<p></p>
+
+<p>Links use either a link text or the raw URL:</p>
+
 <pre>Here is some &quot;some link text&quot;: &quot;http://some.net/address&quot;
 (as in &quot;search google&quot;: &quot;http://google.com&quot;)
 or just the raw address: URL: &quot;http://google.com&quot;.
@@ -997,68 +906,65 @@ Mail addresses works too: send problems to
 &quot;`hpl@simula.no`&quot;: &quot;mailto:hpl@simula.no&quot;
 or just &quot;send mail&quot;: &quot;mailto:hpl@simula.no&quot;.
 </pre>
-<p></p>
 <h2 id="figures-and-movies" class="anchor">Figures and Movies </h2>
-<p></p>
-Figures and movies have almost equal syntax:
+
+<p>Figures and movies have almost equal syntax:</p>
 <pre>FIGURE: [relative/path/to/figurefile, width=500 frac=0.8] Here goes the caption which must be on a single line. label{some:fig:label}
 
 MOVIE: [relative/path/to/moviefile, width=500] Here goes the caption which must be on a single line. 
 
 </pre>
-Note three important syntax details:
-<p></p>
+<p>Note three important syntax details:</p>
+
 <ol>
  <li> A mandatory comma after the figure/movie filename,</li>
- <li> no comments between <code>width</code>, <code>height</code>, and <code>frac</code> and no spaces
-    around the <code>=</code> characters,</li>
+ <li> no comments between <code>width</code>, <code>height</code>, and <code>frac</code> and no spaces around the <code>=</code> characters,</li>
  <li> all of the commands must appear on a single line,</li>
  <li> there must be a blank line after the command.</li>
 </ol>
-The figure file can be listed without extension. DocOnce will then find
-the version of the file with the most appropriate extension for the chosen
-output format. If not suitable version is found, DocOnce will convert
-another format to the needed one.
-<p></p>
-The caption is optional. If omitted, the figure will be inlined (meaning
-no use of any figure environment in HTML or LaTeX formats). The <code>width</code>
-and <code>height</code> parameters affect HTML formats (<code>html</code>, <code>rst</code>, <code>sphinx</code>),
-while <code>frac</code> is the width of the image as a fraction of the total text
-width in the <code>latex</code> and <code>pdflatex</code> formats.
-<p></p>
-The command-line options <code>--fig_prefix=...</code> and <code>--mov_prefix=...</code> can
-be used to add a path (can be a URL) to all figure and movie files,
-respectively.  This is useful when including DocOnce documents in
-other DocOnce documents such that the text is compiled in different
-directories (with different paths to the figure directory).
-<p></p>
-Movie files can either be a video or a wildcard expression for a
-series of frames. In the latter case, a simple device in an HTML page
-will display the individual frame files as a movie.
-<p></p>
-Combining several image files into one can be done by the
+<p>The figure file can be listed without extension. DocOnce will then find</p>
+<p>the version of the file with the most appropriate extension for the chosen</p>
+<p>output format. If not suitable version is found, DocOnce will convert</p>
+<p>another format to the needed one.</p>
+
+<p>The caption is optional. If omitted, the figure will be inlined (meaning</p>
+<p>no use of any figure environment in HTML or LaTeX formats). The <code>width</code></p>
+<p>and <code>height</code> parameters affect HTML formats (<code>html</code>, <code>rst</code>, <code>sphinx</code>),</p>
+<p>while <code>frac</code> is the width of the image as a fraction of the total text</p>
+<p>width in the <code>latex</code> and <code>pdflatex</code> formats.</p>
+
+<p>The command-line options <code>--fig_prefix=...</code> and <code>--mov_prefix=...</code> can</p>
+<p>be used to add a path (can be a URL) to all figure and movie files,</p>
+<p>respectively.  This is useful when including DocOnce documents in</p>
+<p>other DocOnce documents such that the text is compiled in different</p>
+<p>directories (with different paths to the figure directory).</p>
+
+<p>Movie files can either be a video or a wildcard expression for a</p>
+<p>series of frames. In the latter case, a simple device in an HTML page</p>
+<p>will display the individual frame files as a movie.</p>
+
+<p>Combining several image files into one can be done by the</p>
 <pre>doconce combine_images image1 image2 ... output_image
 </pre>
-This command applies <code>montage</code> or PDF-based tools to combine the images
-to get the highest quality.
-<p></p>
-YouTube and Vimeo movies will be embedded in <code>html</code> and <code>sphinx</code> documents
-and otherwise be represented by a link. The syntax is
-<p></p>
+<p>This command applies <code>montage</code> or PDF-based tools to combine the images</p>
+<p>to get the highest quality.</p>
+
+<p>YouTube and Vimeo movies will be embedded in <code>html</code> and <code>sphinx</code> documents</p>
+<p>and otherwise be represented by a link. The syntax is</p>
+
 <pre>MOVIE: [http://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
 
 MOVIE: [http://vimeo.com/55562330, width=500 height=278] Vimeo movie.
 
 </pre>
-The latter results in
-<p></p>
+<p>The latter results in</p>
+
 <iframe width="500" height="278" src="https://player.vimeo.com/video/55562330" frameborder="0" allowfullscreen></iframe>
 <em>Vimeo movie.</em>
-<p></p>
 <h2 id="tables" class="anchor">Tables </h2>
-<p></p>
-The table in the section <a href="#quick:sections">Section Types</a> was written with this
-syntax:
+
+<p>The table in the section <a href="#quick:sections">Section Types</a> was written with this</p>
+<p>syntax:</p>
 <pre>
 |----------------c--------|------------------c--------------------|
 |      Section type       |        Syntax                         |
@@ -1071,144 +977,127 @@ syntax:
 |-----------------------------------------------------------------|
 
 </pre>
-<p></p>
-Note that
-<p></p>
+
+<p>Note that</p>
+
 <ul>
  <li> Each line begins and ends with a vertical bar (pipe symbol).</li>
  <li> Column data are separated by a vertical bar (pipe symbol).</li>
  <li> There must be a blank line before and after the table.</li>
- <li> There may be horizontal rules, i.e., lines with dashes for
-   indicating the heading and the end of the table, and these may
-   contain characters 'c', 'l', or 'r' for how to align headings or
-   columns. The first horizontal rule may indicate how to align
-   headings (center, left, right), and the horizontal rule after the
-   heading line may indicate how to align the data in the columns
-   (center, left, right).
-   One can also use <code>X</code> for potentially very wide text that must be
-   wrapped and left-adjusted (will only affect <code>latex</code> and <code>pdflatex</code> where the
-   <code>tabularx</code> package is then used; <code>X</code> means <code>l</code> in all other formats).</li>
- <li> If the horizontal rules are without alignment information there should
-   be no vertical bar (pipe symbol) between the columns. Otherwise, such
-   a bar indicates a vertical bar between columns in LaTeX.</li>
- <li> Many output formats are so primitive that heading and column alignment
-   have no effect.</li>
+ <li> There may be horizontal rules, i.e., lines with dashes for indicating the heading and the end of the table, and these may contain characters 'c', 'l', or 'r' for how to align headings or columns. The first horizontal rule may indicate how to align headings (center, left, right), and the horizontal rule after the heading line may indicate how to align the data in the columns (center, left, right). One can also use <code>X</code> for potentially very wide text that must be wrapped and left-adjusted (will only affect <code>latex</code> and <code>pdflatex</code> where the <code>tabularx</code> package is then used; <code>X</code> means <code>l</code> in all other formats).</li>
+ <li> If the horizontal rules are without alignment information there should be no vertical bar (pipe symbol) between the columns. Otherwise, such a bar indicates a vertical bar between columns in LaTeX.</li>
+ <li> Many output formats are so primitive that heading and column alignment have no effect.</li>
 </ul>
-A quick way of generating tables is to place all the entries in a file
-with comma as separator (a CSV file) and then run the utility
-<code>doconce csv2table</code> to create a table in the DocOnce format.
-<p></p>
-The command-line option <code>--tables2csv</code> (to <code>doconce format</code>)
-makes DocOnce dump each table to CSV format in a file <code>table_X.csv</code>,
-where <code>X</code> is the table number. This feature makes it easy to
-load tables into spreadsheet programs for further analysis.
-<p></p>
-DocOnce tables can be efficiently made directly from data in CSV files.
-<p></p>
+<p>A quick way of generating tables is to place all the entries in a file</p>
+<p>with comma as separator (a CSV file) and then run the utility</p>
+<p><code>doconce csv2table</code> to create a table in the DocOnce format.</p>
+
+<p>The command-line option <code>--tables2csv</code> (to <code>doconce format</code>)</p>
+<p>makes DocOnce dump each table to CSV format in a file <code>table_X.csv</code>,</p>
+<p>where <code>X</code> is the table number. This feature makes it easy to</p>
+<p>load tables into spreadsheet programs for further analysis.</p>
+
+<p>DocOnce tables can be efficiently made directly from data in CSV files.</p>
+
 <pre>Terminal> doconce csv2table mydata.csv > mydata_table.do.txt
 </pre>
-Now we can do <code># #include &quot;mydata_table.do.txt&quot;</code> in the DocOnce
-source file or simply copy the table in <code>mydata_table.do.txt</code>
-into the DocOnce file.
-<p></p>
+<p>Now we can do <code># #include &quot;mydata_table.do.txt&quot;</code> in the DocOnce</p>
+<p>source file or simply copy the table in <code>mydata_table.do.txt</code></p>
+<p>into the DocOnce file.</p>
 <h2 id="labels-and-references" class="anchor">Labels and References </h2>
-<p></p>
-The notion of labels and references (as well as bibliography and index)
-is adopted
-from LaTeX with a very similar syntax. As in LaTeX, a label can be
-inserted anywhere, using the syntax
+
+<p>The notion of labels and references (as well as bibliography and index)</p>
+<p>is adopted</p>
+<p>from LaTeX with a very similar syntax. As in LaTeX, a label can be</p>
+<p>inserted anywhere, using the syntax</p>
 <pre>label{name}
 </pre>
-with no backslash
-preceding the label keyword. It is common practice to choose <code>name</code>
-as some hierarchical name, using a delimiter like <code>:</code> or <code>_</code> between
-(e.g.) section, subsection, and topic.
-<p></p>
-A reference to the label <code>name</code> is written as
+<p>with no backslash</p>
+<p>preceding the label keyword. It is common practice to choose <code>name</code></p>
+<p>as some hierarchical name, using a delimiter like <code>:</code> or <code>_</code> between</p>
+<p>(e.g.) section, subsection, and topic.</p>
+
+<p>A reference to the label <code>name</code> is written as</p>
 <pre>ref{name}
 </pre>
-again with no backslash before <code>ref</code>.
-<p></p>
-Use labels for sections and equations only, and precede the reference
-by "Section" or "Chapter", or in case of an equation, surround the
-reference by parenthesis.
-<p></p>
+<p>again with no backslash before <code>ref</code>.</p>
+
+<p>Use labels for sections and equations only, and precede the reference</p>
+<p>by "Section" or "Chapter", or in case of an equation, surround the</p>
+<p>reference by parenthesis.</p>
 <h2 id="citations-and-bibliography" class="anchor">Citations and Bibliography </h2>
-<p></p>
-Single citations are written as
+
+<p>Single citations are written as</p>
 <pre>cite{name}
 </pre>
-where <code>name</code> is a logical name
-of the reference (again, LaTeX writers must not insert a backslash).
-Bibliography citations often have <code>name</code> on the form
-<code>Author1_Author2_YYYY</code>, <code>Author_YYYY</code>, or <code>Author1_etal_YYYY</code>, where
-<code>YYYY</code> is the year of the publication.
-Multiple citations at once is possible by separating the logical names
-by comma:
+<p>where <code>name</code> is a logical name</p>
+<p>of the reference (again, LaTeX writers must not insert a backslash).</p>
+<p>Bibliography citations often have <code>name</code> on the form</p>
+<p><code>Author1_Author2_YYYY</code>, <code>Author_YYYY</code>, or <code>Author1_etal_YYYY</code>, where</p>
+<p><code>YYYY</code> is the year of the publication.</p>
+<p>Multiple citations at once is possible by separating the logical names</p>
+<p>by comma:</p>
 <pre>cite{name1,name2,name3}
 </pre>
-<p></p>
+
 The bibliography is specified by a line <code>BIBFILE: papers.pub</code>,
-where <code>papers.pub</code> is a publication database in the
-<a href="https://github.com/doconce/publish" target="_self">Publish</a> format.
-BibTeX <code>.bib</code> files can easily be combined to a Publish database
-(which DocOnce needs to create bibliographies in other formats
-than LaTeX).
-<p></p>
+<p>where <code>papers.pub</code> is a publication database in the</p>
+<p><a href="https://github.com/doconce/publish" target="_self">Publish</a> format.</p>
+<p>BibTeX <code>.bib</code> files can easily be combined to a Publish database</p>
+<p>(which DocOnce needs to create bibliographies in other formats</p>
+<p>than LaTeX).</p>
 <h2 id="generalized-references" class="anchor">Generalized References </h2>
-<p></p>
-There is a <em>generalized referencing</em> feature in DocOnce that allows
-a reference with <code>ref</code> to have one formulation if the label is
-in the same document and another formulation if the reference is
-to an item in an external document. This construction makes it easy
-to work with many small, independent documents in parallel with
-a book assembly of some of the small elements.
-The syntax of a generalized reference is
-<p></p>
+
+<p>There is a <em>generalized referencing</em> feature in DocOnce that allows</p>
+<p>a reference with <code>ref</code> to have one formulation if the label is</p>
+<p>in the same document and another formulation if the reference is</p>
+<p>to an item in an external document. This construction makes it easy</p>
+<p>to work with many small, independent documents in parallel with</p>
+<p>a book assembly of some of the small elements.</p>
+<p>The syntax of a generalized reference is</p>
+
 <pre>ref[internal][cite][external]
 </pre>
-with a specific example being
-<p></p>
+<p>with a specific example being</p>
+
 <pre>As explained in
 ref[Section ref{subsec:ex}][in cite{testdoc:12}][a &quot;section&quot;:
 &quot;testdoc.html#___sec2&quot; in the document
 &quot;A Document for Testing DocOnce&quot;: &quot;testdoc.html&quot; cite{testdoc:12}],
 DocOnce documents may include movies.
 </pre>
-The output from a generalized reference is the text <code>internal</code> if all
-references with <code>ref</code> in the text <code>internal</code> are references to labels
-defined in the
-present document. Otherwise, if <code>cite</code> is non-empty and the format is
-<code>latex</code> or <code>pdflatex</code>, one assumes that the references in <code>internal</code>
-are to external documents declared by a comment line
-<code># Externaldocuments: testdoc, mydoc</code> (usually after the title, authors,
-and date). In this case the output text is <code>internal</code> followed by <code>cite</code>,
-and the
-LaTeX package <code>xr</code> is used to handle the labels in the external
-documents.  If none of the two situations above applies, the
-<code>external</code> text will be the output.
-<p></p>
+<p>The output from a generalized reference is the text <code>internal</code> if all</p>
+<p>references with <code>ref</code> in the text <code>internal</code> are references to labels</p>
+<p>defined in the</p>
+<p>present document. Otherwise, if <code>cite</code> is non-empty and the format is</p>
+<p><code>latex</code> or <code>pdflatex</code>, one assumes that the references in <code>internal</code></p>
+<p>are to external documents declared by a comment line</p>
+<p><code># Externaldocuments: testdoc, mydoc</code> (usually after the title, authors,</p>
+<p>and date). In this case the output text is <code>internal</code> followed by <code>cite</code>,</p>
+<p>and the</p>
+<p>LaTeX package <code>xr</code> is used to handle the labels in the external</p>
+<p>documents.  If none of the two situations above applies, the</p>
+<p><code>external</code> text will be the output.</p>
 <h2 id="index-of-keywords" class="anchor">Index of Keywords </h2>
-<p></p>
-DocOnce supports creating an index of keywords. A certain keyword
-is registered for the index by a syntax like (no
-backslash!)
+
+<p>DocOnce supports creating an index of keywords. A certain keyword</p>
+<p>is registered for the index by a syntax like (no</p>
+<p>backslash!)</p>
 <pre>index{name}
 </pre>
-It is recommended to place any index of this type outside
-running text, i.e., after (sub)section titles and in the space between
-paragraphs. Index specifications placed right before paragraphs also
-gives the doconce source code an indication of the content in the
-forthcoming text. The index is only produced for the <code>latex</code>,
-<code>pdflatex</code>, <code>rst</code>, and <code>sphinx</code> formats.
-<p></p>
+<p>It is recommended to place any index of this type outside</p>
+<p>running text, i.e., after (sub)section titles and in the space between</p>
+<p>paragraphs. Index specifications placed right before paragraphs also</p>
+<p>gives the doconce source code an indication of the content in the</p>
+<p>forthcoming text. The index is only produced for the <code>latex</code>,</p>
+<p><code>pdflatex</code>, <code>rst</code>, and <code>sphinx</code> formats.</p>
 <h2 id="capabilities-of-the-program-doconce" class="anchor">Capabilities of The Program <code>doconce</code> </h2>
-<p></p>
-The <code>doconce</code> program can be used for a number of purposes besides
-transforming a <code>.do.txt</code> file to some format. Here is the
-list of capabilities:
-<p></p>
-<pre>DocOnce version 1.5.7 (from /home/amarin/doconce/venv/lib/python3.6/site-packages/DocOnce-1.5.7-py3.6.egg/doconce)
+
+<p>The <code>doconce</code> program can be used for a number of purposes besides</p>
+<p>transforming a <code>.do.txt</code> file to some format. Here is the</p>
+<p>list of capabilities:</p>
+
+<pre>DocOnce version 1.5.7 (from /home/amarin/doconce/venvsl/lib/python3.6/site-packages/DocOnce-1.5.7-py3.6.egg/doconce)
 Usage: doconce command [optional arguments]
 commands: help format find subst replace remove spellcheck apply_inline_edits capitalize change_encoding clean combine_images csv2table diff expand_commands expand_mako extract_exercises find_nonascii_chars fix_bibtex4publish gitdiff grab grep guess_encoding gwiki_figsubst html2doconce html_colorbullets jupyterbook include_map insertdocstr ipynb2doconce latex2doconce latex_dislikes latex_exercise_toc latex_footer latex_header latex_problems latin2html lightclean linkchecker list_fig_src_files list_labels makefile md2html md2latex old2new_format ptex2tex pygmentize ref_external remove_exercise_answers remove_inline_comments replace_from_file slides_beamer slides_html slides_markdown sphinx_dir sphinxfix_localURLs split_html split_rst teamod
 
@@ -1376,18 +1265,15 @@ doconce expand_commands file1 file2 ...
 doconce latex_exercise_toc myfile                                      
 # insert a table of exercises in a latex file myfile.p.tex
 </pre>
-<p></p>
 <h2 id="exercises" class="anchor">Exercises </h2>
-<p></p>
-DocOnce supports <em>Exercise</em>, <em>Problem</em>, <em>Project</em>, and <em>Example</em>.
-These are typeset
-as ordinary sections and referred to by their section labels.
-Exercise, problem, project, or example sections contains certain <em>elements</em>:
-<p></p>
+
+<p>DocOnce supports <em>Exercise</em>, <em>Problem</em>, <em>Project</em>, and <em>Example</em>.</p>
+<p>These are typeset</p>
+<p>as ordinary sections and referred to by their section labels.</p>
+<p>Exercise, problem, project, or example sections contains certain <em>elements</em>:</p>
+
 <ul>
-  <li> a headline at the level of a subsection
-    containing one of the words "Exercise:", "Problem:",
-    "Project:", or "Example:", followed by a title (required)</li>
+  <li> a headline at the level of a subsection containing one of the words "Exercise:", "Problem:", "Project:", or "Example:", followed by a title (required)</li>
   <li> a label (optional)</li>
   <li> a solution file (optional)</li>
   <li> name of file with a student solution (optional)</li>
@@ -1395,11 +1281,9 @@ Exercise, problem, project, or example sections contains certain <em>elements</e
   <li> a short answer (optional)</li>
   <li> a full solution (optional)</li>
   <li> one or more hints (optional)</li>
-  <li> one or more subexercises (subproblems, subprojects), which can also
-    contain a text, a short answer, a full solution, name student file
-    to be handed in, and one or more hints (optional)</li>
+  <li> one or more subexercises (subproblems, subprojects), which can also contain a text, a short answer, a full solution, name student file to be handed in, and one or more hints (optional)</li>
 </ul>
-A typical sketch of a a problem without subexercises goes as follows:
+<p>A typical sketch of a a problem without subexercises goes as follows:</p>
 <pre>===== Problem: Derive the Formula for the Area of an Ellipse =====
 label{problem:ellipsearea1}
 file=ellipse_area.pdf
@@ -1418,17 +1302,17 @@ Wikipedia has the formula for the curve.
 compute the integral.
 !ehint
 </pre>
-If the exercise type (Exercise, Problem, Project, or Example)
-is enclosed in braces, the type is left out of the title in the
-output. For example, the if the title line above reads
-<p></p>
+<p>If the exercise type (Exercise, Problem, Project, or Example)</p>
+<p>is enclosed in braces, the type is left out of the title in the</p>
+<p>output. For example, the if the title line above reads</p>
+
 <pre>===== {Problem}: Derive the Formula for the Area of an Ellipse =====
 </pre>
-the title becomes just "Derive the ...".
-<p></p>
-An exercise with subproblems, answers and full solutions has this
-setup-up:
-<p></p>
+<p>the title becomes just "Derive the ...".</p>
+
+<p>An exercise with subproblems, answers and full solutions has this</p>
+<p>setup-up:</p>
+
 <pre>===== Exercise: Determine the Distance to the Moon =====
 label{exer:moondist}
 
@@ -1477,18 +1361,17 @@ Here goes a full solution of the whole exercise.
 !esol
 
 </pre>
-By default, answers, solutions, and hints are typeset as paragraphs.
-The command-line arguments <code>--without_answers</code> and <code>--without_solutions</code>
-turn off output of answers and solutions, respectively, except for examples. The command line options <code>--answers_at_end</code> and <code>--solutions_at_end</code> write all answers and solutions to exercises to a separate section at the end of the document, respectively. Combine with <code>--without_answers</code> and <code>--without_solutions</code> to remove answers and solutions from the main text.
-<p></p>
-The commands <code>!anshide</code> and <code>!solhide</code> can be used to hide from the main text answers and solutions, respectively, until the <code>!ansoff</code> and <code>!soloff</code> commands are encountered. Similarly, the <code>!ansdocend</code> and <code>!soldocend</code> commands move answers and solutions to the end of the book. 
-<p></p>
+<p>By default, answers, solutions, and hints are typeset as paragraphs.</p>
+<p>The command-line arguments <code>--without_answers</code> and <code>--without_solutions</code></p>
+<p>turn off output of answers and solutions, respectively, except for examples. The command line options <code>--answers_at_end</code> and <code>--solutions_at_end</code> write all answers and solutions to exercises to a separate section at the end of the document, respectively. Combine with <code>--without_answers</code> and <code>--without_solutions</code> to remove answers and solutions from the main text.</p>
+
+<p>The commands <code>!anshide</code> and <code>!solhide</code> can be used to hide from the main text answers and solutions, respectively, until the <code>!ansoff</code> and <code>!soloff</code> commands are encountered. Similarly, the <code>!ansdocend</code> and <code>!soldocend</code> commands move answers and solutions to the end of the book. </p>
 <h2 id="environments" class="anchor">Environments </h2>
-<p></p>
+
 DocOnce environments start with <code>!benvirname</code> and end with <code>!eenvirname</code>,
-where <code>envirname</code> is the name of the environment. Here is a listing of
-the environments:
-<p></p>
+<p>where <code>envirname</code> is the name of the environment. Here is a listing of</p>
+<p>the environments:</p>
+
 <ul>
  <li> <code>c</code>: computer code (or verbatim text)</li>
  <li> <code>t</code>: math blocks with LaTeX syntax</li>
@@ -1498,28 +1381,26 @@ the environments:
  <li> <code>hint</code>: multiple help items in an exercise or sub-exercise</li>
  <li> <code>quote</code>: indented text</li>
  <li> <code>notice</code>, <code>summary</code>, <code>warning</code>, <code>question</code>: admonition boxes with
-    custom title, special icon, and (sometimes) background color</li>
+<p>    custom title, special icon, and (sometimes) background color</p></li>
  <li> <code>block</code>, <code>box</code>: simpler boxes (<code>block</code> may have title but never any icon)</li>
  <li> <code>pop</code>: text to gradually pop up in slide presentations</li>
- <li> <code>slidecell</code>: indication of cells in a grid layout for elements on a
-   slide</li>
+ <li> <code>slidecell</code>: indication of cells in a grid layout for elements on a slide</li>
 </ul>
 In addition, the user can define new environments <code>!bc-name</code> as
-explained in the <a href="http://doconce.github.io/doconce/doc/pub/manual/manual.html#manual:userdef:envir" target="_self">manual</a>.
-<p></p>
+<p>explained in the <a href="http://doconce.github.io/doconce/doc/pub/manual/manual.html#manual:userdef:envir" target="_self">manual</a>.</p>
 <h2 id="preprocessing" class="anchor">Preprocessing </h2>
-<p></p>
-DocOnce documents may utilize a preprocessor, either <code>preprocess</code> and/or
-<code>mako</code>. The former is a C-style preprocessor that allows if-tests
-and including other files (but not macros with arguments).
-The <code>mako</code> preprocessor is much more advanced - it is actually a full
-programming language, very similar to Python.
-<p></p>
-The command <code>doconce format</code> first runs <code>preprocess</code> and then <code>mako</code>.
-Here is a typical example on utilizing <code>preprocess</code> to include another
-document, &quot;comment out&quot; a large portion of text, and to write format-specific
-constructions:
-<p></p>
+
+<p>DocOnce documents may utilize a preprocessor, either <code>preprocess</code> and/or</p>
+<p><code>mako</code>. The former is a C-style preprocessor that allows if-tests</p>
+<p>and including other files (but not macros with arguments).</p>
+<p>The <code>mako</code> preprocessor is much more advanced - it is actually a full</p>
+<p>programming language, very similar to Python.</p>
+
+<p>The command <code>doconce format</code> first runs <code>preprocess</code> and then <code>mako</code>.</p>
+<p>Here is a typical example on utilizing <code>preprocess</code> to include another</p>
+<p>document, &quot;comment out&quot; a large portion of text, and to write format-specific</p>
+<p>constructions:</p>
+
 <pre># #include &quot;myotherdoc.do.txt&quot;
 
 # #if FORMAT in (&quot;latex&quot;, &quot;pdflatex&quot;)
@@ -1549,14 +1430,13 @@ constructions:
 ....large portions of text...
 # #endif
 </pre>
-<p></p>
-With the <code>mako</code> preprocessor the if-else tests have slightly different syntax.
-An <a href="http://doconce.github.com/bioinf-py/" target="_self">example document</a> contains
-some illustrations on how to utilize <code>mako</code> (clone the GitHub project and
-examine the DocOnce source and the <code>doc/src/make.sh</code> script).
-<p></p>
+
+<p>With the <code>mako</code> preprocessor the if-else tests have slightly different syntax.</p>
+<p>An <a href="http://doconce.github.com/bioinf-py/" target="_self">example document</a> contains</p>
+<p>some illustrations on how to utilize <code>mako</code> (clone the GitHub project and</p>
+<p>examine the DocOnce source and the <code>doc/src/make.sh</code> script).</p>
 <h2 id="resources" class="anchor">Resources </h2>
-<p></p>
+
 <ul>
  <li> Excellent "Sphinx Tutorial" by C. Reller: "http://people.ee.ethz.ch/~creller/web/tricks/reST.html"</li>
 </ul>
