@@ -33,26 +33,26 @@ bad paragraphs?
 
 Figure with just an image and no caption must be handled.
 
-FIGURE: [../doc/src/manual/fig/wave1D]
+FIGURE: [testfigs/wave1D]
 
 Figure with label, but no caption.
 
-FIGURE: [../doc/src/manual/fig/wave1D] label{myl1}
+FIGURE: [testfigs/wave1D] label{myl1}
 
 Figure with no comma between filename and options, and wrong path must
 give error.
 
-FIGURE: [../doc/manual/fig/wave1D width=800]
+FIGURE: [testfigs/wave1D width=800]
 
 Figure with math only in the caption, which causes sphinx to use an
 empty figure name, is problematic.
 
-FIGURE: [../doc/manual/fig/wave1D, width=800] $a=50$
+FIGURE: [testfigs/wave1D, width=800] $a=50$
 
 Figure with hyperlink in caption creates problems with latex and --device=paper
 because the link becomes a footnote inside the caption.
 
-FIGURE: [../doc/manual/fig/wave1D, width=800] "Google": "https://google.com".
+FIGURE: [testfigs/wave1D, width=800] "Google": "https://google.com".
 
 
 # https://hplgit.github.io/INF5620/doc/pub/mov-wave/pulse2_in_two_media/movie.webm

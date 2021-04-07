@@ -1,0 +1,26 @@
+TITLE: Project 4: Compute a Probability
+AUTHOR: Jane Doe Email:jane.doe@cyberspace.net
+DATE: Due Jan 32, 2100
+
+
+
+# Minimalistic exercise
+
+
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval $[0,1)$?
+
+
+At the end we have a list because that caused problems in LaTeX
+in previous DocOnce versions:
+
+ o item1
+ o item2
+
+
+__Hint.__
+To answer this question empirically, let a program
+draw $N$ such random numbers using Python's standard `random` module,
+count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
+compute the probability as $M/N$.
+

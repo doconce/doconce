@@ -50,6 +50,10 @@ inline_tag_end = r"""(?P<end>($|[.,?!;:)<}!'\s~\[<&;-]))"""
 # Admonitions
 admons = 'notice', 'summary', 'warning', 'question', 'block'
 
+# Identifiers in the text used to identify code and math blocks
+_CODE_BLOCK = '<<<!!CODE_BLOCK'
+_MATH_BLOCK = '<<<!!MATH_BLOCK'
+
 # Support for non-English languages (not really implemented yet)
 locale_dict = dict(
     language='English',  # language to be used

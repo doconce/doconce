@@ -1,0 +1,162 @@
+TITLE: Exercises from A Document for Testing DocOnce
+AUTHOR: Hans Petter Langtangen Email: hpl@simula.no at Center for Biomedical Computing, Simula Research Laboratory & Department of Informatics, University of Oslo
+AUTHOR: Kaare Dump at Segfault, Cyberspace
+AUTHOR: A. Dummy Author
+AUTHOR: I. S. Overworked and Outburned at Inst1 & Inst2, Somewhere & Third Inst, Elsewhere & Fourth Inst
+AUTHOR: J. Doe mail: j_doe@cyberspace.com
+DATE: today
+
+
+# Externaldocuments: testdoc
+# Mapping from exercise labels to numbers: label2numbers = {'demo:ex:1': 'None.None', 'proj:circle1': 'None.None'}
+
+TOC: on
+===== Problem: Flip a Coin =====
+label{demo:ex:1}
+files = flip_coin.py, flip_coin.pdf
+solutions = mysol.txt, mysol_flip_coin.py
+keywords = random numbers; Monte Carlo simulation; ipynb
+
+# Torture tests
+file=myfile_should_be_a_part_of_the_text
+solutions = mysol.txt, mysol_flip_coin.py, yet_another.file
+
+!bsubex
+Make a program that simulates flipping a coin $N$ times.
+Print out ``tail'' or ``head'' for each flip and
+let the program count the number of heads.
+
+!bhint
+Use `r = random.random()` and define head as `r <= 0.5`.
+!ehint
+
+!bhint
+Draw an integer among $\{1,2\}$ with
+`r = random.randint(1,2)` and define head when `r` is 1.
+!ehint
+
+!bans
+If the `random.random()` function returns a number $<1/2$, let it be
+head, otherwise tail. Repeat this $N$ number of times.
+!eans
+
+!bsol
+!bc pycod
+import sys, random
+N = int(sys.argv[1])
+heads = 0
+for i in range(N):
+    r = random.random()
+    if r <= 0.5:
+        heads += 1
+print('Flipping a coin %d times gave %d heads' % (N, heads))
+!ec
+!esol
+!esubex
+
+!bsubex
+Vectorize the code in a) using boolean indexing.
+!esubex
+
+Vectorized code can be written in many ways.
+Sometimes the code is less intuitive, sometimes not.
+At least there is not much to find in Section ref{sec1}.
+
+!bsubex
+Vectorize the code in a) using `numpy.sum`.
+
+
+!bans
+`np.sum(np.where(r <= 0.5, 1, 0))` or `np.sum(r <= 0.5)`.
+!eans
+!esubex
+
+In this latter subexercise, we have an
+example where the code is easy to read.
+
+!bremarks
+These are the exercise remarks, appearing at the very end.
+!eremarks
+
+=== My remarks ===
+
+Remarks with such a subsubsection is treated as more text
+after the last subexercise. Test a list too:
+
+ o Mark 1.
+ o Mark 2.
+
+===== Project: Explore Distributions of Random Circles =====
+
+label{proj:circle1}
+file=circles
+kw=ipynb
+
+The formula for a circle is given by
+
+!bt
+\begin{align}
+x &= x_0 + R\cos 2\pi t,
+label{circle:x}\\ 
+y &= y_0 + R\sin 2\pi t,
+label{circle:y}
+\end{align}
+!et
+where $R$ is the radius of the circle, $(x_0,y_0)$ is the
+center point, and $t$ is a parameter in the unit interval $[0,1]$.
+For any $t$, $(x,y)$ computed from (ref{circle:x})-(ref{circle:y})
+is a point on the circle.
+The formula can be used to generate `n` points on a circle:
+
+!bc pypro
+import numpy as np
+
+def circle(R, x0, y0, n=501):
+    t = np.linspace(0, 1, n)
+    x = x0 + R*np.cos(2*np.pi*t)
+    y = y0 + R*np.sin(2*np.pi*t)
+    return x, y
+
+x, y = circle(2.0, 0, 0)
+!ec
+
+# Often in an exercise we have some comments about the solution
+# which we normally want to keep where they are.
+
+The goal of this project is to draw $N$ circles with random
+center and radius. Plot each circle using the `circle` function
+above.
+
+!bsubex
+Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
+
+!bans
+Here goes the short answer to part a).
+!eans
+
+!bsol
+Here goes a full solution to part a).
+!esol
+
+!bhint
+Use the `numpy.random` module to draw the
+$x_0$, $y_0$, and $R$ quantities.
+!ehint
+
+!esubex
+
+!bsubex
+Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
+
+file=norm  # test local filename for subexercise
+!esubex
+
+!bsubex
+Let $R$ and $(x_0,y_0)$ be normally distributed.
+!esubex
+
+!bremarks
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+!eremarks
+

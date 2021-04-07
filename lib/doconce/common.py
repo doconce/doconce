@@ -19,11 +19,14 @@ from pygments.lexers import get_all_lexers, get_lexer_by_name
 format = None   # latex, pdflatex, html, plain, etc
 
 # Identifiers in the text used to identify code and math blocks
-_CODE_BLOCK = '<<<!!CODE_BLOCK'
-_MATH_BLOCK = '<<<!!MATH_BLOCK'
+_CODE_BLOCK = globals._CODE_BLOCK
+_MATH_BLOCK = globals._MATH_BLOCK
 
 # Chapter regex
 chapter_pattern = r'^=========\s*[A-Za-z0-9].+?========='
+
+# Table pattern
+pattern_table = r'^\|[\-lrcX]+\|'
 
 emoji_url = 'https://raw.githubusercontent.com/hplgit/doconce/master/bundled/emoji/png/'
 
@@ -308,12 +311,9 @@ def indent_lines(text, format, indentation=' '*8, trailing_newline=True):
         # it seems that Epytext is not capable of doing raw strings here)
         if re.search(r'\\n', text):
             comment_out = True
-            text = """\
-
-            NOTE: A verbatim block has been removed because
-                  it causes problems for Epytext.
-
-"""
+            text = ('\n'
+                    '            NOTE: A verbatim block has been removed because\n'
+                    '                  it causes problems for Epytext.\n\n')
             return text
 
     # indent X chars (choose X=6 for sufficient indent in lists)
@@ -1447,7 +1447,6 @@ def tikz2img(tikz_file, encoding='utf8', tikz_libs=None, pgfplots_libs=None):
 
 
     # TeX --> DVI
-    #print "TeX --> DVI"
     p = subprocess.Popen(['latex', '-output-directory='+tmp_dir,
                         '-interaction=nonstopmode',
                         tex_file],
@@ -1541,7 +1540,12 @@ TOC = {}
 ENVIRS = {}
 QUIZ = {}
 
-_linked_files = '''\s*"(?P<url>([^"]+?\.html?|[^"]+?\.html?\#[^"]+?|[^"]+?\.txt|[^"]+?\.tex|[^"]+?\.pdf|[^"]+?\.f|[^"]+?\.c|[^"]+?\.cpp|[^"]+?\.cxx|[^"]+?\.py|[^"]+?\.ipynb|[^"]+?\.java|[^"]+?\.pl|[^"]+?\.sh|[^"]+?\.csh|[^"]+?\.zsh|[^"]+?\.ksh|[^"]+?\.tar\.gz|[^"]+?\.tar|[^"]+?\.zip|[^"]+?\.f77|[^"]+?\.f90|[^"]+?\.f95|[^"]+?\.png|[^"]+?\.jpe?g|[^"]+?\.gif|[^"]+?\.pdf|[^"]+?\.flv|[^"]+?\.webm|[^"]+?\.ogg|[^"]+?\.mp4|[^"]+?\.mpe?g|[^"]+?\.e?ps|_static-?[^/]*/[^"]+?))"'''
+_linked_files = '\s*"(?P<url>([^"]+?\.html?|[^"]+?\.html?\#[^"]+?|[^"]+?\.txt|[^"]+?\.tex|[^"]+?\.pdf' \
+                '|[^"]+?\.f|[^"]+?\.c|[^"]+?\.cpp|[^"]+?\.cxx|[^"]+?\.py|[^"]+?\.ipynb|[^"]+?\.java|' \
+                '[^"]+?\.pl|[^"]+?\.sh|[^"]+?\.csh|[^"]+?\.zsh|[^"]+?\.ksh|[^"]+?\.tar\.gz|[^"]+?\.tar|' \
+                '[^"]+?\.zip|[^"]+?\.f77|[^"]+?\.f90|[^"]+?\.f95|[^"]+?\.png|[^"]+?\.jpe?g|[^"]+?\.gif|' \
+                '[^"]+?\.pdf|[^"]+?\.flv|[^"]+?\.webm|[^"]+?\.ogg|[^"]+?\.mp4|[^"]+?\.mpe?g|[^"]+?\.e?ps|' \
+                '_static-?[^/]*/[^"]+?))"'
 #_linked_files = '''\s*"(?P<url>([^"]+?))"'''  # any file is accepted
 
 abstract_names = '|'.join([globals.locale_dict[globals.locale_dict['language']][p]
@@ -1552,66 +1556,72 @@ INLINE_TAGS = {
     # first $ and space, comma, period, colon, semicolon, or question
     # mark after the enclosing $.
     'math':
-    r'%s\$(?P<subst>[^ `][^$`]*)\$%s' % \
-    (globals.inline_tag_begin, globals.inline_tag_end),
+        r'%s\$(?P<subst>[^ `][^$`]*)\$%s' % \
+        (globals.inline_tag_begin, globals.inline_tag_end),
 
     # $latex text$|$pure text alternative$
     'math2':
-    r'%s\$(?P<latexmath>[^ `][^$`]*)\$\|\$(?P<puretext>[^ `][^$`]*)\$%s' % \
-    (globals.inline_tag_begin, globals.inline_tag_end),
-    # simpler (not tested):
-    #r'%s\$(?P<latexmath>[^$]+?)\$\|\$(?P<puretext>[^$]+)\$%s' % \
-    #(globals.inline_tag_begin, globals.inline_tag_end),
+        r'%s\$(?P<latexmath>[^ `][^$`]*)\$\|\$(?P<puretext>[^ `][^$`]*)\$%s' % \
+        (globals.inline_tag_begin, globals.inline_tag_end),
+        # simpler (not tested):
+        # r'%s\$(?P<latexmath>[^$]+?)\$\|\$(?P<puretext>[^$]+)\$%s' % \
+        # (globals.inline_tag_begin, globals.inline_tag_end),
 
-    # *emphasized words*
+    # *emphasized words*  i.e. *italics*
     'emphasize':
-    r'%s\*(?P<subst>[^ `][^*`]*)\*%s' % \
-    (globals.inline_tag_begin, globals.inline_tag_end),
+        r'%s\*(?P<subst>[^ `][^*`]*)\*%s' % \
+        (globals.inline_tag_begin, globals.inline_tag_end),
 
-    # `verbatim inline text is enclosed in back quotes`
+    # `verbatim` inline text
     'verbatim':
-    r'%s`(?P<subst>[^ `][^`]*)`%s' % \
-    (globals.inline_tag_begin, globals.inline_tag_end),
-    #(globals.inline_tag_begin, r"(?P<end>($|[.,?!;:)}'\s|-]))"),
+        r'%s`(?P<subst>[^ `][^`]*)`%s' % \
+        (globals.inline_tag_begin, globals.inline_tag_end),
+        # (globals.inline_tag_begin, r"(?P<end>($|[.,?!;:)}'\s|-]))"),
 
-    # _underscore before and after signifies bold_
+    # _bold_
     'bold':
-    r'%s_(?P<subst>[^ `][^\]_`]*)_%s' % \
-    (globals.inline_tag_begin, globals.inline_tag_end),
+        r'%s_(?P<subst>[^ `][^\]_`]*)_%s' % \
+        (globals.inline_tag_begin, globals.inline_tag_end),
 
-    # color{col}{text} (\b is useful, but :.;`? is not word boundary)
+    # color{col}{text}
+    # (\b is useful, but :.;`? is not word boundary)
     'colortext':
-    r'\bcolor\{(?P<color>[^}]+?)\}\{(?P<text>[^}]+)\}',
+        r'\bcolor\{(?P<color>[^}]+?)\}\{(?P<text>[^}]+)\}',
 
     # https://some.where.org/mypage<link text>  # old outdated syntax
     'linkURL':
-    r'%s(?P<url>https?://[^<\n]+)<(?P<link>[^>]+)>%s' % \
-    (globals.inline_tag_begin, globals.inline_tag_end),
+        r'%s(?P<url>https?://[^<\n]+)<(?P<link>[^>]+)>%s' % \
+        (globals.inline_tag_begin, globals.inline_tag_end),
 
-    'linkURL2':  # "some link": "https://bla-bla"
-    r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>(file:///|https?://|ftp://|mailto:).+?)"''',
-    #r'"(?P<link>[^>]+)" ?: ?"(?P<url>https?://[^<]+?)"'
+    # "some link": "https://bla-bla"
+    'linkURL2':
+        r'"(?P<link>[^"]+?)" ?:\s*"(?P<url>(file:///|https?://|ftp://|mailto:).+?)"',
+        # r'"(?P<link>[^>]+)" ?: ?"(?P<url>https?://[^<]+?)"'
 
-    'linkURL2v':  # verbatim link "`filelink`": "https://bla-bla"
-    r'''"`(?P<link>[^"]+?)`" ?:\s*"(?P<url>(file:///|https?://|ftp://|mailto:).+?)"''',
+    # verbatim link "`filelink`": "https://bla-bla"
+    'linkURL2v':
+        r'"`(?P<link>[^"]+?)`" ?:\s*"(?P<url>(file:///|https?://|ftp://|mailto:).+?)"',
 
-    'linkURL3':  # "some link": "some/local/file/name.html" or .txt/.pdf/.py/.c/.cpp/.cxx/.f/.java/.pl files
-    #r'''"(?P<link>[^"]+?)" ?:\s*"(?P<url>([^"]+?\.html?|[^"]+?\.txt|[^"]+?.pdf))"''',
-    r'''"(?P<link>[^"]+?)" ?:''' + _linked_files,
-    #r'"(?P<link>[^>]+)" ?: ?"(?P<url>https?://[^<]+?)"'
-    'linkURL3v':  # "`somefile`": "some/local/file/name.html" or .txt/.pdf/.py/.c/.cpp/.cxx/.f/.java/.pl files
-    r'''"`(?P<link>[^"]+?)`" ?:''' +  _linked_files,
+    # "some link": "some/local/file/name.html" or .txt/.pdf/.py/.c/.cpp/.cxx/.f/.java/.pl files
+    'linkURL3':
+        # r'"(?P<link>[^"]+?)" ?:\s*"(?P<url>([^"]+?\.html?|[^"]+?\.txt|[^"]+?.pdf))"',
+        r'"(?P<link>[^"]+?)" ?:' + _linked_files,
+
+    # "`somefile`": "some/local/file/name.html" or .txt/.pdf/.py/.c/.cpp/.cxx/.f/.java/.pl files
+    'linkURL3v':
+        r'"`(?P<link>[^"]+?)`" ?:' + _linked_files,
 
     'plainURL':
-    #r'"URL" ?: ?"(?P<url>.+?)"',
-    #r'"?(URL|url)"? ?: ?"(?P<url>.+?)"',
-    r'("URL"|"url"|URL|url) ?:\s*"(?P<url>.+?)"',
+        # r'"URL" ?: ?"(?P<url>.+?)"',
+        # r'"?(URL|url)"? ?: ?"(?P<url>.+?)"',
+        r'("URL"|"url"|URL|url) ?:\s*"(?P<url>.+?)"',
 
+    # [author name: comment]
     'inlinecomment':  # needs re.DOTALL
-    r'''\[(?P<name>[A-Za-z0-9 '+-]+?):(?P<space>\s+)(?P<comment>.*?)\]''',
-    # looks more robust for names with non-English characters,
-    # but caused problems (should not match \[ a:\quad ...\] and not footnotes)
-    #r'''(?<=[^\\])\[(?P<name>[^:\^]+?):(?P<space>\s+)(?P<comment>.*?)\]''',
+        r"\[(?P<name>[A-Za-z0-9 '+-]+?):(?P<space>\s+)(?P<comment>.*?)\]",
+        # looks more robust for names with non-English characters,
+        # but caused problems (should not match \[ a:\quad ...\] and not footnotes)
+        # r'(?<=[^\\])\[(?P<name>[^:\^]+?):(?P<space>\s+)(?P<comment>.*?)\]',
 
     # __Abstract.__ Any text up to a headline === or toc-like keywords
     # (TOC is already processed)
@@ -1619,69 +1629,90 @@ INLINE_TAGS = {
     # it before DATE (not recommended for papers)
     # 'abstract' is in doconce.py processed before chapter, section, etc
     'abstract':  # needs re.DOTALL | re.MULTILINE
-    r"""^\s*__(?P<type>%s).__\s*(?P<text>.+?)(?P<rest>TOC:|\\tableofcontents|Table of [Cc]ontents|DATE:|%% --- begin date|\\date\{|<!-- date|__[A-Z].+[.?:]__|^={3,9})""" % abstract_names,  # Abstract|Summary|Preface
+        (r"^\s*__(?P<type>%s).__\s*(?P<text>.+?)(?P<rest>TOC:|\\tableofcontents|"
+         r"Table of [Cc]ontents|DATE:|%% --- begin date|"
+         r"\\date\{|<!-- date|__[A-Z].+[.?:]__|^={3,9})") % abstract_names,  # Abstract|Summary|Preface
 
+    # keywords=integrals; SymPy
     'keywords':
-    r'^__Keywords.__\s+(?P<subst>.+)\s*$',
+        r'^__Keywords.__\s+(?P<subst>.+)\s*$',
 
-    # ======= Seven Equality Signs for Headline =======
     'section':
-    r'^={7}\s*(?P<subst>[^ =-].+?)\s*={7} *$',
+        r'^={7}\s*(?P<subst>[^ =-].+?)\s*={7} *$',
 
     'chapter':
-    r'^={9}\s*(?P<subst>[^ =-].+?)\s*={9} *$',
+        r'^={9}\s*(?P<subst>[^ =-].+?)\s*={9} *$',
 
     'subsection':
-    r'^={5}\s*(?P<subst>[^ =-].+?)\s*={5} *$',
+        r'^={5}\s*(?P<subst>[^ =-].+?)\s*={5} *$',
 
     'subsubsection':
-    # final \s is needed for latex to make \paragraph attached to text
-    # with no blank line
-    r'^={3}\s*(?P<subst>[^ =-].+?)\s*={3}\s*$',
+        # final \s is needed for latex to attach \paragraph to text without a blank line
+        r'^={3}\s*(?P<subst>[^ =-].+?)\s*={3}\s*$',
 
-    # __Two underscores for Inline Paragraph Title.__
+    # __Paragraph Title.__ and running text
     'paragraph':
-    r'(?P<begin>^)__(?P<subst>.+?)__(?P<space>(\n| +))',
+        r'(?P<begin>^)__(?P<subst>.+?)__(?P<space>(\n| *))',
+        #r'(?P<before>^[^_]*)__(?P<subst>.+?)__(?P<space>(\n| +))(?P<after>.*)$',
 
     # TITLE: My Document Title
     'title':
-    r'^TITLE:\s*(?P<subst>.+)\s*$',
+        r'^TITLE:\s*(?P<subst>.+)\s*$',
 
+    # AUTHOR: Some Name at Institution
     # AUTHOR: Some Name
     'author':
-    #r'^AUTHOR:\s*(?P<name>.+?)\s+at\s+(?P<institution>.+)\s*$',
-    # for backward compatibility (comma or at as separator):
-    r'^AUTHOR:\s*(?P<name>.+?)(,|\s+at\s+)(?P<institution>.+)\s*$',
+        # for backward compatibility (comma or at as separator):
+        r'^AUTHOR:\s*(?P<name>.+?)(,|\s+at\s+)?(?P<institution>.+)?\s*$',
 
     # DATE: Jan 27, 2010
     'date':
-    r'^DATE:\s*(?P<subst>.+)\s*$',
+        r'^DATE:\s*(?P<subst>.+)\s*$',
 
     # FIGURE:[filename, options] some caption text label{some:label}
     # (until blank line ^\s*$)
     'figure':
-    r'^FIGURE:\s*\[(?P<filename>[^,\]]+),?(?P<options>[^\]]*)\]\s*?(?P<caption>.*)$',
+        r'^FIGURE:\s*\[(?P<filename>[^,\]]+),?(?P<options>[^\]]*)\]\s*?(?P<caption>.*)$',
 
     # MOVIE:[filename, options] some caption text label{some:label}
     'movie':
-    r'^MOVIE:\s*\[(?P<filename>[^,\]]+),?(?P<options>[^\]]*)\]\s*?(?P<caption>.*)$',
-    'linebreak': '^(?P<text>.*)<linebreak> *$',
-    #'footnote':  # definition is in doconce.py since no regular re.sub in loop is to be performed
+        r'^MOVIE:\s*\[(?P<filename>[^,\]]+),?(?P<options>[^\]]*)\]\s*?(?P<caption>.*)$',
+
+    # text with<linebreak>
+    'linebreak':
+        '^(?P<text>.*)<linebreak> *$',
+
+    # footnotes[^footnote] ..  [^footnote]: my footnote
+    # 'footnote':  # definition is in doconce.py since no regular re.sub in loop is to be performed
     # The tilde is used in URLs and computer code
     # Must be substituted before inline math, color, etc., if the next
     # regex is to work (but then &nbsp;$math$ breaks later...)
-    #'non-breaking-space': r'(?<=[$A-Za-z0-9])~(?=[$A-Za-z0-9])',
+
+    # non-breaking space ~
     # This one allows HTML MathJax formulas and HTML tags to surround the ~
     # (i.e., after substitutions of $...$, color, etc.)
-    'non-breaking-space': r'(?<=[})>$A-Za-z0-9_`.])~(?=[{(\\<$A-Za-z0-9`:])',
-    'horizontal-rule': r'^----+$',
-    # ampersand1: Guns & Roses -> Guns {\&} Roses in latex
-    'ampersand1': r'(?P<pre>[A-Za-z0-9]) +& +(?P<post>[A-Za-z0-9])',  # \1 & \2
-    # Texas A & M (doconce) -> Texas A{\&}M in latex (no spaces around &)
-    'ampersand2': r' (?P<pre>[A-Z]) +& +(?P<post>[A-Z](?=\n|[ .,;-?:`]))',
-    'emoji': r'(\s):([a-z_]+):(\s)',
-    }
+    'non-breaking-space':
+        r'(?<=[})>$A-Za-z0-9_`.])~(?=[{(\\<$A-Za-z0-9`:])',
+
+    # -----
+    'horizontal-rule':
+        r'^----+$',
+
+    # ampersand: People & Robots -> People {\&} Robots
+    'ampersand1':
+        r'(?P<pre>[A-Za-z0-9]) +& +(?P<post>[A-Za-z0-9])',  # \1 & \2
+
+    # Texas A & M -> Texas A{\&}M in latex (no spaces around when single upper case letters on each side of &)
+    'ampersand2':
+        r' (?P<pre>[A-Z]) +& +(?P<post>[A-Z](?=\n|[ .,;-?:`]))',
+
+    'emoji':
+        r'(\s):([a-z_]+):(\s*)' if not option('no_emoji') else ''
+}
 
 INLINE_TAGS_SUBST = {}
 
 LIST_SYMBOL = {'*': 'itemize', 'o': 'enumerate', '-': 'description'}
+
+COMMANDS_TO_COMMENT = ['!split', '!bpop', '!epop', '!bslidecell', '!eslidecell',
+                '!bnotes', '!enotes']

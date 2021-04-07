@@ -1,0 +1,9 @@
+INFO - running doconce format sphinx admon 
+INFO - copy: admon.rst to tmp_admon and reading the content
+INFO - copy: testfigs/wave1D.png to tmp_admon
+INFO - edit: figure path to wave1D.png
+INFO - running make clean and make html
+INFO - edit: genindex.html
+INFO - edit: index.html
+INFO - edit: admon.html
+INFO - edit: search.html

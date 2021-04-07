@@ -12,7 +12,7 @@ DocOnce syntax!
 
 Any LaTeX syntax in mathematical formulas is accepted when DocOnce
 translates the text to LaTeX, but the following rules should be
-followed when transalting the text to `sphinx`, `pandoc`,
+followed when translating the text to `sphinx`, `pandoc`,
 `mwiki`, `html`, or `ipynb` formats.
 
  * AMS LaTeX mathematics is supported, also for the `html`, `sphinx`,

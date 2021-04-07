@@ -1,0 +1,11 @@
+% ------------------- main content ----------------------
+Text with a name like Åsmund Ødegård works in general.
+This block (in format latex)
+triggers use of \texttt{mako}. For all formats, \texttt{mako} has
+problem with non-ASCII characters anywhere in the text. The remedy
+for all formats is to read the file with UTF-8 encoding. With --debug
+one can see the internal str/unicode representation of the text
+through the various stages of the text transformation process.
+$b = 1$ is a value suggested by Åsmund Ødegård.
+% ------------------- end of main content ---------------
+

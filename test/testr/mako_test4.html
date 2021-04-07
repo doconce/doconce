@@ -1,0 +1,28 @@
+
+<!-- tocinfo
+{'highest level': 4, 'sections': []}
+end of tocinfo -->
+
+<!-- ------------------- main content ---------------------- -->
+<!-- Purpose: correct mako_test3.do.txt such that we -->
+<!-- can use mako and have lines starting with % -->
+<!-- (i.e., the lines must manually be edited to -->
+<!-- start with %%) -->
+
+<pre>/* Here is some SWIG code code */
+%module MyMod
+%{
+...
+%}
+
+%init %{
+import_array();
+%}
+</pre>
+
+<p>And more code:</p>
+<pre>% Matlab comment only
+...
+</pre>
+<!-- ------------------- end of main content --------------- -->
+

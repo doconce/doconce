@@ -9,6 +9,7 @@ import os, sys
 from subprocess import getstatusoutput
 from doconce.sphinx import sphinx_dir
 from doconce.jupyterbook import jupyterbook
+from doconce.slides import slides_html, slides_beamer, slides_markdown
 from doconce.misc import (
     misc_option,
     insertdocstr,
@@ -36,10 +37,7 @@ from doconce.misc import (
     list_fig_src_files,
     list_labels,
     split_rst,
-    slides_html,
     split_html,
-    slides_beamer,
-    slides_markdown,
     html_colorbullets,
     md2html,
     md2latex,

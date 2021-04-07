@@ -1,0 +1,23 @@
+TITLE: Problem 2.2: Multiply numbers
+AUTHOR: Jane Doe Email:jane.doe@cyberspace.net
+DATE: Due Jan 32, 2100
+
+# Logical name of exercise: multiply
+
+
+
+
+__a)__
+Compute $1\cdot 3$.
+
+
+
+__b)__
+Compute $2\cdot 3$.
+
+
+__Hint.__
+Use a Python shell.
+
+
+

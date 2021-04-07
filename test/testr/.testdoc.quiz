@@ -1,0 +1,58 @@
+[{'choices': [['right', '$y=e^{-y}$'],
+              ['wrong',
+               '$y=e^{y}$',
+               'Almost, but the sign is wrong (note the minus!).'],
+              ['wrong',
+               '~~~{.Python}\n'
+               'from math import exp\n'
+               'def f(x):\n'
+               '    return exp(x)\n'
+               '~~~',
+               'Ooops, forgot a minus: `exp(-x)`, otherwise this Python code\n'
+               'must be considered as a good answer. It is more natural,\n'
+               'though, to write the solution to the problem\n'
+               'in mathematical notation:\n'
+               '\n'
+               '$$\n'
+               ' y(x) = e^{-y}.\n'
+               '$$'],
+              ['wrong',
+               'The solution cannot be found because there is a derivative in '
+               'the equation.',
+               'Equations with derivatives can be solved;\n'
+               'they are termed *differential\n'
+               'equations*.'],
+              ['wrong',
+               'The equation is meaningless: an equation must be an equation\n'
+               'for $x$ or $y$, not a function $y(x)$.',
+               'Equations where the unknown is a function, as $y(x)$\n'
+               'here, are called *differential equations*, and are solved by\n'
+               'special techniques.']],
+  'embedding': 'exercise',
+  'heading': 'SOlution of differential equation',
+  'keywords': ['derivatives',
+               'exponential function',
+               'equation, differential',
+               'differential equation'],
+  'label': 'quiz:diff:eq1',
+  'no': 1,
+  'question': 'Given\n'
+              '\n'
+              '$$\n'
+              ' \\frac{dy}{dx} = -y(x),\\quad y(0)=1 \n'
+              '$$\n'
+              'What is the solution of this equation?'},
+ {'choice prefix': ['Answer 1:', 'Answer 2:', 'Answer 3:', None],
+  'choices': [['wrong', 'Stockholm', 'Stockholm is the capital of Sweden.'],
+              ['wrong', 'London'],
+              ['right', 'Oslo'],
+              ['wrong',
+               'Bergen',
+               'Those from Bergen would claim so, but nobody else.']],
+  'embedding': 'subsection',
+  'heading': 'Capital of Norway',
+  'keywords': ['capitals', 'basic intelligence', 'geography'],
+  'new page': 'Test of quizzes',
+  'no': 2,
+  'question': 'What is the capital of Norway?',
+  'question prefix': 'Fundamental test:'}]

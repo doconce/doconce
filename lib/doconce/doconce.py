@@ -10,7 +10,7 @@ from builtins import range
 from past.builtins import basestring, unicode
 from doconce import globals
 
-import re, os, sys, shutil, subprocess, pprint, time, glob, codecs
+import re, os, sys, shutil, subprocess, pprint, time, glob, codecs, csv
 try:
     from collections import OrderedDict   # v2.7 and v3.1
 except ImportError:
@@ -60,14 +60,14 @@ def encode_error_message(exception, text, print_length=40):
         _abort()
 
 
-def markdown2doconce(filestr_in, format=None, ipynb_mode=False):
+def markdown2doconce(filestr, format=None, ipynb_mode=False):
     """Look for Markdown (and Extended Markdown) syntax in the file (filestr)
     and transform the text to valid DocOnce format.
 
     :param str filestr: file content
     :param str format: output format
     :param bool ipynb_mode: default is False
-    :return: the converted filestr_in
+    :return: the converted filestr
     :rtype: str
     """
     #md2doconce "preprocessor" --markdown --write_doconce_from_markdown=myfile.do.txt
@@ -82,7 +82,6 @@ def markdown2doconce(filestr_in, format=None, ipynb_mode=False):
     * Headlines with underline instead of #
     * labels (?) a la {#label}
     """
-    filestr = filestr_in
     lines = filestr.splitlines()
     # Headings: must have # at the beginning of the line and blank before
     # and after
@@ -280,7 +279,7 @@ def markdown2doconce(filestr_in, format=None, ipynb_mode=False):
     return filestr
 
 
-def fix(filestr_in, format, verbose=0):
+def fix(filestr, format, verbose=0):
     """Fix issues with the text (correct wrong syntax).
 
     :param str filestr: file content
@@ -292,7 +291,6 @@ def fix(filestr_in, format, verbose=0):
     # `!bc`, `!bt`, `!ec`, and `!et` at the beginning
     # of a line gives wrong consistency checks for plaintext format,
     # so we avoid having these at the beginning of a line.
-    filestr = filestr_in
     if format == 'plain':
         for directive in 'bc', 'ec', 'bt', 'et':
             # could test for bsol, bhint, etc. as well...
@@ -1202,7 +1200,7 @@ def insert_code_from_file(filestr, format):
                     dummyfile.close()
                     codefile = open(filename, 'r')
                 else:
-                    errwarn(e)
+                    errwarn(str(e))
                     _abort()
 
             # Check if the code environment is explicitly specified
@@ -1470,8 +1468,6 @@ def exercises(filestr, format, code_blocks, tex_blocks):
     # __Hint 1.__ some paragraph...,
     # __Hint 2.__ ...
     """
-    from .common import _CODE_BLOCK, _MATH_BLOCK
-
     all_exer = []   # collection of all exercises
     exer = {}       # data for one exercise, to be appended to all_exer
     inside_exer = False
@@ -1873,26 +1869,26 @@ def exercises(filestr, format, code_blocks, tex_blocks):
                 return text
 
             # Why not use insert_code_blocks/insert_tex_blocks here? Should be safer
-            pattern = r"(\d+) %s( +)([a-z]+)" % _CODE_BLOCK 
+            pattern = r"(\d+) %s( +)([a-z]+)" % globals._CODE_BLOCK
             code = re.findall(pattern, text, flags=re.MULTILINE)
             for n, space, tp in code:
                 block = code_blocks[int(n)]
-                from_ = '%s %s%s%s' % (n, _CODE_BLOCK, space, tp)
+                from_ = '%s %s%s%s' % (n, globals._CODE_BLOCK, space, tp)
                 to_ = '!bc %s\n' % (tp) + block + '\n!ec'
                 text = text.replace(from_, to_)
             # Remaining blocks without type
-            pattern = r"(\d+) %s" % _CODE_BLOCK
+            pattern = r"(\d+) %s" % globals._CODE_BLOCK
             code = re.findall(pattern, text, flags=re.MULTILINE)
             for n in code:
                 block = code_blocks[int(n)]
-                from_ = '%s %s' % (n, _CODE_BLOCK)
+                from_ = '%s %s' % (n, globals._CODE_BLOCK)
                 to_ = '!bc\n' + block + '\n!ec'
                 text = text.replace(from_, to_)
-            pattern = r"(\d+) %s" % _MATH_BLOCK
+            pattern = r"(\d+) %s" % globals._MATH_BLOCK
             math = re.findall(pattern, text, flags=re.MULTILINE)
             for n in math:
                 block = tex_blocks[int(n)]
-                from_ = '%s %s' % (n, _MATH_BLOCK)
+                from_ = '%s %s' % (n, globals._MATH_BLOCK)
                 to_ = '!bt\n' + block + '\n!et'
                 text = text.replace(from_, to_)
             return text
@@ -1957,7 +1953,7 @@ def exercises(filestr, format, code_blocks, tex_blocks):
             for block in blocks:
                 errwarn(block, end='\n', style='red')
             _abort()
-        # Find single occurences (syntax error)
+        # Find single occurrences (syntax error)
         if not found_pairs:
             m = re.search(r'^![be]%s' % envir, filestr, flags=re.MULTILINE)
             if m:
@@ -2260,19 +2256,17 @@ def space_in_tables(filestr):
 
 
 def typeset_tables(filestr, format):
-    """
+    """Format tables
+
     Translate tables with pipes and dashes to a list of
     row-column values. Horizontal rules become a row
     ['horizontal rule'] in the list.
-    The list is easily translated to various output formats
-    by other modules.
+    :param str filestr: text string
+    :param str format: supported format (html, latex, etc.)
+    :return: processed filestr
+    :rtype: str
     """
-    try:
-        from StringIO import StringIO
-    except ImportError:
-        from io import StringIO
-    result = StringIO()
-
+    result = ''
     # Fix: make sure there is a blank line after the table
     # (blank line can be swallowed if a table is at the end of a
     #  user-def envir.)
@@ -2281,9 +2275,7 @@ def typeset_tables(filestr, format):
     # table is a dict with keys rows, headings_align, columns_align
     table = {'rows': []}  # init new table
     inside_table = False
-
     tables2csv = option('tables2csv')
-    import csv
     table_counter = 0
     # Add functionality:
     # doconce csv2table, which reads a .csv file and outputs
@@ -2298,7 +2290,7 @@ def typeset_tables(filestr, format):
 
     for line_no, line in enumerate(lines):
         lin = line.strip()
-        # horisontal table rule?
+        # horizontal table rule?
         if re.search(horizontal_rule_pattern, lin):
             horizontal_rule = True
         else:
@@ -2310,7 +2302,7 @@ def typeset_tables(filestr, format):
             align = lin[1:-1].replace('-', '') # keep | in align spec.
             if align:
                 # Non-empty string contains lrcX| letters for alignment
-                # (can be alignmend of heading or of columns)
+                # (can be alignment of heading or of columns)
                 if align == '|'*len(align):  # Just '|||'?
                     errwarn('Syntax error: horizontal rule in table '\
                             'contains | between columns - remove these.')
@@ -2421,7 +2413,7 @@ def typeset_tables(filestr, format):
                          Move the formula so that it is not at the beginning of a line.' % format)
                     _abort()
 
-                result.write(TABLE[format](table))   # typeset table
+                result += TABLE[format](table)   # typeset table
                 # Write CSV file
                 if tables2csv:
                     outfile = open('table_%d.csv' % table_counter, 'w')
@@ -2433,8 +2425,128 @@ def typeset_tables(filestr, format):
                     outfile.close()
                 table = {'rows': []}  # init new table
             else:
-                result.write(line + '\n')
-    return result.getvalue()
+                result += line + '\n'
+    return result
+
+
+def text_lines(filestr):
+    """Process HTML code by wrapping plain text in paragraph (<p></p>) tags
+
+    This function takes a semi-processed input file to be formatted as html,
+    and it wraps plain text in <p></p> tags. 
+    :param str filestr: file string
+    :return: processed filestr
+    :rtype: str
+    """
+    # Loop on lines and search for inline tags/commands that we do not consider plain text
+    lines = filestr.splitlines()
+    wrap_last = None
+    for i,line in enumerate(lines):
+        # Skip some patterns
+        if line == ''  or line.isspace():
+            # Skip empty lines
+            continue
+        elif line[0] == '#':
+            # Skip comments
+            continue
+        elif re.search(r'^\s*<!--.*-->\s*$', line):
+            # Skip comments
+            continue
+        elif re.search(r'^\d+ (%s|%s)' % (globals._CODE_BLOCK, globals._MATH_BLOCK), line):
+            # Skip code blocks
+            continue
+        elif re.search(r".*\[\^.+\]", line):
+            # Skip footnotes
+            continue
+        elif re.search(r'<[/]?[li|ol|ul|dl|dt]{2,2}(?:[ ]+[^>]*)*[/]?>', line):
+            # Skip lists
+            continue
+        elif re.search(r'^\s*<[\w _\-]+[\\]?.*>\s*$', line): #TODO: exclude <a>? see around "Here is a citation using"
+            # Skip lines already wrapped in tags, e.g. lists or <tag ...>
+            continue
+        elif re.search('^\s*\\|.*\\|$', line):
+            # Skip tables
+            continue
+        elif re.search('BIBFILE:', line):
+            # Skip BIBFILE:
+            continue
+        elif re.search('TOC:', line):
+            # Skip TOC:
+            continue
+        elif re.search(r'![b|e]\w+\s*', line):
+            # Skip !b<command and !e<command>
+            continue
+        # Skip several commands at any position in the line
+        for command in ['cite{', 'label{'] + COMMANDS_TO_COMMENT:
+            # Skip on commands to comment out
+            command_found = line.find(command)
+            if command_found > -1:
+                break
+        if command_found > -1:
+            continue
+        # If occurrences of inline tags are found, the line contains a tag.
+        for tag in INLINE_TAGS.keys():
+            # Normal text has to be wrapped by default
+            wrap = 'line'
+            # Compile and run the tag's regex pattern
+            tag_pattern = INLINE_TAGS[tag]
+            if tag in ('abstract',):
+                c = re.compile(tag_pattern, re.MULTILINE | re.DOTALL)
+            elif tag in ('inlinecomment',):
+                c = re.compile(tag_pattern, re.DOTALL)
+            else:
+                c = re.compile(tag_pattern, re.MULTILINE)
+            m = c.search(line)
+            if m:
+                match = m.group()
+                if tag in ['paragraph']:
+                    wrap = 'around'
+                    break
+                # If the tag takes the whole line, no need to wrap it (except linebreaks)
+                if line == match:
+                    if tag in ['linebreak']:
+                        # Insert linebreak
+                        lines[i] = re.sub(INLINE_TAGS['linebreak'], INLINE_TAGS_SUBST['html']['linebreak'], lines[i])
+                        wrap = 'line'
+                    else:
+                        wrap = ''
+                    break
+        # Wrap in <p></p> the whole line vs around the match
+        if wrap == 'line':
+            # Merge consecutive paragraph <p> tags using wrap_last (see below)
+            if wrap_last == i-1:
+                lines[i] = lines[i-1][:-4] + ' ' + lines[i] + '</p>'
+                lines[i - 1] = ''
+            else:
+                # Wrap the whole line
+                lines[i] = '<p>' + lines[i] + '</p>'
+        elif wrap == 'around':
+            # Wrap text but not the tag
+            begin = line.find(match)
+            end = begin + len(match)
+            line_wrapped = '<p>' + lines[i][:begin] + '\n'
+            line_wrapped += match
+            line_wrapped += '\n' + lines[i][end:] + '</p>'
+            lines[i] = line_wrapped
+        # Keep the last line that was wrapped
+        if wrap:
+            wrap_last = i
+    # Recreate the whole html code
+    filestr = safe_join(lines, '\n')
+    return filestr
+
+
+def comment_commands(filestr, format):
+    commands = COMMANDS_TO_COMMENT
+    comment_action = INLINE_TAGS_SUBST[format].get('comment', '# %s')
+    for command in commands:
+        if isinstance(comment_action, basestring):
+            split_comment = comment_action % (command + r'\g<1>')
+        elif callable(comment_action):
+            split_comment = comment_action((command + r'\g<1>'))
+        cpattern = re.compile('^%s( *| +.*)$' % command, re.MULTILINE)
+        filestr = cpattern.sub(split_comment, filestr)
+    return filestr
 
 
 def typeset_userdef_envirs(filestr, format):
@@ -2600,58 +2712,58 @@ def typeset_envirs(filestr, format):
 
 
 def typeset_lists(filestr, format, debug_info=[]):
-    """
+    """Format lists
+
     Go through filestr and parse all lists and typeset them correctly.
-    This function must be called after all (verbatim) code and tex blocks
-    have been removed from the file.
     This function also treats comment lines and blank lines.
+    It must be called after all (verbatim) code and tex blocks
+    have been removed from the file.
+    :param str filestr: text string
+    :param str format: supported format (html, latex, etc.)
+    :param bool debug_info: flag to enable debugging log
+    :return: processed filestr
+    :rtype: str
     """
     debugpr('*** List typesetting phase + comments and blank lines ***')
     import string
-
-    try:  # Python 2.7 needs the old StringIO
-        from StringIO import StringIO
-    except ImportError:
-        from io import StringIO
-    result = StringIO()
+    result = ''
     lastindent = 0
+    listtype = ''
     lists = []
     inside_description_environment = False
     lines = filestr.splitlines()
-    lastline = lines[0]
     special_comment = r'--- (begin|end) [A-Za-z0-9,();\- ]*? ---'
     #exercise_comment_line = r'--- (begin|end) .*?exercise ---'
+    # hack to make wiki have all text in an item on a single line
+    newline = '\n'
+    if lists and format in ('gwiki', 'cwiki'):
+        newline = ''
     # for debugging only:
     _code_block_no = 0; _tex_block_no = 0
-
     for i, line in enumerate(lines):
         db_line = '[%s]' % line
-        #debugpr('\n------------------------\nsource line=[%s]' % line)
+        # Process blank lines
         if not line or line.isspace():  # blank line?
             if not lists:
                 if i>0 and lines[i-1]:
-                    result.write(BLANKLINE[format])
-            # else: drop writing out blank line inside lists
+                    result += BLANKLINE[format]
                 db_line_tp = 'blank line'
-                #debugpr('  > This is a blank line')
-            lastline = line
             continue
 
         if line.startswith('#'):
             # first do some debug output:
             if line.startswith('#!!CODE') and len(debug_info) >= 1:
-                result.write(line + '\n')
+                # code block
+                result += line + '\n'
                 db_line_tp = 'code block:\n%s\n-----------' % debug_info[0][_code_block_no]
-                #debugpr('  > Here is a code block:\n%s\n--------' % debug_info[0][_code_block_no])
                 _code_block_no += 1
             elif line.startswith('#!!TEX') and len(debug_info) >= 2:
-                result.write(line + '\n')
+                # latex block
+                result += line + '\n'
                 db_line_tp = 'latex block:\n%s\n-----------' % debug_info[0][_code_block_no]
-                #debugpr('  > Here is a latex block:\n%s\n--------' % debug_info[1][_tex_block_no])
                 _tex_block_no += 1
-
             else:
-                #debugpr('  > This is just a comment line')
+                # comment line
                 db_line= 'comment: %s' % line[1:]
                 # the comment can be propagated to some formats
                 # (rst, latex, html):
@@ -2667,41 +2779,48 @@ def typeset_lists(filestr, format, debug_info=[]):
                     # lines, same for special comments in quiz
                     if not re.search(special_comment, line):
                         # Ordinary comment
-                        result.write(new_comment + '\n')
+                        result += new_comment + '\n'
                         db_line_tp = 'comment'
                     else:
                         # Special comment (keep it as ordinary line)
                         line = new_comment  # will be printed later
                         db_line_tp = 'special comment'
 
-            lastline = line
             if not re.search(special_comment, line):
                 # Ordinary comment
                 continue
             # else: just proceed and use zero indent as indicator
             # for end of list
 
-        # structure of a line:
-        linescan = re.compile(
-            r"\n*(?P<indent> *(?P<listtype>[*o-] )? *)" +
-            r"(?P<keyword>.+?:\s+)?(?P<text>.*)\s?")
-            #r"(?P<keyword>[^:]+?:)?(?P<text>.*)\s?")
-
+        # Structure of a line: get any indent, listtype, keyword, text
+        linescan = re.compile(r"\n*(?P<indent> *(?P<listtype>[*o-] )? *)" + r"(?P<keyword>[^\" ]+?:\s+)?(?P<text>.*)\s?")
         m = linescan.match(line)
         indent = len(m.group('indent'))
+        lastlisttype = listtype
         listtype = m.group('listtype')
+        keyword = m.group('keyword')
+        text = m.group('text')
         if listtype:
             listtype = listtype.strip()
             listtype = LIST_SYMBOL[listtype]
-        keyword = m.group('keyword')
-        text = m.group('text')
+        elif lastlisttype:
+            # Item continuing on a new line: put on same line
+            if indent > 0 and indent == lastindent:
+                if result.endswith('\n'):
+                    result = result[:-1]
+                # this is not a list definition line. we must write
+                # `keyword + text` because these two items make up the
+                # line if a ':' is present in an ordinary line
+                if keyword:
+                    text = keyword + text
+                result += ' ' + text + newline
+                listtype = lastlisttype
+                continue
         db_indent = '  > indent=%d (from %d)' % (indent, lastindent)
-        #debugpr('  > indent=%d (previous indent=%d), keyword=[%s], text=[%s]' % (indent, lastindent, keyword, text))
 
         # new (sub)section makes end of any indent
         if line.startswith('==='):
             indent = 0
-
 
         if indent > lastindent and listtype:
             #debugpr('  > This is a new list of type "%s"' % listtype)
@@ -2711,9 +2830,9 @@ def typeset_lists(filestr, format, debug_info=[]):
             begin_list = LIST[format][listtype]['begin']
             if '<ol>' in begin_list and len(lists) % 2 == 0:
                 begin_list = begin_list.replace('ol', 'ol type="a"')
-            result.write(begin_list)
+            result += begin_list
             if len(lists) > 1:
-                result.write(LIST[format]['separator'])
+                result += LIST[format]['separator']
 
             lastindent = indent
             if listtype == 'enumerate':
@@ -2722,7 +2841,7 @@ def typeset_lists(filestr, format, debug_info=[]):
             # inside a list, but not in the beginning
             # (we don't write out blank lines inside lists anymore!)
             # write a possible blank line if the format wants that between items
-            result.write(LIST[format]['separator'])
+            result += LIST[format]['separator']
 
         if indent < lastindent:
             # end a list or sublist, nest back all list
@@ -2730,15 +2849,20 @@ def typeset_lists(filestr, format, debug_info=[]):
             while lists and lists[-1]['indent'] > indent:
                 #debugpr('  > This is the end of a %s list' % lists[-1]['listtype'])
                 db_line_tp = 'end of a %s list' % lists[-1]['listtype']
-                result.write(LIST[format][lists[-1]['listtype']]['end'])
+                result += LIST[format][lists[-1]['listtype']]['end']
                 del lists[-1]
             lastindent = indent
-
-        #if indent == lastindent:
+        #elif indent == lastindent:
         #    debugpr('  > This line belongs to the previous block since it has '\
         #          'the same indent (%d blanks)' % indent)
 
-        if listtype:
+        if not listtype:
+            # No special list syntax involved
+            # This line is some plain text, possibly with any keyword e.g. !split, AUTHOR, etc
+            db_line_tp = 'ordinary line'
+            # should check emph, verbatim, etc., syntax check and common errors
+            result += ' ' * indent
+        else:
             # (a separator (blank line) is written above because we need
             # to ensure that the separator is not written in the top of
             # an entire new list)
@@ -2749,7 +2873,7 @@ def typeset_lists(filestr, format, debug_info=[]):
                 itemformat = itemformat*len(lists)  # *, **, #, ## etc. for sublists
             item = itemformat
             if listtype == 'enumerate':
-                #debugpr('  > This is an item in an enumerate list')
+                # item in an enumerate list
                 db_line_tp = 'item enumerate list'
                 enumerate_counter += 1
                 if '%d' in itemformat:
@@ -2762,8 +2886,8 @@ def typeset_lists(filestr, format, debug_info=[]):
                 # don't indent enumerated markdown lists - they must be left-aligned!
                 if format != 'ipynb':
                     # indent here counts with '3. ':
-                    result.write(' '*(indent - 2 - enumerate_counter//10 - 1))
-                result.write(item + ' ')
+                    result += ' '*(indent - 2 - enumerate_counter//10 - 1)
+                result += item + ' '
             elif listtype == 'description':
                 if '%s' in itemformat:
                     if not keyword:
@@ -2776,74 +2900,61 @@ def typeset_lists(filestr, format, debug_info=[]):
                     if keyword:
                         keyword = parse_keyword(keyword, format) + ':'
                         item = itemformat % keyword + ' '
-                        #debugpr('  > This is an item in a description list with parsed keyword=[%s]' % keyword)
+                        # item in a description list with parsed keyword
                         db_line_tp = 'description list'
                         keyword = '' # to avoid adding keyword up in
                         # below (ugly hack, but easy linescan parsing...)
                     else:
                         debugpr('  > This is an item in a description list, but empty keyword, serious error....')
-                result.write(' '*(indent-2))  # indent here counts with '- '
-                result.write(item)
+                result += ' '*(indent-2)  # indent here counts with '- '
+                result += item
                 if not (text.isspace() or text == ''):
-                    #result.write('\n' + ' '*(indent-1))
                     # Need special treatment if type specifications in
                     # descrption lists for sphinx API doc
                     if format == 'sphinx' and text.lstrip().startswith('type:'):
                         text = text.lstrip()[5:].lstrip()
                         # no newline for type info
                     else:
-                        result.write('\n' + ' '*(indent))
+                        result += '\n' + ' '*(indent)
             else:
-                #debugpr('  > This is an item in a bullet list')
+                # item in a bullet list
                 db_line_tp = 'bullet list'
-                result.write(' '*(indent-2))  # indent here counts with '* '
-                result.write(item + ' ')
+                result += ' '*(indent-2)  # indent here counts with '* '
+                result += item + ' '
 
-        else:
-            #debugpr('  > This line is some ordinary line, no special list syntax involved')
-            db_line_tp = 'ordinary line'
-            # should check emph, verbatim, etc., syntax check and common errors
-            result.write(' '*indent)      # ordinary line
-
-        # this is not a list definition line and therefore we must
-        # add keyword + text because these two items make up the
-        # line if a : present in an ordinary line
+        # this is not a list definition line. we must write
+        # `keyword + text` because these two items make up the
+        # line if a ':' is present in an ordinary line
         if keyword:
             text = keyword + text
-        #debugpr('text=[%s]' % text)
+        result += text + newline
         db_result = '[%s]' % text
-
-        # hack to make wiki have all text in an item on a single line:
-        newline = '' if lists and format in ('gwiki', 'cwiki') else '\n'
-        #newline = '\n'
-        result.write(text + newline)
         lastindent = indent
-        lastline = line
-        if db_line_tp != 'ordinary line':
-            debugpr('%s (%s)\n--> %s' % (db_line, db_line_tp, db_result.rstrip()))
-        else:
-            debugpr('%s (%s)' % (db_line, db_line_tp))
-            """
-            # Cannot do this test here because some formats have already
-            # made indentation as part of their syntax
-            if lines[i][0] == ' ':  # indented line?
-                errwarn('*** error: found indented line (syntax error):\n')
-                errwarn('>>> illegal indented line: "%s"\n' % lines[i])
-                errwarn('surrounding text:\n')
-                for _l in lines[i-3:i+4]:
-                    errwarn(_l)
-                errwarn('\nNote: all ordinary text and commands must start at the beginning of the line')
-                errwarn('(only lists can be indented)')
-                _abort()
-            """
+        if option('debug'):
+            if db_line_tp != 'ordinary line':
+                debugpr('%s (%s)\n--> %s' % (db_line, db_line_tp, db_result.rstrip()))
+            else:
+                debugpr('%s (%s)' % (db_line, db_line_tp))
+                """
+                # Cannot do this test here because some formats have already
+                # made indentation as part of their syntax
+                if lines[i][0] == ' ':  # indented line?
+                    errwarn('*** error: found indented line (syntax error):\n')
+                    errwarn('>>> illegal indented line: "%s"\n' % lines[i])
+                    errwarn('surrounding text:\n')
+                    for _l in lines[i-3:i+4]:
+                        errwarn(_l)
+                    errwarn('\nNote: all ordinary text and commands must start at the beginning of the line')
+                    errwarn('(only lists can be indented)')
+                    _abort()
+                """
 
     # end lists if any are left:
     while lists:
         debugpr('closing list: end of a %s list' % lists[-1]['listtype'])
-        result.write(LIST[format][lists[-1]['listtype']]['end'])
+        result += LIST[format][lists[-1]['listtype']]['end']
         del lists[-1]
-
-    return result.getvalue()
+    return result
 
 
 def handle_figures(filestr, format):
@@ -2865,7 +2976,7 @@ def handle_figures(filestr, format):
 
     figfiles = [fname.strip()
                 for fname, options, caption in c.findall(filestr)]
-    figfiles = set(figfiles)   # remove multiple occurences
+    figfiles = set(figfiles)   # remove multiple occurrences
 
     # Prefix figure paths if user has requested it
     figure_prefix = option('figure_prefix=')
@@ -2898,7 +3009,7 @@ def handle_figures(filestr, format):
     # Find new filenames
     figfiles = [fname.strip()
              for fname, options, caption in c.findall(filestr)]
-    figfiles = set(figfiles)   # remove multiple occurences
+    figfiles = set(figfiles)   # remove multiple occurrences
 
     for figfile in figfiles:
         if figfile.startswith('http'):
@@ -4043,6 +4154,7 @@ def inline_tag_subst(filestr, format):
 
     ordered_tags = [
         'horizontal-rule',  # must be done before sections (they can give ---- in some formats)
+        #'author',  # done separately (see above)
         'title',
         'date',
         'movie',
@@ -4050,7 +4162,8 @@ def inline_tag_subst(filestr, format):
         'inlinecomment',
         'abstract',  # must become before sections since it tests on ===
         'keywords',  # must become after abstract since abstract tests on KEYWORdS
-        'emphasize', 'math2', 'math',
+        'emphasize',
+        'math2', 'math',
         'bold',
         'ampersand2',  # must come before ampersand1 (otherwise ampersand1 recognizes ampersand2 regex)
         'ampersand1',
@@ -4075,7 +4188,6 @@ def inline_tag_subst(filestr, format):
     for tag in ordered_tags:
         debugpr('\n*************** Working with tag "%s"' % tag)
         tag_pattern = INLINE_TAGS[tag]
-        #errwarn('working with tag "%s" = "%s"' % (tag, tag_pattern))
         if tag in ('abstract',):
             c = re.compile(tag_pattern, re.MULTILINE|re.DOTALL)
         elif tag in ('inlinecomment',):
@@ -4089,21 +4201,21 @@ def inline_tag_subst(filestr, format):
         if replacement is None:
             continue  # no substitution
 
-        if tag == 'emoji' and option('no_emoji'):
-            replacement = ''
-
         findlist = c.findall(filestr)
-        occurences = len(findlist)
-        findlist = pprint.pformat(findlist)
+        occurrences = len(findlist)
 
+        if occurrences < 1:
+            # Nothing to substitute
+            continue
+
+        # Proceed with substitution of inline tags
         # first some info for debug output:
-        if occurences > 0:
-            debugpr('Found %d occurences of "%s":\nfindall list: %s' % (occurences, tag, findlist))
-            debugpr('%s is to be replaced using %s' % (tag, replacement))
-            m = c.search(filestr)
-            if m:
-                debugpr('First occurence: "%s"\ngroups: %s\nnamed groups: %s' % (m.group(0), m.groups(), m.groupdict()))
-
+        debugpr('Found %d occurrences of "%s":\nfindall list: %s' %
+                (occurrences, tag, pprint.pformat(findlist)))
+        debugpr('%s is to be replaced using %s' % (tag, replacement))
+        m = c.search(filestr)
+        if m:
+            debugpr('First occurrence: "%s"\ngroups: %s\nnamed groups: %s' % (m.group(0), m.groups(), m.groupdict()))
         if isinstance(replacement, basestring):
             filestr = c.sub(replacement, filestr)
         elif callable(replacement):
@@ -4113,7 +4225,7 @@ def inline_tag_subst(filestr, format):
             # on the match object for each occurence
             # (this is mainly for headlines in rst format)
             lines = filestr.splitlines()
-            occurences = 0
+            occurrences = 0
             for i in range(len(lines)):
                 m = re.search(tag_pattern, lines[i])
                 if m:
@@ -4129,14 +4241,14 @@ def inline_tag_subst(filestr, format):
                         # error occured in the replacement function
                         _abort()
                     lines[i] = re.sub(tag_pattern, replacement_str, lines[i])
-                    occurences += 1
+                    occurrences += 1
             filestr = '\n'.join(lines)
 
         else:
             raise ValueError('replacement is of type %s' % type(replacement))
 
-        if occurences > 0:
-            debugpr('\n**** The file after %d "%s" substitutions ***\n%s\n%s\n\n' % (occurences, tag, filestr, '-'*80))
+        if occurrences > 0:
+            debugpr('\n**** The file after %d "%s" substitutions ***\n%s\n%s\n\n' % (occurrences, tag, filestr, '-'*80))
 
     # Hack: substitute marker text for ampersand back
     filestr = filestr.replace(marker_text, '&')
@@ -4147,9 +4259,20 @@ def inline_tag_subst(filestr, format):
 def subst_away_inline_comments(filestr):
     # inline comments: [hpl: this is a comment]
     pattern = INLINE_TAGS['inlinecomment']
-    filestr = re.sub(pattern, '', filestr, flags=re.DOTALL|re.MULTILINE)
+    if option('skip_inline_comments'):
+        c = re.compile(pattern, flags=re.DOTALL | re.MULTILINE)
+        filestr = c.sub('', filestr)
+    else:
+        # Number inline comments
+        c = re.compile(pattern, flags=re.DOTALL)
+        inline_comments = c.findall(filestr)
+        counter = 1
+        for name, space, comment in inline_comments:
+            filestr = filestr.replace(
+                '[%s:%s%s]' % (name, space, comment),
+                '[%s %d: %s]' % (name, counter, comment))
+            counter += 1
     return filestr
-
 
 def subst_class_func_mod(filestr, format):
     if format == 'sphinx' or format == 'rst':
@@ -4327,7 +4450,7 @@ def doconce2format4docstrings(filestr, format):
 global _t0, _t1
 
 
-def doconce2format(filestr_in, format):
+def doconce2format(filestr, format):
     """Convert string to desired format
 
     Convert the string content of a file to different formats.
@@ -4364,7 +4487,6 @@ def doconce2format(filestr_in, format):
 
     report_progress('finished preprocessors')
 
-    filestr = filestr_in
     if option('syntax_check=', 'on') == 'on':
         filestr = fix(filestr, format, verbose=1)
         syntax_check(filestr, format)
@@ -4375,7 +4497,6 @@ def doconce2format(filestr_in, format):
            TOC, ENVIRS, INTRO, OUTRO
 
     for module in [eval(module) for module in globals.supported_format_names]:
-        #errwarn('calling define function in', module.__name__)
         module.define(
             FILENAME_EXTENSION,
             BLANKLINE,
@@ -4456,7 +4577,6 @@ def doconce2format(filestr_in, format):
     #if format != 'latex':
     filestr, num_files = insert_code_from_file(filestr, format)
     debugpr('The file after inserting @@@CODE (from file):', filestr)
-
     if num_files:
         report_progress('handled @@@CODE copying')
 
@@ -4464,8 +4584,7 @@ def doconce2format(filestr_in, format):
     # correctly substituted by '' in rst, sphinx, st, epytext, plain, wikis
     # (the fix is to add "enough" blank lines - the reason can be
     # an effective strip of filestr, e.g., through '\n'.join(lines))
-    if format in ('rst', 'sphinx', 'st', 'epytext', 'plain',
-                  'mwiki', 'cwiki', 'gwiki'):
+    if format in ('rst', 'sphinx', 'st', 'epytext', 'plain', 'mwiki', 'cwiki', 'gwiki'):
         filestr = filestr.rstrip()
         if filestr.endswith('!ec') or filestr.endswith('!et'):
             filestr += '\n'*10
@@ -4505,6 +4624,7 @@ def doconce2format(filestr_in, format):
         filestr, bg_session = html.embed_IBPLOTs(filestr, format)
         #bg_session.loop_until_closed()
         debugpr('The file after inserting interactive IBPLOT curve plots:', filestr)
+
     # Next step: deal with user-defined environments
     if '!bu-' in filestr:
         filestr = typeset_userdef_envirs(filestr, format)
@@ -4513,31 +4633,18 @@ def doconce2format(filestr_in, format):
     # Next step: remove all verbatim and math blocks
     filestr, code_blocks, code_block_types, tex_blocks = \
              remove_code_and_tex(filestr, format)
-
     if format in ('html', 'sphinx', 'ipynb', 'matlabnb'):
         tex_blocks = add_labels_to_all_numbered_equations(tex_blocks)
         # needed for the split functionality when all user-defined labels are
         # given tags, then we need labels in all environments that will
         # create equation numbers
-
-
     debugpr('The file after removal of code/tex blocks:', filestr)
-    def print_blocks(blocks, delimiter=True):
-        s = ''
-        for i in range(len(blocks)):
-            s += str(i)
-            if delimiter:
-                s+= ':\n'
-            s += blocks[i]
-            if delimiter:
-                s+= '\n------------'
-            s+= '\n'
-        return s
-
-    debugpr('The code blocks:', print_blocks(code_blocks))
-    debugpr('The code block types:', print_blocks(code_block_types, False))
-    debugpr('The tex blocks:', print_blocks(tex_blocks))
-
+    debugpr('The code blocks:',
+            safe_join([str(i) + ':\n' + code_blocks[i] for i in range(len(code_blocks))], '\n'))
+    debugpr('The code block types:',
+            safe_join([str(i) + code_block_types[i] for i in range(len(code_block_types))], '\n'))
+    debugpr('The tex blocks:',
+            safe_join([str(i) + ':\n' + tex_blocks[i] for i in range(len(tex_blocks))], '\n'))
     report_progress('removed all verbatim and latex blocks')
 
     # Next step: substitute latex-style newcommands in filestr and tex_blocks
@@ -4567,8 +4674,7 @@ def doconce2format(filestr_in, format):
                              filestr, flags=re.MULTILINE)
 
     # Lift sections up or down?
-    s2name = {9: 'chapter', 7: 'section',
-              5: 'subsection', 3: 'subsubsection'}
+    s2name = {9: 'chapter', 7: 'section', 5: 'subsection', 3: 'subsubsection'}
     section_level_changed = False
     if option('sections_up'):
         for s in 7, 5, 3:
@@ -4602,43 +4708,32 @@ def doconce2format(filestr_in, format):
     if option('oneline_paragraphs'):  # (does not yet work well)
         filestr = make_one_line_paragraphs(filestr, format)
 
-    # Remove inline comments
-    if option('skip_inline_comments'):
-        filestr = subst_away_inline_comments(filestr)
-    else:
-        # Number inline comments
-        inline_comments = re.findall(INLINE_TAGS['inlinecomment'], filestr,
-                                     flags=re.DOTALL)
-        counter = 1
-        for name, space, comment in inline_comments:
-            filestr = filestr.replace(
-                '[%s:%s%s]' % (name, space, comment),
-                '[%s %d: %s]' % (name, counter, comment))
-            counter += 1
+    # Wrap text in <p></p>
+    #NOPE
 
+    # Remove inline comments [name: comment]
+    filestr = subst_away_inline_comments(filestr)
 
-    # Remove comments starting with ##
+    # Next step: remove comments starting with ##
     pattern = r'^##.+$\n'
     filestr = re.sub(pattern, '', filestr, flags=re.MULTILINE)
     # (This is already done by Mako, if the document has Mako markup)
 
-    # Fix stand-alone http(s) URLs (after verbatim blocks are removed,
+    # Next step: fix stand-alone http(s) URLs (after verbatim blocks are removed,
     # but before figure handling and inline_tag_subst)
     pattern = r' (https?://.+?)([ ,?:;!)\n])'
     filestr = re.sub(pattern, ' URL: "\g<1>"\g<2>', filestr)
 
     # Next step: deal with exercises
     filestr = exercises(filestr, format, code_blocks, tex_blocks)
-
     debugpr('The file after handling exercises:', filestr)
 
     # Next step: deal with figures
     if format != 'ipynb' or not call_handle_figures:
         filestr = handle_figures(filestr, format)
     # else: ipynb figures/movies must be handled early above
-
-    report_progress('figures')
     debugpr('The file after handling figures:', filestr)
+    report_progress('figures')
 
     # Next step: section numbering?
     # (Do this late, after exercises, but before TOC[] is called and
@@ -4648,28 +4743,31 @@ def doconce2format(filestr_in, format):
             filestr = typeset_section_numbering(filestr, format)
             debugpr('The file after numbering of chapters and sections:', filestr)
 
-    # Next step: deal with cross referencing (must occur before other format subst)
+    # Next step: deal with cross referencing e.g. label{} and ref{}, and TOC
+    # (must occur before other format subst)
     filestr = handle_cross_referencing(filestr, format, tex_blocks)
-
     debugpr('The file after handling ref and label cross referencing:', filestr)
-    # Next step: deal with index and bibliography (must be done before lists):
-    filestr = handle_index_and_bib(filestr, format)
 
+    # Next step: deal with index and bibliography
+    # (must be done before lists):
+    filestr = handle_index_and_bib(filestr, format)
     debugpr('The file after handling index and bibliography:', filestr)
 
-
-    # Next step: deal with lists
-    filestr = typeset_lists(filestr, format,
-                            debug_info=[code_blocks, tex_blocks])
+    # Next step: deal with lists. Also process blank lines and comments #
+    filestr = typeset_lists(filestr, format, debug_info=[code_blocks, tex_blocks])
     debugpr('The file after typesetting of lists:', filestr)
     report_progress('handled lists')
 
-    # Next step: add space around | in tables for substitutions to get right
+    # Next step: add space around | in tables to get right substitutions
     filestr, inserted_space_around_pipe = space_in_tables(filestr)
     if inserted_space_around_pipe:
         debugpr('The file after adding space around | in tables:', filestr)
 
-    # Next step: do substitutions
+    # Next step: wrap plain text in <p></p> for the html format
+    if format == 'html':
+        filestr = text_lines(filestr)
+
+    # Next step: do substitutions of inline tags
     filestr = inline_tag_subst(filestr, format)
     debugpr('The file after all inline substitutions:', filestr)
     report_progress('inline substitutions')
@@ -4678,18 +4776,9 @@ def doconce2format(filestr_in, format):
     filestr = typeset_tables(filestr, format)
     debugpr('The file after typesetting of tables:', filestr)
 
-    # Next step: deal with various commands and envirs to be put as comments
-    commands = ['!split', '!bpop', '!epop', '!bslidecell', '!eslidecell',
-                '!bnotes', '!enotes',]
-    for command in commands:
-        comment_action = INLINE_TAGS_SUBST[format].get('comment', '# %s')
-        if isinstance(comment_action, basestring):
-            split_comment = comment_action % (command + r'\g<1>')
-        elif callable(comment_action):
-            split_comment = comment_action((command + r'\g<1>'))
-        cpattern = re.compile('^%s( *| +.*)$' % command, re.MULTILINE)
-        filestr = cpattern.sub(split_comment, filestr)
-    debugpr('The file after commenting out %s:' % ', '.join(commands), filestr)
+    # Next step: commented out various commands/envirs (!split, !b* !e*)
+    filestr = comment_commands(filestr, format)
+    debugpr('The file after commenting out !commands', filestr)
 
     # Next step: subst :class:`ClassName` by `ClassName` for
     # non-rst/sphinx formats:
@@ -4765,19 +4854,14 @@ def doconce2format(filestr_in, format):
             envir = m.group(1)
             errwarn('*** error: could not translate environment: %s' % envir)
             if m.group(1)[2:] in ('sol', 'ans', 'hint', 'subex', 'sol_docend', 'ans_docend',):
-                errwarn("""
-    This is an environment in an exercise. Check if the
-    heading is correct so the subsection was recognized
-    as Exercise, Problem, or Project (Exercise: title).
-
-    Other possible reasons:
-
-     * syntax error in environment name
-     * environment inside code: use | instead of !
-     * or bug in doconce
-
-    context:
-""")
+                errwarn(('\nThis is an environment in an exercise. Check if the\n'
+                         '    heading is correct so the subsection was recognized\n'
+                         '    as Exercise, Problem, or Project (Exercise: title).\n\n'
+                         '    Other possible reasons:\n\n'
+                         '     * syntax error in environment name\n'
+                         '     * environment inside code: use | instead of !\n'
+                         '     * or bug in doconce\n\n'
+                         '    context:\n'))
             errwarn(filestr[m.start()-50:m.end()+50])
             _abort()
 
@@ -4801,7 +4885,6 @@ def doconce2format(filestr_in, format):
         for envir in globals.doconce_envirs:
             filestr = filestr.replace('|b' + envir, '!b' + envir)
             filestr = filestr.replace('|e' + envir, '!e' + envir)
-
         debugpr('The file after replacing |bc and |bt environments by true !bt and !et (in code blocks):', filestr)
 
     # Second reformatting of quizzes

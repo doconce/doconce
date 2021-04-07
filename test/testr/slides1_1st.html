@@ -1,0 +1,487 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/doconce/doconce/)
+doconce format html slides1.do.txt --pygments_html_style=perldoc --keep_pygments_html_bg --html_raw_github_url=raw.github
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides">
+<title>Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides</title>
+<style type="text/css">
+/* blueish style */
+body {
+  margin-top: 1.0em;
+  background-color: #ffffff;
+  font-family: Helvetica, Arial, FreeSans, san-serif;
+  color: #000000;
+}
+h1 { font-size: 1.8em; color: #1e36ce; }
+h2 { font-size: 1.6em; color: #1e36ce; }
+h3 { font-size: 1.4em; color: #1e36ce; }
+h4 { font-size: 1.2em; color: #1e36ce; }
+a { color: #1e36ce; text-decoration:none; }
+tt { font-family: "Courier New", Courier; }
+p { text-indent: 0px; }
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-style: normal; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa; }
+/* pre style removed because it will interfer with pygments */
+div.highlight {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    line-height: 1.21429em;
+}
+div.cell {
+    width: 100%;
+    padding: 5px 5px 5px 0;
+    margin: 0;
+    outline: none;
+}
+div.input {
+    page-break-inside: avoid;
+    box-orient: horizontal;
+    box-align: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+div.inner_cell {
+    box-orient: vertical;
+    box-align: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    box-flex: 1;
+    flex: 1;
+}
+div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 4px;
+    background: #f7f7f7;
+    line-height: 1.21429em;
+}
+div.input_area > div.highlight {
+    margin: .4em;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+}
+div.output_wrapper {
+    position: relative;
+    box-orient: vertical;
+    box-align: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.output {
+    box-orient: vertical;
+    box-align: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+div.output_area {
+    padding: 0;
+    page-break-inside: avoid;
+    box-orient: horizontal;
+    box-align: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+div.output_subarea {
+    padding: .4em .4em 0 .4em;
+    box-flex: 1;
+    flex: 1;
+}
+div.output_text {
+    text-align: left;
+    color: #000;
+    line-height: 1.21429em;
+}
+.alert-text-small   { font-size: 80%;  }
+.alert-text-large   { font-size: 130%; }
+.alert-text-normal  { font-size: 90%;  }
+.alert {
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:1px solid #bababa;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  color: #555;
+  background-color: #f8f8f8;
+  background-position: 10px 5px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 55px;
+  width: 75%;
+ }
+.alert-block {padding-top:14px; padding-bottom:14px}
+.alert-block > p, .alert-block > ul {margin-bottom:1em}
+.alert li {margin-top: 1em}
+.alert-block p+p {margin-top:5px}
+.alert-notice { background-image: url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_gray_notice.png); }
+.alert-summary  { background-image:url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_gray_summary.png); }
+.alert-warning { background-image: url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_gray_warning.png); }
+.alert-question {background-image:url(https://raw.github.com/doconce/doconce/master/bundled/html_images/small_gray_question.png); }
+div { text-align: justify; text-justify: inter-word; }
+.tab {
+  padding-left: 1.5em;
+}
+div.toc p,a {
+  line-height: 1.3;
+  margin-top: 1.1;
+  margin-bottom: 1.1;
+}
+</style>
+</head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [('This is the first section',
+               1,
+               None,
+               'this-is-the-first-section'),
+              ('Figure and bullet list', 2, None, 'figure-and-bullet-list'),
+              ('Slide with pop-ups in red and notes',
+               2,
+               None,
+               'slide-with-pop-ups-in-red-and-notes'),
+              ('A LaTeX document', 2, None, 'a-latex-document'),
+              ('An HTML document', 2, None, 'an-html-document'),
+              ('Second section', 1, None, 'second-section'),
+              ('Some math and computer code',
+               2,
+               None,
+               'some-math-and-computer-code'),
+              ('Pop ups inside code blocks (for Beamer slides only)',
+               2,
+               None,
+               'pop-ups-inside-code-blocks-for-beamer-slides-only'),
+              ('Various admon blocks', 2, None, 'various-admon-blocks')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- ------------------- main content ---------------------- -->
+<center>
+<h1>Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides</h1>
+</center>  <!-- document title -->
+
+<!-- author(s): Hans Petter Langtangen -->
+<center>
+<b>Hans Petter Langtangen</b> [1, 2]
+</center>
+<!-- institution(s) -->
+<center>
+[1] <b>Simula Research Laboratory</b>
+</center>
+<center>
+[2] <b>University of Oslo</b>
+</center>
+<br>
+<center>
+<h4>Jan 32, 2100</h4>
+</center> <!-- date -->
+<br>
+
+<!-- !split -->
+<h1 id="this-is-the-first-section">This is the first section </h1>
+<!-- Short title: First -->
+
+<!-- !split -->
+<h2 id="figure-and-bullet-list">Figure and bullet list </h2>
+
+<!-- !bslidecell 00  0.60 -->
+<!-- !bpop -->
+<div class="alert alert-block alert-block alert-text-small">
+<b>Title with comma, and brackets: \( [a,b] \)</b>
+<p>
+<ul>
+  <li> Here is a <em>wave signal</em> \( f(x-ct) \)</li>
+  <li> It moves with velocity \( c \)</li>
+  <li> But here it is just a figure</li>
+</ul>
+</div>
+
+<!-- !epop -->
+<!-- !eslidecell -->
+
+<!-- !bslidecell 01 -->
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<br /><br /><center>
+<p><img src="testfigs/wave1D.png" align="bottom" width=300></p>
+<p></center></p>
+<br /><br/>
+</div>
+
+<!-- !eslidecell -->
+
+<!-- !split -->
+<h2 id="slide-with-pop-ups-in-red-and-notes">Slide with pop-ups in red and notes </h2>
+
+<!-- begin inline comment -->
+<font color="red">(<b>hpl 1</b>: Comments are typeset as usual in DocOnce.)</font>
+<!-- end inline comment -->
+
+<!-- !bpop highlight-red -->
+<p>Here we have a paragraph to pop up in red.<br /> And a line more</p>
+<!-- !epop -->
+
+<!-- !bnotes -->
+<p>One can also have ordinary notes. Over multiple lines.</p>
+<!-- !enotes -->
+
+<!-- !split -->
+<h2 id="a-latex-document">A LaTeX document </h2>
+
+<!-- !bpop -->
+
+<!-- code=latex (!bc latex) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #eeeedd">
+  <pre style="line-height: 125%;"><span style="color: #8B008B; font-weight: bold">\documentclass</span><span style="color: #658b00">[11pt]{</span>article<span style="color: #658b00">}</span>
+<span style="color: #8B008B; font-weight: bold">\usepackage</span><span style="color: #658b00">{</span>fancyvrb<span style="color: #658b00">}</span>
+<span style="color: #8B008B; font-weight: bold">\begin</span><span style="color: #658b00">{</span>document<span style="color: #658b00">}</span>
+
+<span style="color: #8B008B; font-weight: bold">\title</span><span style="color: #658b00">{</span>Here goes the title...<span style="color: #658b00">}</span>
+<span style="color: #8B008B; font-weight: bold">\author</span><span style="color: #658b00">{</span>John Doe <span style="color: #8B008B; font-weight: bold">\and</span>
+Jane Doe<span style="color: #8B008B; font-weight: bold">\footnote</span><span style="color: #658b00">{</span><span style="color: #8B008B; font-weight: bold">\texttt</span><span style="color: #658b00">{</span>jane.doe@cyber.net<span style="color: #658b00">}</span>.<span style="color: #658b00">}}</span>
+<span style="color: #8B008B; font-weight: bold">\date</span><span style="color: #658b00">{</span><span style="color: #8B008B; font-weight: bold">\today</span><span style="color: #658b00">}</span>
+<span style="color: #8B008B; font-weight: bold">\maketitle</span>
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- !epop -->
+
+<!-- !bpop -->
+<div class="alert alert-block alert-notice alert-text-normal">
+<b>Notice</b>
+<p>
+<p>LaTeX has a lot of backslashes.</p>
+</div>
+
+<!-- !epop -->
+
+<!-- !bpop -->
+
+<!-- code=latex (!bc latex) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #eeeedd">
+  <pre style="line-height: 125%;"><span style="color: #8B008B; font-weight: bold">\section</span><span style="color: #658b00">{</span>Heading<span style="color: #658b00">}</span>
+bla-bla
+<span style="color: #8B008B; font-weight: bold">\end</span><span style="color: #658b00">{</span>document<span style="color: #658b00">}</span>
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- !epop -->
+
+<!-- !split -->
+<h2 id="an-html-document">An HTML document </h2>
+
+
+<!-- code=html (!bc html) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #eeeedd">
+  <pre style="line-height: 125%;">&lt;<span style="color: #8B008B; font-weight: bold">html</span>&gt;&lt;<span style="color: #8B008B; font-weight: bold">head</span>&gt;&lt;/<span style="color: #8B008B; font-weight: bold">head</span>&gt;&lt;<span style="color: #8B008B; font-weight: bold">body</span> <span style="color: #658b00">bgcolor</span>=<span style="color: #CD5555">&quot;red&quot;</span>&gt;
+&lt;<span style="color: #8B008B; font-weight: bold">title</span>&gt;Here goes the title...&lt;<span style="color: #8B008B; font-weight: bold">title</span>&gt;
+&lt;<span style="color: #8B008B; font-weight: bold">h1</span>&gt;Section heading&lt;/<span style="color: #8B008B; font-weight: bold">h1</span>&gt;
+&lt;/<span style="color: #8B008B; font-weight: bold">body</span>&gt;
+&lt;/<span style="color: #8B008B; font-weight: bold">html</span>&gt;
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- !split -->
+<h1 id="second-section">Second section </h1>
+
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<br /><br /><center>
+<p><img src="testfigs/wave1D.png" align="bottom" width=600></p>
+<p></center></p>
+<br /><br/>
+</div>
+
+
+<!-- !split -->
+<h2 id="some-math-and-computer-code">Some math and computer code </h2>
+
+<div class="alert alert-block alert-block alert-text-normal">
+<b>A simple, mathematical formula where \( t\in [0,\pi] \):</b>
+<p>
+$$ f(x,y,t) = e^{-xt}\sin\pi y $$
+</div>
+
+
+<div class="alert alert-block alert-block alert-text-normal">
+<b>Bash demanded more of DocOnce than Python, so let's do Bash:</b>
+<p>
+<p>First, inline <code>$? != 0</code>, then comments with dollar variables (and minted style):</p>
+
+
+<!-- code=bash (!bc shcod) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #eeeedd">
+  <pre style="line-height: 125%;"><span style="color: #00688B">var</span>=<span style="color: #B452CD">10</span>
+<span style="color: #228B22"># $1, $2, ... are command-line args</span>
+<span style="color: #8B008B; font-weight: bold">if</span> [ <span style="color: #00688B">$?</span> -eq <span style="color: #B452CD">0</span> ]; <span style="color: #8B008B; font-weight: bold">then</span>   <span style="color: #228B22"># $? reflects success or not</span>
+  <span style="color: #658b00">echo</span> <span style="color: #CD5555">&quot;Great!&quot;</span>
+<span style="color: #8B008B; font-weight: bold">fi</span>
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- !split -->
+<h2 id="pop-ups-inside-code-blocks-for-beamer-slides-only">Pop ups inside code blocks (for Beamer slides only) </h2>
+
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #eeeedd">
+  <pre style="line-height: 125%;"><span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">f</span>(x):
+    <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">42</span> + x
+
+<span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">g</span>(x):
+    <span style="color: #8B008B; font-weight: bold">return</span> f(<span style="color: #B452CD">42</span>)
+
+<span style="color: #658b00">print</span>(g(<span style="color: #B452CD">13</span>))
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- !split -->
+<h2 id="various-admon-blocks">Various admon blocks </h2>
+
+<p>Can use admons to simulate blocks:</p>
+
+<!-- !bpop -->
+<div class="alert alert-block alert-notice alert-text-large">
+<b>Key PDE (with large title and math font):</b>
+<p>
+$$ \frac{\partial u}{\partial t} = \nabla^2 u $$
+</div>
+
+<!-- !epop -->
+
+<!-- !bpop -->
+<div class="alert alert-block alert-summary alert-text-normal">
+<b></b>
+<p>
+<p>Just some block with text and a conclusion that something is important. This one pops up after the rest of the slide.</p>
+</div>
+
+<!-- !epop -->
+
+<!-- !bpop -->
+<div class="alert alert-block alert-warning alert-text-small">
+<b>Warning</b>
+<p>
+<p>Can use, e.g., a warning admon to have my own notes, preferably inside preprocess/mako if statements to turn notes on and off. This one is typeset in a small font and with the default title (Warning) since no title is specified.</p>
+</div>
+
+<!-- !epop -->
+<!-- ------------------- end of main content --------------- -->
+</body>
+</html>
+    
+

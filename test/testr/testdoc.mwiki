@@ -1,0 +1,1732 @@
+#TITLE (actually governed by the filename): A Document for Testing DocOnce
+
+By '''Hans Petter Langtangen''' (hpl at simula.no), '''Kaare Dump''', '''A. Dummy Author''', '''I. S. Overworked and Outburned''', and '''J. Doe''' (j_doe at cyberspace.com)
+==== Jan 32, 2100 ====
+
+Made with DocOnce
+
+
+
+__TOC__
+
+<!-- !split -->
+
+The format of this document is
+mwiki
+
+''Abstract.'' This is a document with many test constructions for doconce syntax.
+It was used heavily for the development and kept for testing
+numerous constructions, also special and less common cases.
+
+And exactly for test purposes we have an extra line here, which
+is part of the abstract.
+
+<!-- Cannot demonstrate chapter headings since abstract and chapter -->
+<!-- are mutually exclusive in LaTeX -->
+
+== Section 1 ==
+
+Here is a nested list:
+
+
+<ul>
+  <li> item1
+  <li> item2
+  <li> item3 which continues on the next line to test that feature
+  <li> and a sublist
+
+<ul>
+    <li><li> with indented subitem1
+    <li><li> and a subitem2
+</ul>
+
+  <li> and perhaps an ordered sublist
+
+<ol type="a">
+   <li><li> first item
+   <li><li> second item, continuing on a new line
+</ol>
+
+</ul>
+
+''Here is a list with paragraph heading.''
+
+
+<ul>
+  <li> item1
+  <li> item2
+</ul>
+
+==== Here is a list with subsubsection heading ====
+
+<ul>
+  <li> item1
+  <li> item2
+</ul>
+
+
+{{quote box
+| quote = Here are two lines that make up
+a block quote for testing ''emphasized words'' and '''boldface words''',
+also with hypens:
+''pre''-fix, post-''fix'', '''pre'''-fix, post-'''fix'''.
+| textstyle = font-size: 90%;
+}}
+
+
+
+Here are two references. Equation&nbsp;(my:eq1) is fine. Eq.&nbsp;(my:eq1) too.
+Even Equation (my:eq1) without the tilde.
+
+==== Subsection 1 ====
+
+<!-- Refer to section/appendix etc. at the beginning of the line -->
+<!-- and other special fix situations for HTML. -->
+
+More text, with a reference back to
+the section [#Section_1] and [#Subsection_1], and further to the
+the sections [#Subsection_1] and [#URLs], which
+encourages you to do the tasks in [#Problem_2:_Flip_a_Coin] and [#Exercise_10:_Make_references_to_projects_and_problems].
+ [#Appendix:_Just_for_testing;_part_I] and [#Appendix:_Just_for_testing;_part_II] are also nice elements.
+
+==== Test Section reference at beginning of line and after a sentence ====
+
+The section [#Subsection_1] is fine.
+The section [#URLs] too.
+
+<!-- sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console -->
+
+==== Computer code ====
+
+Let's do some copying from files too. First from subroutine up to the very end,
+
+<syntaxhighlight lang="fortran">
+      subroutine test()
+      integer i
+      real*8 r
+      r = 0
+      do i = 1, i
+         r = r + i
+      end do
+      return
+C     END1
+
+      program testme
+      call test()
+      return
+</syntaxhighlight>
+and then just the subroutine,
+<syntaxhighlight lang="fortran">
+      subroutine test()
+      integer i
+      real*8 r
+      r = 0
+      do i = 1, i
+         r = r + i
+      end do
+      return
+</syntaxhighlight>
+and finally the complete file with a plain text verbatim environment
+(<code>envir=ccq</code>):
+<syntaxhighlight lang="text">
+C     a comment
+
+      subroutine test()
+      integer i
+      real*8 r
+      r = 0
+      do i = 1, i
+         r = r + i
+      end do
+      return
+C     END1
+
+      program testme
+      call test()
+      return
+</syntaxhighlight>
+
+Testing other code environments. First Python:
+
+<syntaxhighlight lang="text">
+!bc pycod
+def f(x):
+    return x+1
+!ec
+</syntaxhighlight>
+which gets rendered as
+
+<syntaxhighlight lang="python">
+def f(x):
+    return x+1
+</syntaxhighlight>
+
+Test paragraph and subsubsection headings before
+before code.
+
+''Paragraph heading before code.''
+
+<syntaxhighlight lang="python">
+import sys
+sys.path.insert(0, os.pardir)
+</syntaxhighlight>
+
+==== Subsubsection heading before code ====
+
+<syntaxhighlight lang="python">
+def h(z):
+    return z+1
+</syntaxhighlight>
+
+Here is a program that is supposed to be interactive via
+Python Online Tutorial, but that service is not accessible
+for the present format.
+
+<syntaxhighlight lang="python">
+class Line:
+    def __init__(self, a, b):
+        self.a, self.b = a, b
+
+    def __call__(self, x):
+        a, b = self.a, self.b
+        return a*x + b
+
+line = Line(2, 1)
+y = line(x=3)
+print(y)
+</syntaxhighlight>
+
+Some more Python code (actually specified as a sage cell, but
+such cells are not supported by this format).
+
+<syntaxhighlight lang="python">
+a = 2
+b = 3
+print('a+b:', a + b)
+
+# In a sage cell we can also plot
+from matplotlib.pyplot import *
+from numpy import *
+x = linspace(0, 4*pi, 101)
+y = exp(-0.1*x)*cos(x)
+plot(x, y)
+xlabel('x'); ylabel('y')
+show()
+</syntaxhighlight>
+
+Then Cython (with -h option so it is hidden in html/sphinx):
+
+<syntaxhighlight lang="python">
+cpdef f(double x):
+    return x + 1
+</syntaxhighlight>
+
+Standard Python shell sessions:
+
+<syntaxhighlight lang="python">
+>>> from numpy import linspace, sin
+>>> # Some comment
+>>> x = linspace(0, 2, 11)
+>>> y = sin(x)
+>>> y[0]
+
+>>> import matplotlib.pyplot as plt
+>>> plt.plot(x, y)
+</syntaxhighlight>
+
+Similar IPython sessions:
+
+<syntaxhighlight lang="python">
+In [1]: from numpy import linspace, sin
+In [2]: # Some comment
+In [3]: x = linspace(0, 2, 11)
+In [4]: y = sin(x)
+In [5]: y[0]
+Out[5]: 0
+In [6]: import matplotlib.pyplot as plt
+In [7]: plt.plot(x, y)
+In [8]: a='multiple-\nline\noutput'
+In [9]: a
+Out[9]: 'multiple-\nline\noutput'
+In [10]: print(a)
+multiple-
+line
+output
+</syntaxhighlight>
+
+Here is the interactive session again, but with <code>pyshell-t</code>.
+
+<syntaxhighlight lang="python">
+>>> from numpy import linspace, sin
+>>> # Some comment
+>>> x = linspace(0, 2, 11)
+>>> y = sin(x)
+>>> y[0]
+
+>>> import matplotlib.pyplot as plt
+>>> plt.plot(x, y)
+</syntaxhighlight>
+
+<!-- This one tests a + sign before a code environment -->
+C++:
+<syntaxhighlight lang="cpp">
+#include <iostream>
+
+int main()
+{
+   std::cout << "Sample output" << std::endl;
+   return 0
+}
+</syntaxhighlight>
+<!-- The next should get correctly typset in sphinx (cod is fcod) -->
+<!-- It also tests emoji before code -->
+And a little bit of Fortran: :dizzy_face:
+
+<syntaxhighlight lang="text">
+!bc cod
+      subroutine midpt(x, length, a, b)
+      real*8 a, b, x
+      x = (a + b)/2
+      length = b - a
+      return
+      end
+!ec
+</syntaxhighlight>
+which then is typeset as
+
+<syntaxhighlight lang="python">
+      subroutine midpt(x, length, a, b)
+      real*8 a, b, x
+      x = (a + b)/2
+      length = b - a
+      return
+      end
+</syntaxhighlight>
+
+HTML:
+
+<syntaxhighlight lang="html5">
+<table>
+<tr><td>Column 1</td><td>Column 2</td></tr>
+<tr><td>0.67526 </td><td>0.92871 </td></tr>
+<!-- comment -->
+</table>
+</syntaxhighlight>
+
+But inline HTML code is also important, like text that starts with
+<code><a href="</code> (which can destroy the following text if not properly
+quoted).
+
+Matlab with comments requires special typesetting:
+
+<syntaxhighlight lang="matlab">
+% Comment on the beginning of the line can be escaped by %%
+if a > b
+  % Indented comment needs this trick
+  c = a + b
+end
+</syntaxhighlight>
+
+And here is a system call:
+
+<syntaxhighlight lang="bash">
+Terminal> mkdir test
+Terminal> cd test
+Terminal> myprog -f
+output1
+output2
+</syntaxhighlight>
+
+Any valid pygments lexer/language name can appear to, e.g.,
+
+<syntaxhighlight lang="text">
+!bc restructuredtext
+=======
+Heading
+=======
+
+Some text.
+!ec
+</syntaxhighlight>
+results in
+
+<syntaxhighlight lang="text">
+=======
+Heading
+=======
+
+Some text.
+</syntaxhighlight>
+
+<!-- Here goes hidden code. -->
+<!-- Python can be treated by some formats, Fortran is always out. -->
+
+
+
+
+
+Finally, <code>!bc do</code> supports highlighting of DocOnce source:
+
+<syntaxhighlight lang="text">
+======= DocOnce test file =======
+
+===== Computer code =====
+
+Inline verbatim code, as in `import numpy as np`, is allowed, as well as
+code blocks:
+
+!bc pycod
+from math import sin
+
+def f(x):
+    """Example on a function."""
+    return sin(x) + 1
+
+print(f(0))
+!ec
+
+
+===== Mathematics =====
+
+Formulas can be inline, as in $\nabla\cdot\bm{u} = 0$, or typeset
+as equations:
+
+!bt
+\begin{align*}
+\nabla\cdot\bm{u} &= 0,\\ 
+\bm{u} &= \nabla\phi .
+\end{align*}
+!et
+
+=== Subsubsection heading ===
+
+DocOnce files can have chapters, sections, subsections, and subsubsections.
+
+__Paragraph heading.__ Paragraphs may have headings.
+</syntaxhighlight>
+
+It is time to test <code>verbatim inline font</code> especially with <code>a newline
+inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For
+spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>.
+Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>.
+Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>,
+<code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.
+
+The following attempt to exemplify colored text does not work in
+format mwiki.
+Here is some <font color="red">red color</font> and an attempt to write <font color="green">with
+green color containing a linebreak<br />
+code.</font> Some formats will only display <br />
+this correctly when <code>html</code> <br />
+is the output format.
+But here some more running text is added which is not part of
+the previous blocks with line breaks.
+
+==== Running OS commands ====
+
+<syntaxhighlight lang="bash">
+Terminal> python -c 'print("Testing\noutput\nfrom\nPython.")'
+Testing
+output
+from
+Python.
+</syntaxhighlight>
+
+==== Footnotes ====
+
+Here is a test of footnotes [^footnote], which are handy in text.
+They are used in different flavors, now in
+
+
+<ul>
+ <li> list items (note below that footnotes work after math, verbatim, and URLs - bin fact old and emphasize too!)
+ <li> even with math <math>\nabla^2u</math>[^math1]
+ <li> and code <code>h[i] += 1</code>[^code] (''must'' have space between inline code and footnote!)
+ <li> and [https://google.com links][^google-search]
+</ul>
+
+which gives flexibility in writing.
+This is the third[^example-of-the-third-footnote] example.
+
+  [^footnote]: Typesetting of the footnote depends on the format.
+Plain text does nothing, LaTeX removes the
+definition and inserts the footnote as part of the LaTeX text.
+reStructuredText and Sphinx employ a similar type of typesetting
+as Extended Markdown and DocOnce, and in HTML we keep the same
+syntax, just displayed properly in HTML.
+[^math1]: Math footnotes can be dangerous since it
+interferes with an exponent.
+[^code]: One-line footnote.
+
+[^google-search]: google.com is perhaps the most famous
+web site today.
+
+Here is some more text before a new definition of a footnote that was
+used above.
+
+
+{{mbox
+| type = notice
+| textstyle = font-size: 90%;
+| text = '''Non-breaking space character.''' This paragraph aims to test [https://en.wikipedia.org/wiki/Non-breaking_space non-breaking space character], and a typical
+example where this is needed is in physical units: 7.4&nbsp;km is traveled
+in&nbsp;<math>7.4/5.5\approx 1.345</math>&nbsp;s.  Also check that a~[https://google.com link]~is
+not broken across lines (drag the browser window to test this).
+(On the other hand, the tilde is used in
+computer code, e.g., as in <code>[~x for x in y]</code> or in <code>y=~x</code>, and should
+of course remain a tilde in those contexts.)
+}}
+
+
+
+==== Subsection 2: Testing figures ====
+
+Test of figures. In particular we refer to Figure fig:impact in which
+there is a flow.
+
+[[File:Wave1D.png|frame|200px|alt=Wave1D.png|Visualization '''of''' a ''wave''. (fig:impact)]] <!-- not yet uploaded to common.wikimedia.org -->
+
+Figures without captions are allowed and will be inlined.
+
+[[File:Wave1D.png|frame|200px|alt=Wave1D.png|<span title=""></span>]] <!-- not yet uploaded to common.wikimedia.org -->
+
+<!-- Test multi-line caption in figure with sidecap=True -->
+
+Here is figure myfig with a long (illegal) multi-line caption
+containing inline verbatim text:
+
+[[File:Wave1D.png|frame|500px|alt=Wave1D.png|A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in <math>t_{i+1}</math>. (myfig)]] <!-- not yet uploaded to common.wikimedia.org -->
+
+<!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
+
+Test URL as figure name:
+
+[[File:f_plot.png|frame|500px|link=https://raw.github.com/doconce/doconce/master/doc/src/blog|alt=f_plot.png|<span title=""></span>]]
+
+<!-- Test wikimedia type of files that otherwise reside in subdirs -->
+
+    [[File:Df plot.png|frame|800px|alt=Df plot.png|This is a wikimedia figure file.]] <!-- user: Hplwp, filename: df_plot.png, timestamp: 2013-01-10T11:37:05Z -->
+
+
+<!-- Non-uploaded file with no caption -->
+
+[[File:Df2s8765s plot.png|frame|200,px|alt=Df2s8765s plot.png|<span title=""></span>]] <!-- not yet uploaded to common.wikimedia.org -->
+
+''Remark.''
+Movies are tested in separate file <code>movies.do.txt</code>.
+
+<!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
+
+==== The <math>\theta</math> parameter (not <math>\nabla</math>?) ====
+
+Functions do not always need to be advanced, here is one
+involving <math>\theta</math>:
+<syntaxhighlight lang="text">
+def f(theta):
+    return theta**2
+</syntaxhighlight>
+
+''More on <math>\theta</math>.''
+Here is more text following headline with math.
+
+Newcommands must also be tested in this test report:
+<math>\frac{1}{2}</math>, <math>{1/2}</math>, <math>\pmb{x}</math>, <math>\frac{Du}{dt}</math>,
+both inline and in block:
+
+:<math>
+\begin{align}
+\frac{Du}{dt} &= 0\nonumber
+\\ 
+\frac{1}{2} &= {1/2}\\ 
+\frac{1}{2}\pmb{x} &= \pmb{n}
+\end{align}
+</math>
+
+Or with align with label and numbers:
+
+:<math>
+\begin{align}
+\frac{Du}{dt} &= 0
+\\ 
+\frac{1}{2} &= {1/2}\\ 
+\frac{1}{2}\pmb{x} &= \pmb{n}
+\end{align}
+</math>
+
+The labels above are removed in mwiki since mwiki cannot refer to
+labels in equations.
+
+<!-- Must test more complicated align and matrix compositions -->
+<!-- where DocOnce inserts auto-numbered labels etc. -->
+
+First one numbered (automatically):
+
+:<math>
+\begin{align}
+\begin{pmatrix}
+G_2 + G_3 & -G_3 & -G_2 & 0 \\ 
+-G_3 & G_3 + G_4 & 0 & -G_4 \\ 
+-G_2 & 0 & G_1 + G_2 & 0 \\ 
+0 & -G_4 & 0 & G_4
+\end{pmatrix}
+&=
+\begin{pmatrix}
+ v_1 \\ 
+ v_2 \\ 
+ v_3 \\ 
+ v_4
+\end{pmatrix}
++ \cdots \\ 
+\begin{pmatrix}
+ C_5 + C_6 & -C_6 & 0 & 0 \\ 
+ -C_6 & C_6 & 0 & 0 \\ 
+ 0 & 0 & 0 & 0 \\ 
+ 0 & 0 & 0 & 0
+\end{pmatrix}
+  &= \frac{d}{dt}\begin{pmatrix}
+ v_1 \\ 
+ v_2 \\ 
+ v_3 \\ 
+ v_4
+\end{pmatrix} +
+\begin{pmatrix}
+ 0 \\ 
+ 0 \\ 
+ 0 \\ 
+ -i_0
+\end{pmatrix}
+\nonumber
+\end{align}
+</math>
+
+Second numbered (automatically):
+
+:<math>
+\begin{align}
+\begin{pmatrix}
+G_1 + G_2\\ 
+-G_3 & G_4
+\end{pmatrix}
+&=
+\begin{pmatrix}
+ v_1 \\ 
+ v_2
+\end{pmatrix}
++ \cdots\nonumber
+\\ 
+\left(\begin{array}{ll}
+y & 2\\ 
+2 & 1
+\end{array}\right)
+\left(\begin{array}{ll}
+0 \\ x
+\end{array}\right)
+&= \begin{pmatrix}
+A \\ B
+\end{pmatrix}
+\end{align}
+</math>
+
+Both numbered, with label by the user:
+
+:<math>
+\begin{align}
+\begin{pmatrix}
+G_1 + G_2\\ 
+-G_3 & G_4
+\end{pmatrix}
+&=
+\begin{pmatrix}
+ v_1 \\ 
+ v_2
+\end{pmatrix}
++ \cdots \\ 
+\left(\begin{array}{ll}
+y & 2\\ 
+2 & 1
+\end{array}\right)
+\left(\begin{array}{ll}
+0 \\ x
+\end{array}\right)
+&= \begin{pmatrix}
+A \\ B
+\end{pmatrix}
+\end{align}
+</math>
+Now we refer to Equations (mymatrix:eq1)-(mymatrix:eq2).
+
+==== Custom Environments ====
+
+Here is an attempt to create a theorem environment via Mako
+(for counting theorems) and comment lines to help replacing lines in
+the <code>.tex</code> by proper begin-end LaTeX environments for theorems.
+Should look nice in most formats!
+
+<!-- begin theorem -->
+
+''Theorem 5.''
+Let <math>a=1</math> and <math>b=2</math>. Then <math>c=3</math>.
+<!-- end theorem -->
+
+<!-- begin proof -->
+''Proof.''
+Since <math>c=a+b</math>, the result follows from straightforward addition.
+<math>\Diamond</math>
+<!-- end proof -->
+
+As we see, the proof of Theorem 5 is a modest
+achievement.
+
+==== Tables ====
+
+<!-- index with comma could fool sphinx -->
+
+Let us take this table from the manual:
+
+<table border="1">
+<thead>
+<tr><th align="center">time</th> <th align="center">velocity</th> <th align="center">acceleration</th> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   0.0     </td> <td align="right">   1.4186      </td> <td align="right">   -5.01           </td> </tr>
+<tr><td align="left">   2.0     </td> <td align="right">   1.376512    </td> <td align="right">   11.919          </td> </tr>
+<tr><td align="left">   4.0     </td> <td align="right">   1.1E+1      </td> <td align="right">   14.717624       </td> </tr>
+</tbody>
+</table>
+The DocOnce source code reads
+<syntaxhighlight lang="text">
+
+  |--------------------------------|
+  |time  | velocity | acceleration |
+  |--l--------r-----------r--------|
+  | 0.0  | 1.4186   | -5.01        |
+  | 2.0  | 1.376512 | 11.919       |
+  | 4.0  | 1.1E+1   | 14.717624    |
+  |--------------------------------|
+
+</syntaxhighlight>
+
+Here is yet another table to test that we can handle more than
+one table:
+
+<table border="1">
+<thead>
+<tr><th align="left">time</th> <th align="left">velocity</th> <th align="left">acceleration</th> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   0.0     </td> <td align="left">   1.4186      </td> <td align="left">   -5.01           </td> </tr>
+<tr><td align="left">   1.0     </td> <td align="left">   1.376512    </td> <td align="left">   11.919          </td> </tr>
+<tr><td align="left">   3.0     </td> <td align="left">   1.1E+1      </td> <td align="left">   14.717624       </td> </tr>
+</tbody>
+</table>
+And one with math headings (that are expanded and must be treated
+accordingly), verbatim heading and entry, and no space around the pipe
+symbol:
+
+<table border="1">
+<thead>
+<tr><th align="center"><math>i</math></th> <th align="center"><math>h_i</math></th> <th align="center"><math>\bar T_i</math></th> <td align="center"><code>L_i</code></td> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   0                 </td> <td align="right">   0                   </td> <td align="right">   288                      </td> <td align="right">   -0.0065             </td> </tr>
+<tr><td align="left">   1                 </td> <td align="right">   11,000              </td> <td align="right">   216                      </td> <td align="right">   0.0                 </td> </tr>
+<tr><td align="left">   2                 </td> <td align="right">   20,000              </td> <td align="right">   216                      </td> <td align="right">   0.001               </td> </tr>
+<tr><td align="left">   3                 </td> <td align="right">   32,000              </td> <td align="right">   228                      </td> <td align="right">   0.0028              </td> </tr>
+<tr><td align="left">   4                 </td> <td align="right">   47,000              </td> <td align="right">   270                      </td> <td align="right">   0.0                 </td> </tr>
+<tr><td align="left">   5                 </td> <td align="right">   51,000              </td> <td align="right">   270                      </td> <td align="right">   -0.0028             </td> </tr>
+<tr><td align="left">   6                 </td> <td align="right">   71,000              </td> <td align="right">   214                      </td> <td align="right">   <code>NaN</code>    </td> </tr>
+</tbody>
+</table>
+And add one with verbatim headings (with underscores),
+and rows starting with <code>|-</code> because of a negative number,
+and <code>|</code> right before and after verbatim word (with no space):
+
+<table border="1">
+<thead>
+<tr><th align="center">exact</th> <td align="center"><code>v_1</code></td> <td align="center"><math>a_i</math> + <code>v_2</code></td> <td align="center"><code>verb_3_</code></td> </tr>
+</thead>
+<tbody>
+<tr><td align="right">   9        </td> <td align="right">   9.62                </td> <td align="right">   5.57                                   </td> <td align="right">   8.98                    </td> </tr>
+<tr><td align="right">   -20      </td> <td align="right">   -23.39              </td> <td align="right">   -7.65                                  </td> <td align="right">   -19.93                  </td> </tr>
+<tr><td align="right">   10       </td> <td align="right">   17.74               </td> <td align="right">   -4.50                                  </td> <td align="right">   9.96                    </td> </tr>
+<tr><td align="right">   0        </td> <td align="right">   -9.19               </td> <td align="right">   4.13                                   </td> <td align="right">   -0.26                   </td> </tr>
+</tbody>
+</table>
+Pipe symbols in verbatim and math text in tables used to pose difficulties,
+but not
+anymore:
+
+<table border="1">
+<thead>
+<tr><th align="center">   <math>S</math>   </th> <th align="center">        command         </th> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   $ ||a_0|| $             </td> <td align="right">   <code>norm|length</code>    </td> </tr>
+<tr><td align="left">   <math>x\cap y</math>    </td> <td align="right">   <code>x|y</code>            </td> </tr>
+</tbody>
+</table>
+Here is a table with X alignment:
+
+<table border="1">
+<thead>
+<tr><th align="center"> Type</th> <th align="center">                                                                                                                Description                                                                                                                 </th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   X        </td> <td align="left">   Alignment character that is used for specifying a potentially very long text in a column in a table. It makes use of the <code>tabularx</code> package in LaTeX, otherwise (for other formats) it means <code>l</code> (centered alignment).    </td> </tr>
+<tr><td align="center">   l,r,c    </td> <td align="left">   standard alignment characters                                                                                                                                                                                                                   </td> </tr>
+</tbody>
+</table>
+Finally, a table with math
+and URLs.
+
+<!-- Mako code to expand URLs in the table -->
+<!-- (These types of tables did not work before Jan 2014) -->
+
+<table border="1">
+<tr></tr>
+<tbody>
+<tr><td align="center">   <math>\mathcal{L}=0</math>            </td> <td align="center">   [../doc/src/manual/mov/wave_frames/frame_0080.png <code>080</code>]    </td> <td align="center">   [../doc/src/manual/mov/wave_frames/frame_0085.png <code>085</code>]    </td> </tr>
+<tr><td align="center">   <math>a=b</math>                      </td> <td align="center">   [../doc/src/manual/mov/wave_frames/frame_0090.png <code>090</code>]    </td> <td align="center">   [../doc/src/manual/mov/wave_frames/frame_0095.png <code>095</code>]    </td> </tr>
+<tr><td align="center">   <math>\nabla\cdot\bm{u} =0 </math>    </td> <td align="center">   [../doc/src/manual/mov/wave_frames/frame_0100.png <code>100</code>]    </td> <td align="center">   [../doc/src/manual/mov/wave_frames/frame_0105.png <code>105</code>]    </td> </tr>
+</tbody>
+</table>
+==== A test of verbatim words in heading with subscript <math>a_i</math>: <code>my_file_v1</code> and <code>my_file_v2</code> ====
+
+''Paragraph with verbatim and math: <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math <math>a_{i-1}</math>.''
+Here is more <code>__verbatim__</code> code and
+some plain text on a new line.
+
+<!-- Test various types of headlines -->
+==== '''Just bold''' ====
+
+Some text.
+
+==== ''Just emphasize'' ====
+
+Some text.
+
+==== <code>Just verbatim</code> ====
+
+Some text.
+
+==== '''Bold''' beginning ====
+
+Some text.
+
+==== ''Emphasize'' beginning ====
+
+Some text.
+
+==== <code>Verbatim</code> beginning ====
+
+Some text.
+
+==== Maybe '''bold end''' ====
+
+Some text.
+
+==== Maybe ''emphasize end'' ====
+
+Some text.
+
+==== Maybe <code>verbatim end</code> ====
+
+Some text.
+
+==== The middle has '''bold''' word ====
+
+Some text.
+
+==== The middle has ''emphasize'' word ====
+
+Some text.
+
+==== The middle has <code>verbatim</code> word ====
+
+Some text.
+
+''''Just emphasize''.''
+Some text.
+
+''<code>Just verbatim</code>.''
+Some text.
+
+''''Emphasize'' beginning.''
+Some text.
+
+''<code>Verbatim beginning</code>.''
+Some text.
+
+''Maybe ''emphasize end''.''
+Some text.
+
+''Maybe <code>verbatim end</code>.''
+Some text.
+
+''The middle has ''emphasize'' word.''
+Some text.
+
+''The middle has <code>verbatim</code> word.''
+Some text.
+
+''Ampersand.''
+We can test Hennes & Mauritz, often abbreviated H&M, but written
+as <code>Hennes & Mauritz</code> and <code>H & M</code>.
+A sole <code>&</code> must also work.
+<!-- Note: substitutions must not occur inside verbatim, just in ordinary text. -->
+
+<syntaxhighlight lang="text">
+# Just to check that ampersand works in code blocks:
+c = a & b
+</syntaxhighlight>
+
+''Quotes.''
+Let us also add a test of quotes such as "double quotes, with numbers
+like 3.14 and newline/comma and hyphen (as in double-quote)"; written
+in the standard LaTeX-style that gives correct LaTeX formatting and
+ordinary double quotes for all non-LaTeX formats.  Here is another
+sentence that "caused" a bug in the past because double backtick
+quotes could imply verbatim text up to a verbatim word starting with
+period, like <code>.txt</code>.
+
+More quotes to be tested for spellcheck:
+("with parenthesis"), "with newline"
+and "with comma", "hyphen"-wise, and "period".
+
+==== Bibliography test ====
+
+Here is an example: [1] discussed propagation of
+large destructive water waves, [2] gave
+an overview of numerical methods for solving the Navier - Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in [3].
+The book chapter [4] contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is [5] about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+[1] [4].
+
+We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+
+and
+
+and all the work of
+[14] [4] [15] as well as
+old work [5] and [16], and the
+talk [17].
+Langtangen also had two thesis [18] [16]
+back in the days.
+More retro citations are
+the old ME-IN323 book [19] and the
+[20] OONSKI '94 paper.
+
+<!-- --- begin exercise --- -->
+
+==== Example 1: Examples can be typeset as exercises ====
+
+Examples can start with a subsection heading starting with <code>Example:</code>
+and then, with the command-line option <code>--examples_as_exercises</code> be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+
+''a)''
+State some problem.
+
+''Solution.''
+The answer to this subproblem can be written here.
+
+''b)''
+State some other problem.
+
+''Hint 1.''
+A hint can be given.
+
+''Hint 2.''
+Maybe even another hint?
+
+''Solution.''
+The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+
+<!-- --- end exercise --- -->
+
+==== User-defined environments ====
+
+The example in the section [#Example_1:_A_test_function] demonstrates how to write a test function.
+That is, a special test function for a function <code>add</code> appears in
+the example in the section [#Example_1:_A_test_function].
+
+==== Example 1: A test function ====
+
+Suppose we want to write a test function for checking the
+implementation of a Python function for addition.
+
+<syntaxhighlight lang="python">
+def add(a, b):
+    return a + b
+
+def test_add():
+    a = 1; b = 1
+    expected = a + b
+    computed = add(a, b)
+    assert expected == computed
+</syntaxhighlight>
+
+==== Example 2: Addition ====
+
+We have
+
+:<math>
+ 1 + 1 = 2 
+</math>
+or in tabular form:
+
+<table border="1">
+<thead>
+<tr><th align="center">    Problem     </th> <th align="center">    Result    </th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   <math>1+1</math>    </td> <td align="center">   <math>2</math>    </td> </tr>
+</tbody>
+</table>
+
+{{mbox
+| type = notice
+| textstyle = font-size: 90%;
+| text = '''Highlight box!''' This environment is used to highlight something:
+
+:<math>
+ E = mc^2 
+</math>
+}}
+
+
+
+==== URLs ====
+
+Testing of URLs: hpl's home page [https://folk.uio.no/hpl hpl], or
+the entire URL if desired, https://folk.uio.no/hpl.  Here is a
+plain file link testdoc.do.txt, or testdoc.do.txt, or
+testdoc.do.txt or testdoc.do.txt or [testdoc.do.txt a link with
+newline]. Can test spaces with the link with word
+too: [https://folk.uio.no/hpl hpl] or [https://folk.uio.no/hpl hpl]. Also <code>file:///</code> works: [file:///home/hpl/vc/doconce/doc/demos/manual/manual.html link to a
+file] is
+fine to have. Moreover, "loose" URLs work, i.e., no quotes, just
+the plain URL as in https://folk.uio.no/hpl, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
+
+Mail addresses can also be used: [mailto:hpl@simula.no <code>hpl@simula.no</code>], or just a [mailto:hpl@simula.no mail link], or a raw mailto:hpl@simula.no.
+
+Here are some tough tests of URLs, especially for the <code>latex</code> format:
+[https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas Newton-Cotes] formulas
+and a [https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1 good book]. Need to test
+Newton-Cotes with percentage in URL too:
+https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas
+and https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae which has a shebang.
+
+For the <code>--device=paper</code> option it is important to test that URLs with
+monospace font link text get a footnote
+(unless the <code>--latex_no_program_footnotelink</code>
+is used), as in this reference to
+[https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py <code>decay_mod</code>], [https://tinyurl.com/pwyasaa/formulas.ball1.py <code>ball1.py</code>],
+and [https://tinyurl.com/pwyasaa/formulas.ball2.py <code>ball2.py</code>].
+
+<!-- Comments should be inserted outside paragraphs (because in the rst -->
+<!-- format extra blanks make a paragraph break). -->
+
+<!-- Note that when there is no https: or file:, it can be a file link -->
+<!-- if the link name is URL, url, "URL", or "url". Such files should, -->
+<!-- if rst output is desired, but placed in a <code>_static*</code> folder. -->
+
+More tough tests: repeated URLs whose footnotes when using the
+<code>--device=paper</code> option must be correct. We have
+[https://google.com google], [https://google.com google], and
+[https://google.com google], which should result in exactly three
+footnotes.
+
+<!-- !split and check if these extra words are included properly in the comment -->
+
+== LaTeX Mathematics ==
+
+Here is an equation without label using backslash-bracket environment:
+:<math>
+ a = b + c 
+</math>
+
+or with number and label, as in Equation (my:eq1), using the equation environment:
+
+:<math>
+{\partial u\over\partial t} = \nabla^2 u </math>
+
+We can refer to this equation by Equation (my:eq1).
+
+Here is a system without equation numbers, using the align-asterisk environment:
+
+:<math>
+\begin{align*}
+\pmb{a} &= \pmb{q}\times\pmb{n} \\ 
+b &= \nabla^2 u + \nabla^4 v
+\end{align*}
+</math>
+
+More mathematical typesetting is demonstrated in the coming exercises.
+
+Below, we have [#Problem_2:_Flip_a_Coin] and [#Project_4:_Compute_a_Probability],
+as well as [#Project_5:_Explore_Distributions_of_Random_Circles] and [#Project_11:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki], and in
+between there we have [#Exercise_10:_Make_references_to_projects_and_problems].
+
+== Exercises ==
+
+<!-- --- begin exercise --- -->
+
+==== Problem 2: Flip a Coin ====
+
+<!-- keywords = random numbers; Monte Carlo simulation; ipynb -->
+
+<!-- Torture tests -->
+
+''a)''
+Make a program that simulates flipping a coin <math>N</math> times.
+Print out "tail" or "head" for each flip and
+let the program count the number of heads.
+
+<!-- --- begin hint in exercise --- -->
+
+''Hint 1.''
+Use <code>r = random.random()</code> and define head as <code>r <= 0.5</code>.
+
+<!-- --- end hint in exercise --- -->
+
+<!-- --- begin hint in exercise --- -->
+
+''Hint 2.''
+Draw an integer among <math>\{1,2\}</math> with
+<code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.
+
+<!-- --- end hint in exercise --- -->
+
+<!-- --- begin answer of exercise --- -->
+''Answer.''
+If the <code>random.random()</code> function returns a number <math><1/2</math>, let it be
+head, otherwise tail. Repeat this <math>N</math> number of times.
+<!-- --- end answer of exercise --- -->
+
+<!-- --- begin solution of exercise --- -->
+''Solution.''
+<syntaxhighlight lang="python">
+import sys, random
+N = int(sys.argv[1])
+heads = 0
+for i in range(N):
+    r = random.random()
+    if r <= 0.5:
+        heads += 1
+print('Flipping a coin %d times gave %d heads' % (N, heads))
+</syntaxhighlight>
+<!-- --- end solution of exercise --- -->
+
+''b)''
+Vectorize the code in a) using boolean indexing.
+
+Vectorized code can be written in many ways.
+Sometimes the code is less intuitive, sometimes not.
+At least there is not much to find in the section [#Section_1].
+
+''c)''
+Vectorize the code in a) using <code>numpy.sum</code>.
+
+<!-- --- begin answer of exercise --- -->
+''Answer.''
+<code>np.sum(np.where(r <= 0.5, 1, 0))</code> or <code>np.sum(r <= 0.5)</code>.
+<!-- --- end answer of exercise --- -->
+
+In this latter subexercise, we have an
+example where the code is easy to read.
+
+==== My remarks ====
+
+Remarks with such a subsubsection is treated as more text
+after the last subexercise. Test a list too:
+
+
+<ol>
+<li> Mark 1.
+<li> Mark 2.
+</ol>
+
+Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.
+
+<!-- Closing remarks for this Problem -->
+
+==== Remarks ====
+
+These are the exercise remarks, appearing at the very end.
+
+<!-- solution files: mysol.txt, mysol_flip_coin.py, yet_another.file -->
+
+<!-- --- end exercise --- -->
+
+==== Not an exercise ====
+
+Should be possible to stick a normal section in the middle of many
+exercises.
+
+<!-- --- begin exercise --- -->
+
+==== Exercise 3: Test of plain text exercise ====
+
+Very short exercise. What is the capital
+of Norway?
+Filename: <code>myexer1</code>.
+
+<!-- --- end exercise --- -->
+
+<!-- --- begin exercise --- -->
+
+==== Project 4: Compute a Probability ====
+
+<!-- Minimalistic exercise -->
+
+What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval <math>[0,1)</math>?
+
+At the end we have a list because that caused problems in LaTeX
+in previous DocOnce versions:
+
+
+<ol>
+<li> item1
+<li> item2
+</ol>
+
+<!-- --- begin hint in exercise --- -->
+
+''Hint.''
+To answer this question empirically, let a program
+draw <math>N</math> such random numbers using Python's standard <code>random</code> module,
+count how many of them, <math>M</math>, that fall in the interval <math>(0.5,0.6)</math>, and
+compute the probability as <math>M/N</math>.
+
+<!-- --- end hint in exercise --- -->
+
+<!-- --- end exercise --- -->
+
+<!-- --- begin exercise --- -->
+
+==== Project 5: Explore Distributions of Random Circles ====
+
+<!-- keywords = ipynb -->
+
+The formula for a circle is given by
+
+:<math>
+\begin{align}
+x &= x_0 + R\cos 2\pi t,
+\\ 
+y &= y_0 + R\sin 2\pi t,
+\end{align}
+</math>
+where <math>R</math> is the radius of the circle, <math>(x_0,y_0)</math> is the
+center point, and <math>t</math> is a parameter in the unit interval <math>[0,1]</math>.
+For any <math>t</math>, <math>(x,y)</math> computed from Equations (circle:x)-(circle:y)
+is a point on the circle.
+The formula can be used to generate <code>n</code> points on a circle:
+
+<syntaxhighlight lang="python">
+import numpy as np
+
+def circle(R, x0, y0, n=501):
+    t = np.linspace(0, 1, n)
+    x = x0 + R*np.cos(2*np.pi*t)
+    y = y0 + R*np.sin(2*np.pi*t)
+    return x, y
+
+x, y = circle(2.0, 0, 0)
+</syntaxhighlight>
+
+<!-- Often in an exercise we have some comments about the solution -->
+<!-- which we normally want to keep where they are. -->
+
+The goal of this project is to draw <math>N</math> circles with random
+center and radius. Plot each circle using the <code>circle</code> function
+above.
+
+''a)''
+Let <math>R</math> be normally distributed and <math>(x_0,y_0)</math> uniformly distributed.
+
+<!-- --- begin hint in exercise --- -->
+
+''Hint.''
+Use the <code>numpy.random</code> module to draw the
+<math>x_0</math>, <math>y_0</math>, and <math>R</math> quantities.
+
+<!-- --- end hint in exercise --- -->
+
+<!-- --- begin answer of exercise --- -->
+''Answer.''
+Here goes the short answer to part a).
+<!-- --- end answer of exercise --- -->
+
+<!-- --- begin solution of exercise --- -->
+''Solution.''
+Here goes a full solution to part a).
+<!-- --- end solution of exercise --- -->
+
+''b)''
+Let <math>R</math> be uniformly distributed and <math>(x_0,y_0)</math> normally distributed.
+Filename: <code>norm</code>.
+
+''c)''
+Let <math>R</math> and <math>(x_0,y_0)</math> be normally distributed.
+
+Filename: <code>circles</code>.
+
+<!-- Closing remarks for this Project -->
+
+==== Remarks ====
+
+At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+
+<!-- --- end exercise --- -->
+
+<!-- --- begin exercise --- -->
+
+==== Exercise 6: Determine some Distance ====
+
+Intro to this exercise. Questions are in subexercises below.
+
+<!-- --- begin solution of exercise --- -->
+''Solution.''
+Here goes a full solution of the whole exercise.
+With some math <math>a=b</math> in this solution:
+:<math>
+ \hbox{math in solution: } a = b 
+</math>
+And code <code>a=b</code> in this solution:
+<syntaxhighlight lang="text">
+a = b  # code in solution
+</syntaxhighlight>
+End of solution is here.
+
+<!-- --- end solution of exercise --- -->
+
+''a)''
+Subexercises are numbered a), b), etc.
+
+<!-- --- begin hint in exercise --- -->
+
+''Hint 1.''
+First hint to subexercise a).
+With math <math>a=b</math> in hint:
+
+:<math>
+ a=b. 
+</math>
+And with code (in plain verbatim) returning <math>x+1</math> in hint:
+
+<syntaxhighlight lang="text">
+def func(x):
+    return x + 1  # with code in hint
+</syntaxhighlight>
+
+<!-- --- end hint in exercise --- -->
+
+<!-- --- begin hint in exercise --- -->
+
+''Hint 2.''
+Second hint to subexercise a).
+
+Test list in hint:
+
+
+<ol>
+<li> item1
+<li> item2
+</ol>
+
+<!-- --- end hint in exercise --- -->
+Filename: <code>subexer_a.pdf</code>.
+
+<!-- --- begin answer of exercise --- -->
+''Answer.''
+Short answer to subexercise a).
+With math in answer: <math>a=b</math>.
+<!-- --- end answer of exercise --- -->
+
+''b)''
+Here goes the text for subexercise b).
+
+Some math <math>\cos^2 x + \sin^2 x = 1</math> written one a single line:
+
+:<math>
+ \cos^2 x + \sin^2 x = 1 \thinspace .
+</math>
+
+<!-- --- begin hint in exercise --- -->
+
+''Hint.''
+A hint for this subexercise.
+
+<!-- --- end hint in exercise --- -->
+Filename: <code>subexer_b.pdf</code>.
+
+<!-- --- begin solution of exercise --- -->
+''Solution.''
+Here goes the solution of this subexercise.
+<!-- --- end solution of exercise --- -->
+
+<!-- No meaning in this weired test example: -->
+The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+
+Test list in exercise:
+
+
+<ol>
+<li> item1
+<li> item2
+<!-- Closing remarks for this Exercise -->
+</ol>
+
+==== Remarks ====
+
+Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+
+<!-- --- end exercise --- -->
+
+<!-- --- begin exercise --- -->
+
+==== Some exercise without the "Exercise:" prefix ====
+
+<!-- Another minimalistic exercise -->
+
+Just some text. And some math saying that <math>e^0=1</math> on a single line,
+to test that math block insertion is correct:
+
+:<math>
+ \exp{(0)} = 1 
+</math>
+
+And a test that the code <code>lambda x: x+2</code> is correctly placed here:
+
+<syntaxhighlight lang="text">
+lambda x: x+2
+</syntaxhighlight>
+
+<!-- Have some comments at the end of the exercise to see that -->
+<!-- the Filename: ... is written correctly. -->
+<!-- --- end exercise --- -->
+
+<!-- --- begin exercise --- -->
+
+==== Exercise 8: Solution of differential equation ====
+
+
+
+Given
+
+:<math>
+ \frac{dy}{dx} = -y(x),\quad y(0)=1 
+</math>
+What is the solution of this equation?
+
+Choice A: <math>y=e^{-y}</math>
+
+Choice B: <math>y=e^{y}</math>
+
+Choice C: <syntaxhighlight lang="python">
+from math import exp
+def f(x):
+    return exp(x)
+</syntaxhighlight>
+
+Choice D: The solution cannot be found because there is a derivative in the equation.
+
+Choice E: The equation is meaningless: an equation must be an equation
+for <math>x</math> or <math>y</math>, not a function <math>y(x)</math>.
+
+
+
+<!-- --- end exercise --- -->
+
+<!-- --- begin exercise --- -->
+
+==== Example 9: Just an example ====
+
+<!-- This example needs the --examples_as_exercises option, otherwise -->
+<!-- it is just typeset as it is written. -->
+
+''a)''
+What is the capital of Norway?
+
+''Answer.''
+Oslo.
+
+<!-- --- end exercise --- -->
+
+== Here goes another section ==
+
+With some text, before we continue with exercises.
+
+== More Exercises ==
+
+<!-- --- begin exercise --- -->
+
+==== Exercise 10: Make references to projects and problems ====
+
+<!-- Test comments not at the end only -->
+Pick a statement from [#Project_5:_Explore_Distributions_of_Random_Circles] or [#Problem_2:_Flip_a_Coin]
+and verify it.
+
+Test list at the end of an exercise without other elements (like subexercise,
+hint, etc.):
+
+
+<ol>
+<li> item1
+<li> item2
+</ol>
+
+Filename: <code>verify_formula.py</code>.
+
+<!-- --- end exercise --- -->
+
+<!-- --- begin exercise --- -->
+
+==== Project 11: References to [#Project_4:_Compute_a_Probability] in a heading works for mwiki ====
+
+Refer to the previous exercise as [#Exercise_10:_Make_references_to_projects_and_problems],
+the two before that as [#Project_4:_Compute_a_Probability] and [#Project_5:_Explore_Distributions_of_Random_Circles],
+and this one as [#Project_11:_References_to_Project_demo:ex:2_in_a_heading_works_for_mwiki].
+Filename: <code>selc_composed.pdf</code>.
+
+<!-- --- end exercise --- -->
+
+== References ==
+
+
+<ol>
+ <li> '''H. P. Langtangen and G. Pedersen'''.  Propagation of Large Destructive Waves, ''International Journal of Applied Mechanics and Engineering'', 7(1), pp. 187-204, 2002.
+ <li> '''H. P. Langtangen, K.-A. Mardal and R. Winther'''.  Numerical Methods for Incompressible Viscous Flow, ''Advances in Water Resources'', 25, pp. 1125-1146, 2002.
+ <li> '''H. P. Langtangen'''.  Numerical Solution of First Passage Problems in Random Vibrations, ''SIAM Journal of Scientific and Statistical Computing'', 15, pp. 997-996, 1994.
+ <li> '''K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen'''.  Software Tools for Multigrid Methods, ''Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming'', edited by '''H. P. Langtangen and A. Tveito''', Springer, 2003, Edited book, http://some.where.org.
+ <li> '''H. P. Langtangen'''.  The FEMDEQS Program System, ''Department of Mathematics, University of Oslo'', 1989, http://www.math.uio.no/old/days/hpl/femdeqs.pdf.
+ <li> '''H. P. Langtangen'''.  Stochastic Breakthrough Time Analysis of an Enhanced Oil Recovery Process, ''SIAM Journal on Scientific Computing'', 13, pp. 1394-1417, 1992.
+ <li> '''M. Mortensen, H. P. Langtangen and G. N. Wells'''.  A FEniCS-Based Programming Framework for Modeling Turbulent Flow by the Reynolds-Averaged Navier-Stokes Equations, ''Advances in Water Resources'', 34(9), [https://dx.doi.org/10.1016/j.advwatres.2011.02.013 doi: 10.1016/j.advwatres.2011.02.013], 2011.
+ <li> '''S. Glimsdal, G. Pedersen, K. Atakan, C. B. Harbitz, H. P. Langtangen and F. L\ovholt'''.  Propagation of the Dec.&nbsp;26, 2004 Indian Ocean Tsunami: Effects of Dispersion and Source Characteristics, ''International Journal of Fluid Mechanics Research'', 33(1), pp. 15-43, 2006.
+ <li> '''S. Rahman, J. Gorman, C. H. W. Barnes, D. A. Williams and H. P. Langtangen'''.  Numerical Investigation of a Piezoelectric Surface Acoustic Wave Interaction With a One-Dimensional Channel, ''Physical Review B: Condensed Matter and Materials Physics'', 74, 2006, 035308.
+<li> '''J. B. Haga, H. Osnes and H. P. Langtangen'''.  On the Causes of Pressure Oscillations in Low-Permeable and Low-Compressible Porous Media, ''International Journal of Analytical and Numerical Methods in Geomechanics'', [https://dx.doi.org/10.1002/nag.1062 doi: 10.1002/nag.1062], 2011, http://onlinelibrary.wiley.com/doi/10.1002/nag.1062/abstract.
+<li> '''H. P. Langtangen'''.  ''Computational Partial Differential Equations - Numerical Methods and Diffpack Programming'', second edition, ''Texts in Computational Science and Engineering'', Springer, 2003.
+<li> '''H. P. Langtangen'''.  ''Python Scripting for Computational Science'', third edition, ''Texts in Computational Science and Engineering'', Springer, 2008.
+<li> '''H. P. Langtangen and G. Pedersen'''.  Finite Elements for the Boussinesq Wave Equations, Waves and Non-linear Processes in Hydrodynamics, edited by '''J. Grue, B. Gjevik and J. E. Weber''', Kluwer Academic Publishers, pp. pp. 117-126, 1995, http://www.amazon.ca/Waves-Nonlinear-Processes-Hydrodynamics-John/dp/0792340310.
+<li> '''H. P. Langtangen'''.  ''A Primer on Scientific Programming With Python'', third edition, ''Texts in Computational Science and Engineering'', Springer, 2012.
+<li> '''P. V. Jeberg, H. P. Langtangen and C. B. Terp'''.  Optimization With Diffpack: Practical Example From Welding, ''Simula Research Laboratory'', 2004, Internal report.
+<li> '''H. P. Langtangen'''.  Computational Methods for Two-Phase Flow in Oil Reservoirs, Ph.D. Thesis, Mechanics Division, Department of Mathematics, University of Oslo, 1989, Dr.&nbsp;Scient.&nbsp;thesis..
+<li> '''H. P. Langtangen'''.  Computational Modeling of Huge Tsunamis From Asteroid Impacts, 2007, Invited keynote lecture at the \emphInternational conference on Computational Science 2007 (ICCS'07), Beijing, China.
+<li> '''H. P. Langtangen'''.  Solution of the Navier-Stokes Equations With the Finite Element Method in Two and Three Dimensions, M.Sc. Thesis, Mechanics Division, Department of Mathematics, University of Oslo, 1985, Cand.Scient. thesis.
+<li> '''H. P. Langtangen and A. Tveito'''.  Numerical Methods in Continuum Mechanics, ''Center for Industrial Research'', 1991, Lecture notes for a course (ME-IN 324). 286 pages..
+<li> '''H. P. Langtangen'''.  Diffpack: Software for Partial Differential Equations, ''Proceedings of the Second Annual Object-Oriented Numerics Conference (OON-SKI'94), Sunriver, Oregon, USA'', edited by '''A. Vermeulen''', 1994.
+</ol>
+
+== Appendix: Just for testing; part I ==
+
+This is the first appendix.
+
+==== A subsection within an appendix ====
+
+Some text.
+
+== Appendix: Just for testing; part II ==
+
+This is more stuff for an appendix.
+
+==== Appendix: Testing identical titles ====
+
+Without label.
+
+==== Appendix: Testing identical titles ====
+
+With label.
+
+==== Appendix: Testing identical titles ====
+
+What about inserting a quiz?
+
+
+
+======= Test of quizzes =======
+
+
+Fundamental test: What is the capital of Norway?
+
+Answer 1: Stockholm
+
+Answer 2: London
+
+Answer 3: Oslo
+
+Choice D: Bergen
+
+
+
+==== Appendix: Testing identical titles ====
+
+Without label.
+
+
+{{mbox
+| type = notice
+| textstyle = font-size: 90%;
+| text = '''Tip.''' Here is a tip or hint box, typeset as a notice box.
+}}
+
+
+
+Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent [https://software-carpentry.org/2010/07/script-for-introduction-to-version-control/ Script for Introduction to Version Control] provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+
+
+{{mbox
+| type = Summary.
+| textstyle = font-size: 90%;
+| text = '''Summary.''' '''Bold remark:''' Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+}}
+
+
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work - and all other important files.
+
+The simplest services for hosting project files are [https://dropbox.com Dropbox] and [https://drive.google.com Google Drive].
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+
+More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+
+The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+
+All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+
+==== Appendix: Testing inline comments ====
+
+<!-- Names can be [ A-Za-z0-9_'+-]+ -->
+
+Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that
+site. [hpl's semi opinion 1: not sure if in the cloud is
+understood by
+all.] I strongly recommend you to use such sites for all serious
+programming and scientific writing work - and all other important
+files.
+
+The simplest services for hosting project files is Dropbox. [mp 2: Simply go to https://dropbox.com and watch the video. It explains
+how files, like <code>myfile.py</code>, perhaps containing much math, like
+<math>\partial u/\partial t</math>, are easily communicated between machines.] It
+is very easy to get started with Dropbox, and it allows you to share
+files among [hpl 3: laptops and mobile units -> computers, tablets,
+and phones].
+
+<!-- Test horizontal rule -->
+
+----
+
+<!-- Coments for editing -->
+
+First[add 4: ,] consider a quantity <math>Q</math>. [edit 5: To this end, -> We note that]
+<math>Q>0</math>, because [del 6: a] negative [edit 7: quantity is -> quantities
+are] [del 8: just] negative. [add 9: This comes as no surprise.]
+
+<!-- Test tailored latex figure references with page number -->
+Let us refer to Figure fig:impact again.
+
+Test references in a list:
+
+
+<ul>
+ <li> [#Section_1]
+ <li> [#Subsection_1]
+ <li> fig:impact
+</ul>
+
+==== Appendix: Testing headings ending with <code>verbatim inline</code> ====
+
+The point here is to test 1) <code>verbatim</code> code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
+
+We also test mdash---used as alternative to hyphen without spaces around,
+or in quotes:
+
+
+{{quote box
+| quote = ''Fun is fun''.---Unknown.
+| textstyle = font-size: 90%;
+}}
+
+
+
+The ndash should also be tested - as in the Hanson - Nilson equations
+on page 277 - 278.
+
+And finally, what about admons, quotes, and boxes? They are tested
+in a separate document: <code>admon.do.txt</code>.
+
+[^example-of-the-third-footnote]: Not much to add here, but the footnote
+is at the end with only one newline.

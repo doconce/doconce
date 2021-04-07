@@ -1,0 +1,11 @@
+% ------------------- main content ----------------------
+Text with a name like Åsmund Ødegård works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for {\LaTeX}. The remedy for HTML is to read the file with UTF-8 encoding.
+\bccq
+a = 1  # Value suggested by Åsmund Ødegård.
+
+\eccq
+
+% ------------------- end of main content ---------------
+

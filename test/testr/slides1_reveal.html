@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides">
+<title>Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides</title>
+
+
+
+<!-- reveal.js: https://lab.hakim.se/reveal-js/ -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<!--
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/beigesmall.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/solarized.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/serif.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/moon.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/darkgray.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/default.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/cbc.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simula.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/league.css" id="theme">
+-->
+
+<!-- For syntax highlighting -->
+<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+<!-- Printing and PDF exports -->
+<script>
+var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? \'css/print/pdf.css\' : 'css/print/paper.css';
+document.getElementsByTagName( 'head' )[0].appendChild( link );
+</script>
+
+<style type="text/css">
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .reveal .alert-text-small   { font-size: 80%;  }
+    .reveal .alert-text-large   { font-size: 130%; }
+    .reveal .alert-text-normal  { font-size: 90%;  }
+    .reveal .alert {
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:5px solid #bababa;
+             -webkit-border-radius: 14px; -moz-border-radius: 14px;
+             border-radius:14px;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             background-size: 38px;
+             padding-left: 30px; /* 55px; if icon */
+     }
+     .reveal .alert-block {padding-top:14px; padding-bottom:14px}
+     .reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
+     /*.reveal .alert li {margin-top: 1em}*/
+     .reveal .alert-block p+p {margin-top:5px}
+     /*.reveal .alert-notice { background-image: url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_notice.png); }
+     .reveal .alert-summary  { background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_summary.png); }
+     .reveal .alert-warning { background-image: url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_warning.png); }
+     .reveal .alert-question {background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_question.png); } */
+
+</style>
+
+
+
+
+<!-- Styles for table layout of slides -->
+<style type="text/css">
+td.padding {
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:50px;
+  padding-left:50px;
+}
+</style>
+
+</head>
+
+
+<body>
+<div class="reveal">
+
+<!-- Any section element inside the <div class="slides"> container
+     is displayed as a slide -->
+
+<div class="slides">
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+
+<section>
+<!-- ------------------- main content ---------------------- -->
+<center>
+<h1 style="text-align: center;">Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides</h1>
+</center>  <!-- document title -->
+
+<!-- author(s): Hans Petter Langtangen -->
+<center>
+<b>Hans Petter Langtangen</b> [1, 2]
+</center>
+<!-- institution(s) -->
+<center>
+[1] <b>Simula Research Laboratory</b>
+</center>
+<center>
+[2] <b>University of Oslo</b>
+</center>
+<br>
+<center>
+<h4>Jan 32, 2100</h4>
+</center> <!-- date -->
+<br>
+</section>
+
+
+<section>
+<h1 id="this-is-the-first-section">This is the first section </h1>
+<!-- Short title: First -->
+</section>
+
+
+<section>
+<h2 id="figure-and-bullet-list">Figure and bullet list </h2>
+
+
+<table border="0">
+<tr>
+<td class="padding">
+<div class="fragment alert alert-block alert-block alert-text-small">
+<b>Title with comma, and brackets: \( [a,b] \)</b>
+<p>
+<ul>
+
+<p><li class="fragment"> Here is a <em>wave signal</em> \( f(x-ct) \)</li>
+
+<p><li class="fragment"> It moves with velocity \( c \)</li>
+
+<p><li class="fragment"> But here it is just a figure</li>
+</ul>
+</div>
+</td>
+<td class="padding">
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<br /><br /><center>
+<p><img src="testfigs/wave1D.png" align="bottom" width=300></p>
+<p></center></p>
+<br /><br/>
+</div>
+
+</td>
+</tr>
+</table>
+</section>
+
+
+<section>
+<h2 id="slide-with-pop-ups-in-red-and-notes">Slide with pop-ups in red and notes </h2>
+
+<!-- begin inline comment -->
+<font color="red">(<b>hpl 1</b>: Comments are typeset as usual in DocOnce.)</font>
+<!-- end inline comment -->
+
+
+<p class="fragment">
+
+<span class="fragment highlight-red">
+Here we have a paragraph to pop up in red.<br /> And a line more</p>
+</span>
+
+</p>
+
+
+<aside class="notes">
+<!-- click "s" to activate -->
+
+<p>One can also have ordinary notes. Over multiple lines.</p>
+
+</aside>
+</section>
+
+
+<section>
+<h2 id="a-latex-document">A LaTeX document </h2>
+
+<!-- code=latex (!bc latex) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="fragment" class="highlight" style="background: #eeeedd">
+  <pre style="font-size: 80%; line-height: 125%;"><span style="color: #8B008B; font-weight: bold">\documentclass</span><span style="color: #658b00">[11pt]{</span>article<span style="color: #658b00">}</span>
+<span style="color: #8B008B; font-weight: bold">\usepackage</span><span style="color: #658b00">{</span>fancyvrb<span style="color: #658b00">}</span>
+<span style="color: #8B008B; font-weight: bold">\begin</span><span style="color: #658b00">{</span>document<span style="color: #658b00">}</span>
+
+<span style="color: #8B008B; font-weight: bold">\title</span><span style="color: #658b00">{</span>Here goes the title...<span style="color: #658b00">}</span>
+<span style="color: #8B008B; font-weight: bold">\author</span><span style="color: #658b00">{</span>John Doe <span style="color: #8B008B; font-weight: bold">\and</span>
+Jane Doe<span style="color: #8B008B; font-weight: bold">\footnote</span><span style="color: #658b00">{</span><span style="color: #8B008B; font-weight: bold">\texttt</span><span style="color: #658b00">{</span>jane.doe@cyber.net<span style="color: #658b00">}</span>.<span style="color: #658b00">}}</span>
+<span style="color: #8B008B; font-weight: bold">\date</span><span style="color: #658b00">{</span><span style="color: #8B008B; font-weight: bold">\today</span><span style="color: #658b00">}</span>
+<span style="color: #8B008B; font-weight: bold">\maketitle</span>
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="fragment alert alert-block alert-notice alert-text-normal">
+<b>Notice</b>
+<p>
+<p>LaTeX has a lot of backslashes.</p>
+</div>
+
+<!-- code=latex (!bc latex) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="fragment" class="highlight" style="background: #eeeedd">
+  <pre style="font-size: 80%; line-height: 125%;"><span style="color: #8B008B; font-weight: bold">\section</span><span style="color: #658b00">{</span>Heading<span style="color: #658b00">}</span>
+bla-bla
+<span style="color: #8B008B; font-weight: bold">\end</span><span style="color: #658b00">{</span>document<span style="color: #658b00">}</span>
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<section>
+<h2 id="an-html-document">An HTML document </h2>
+
+
+<!-- code=html (!bc html) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #eeeedd">
+  <pre style="font-size: 80%; line-height: 125%;">&lt;<span style="color: #8B008B; font-weight: bold">html</span>&gt;&lt;<span style="color: #8B008B; font-weight: bold">head</span>&gt;&lt;/<span style="color: #8B008B; font-weight: bold">head</span>&gt;&lt;<span style="color: #8B008B; font-weight: bold">body</span> <span style="color: #658b00">bgcolor</span>=<span style="color: #CD5555">&quot;red&quot;</span>&gt;
+&lt;<span style="color: #8B008B; font-weight: bold">title</span>&gt;Here goes the title...&lt;<span style="color: #8B008B; font-weight: bold">title</span>&gt;
+&lt;<span style="color: #8B008B; font-weight: bold">h1</span>&gt;Section heading&lt;/<span style="color: #8B008B; font-weight: bold">h1</span>&gt;
+&lt;/<span style="color: #8B008B; font-weight: bold">body</span>&gt;
+&lt;/<span style="color: #8B008B; font-weight: bold">html</span>&gt;
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<section>
+<h1 id="second-section">Second section </h1>
+
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<br /><br /><center>
+<p><img src="testfigs/wave1D.png" align="bottom" width=600></p>
+<p></center></p>
+<br /><br/>
+</div>
+</section>
+
+
+<section>
+<h2 id="some-math-and-computer-code">Some math and computer code </h2>
+
+<div class="alert alert-block alert-block alert-text-normal">
+<b>A simple, mathematical formula where \( t\in [0,\pi] \):</b>
+<p>
+<p>&nbsp;<br>
+$$ f(x,y,t) = e^{-xt}\sin\pi y $$
+<p>&nbsp;<br>
+</div>
+
+
+<div class="alert alert-block alert-block alert-text-normal">
+<b>Bash demanded more of DocOnce than Python, so let's do Bash:</b>
+<p>
+<p>First, inline <code>$? != 0</code>, then comments with dollar variables (and minted style):</p>
+
+
+<!-- code=bash (!bc shcod) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #eeeedd">
+  <pre style="font-size: 80%; line-height: 125%;"><span style="color: #00688B">var</span>=<span style="color: #B452CD">10</span>
+<span style="color: #228B22"># $1, $2, ... are command-line args</span>
+<span style="color: #8B008B; font-weight: bold">if</span> [ <span style="color: #00688B">$?</span> -eq <span style="color: #B452CD">0</span> ]; <span style="color: #8B008B; font-weight: bold">then</span>   <span style="color: #228B22"># $? reflects success or not</span>
+  <span style="color: #658b00">echo</span> <span style="color: #CD5555">&quot;Great!&quot;</span>
+<span style="color: #8B008B; font-weight: bold">fi</span>
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+
+
+<section>
+<h2 id="pop-ups-inside-code-blocks-for-beamer-slides-only">Pop ups inside code blocks (for Beamer slides only) </h2>
+
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #eeeedd">
+  <pre style="font-size: 80%; line-height: 125%;"><span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">f</span>(x):
+    <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">42</span> + x
+
+<span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">g</span>(x):
+    <span style="color: #8B008B; font-weight: bold">return</span> f(<span style="color: #B452CD">42</span>)
+
+<span style="color: #658b00">print</span>(g(<span style="color: #B452CD">13</span>))
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<section>
+<h2 id="various-admon-blocks">Various admon blocks </h2>
+
+<p>Can use admons to simulate blocks:</p>
+
+<div class="fragment alert alert-block alert-notice alert-text-large">
+<b>Key PDE (with large title and math font):</b>
+<p>
+<p>&nbsp;<br>
+$$ \frac{\partial u}{\partial t} = \nabla^2 u $$
+<p>&nbsp;<br>
+</div>
+
+<div class="fragment alert alert-block alert-summary alert-text-normal">
+<b></b>
+<p>
+<p>Just some block with text and a conclusion that something is important. This one pops up after the rest of the slide.</p>
+</div>
+
+<div class="fragment alert alert-block alert-warning alert-text-small">
+<b>Warning</b>
+<p>
+<p>Can use, e.g., a warning admon to have my own notes, preferably inside preprocess/mako if statements to turn notes on and off. This one is typeset in a small font and with the default title (Warning) since no title is specified.</p>
+</div>
+</section>
+
+
+
+</div> <!-- class="slides" -->
+</div> <!-- class="reveal" -->
+
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+    // Display navigation controls in the bottom right corner
+    controls: true,
+
+    // Display progress bar (below the horiz. slider)
+    progress: true,
+
+    // Display the page number of the current slide
+    slideNumber: true,
+
+    // Push each slide change to the browser history
+    history: false,
+
+    // Enable keyboard shortcuts for navigation
+    keyboard: true,
+
+    // Enable the slide overview mode
+    overview: true,
+
+    // Vertical centering of slides
+    //center: true,
+    center: false,
+
+    // Enables touch navigation on devices with touch input
+    touch: true,
+
+    // Loop the presentation
+    loop: false,
+
+    // Change the presentation direction to be RTL
+    rtl: false,
+
+    // Turns fragments on and off globally
+    fragments: true,
+
+    // Flags if the presentation is running in an embedded mode,
+    // i.e. contained within a limited portion of the screen
+    embedded: false,
+
+    // Number of milliseconds between automatically proceeding to the
+    // next slide, disabled when set to 0, this value can be overwritten
+    // by using a data-autoslide attribute on your slides
+    autoSlide: 0,
+
+    // Stop auto-sliding after user input
+    autoSlideStoppable: true,
+
+    // Enable slide navigation via mouse wheel
+    mouseWheel: false,
+
+    // Hides the address bar on mobile devices
+    hideAddressBar: true,
+
+    // Opens links in an iframe preview overlay
+    previewLinks: false,
+
+    // Transition style
+    transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Transition speed
+    transitionSpeed: 'default', // default/fast/slow
+
+    // Transition style for full page slide backgrounds
+    backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
+
+    // Number of slides away from the current that are visible
+    viewDistance: 3,
+
+    // Parallax background image
+    //parallaxBackgroundImage: \'\', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+    // Parallax background size
+    //parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
+
+    theme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
+    transition: Reveal.getQueryHash().transition || \'default\', // default/cube/page/concave/zoom/linear/none
+
+});
+
+Reveal.initialize({
+    dependencies: [
+        // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
+        { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+
+        // Interpret Markdown in <section> elements
+        { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+
+        // Syntax highlight for <code> elements
+        { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+        // Zoom in and out with Alt+click
+        { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // Speaker notes
+        { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // Remote control your reveal.js presentation using a touch device
+        //{ src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // MathJax
+        //{ src: 'reveal.js/plugin/math/math.js', async: true }
+    ]
+});
+
+Reveal.initialize({
+
+    // The "normal" size of the presentation, aspect ratio will be preserved
+    // when the presentation is scaled to fit different resolutions. Can be
+    // specified using percentage units.
+    width: 1170,  // original: 960,
+    height: 700,
+
+    // Factor of the display size that should remain empty around the content
+    margin: 0.1,
+
+    // Bounds for smallest/largest possible scale to apply to content
+    minScale: 0.2,
+    maxScale: 1.0
+
+});
+</script>
+
+<!-- begin footer logo
+<div style="position: absolute; bottom: 0px; left: 0; margin-left: 0px">
+<img src="somelogo.png">
+</div>
+     end footer logo -->
+
+
+
+
+</body>
+</html>
+reveal.js:
+bower.json
+CONTRIBUTING.md
+css
+Gruntfile.js
+index.html
+js
+lib
+LICENSE
+package.json
+plugin
+README.md
+test
+
+reveal.js/css:
+images
+print
+reveal.css
+reveal.scss
+theme
+
+reveal.js/css/images:
+cbc_footer.png
+cbc_symbol.png
+simula_footer.png
+simula_logo.png
+simula_symbol.png
+uio_footer.png
+uio_symbol.png
+
+reveal.js/css/print:
+paper.css
+pdf.css
+
+reveal.js/css/theme:
+beige.css
+beigesmall.css
+black.css
+blood.css
+cbc.css
+darkgray.css
+default.css
+league.css
+moon.css
+night.css
+README.md
+serif.css
+simple.css
+simula.css
+sky.css
+solarized.css
+source
+template
+white.css
+
+reveal.js/css/theme/source:
+beige.scss
+beigesmall.scss
+black.scss
+blood.scss
+cbc.scss
+darkgray.scss
+default.scss
+league.scss
+moon.scss
+night.scss
+serif.scss
+simple.scss
+simula.scss
+sky.scss
+solarized.scss
+white.scss
+
+reveal.js/css/theme/template:
+mixins.scss
+settings.scss
+theme.scss
+
+reveal.js/js:
+reveal.js
+
+reveal.js/lib:
+css
+font
+js
+
+reveal.js/lib/css:
+zenburn.css
+
+reveal.js/lib/font:
+league-gothic
+source-sans-pro
+
+reveal.js/lib/font/league-gothic:
+league-gothic.css
+league-gothic.eot
+league-gothic.ttf
+league-gothic.woff
+LICENSE
+
+reveal.js/lib/font/source-sans-pro:
+LICENSE
+source-sans-pro.css
+source-sans-pro-italic.eot
+source-sans-pro-italic.ttf
+source-sans-pro-italic.woff
+source-sans-pro-regular.eot
+source-sans-pro-regular.ttf
+source-sans-pro-regular.woff
+source-sans-pro-semibold.eot
+source-sans-pro-semibolditalic.eot
+source-sans-pro-semibolditalic.ttf
+source-sans-pro-semibolditalic.woff
+source-sans-pro-semibold.ttf
+source-sans-pro-semibold.woff
+
+reveal.js/lib/js:
+classList.js
+head.min.js
+html5shiv.js
+
+reveal.js/plugin:
+highlight
+leap
+markdown
+math
+multiplex
+notes
+notes-server
+print-pdf
+remotes
+search
+zoom-js
+
+reveal.js/plugin/highlight:
+highlight.js
+
+reveal.js/plugin/leap:
+leap.js
+
+reveal.js/plugin/markdown:
+example.html
+example.md
+markdown.js
+marked.js
+
+reveal.js/plugin/math:
+math.js
+
+reveal.js/plugin/multiplex:
+client.js
+index.js
+master.js
+
+reveal.js/plugin/notes:
+notes.html
+notes.js
+
+reveal.js/plugin/notes-server:
+client.js
+index.js
+notes.html
+
+reveal.js/plugin/print-pdf:
+print-pdf.js
+
+reveal.js/plugin/remotes:
+remotes.js
+
+reveal.js/plugin/search:
+search.js
+
+reveal.js/plugin/zoom-js:
+zoom.js
+
+reveal.js/test:
+examples
+qunit-1.12.0.css
+qunit-1.12.0.js
+test.html
+test.js
+test-markdown-element-attributes.html
+test-markdown-element-attributes.js
+test-markdown.html
+test-markdown.js
+test-markdown-slide-attributes.html
+test-markdown-slide-attributes.js
+test-pdf.html
+test-pdf.js
+
+reveal.js/test/examples:
+assets
+barebones.html
+embedded-media.html
+math.html
+slide-backgrounds.html
+slide-transitions.html
+
+reveal.js/test/examples/assets:
+image1.png
+image2.png

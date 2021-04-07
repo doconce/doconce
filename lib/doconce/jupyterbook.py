@@ -76,8 +76,6 @@ def jupyterbook():
         os.chdir(dirname)
         errwarn('*** doconce format now works in directory %s' % dirname)
         # fix dest, dest_roc, and finally dirname
-        ##### this does not work with absolute path!
-        #make dist relative above
         dest = os.path.relpath(dest or '.', start=dirname) + '/'
         if dest.startswith('./'):
             dest = dest[2:]
