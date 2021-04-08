@@ -89,6 +89,7 @@ system doconce format plain manual.do.txt --skip_inline_comments --cite_doconce 
 system doconce format pandoc manual.do.txt --no_mako --strict_markdown_output --github_md --cite_doconce  --no_abort
 system doconce format epytext manual.do.txt --cite_doconce --no_mako --no_abort
 
+#HERE
 # doconce latex:
 system doconce format latex manual.do.txt --no_mako --latex_font=helvetica --no_ampersand_quote --cite_doconce  --no_abort # produces ptex2tex: manual.p.tex
 doconce ptex2tex manual envir=ans:nt

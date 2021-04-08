@@ -329,7 +329,7 @@
 <li><a class="reference internal" href="#the-old-ptex2tex-step">The old <code class="docutils literal notranslate"><span class="pre">ptex2tex</span></code> step</a></li>
 <li><a class="reference internal" href="#latex-pdf-generate-latex-step-1">LaTeX-PDF: Generate LaTeX (Step 1)</a><ul>
 <li><a class="reference internal" href="#the-translation-command">The translation command</a></li>
-<li><a class="reference internal" href="#id48">Newcommands</a></li>
+<li><a class="reference internal" href="#id46">Newcommands</a></li>
 <li><a class="reference internal" href="#output-for-paper-vs-screen">Output for paper vs screen</a></li>
 <li><a class="reference internal" href="#command-line-options">Command-line options</a></li>
 <li><a class="reference internal" href="#syntax-highlighting">Syntax highlighting</a></li>
@@ -457,7 +457,7 @@
 <dd class="field-odd"><p>Hans Petter Langtangen, Kristian Gregorius Hustad</p>
 </dd>
 <dt class="field-even">Date</dt>
-<dd class="field-even"><p>Mar 2, 2021</p>
+<dd class="field-even"><p>Apr 8, 2021</p>
 </dd>
 </dl>
 <div class="admonition warning">
@@ -482,44 +482,15 @@ etc.  The slogan is: &quot;Document once, include anywhere&quot;.</p>
 <p>Here are some DocOnce features:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>DocOnce addresses small and large documents containing
-<em>text with much computer source code and
-LaTeX mathematics</em>, where the output is desired in different formats
-such as LaTeX, pdfLaTeX, Sphinx, HTML,
-MediaWiki, blogger.com, and wordpress.com.
-A piece of DocOnce text can be included in a classical
-science book, an ebook, a web document, and a blog post.</p></li>
-<li><p>DocOnce offers a range of HTML designs, including many
-Bootstrap and Sphinx styles and <a class="reference external" href="http://ethanschoonover.com/solarized">solarized color schemes</a>.
-A special feature is the many styles for admonitions (boxes for
-warning, notice, question, etc.) in HTML and LaTeX.</p></li>
-<li><p>DocOnce targets large book projects where many different
-pieces of text and software can be assembled in different ways
-and published in different formats for different devices
-(see <a class="reference external" href="http://hplgit.github.io/setup4book-doconce/doc/web/index.html">example</a>).</p></li>
-<li><p>DocOnce enables authors who write for many types of media
-(blog posts, wikis, LaTeX manuscripts, Sphinx, HTML) using a common
-source language such that lots of different pieces can easily be
-brought together later to form a coherent (big) document.</p></li>
-<li><p>DocOnce has good support for copying computer code
-directly from the source code files via regular expressions
-for the start and end lines.</p></li>
-<li><p>DocOnce first runs two preprocessors (Preprocess and Mako), which
-allow programming constructs (includes, if-tests, function calls, variables)
-as part of the text. This feature makes it easy to write <em>one text</em>
-with different flavors: long vs short text, Python vs Matlab code
-examples, experimental vs mature content.</p></li>
-<li><p>DocOnce can be converted to plain <em>untagged</em> text,
-often desirable for email and computer code documentation.</p></li>
-<li><p>DocOnce markup does include tags, so the format is more tagged than
-Markdown, but less than reST, and very much less than
-LaTeX and HTML.</p></li>
-<li><p>Compared to the related tools Sphinx and Markdown, DocOnce
-allows more types of equations (especially systems of
-equations with references). It has more flexible
-inclusion of source code, integration of preprocessors and
-special support for exercises. Finally, it produces
-cleaner LaTeX and HTML output.</p></li>
+<li><p>DocOnce addresses small and large documents containing <em>text with much computer source code and LaTeX mathematics</em>, where the output is desired in different formats such as LaTeX, pdfLaTeX, Sphinx, HTML, MediaWiki, blogger.com, and wordpress.com. A piece of DocOnce text can be included in a classical science book, an ebook, a web document, and a blog post.</p></li>
+<li><p>DocOnce offers a range of HTML designs, including many Bootstrap and Sphinx styles and <a class="reference external" href="http://ethanschoonover.com/solarized">solarized color schemes</a>. A special feature is the many styles for admonitions (boxes for warning, notice, question, etc.) in HTML and LaTeX.</p></li>
+<li><p>DocOnce targets large book projects where many different pieces of text and software can be assembled in different ways and published in different formats for different devices (see <a class="reference external" href="http://hplgit.github.io/setup4book-doconce/doc/web/index.html">example</a>).</p></li>
+<li><p>DocOnce enables authors who write for many types of media (blog posts, wikis, LaTeX manuscripts, Sphinx, HTML) using a common source language such that lots of different pieces can easily be brought together later to form a coherent (big) document.</p></li>
+<li><p>DocOnce has good support for copying computer code directly from the source code files via regular expressions for the start and end lines.</p></li>
+<li><p>DocOnce first runs two preprocessors (Preprocess and Mako), which allow programming constructs (includes, if-tests, function calls, variables) as part of the text. This feature makes it easy to write <em>one text</em> with different flavors: long vs short text, Python vs Matlab code examples, experimental vs mature content.</p></li>
+<li><p>DocOnce can be converted to plain <em>untagged</em> text, often desirable for email and computer code documentation.</p></li>
+<li><p>DocOnce markup does include tags, so the format is more tagged than Markdown, but less than reST, and very much less than LaTeX and HTML.</p></li>
+<li><p>Compared to the related tools Sphinx and Markdown, DocOnce allows more types of equations (especially systems of equations with references). It has more flexible inclusion of source code, integration of preprocessors and special support for exercises. Finally, it produces cleaner LaTeX and HTML output.</p></li>
 </ul>
 </div></blockquote>
 <p><strong>History.</strong>
@@ -695,31 +666,15 @@ The <code class="docutils literal notranslate"><span class="pre">{copyright...}<
 <p>The syntax of the <code class="docutils literal notranslate"><span class="pre">license</span></code> part is flexible:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Any formulation can be given. For example,</p></li>
+<li><p>Any formulation can be given. For example, &lt;linebreak&gt; <code class="docutils literal notranslate"><span class="pre">{copyright|This</span> <span class="pre">work</span> <span class="pre">is</span> <span class="pre">released</span> <span class="pre">under</span> <span class="pre">an</span> <span class="pre">MIT</span> <span class="pre">license}</span></code>.</p></li>
+<li><p>Standardized short forms for Creative Commons (CC) licenses are available. For example, <code class="docutils literal notranslate"><span class="pre">CC</span> <span class="pre">BY</span></code>, which means a CC Attribution license. <code class="docutils literal notranslate"><span class="pre">BY</span></code> can be replaced by <code class="docutils literal notranslate"><span class="pre">BY-NC</span></code> (Attribution-NonCommercial) and other abbreviations from <a class="reference external" href="https://creativecommons.org/licenses/">https://creativecommons.org/licenses/</a>. The command-line option <code class="docutils literal notranslate"><span class="pre">--CC_license=</span></code> is used to provide a template for embedding the spelled out name of the abbreviated CC license. By default this template reads <code class="docutils literal notranslate"><span class="pre">Released</span> <span class="pre">under</span> <span class="pre">a</span> <span class="pre">CC</span> <span class="pre">%s</span> <span class="pre">4.0</span> <span class="pre">license</span></code>, where <code class="docutils literal notranslate"><span class="pre">%s</span></code> is to be replaced by the license name. A common value is &lt;linebreak&gt; <code class="docutils literal notranslate"><span class="pre">--CC_license=&quot;This</span> <span class="pre">work</span> <span class="pre">is</span> <span class="pre">released</span> <span class="pre">under</span> <span class="pre">the</span> <span class="pre">Creative</span> <span class="pre">Commons</span> <span class="pre">%s</span> <span class="pre">4.0</span> <span class="pre">license&quot;</span></code>.</p></li>
 </ul>
 </div></blockquote>
-<div class="line-block">
-<div class="line"><code class="docutils literal notranslate"><span class="pre">{copyright|This</span> <span class="pre">work</span> <span class="pre">is</span> <span class="pre">released</span> <span class="pre">under</span> <span class="pre">an</span> <span class="pre">MIT</span> <span class="pre">license}</span></code>.</div>
-</div>
-<blockquote>
-<div><ul class="simple">
-<li><p>Standardized short forms for Creative Commons (CC) licenses are available.
-For example, <code class="docutils literal notranslate"><span class="pre">CC</span> <span class="pre">BY</span></code>, which means a CC Attribution license. <code class="docutils literal notranslate"><span class="pre">BY</span></code> can be replaced by <code class="docutils literal notranslate"><span class="pre">BY-NC</span></code> (Attribution-NonCommercial) and other abbreviations from <a class="reference external" href="https://creativecommons.org/licenses/">https://creativecommons.org/licenses/</a>. The command-line option <code class="docutils literal notranslate"><span class="pre">--CC_license=</span></code> is used to provide a template for embedding the spelled out name of the abbreviated CC license. By default this template reads <code class="docutils literal notranslate"><span class="pre">Released</span> <span class="pre">under</span> <span class="pre">a</span> <span class="pre">CC</span> <span class="pre">%s</span> <span class="pre">4.0</span> <span class="pre">license</span></code>, where <code class="docutils literal notranslate"><span class="pre">%s</span></code> is to be replaced by the license name. A common value is</p></li>
-</ul>
-</div></blockquote>
-<div class="line-block">
-<div class="line"><code class="docutils literal notranslate"><span class="pre">--CC_license=&quot;This</span> <span class="pre">work</span> <span class="pre">is</span> <span class="pre">released</span> <span class="pre">under</span> <span class="pre">the</span> <span class="pre">Creative</span> <span class="pre">Commons</span> <span class="pre">%s</span> <span class="pre">4.0</span> <span class="pre">license&quot;</span></code>.</div>
-</div>
 <p>How the copyright is typeset depends on the format:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>LaTeX: The copyright appears as a footer on all pages (typeset with
-the <code class="docutils literal notranslate"><span class="pre">\fancyfoot[C]</span></code> command from the <code class="docutils literal notranslate"><span class="pre">fancyhdr</span></code> package).
-The command-line option <code class="docutils literal notranslate"><span class="pre">--latex_copyright=titlepages</span></code> leads to a copyright
-statement in the footer of the titlepage and (for books) the first page
-of each chapter.</p></li>
-<li><p>Sphinx: The copyright is provided as the <code class="docutils literal notranslate"><span class="pre">copyright</span></code> variable in <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>
-and appears in the footer according to the chosen theme.</p></li>
+<li><p>LaTeX: The copyright appears as a footer on all pages (typeset with the <code class="docutils literal notranslate"><span class="pre">\fancyfoot[C]</span></code> command from the <code class="docutils literal notranslate"><span class="pre">fancyhdr</span></code> package). The command-line option <code class="docutils literal notranslate"><span class="pre">--latex_copyright=titlepages</span></code> leads to a copyright statement in the footer of the titlepage and (for books) the first page of each chapter.</p></li>
+<li><p>Sphinx: The copyright is provided as the <code class="docutils literal notranslate"><span class="pre">copyright</span></code> variable in <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> and appears in the footer according to the chosen theme.</p></li>
 <li><p>HTML: The copyright appears at the bottom of all pages (right before the <code class="docutils literal notranslate"><span class="pre">&lt;/body&gt;</span> <span class="pre">tag</span></code>).</p></li>
 <li><p>Other formats: A copyright line is inserted after the date.</p></li>
 </ul>
@@ -783,8 +738,7 @@ or equal signs (=):</p>
 <li><p>7 <code class="docutils literal notranslate"><span class="pre">=</span></code> characters for sections</p></li>
 <li><p>5 <code class="docutils literal notranslate"><span class="pre">=</span></code> characters for subsections</p></li>
 <li><p>3 <code class="docutils literal notranslate"><span class="pre">=</span></code> characters for subsubsections</p></li>
-<li><p>2 <em>underscores</em> (only! - it looks best) for paragraphs
-(paragraph heading will be inlined)</p></li>
+<li><p>2 <em>underscores</em> (only! - it looks best) for paragraphs (paragraph heading will be inlined)</p></li>
 </ul>
 </div></blockquote>
 <p>Headings can be surrounded by as many blanks as desired, but the
@@ -976,9 +930,9 @@ is up to LaTeX do decide).</p>
 into the text. You can add vertical space in LaTeX and HTML by
 inserting several lines with <code class="docutils literal notranslate"><span class="pre">&lt;linebreak&gt;</span></code>.</p>
 </div>
-<div class="figure align-default" id="id51">
+<div class="figure align-default" id="id49">
 <span id="fig-viz"></span><a class="reference internal image-reference" href="_images/wave1D.png"><img alt="_images/wave1D.png" src="_images/wave1D.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text"><em>A wave</em></span><a class="headerlink" href="#id51" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><em>A wave</em></span><a class="headerlink" href="#id49" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="choosing-the-figure-format">
@@ -1368,16 +1322,9 @@ HTML format and therefore have the same capabilities.
 The LaTeX format supports different methods for embedding
 movies via the option <code class="docutils literal notranslate"><span class="pre">-latex_movie=...</span></code>. Proper values are listed below.</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">href</span></code>: the <cite>h:ref:`run:file`{link}</cite> is used for all movies (default),
-typeset in a one-line <code class="docutils literal notranslate"><span class="pre">quote</span></code> environment with the movie caption
-(if present) and a movie counter.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">media9</span></code>:
-the <code class="docutils literal notranslate"><span class="pre">media9</span></code> package is used for Flash and MP4 movies, <code class="docutils literal notranslate"><span class="pre">movie15</span></code>
-for MPEG and AVI files, and a simple <cite>h:ref:`run:file`{link}</cite> command
-for other formats. Only Acrobat Reader supports displaying these
-type of movies.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">multimedia</span></code>: the <code class="docutils literal notranslate"><span class="pre">\movie</span></code> command (known from LaTeX Beamer) is used
-for movies.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">href</span></code>: the <cite>h:ref:`run:file`{link}</cite> is used for all movies (default), typeset in a one-line <code class="docutils literal notranslate"><span class="pre">quote</span></code> environment with the movie caption (if present) and a movie counter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">media9</span></code>: the <code class="docutils literal notranslate"><span class="pre">media9</span></code> package is used for Flash and MP4 movies, <code class="docutils literal notranslate"><span class="pre">movie15</span></code> for MPEG and AVI files, and a simple <cite>h:ref:`run:file`{link}</cite> command for other formats. Only Acrobat Reader supports displaying these type of movies.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">multimedia</span></code>: the <code class="docutils literal notranslate"><span class="pre">\movie</span></code> command (known from LaTeX Beamer) is used for movies.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">movie15</span></code>: the old <code class="docutils literal notranslate"><span class="pre">movie15</span></code> package is used.</p></li>
 </ol>
 <div class="admonition-where-to-put-the-movie-file-for-a-pdf-document admonition" id="index-47">
@@ -3058,12 +3005,8 @@ vertical rules in LaTeX tables (they are ignored for other formats):</p>
 <div class="admonition note" id="index-71">
 <p class="admonition-title">Note</p>
 <ul class="simple">
-<li><p>Not all formats offer alignment of heading or entries
-in tables (<code class="docutils literal notranslate"><span class="pre">rst</span></code> and <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> are examples).</p></li>
-<li><p>DocOnce tables are very simple: neither entries nor
-headings can span several columns or rows. When that functionality
-is needed, one can make use of the preprocessor and if-tests on
-the format and insert format-specific code for tables.</p></li>
+<li><p>Not all formats offer alignment of heading or entries in tables (<code class="docutils literal notranslate"><span class="pre">rst</span></code> and <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> are examples).</p></li>
+<li><p>DocOnce tables are very simple: neither entries nor headings can span several columns or rows. When that functionality is needed, one can make use of the preprocessor and if-tests on the format and insert format-specific code for tables.</p></li>
 </ul>
 </div>
 <span class="target" id="index-72"></span></div>
@@ -3133,12 +3076,8 @@ and is <em>consistently indented</em> by some chosen spaces as follows</p>
 <li><p>item 1</p></li>
 <li><p>item 2</p>
 <ul>
-<li><p>subitem 1, if there are more
-lines, each line must
-be exactly intended as shown here
-(i.e., start in the same column)</p></li>
-<li><p>subitem 2,
-also spans two lines</p></li>
+<li><p>subitem 1, if there are more lines, each line must be exactly intended as shown here (i.e., start in the same column)</p></li>
+<li><p>subitem 2, also spans two lines</p></li>
 </ul>
 </li>
 <li><p>item 3</p></li>
@@ -3183,10 +3122,7 @@ by a keyword followed by a colon:</p>
 <div><dl class="simple">
 <dt>keyword1:</dt><dd><p>explanation of keyword1</p>
 </dd>
-<dt>keyword2:</dt><dd><p>explanation
-of keyword2 (remember to indent properly
-if there are multiple
-lines)</p>
+<dt>keyword2:</dt><dd><p>explanation of keyword2 (remember to indent properly if there are multiple lines)</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -3313,14 +3249,9 @@ setup:</p>
 However, linking to local files like this needs caution:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>In the <code class="docutils literal notranslate"><span class="pre">html</span></code> format the links work well if the files are
-supplied with the <code class="docutils literal notranslate"><span class="pre">.html</span></code> with the same relative location.</p></li>
-<li><p>In the <code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> formats, such links in PDF files
-will not work unless the <code class="docutils literal notranslate"><span class="pre">.tex</span></code> file has a full URL specified through
-a <code class="docutils literal notranslate"><span class="pre">\hyperbaseurl</span></code> command and the linked files are located correctly
-relative to this URL. Otherwise full URL must be used in links.</p></li>
-<li><p>In the <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> format, links to local files do not work unless the
-files reside in a <code class="docutils literal notranslate"><span class="pre">_static</span></code> directory (a warning is issued about this).</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">html</span></code> format the links work well if the files are supplied with the <code class="docutils literal notranslate"><span class="pre">.html</span></code> with the same relative location.</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> formats, such links in PDF files will not work unless the <code class="docutils literal notranslate"><span class="pre">.tex</span></code> file has a full URL specified through a <code class="docutils literal notranslate"><span class="pre">\hyperbaseurl</span></code> command and the linked files are located correctly relative to this URL. Otherwise full URL must be used in links.</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> format, links to local files do not work unless the files reside in a <code class="docutils literal notranslate"><span class="pre">_static</span></code> directory (a warning is issued about this).</p></li>
 </ul>
 </div></blockquote>
 <p>Thus, we strongly recommend to copy the relevant
@@ -3699,39 +3630,14 @@ A first discovery was that 1+1 is 2.
 <p>The reference appears as follows in various output formats:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code>: &quot;we refer to Section 2.3&quot; with
-LaTeX code</p></li>
-</ul>
-</div></blockquote>
-<div class="line-block">
-<div class="line"><a href="#id19"><span class="problematic" id="id20">`</span></a>we refer to Section :ref:<a href="#id21"><span class="problematic" id="id22">`</span></a>sec:theory&quot;</div>
-</div>
-<blockquote>
-<div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">html</span></code>: <a href="#id23"><span class="problematic" id="id24">``</span></a>we refer to the section Basic Theory&quot; with the HTML code</p></li>
-</ul>
-</div></blockquote>
-<div class="line-block">
-<div class="line"><code class="docutils literal notranslate"><span class="pre">we</span> <span class="pre">refer</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">section</span> <span class="pre">&lt;a</span> <span class="pre">href=&quot;#sec:theory&quot;&gt;Basic</span> <span class="pre">Theory&lt;/a&gt;</span></code></div>
-</div>
-<blockquote>
-<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code>: &quot;we refer to Section 2.3&quot; with LaTeX code &lt;linebreak&gt; <a href="#id19"><span class="problematic" id="id20">`</span></a>we refer to Section :ref:<a href="#id21"><span class="problematic" id="id22">`</span></a>sec:theory&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">html</span></code>: <code class="docutils literal notranslate"><span class="pre">we</span> <span class="pre">refer</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">section</span> <span class="pre">Basic</span> <span class="pre">Theory&quot;</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">HTML</span> <span class="pre">code</span> <span class="pre">&lt;linebreak&gt;</span> <span class="pre">``we</span> <span class="pre">refer</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">section</span> <span class="pre">&lt;a</span> <span class="pre">href=&quot;#sec:theory&quot;&gt;Basic</span> <span class="pre">Theory&lt;/a&gt;</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rst</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>: &quot;we refer to the section Basic Theory&quot;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">plain</span></code>: &quot;we refer to the section &quot;Basic Theory&quot;&quot;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ipynb</span></code>: &quot;we refer to the section Basic Theory&quot; with Markdown code</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ipynb</span></code>: &quot;we refer to the section Basic Theory&quot; with Markdown code &lt;linebreak&gt; <code class="docutils literal notranslate"><span class="pre">we</span> <span class="pre">refer</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">section</span> <span class="pre">[Basic</span> <span class="pre">Theory](#sec:theory)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mwiki</span></code>: &quot;we refer to the section Basic Theory&quot; with MediaWiki code &lt;linebreak&gt; <code class="docutils literal notranslate"><span class="pre">We</span> <span class="pre">refer</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">section</span> <span class="pre">[#Basic_Theory]</span></code></p></li>
 </ul>
 </div></blockquote>
-<div class="line-block">
-<div class="line"><code class="docutils literal notranslate"><span class="pre">we</span> <span class="pre">refer</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">section</span> <span class="pre">[Basic</span> <span class="pre">Theory](#sec:theory)</span></code></div>
-</div>
-<blockquote>
-<div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">mwiki</span></code>: &quot;we refer to the section Basic Theory&quot; with MediaWiki code</p></li>
-</ul>
-</div></blockquote>
-<div class="line-block">
-<div class="line"><code class="docutils literal notranslate"><span class="pre">We</span> <span class="pre">refer</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">section</span> <span class="pre">[#Basic_Theory]</span></code></div>
-</div>
 <p>Labels and references should only be used for
 (sub)sections, equations, figures, and movies (since DocOnce does not
 support references to tables and algorithms, for instance).
@@ -4007,7 +3913,7 @@ One can from cite{some_doc} derive the expression
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">ref_external</span></code> tool generates an <code class="docutils literal notranslate"><span class="pre">external</span></code> text
 in case of references to equations that says
-<a href="#id25"><span class="problematic" id="id26">``</span></a>reference to specific <strong>equations</strong> (label eqs:g1 and eqs:g4)
+<a href="#id23"><span class="problematic" id="id24">``</span></a>reference to specific <strong>equations</strong> (label eqs:g1 and eqs:g4)
 in external document &quot;name&quot;: &quot;link&quot; is not recommended&quot;.
 One can then search for this text and make a Mako if-else rewrite
 as shown above.</p>
@@ -4073,7 +3979,7 @@ cite{DocOnce:test}, DocOnce documents may include tables.
 <div><p>As explained in
 a <a class="reference external" href="http://doconce.github.io/doconce/test/demo_testdoc.html#subsec:ex">section</a> in
 the document <a class="reference external" href="http://doconce.github.io/doconce/test/demo_testdoc.html">A Document for Testing DocOnce</a>
-<a class="reference internal" href="#ref2" id="id27"><span>[Ref2]</span></a>, DocOnce documents may include tables.</p>
+<a class="reference internal" href="#ref2" id="id25"><span>[Ref2]</span></a>, DocOnce documents may include tables.</p>
 </div></blockquote>
 <p>A complete &quot;chapter&quot; reference may look like</p>
 <div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span>As explained in
@@ -4100,7 +4006,7 @@ The resulting rendered text in the current format becomes</p>
 <div><p>As explained in
 the document
 <a class="reference external" href="http://doconce.github.io/doconce/test/demo_testdoc.html">A Document for Testing DocOnce</a>
-<a class="reference internal" href="#ref2" id="id28"><span>[Ref2]</span></a>, DocOnce documents may include tables.</p>
+<a class="reference internal" href="#ref2" id="id26"><span>[Ref2]</span></a>, DocOnce documents may include tables.</p>
 </div></blockquote>
 <p>Note that LaTeX cannot
 have links to local files, so a complete URL in the form
@@ -4162,7 +4068,7 @@ effective index</a>.</p>
 <div class="section" id="emojis">
 <h3>Emojis<a class="headerlink" href="#emojis" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="index-164"></span><span class="target" id="index-165"></span><span class="target" id="index-166"></span><p id="index-167">Emojis are specified by syntax like <code class="docutils literal notranslate"><span class="pre">:sweat_smile:</span></code>, followed by
-whitespace (blank or newline) before and after.
+whitespace before and after.
 The available emoji names are shown at <a class="reference external" href="http://www.emoji-cheat-sheet.com">http://www.emoji-cheat-sheet.com</a>.
 Here is an example: :sweat_smile:</p>
 <p>DocOnce supports emojis for the <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code>, and <code class="docutils literal notranslate"><span class="pre">pandoc</span></code> formats.
@@ -4299,13 +4205,10 @@ subexercises are not appropriate.
 <p>Recommended rules for using the different &quot;exercise&quot; types goes as follows:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Exercises are smaller problems directly related to the present chapter
-(e.g., with references to the text).</p></li>
-<li><p>Problems are sufficiently independent of the chapter's text
-that they make sense on their own, separated from the rest of the document.</p></li>
+<li><p>Exercises are smaller problems directly related to the present chapter (e.g., with references to the text).</p></li>
+<li><p>Problems are sufficiently independent of the chapter's text that they make sense on their own, separated from the rest of the document.</p></li>
 <li><p>Projects are larger problems that also make sense on their own.</p></li>
-<li><p>Examples are exercises, problems, or projects, but with full solutions
-not typeset with <code class="docutils literal notranslate"><span class="pre">!bsol</span></code> and <code class="docutils literal notranslate"><span class="pre">!esol</span></code> but as running text.</p></li>
+<li><p>Examples are exercises, problems, or projects, but with full solutions not typeset with <code class="docutils literal notranslate"><span class="pre">!bsol</span></code> and <code class="docutils literal notranslate"><span class="pre">!esol</span></code> but as running text.</p></li>
 </ul>
 </div></blockquote>
 <p>Authors may use <code class="docutils literal notranslate"><span class="pre">Exercise</span></code> everywhere or make use of the convention
@@ -4394,10 +4297,8 @@ there is a command-line option <code class="docutils literal notranslate"><span 
 that can be set to</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">toc</span></code>: include exercises, problems, and projects as part of
-the table of contents</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">loe</span></code>: make a separate list of exercises, problems, and projects,
-which appears after the table of contents</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">toc</span></code>: include exercises, problems, and projects as part of the table of contents</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">loe</span></code>: make a separate list of exercises, problems, and projects, which appears after the table of contents</p></li>
 </ul>
 </div></blockquote>
 <p>There is a special LaTeX environment for the exercises that one can
@@ -4557,14 +4458,14 @@ extracts all exercises such that one can publish this document separately,
 with or without solutions and/or short answers.
 By &quot;exercise&quot; we mean all exercises, problems, and projects.</p>
 <p>The numbering of the exercises in the new document follows the numbering
-in the original document <a class="footnote-reference brackets" href="#exer-numbering" id="id29">3</a>, but you must use the
+in the original document <a class="footnote-reference brackets" href="#exer-numbering" id="id27">3</a>, but you must use the
 <code class="docutils literal notranslate"><span class="pre">--exercise_numbering=chapter</span></code> option if
 you want chapter-based numbering when extracting exercises from a book.</p>
 <p id="index-189">It is also possible to extract examples along with exercises: just add
 <code class="docutils literal notranslate"><span class="pre">--examples_as_exercises</span></code> (to extract the examples only, equip them with
 a unique keyword that you can use in the <code class="docutils literal notranslate"><span class="pre">--filter=</span></code> option).</p>
 <dl class="footnote brackets">
-<dt class="label" id="exer-numbering"><span class="brackets"><a class="fn-backref" href="#id29">3</a></span></dt>
+<dt class="label" id="exer-numbering"><span class="brackets"><a class="fn-backref" href="#id27">3</a></span></dt>
 <dd><p>If you want a new natural numbering of the extracted
 exercises only, you must go into the DocOnce source file with the
 extracted exercises and remove the comment line that contains the
@@ -5189,15 +5090,10 @@ line and followed by a newline.</p>
 <p>The support of LaTeX mathematics varies among the formats:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Output in LaTeX (<code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> formats) has full
-support of all LaTeX mathematics, of course.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">html</span></code> format supports single equations and multiple equations
-via the align environment, also with labels.</p></li>
-<li><p>Markdown (<code class="docutils literal notranslate"><span class="pre">pandoc</span></code> format) allows single equations and inline mathematics,
-but does not allow references to equations (the generated DocOnce code
-simulates such references, however).</p></li>
-<li><p>MediaWiki (<code class="docutils literal notranslate"><span class="pre">mwiki</span></code> format) does not enable labels in equations and hence
-equations cannot be referred to.</p></li>
+<li><p>Output in LaTeX (<code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> formats) has full support of all LaTeX mathematics, of course.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">html</span></code> format supports single equations and multiple equations via the align environment, also with labels.</p></li>
+<li><p>Markdown (<code class="docutils literal notranslate"><span class="pre">pandoc</span></code> format) allows single equations and inline mathematics, but does not allow references to equations (the generated DocOnce code simulates such references, however).</p></li>
+<li><p>MediaWiki (<code class="docutils literal notranslate"><span class="pre">mwiki</span></code> format) does not enable labels in equations and hence equations cannot be referred to.</p></li>
 </ul>
 </div></blockquote>
 <div class="admonition-important admonition">
@@ -5334,24 +5230,11 @@ use with PowerPoint or LibreOffice presentations.</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li><p>Make a Sphinx version of the DocOnce file.</p></li>
-<li><p>Go to the Sphinx directory and load the <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file into
-a text editor.</p></li>
-<li><p>Search for &quot;math&quot; and comment out the
-<code class="docutils literal notranslate"><span class="pre">'sphinx.ext.mathjax'</span></code> (enabled by default) and
-<code class="docutils literal notranslate"><span class="pre">'matplotlib.sphinxext.mathmpl'</span></code> (disabled by default)
-lines, and uncomment the <code class="docutils literal notranslate"><span class="pre">'sphinx.ext.pngmath'</span></code> package.
-This is the package that generates small PNG pictures
-of the mathematics.</p></li>
-<li><p>Uncomment the line with <code class="docutils literal notranslate"><span class="pre">pngmath_dvipng_args</span> <span class="pre">=</span></code> and
-set the PNG resolution to <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">200</span></code> when
-generating mathematics pictures for slides.</p></li>
+<li><p>Go to the Sphinx directory and load the <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file into a text editor.</p></li>
+<li><p>Search for &quot;math&quot; and comment out the <code class="docutils literal notranslate"><span class="pre">'sphinx.ext.mathjax'</span></code> (enabled by default) and <code class="docutils literal notranslate"><span class="pre">'matplotlib.sphinxext.mathmpl'</span></code> (disabled by default) lines, and uncomment the <code class="docutils literal notranslate"><span class="pre">'sphinx.ext.pngmath'</span></code> package. This is the package that generates small PNG pictures of the mathematics.</p></li>
+<li><p>Uncomment the line with <code class="docutils literal notranslate"><span class="pre">pngmath_dvipng_args</span> <span class="pre">=</span></code> and set the PNG resolution to <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">200</span></code> when generating mathematics pictures for slides.</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code>.</p></li>
-<li><p>Look at the HTML source file in the <code class="docutils literal notranslate"><span class="pre">_build/html</span></code>
-directory: all mathematics are in <code class="docutils literal notranslate"><span class="pre">img</span></code> tags with <code class="docutils literal notranslate"><span class="pre">src=</span></code>
-pointing to a PNG file and <code class="docutils literal notranslate"><span class="pre">alt=</span></code> pointing to the LaTeX
-source for the formula in question. This makes it very
-easy to find the PNG file that corresponding to a particular
-mathematical expression.</p></li>
+<li><p>Look at the HTML source file in the <code class="docutils literal notranslate"><span class="pre">_build/html</span></code> directory: all mathematics are in <code class="docutils literal notranslate"><span class="pre">img</span></code> tags with <code class="docutils literal notranslate"><span class="pre">src=</span></code> pointing to a PNG file and <code class="docutils literal notranslate"><span class="pre">alt=</span></code> pointing to the LaTeX source for the formula in question. This makes it very easy to find the PNG file that corresponding to a particular mathematical expression.</p></li>
 </ol>
 </div></blockquote>
 </div>
@@ -5407,86 +5290,34 @@ points are so important that we list them <em>before</em> we list typical
 DocOnce syntax!</p>
 <p>Any LaTeX syntax in mathematical formulas is accepted when DocOnce
 translates the text to LaTeX, but the following rules should be
-followed when transalting the text to <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>, <code class="docutils literal notranslate"><span class="pre">pandoc</span></code>,
+followed when translating the text to <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>, <code class="docutils literal notranslate"><span class="pre">pandoc</span></code>,
 <code class="docutils literal notranslate"><span class="pre">mwiki</span></code>, <code class="docutils literal notranslate"><span class="pre">html</span></code>, or <code class="docutils literal notranslate"><span class="pre">ipynb</span></code> formats.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>AMS LaTeX mathematics is supported, also for the <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>,
-and <code class="docutils literal notranslate"><span class="pre">ipynb</span></code> formats.</p></li>
-<li><p>If you want LaTeX math blocks to work with <code class="docutils literal notranslate"><span class="pre">latex</span></code>, <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>,
-<code class="docutils literal notranslate"><span class="pre">markdown</span></code>, and <code class="docutils literal notranslate"><span class="pre">ipynb</span></code>, only use
-the following equation environments: <code class="docutils literal notranslate"><span class="pre">\[</span> <span class="pre">...</span> <span class="pre">\]</span></code>,
-<code class="docutils literal notranslate"><span class="pre">equation*</span></code>, <code class="docutils literal notranslate"><span class="pre">equation</span></code>, <code class="docutils literal notranslate"><span class="pre">align*</span></code>, <code class="docutils literal notranslate"><span class="pre">align</span></code>. <code class="docutils literal notranslate"><span class="pre">alignat*</span></code>, <code class="docutils literal notranslate"><span class="pre">alignat</span></code>.
-Other environments, such as <code class="docutils literal notranslate"><span class="pre">split</span></code>, <code class="docutils literal notranslate"><span class="pre">multiline</span></code>, <code class="docutils literal notranslate"><span class="pre">gather</span></code> are
-supported in modern MathJax in HTML and Sphinx, but may have
-rendering problems (to a larger extent than <code class="docutils literal notranslate"><span class="pre">equation</span></code> and <code class="docutils literal notranslate"><span class="pre">align</span></code>).
-DocOnce performs extensions to <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>, <code class="docutils literal notranslate"><span class="pre">ipynb</span></code>,
-and other formats such that
-labels in <code class="docutils literal notranslate"><span class="pre">align</span></code> and <code class="docutils literal notranslate"><span class="pre">alignat</span></code> environments work well.
-If you face problems with fancy LaTeX equation environments in
-web formats, try rewriting with plain <code class="docutils literal notranslate"><span class="pre">align</span></code>, <code class="docutils literal notranslate"><span class="pre">nonumber</span></code>, etc.</p></li>
+<li><p>AMS LaTeX mathematics is supported, also for the <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>, and <code class="docutils literal notranslate"><span class="pre">ipynb</span></code> formats.</p></li>
+<li><p>If you want LaTeX math blocks to work with <code class="docutils literal notranslate"><span class="pre">latex</span></code>, <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>, <code class="docutils literal notranslate"><span class="pre">markdown</span></code>, and <code class="docutils literal notranslate"><span class="pre">ipynb</span></code>, only use the following equation environments: <code class="docutils literal notranslate"><span class="pre">\[</span> <span class="pre">...</span> <span class="pre">\]</span></code>, <code class="docutils literal notranslate"><span class="pre">equation*</span></code>, <code class="docutils literal notranslate"><span class="pre">equation</span></code>, <code class="docutils literal notranslate"><span class="pre">align*</span></code>, <code class="docutils literal notranslate"><span class="pre">align</span></code>. <code class="docutils literal notranslate"><span class="pre">alignat*</span></code>, <code class="docutils literal notranslate"><span class="pre">alignat</span></code>. Other environments, such as <code class="docutils literal notranslate"><span class="pre">split</span></code>, <code class="docutils literal notranslate"><span class="pre">multiline</span></code>, <code class="docutils literal notranslate"><span class="pre">gather</span></code> are supported in modern MathJax in HTML and Sphinx, but may have rendering problems (to a larger extent than <code class="docutils literal notranslate"><span class="pre">equation</span></code> and <code class="docutils literal notranslate"><span class="pre">align</span></code>). DocOnce performs extensions to <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>, <code class="docutils literal notranslate"><span class="pre">ipynb</span></code>, and other formats such that labels in <code class="docutils literal notranslate"><span class="pre">align</span></code> and <code class="docutils literal notranslate"><span class="pre">alignat</span></code> environments work well. If you face problems with fancy LaTeX equation environments in web formats, try rewriting with plain <code class="docutils literal notranslate"><span class="pre">align</span></code>, <code class="docutils literal notranslate"><span class="pre">nonumber</span></code>, etc.</p></li>
 <li><p>Do not use comments inside equations.</p></li>
-<li><p>Newcommands in mathematical formulas are allowed, but not in
-the running text. Newcommands must be defined in files with names
-<code class="docutils literal notranslate"><span class="pre">newcommands*.tex</span></code>. Use <code class="docutils literal notranslate"><span class="pre">\newcommands</span></code> and not <code class="docutils literal notranslate"><span class="pre">\def</span></code>.
-Each newcommand must be defined on a single line.
-Use Mako functions if you need macros in the running text.</p></li>
-<li><p>Use labels and refer to them
-for sections, figures, movies, and equations only.
-MediaWiki (<code class="docutils literal notranslate"><span class="pre">mwiki</span></code>) does not support references to equations.</p></li>
+<li><p>Newcommands in mathematical formulas are allowed, but not in the running text. Newcommands must be defined in files with names <code class="docutils literal notranslate"><span class="pre">newcommands*.tex</span></code>. Use <code class="docutils literal notranslate"><span class="pre">\newcommands</span></code> and not <code class="docutils literal notranslate"><span class="pre">\def</span></code>. Each newcommand must be defined on a single line. Use Mako functions if you need macros in the running text.</p></li>
+<li><p>Use labels and refer to them for sections, figures, movies, and equations only. MediaWiki (<code class="docutils literal notranslate"><span class="pre">mwiki</span></code>) does not support references to equations.</p></li>
 <li><p>Spaces are not allowed in labels.</p></li>
-<li><p>There is just one <code class="docutils literal notranslate"><span class="pre">ref</span></code> command (no <code class="docutils literal notranslate"><span class="pre">\eqref</span></code> for equations) and references to
-equations must use parentheses. Never use the tilde `` `` (non-breaking
-space) character before references to figures, sections, etc., but
-tilde is allowed for references to equations.</p></li>
-<li><p>Never use <code class="docutils literal notranslate"><span class="pre">\pageref</span></code> as pages are not a concept in web documents
-(there is only a <code class="docutils literal notranslate"><span class="pre">ref</span></code> command in DocOnce and it refers to labels).</p></li>
-<li><p>Only figures and movies are floating elements in DocOnce, all other elements
-(code, tables, algorithms) must appear <em>inline</em> without numbers or labels
-for reference <a class="footnote-reference brackets" href="#exception" id="id30">4</a> (refer to inline elements by a section label).
-The reason is that floating elements are in general
-not used in web documents, but we made an exception with figures
-and movies.</p></li>
-<li><p>Keep figure captions shorts as they are used as references in the
-Sphinx format. Avoid inline mathematics since Sphinx will strip it
-away in the figure reference.
-(Many writing styles encourage rich captions that
-explains everything about the figure; this work well
-only in the HTML and LaTeX formats.)</p></li>
-<li><p>You cannot use <code class="docutils literal notranslate"><span class="pre">subfigure</span></code> to combine several image files in one
-figure, but you can combine the files into one file using
-the <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">combine_images</span></code> tool. Refer to individual image files
-in the caption or text by (e.g.) &quot;left&quot; and &quot;right&quot;, or
-&quot;upper left&quot;, &quot;lower right&quot;, etc.</p></li>
-<li><p>Footnotes can be used as usual in LaTeX, but some HTML formats are not
-able to display mathematics or inline verbatim or other formatted
-code (emphasis, boldface, color) in footnotes - keep that in mind.</p></li>
-<li><p>Use plain <code class="docutils literal notranslate"><span class="pre">cite</span></code> for references (e.g., <code class="docutils literal notranslate"><span class="pre">\citeauthor</span></code> has no counterpart
-in DocOnce). The bibliography must be prepared in the Publish format,
-but import from (clean) BibTeX is possible.</p></li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">idx</span></code> for index entries, but put the definitions between paragraphs,
-not inside them (required by Sphinx).</p></li>
-<li><p>Use the <code class="docutils literal notranslate"><span class="pre">\bm</span></code> command (from the <code class="docutils literal notranslate"><span class="pre">bm</span></code> package, always included by DocOnce)
-for boldface in mathematics.</p></li>
-<li><p>Make sure all ordinary text starts in column 1 on each line. Equations
-can be indented. The <code class="docutils literal notranslate"><span class="pre">\begin{}</span></code> and <code class="docutils literal notranslate"><span class="pre">\end{}</span></code> directives should start
-in column 1.</p></li>
-<li><p>If you depend on various LaTeX environments for your writings, you have
-to give these up, or implement <em>user-defined environments</em> in DocOnce.
-For instance, examples are normally typeset as subsections in DocOnce,
-but can also utilize a user-defined example environment.
-Learn about the exercise support in DocOnce for typesetting
-exercises, problems, and projects.</p></li>
-<li><p>Learn about the preprocessors Preprocess and Mako - these are smart
-tools for, e.g., commenting out/in large portions of text and creating
-macros.</p></li>
-<li><p>Use <em>generalized references</em> when referring to companion documents
-that may later become part of this document (or migrated out of this document).</p></li>
+<li><p>There is just one <code class="docutils literal notranslate"><span class="pre">ref</span></code> command (no <code class="docutils literal notranslate"><span class="pre">\eqref</span></code> for equations) and references to equations must use parentheses. Never use the tilde `` `` (non-breaking space) character before references to figures, sections, etc., but tilde is allowed for references to equations.</p></li>
+<li><p>Never use <code class="docutils literal notranslate"><span class="pre">\pageref</span></code> as pages are not a concept in web documents (there is only a <code class="docutils literal notranslate"><span class="pre">ref</span></code> command in DocOnce and it refers to labels).</p></li>
+<li><p>Only figures and movies are floating elements in DocOnce, all other elements (code, tables, algorithms) must appear <em>inline</em> without numbers or labels for reference <a class="footnote-reference brackets" href="#exception" id="id28">4</a> (refer to inline elements by a section label). The reason is that floating elements are in general not used in web documents, but we made an exception with figures and movies.</p></li>
+<li><p>Keep figure captions shorts as they are used as references in the Sphinx format. Avoid inline mathematics since Sphinx will strip it away in the figure reference. (Many writing styles encourage rich captions that explains everything about the figure; this work well only in the HTML and LaTeX formats.)</p></li>
+<li><p>You cannot use <code class="docutils literal notranslate"><span class="pre">subfigure</span></code> to combine several image files in one figure, but you can combine the files into one file using the <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">combine_images</span></code> tool. Refer to individual image files in the caption or text by (e.g.) &quot;left&quot; and &quot;right&quot;, or &quot;upper left&quot;, &quot;lower right&quot;, etc.</p></li>
+<li><p>Footnotes can be used as usual in LaTeX, but some HTML formats are not able to display mathematics or inline verbatim or other formatted code (emphasis, boldface, color) in footnotes - keep that in mind.</p></li>
+<li><p>Use plain <code class="docutils literal notranslate"><span class="pre">cite</span></code> for references (e.g., <code class="docutils literal notranslate"><span class="pre">\citeauthor</span></code> has no counterpart in DocOnce). The bibliography must be prepared in the Publish format, but import from (clean) BibTeX is possible.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">idx</span></code> for index entries, but put the definitions between paragraphs, not inside them (required by Sphinx).</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">\bm</span></code> command (from the <code class="docutils literal notranslate"><span class="pre">bm</span></code> package, always included by DocOnce) for boldface in mathematics.</p></li>
+<li><p>Make sure all ordinary text starts in column 1 on each line. Equations can be indented. The <code class="docutils literal notranslate"><span class="pre">\begin{}</span></code> and <code class="docutils literal notranslate"><span class="pre">\end{}</span></code> directives should start in column 1.</p></li>
+<li><p>If you depend on various LaTeX environments for your writings, you have to give these up, or implement <em>user-defined environments</em> in DocOnce. For instance, examples are normally typeset as subsections in DocOnce, but can also utilize a user-defined example environment. Learn about the exercise support in DocOnce for typesetting exercises, problems, and projects.</p></li>
+<li><p>Learn about the preprocessors Preprocess and Mako - these are smart tools for, e.g., commenting out/in large portions of text and creating macros.</p></li>
+<li><p>Use <em>generalized references</em> when referring to companion documents that may later become part of this document (or migrated out of this document).</p></li>
 <li><p>Follow <a class="reference external" href="https://github.com/doconce/setup4book-doconce">recommendations for DocOnce books</a> if you plan to write a book.</p></li>
 </ul>
 </div></blockquote>
 <dl class="footnote brackets">
-<dt class="label" id="exception"><span class="brackets"><a class="fn-backref" href="#id30">4</a></span></dt>
+<dt class="label" id="exception"><span class="brackets"><a class="fn-backref" href="#id28">4</a></span></dt>
 <dd><p>There is an exception: by using <em>user-defined environments</em>
 within <code class="docutils literal notranslate"><span class="pre">!bu-name</span></code> and <code class="docutils literal notranslate"><span class="pre">!eu-name</span></code> directives, it is possible to
 label any type of text and refer to it. For example, one can have
@@ -5692,8 +5523,7 @@ for the <code class="docutils literal notranslate"><span class="pre">apricot</sp
 <p>Some recommended combinations for admonitions in HTML are</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_style=bloodish</span></code>, <code class="docutils literal notranslate"><span class="pre">--html_admon=gray</span></code>, <code class="docutils literal notranslate"><span class="pre">--pygments_html_style=none</span></code> or
-<code class="docutils literal notranslate"><span class="pre">--pygments_html_style=default</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_style=bloodish</span></code>, <code class="docutils literal notranslate"><span class="pre">--html_admon=gray</span></code>, <code class="docutils literal notranslate"><span class="pre">--pygments_html_style=none</span></code> or <code class="docutils literal notranslate"><span class="pre">--pygments_html_style=default</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--html_style=blueish2</span></code>, <code class="docutils literal notranslate"><span class="pre">--html_admon=yellow</span></code>, <code class="docutils literal notranslate"><span class="pre">--pygments_html_style=none</span></code> or <code class="docutils literal notranslate"><span class="pre">--pygments_html_style=default</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--html_style=boots*</span></code>, <code class="docutils literal notranslate"><span class="pre">--html_admon=bootstrap_alert</span></code> or <code class="docutils literal notranslate"><span class="pre">--html_admon=bootstrap_panel</span></code></p></li>
 </ul>
@@ -5706,25 +5536,11 @@ the command-line option <code class="docutils literal notranslate"><span class="
 Several values are available (see <a class="reference external" href="http://doconce.github.io/doconce/doc/pub/admon/index.html">demo</a>):</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">paragraph</span></code> is the simplest type of admonition and typeset
-as plain text with an optional paragraph heading. The variant
-<code class="docutils literal notranslate"><span class="pre">paragraph-X</span></code> typesets the paragraph with font size <code class="docutils literal notranslate"><span class="pre">X</span></code>, where
-<code class="docutils literal notranslate"><span class="pre">X</span></code> can be <code class="docutils literal notranslate"><span class="pre">large</span></code>, <code class="docutils literal notranslate"><span class="pre">small</span></code>, <code class="docutils literal notranslate"><span class="pre">footnotesize</span></code>, or <code class="docutils literal notranslate"><span class="pre">tiny</span></code>. With the <code class="docutils literal notranslate"><span class="pre">X</span></code>
-specification there is also some small space above and below the admon.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">colors1</span></code> (inspired by the original NumPy User Guide in LaTeX/PDF)
-applies different colors for
-the different admons with an embedded icon.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">paragraph</span></code> is the simplest type of admonition and typeset as plain text with an optional paragraph heading. The variant <code class="docutils literal notranslate"><span class="pre">paragraph-X</span></code> typesets the paragraph with font size <code class="docutils literal notranslate"><span class="pre">X</span></code>, where <code class="docutils literal notranslate"><span class="pre">X</span></code> can be <code class="docutils literal notranslate"><span class="pre">large</span></code>, <code class="docutils literal notranslate"><span class="pre">small</span></code>, <code class="docutils literal notranslate"><span class="pre">footnotesize</span></code>, or <code class="docutils literal notranslate"><span class="pre">tiny</span></code>. With the <code class="docutils literal notranslate"><span class="pre">X</span></code> specification there is also some small space above and below the admon.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">colors1</span></code> (inspired by the original NumPy User Guide in LaTeX/PDF) applies different colors for the different admons with an embedded icon.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">colors2</span></code> is like <code class="docutils literal notranslate"><span class="pre">colors1</span></code> but the text is wrapped around the icon.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mdfbox</span></code> is the default and gives rounded white boxes with a potential
-title and no icon (using the very flexible <code class="docutils literal notranslate"><span class="pre">mdframed</span></code> packaged in LaTeX).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">graybox2</span></code> has square corners, gray background, and is narrower
-than <code class="docutils literal notranslate"><span class="pre">mdfbox</span></code>. One special feature of <code class="docutils literal notranslate"><span class="pre">graybox2</span></code> is the summary
-admon, which has a different look with horizontal rules only,
-and for A4 format, the summary box is half of the text width and
-wrapped with running text around (if it does not contain verbatim text,
-the standard <code class="docutils literal notranslate"><span class="pre">graybox2</span></code> style is used). This small
-summary box is effective in proposals to disperse small paragraphs
-of key points around.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mdfbox</span></code> is the default and gives rounded white boxes with a potential title and no icon (using the very flexible <code class="docutils literal notranslate"><span class="pre">mdframed</span></code> packaged in LaTeX).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">graybox2</span></code> has square corners, gray background, and is narrower than <code class="docutils literal notranslate"><span class="pre">mdfbox</span></code>. One special feature of <code class="docutils literal notranslate"><span class="pre">graybox2</span></code> is the summary admon, which has a different look with horizontal rules only, and for A4 format, the summary box is half of the text width and wrapped with running text around (if it does not contain verbatim text, the standard <code class="docutils literal notranslate"><span class="pre">graybox2</span></code> style is used). This small summary box is effective in proposals to disperse small paragraphs of key points around.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">grayicon</span></code> has icons and a light gray background.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">yellowicon</span></code> has icons and a light yellow background.</p></li>
 </ul>
@@ -5939,7 +5755,7 @@ LaTeX environment.</p>
 </pre></div>
 </div>
 <span class="target" id="index-241"></span><span class="target" id="index-242"></span><p id="index-243">We quickly encounter a problem when referring to a specific example.
-In LaTeX, we want to write <a href="#id31"><span class="problematic" id="id32">`</span></a>Example :ref:<a href="#id33"><span class="problematic" id="id34">`</span></a>label&quot;, using the label
+In LaTeX, we want to write <a href="#id29"><span class="problematic" id="id30">`</span></a>Example :ref:<a href="#id31"><span class="problematic" id="id32">`</span></a>label&quot;, using the label
 defined in the example heading. In other formats, this label is a
 section number, or usually the section (example) heading. Different
 wording is needed for different formats. This is easiest accomplished
@@ -6128,22 +5944,22 @@ the output format is <code class="docutils literal notranslate"><span class="pre
 </pre></div>
 </div>
 <p>to refer to a publication with bibliographic key <code class="docutils literal notranslate"><span class="pre">key</span></code>.
-Here is an example: <a class="reference internal" href="#ref3" id="id35"><span>[Ref3]</span></a> discussed propagation of
-large destructive water waves, <a class="reference internal" href="#ref4" id="id36"><span>[Ref4]</span></a> gave
+Here is an example: <a class="reference internal" href="#ref3" id="id33"><span>[Ref3]</span></a> discussed propagation of
+large destructive water waves, <a class="reference internal" href="#ref4" id="id34"><span>[Ref4]</span></a> gave
 an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
-random vibrations was investigated in <a class="reference internal" href="#ref5" id="id37"><span>[Ref5]</span></a>.
-The book chapter <a class="reference internal" href="#ref6" id="id38"><span>[Ref6]</span></a> contains information on
+random vibrations was investigated in <a class="reference internal" href="#ref5" id="id35"><span>[Ref5]</span></a>.
+The book chapter <a class="reference internal" href="#ref6" id="id36"><span>[Ref6]</span></a> contains information on
 C++ software tools for programming multigrid methods. A real retro
-reference is <a class="reference internal" href="#ref7" id="id39"><span>[Ref7]</span></a> about a big FORTRAN package.
+reference is <a class="reference internal" href="#ref7" id="id37"><span>[Ref7]</span></a> about a big FORTRAN package.
 Multiple references are also possible, e.g., see
-<a class="reference internal" href="#ref3" id="id40"><span>[Ref3]</span></a> <a class="reference internal" href="#ref6" id="id41"><span>[Ref6]</span></a>.</p>
+<a class="reference internal" href="#ref3" id="id38"><span>[Ref3]</span></a> <a class="reference internal" href="#ref6" id="id39"><span>[Ref6]</span></a>.</p>
 <p>A LaTeX-style cite command with additional detailed reference is also possible,</p>
 <div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span>cite[details]{key}
 </pre></div>
 </div>
-<p>for example as in <a class="reference internal" href="#ref4" id="id42"><span>[Ref4]</span></a> (Section 2)
-or <a class="reference internal" href="#ref4" id="id43"><span>[Ref4]</span></a> (Equation (4.2)).</p>
+<p>for example as in <a class="reference internal" href="#ref4" id="id40"><span>[Ref4]</span></a> (Section 2)
+or <a class="reference internal" href="#ref4" id="id41"><span>[Ref4]</span></a> (Equation (4.2)).</p>
 <p>In LaTeX, the <code class="docutils literal notranslate"><span class="pre">cite</span></code> command is directly translated to the
 corresponding LaTeX version of the command with a backslash; in reST
 and Sphinx the citations becomes links, with the citation keys as
@@ -6160,7 +5976,7 @@ is done one a line containing <code class="docutils literal notranslate"><span c
 the database file another name and store it in another directory).
 The references will be inserted at the place where this command appears.
 Before the command you may want to have a headline with
-<a href="#id44"><span class="problematic" id="id45">``</span></a>References&quot;, &quot;Bibliography&quot;, or similar.
+<a href="#id42"><span class="problematic" id="id43">``</span></a>References&quot;, &quot;Bibliography&quot;, or similar.
 Here is an example:</p>
 <div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="gh">======= References =======</span>
 
@@ -6460,27 +6276,14 @@ the elements within each slide are necessary to produce effective
 slide sets:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Use a section heading (7 <code class="docutils literal notranslate"><span class="pre">=</span></code>) for dividing a presentation into parts.
-There can be text or figure(s) after the heading to illustrate
-the part.</p></li>
+<li><p>Use a section heading (7 <code class="docutils literal notranslate"><span class="pre">=</span></code>) for dividing a presentation into parts. There can be text or figure(s) after the heading to illustrate the part.</p></li>
 <li><p>Use a subsection heading as slide heading (5 <code class="docutils literal notranslate"><span class="pre">=</span></code>).</p></li>
 <li><p>Limit the amount of running text (as always).</p></li>
-<li><p>Limit the amount of material so it fits within a slide
-(inspect slides visually to move or delete content - just
-an extra <code class="docutils literal notranslate"><span class="pre">!split</span></code> and a new heading is enough to make a new
-slide).</p></li>
-<li><p>Use the <code class="docutils literal notranslate"><span class="pre">pop</span></code> environment to pop up list items or blocks
-one by one.</p></li>
-<li><p>You can use <code class="docutils literal notranslate"><span class="pre">\pause</span></code> prefixed by <code class="docutils literal notranslate"><span class="pre">(*&#64;</span></code> and postfixed by <code class="docutils literal notranslate"><span class="pre">&#64;*)</span></code>
-inside code or math blocks to pop up
-code lines or formulas in Beamer slides (the pause command is
-simply ignored in other formats).</p></li>
-<li><p>Use the <code class="docutils literal notranslate"><span class="pre">slidecell</span></code> environment (see below) to create
-a grid of slide cells (makes it easy to move figures and
-bullet lists or text around).</p></li>
-<li><p>Adjust the size of figures (<code class="docutils literal notranslate"><span class="pre">width</span></code> parameter for HTML,
-<code class="docutils literal notranslate"><span class="pre">frac</span></code> parameter for LaTeX Beamer) so they become effective
-on the slide.</p></li>
+<li><p>Limit the amount of material so it fits within a slide (inspect slides visually to move or delete content - just an extra <code class="docutils literal notranslate"><span class="pre">!split</span></code> and a new heading is enough to make a new slide).</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">pop</span></code> environment to pop up list items or blocks one by one.</p></li>
+<li><p>You can use <code class="docutils literal notranslate"><span class="pre">\pause</span></code> prefixed by <code class="docutils literal notranslate"><span class="pre">(*&#64;</span></code> and postfixed by <code class="docutils literal notranslate"><span class="pre">&#64;*)</span></code> inside code or math blocks to pop up code lines or formulas in Beamer slides (the pause command is simply ignored in other formats).</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">slidecell</span></code> environment (see below) to create a grid of slide cells (makes it easy to move figures and bullet lists or text around).</p></li>
+<li><p>Adjust the size of figures (<code class="docutils literal notranslate"><span class="pre">width</span></code> parameter for HTML, <code class="docutils literal notranslate"><span class="pre">frac</span></code> parameter for LaTeX Beamer) so they become effective on the slide.</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -6653,10 +6456,8 @@ for shadowed boxes and more visual structure in the slides.</p>
 Beamer slides:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>If <code class="docutils literal notranslate"><span class="pre">!bpop</span></code> comes right before the beginning of a list, each list
-item is popped up, one at a time.</p></li>
-<li><p>Otherwise, the rest of the slide or the text until the next <code class="docutils literal notranslate"><span class="pre">!bpop</span></code>
-pops up all at once.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">!bpop</span></code> comes right before the beginning of a list, each list item is popped up, one at a time.</p></li>
+<li><p>Otherwise, the rest of the slide or the text until the next <code class="docutils literal notranslate"><span class="pre">!bpop</span></code> pops up all at once.</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -6677,7 +6478,7 @@ pops up all at once.</p></li>
 <div class="section" id="support-for-non-english">
 <h2>Support for non-English<a class="headerlink" href="#support-for-non-english" title="Permalink to this headline">¶</a></h2>
 <p>DocOnce can handle documents in other languages than English. At the time
-of this writing there is support for Basque, German and Norwegian. Please create an issue at <a class="reference external" href="https://github.com/doconce/doconce/issues">https://github.com/doconce/doconce/issues</a> to request support for additional languages.</p>
+of this writing there is support for French, Spanish, Basque, German, Italian, Dutch and Norwegian. Please create an issue at <a class="reference external" href="https://github.com/doconce/doconce/issues">https://github.com/doconce/doconce/issues</a> to request support for additional languages.</p>
 <p>A demo directory with files is <a class="reference external" href="https://github.com/doconce/doconce/tree/master/doc/src/locale">locale</a>. For example, <code class="docutils literal notranslate"><span class="pre">norsk.do.txt</span></code> contains a simple document
 in Norwegian. To compile, one must supply the options
 <code class="docutils literal notranslate"><span class="pre">--encoding=utf-8</span> <span class="pre">--language=Norwegian</span></code>:</p>
@@ -6994,11 +6795,8 @@ very effective, especially when the Python code in Mako grows and becomes non-tr
 <blockquote>
 <div><ul class="simple">
 <li><p>Do not use continuation character (backslash) in Python code.</p></li>
-<li><p>When a Mako error refers to a line in the text, invoke the
-file that Mako sees: <code class="docutils literal notranslate"><span class="pre">tmp_preprocess__mydoc.do.txt</span></code> if
-the DocOnce file has name <code class="docutils literal notranslate"><span class="pre">mydoc.do.txt</span></code>.</p></li>
-<li><p>Use double <code class="docutils literal notranslate"><span class="pre">##</span></code> (Mako comment) to comment out Mako calls
-of the form <code class="docutils literal notranslate"><span class="pre">${name...}</span></code>.</p></li>
+<li><p>When a Mako error refers to a line in the text, invoke the file that Mako sees: <code class="docutils literal notranslate"><span class="pre">tmp_preprocess__mydoc.do.txt</span></code> if the DocOnce file has name <code class="docutils literal notranslate"><span class="pre">mydoc.do.txt</span></code>.</p></li>
+<li><p>Use double <code class="docutils literal notranslate"><span class="pre">##</span></code> (Mako comment) to comment out Mako calls of the form <code class="docutils literal notranslate"><span class="pre">${name...}</span></code>.</p></li>
 </ul>
 </div></blockquote>
 <p>And to be repeated: keep the Python code in separate files!</p>
@@ -7019,13 +6817,9 @@ Here are the basic ideas:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>Collect the nomenclature definitions in a table in a file <code class="docutils literal notranslate"><span class="pre">.nomenclature.do.txt</span></code>.</p></li>
-<li><p>Introduce a command <code class="docutils literal notranslate"><span class="pre">${insert_nomenclature()}</span></code> to make a fresh
-<code class="docutils literal notranslate"><span class="pre">.nomenclature.do.txt</span></code> file and return a <code class="docutils literal notranslate"><span class="pre">&#64;&#64;&#64;CODE</span></code> command
-for inserting the nomenclature table.</p></li>
-<li><p>Introduce a command <code class="docutils literal notranslate"><span class="pre">${nomenclature(symbol,</span> <span class="pre">definition)}</span></code>
-for adding a new line in the nomenclature table in the file.</p></li>
-<li><p>Introduce a command <code class="docutils literal notranslate"><span class="pre">${end_nomenclature()}</span></code> to finish the nomenclature
-table, i.e., insert the last table line.</p></li>
+<li><p>Introduce a command <code class="docutils literal notranslate"><span class="pre">${insert_nomenclature()}</span></code> to make a fresh <code class="docutils literal notranslate"><span class="pre">.nomenclature.do.txt</span></code> file and return a <code class="docutils literal notranslate"><span class="pre">&#64;&#64;&#64;CODE</span></code> command for inserting the nomenclature table.</p></li>
+<li><p>Introduce a command <code class="docutils literal notranslate"><span class="pre">${nomenclature(symbol,</span> <span class="pre">definition)}</span></code> for adding a new line in the nomenclature table in the file.</p></li>
+<li><p>Introduce a command <code class="docutils literal notranslate"><span class="pre">${end_nomenclature()}</span></code> to finish the nomenclature table, i.e., insert the last table line.</p></li>
 </ul>
 </div></blockquote>
 <p>The Mako functions are defined by</p>
@@ -7720,11 +7514,9 @@ dictionary in <code class="docutils literal notranslate"><span class="pre">.dict
 <blockquote>
 <div><ol class="arabic simple">
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">spellcheck</span> <span class="pre">-c</span> <span class="pre">ispell</span> <span class="pre">-d</span> <span class="pre">.dict4spell.txt</span> <span class="pre">*.do.txt</span></code></p></li>
-<li><p>Examine <a href="#id46"><span class="problematic" id="id47">``</span></a>misspellings.txt `` for misspellings and make corrections in
-the source files.</p></li>
+<li><p>Examine <a href="#id44"><span class="problematic" id="id45">``</span></a>misspellings.txt `` for misspellings and make corrections in the source files.</p></li>
 <li><p>Rerun <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">spellcheck</span></code> and repeat the procedure.</p></li>
-<li><p>When all words in <code class="docutils literal notranslate"><span class="pre">misspellings.txt</span> <span class="pre">|nbsp|</span> <span class="pre">``</span> <span class="pre">are</span> <span class="pre">acceptable,</span> <span class="pre">add</span> <span class="pre">these</span> <span class="pre">to</span>
-<span class="pre">the</span> <span class="pre">current</span> <span class="pre">custom</span> <span class="pre">dictionary</span> <span class="pre">by</span> <span class="pre">``cp</span> <span class="pre">new_dictionary.txt~</span> <span class="pre">.dict4spell.txt</span></code>.</p></li>
+<li><p>When all words in <code class="docutils literal notranslate"><span class="pre">misspellings.txt</span> <span class="pre">|nbsp|</span> <span class="pre">``</span> <span class="pre">are</span> <span class="pre">acceptable,</span> <span class="pre">add</span> <span class="pre">these</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">current</span> <span class="pre">custom</span> <span class="pre">dictionary</span> <span class="pre">by</span> <span class="pre">``cp</span> <span class="pre">new_dictionary.txt~</span> <span class="pre">.dict4spell.txt</span></code>.</p></li>
 </ol>
 </div></blockquote>
 <p>Run <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">spellcheck</span></code> without any arguments to get more description of
@@ -7743,16 +7535,8 @@ statements are present and runs the corresponding programs, first
 filename with the syntax <code class="docutils literal notranslate"><span class="pre">-DMYVAR</span></code>, <code class="docutils literal notranslate"><span class="pre">-DMYVAR=val</span></code> or <code class="docutils literal notranslate"><span class="pre">MYVAR=val</span></code>.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>The form <code class="docutils literal notranslate"><span class="pre">-DMYVAR</span></code> defines the variable <code class="docutils literal notranslate"><span class="pre">MYVAR</span></code> for <code class="docutils literal notranslate"><span class="pre">preprocess</span></code> (like the
-same syntax for the C preprocessor - <code class="docutils literal notranslate"><span class="pre">MYVAR</span></code> is defined, but has
-not specific value). When running <code class="docutils literal notranslate"><span class="pre">mako</span></code>, <code class="docutils literal notranslate"><span class="pre">-DMYVAR</span></code> means that
-<code class="docutils literal notranslate"><span class="pre">MYVAR</span></code> has the (Python) value <code class="docutils literal notranslate"><span class="pre">True</span></code>. You can test for
-<code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">#ifdef</span> <span class="pre">MYVAR</span></code> in Preprocess and <code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">if</span> <span class="pre">MYVAR:</span></code> in Mako.</p></li>
-<li><p>The expressions <code class="docutils literal notranslate"><span class="pre">-DMYVAR=val</span></code> and <code class="docutils literal notranslate"><span class="pre">MYVAR=val</span></code> are
-equivalent. When running <code class="docutils literal notranslate"><span class="pre">preprocess</span></code>, <code class="docutils literal notranslate"><span class="pre">MYVAR</span></code> is defined and has
-the value <code class="docutils literal notranslate"><span class="pre">val</span></code> (<code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">#ifdef</span> <span class="pre">MYVAR</span></code> and <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">#if</span> <span class="pre">MYVAR</span> <span class="pre">==</span> <span class="pre">&quot;val&quot;</span></code> are both
-true tests), while for <code class="docutils literal notranslate"><span class="pre">mako</span></code>, <code class="docutils literal notranslate"><span class="pre">MYVAR</span></code> exists as
-variable and has the value <code class="docutils literal notranslate"><span class="pre">val</span></code> (<code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">if</span> <span class="pre">MYVAR</span> <span class="pre">==</span> <span class="pre">&quot;val&quot;</span></code> is true).</p></li>
+<li><p>The form <code class="docutils literal notranslate"><span class="pre">-DMYVAR</span></code> defines the variable <code class="docutils literal notranslate"><span class="pre">MYVAR</span></code> for <code class="docutils literal notranslate"><span class="pre">preprocess</span></code> (like the same syntax for the C preprocessor - <code class="docutils literal notranslate"><span class="pre">MYVAR</span></code> is defined, but has not specific value). When running <code class="docutils literal notranslate"><span class="pre">mako</span></code>, <code class="docutils literal notranslate"><span class="pre">-DMYVAR</span></code> means that <code class="docutils literal notranslate"><span class="pre">MYVAR</span></code> has the (Python) value <code class="docutils literal notranslate"><span class="pre">True</span></code>. You can test for <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">#ifdef</span> <span class="pre">MYVAR</span></code> in Preprocess and <code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">if</span> <span class="pre">MYVAR:</span></code> in Mako.</p></li>
+<li><p>The expressions <code class="docutils literal notranslate"><span class="pre">-DMYVAR=val</span></code> and <code class="docutils literal notranslate"><span class="pre">MYVAR=val</span></code> are equivalent. When running <code class="docutils literal notranslate"><span class="pre">preprocess</span></code>, <code class="docutils literal notranslate"><span class="pre">MYVAR</span></code> is defined and has the value <code class="docutils literal notranslate"><span class="pre">val</span></code> (<code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">#ifdef</span> <span class="pre">MYVAR</span></code> and <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">#if</span> <span class="pre">MYVAR</span> <span class="pre">==</span> <span class="pre">&quot;val&quot;</span></code> are both true tests), while for <code class="docutils literal notranslate"><span class="pre">mako</span></code>, <code class="docutils literal notranslate"><span class="pre">MYVAR</span></code> exists as variable and has the value <code class="docutils literal notranslate"><span class="pre">val</span></code> (<code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">if</span> <span class="pre">MYVAR</span> <span class="pre">==</span> <span class="pre">&quot;val&quot;</span></code> is true).</p></li>
 </ul>
 </div></blockquote>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">MYVAR=False</span></code> defines <code class="docutils literal notranslate"><span class="pre">MYVAR</span></code> in <code class="docutils literal notranslate"><span class="pre">preprocess</span></code> and
@@ -7852,32 +7636,20 @@ about common problems. There are some useful options for turning on
 additional checks:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">--labelcheck=on</span></code> (or <code class="docutils literal notranslate"><span class="pre">off</span></code>) to check that every <code class="docutils literal notranslate"><span class="pre">ref</span></code> reference
-has a corresponding <code class="docutils literal notranslate"><span class="pre">label</span></code> definition within the document (this check
-may lead to wrong diagnostics, e.g., when a label is defined in an
-external document and referred via generalized references, so the
-check must be used with care)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--labelcheck=on</span></code> (or <code class="docutils literal notranslate"><span class="pre">off</span></code>) to check that every <code class="docutils literal notranslate"><span class="pre">ref</span></code> reference has a corresponding <code class="docutils literal notranslate"><span class="pre">label</span></code> definition within the document (this check may lead to wrong diagnostics, e.g., when a label is defined in an external document and referred via generalized references, so the check must be used with care)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--urlcheck</span></code> checks that all URLs referred to in the document are valid.</p></li>
 </ul>
 </div></blockquote>
 <p>Other useful options are</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">--os_prompt=PROMPT&gt;</span></code> sets the prompt, here <code class="docutils literal notranslate"><span class="pre">PROMPT&gt;</span></code>, as terminal
-prompt in output from running OS commands with the <code class="docutils literal notranslate"><span class="pre">&#64;&#64;&#64;OSCMD</span></code> instruction.
-The value <code class="docutils literal notranslate"><span class="pre">None</span></code> gives no prompt.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--code_prefix=X</span></code> prefixes all <code class="docutils literal notranslate"><span class="pre">&#64;&#64;&#64;CODE</span></code> imports with some path <code class="docutils literal notranslate"><span class="pre">X</span></code>
-(if the source files are located in some other directory)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--figure_prefix=X</span></code> and <code class="docutils literal notranslate"><span class="pre">--movie_prefix=X</span></code> prefix figure/movie file
-names with a path or URL</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--sections_down</span></code> and <code class="docutils literal notranslate"><span class="pre">--sections_up</span></code> move all sections down or up
-(e.g., sections become subsections or chapters).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--os_prompt=PROMPT&gt;</span></code> sets the prompt, here <code class="docutils literal notranslate"><span class="pre">PROMPT&gt;</span></code>, as terminal prompt in output from running OS commands with the <code class="docutils literal notranslate"><span class="pre">&#64;&#64;&#64;OSCMD</span></code> instruction. The value <code class="docutils literal notranslate"><span class="pre">None</span></code> gives no prompt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--code_prefix=X</span></code> prefixes all <code class="docutils literal notranslate"><span class="pre">&#64;&#64;&#64;CODE</span></code> imports with some path <code class="docutils literal notranslate"><span class="pre">X</span></code> (if the source files are located in some other directory)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--figure_prefix=X</span></code> and <code class="docutils literal notranslate"><span class="pre">--movie_prefix=X</span></code> prefix figure/movie file names with a path or URL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--sections_down</span></code> and <code class="docutils literal notranslate"><span class="pre">--sections_up</span></code> move all sections down or up (e.g., sections become subsections or chapters).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--tables2csv</span></code> translates each table to a CSV file.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--short_title=X</span></code> sets a short title <code class="docutils literal notranslate"><span class="pre">X</span></code> for the document.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--toc_depth=X</span></code>: controls the depth of the table of contents
-in documents. Default value of <code class="docutils literal notranslate"><span class="pre">X</span></code> is 3, meaning chapters,
-sections, and subsections. <code class="docutils literal notranslate"><span class="pre">X</span></code> as 0 gives the table of contents as a
-nested list in Bootstrap styles.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--toc_depth=X</span></code>: controls the depth of the table of contents in documents. Default value of <code class="docutils literal notranslate"><span class="pre">X</span></code> is 3, meaning chapters, sections, and subsections. <code class="docutils literal notranslate"><span class="pre">X</span></code> as 0 gives the table of contents as a nested list in Bootstrap styles.</p></li>
 </ul>
 </div></blockquote>
 <p>Many more options, depending on the output format, are listed in the
@@ -7929,13 +7701,11 @@ argument <code class="docutils literal notranslate"><span class="pre">--css=file
 specified as <code class="docutils literal notranslate"><span class="pre">--html_style=name</span></code>, where <code class="docutils literal notranslate"><span class="pre">name</span></code> can be</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">solarized</span></code>: the famous <a class="reference external" href="http://ethanschoonover.com/solarized">solarized</a>
-style (yellowish),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">solarized</span></code>: the famous <a class="reference external" href="http://ethanschoonover.com/solarized">solarized</a> style (yellowish),</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">blueish</span></code>: a simple style with blue headings (default),</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">blueish2</span></code>: a variant of <em>bluish</em>,</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">bloodish</span></code>: as <code class="docutils literal notranslate"><span class="pre">bluish</span></code>, but dark read as color,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">bootstrap*</span></code> or <code class="docutils literal notranslate"><span class="pre">bootswatch*</span></code> in a lot of variants, see
-<code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">format</span> <span class="pre">--help</span></code> for a list of all styles.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bootstrap*</span></code> or <code class="docutils literal notranslate"><span class="pre">bootswatch*</span></code> in a lot of variants, see <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">format</span> <span class="pre">--help</span></code> for a list of all styles.</p></li>
 </ul>
 </div></blockquote>
 <p>There is a <a class="reference external" href="http://doconce.github.io/teamods/writing_reports/index.html">comprehensive demonstration</a> of almost all available styles!</p>
@@ -8027,14 +7797,9 @@ Terminal&gt; doconce split_html mydoc_vagrant.html
 The type of URL is set with the <code class="docutils literal notranslate"><span class="pre">--html_raw_github_url=...</span></code> option:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_raw_github_url=safe</span></code> or <code class="docutils literal notranslate"><span class="pre">--html_raw_github_url=cdn.rawgit</span></code>:
-safe URL for high traffic production sites (default)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_raw_github_url=test</span></code> or <code class="docutils literal notranslate"><span class="pre">--html_raw_github_url=rawgit</span></code>:
-recommended URL for low traffic development sites - use this when
-developing HTML pages and the DocOnce GitHub links in the HTML files
-are also developed and subject to changes</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_raw_github_url=github</span></code> or <code class="docutils literal notranslate"><span class="pre">--html_raw_github_url=raw.github</span></code>:
-URL directly to the raw GitHub file (<code class="docutils literal notranslate"><span class="pre">https://raw.github.com/doconce/doconce/...</span></code>) that may fail to load properly in (e.g.) Internet explorer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_raw_github_url=safe</span></code> or <code class="docutils literal notranslate"><span class="pre">--html_raw_github_url=cdn.rawgit</span></code>: safe URL for high traffic production sites (default)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_raw_github_url=test</span></code> or <code class="docutils literal notranslate"><span class="pre">--html_raw_github_url=rawgit</span></code>: recommended URL for low traffic development sites - use this when developing HTML pages and the DocOnce GitHub links in the HTML files are also developed and subject to changes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_raw_github_url=github</span></code> or <code class="docutils literal notranslate"><span class="pre">--html_raw_github_url=raw.github</span></code>: URL directly to the raw GitHub file (<code class="docutils literal notranslate"><span class="pre">https://raw.github.com/doconce/doconce/...</span></code>) that may fail to load properly in (e.g.) Internet explorer</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--html_raw_github_url=githubusercontent</span></code> or <code class="docutils literal notranslate"><span class="pre">--html_raw_github_url=raw.githubusercontent</span></code>: as the one above, but using <code class="docutils literal notranslate"><span class="pre">https://raw.githubusercontent.com</span></code> instead</p></li>
 </ul>
 </div></blockquote>
@@ -8046,72 +7811,32 @@ provide responsive pages for phones and small tablets.
 There are several specific options for Bootstrap styles:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_code_style=on,off,inherit,transparent</span></code>: control the style of
-inline verbatim code <code class="docutils literal notranslate"><span class="pre">code</span></code> tags. With <code class="docutils literal notranslate"><span class="pre">off</span></code>, <code class="docutils literal notranslate"><span class="pre">inherit</span></code>, or <code class="docutils literal notranslate"><span class="pre">transparent</span></code>
-the verbatim text inherits foreground and background color from its
-surroundings, while <code class="docutils literal notranslate"><span class="pre">on</span></code> (default) means that the typesetting is
-css-specified. This option is most relevant for Bootstrap styles to
-avoid the redish typesetting of inline verbatim text.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_pre_style=on,off,inherit,transparent</span></code>: control the style of
-code blocks in <code class="docutils literal notranslate"><span class="pre">pre</span></code> tags. With <code class="docutils literal notranslate"><span class="pre">off</span></code>, <code class="docutils literal notranslate"><span class="pre">inherit</span></code>, or <code class="docutils literal notranslate"><span class="pre">transparent</span></code>
-the code blocks inherit foreground and background color from their
-surroundings, while <code class="docutils literal notranslate"><span class="pre">on</span></code> (default) means that code block colors are
-css-specified. This option is most relevant for Bootstrap styles to
-avoid white background in code blocks inside colorful admons.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_bootstrap_navbar=on,off</span></code>: turn the Bootstrap navigation
-bar on or off.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_bootstrap_jumbotron=on,off,h2</span></code>: turn the jumbotron intro on or off,
-and govern the size of the document title. Default is <code class="docutils literal notranslate"><span class="pre">on</span></code>, while
-<code class="docutils literal notranslate"><span class="pre">h2</span></code> means a jumbotron with <code class="docutils literal notranslate"><span class="pre">h2</span></code> (section) size of the title
-(normally the jumbotron has huge heading fonts so some jumbotrons
-look better with <code class="docutils literal notranslate"><span class="pre">h2</span></code> typesetting of the document title).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_quiz_button_text=X</span></code>: set a text on the answer button for
-Bootstrap-style quizzes. Without this option a small icon is used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_code_style=on,off,inherit,transparent</span></code>: control the style of inline verbatim code <code class="docutils literal notranslate"><span class="pre">code</span></code> tags. With <code class="docutils literal notranslate"><span class="pre">off</span></code>, <code class="docutils literal notranslate"><span class="pre">inherit</span></code>, or <code class="docutils literal notranslate"><span class="pre">transparent</span></code> the verbatim text inherits foreground and background color from its surroundings, while <code class="docutils literal notranslate"><span class="pre">on</span></code> (default) means that the typesetting is css-specified. This option is most relevant for Bootstrap styles to avoid the redish typesetting of inline verbatim text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_pre_style=on,off,inherit,transparent</span></code>: control the style of code blocks in <code class="docutils literal notranslate"><span class="pre">pre</span></code> tags. With <code class="docutils literal notranslate"><span class="pre">off</span></code>, <code class="docutils literal notranslate"><span class="pre">inherit</span></code>, or <code class="docutils literal notranslate"><span class="pre">transparent</span></code> the code blocks inherit foreground and background color from their surroundings, while <code class="docutils literal notranslate"><span class="pre">on</span></code> (default) means that code block colors are css-specified. This option is most relevant for Bootstrap styles to avoid white background in code blocks inside colorful admons.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_bootstrap_navbar=on,off</span></code>: turn the Bootstrap navigation bar on or off.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_bootstrap_jumbotron=on,off,h2</span></code>: turn the jumbotron intro on or off, and govern the size of the document title. Default is <code class="docutils literal notranslate"><span class="pre">on</span></code>, while <code class="docutils literal notranslate"><span class="pre">h2</span></code> means a jumbotron with <code class="docutils literal notranslate"><span class="pre">h2</span></code> (section) size of the title (normally the jumbotron has huge heading fonts so some jumbotrons look better with <code class="docutils literal notranslate"><span class="pre">h2</span></code> typesetting of the document title).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_quiz_button_text=X</span></code>: set a text on the answer button for Bootstrap-style quizzes. Without this option a small icon is used.</p></li>
 </ul>
 </div></blockquote>
 <p>Other options:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_share=http://...</span></code> makes sharing buttons at the end of the
-document: email, Facebook, Google+, LinkedIn, Twitter, and print by
-default. <code class="docutils literal notranslate"><span class="pre">--html_share=http://...,twitter,linkedin</span></code> will make just
-to sharing buttons for Twitter and LinkedIn. Sites are separated
-by comma and valid names are <code class="docutils literal notranslate"><span class="pre">email</span></code>, <code class="docutils literal notranslate"><span class="pre">facebook</span></code>, <code class="docutils literal notranslate"><span class="pre">google+</span></code>,
-<code class="docutils literal notranslate"><span class="pre">linkedin</span></code>, <code class="docutils literal notranslate"><span class="pre">twitter</span></code>, and <code class="docutils literal notranslate"><span class="pre">print</span></code>. The URL <code class="docutils literal notranslate"><span class="pre">http://...</span></code> must be
-the URL where the document is published.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_toc_indent=X</span></code>: indent sections/subsections <code class="docutils literal notranslate"><span class="pre">X</span></code> spaces in the table
-of contents.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_body_font=</span></code>: specify font for text body. The value <code class="docutils literal notranslate"><span class="pre">?</span></code> lists
-available fonts.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_heading_font=</span></code>: specify font for headings. The value <code class="docutils literal notranslate"><span class="pre">?</span></code> lists
-available fonts.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_video_autoplay=True,False</span></code>: let videos play automatically
-(<code class="docutils literal notranslate"><span class="pre">True</span></code>, default) or not (<code class="docutils literal notranslate"><span class="pre">False</span></code>) when the HTML page is loaded.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_admon=X</span></code>: specify typesetting of admonitions. Values of <code class="docutils literal notranslate"><span class="pre">X</span></code>
-are <code class="docutils literal notranslate"><span class="pre">colors</span></code>, <code class="docutils literal notranslate"><span class="pre">gray</span></code>, <code class="docutils literal notranslate"><span class="pre">yellow</span></code>, <code class="docutils literal notranslate"><span class="pre">apricot</span></code>, <code class="docutils literal notranslate"><span class="pre">lyx</span></code>, <code class="docutils literal notranslate"><span class="pre">paragraph</span></code>.
-For Bootstrap styles only to other values are legal:
-<code class="docutils literal notranslate"><span class="pre">botstrap_panel</span></code> or <code class="docutils literal notranslate"><span class="pre">bootstrap_alert</span></code>. See demos for how these look
-like.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_share=http://...</span></code> makes sharing buttons at the end of the document: email, Facebook, Google+, LinkedIn, Twitter, and print by default. <code class="docutils literal notranslate"><span class="pre">--html_share=http://...,twitter,linkedin</span></code> will make just to sharing buttons for Twitter and LinkedIn. Sites are separated by comma and valid names are <code class="docutils literal notranslate"><span class="pre">email</span></code>, <code class="docutils literal notranslate"><span class="pre">facebook</span></code>, <code class="docutils literal notranslate"><span class="pre">google+</span></code>, <code class="docutils literal notranslate"><span class="pre">linkedin</span></code>, <code class="docutils literal notranslate"><span class="pre">twitter</span></code>, and <code class="docutils literal notranslate"><span class="pre">print</span></code>. The URL <code class="docutils literal notranslate"><span class="pre">http://...</span></code> must be the URL where the document is published.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_toc_indent=X</span></code>: indent sections/subsections <code class="docutils literal notranslate"><span class="pre">X</span></code> spaces in the table of contents.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_body_font=</span></code>: specify font for text body. The value <code class="docutils literal notranslate"><span class="pre">?</span></code> lists available fonts.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_heading_font=</span></code>: specify font for headings. The value <code class="docutils literal notranslate"><span class="pre">?</span></code> lists available fonts.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_video_autoplay=True,False</span></code>: let videos play automatically (<code class="docutils literal notranslate"><span class="pre">True</span></code>, default) or not (<code class="docutils literal notranslate"><span class="pre">False</span></code>) when the HTML page is loaded.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_admon=X</span></code>: specify typesetting of admonitions. Values of <code class="docutils literal notranslate"><span class="pre">X</span></code> are <code class="docutils literal notranslate"><span class="pre">colors</span></code>, <code class="docutils literal notranslate"><span class="pre">gray</span></code>, <code class="docutils literal notranslate"><span class="pre">yellow</span></code>, <code class="docutils literal notranslate"><span class="pre">apricot</span></code>, <code class="docutils literal notranslate"><span class="pre">lyx</span></code>, <code class="docutils literal notranslate"><span class="pre">paragraph</span></code>. For Bootstrap styles only to other values are legal: <code class="docutils literal notranslate"><span class="pre">botstrap_panel</span></code> or <code class="docutils literal notranslate"><span class="pre">bootstrap_alert</span></code>. See demos for how these look like.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--html_admon_bg_color=X</span></code>: set the background color in admonitions.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--html_admon_bd_color=X</span></code>: set the boundary color in admonitions.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--html_admon_shadow</span></code>: add a shadow effect in admonitions.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--html_box_shadow</span></code>: add a shadow effect in box environments (<code class="docutils literal notranslate"><span class="pre">!bbox</span></code>).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_exercise_icon=X</span></code>: specify an icon to more easily notify exercises.
-<code class="docutils literal notranslate"><span class="pre">X</span></code> can be any filename <code class="docutils literal notranslate"><span class="pre">question_*.png</span></code> in the <code class="docutils literal notranslate"><span class="pre">bundled/html_images</span></code>
-directory in the DocOnce repo. With <code class="docutils literal notranslate"><span class="pre">X</span></code> as <code class="docutils literal notranslate"><span class="pre">default</span></code>, a default icon
-choice is made, based on the current style.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_exercise_icon_width=X</span></code>: set the width of the exercise icon
-image to <code class="docutils literal notranslate"><span class="pre">X</span></code> pixels.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_exercise_icon=X</span></code>: specify an icon to more easily notify exercises. <code class="docutils literal notranslate"><span class="pre">X</span></code> can be any filename <code class="docutils literal notranslate"><span class="pre">question_*.png</span></code> in the <code class="docutils literal notranslate"><span class="pre">bundled/html_images</span></code> directory in the DocOnce repo. With <code class="docutils literal notranslate"><span class="pre">X</span></code> as <code class="docutils literal notranslate"><span class="pre">default</span></code>, a default icon choice is made, based on the current style.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_exercise_icon_width=X</span></code>: set the width of the exercise icon image to <code class="docutils literal notranslate"><span class="pre">X</span></code> pixels.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--exercise_numbering=absolute,</span> <span class="pre">chapter</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_DOCTYPE</span></code>: insert <code class="docutils literal notranslate"><span class="pre">&lt;!DOCTYPE</span> <span class="pre">HTML&gt;</span></code> at the top of the HTML
-output file. This is normally recommended, but malformed CSS files
-will then not be loaded (so by default, the doctype is not specified).
-This option is necessary for correct rendering of Bootstrap styles
-in Internet Explorer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_DOCTYPE</span></code>: insert <code class="docutils literal notranslate"><span class="pre">&lt;!DOCTYPE</span> <span class="pre">HTML&gt;</span></code> at the top of the HTML output file. This is normally recommended, but malformed CSS files will then not be loaded (so by default, the doctype is not specified). This option is necessary for correct rendering of Bootstrap styles in Internet Explorer.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--html_links_in_new_window</span></code>: open all links as new tabs.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--html_figure_hrule=X</span></code>: control the use of horizontal rules in
-figures. <code class="docutils literal notranslate"><span class="pre">X</span></code> is <code class="docutils literal notranslate"><span class="pre">top</span></code> by default; other values are <code class="docutils literal notranslate"><span class="pre">none</span></code> (no rules),
-<code class="docutils literal notranslate"><span class="pre">bottom</span></code> and <code class="docutils literal notranslate"><span class="pre">top+bottom</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html_figure_hrule=X</span></code>: control the use of horizontal rules in figures. <code class="docutils literal notranslate"><span class="pre">X</span></code> is <code class="docutils literal notranslate"><span class="pre">top</span></code> by default; other values are <code class="docutils literal notranslate"><span class="pre">none</span></code> (no rules), <code class="docutils literal notranslate"><span class="pre">bottom</span></code> and <code class="docutils literal notranslate"><span class="pre">top+bottom</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--allow_refs_to_external_docs</span></code> (do not abort if there are references whose labels are not found)</p></li>
 </ul>
 </div></blockquote>
@@ -8123,12 +7848,9 @@ raw HTML code. Google's Blogger service (<code class="docutils literal notransla
 <code class="docutils literal notranslate"><span class="pre">blogname.blogspot.com</span></code>) is particularly well suited since it also
 allows extensive LaTeX mathematics via MathJax.</p>
 <ol class="arabic simple">
-<li><p>Write the text of the blog post as a DocOnce document without any
-title, author, and date.</p></li>
+<li><p>Write the text of the blog post as a DocOnce document without any title, author, and date.</p></li>
 <li><p>Generate HTML as described above.</p></li>
-<li><p>Copy the text and paste it into the
-text area in the blog post (just delete the HTML code that initially
-pops up in the text area). Make sure the input format is HTML.</p></li>
+<li><p>Copy the text and paste it into the text area in the blog post (just delete the HTML code that initially pops up in the text area). Make sure the input format is HTML.</p></li>
 </ol>
 <p>See a <a class="reference external" href="http://doconce.blogspot.no">simple blog example</a> and
 a <a class="reference external" href="http://doconce-report-demo.blogspot.no/">scientific report</a>
@@ -8384,10 +8106,8 @@ The <a class="reference external" href="http://code.google.com/p/ptex2tex">ptex2
 viewed as an extended LaTeX. For DocOnce users, the <code class="docutils literal notranslate"><span class="pre">ptex2tex</span></code> format
 essentially means that the file consists of</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">if-else</span></code> statements for the <code class="docutils literal notranslate"><span class="pre">preprocess</span></code> processor such that
-LaTeX constructions can be activated or deactivated, and</p></li>
-<li><p>all code environments can be typeset according to a <code class="docutils literal notranslate"><span class="pre">.ptex2tex.cfg</span></code>
-configuration file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">if-else</span></code> statements for the <code class="docutils literal notranslate"><span class="pre">preprocess</span></code> processor such that LaTeX constructions can be activated or deactivated, and</p></li>
+<li><p>all code environments can be typeset according to a <code class="docutils literal notranslate"><span class="pre">.ptex2tex.cfg</span></code> configuration file.</p></li>
 </ol>
 <p>Point 2 is only of interest if you aim to use a special computer code
 formatting that requires you to use a configuration file and
@@ -8431,8 +8151,8 @@ the <code class="docutils literal notranslate"><span class="pre">--latex_code_st
 that has to be converted to a standard <code class="docutils literal notranslate"><span class="pre">mydoc.tex</span></code> LaTeX file via
 the programs <code class="docutils literal notranslate"><span class="pre">ptex2tex</span></code> or <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">ptex2tex</span></code>.</p>
 </div>
-<div class="section" id="id48">
-<h4>Newcommands<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id46">
+<h4>Newcommands<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h4>
 <p>LaTeX-specific commands (&quot;newcommands&quot;) in math formulas and similar
 can be placed in files <code class="docutils literal notranslate"><span class="pre">newcommands.tex</span></code>, <code class="docutils literal notranslate"><span class="pre">newcommands_keep.tex</span></code>, or
 <code class="docutils literal notranslate"><span class="pre">newcommands_replace.tex</span></code> (see the section <a class="reference internal" href="#newcommands"><span class="std std-ref">Macros (Newcommands)</span></a>).
@@ -8462,7 +8182,7 @@ look for options starting with <code class="docutils literal notranslate"><span 
 <li><p><code class="docutils literal notranslate"><span class="pre">--latex_bibstyle=plain</span></code> (name of BibTeX style)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--latex_title_layout=titlepage,</span> <span class="pre">std,</span> <span class="pre">beamer,</span> <span class="pre">doconce_heading,</span> <span class="pre">Springer_collection</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--latex_style=std,</span> <span class="pre">Springer_sv,</span> <span class="pre">Springer_lncse,</span> <span class="pre">Springer_llncs,</span> <span class="pre">Springer_lnup,</span> <span class="pre">Springer_T2,</span> <span class="pre">Springer_T4,</span> <span class="pre">siamltex,</span> <span class="pre">siamltexmm,</span> <span class="pre">elsevier</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--latex_packages=package1,package2,package3</span></code> (list of extra packages to be included <a class="footnote-reference brackets" href="#varioref" id="id49">5</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--latex_packages=package1,package2,package3</span></code> (list of extra packages to be included <a class="footnote-reference brackets" href="#varioref" id="id47">5</a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--draft</span></code> (turns on draft mode in documentclass, otherwise final mode)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--latex_copyright=everypage,titlepages</span></code> (copyright on every page or on titlepage and chapter pages)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--latex_list_of_exercises=loe,toc,none</span></code> (LaTeX list of exercises, integrated into the table of contents, or no list)</p></li>
@@ -8509,7 +8229,7 @@ to be submitted to Elsevier journals (<code class="docutils literal notranslate"
 be used to set the journal name, and the style requires
 <code class="docutils literal notranslate"><span class="pre">elsarticle.cls</span></code> and <code class="docutils literal notranslate"><span class="pre">elsarticle-num.bst</span></code>).</p>
 <dl class="footnote brackets">
-<dt class="label" id="varioref"><span class="brackets"><a class="fn-backref" href="#id49">5</a></span></dt>
+<dt class="label" id="varioref"><span class="brackets"><a class="fn-backref" href="#id47">5</a></span></dt>
 <dd><p>Listing <code class="docutils literal notranslate"><span class="pre">varioref</span></code> in as package
 automatically leads to references with page numbers, if the element referred to
 is not on the same page. This is often very helpful, e.g., &quot;see
@@ -8592,14 +8312,8 @@ that comes with DocOnce can be run:</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">ptex2tex</span></code> command can set two preprocessor variables:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">PREAMBLE</span></code> to turn the LaTeX preamble on or off (i.e., complete document
-or document to be included elsewhere - and note that
-the preamble is only included
-if the document has a title, author, and date)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">MINTED</span></code> for inclusion of the minted package for typesetting of
-code with the Pygments tool (which requires <code class="docutils literal notranslate"><span class="pre">latex</span></code>
-or <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> to be run with the <code class="docutils literal notranslate"><span class="pre">-shell-escape</span></code> option); not used
-for <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">ptex2tex</span></code> only in the <code class="docutils literal notranslate"><span class="pre">ptex2tex</span></code> program</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PREAMBLE</span></code> to turn the LaTeX preamble on or off (i.e., complete document or document to be included elsewhere - and note that the preamble is only included if the document has a title, author, and date)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MINTED</span></code> for inclusion of the minted package for typesetting of code with the Pygments tool (which requires <code class="docutils literal notranslate"><span class="pre">latex</span></code> or <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> to be run with the <code class="docutils literal notranslate"><span class="pre">-shell-escape</span></code> option); not used for <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">ptex2tex</span></code> only in the <code class="docutils literal notranslate"><span class="pre">ptex2tex</span></code> program</p></li>
 </ul>
 </div></blockquote>
 <p>If you are not satisfied with the generated DocOnce preamble, you can provide
@@ -8804,10 +8518,8 @@ are</p>
 </dd>
 </dl>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">HTML-YouTube</span></code>: as <code class="docutils literal notranslate"><span class="pre">HTML</span></code> but use an <code class="docutils literal notranslate"><span class="pre">IPython.display.YouTubeVideo</span></code>
-object to display YouTube videos</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ipynb</span></code>: use <code class="docutils literal notranslate"><span class="pre">IPython.display.YouTubeVideo</span></code> object for YouTube videos,
-and use an <code class="docutils literal notranslate"><span class="pre">HTML</span></code> object with <code class="docutils literal notranslate"><span class="pre">video</span></code> tag for local movies</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HTML-YouTube</span></code>: as <code class="docutils literal notranslate"><span class="pre">HTML</span></code> but use an <code class="docutils literal notranslate"><span class="pre">IPython.display.YouTubeVideo</span></code> object to display YouTube videos</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ipynb</span></code>: use <code class="docutils literal notranslate"><span class="pre">IPython.display.YouTubeVideo</span></code> object for YouTube videos, and use an <code class="docutils literal notranslate"><span class="pre">HTML</span></code> object with <code class="docutils literal notranslate"><span class="pre">video</span></code> tag for local movies</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -8818,8 +8530,7 @@ We offer these different choices, set by the
 option <code class="docutils literal notranslate"><span class="pre">--ipynb_admon=</span></code>:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">quote</span></code>: typeset admon as Markdown quote (special font and gray vertical bar on
-the left)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">quote</span></code>: typeset admon as Markdown quote (special font and gray vertical bar on the left)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">paragraph</span></code>: typeset admon as a plain paragraph with a heading if any (default)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">hrule</span></code>: use a horozontal rule to surround the heading and the text</p></li>
 </ul>
@@ -9300,22 +9011,11 @@ you may upload a DocOnce document to Google Docs. This requires transforming
 the DocOnce document to one of the accepted formats for Google Docs:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>OpenOffice: <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">format</span> <span class="pre">rst</span></code> and then run
-<code class="docutils literal notranslate"><span class="pre">rst2odt</span></code> (or <code class="docutils literal notranslate"><span class="pre">rst2odt.py</span></code>). Upload the <code class="docutils literal notranslate"><span class="pre">.odt</span></code> file, click
-<em>Open...</em> in Google Drive and choose <em>Google Docs</em> as viewer.</p></li>
-<li><p>MS Word: <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">format</span> <span class="pre">pandoc</span></code> and then run <code class="docutils literal notranslate"><span class="pre">pandoc</span></code> to
-produce a <code class="docutils literal notranslate"><span class="pre">.docx</span></code> file that can be uploaded to Google Drive
-and opened in Google Docs.</p></li>
-<li><p>RTF: <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">format</span> <span class="pre">pandoc</span></code> and then run <code class="docutils literal notranslate"><span class="pre">pandoc</span></code> to produce
-a <code class="docutils literal notranslate"><span class="pre">.rtf</span></code> file that can be uploaded to Google Drive and opened.
-Another possibility is to run <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">format</span> <span class="pre">latex</span></code> and
-then <a class="reference external" href="http://sourceforge.net/projects/latex2rtf">latex2rtf</a>
-(the support of mathematics has gotten worse).</p></li>
-<li><p>Plain text: <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">format</span> <span class="pre">plain</span></code>. Upload the <code class="docutils literal notranslate"><span class="pre">.txt</span></code> file
-to Google Drive and open in Google Docs.</p></li>
-<li><p>HTML: <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">format</span> <span class="pre">html</span></code>. Upload the <code class="docutils literal notranslate"><span class="pre">.html</span></code> file and
-open in Google Docs. Complicated HTML files can be misinterpreted
-by Google Docs.</p></li>
+<li><p>OpenOffice: <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">format</span> <span class="pre">rst</span></code> and then run <code class="docutils literal notranslate"><span class="pre">rst2odt</span></code> (or <code class="docutils literal notranslate"><span class="pre">rst2odt.py</span></code>). Upload the <code class="docutils literal notranslate"><span class="pre">.odt</span></code> file, click <em>Open...</em> in Google Drive and choose <em>Google Docs</em> as viewer.</p></li>
+<li><p>MS Word: <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">format</span> <span class="pre">pandoc</span></code> and then run <code class="docutils literal notranslate"><span class="pre">pandoc</span></code> to produce a <code class="docutils literal notranslate"><span class="pre">.docx</span></code> file that can be uploaded to Google Drive and opened in Google Docs.</p></li>
+<li><p>RTF: <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">format</span> <span class="pre">pandoc</span></code> and then run <code class="docutils literal notranslate"><span class="pre">pandoc</span></code> to produce a <code class="docutils literal notranslate"><span class="pre">.rtf</span></code> file that can be uploaded to Google Drive and opened. Another possibility is to run <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">format</span> <span class="pre">latex</span></code> and then <a class="reference external" href="http://sourceforge.net/projects/latex2rtf">latex2rtf</a> (the support of mathematics has gotten worse).</p></li>
+<li><p>Plain text: <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">format</span> <span class="pre">plain</span></code>. Upload the <code class="docutils literal notranslate"><span class="pre">.txt</span></code> file to Google Drive and open in Google Docs.</p></li>
+<li><p>HTML: <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">format</span> <span class="pre">html</span></code>. Upload the <code class="docutils literal notranslate"><span class="pre">.html</span></code> file and open in Google Docs. Complicated HTML files can be misinterpreted by Google Docs.</p></li>
 </ul>
 </div></blockquote>
 <p>This is not yet much tested. It remains to see how code becomes in
@@ -9948,12 +9648,10 @@ and Sphinx just typeset the list as a list with keywords.</p>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">var x</dt>
-<dd class="field-odd"><p>x value (float),
-which must be a positive number.</p>
+<dd class="field-odd"><p>x value (float), which must be a positive number.</p>
 </dd>
 <dt class="field-even">var tolerance</dt>
-<dd class="field-even"><p>tolerance (float) for stopping
-the iterations.</p>
+<dd class="field-even"><p>tolerance (float) for stopping the iterations.</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -9975,39 +9673,39 @@ syntax and not references for explaining parts of the text.</p>
 pp. 14-21,
 1985.</p>
 </dd>
-<dt class="label" id="ref2"><span class="brackets">Ref2</span><span class="fn-backref">(<a href="#id27">1</a>,<a href="#id28">2</a>)</span></dt>
+<dt class="label" id="ref2"><span class="brackets">Ref2</span><span class="fn-backref">(<a href="#id25">1</a>,<a href="#id26">2</a>)</span></dt>
 <dd><p><strong>H. P. Langtangen</strong>. A Document for Testing DocOnce,
 <a class="reference external" href="http://hplgit.github.io/doconce/test/demo_testdoc.html">http://hplgit.github.io/doconce/test/demo_testdoc.html</a>.</p>
 </dd>
-<dt class="label" id="ref3"><span class="brackets">Ref3</span><span class="fn-backref">(<a href="#id35">1</a>,<a href="#id40">2</a>)</span></dt>
+<dt class="label" id="ref3"><span class="brackets">Ref3</span><span class="fn-backref">(<a href="#id33">1</a>,<a href="#id38">2</a>)</span></dt>
 <dd><p><strong>H. P. Langtangen and G. Pedersen</strong>. Propagation of Large Destructive Waves,
 <em>International Journal of Applied Mechanics and Engineering</em>,
 7(1),
 pp. 187-204,
 2002.</p>
 </dd>
-<dt class="label" id="ref4"><span class="brackets">Ref4</span><span class="fn-backref">(<a href="#id36">1</a>,<a href="#id42">2</a>,<a href="#id43">3</a>)</span></dt>
+<dt class="label" id="ref4"><span class="brackets">Ref4</span><span class="fn-backref">(<a href="#id34">1</a>,<a href="#id40">2</a>,<a href="#id41">3</a>)</span></dt>
 <dd><p><strong>H. P. Langtangen, K.-A. Mardal and R. Winther</strong>. Numerical Methods for Incompressible Viscous Flow,
 <em>Advances in Water Resources</em>,
 25,
 pp. 1125-1146,
 2002.</p>
 </dd>
-<dt class="label" id="ref5"><span class="brackets"><a class="fn-backref" href="#id37">Ref5</a></span></dt>
+<dt class="label" id="ref5"><span class="brackets"><a class="fn-backref" href="#id35">Ref5</a></span></dt>
 <dd><p><strong>H. P. Langtangen</strong>. Numerical Solution of First Passage Problems in Random Vibrations,
 <em>SIAM Journal of Scientific and Statistical Computing</em>,
 15,
 pp. 997-996,
 1994.</p>
 </dd>
-<dt class="label" id="ref6"><span class="brackets">Ref6</span><span class="fn-backref">(<a href="#id38">1</a>,<a href="#id41">2</a>)</span></dt>
+<dt class="label" id="ref6"><span class="brackets">Ref6</span><span class="fn-backref">(<a href="#id36">1</a>,<a href="#id39">2</a>)</span></dt>
 <dd><p><strong>K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen</strong>. Software Tools for Multigrid Methods,
 Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming,
 edited by <strong>H. P. Langtangen and A. Tveito</strong>,
 Springer,
 2003.</p>
 </dd>
-<dt class="label" id="ref7"><span class="brackets"><a class="fn-backref" href="#id39">Ref7</a></span></dt>
+<dt class="label" id="ref7"><span class="brackets"><a class="fn-backref" href="#id37">Ref7</a></span></dt>
 <dd><p><strong>H. P. Langtangen</strong>. The FEMDEQS Program System,
 <em>Department of Mathematics, University of Oslo</em>,
 1989.</p>

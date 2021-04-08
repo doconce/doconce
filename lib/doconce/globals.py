@@ -281,6 +281,133 @@ locale_dict = dict(
         'Hint': 'Indication',
         'Filename': 'Nom de fichier',
         'Filenames': 'Noms de fichier',
+        'question_prefix': 'Question:', # question in multiple-choice quiz
+        'choice_prefix': 'Alternative', # choice in multiple-choice quiz
+        },
+    Dutch={
+        # Nederlands
+        'locale': 'nl_NL.UTF-8',
+        'latex package': 'dutch',
+        'aspell_dictionary' : 'dutch', # with aspell, this is an alias for 'en_US'
+        'toc': 'Inhoudsopgave',
+        'Contents': 'Inhoud',
+        'Figure': 'Figuur',
+        'Movie': 'Film',
+        'list of': 'Lijst met',
+        'and': 'en',
+        'Exercise': 'Oefening',
+        'Project': 'Project',
+        'Problem': 'Probleem',
+        'Example': 'Voorbeeld',
+        'Projects': 'Projecten',
+        'Problems': 'Problemen',
+        'Examples': 'Voorbeelden',
+        'Preface': 'Voorwoord',
+        'Abstract': 'Abstract',
+        'Summary': 'Samenvatting',
+        # Admons
+        'summary': 'samenvatting',
+        'hint': 'hint',
+        'question': 'Vraag',
+        'notice': 'opmerking',
+        'warning': 'waarschuving',
+        # box, quote are silent wrt title
+        'remarks': 'opmerkingen', # In exercises
+        # Exercise headings
+        'Solution': 'Oplossing',
+        'Answer': 'antwoord',
+        'Hint': 'Hint',
+        # At the end (in Sphinx)
+        'index': 'Inhoudsopgave',
+        # References
+        'Filename': 'Bestandsnaam',
+        'Filenames': 'Bestandsnamen',
+        # Quiz
+        'question_prefix': 'Vraag:',    # question in multiple-choice quiz
+        'choice_prefix': 'Alternatief', # choice in multiple-choice quiz
+    },
+    Italian={
+        'locale': 'it_IT.UTF-8',
+        'latex package': 'italian',
+        'aspell_dictionary' : 'italian',
+        'toc': 'Indice',
+        'Contents': 'Contenuto',
+        'Figure': 'Figura',
+        'Movie': 'Video',
+        'list of': 'Lista con',
+        'and': 'e',
+        'Exercise': 'Esercizio',
+        'Project': 'Progetto',
+        'Problem': 'Problema',
+        'Example': 'Esempio',
+        'Projects': 'Progetto',
+        'Problems': 'Problemi',
+        'Examples': 'Esempi',
+        'Preface': 'Prefazione',
+        'Abstract': 'Abstract',
+        'Summary': 'Riassunto',
+        # Admons
+        'summary': 'sommario',
+        'hint': 'suggerimento',
+        'question': 'domanda',
+        'notice': 'NB',
+        'warning': 'avvertimento',
+        # box, quote are silent wrt title
+        'remarks': 'osservazioni', # In exercises
+        # Exercise headings
+        'Solution': 'Soluzione',
+        'Answer': 'Risposta',
+        'Hint': 'Suggerimento',
+        # At the end (in Sphinx)
+        'index': 'Indice',
+        # References
+        'Filename': 'Nome del file',
+        'Filenames': 'Nomi dei file',
+        # Quiz
+        'question_prefix': 'Domanda:',  # question in multiple-choice quiz
+        'choice_prefix': 'Alternativa', # choice in multiple-choice quiz
+        },
+    Spanish={
+        # Spanish, Spain
+        'locale': 'es_ES.UTF-8',
+        'latex package': 'spanish',
+        'aspell_dictionary' : 'spanish',
+        'toc': 'Tabla de contenido',
+        'Contents': 'Contenido',
+        'Figure': 'Figura',
+        'Movie': 'Video',
+        'list of': 'Lista de',
+        'and': 'y',
+        'Exercise': 'Ejercicio',
+        'Project': 'Proyecto',
+        'Problem': 'Problema',
+        'Example': 'Ejemplo',
+        'Projects': 'Proyecto',
+        'Problems': 'Problemas',
+        'Examples': 'Ejemplos',
+        'Preface': 'Prefacio',
+        'Abstract': 'Abstracta',
+        'Summary': 'Resumen',
+        # Admons
+        'summary': 'resumen',
+        'hint': 'indicio',
+        'question': 'pregunta',
+        'notice': 'nota',
+        'warning': 'advertencia',
+        # box, quote are silent wrt title
+        'remarks': 'comentarios', # In exercises
+        # Exercise headings
+        'Solution': 'Soluciones',
+        'Answer': 'Respuesta',
+        'Hint': 'Indicios',
+        # At the end (in Sphinx)
+        'index': 'Índice',
+        # References
+        'Filename': 'Nombre del archivo',
+        'Filenames': 'Nombres de los archivos',
+        # Quiz
+        'question_prefix': 'Pregunta:', # question in multiple-choice quiz
+        'choice_prefix': 'Alternativa', # choice in multiple-choice quiz
         }
     )
 # Let English be an alias for American
