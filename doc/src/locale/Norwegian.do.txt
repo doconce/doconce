@@ -4,7 +4,7 @@ DATE: today
 
 idx{sammendrag}
 
-# Abstract, Summary eller Preface blir til Abtrakt, Sammendrag eller
+# Abstract, Summary eller Preface blir til Abstrakt, Sammendrag eller
 # Forord.
 
 __Abstract.__

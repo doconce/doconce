@@ -5427,7 +5427,7 @@ The cycle is
 ======= Support for non-English =======
 
 DocOnce can handle documents in other languages than English. At the time
-of this writing there is support for Basque, German and Norwegian. Please create an issue at URL: "https://github.com/doconce/doconce/issues" to request support for additional languages.
+of this writing there is support for French, Spanish, Basque, German, Italian, Dutch and Norwegian. Please create an issue at URL: "https://github.com/doconce/doconce/issues" to request support for additional languages.
 
 A demo directory with files is "`locale`": "https://github.com/doconce/doconce/tree/master/doc/src/locale". For example, `norsk.do.txt` contains a simple document
 in Norwegian. To compile, one must supply the options

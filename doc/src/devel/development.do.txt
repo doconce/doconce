@@ -6,7 +6,10 @@ DATE: today
 DocOnce is an open source project. 
 The aim of this guide is to help getting started with development. It describes the program's structure and how to set up a script that runs DocOnce from a Python IDE.
 
-======= The entry point `bin/doconce` =======
+
+======= Program Structure =======
+
+===== The entry point `bin/doconce` =====
 The entry point of the doconce program is the file `bin/doconce`. In fact, the `setup.py` file contains this line invoking the `scripts` option to run commands from terminal:
 
 !bc pycod-t
@@ -32,7 +35,7 @@ retval = eval(command + '()')
 which passes execution to specific function that are imported in the beginning of the script.
 
 
-======= Python scripts in `lib/doconce/` =======
+===== Python scripts in `lib/doconce/` =====
 
 The `lib/doconce/` directory contains the scripts to run DocOnce. The name of the files give a clue about their purpose, e.g. `html.py` contains code that is run by `doconce format html`. The `doconce.py` file contains important formatting functions such as `doconce_format()`, `preprocess()`, `doconce2format()`, `file2file()`. 
 
@@ -41,7 +44,18 @@ I suggest navigating through the scripts by using an IDE with debugger. See the
 Section ref{section:IDE}.
 
 
-======= Running in a IDE =======
+===== Running Tests =====
+
+Tests are written in the `test/` folder. See the instructions in the `README` file. 
+
+New tests using `pytest` library are currently under development. They can be run with 
+
+!bc pycod-t
+pytest -v test_run.py
+!ec
+
+
+======= Running DocOnce in a IDE =======
 label{section:IDE}
 
 The following code can be used in a IDE such as "PyCharm": "https://www.jetbrains.com/pycharm/", "Eclipse": "https://www.eclipse.org/", "Microsoft Visual Studio": "https://visualstudio.microsoft.com/", or others.
@@ -87,19 +101,19 @@ os.system('dvipdf execute.dvi');
 os.system('xreader execute.pdf');
 !ec
 
-As an example for PyCharm, see the guide "Create and edit run/debug configurations﻿": "https://www.jetbrains.com/help/pycharm/creating-and-editing-run-debug-configurations.html" to set up create and edit run/debug configurations﻿. I suggest using a virtual environment as "Python interpreter": "https://www.jetbrains.com/help/pycharm/python-interpreters.html".
+As an example for PyCharm, see the guide "Create and edit run/debug configurations﻿": "https://www.jetbrains.com/help/pycharm/creating-and-editing-run-debug-configurations.html" to set up create and edit run/debug configurations﻿. I suggest using a virtual environment as "Python interpreter": "https://www.jetbrains.com/help/pycharm/python-interpreters.html". Also install DocOnce in development mode so that the `doconce` command will get updated when you edit its code:
 
-======= Running Tests =======
+```
+# Create a virtual environment
+python -m venv venv
+source venv/bin/activate
+# Install dependencies and DocOnce in development mode
+(venv) pip install -r requirements.txt
+(venv) pip install -e .
+```
 
-Tests are written in the `test/` folder. See the instructions in the `README` file. 
 
-New tests using `pytest` library are currently under development. They can be run with 
-
-!bc pycod-t
-pytest -v test_run.py
-!ec
-
-======= Compiling the documentation =======
+======= Compiling the Documentation =======
 
 The documentation is written as DocOnce `.do.txt` files in different folder inside `doc/src/`, for example `doc/src/manual/`, `doc/src/quickref/`, `doc/src/tutorial/`. These folders contains a `make.sh` file that can be run in `bash` to create documentation in  different formats: 
 
@@ -108,3 +122,22 @@ bash make.sh
 !ec
 
 All relevant output files are copied to `doc/pub` for publication on the github website.
+
+
+
+======= Add a New Language =======
+
+The translations are defined in the `lib/doconce/globals.py` file, and test files are in the [locale](https://github.com/doconce/doconce/tree/master/doc/src/locale) directory. Also read the [Support for non-English](https://doconce.github.io/doconce/doc/pub/manual/manual.html#support-for-non-english) section of the manual. 
+
+
+
+======= Send your code using git =======
+
+I suggest the following procedure
+
+* Creating a fork of the [doconce/doconce](https://github.com/doconce/doconce) repository in your GitHub account; 
+* Edit/develop new code there (you might want to use git branches); 
+* Run `git add .` and `git push`. Your forked repository should at this point get your commit;
+* Navigate to the [doconce/doconce](https://github.com/doconce/doconce) repository and create a Pull Request. In brief: Pull Request button > New pull request button > click on the "compare across forks" link > Use the boxes below the link to compare with your fork
+
+You might want to read more about git online. 

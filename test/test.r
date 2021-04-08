@@ -409,7 +409,7 @@ MathJax.Hub.Config({
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html testdoc.do.txt --examples_as_exercises --latex_title_layout=std --latex_packages=varioref
 %%
 % #ifdef PTEX2TEX_EXPLANATION
 %%
@@ -2298,7 +2298,7 @@ in a separate document: \texttt{admon.do.txt}.
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html testdoc.do.txt --examples_as_exercises --latex_code_style=default:lst-blue1[style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]@fcod:vrb-gray@sys:vrb[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt] --latex_code_lststyles=mylststyles --latex_packages=varioref
 % #define PREAMBLE
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
@@ -4379,7 +4379,7 @@ output in testdoc.tex
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html testdoc.do.txt --device=paper --examples_as_exercises --latex_double_hyphen --latex_index_in_margin --latex_no_program_footnotelink --latex_title_layout=titlepage --latex_papersize=a4 --latex_colored_table_rows=blue --latex_fancy_header --latex_section_headings=blue --latex_labels_in_margin --latex_double_spacing --latex_todonotes --latex_list_of_exercises=loe --latex_font=palatino --latex_packages=varioref --latex_link_color=blue!90 --draft
 %%
 %-------------------- begin preamble ----------------------
 \documentclass[%
@@ -6330,7 +6330,7 @@ in a separate document: \texttt{admon.do.txt}.
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html testdoc.do.txt --examples_as_exercises --latex_code_style=default:lst-blue1[style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]@fcod:vrb-gray@sys:vrb[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt] --latex_code_lststyles=mylststyles --latex_packages=varioref
 % #define PREAMBLE
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
@@ -29714,7 +29714,7 @@ dummy2].
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html author1.do.txt 
 %%
 % #ifdef PTEX2TEX_EXPLANATION
 %%
@@ -30339,7 +30339,7 @@ Inline math, a=b, is the only math in this document.
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html author2.do.txt --latex_style=siamltex
 %%
 %-------------------- begin preamble ----------------------
 % Style: SIAM LaTeX2e
@@ -30427,7 +30427,7 @@ a citation like \cite{Langtangen_1992c,Langtangen_1994a}.
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html author2.do.txt --latex_style=elsevier
 %%
 %-------------------- begin preamble ----------------------
 % Style: Elsvier LaTeX style
@@ -30516,6 +30516,7 @@ test \sep doconce \sep paper \sep multiple authors
 \end{keyword}
 \end{frontmatter}
 %\linenumbers
+)
 %\tableofcontents
 \vspace{1cm} % after toc
 \section{Introduction}
@@ -38980,7 +38981,7 @@ $$ \hbox{math in solution: } a = b $$
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html testdoc.do.txt --without_answers --without_solutions --examples_as_exercises -DSOMEVAR --sections_down --number_all_equations --latex_packages=varioref --cite_doconce
 %%
 % #ifdef PTEX2TEX_EXPLANATION
 %%
@@ -45268,7 +45269,7 @@ v_4
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html math_test.do.txt --no_abort
 %%
 % #ifdef PTEX2TEX_EXPLANATION
 %%
@@ -51530,7 +51531,7 @@ footnotes.
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html admon.do.txt --latex_admon=mdfbox --latex_admon_color=1,1,1 --latex_admon_envir_map=2 --cite_doconce --no_abort
 %%
 % #ifdef PTEX2TEX_EXPLANATION
 %%
@@ -52128,7 +52129,7 @@ exercises (and problems and projects too).
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html admon.do.txt --latex_admon=colors1 --latex_code_style=lst --cite_doconce
 % #define PREAMBLE
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
@@ -52721,7 +52722,7 @@ exercises (and problems and projects too).
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html admon.do.txt --latex_admon=colors2 --latex_code_style=lst --cite_doconce
 % #define PREAMBLE
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
@@ -53321,7 +53322,7 @@ exercises (and problems and projects too).
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html admon.do.txt --latex_admon=mdfbox --latex_admon_color=warning:darkgreen!40!white;notice:darkgray!20!white;summary:tucorange!20!white;question:red!50!white;block:darkgreen!40!white --no_abort --latex_code_style=lst --cite_doconce
 % #define PREAMBLE
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
@@ -53964,7 +53965,7 @@ exercises (and problems and projects too).
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html admon.do.txt --latex_admon=graybox2 --no_abort --latex_code_style=lst --cite_doconce
 % #define PREAMBLE
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
@@ -54529,7 +54530,7 @@ exercises (and problems and projects too).
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html admon.do.txt --latex_admon=grayicon --latex_admon_color=gray!20 --latex_code_style=lst --cite_doconce
 % #define PREAMBLE
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
@@ -55134,7 +55135,7 @@ exercises (and problems and projects too).
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html admon.do.txt --latex_admon=paragraph-footnotesize --latex_code_style=lst --cite_doconce
 % #define PREAMBLE
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
@@ -55685,7 +55686,7 @@ exercises (and problems and projects too).
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html admon.do.txt --latex_admon=yellowicon --latex_code_style=lst --cite_doconce
 % #define PREAMBLE
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
@@ -56290,7 +56291,7 @@ exercises (and problems and projects too).
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html admon.do.txt --latex_admon=mdfbox --latex_admon_color=1,1,1 --latex_admon_envir_map=2 --cite_doconce --no_abort
 %%
 %-------------------- begin preamble ----------------------
 \documentclass[%
@@ -66347,8 +66348,8 @@ $$ \frac{\partial u}{\partial t} = \nabla^2 u $$
 
     <!-- deck.navigation snippet -->
     <div aria-role="navigation">
-      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
-      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+      <a href="deck.js-latest/#" class="deck-prev-link" title="Previous">&#8592;</a>
+      <a href="deck.js-latest/#" class="deck-next-link" title="Next">&#8594;</a>
     </div>
 
     <!-- deck.status snippet -->
@@ -69289,7 +69290,7 @@ Reveal.initialize({
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html slides2.do.txt --latex_title_layout=beamer -DBEAMER --no_abort
 %%
 % #ifdef PTEX2TEX_EXPLANATION
 %%
@@ -71608,7 +71609,7 @@ MathJax.Hub.Config({
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html slides3.do.txt SLIDE_TYPE=beamer SLIDE_THEME=red_plain --latex_title_layout=beamer
 %%
 % #ifdef PTEX2TEX_EXPLANATION
 %%
@@ -73934,7 +73935,7 @@ if (!!(window.safari)) {
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html movies.do.txt 
 %%
 % #ifdef PTEX2TEX_EXPLANATION
 %%
@@ -74265,7 +74266,7 @@ Finally, let us demonstrate referencing the movie~\ref{mov:wave}.
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html movies.do.txt 
 %%
 %-------------------- begin preamble ----------------------
 \documentclass[%
@@ -74564,7 +74565,7 @@ Finally, let us demonstrate referencing the movie~\ref{mov:wave}.
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html movies.do.txt --latex_movie=media9
 %%
 %-------------------- begin preamble ----------------------
 \documentclass[%
@@ -77707,7 +77708,7 @@ BIBFILE: papers.pub
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%%
+%% doconce format html Springer_T2_book.do.txt CHAPTER=chapter BOOK=book APPENDIX=appendix -DPRIMER_BOOK ALG=code --latex_code_style=lst --encoding=utf-8 --device=paper --exercise_numbering=chapter --latex_admon_color=1,1,1 --latex_admon=mdfbox --latex_style=Springer_T4 --latex_title_layout=titlepage --latex_list_of_exercises=loe --latex_table_format=center --latex_admon_title_no_period --exercises_in_zip --exercises_in_zip_filename=chapter --allow_refs_to_external_docs
 % #define PREAMBLE
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
