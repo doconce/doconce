@@ -248,7 +248,40 @@ locale_dict = dict(
         # References
         'Filename': u'اسم_الملف',
         'Filenames': u'أسماء_الملفات',
-    }
+    },
+    French={
+        'locale': 'fr_FR.UTF-8', # français
+        'latex package': 'french',
+        'toc': u'Table des matières',
+        'Contents': 'Sommaire',
+        'Figure': 'Figure',
+        'Movie': u'Vidéo',
+        'list of': 'Liste des',
+        'and': 'et',
+        'Exercise': 'Exercice',
+        'Project': 'Projet',
+        'Problem': u'Problème',
+        'Example': 'Exemple',
+        'Exercises': 'Exercices',
+        'Projects': 'Projets',
+        'Problems': u'Problèmes',
+        'Examples': 'Exemples',
+        'Preface': u'Préface',
+        'Abstract': u'Résumé',
+        'Summary': u'Résumé',
+        'summary': u'résumé',
+        'hint': 'Indication',
+        'question': u'question',
+        'notice': 'note',
+        'warning': 'avertissement',
+        'remarks': 'remarque',
+        'index': 'Index',
+        'Solution': 'Solution',  # In exercises
+        'Answer': u'Réponse',
+        'Hint': 'Indication',
+        'Filename': 'Nom de fichier',
+        'Filenames': 'Noms de fichier',
+        }
     )
 # Let English be an alias for American
 locale_dict['English'] = locale_dict['American'].copy()
