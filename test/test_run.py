@@ -163,7 +163,8 @@ def test_text_lines():
 def test_typeset_lists():
     from doconce.doconce import typeset_lists
     assert typeset_lists('a line', format='html') == 'a line\n'
-    # TODO
+    # TODO fails because of import
+    #assert typeset_lists('    - keyword x: text', format='html') == ''
     pass
 
 

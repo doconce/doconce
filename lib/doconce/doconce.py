@@ -2793,7 +2793,7 @@ def typeset_lists(filestr, format, debug_info=[]):
             # for end of list
 
         # Structure of a line: get any indent, listtype, keyword, text
-        linescan = re.compile(r"\n*(?P<indent> *(?P<listtype>[*o-] )? *)" + r"(?P<keyword>[^\" ]+?:\s+)?(?P<text>.*)\s?")
+        linescan = re.compile(r"\n*(?P<indent> *(?P<listtype>[*o-] )? *)" + r"(?P<keyword>[^\"]+?:\s+)?(?P<text>.*)\s?")
         m = linescan.match(line)
         indent = len(m.group('indent'))
         lastlisttype = listtype
@@ -4496,7 +4496,7 @@ def doconce2format(filestr, format):
            LIST, ARGLIST,TABLE, EXERCISE, FIGURE_EXT, CROSS_REFS, INDEX_BIB, \
            TOC, ENVIRS, INTRO, OUTRO
 
-    for module in [eval(module) for module in globals.supported_format_names]:
+    for module in [eval(module) for module in  globals.supported_format_names]:
         module.define(
             FILENAME_EXTENSION,
             BLANKLINE,

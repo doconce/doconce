@@ -2782,29 +2782,27 @@ def define(FILENAME_EXTENSION,
 
     toc_part = ''
     if title_layout != 'beamer':
-        toc_part += r"""
-\tableofcontents
-"""
+        toc_part += ('\n'
+                     r'\tableofcontents'
+                     '\n')
     if latex_style in ('Springer_lncse', 'Springer_lnup'):
-        toc_part += r"""
-\contentsline{chapter}{\refname}{%(bib_page)s}{chapter.Bib}
-\contentsline{chapter}{Index}{%(idx_page)s}{chapter.Index}
-""" % vars()
+        toc_part += ('\n'
+                     r'\contentsline{chapter}{\refname}{%(bib_page)s}{chapter.Bib}'
+                     '\n'
+                     '\contentsline{chapter}{Index}{%(idx_page)s}{chapter.Index}\n') % vars()
     if has_inline_comments and not option('skip_inline_comments') \
             and option('latex_todonotes'):
-        toc_part += r"""
-\listoftodos[List of inline comments]
-"""
+        toc_part += ('\n'
+                     r'\listoftodos[List of inline comments]'
+                     '\n')
     if title_layout != 'beamer':
-        toc_part += r"""
-
-\vspace{1cm} % after toc
-"""
+        toc_part += ('\n\n'
+                     r'\vspace{1cm} % after toc'
+                     '\n')
     if latex_style in ('Springer_sv', 'Springer_lnup', 'tufte-book',
                        'Springer_T2', 'Springer_T4', 'siambook'):
-        toc_part += r"""
-\mainmatter
-"""
+        toc_part += ('\n'
+                     '\mainmatter\n')
 
     TOC['latex'] = lambda s, f: toc_part
     QUIZ['latex'] = latex_quiz
@@ -2824,66 +2822,64 @@ def define(FILENAME_EXTENSION,
     section_headings = option('latex_section_headings=', 'std')
 
     if latex_style.startswith('siam'):
-        INLINE_TAGS_SUBST['latex']['keywords'] = r"""
-\\begin{keywords}
-\g<subst>
-\end{keywords}
-"""
+        INLINE_TAGS_SUBST['latex']['keywords'] = ('\n'
+                                                  r'\\begin{keywords}'
+                                                  '\n'
+                                                  r'\g<subst>'
+                                                  '\n'
+                                                  r'\end{keywords}'
+                                                  '\n')
     elif latex_style == 'elsevier':
-        INLINE_TAGS_SUBST['latex']['keywords'] = lambda m: r"""
-\begin{keyword}
-%s
-\end{keyword}
-""" % ' \\sep '.join(re.split(r', *', m.group('subst').replace('.', '')))
+        INLINE_TAGS_SUBST['latex']['keywords'] = \
+            lambda m: ('\n'
+                       r'\begin{keyword}'
+                       '\n'
+                       '%s\n'
+                       '\end{keyword})\n') % \
+                      ' \\sep '.join(re.split(r', *', m.group('subst').replace('.', '')))
     # (remove final . if present in keywords list)
 
-    INTRO['latex'] = r"""%%
-%% Automatically generated file from DocOnce source
-%% (https://github.com/doconce/doconce/)
-%%
-"""
+    INTRO['latex'] = (r'%%'
+                      '\n'
+                      '%% Automatically generated file from DocOnce source\n'
+                      '%% (https://github.com/doconce/doconce/)\n'
+                      '%% doconce format html {} {}\n').format(globals.filename, ' '.join(sys.argv[1:]))
     if latex_code_style is None:
         # We rely on the ptex2tex step
-        INTRO['latex'] += r"""%%
-% #ifdef PTEX2TEX_EXPLANATION
-%%
-%% The file follows the ptex2tex extended LaTeX format, see
-%% ptex2tex: https://code.google.com/p/ptex2tex/
-%%
-%% Run
-%%      ptex2tex myfile
-%% or
-%%      doconce ptex2tex myfile
-%%
-%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
-%% (The ptex2tex program: https://code.google.com/p/ptex2tex)
-%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
-%%
-%%      ptex2tex -DMINTED myfile
-%%      doconce ptex2tex myfile envir=minted
-%%
-%% ptex2tex will typeset code environments according to a global or local
-%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
-%% according to options on the command line (just type doconce ptex2tex to
-%% see examples). If doconce ptex2tex has envir=minted, it enables the
-%% minted style without needing -DMINTED.
-% #endif
-"""
+        INTRO['latex'] += (r'%%'
+                           '\n'
+                           '% #ifdef PTEX2TEX_EXPLANATION\n'
+                           '%%\n'
+                           '%% The file follows the ptex2tex extended LaTeX format, see\n'
+                           '%% ptex2tex: https://code.google.com/p/ptex2tex/\n'
+                           '%%\n'
+                           '%% Run\n'
+                           '%%      ptex2tex myfile\n'
+                           '%% or\n'
+                           '%%      doconce ptex2tex myfile\n'
+                           '%%\n'
+                           '%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.\n'
+                           '%% (The ptex2tex program: https://code.google.com/p/ptex2tex)\n'
+                           '%% Many preprocess options can be added to ptex2tex or doconce ptex2tex\n'
+                           '%%\n'
+                           '%%      ptex2tex -DMINTED myfile\n'
+                           '%%      doconce ptex2tex myfile envir=minted\n'
+                           '%%\n'
+                           '%% ptex2tex will typeset code environments according to a global or local\n'
+                           '%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code\n'
+                           '%% according to options on the command line (just type doconce ptex2tex to\n'
+                           '%% see examples). If doconce ptex2tex has envir=minted, it enables the\n'
+                           '%% minted style without needing -DMINTED.\n'
+                           '% #endif\n')
 
     if latex_style == 'Springer_collection':
-        INTRO['latex'] += r"""
-% #undef PREAMBLE
-"""
+        INTRO['latex'] += '\n% #undef PREAMBLE)\n'
     else:
-        INTRO['latex'] += r"""
-% #define PREAMBLE
-"""
+        INTRO['latex'] += '\n% #define PREAMBLE\n'
 
-    INTRO['latex'] += r"""
-% #ifdef PREAMBLE
-%-------------------- begin preamble ----------------------
-"""
-
+    INTRO['latex'] += ('\n'
+                       '% #ifdef PREAMBLE\n'
+                       '%-------------------- begin preamble ----------------------\n')
     side_tp = 'twoside' if option('device=') == 'paper' else 'oneside'
     draft = 'draft' if option('draft') else 'final'
     m = re.search(chapter_pattern, filestr, flags=re.MULTILINE)
