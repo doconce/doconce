@@ -72244,7 +72244,11 @@ hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
  bundled/html_images//small_gray_warning.png); }
  .slide .alert-question {background-image:url(https://hplgit.github.io/doconce/
  bundled/html_images/small_gray_question.png); } */
-
+table, th, tr, td {
+    border: 2px solid black;
+    border-collapse: collapse;
+    padding: 2px;
+}
 </style>
 
 
