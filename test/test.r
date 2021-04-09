@@ -434,43 +434,57 @@ MathJax.Hub.Config({
 %% see examples). If doconce ptex2tex has envir=minted, it enables the
 %% minted style without needing -DMINTED.
 % #endif
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage{graphicx}
 \usepackage{sidecap}
+
 % user-provided packages: --latex_packages=varioref
 \usepackage{varioref}
+
 % 'on page ...' reference with \vref{} and varioref package
 \renewcommand\reftextfaceafter{on page~\thevpagerefnum}
 \renewcommand\reftextfacebefore{on page~\thevpagerefnum}
 \renewcommand\reftextafter{on page~\thevpagerefnum}
 \renewcommand\reftextbefore{on page~\thevpagerefnum}
+
 % Tools for marking corrections
 \usepackage{soul}
 \newcommand{\replace}[2]{{\color{red}\text{\st{#1} #2}}}
 \newcommand{\remove}[1]{{\color{red}\st{#1}}}
+
 \usepackage{ptex2tex}
 % #ifdef MINTED
 \usepackage{minted}
 \usemintedstyle{default}
 % #endif
 \usepackage{fancyvrb}
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 \newenvironment{doconcequiz}{}{}
 \newcounter{doconcequizcounter}
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -487,9 +501,12 @@ final,                   % draft: marks overfull hboxes, figures with paths
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 %\VerbatimFootnotes must come after hyperref and footmisc packages
 \VerbatimFootnotes
+
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -504,11 +521,15 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \usepackage[section]{placeins}
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
+
 % newcommands for typesetting inline (doconce) comments
 \newcommand{\shortinlinecomment}[3]{{\color{red}{\bf #1}: #2}}
 \newcommand{\longinlinecomment}[3]{{\color{red}{\bf #1}: #2}}
+
 \usepackage[framemethod=TikZ]{mdframed}
+
 % --- begin definitions of admonition environments ---
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "notice" admon
 \colorlet{mdfbox_notice_background}{gray!5}
@@ -529,12 +550,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{notice_mdfboxmdframed}
+
 \newenvironment{notice_mdfboxadmon}[1][]{
 \begin{notice_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{notice_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "summary" admon
 \colorlet{mdfbox_summary_background}{gray!5}
@@ -555,12 +578,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{summary_mdfboxmdframed}
+
 \newenvironment{summary_mdfboxadmon}[1][]{
 \begin{summary_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{summary_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "warning" admon
 \colorlet{mdfbox_warning_background}{gray!5}
@@ -581,12 +606,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{warning_mdfboxmdframed}
+
 \newenvironment{warning_mdfboxadmon}[1][]{
 \begin{warning_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{warning_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "question" admon
 \colorlet{mdfbox_question_background}{gray!5}
@@ -607,12 +634,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{question_mdfboxmdframed}
+
 \newenvironment{question_mdfboxadmon}[1][]{
 \begin{question_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{question_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "block" admon
 \colorlet{mdfbox_block_background}{gray!5}
@@ -633,17 +662,22 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{block_mdfboxmdframed}
+
 \newenvironment{block_mdfboxadmon}[1][]{
 \begin{block_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{block_mdfboxmdframed}
 }
+
 % --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 \usepackage{calc}
+
 \newenvironment{doconceexercise}{}{}
 \newcounter{doconceexercisecounter}
 % --- begin definition of \listofexercises command ---
@@ -654,6 +688,9 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \newcommand*{\l@doconceexercise}{\@dottedtocline{0}{0pt}{6.5em}}
 \makeatother
 % --- end definition of \listofexercises command ---
+
+
+
 % ------ header in subexercises ------
 %\newcommand{\subex}[1]{\paragraph{#1}}
 %\newcommand{\subex}[1]{\par\vspace{1.7mm}\noindent{\bf #1}\ \ }
@@ -664,80 +701,128 @@ final,                   % draft: marks overfull hboxes, figures with paths
                   {-0.5em}%
                   {\normalfont\normalsize\bfseries}}
 \makeatother
+
+
 % --- end of standard preamble for documents ---
+
+
 \usepackage{amsthm,tcolorbox}
 \theoremstyle{definition}
 \newtheorem{example}{Example}[section]
+
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \title{A Document for Testing DocOnce}
+
 % ----------------- author(s) -------------------------
+
 \author{Hans Petter Langtangen\footnote{Email: \texttt{hpl@simula.no}. Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo.}
 \and Kaare Dump\footnote{Segfault, Cyberspace.}
 \and A. Dummy Author
 \and I. S. Overworked and Outburned\footnote{Inst1; Inst2, Somewhere; Third Inst, Elsewhere; and Fourth Inst.}
 \and J. Doe\footnote{Email: \texttt{j\_doe@cyberspace.com}.}}
+
 % ----------------- end author(s) -------------------------
+
 \date{Jan 32, 2100}
 \maketitle
+
 \tableofcontents
+
 \vspace{1cm} % after toc
+
 % !split
+
 The format of this document is
 plain, homemade {\LaTeX} (from DocOnce).
+
 \begin{abstract}
 This is a document with many test constructions for doconce syntax.
 It was used heavily for the development and kept for testing
 numerous constructions, also special and less common cases.
+
 And exactly for test purposes we have an extra line here, which
 is part of the abstract.
+
 % Cannot demonstrate chapter headings since abstract and chapter
 % are mutually exclusive in {\LaTeX}
 \end{abstract}
+
 \section{Section 1}
 \label{sec1}
+
 Here is a nested list:
+
 \begin{itemize}
   \item item1
+
   \item item2
+
   \item item3 which continues on the next line to test that feature
+
   \item and a sublist
 \begin{itemize}
+
     \item with indented subitem1
+
     \item and a subitem2
+
 \end{itemize}
+
 \noindent
   \item and perhaps an ordered sublist
 \begin{enumerate}
+
    \item first item
+
    \item second item, continuing on a new line
 \end{enumerate}
+
 \noindent
 \end{itemize}
+
 \noindent
 \paragraph{Here is a list with paragraph heading.}
+
 \begin{itemize}
   \item item1
+
   \item item2
 \end{itemize}
+
 \noindent
 \paragraph{Here is a list with subsubsection heading.}
 \begin{itemize}
   \item item1
+
   \item item2
 \end{itemize}
+
 \noindent
 
 \begin{quote}
@@ -747,25 +832,48 @@ also with hypens:
 \emph{pre}-fix, post-\emph{fix}, \textbf{pre}-fix, post-\textbf{fix}.
 \end{quote}
 
+
 Here are two references. Equation~(\ref{my:eq1}) is fine. Eq.~(\ref{my:eq1}) too.
 Even Equation (\ref{my:eq1}) without the tilde.
+
 \subsection{Subsection 1}
 \label{subsec1}
+
 \index{somefunc@{\rm\texttt{somefunc}} function}
+
 % Refer to section/appendix etc. at the beginning of the line
 % and other special fix situations for HTML.
+
 More text, with a reference back to
 Section~\vref{sec1} and~\vref{subsec1}, and further to the
 sections~\vref{subsec1} and~\vref{subsubsec:ex}, which
 encourages you to do the tasks in the
 Exercises~\vref{demo:ex:1} and~\vref{exer:some:formula}.
 Appendices~\vref{app1} and~\vref{app2} are also nice elements.
+
 \paragraph{Test Section reference at beginning of line and after a sentence.}
 Section~\vref{subsec1} is fine.
 Section~\vref{subsubsec:ex} too.
+
 % sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
+
 \paragraph{Computer code.}
 Let's do some copying from files too. First from subroutine up to the very end,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bfcod
       subroutine test()
       integer i
@@ -784,6 +892,16 @@ C     END1
 \efcod
 
 and then just the subroutine,
+
+
+
+
+
+
+
+
+
+
 \bfcod
 
       subroutine test()
@@ -799,6 +917,22 @@ and then just the subroutine,
 
 and finally the complete file with a plain text verbatim environment
 (\texttt{envir=ccq}):
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bccq
 C     a comment
 
@@ -818,7 +952,14 @@ C     END1
 
 \eccq
 
+
 Testing other code environments. First Python:
+
+
+
+
+
+
 \bdo
 !bc pycod
 def f(x):
@@ -828,29 +969,57 @@ def f(x):
 \edo
 
 which gets rendered as
+
+
+
+
 \bpycod
 def f(x):
     return x+1
 
 \epycod
 
+
 Test paragraph and subsubsection headings before
 before code.
+
 \paragraph{Paragraph heading before code.}
+
+
+
+
 \bpycod
 import sys
 sys.path.insert(0, os.pardir)
 
 \epycod
 
+
 \paragraph{Subsubsection heading before code.}
+
+
+
 \bpycod
 def h(z):
     return z+1
 
 \epycod
 
+
 Now a complete program to be shown via Python Online Tutorial:
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bpypro
 class Line:
     def __init__(self, a, b):
@@ -868,8 +1037,24 @@ print(y)
 
 \noindent
 (\href{{https://pythontutor.com/visualize.html\#code=class+Line\%3A\%0A++++def+__init__\%28self\%2C+a\%2C+b\%29\%3A\%0A++++++++self.a\%2C+self.b+\%3D+a\%2C+b\%0A\%0A++++def+__call__\%28self\%2C+x\%29\%3A\%0A++++++++a\%2C+b+\%3D+self.a\%2C+self.b\%0A++++++++return+a\%2Ax+\%2B+b\%0A\%0Aline+\%3D+Line\%282\%2C+1\%29\%0Ay+\%3D+line\%28x\%3D3\%29\%0Aprint\%28y\%29&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2&curInstr=0}}{Visualize execution}) 
+
+
 Some more Python code (actually specified as a sage cell, but
 such cells are not supported by this format).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bpypro
 a = 2
 b = 3
@@ -886,14 +1071,30 @@ show()
 
 \epypro
 
+
 Then Cython (with -h option so it is hidden in html/sphinx):
+
+
+
+
 \bcycod
 cpdef f(double x):
     return x + 1
 
 \ecycod
 
+
 Standard Python shell sessions:
+
+
+
+
+
+
+
+
+
+
 \bpyshell
 >>> from numpy import linspace, sin
 >>> # Some comment
@@ -906,7 +1107,25 @@ Standard Python shell sessions:
 
 \epyshell
 
+
 Similar IPython sessions:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bipy
 In [1]: from numpy import linspace, sin
 In [2]: # Some comment
@@ -926,7 +1145,18 @@ output
 
 \eipy
 
+
 Here is the interactive session again, but with \texttt{pyshell-t}.
+
+
+
+
+
+
+
+
+
+
 \bpyshell
 >>> from numpy import linspace, sin
 >>> # Some comment
@@ -939,8 +1169,17 @@ Here is the interactive session again, but with \texttt{pyshell-t}.
 
 \epyshell
 
+
 % This one tests a + sign before a code environment
 C++:
+
+
+
+
+
+
+
+
 \bcpppro
 #include <iostream>
 
@@ -955,6 +1194,16 @@ int main()
 % The next should get correctly typset in sphinx (cod is fcod)
 % It also tests emoji before code
 And a little bit of Fortran: (\Verb!dizzy_face!)
+
+
+
+
+
+
+
+
+
+
 \bdo
 !bc cod
       subroutine midpt(x, length, a, b)
@@ -968,6 +1217,14 @@ And a little bit of Fortran: (\Verb!dizzy_face!)
 \edo
 
 which then is typeset as
+
+
+
+
+
+
+
+
 \bcod
       subroutine midpt(x, length, a, b)
       real*8 a, b, x
@@ -978,7 +1235,15 @@ which then is typeset as
 
 \ecod
 
+
 HTML:
+
+
+
+
+
+
+
 \bhtmlcod
 <table>
 <tr><td>Column 1</td><td>Column 2</td></tr>
@@ -988,10 +1253,19 @@ HTML:
 
 \ehtmlcod
 
+
 But inline HTML code is also important, like text that starts with
 \texttt{<a href="} (which can destroy the following text if not properly
 quoted).
+
 Matlab with comments requires special typesetting:
+
+
+
+
+
+
+
 \bmcod
 % Comment on the beginning of the line can be escaped by %%
 if a > b
@@ -1001,7 +1275,15 @@ end
 
 \emcod
 
+
 And here is a system call:
+
+
+
+
+
+
+
 \bsys
 Terminal> mkdir test
 Terminal> cd test
@@ -1011,7 +1293,17 @@ output2
 
 \esys
 
+
 Any valid pygments lexer/language name can appear to, e.g.,
+
+
+
+
+
+
+
+
+
 \bdo
 !bc restructuredtext
 =======
@@ -1024,6 +1316,13 @@ Some text.
 \edo
 
 results in
+
+
+
+
+
+
+
 \brestructuredtext
 =======
 Heading
@@ -1033,9 +1332,66 @@ Some text.
 
 \erestructuredtext
 
+
 % Here goes hidden code.
 % Python can be treated by some formats, Fortran is always out.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Finally, \Verb?!bc do? supports highlighting of DocOnce source:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bdo
 ======= DocOnce test file =======
 
@@ -1075,11 +1431,13 @@ __Paragraph heading.__ Paragraphs may have headings.
 
 \edo
 
+
 It is time to test \texttt{verbatim inline font} especially with \texttt{a newline inside the text} and an exclamation mark at the end: \texttt{BEGIN}! For
 spellcheck, test \texttt{a verbatim expression} in \texttt{another} in a \texttt{third}.
 Also test exclamation mark as in \Verb?!bc? and \Verb?!ec? as well as \Verb?a != b?.
 Also test backslashes and braces like \Verb!\begin!, \Verb!\begin{enumerate}!,
 \Verb!\end{this}\end{that}!, and \Verb!{something \inside braces}!.
+
 Here is some \textcolor{red}{red color} and an attempt to write \textcolor{green}{with
 green color containing a linebreak\\
 code.} Some formats will only display \\
@@ -1087,7 +1445,14 @@ this correctly when \texttt{html} \\
 is the output format.
 But here some more running text is added which is not part of
 the previous blocks with line breaks.
+
 \paragraph{Running OS commands.}
+
+
+
+
+
+
 \bsys
 Terminal> python -c 'print("Testing\noutput\nfrom\nPython.")'
 Testing
@@ -1097,20 +1462,28 @@ Python.
 
 \esys
 
+
 \paragraph{Footnotes.}
 Here is a test of footnotes \footnote{Typesetting of the footnote depends on the format. Plain text does nothing, {\LaTeX} removes the definition and inserts the footnote as part of the {\LaTeX} text. reStructuredText and Sphinx employ a similar type of typesetting as Extended Markdown and DocOnce, and in HTML we keep the same syntax, just displayed properly in HTML.}, which are handy in text.
 They are used in different flavors, now in
+
 \begin{itemize}
  \item list items (note below that footnotes work after math, verbatim, and URLs - bin fact old and emphasize too!)
+
  \item even with math $\nabla^2u$\footnote{Math footnotes can be dangerous since it interferes with an exponent.}
+
  \item and code \texttt{h[i] += 1}\footnote{One-line footnote.} (\emph{must} have space between inline code and footnote!)
+
  \item and \href{{https://google.com}}{links}\footnote{\href{{google.com}}{\nolinkurl{google.com}} is perhaps the most famous web site today.}
 \end{itemize}
+
 \noindent
 which gives flexibility in writing.
 This is the third\footnote{Not much to add here, but the footnote is at the end with only one newline.} example.
+
 Here is some more text before a new definition of a footnote that was
 used above.
+
 
 \begin{notice_mdfboxadmon}[Non-breaking space character.]
 This paragraph aims to test \href{{https://en.wikipedia.org/wiki/Non-breaking_space}}{non-breaking space character}, and a typical
@@ -1123,11 +1496,14 @@ of course remain a tilde in those contexts.)
 \end{notice_mdfboxadmon} % title: Non-breaking space character.
 
 
+
 \subsection{Subsection 2: Testing figures}
 \label{subsec:ex}
 \index{figures}
+
 Test of figures. In particular we refer to Figure~\vref{fig:impact} in which
 there is a flow.
+
 \begin{figure}[!ht]  % fig:impact
   \centerline{\includegraphics[width=0.9\linewidth]{testfigs/wave1D.png}}
   \caption{
@@ -1135,15 +1511,23 @@ there is a flow.
   }
 \end{figure}
 %\clearpage % flush figures fig:impact
+
 Figures without captions are allowed and will be inlined.
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.9\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
+
 \index{movies}
+
 % Test multi-line caption in figure with sidecap=True
+
 Here is figure~\vref{myfig} with a long (illegal) multi-line caption
 containing inline verbatim text:
+
 \begin{SCfigure}
   \centering
   \includegraphics[width=0.9\linewidth]{testfigs/wave1D.png}
@@ -1152,38 +1536,56 @@ containing inline verbatim text:
   }
 \end{SCfigure}
 %\clearpage % flush figures myfig
+
 % Must be a blank line after MOVIE or FIGURE to detect this problem
+
 Test URL as figure name:
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.8\linewidth]{downloaded_figures/f_plot.png}}
+
 \vspace{6mm}
+
 % Test wikimedia type of files that otherwise reside in subdirs
+
 \paragraph{Remark.}
 Movies are tested in separate file \texttt{movies.do.txt}.
+
 % Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
+
 \subsection{The $\theta$ parameter (not $\nabla$?)}
 \label{decay:sec:theta}
+
 Functions do not always need to be advanced, here is one
 involving $\theta$:
+
+
+
 \bccq
 def f(theta):
     return theta**2
 
 \eccq
 
+
 \paragraph{More on $\theta$.}
 Here is more text following headline with math.
+
 Newcommands must also be tested in this \report:
 $\half$, $\halfi$, $\x$, $\Ddt{u}$,
 both inline and in block:
+
 \begin{align}
 \Ddt{u} &= 0\nonumber
 \\ 
 \half &= \halfi\\ 
 \half\x &= \normalvec
 \end{align}
+
 Or with align with label and numbers:
+
 \begin{align}
 \Ddt{u} &= 0
 \label{aligneq1}
@@ -1192,9 +1594,12 @@ Or with align with label and numbers:
 \half\x &= \normalvec
 \label{aligneq2}
 \end{align}
+
 % Must test more complicated align and matrix compositions
 % where DocOnce inserts auto-numbered labels etc.
+
 First one numbered (automatically):
+
 \begin{align}
 \begin{pmatrix}
 G_2 + G_3 & -G_3 & -G_2 & 0 \\ 
@@ -1230,7 +1635,9 @@ G_2 + G_3 & -G_3 & -G_2 & 0 \\
 \end{pmatrix}
 \nonumber
 \end{align}
+
 Second numbered (automatically):
+
 \begin{align}
 \begin{pmatrix}
 G_1 + G_2\\ 
@@ -1254,7 +1661,9 @@ y & 2\\
 A \\ B
 \end{pmatrix}
 \end{align}
+
 Both numbered, with label by the user:
+
 \begin{align}
 \begin{pmatrix}
 G_1 + G_2\\ 
@@ -1280,25 +1689,33 @@ A \\ B
 \end{pmatrix}
 \end{align}
 Now we refer to (\ref{mymatrix:eq1})-(\ref{mymatrix:eq2}).
+
 \subsection{Custom Environments}
+
 Here is an attempt to create a theorem environment via Mako
 (for counting theorems) and comment lines to help replacing lines in
 the \texttt{.tex} by proper begin-end {\LaTeX} environments for theorems.
 Should look nice in most formats!
+
 % begin theorem
 \label{theorem:fundamental1}
+
 \paragraph{Theorem 5.}
 Let $a=1$ and $b=2$. Then $c=3$.
 % end theorem
+
 % begin proof
 \paragraph{Proof.}
 Since $c=a+b$, the result follows from straightforward addition.
 $\Diamond$
 % end proof
+
 As we see, the proof of Theorem 5 is a modest
 achievement.
+
 \subsection{Tables}
 \label{subsec:table}
+
 \index{test index with verbatim text@test index with {\rm\texttt{verbatim text}} which is possible}
 \index{test two@test {\rm\texttt{two}} (separate) {\rm\texttt{verbatim expressions}} which is also possible}
 \index{index with!subindex}
@@ -1306,15 +1723,20 @@ achievement.
 \index{index with \textbf{boldface word}}
 \index{index with!\textbf{boldface word} in subentry}
 \index{double \textbf{boldface word}! \textbf{boldface word} in subentry too}
+
 % index with comma could fool sphinx
 \index{index, with comma, and one more}
+
 Let us take this table from the manual:
+
 \begin{table}
 \caption{
 Testing table environment in {\LaTeX}, enabled by testing on the "latex" format
 with the preprocessor.
 \label{mytab}
 }
+
+
 \begin{quote}
 \begin{tabular}{lrr}
 \hline
@@ -1326,9 +1748,21 @@ with the preprocessor.
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 \end{table}
+
 The DocOnce source code reads
+
+
+
+
+
+
+
+
+
+
 \bccq
 
   |--------------------------------|
@@ -1342,8 +1776,11 @@ The DocOnce source code reads
 
 \eccq
 
+
 Here is yet another table to test that we can handle more than
 one table:
+
+
 \begin{quote}
 \begin{tabular}{lll}
 \hline
@@ -1355,10 +1792,13 @@ one table:
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 And one with math headings (that are expanded and must be treated
 accordingly), verbatim heading and entry, and no space around the pipe
 symbol:
+
+
 \begin{quote}
 \begin{tabular}{lrrr}
 \hline
@@ -1374,10 +1814,13 @@ symbol:
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 And add one with verbatim headings (with underscores),
 and rows starting with \texttt{|-} because of a negative number,
 and \texttt{|} right before and after verbatim word (with no space):
+
+
 \begin{quote}
 \begin{tabular}{rrrr}
 \hline
@@ -1390,10 +1833,13 @@ and \texttt{|} right before and after verbatim word (with no space):
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 Pipe symbols in verbatim and math text in tables used to pose difficulties,
 but not
 anymore:
+
+
 \begin{quote}
 \begin{tabular}{lr}
 \hline
@@ -1404,8 +1850,11 @@ $x\cap y$   & \texttt{x|y}         \\
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 Here is a table with X alignment:
+
+
 \begin{quote}
 \begin{tabularx}{\linewidth}{cX}
 \hline
@@ -1416,11 +1865,15 @@ l,r,c & standard alignment characters                                           
 \hline
 \end{tabularx}
 \end{quote}
+
 \noindent
 Finally, a table with math
 and URLs.
+
 % Mako code to expand URLs in the table
 % (These types of tables did not work before Jan 2014)
+
+
 \begin{quote}
 \begin{tabular}{ccc}
 \hline
@@ -1432,62 +1885,102 @@ $\nabla\cdot\bm{u} =0 $ & \includegraphics[width=2cm]{../doc/src/manual/mov/wave
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 \subsection{A test of verbatim words in heading with subscript $a_i$: \protect\Verb!my\_file\_v1! and \protect\Verb!my\_file\_v2! }
+
 \paragraph{Paragraph with verbatim and math: \protect\Verb!my\_file\_v1.py! and \protect\Verb!my\_file\_v2.py! define some math $a_{i-1}$.}
 Here is more \Verb!__verbatim__! code and
 some plain text on a new line.
+
 % Test various types of headlines
 \subsection{\textbf{Just bold}}
+
 Some text.
+
 \subsection{\emph{Just emphasize}}
+
 Some text.
+
 \subsection{\texttt{Just verbatim} }
+
 Some text.
+
 \subsection{\textbf{Bold} beginning}
+
 Some text.
+
 \subsection{\emph{Emphasize} beginning}
+
 Some text.
+
 \subsection{\texttt{Verbatim} beginning}
+
 Some text.
+
 \subsection{Maybe \textbf{bold end}}
+
 Some text.
+
 \subsection{Maybe \emph{emphasize end}}
+
 Some text.
+
 \subsection{Maybe \texttt{verbatim end} }
+
 Some text.
+
 \subsection{The middle has \textbf{bold} word}
+
 Some text.
+
 \subsection{The middle has \emph{emphasize} word}
+
 Some text.
+
 \subsection{The middle has \texttt{verbatim} word}
+
 Some text.
+
 \paragraph{\emph{Just emphasize}.}
 Some text.
+
 \paragraph{\texttt{Just verbatim}.}
 Some text.
+
 \paragraph{\emph{Emphasize} beginning.}
 Some text.
+
 \paragraph{\texttt{Verbatim beginning}.}
 Some text.
+
 \paragraph{Maybe \emph{emphasize end}.}
 Some text.
+
 \paragraph{Maybe \texttt{verbatim end}.}
 Some text.
+
 \paragraph{The middle has \emph{emphasize} word.}
 Some text.
+
 \paragraph{The middle has \texttt{verbatim} word.}
 Some text.
+
 \paragraph{Ampersand.}
 We can test Hennes {\&} Mauritz, often abbreviated H{\&}M, but written
 as \Verb!Hennes & Mauritz! and \Verb!H & M!.
 A sole \Verb!&! must also work.
 % Note: substitutions must not occur inside verbatim, just in ordinary text.
+
+
+
+
 \bccq
 # Just to check that ampersand works in code blocks:
 c = a & b
 
 \eccq
+
 
 \paragraph{Quotes.}
 Let us also add a test of quotes such as ``double quotes, with numbers
@@ -1497,10 +1990,13 @@ ordinary double quotes for all non-LaTeX formats.  Here is another
 sentence that ``caused'' a bug in the past because double backtick
 quotes could imply verbatim text up to a verbatim word starting with
 period, like \texttt{.txt}.
+
 More quotes to be tested for spellcheck:
 (``with parenthesis''), ``with newline''
 and ``with comma'', ``hyphen''-wise, and ``period''.
+
 \subsection{Bibliography test}
+
 Here is an example: \cite{Langtangen_Pedersen_2002} discussed propagation of
 large destructive water waves, \cite{Langtangen_et_al_2002} gave
 an overview of numerical methods for solving the Navier--Stokes equations,
@@ -1511,6 +2007,7 @@ C++ software tools for programming multigrid methods. A real retro
 reference is \cite{Langtangen_1988d} about a big FORTRAN package.
 Multiple references are also possible, e.g., see
 \cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
+
 We need to cite more than 10 papers to reproduce an old formatting
 problem with blanks in the keys in reST format:
 \cite{Langtangen_1992c,Langtangen_1994a,Mortensen_et_al_2011,Langtangen_Pedersen_2002}
@@ -1525,40 +2022,65 @@ back in the days.
 More retro citations are
 the old ME-IN323 book \cite{Langtangen:91} and the
 \cite{Langtangen:94b} OONSKI '94 paper.
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Example \thedoconceexercisecounter: Examples can be typeset as exercises}
                              
 \label{Example}
+
 Examples can start with a subsection heading starting with \texttt{Example:}
 and then, with the command-line option \Verb!--examples_as_exercises! be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
+
 \subex{a)}
 State some problem.
+
 \paragraph{Solution.}
 The answer to this subproblem can be written here.
+
 \subex{b)}
 State some other problem.
+
 \paragraph{Hint 1.}
 A hint can be given.
+
 \paragraph{Hint 2.}
 Maybe even another hint?
+
 \paragraph{Solution.}
 The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \subsection{User-defined environments}
+
 Example~\vref{ex:test:1p1} demonstrates how to write a test function.
 That is, a special test function for a function \texttt{add} appears in
 Example~\vref{ex:test:1p1}.
+
 \begin{example}
 \label{ex:test:1p1}
+
 \noindent\emph{A test function}.
+
 Suppose we want to write a test function for checking the
 implementation of a Python function for addition.
+
+
+
+
+
+
+
+
+
+
 \bpycod
 def add(a, b):
     return a + b
@@ -1572,12 +2094,18 @@ def test_add():
 \epycod
 
 \end{example}
+
 \begin{example}
 \label{ex:math:1p1}
+
 \noindent\emph{Addition}.
+
 We have
+
 \[ 1 + 1 = 2 \]
 or in tabular form:
+
+
 \begin{quote}
 \begin{tabular}{cc}
 \hline
@@ -1587,8 +2115,10 @@ $1+1$   & $2$    \\
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 \end{example}
+
 \begin{tcolorbox}[%skin=widget,
 boxrule=1mm,
 coltitle=black,
@@ -1597,10 +2127,13 @@ colback=blue!15!white,
 width=(.9\linewidth),before=\hfill,after=\hfill,
 adjusted title={Highlight box!}]
 This environment is used to highlight something:
+
 \[ E = mc^2 \]
 \end{tcolorbox}
+
 \subsection{URLs}
 \label{subsubsec:ex}
+
 Testing of URLs: hpl's home page \href{{https://folk.uio.no/hpl}}{hpl}, or
 the entire URL if desired, \href{{https://folk.uio.no/hpl}}{\nolinkurl{https://folk.uio.no/hpl}}.  Here is a
 plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or
@@ -1612,30 +2145,38 @@ fine to have. Moreover, ``loose'' URLs work, i.e., no quotes, just
 the plain URL as in \href{{https://folk.uio.no/hpl}}{\nolinkurl{https://folk.uio.no/hpl}}, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
 Mail addresses can also be used: \href{{mailto:hpl@simula.no}}{\nolinkurl{hpl@simula.no}}, or just a \href{{mailto:hpl@simula.no}}{mail link}, or a raw \href{{mailto:hpl@simula.no}}{\nolinkurl{mailto:hpl@simula.no}}.
+
 Here are some tough tests of URLs, especially for the \texttt{latex} format:
 \href{{https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{Newton-Cotes} formulas
 and a \href{{https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}}{good book}. Need to test
 Newton-Cotes with percentage in URL too:
 \href{{https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{\nolinkurl{https://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes_formulas}}
 and \href{{https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae}}{\nolinkurl{https://en.wikipedia.org/wiki/Newton-Cotes\#Open_Newton.E2.80.93Cotes_formulae}} which has a shebang.
+
 For the \texttt{--device=paper} option it is important to test that URLs with
 monospace font link text get a footnote
 (unless the \Verb!--latex_no_program_footnotelink!
 is used), as in this reference to
 \href{{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}}{\nolinkurl{decay_mod}}, \href{{https://tinyurl.com/pwyasaa/formulas.ball1.py}}{\nolinkurl{ball1.py}},
 and \href{{https://tinyurl.com/pwyasaa/formulas.ball2.py}}{\nolinkurl{ball2.py}}.
+
 % Comments should be inserted outside paragraphs (because in the rst
 % format extra blanks make a paragraph break).
+
 % Note that when there is no https: or file:, it can be a file link
 % if the link name is URL, url, "URL", or "url". Such files should,
 % if rst output is desired, but placed in a \Verb!_static*! folder.
+
 More tough tests: repeated URLs whose footnotes when using the
 \texttt{--device=paper} option must be correct. We have
 \href{{https://google.com}}{google}, \href{{https://google.com}}{google}, and
 \href{{https://google.com}}{google}, which should result in exactly three
 footnotes.
+
 \subsection{Test of Some {\LaTeX} Fixes}
+
 Let's check abbr.~of some common kind, e.g.~the well-known i.e.
 expression as an example, and 1 vs.~2 which is also often used.
 Dr.~Tang and Prof.~Monsen, or maybe also prof.~Ting,
@@ -1646,41 +2187,58 @@ handled. Likewise, this is test no.~$i$ of DocOnce features.
 Also, look at Fig.~4 to see how the data compares with Tab.~\vref{mytab}.
 Percentage must be fixed: 7\%,  87.65\% and
 50\% at the beginning of the line.
+
 % !split and check if these extra words are included properly in the comment
+
 \section{{\LaTeX} Mathematics}
+
 Here is an equation without label using backslash-bracket environment:
 \[ a = b + c \]
+
 or with number and label, as in (\ref{my:eq1}), using the equation environment:
+
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
+
 We can refer to this equation by (\ref{my:eq1}).
+
 Here is a system without equation numbers, using the align-asterisk environment:
+
 \begin{align*}
 \pmb{a} &= \pmb{q}\times\pmb{n} \\ 
 b &= \nabla^2 u + \nabla^4 v
 \end{align*}
+
 And here is a system of equations with labels in an align environment:
+
 \begin{align}
 a &= q + 4 + 5+ 6 \label{eq1} \\ 
 b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
+
 We can refer to (\ref{eq1})-(\ref{eq2}). They are a bit simpler than
 the Navier--Stokes equations. And test {\LaTeX} hyphen in \texttt{CG-2}.
 Also test $a_{i-j}$ as well as $kx-wt$.
+
 Testing \texttt{alignat} environment:
+
 \begin{alignat}{2}
 a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \label{eq1a} \\ 
 b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
 \end{alignat}
+
 Many of the next environments will fail in non-latex formats.
 Testing multiline:
+
 \begin{multline}
 a = b = q + \\ 
   f + \nabla\cdot\nabla u
 \label{multiline:eq1}
 \end{multline}
+
 Testing split:
+
 \begin{equation}
 \label{split:envir:eq}
 \begin{split}
@@ -1689,51 +2247,78 @@ a = b = q &+ \\
 \end{split}
 \end{equation}
 We can refer to the last equation by (\ref{split:envir:eq}).
+
 Testing gather:
 \begin{gather}
 a = b \\ 
 c = d + 7 + 9
 \end{gather}
+
 Let us refer to (\ref{eq1})-(\ref{eq2}) again, and to the
 alignat variant (\ref{eq1a})-(\ref{eq2a}), and to (\ref{my:eq1}).
+
 Testing eqnarray:
 \begin{eqnarray}
 {\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\ 
 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g \label{myeq2}
 \end{eqnarray}
+
 More mathematical typesetting is demonstrated in the coming exercises.
+
 Below, we have Problem~\vref{demo:ex:1} and Project~\vref{demo:ex:2},
 as well as Projects~\vref{proj:circle1} and~\vref{exer:you}, and in
 between there we have Exercise~\vref{exer:some:formula}.
+
 \section{Exercises}
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Problem \thedoconceexercisecounter: Flip a Coin}
                              
 \label{demo:ex:1}
 % keywords = random numbers; Monte Carlo simulation; ipynb
+
 % Torture tests
+
 \subex{a)}
 Make a program that simulates flipping a coin $N$ times.
 Print out ``tail'' or ``head'' for each flip and
 let the program count the number of heads.
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 1.}
 Use \texttt{r = random.random()} and define head as \texttt{r <= 0.5}.
+
 % --- end hint in exercise ---
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 2.}
 Draw an integer among $\{1,2\}$ with
 \texttt{r = random.randint(1,2)} and define head when \texttt{r} is 1.
+
 % --- end hint in exercise ---
+
 % --- begin answer of exercise ---
 \paragraph{Answer.}
 If the \texttt{random.random()} function returns a number $<1/2$, let it be
 head, otherwise tail. Repeat this $N$ number of times.
 % --- end answer of exercise ---
+
 % --- begin solution of exercise ---
 \paragraph{Solution.}
+
+
+
+
+
+
+
+
+
 \bpycod
 import sys, random
 N = int(sys.argv[1])
@@ -1747,81 +2332,115 @@ print('Flipping a coin %d times gave %d heads' % (N, heads))
 \epycod
 
 % --- end solution of exercise ---
+
 \subex{b)}
 Vectorize the code in a) using boolean indexing.
+
 Vectorized code can be written in many ways.
 Sometimes the code is less intuitive, sometimes not.
 At least there is not much to find in Section~\vref{sec1}.
+
 \subex{c)}
 Vectorize the code in a) using \texttt{numpy.sum}.
+
 % --- begin answer of exercise ---
 \paragraph{Answer.}
 \texttt{np.sum(np.where(r <= 0.5, 1, 0))} or \texttt{np.sum(r <= 0.5)}.
 % --- end answer of exercise ---
+
 In this latter subexercise, we have an
 example where the code is easy to read.
+
 \paragraph{My remarks.}
 Remarks with such a subsubsection is treated as more text
 after the last subexercise. Test a list too:
+
 \begin{enumerate}
 \item Mark 1.
+
 \item Mark 2.
 \end{enumerate}
+
 \noindent
 \noindent Filenames: \Verb!flip_coin.py!, \Verb!flip_coin.pdf!.
+
 % Closing remarks for this Problem
+
 \paragraph{Remarks.}
 These are the exercise remarks, appearing at the very end.
+
 % solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \subsection{Not an exercise}
+
 Should be possible to stick a normal section in the middle of many
 exercises.
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Test of plain text exercise}
                              
 \label{my:exer1}
+
 Very short exercise. What is the capital
 of Norway?
 \noindent Filename: \texttt{myexer1}.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Project \thedoconceexercisecounter: Compute a Probability}
                              
 \label{demo:ex:2}
+
 % Minimalistic exercise
+
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $[0,1)$?
+
 At the end we have a list because that caused problems in {\LaTeX}
 in previous DocOnce versions:
+
 \begin{enumerate}
 \item item1
+
 \item item2
 \end{enumerate}
+
 \noindent
 % --- begin hint in exercise ---
+
 \paragraph{Hint.}
 To answer this question empirically, let a program
 draw $N$ such random numbers using Python's standard \texttt{random} module,
 count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
 compute the probability as $M/N$.
+
 % --- end hint in exercise ---
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Project \thedoconceexercisecounter: Explore Distributions of Random Circles}
                              
 \label{proj:circle1}
 % keywords = ipynb
+
 The formula for a circle is given by
+
 \begin{align}
 x &= x_0 + R\cos 2\pi t,
 \label{circle:x}\\ 
@@ -1833,6 +2452,17 @@ center point, and $t$ is a parameter in the unit interval $[0,1]$.
 For any $t$, $(x,y)$ computed from (\ref{circle:x})-(\ref{circle:y})
 is a point on the circle.
 The formula can be used to generate \texttt{n} points on a circle:
+
+
+
+
+
+
+
+
+
+
+
 \bpypro
 import numpy as np
 
@@ -1846,141 +2476,204 @@ x, y = circle(2.0, 0, 0)
 
 \epypro
 
+
 % Often in an exercise we have some comments about the solution
 % which we normally want to keep where they are.
+
 The goal of this project is to draw $N$ circles with random
 center and radius. Plot each circle using the \texttt{circle} function
 above.
+
 \subex{a)}
 Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint.}
 Use the \texttt{numpy.random} module to draw the
 $x_0$, $y_0$, and $R$ quantities.
+
 % --- end hint in exercise ---
+
 % --- begin answer of exercise ---
 \paragraph{Answer.}
 Here goes the short answer to part a).
 % --- end answer of exercise ---
+
 % --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes a full solution to part a).
 % --- end solution of exercise ---
+
 \subex{b)}
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
 \noindent Filename: \texttt{norm}.
+
 \subex{c)}
 Let $R$ and $(x_0,y_0)$ be normally distributed.
+
 \noindent Filename: \texttt{circles}.
+
 % Closing remarks for this Project
+
 \paragraph{Remarks.}
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Determine some Distance}
                              
 \label{exer:dist}
+
 Intro to this exercise. Questions are in subexercises below.
+
 % --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes a full solution of the whole exercise.
 With some math $a=b$ in this solution:
 \[ \hbox{math in solution: } a = b \]
 And code \texttt{a=b} in this solution:
+
+
 \bccq
 a = b  # code in solution
 
 \eccq
 
 End of solution is here.
+
 % --- end solution of exercise ---
+
 \subex{a)}
 Subexercises are numbered a), b), etc.
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 1.}
 First hint to subexercise a).
 With math $a=b$ in hint:
+
 \[ a=b. \]
 And with code (in plain verbatim) returning $x+1$ in hint:
+
+
+
+
 \bccq
 def func(x):
     return x + 1  # with code in hint
 
 \eccq
 
+
 % --- end hint in exercise ---
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 2.}
 Second hint to subexercise a).
+
 Test list in hint:
+
 \begin{enumerate}
 \item item1
+
 \item item2
 \end{enumerate}
+
 \noindent
 % --- end hint in exercise ---
 \noindent Filename: \Verb!subexer_a.pdf!.
+
 % --- begin answer of exercise ---
 \paragraph{Answer.}
 Short answer to subexercise a).
 With math in answer: $a=b$.
 % --- end answer of exercise ---
+
 \subex{b)}
 Here goes the text for subexercise b).
+
 Some math $\cos^2 x + \sin^2 x = 1$ written one a single line:
+
 \[ \cos^2 x + \sin^2 x = 1 \thinspace .\]
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint.}
 A hint for this subexercise.
+
 % --- end hint in exercise ---
 \noindent Filename: \Verb!subexer_b.pdf!.
+
 % --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes the solution of this subexercise.
 % --- end solution of exercise ---
+
 % No meaning in this weired test example:
 The text here belongs to the main (intro) part of the exercise. Need
 closing remarks to have text after subexercises.
+
 Test list in exercise:
+
 \begin{enumerate}
 \item item1
+
 \item item2
 % Closing remarks for this Exercise
 \end{enumerate}
+
 \noindent
 \paragraph{Remarks.}
 Some final closing remarks, e.g., summarizing the main findings
 and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
+
 \exercisesection{Some exercise without the "Exercise:" prefix}
+
 % Another minimalistic exercise
+
 Just some text. And some math saying that $e^0=1$ on a single line,
 to test that math block insertion is correct:
+
 \[ \exp{(0)} = 1 \]
+
 And a test that the code \texttt{lambda x: x+2} is correctly placed here:
+
+
+
 \bccq
 lambda x: x+2
 
 \eccq
 
+
 % Have some comments at the end of the exercise to see that
 % the Filename: ... is written correctly.
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Solution of differential equation}
                              
 \label{sec:this:exer:de}
+
 
 \begin{doconcequiz}
 \refstepcounter{doconcequizcounter}
@@ -1991,6 +2684,7 @@ lambda x: x+2
 
 \noindent
 Given
+
 \[ \frac{dy}{dx} = -y(x),\quad y(0)=1 \]
 What is the solution of this equation?
 
@@ -2034,6 +2728,7 @@ for $x$ or $y$, not a function $y(x)$.
 must be considered as a good answer. It is more natural,
 though, to write the solution to the problem
 in mathematical notation:
+
 \[ y(x) = e^{-y}.\]
 
 \textbf{D}: Wrong. Equations with derivatives can be solved;
@@ -2053,74 +2748,113 @@ special techniques.
 \end{doconcequiz}
 
 
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Example \thedoconceexercisecounter: Just an example}
                              
+
 % This example needs the --examples_as_exercises option, otherwise
 % it is just typeset as it is written.
+
 \subex{a)}
 What is the capital of Norway?
+
 \paragraph{Answer.}
 Oslo.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \section{Here goes another section}
+
 With some text, before we continue with exercises.
+
 \section{More Exercises}
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Make references to projects and problems}
                              
 \label{exer:some:formula}
+
 % Test comments not at the end only
 Pick a statement from Project~\vref{proj:circle1} or Problem~\vref{demo:ex:1}
 and verify it.
+
 Test list at the end of an exercise without other elements (like subexercise,
 hint, etc.):
+
 \begin{enumerate}
 \item item1
+
 \item item2
 \end{enumerate}
+
 \noindent
 \noindent Filename: \Verb!verify_formula.py!.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Project \thedoconceexercisecounter: References to Project~\vref{demo:ex:2} in a heading works for latex}
                              
 \label{exer:you}
+
 Refer to the previous exercise as Exercise~\vref{exer:some:formula},
 the two before that as Projects~\vref{demo:ex:2} and~\vref{proj:circle1},
 and this one as Project~\vref{exer:you}.
 \noindent Filename: \Verb!selc_composed.pdf!.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \bibliographystyle{plain}
 \bibliography{papers}
+
+
+
 \appendix
+
 \section{Just for testing; part I}
 \label{app1}
+
 This is the first appendix.
+
 \subsection{A subsection within an appendix}
+
 Some text.
+
 \section{Just for testing; part II}
 \label{app2}
+
 This is more stuff for an appendix.
+
 \subsection{Appendix: Testing identical titles}
+
 Without label.
+
 \subsection{Appendix: Testing identical titles}
 \label{test:title:id1}
+
 With label.
+
 \subsection{Appendix: Testing identical titles}
 \label{test:title:id2}
+
 What about inserting a quiz?
+
 
 \begin{doconcequiz}
 \refstepcounter{doconcequizcounter}
@@ -2171,15 +2905,20 @@ Bergen
 \end{doconcequiz}
 
 
+
 \subsection{Appendix: Testing identical titles}
+
 Without label.
+
 
 \begin{notice_mdfboxadmon}[Tip.]
 Here is a tip or hint box, typeset as a notice box.
 \end{notice_mdfboxadmon} % title: Tip.
 
 
+
 \clearpage
+
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
 and share files among several computers and collaborators in a
@@ -2191,6 +2930,7 @@ ensure that every computer and person involved in the project
 have the latest updates of the files.
 Greg Wilson' excellent \href{{https://software-carpentry.org/2010/07/script-for-introduction-to-version-control/}}{Script for Introduction to Version Control} provides a more detailed motivation why you will benefit greatly
 from using version control systems.
+
 
 \begin{summary_mdfboxadmon}[Summary.]
 \textbf{Bold remark:} Make some text with this summary.
@@ -2206,11 +2946,13 @@ Much testing in this document, otherwise stupid content.
 \end{summary_mdfboxadmon} % title: Summary.
 
 
+
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work - and all other important files.
+
 The simplest services for hosting project files are \href{{https://dropbox.com}}{Dropbox} and \href{{https://drive.google.com}}{Google Drive}.
 It is very easy to get started with these systems, and they allow you
 to share files among laptops and mobile units with as many users as
@@ -2219,6 +2961,7 @@ files are stored frequently (several times per minute), and you can go
 back to previous versions for the last 30 days. However, it is
 challenging  to find the right version from the past when there are
 so many of them.
+
 More seriously, when several people may edit files simultaneously, it
 can be difficult detect who did what when, roll back to previous
 versions, and to manually merge the edits when these are
@@ -2228,6 +2971,7 @@ systems.  The following text aims at providing you with the minimum
 information to started with such systems. Numerous other tutorials
 contain more comprehensive material and in-depth explanations of the
 concepts and tools.
+
 The idea with project hosting services is that you have the files
 associated with a project in the cloud. Many people may share these
 files.  Every time you want to work on the project you explicitly
@@ -2237,6 +2981,7 @@ project is hosted.  If you at some point need to go back to a
 version of the files at some particular point in the past,
 this is an easy operation. You can also use tools to see
 what various people have done with the files in the various versions.
+
 All these services are very similar. Below we describe how you get
 started with Bitbucket, GitHub, and Googlecode. Launchpad works very
 similarly to the latter three. All the project hosting services have
@@ -2247,50 +2992,73 @@ The Git tutorials we refer to later in this document contain more
 detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
+
 \subsection{Appendix: Testing inline comments}
+
 % Names can be [ A-Za-z0-9_'+-]+
+
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that
 site. \shortinlinecomment{hpl's semi opinion 1}{ not sure if in the cloud is understood by all. }{ not sure if in } I strongly recommend you to use such sites for all serious
 programming and scientific writing work - and all other important
 files.
+
 The simplest services for hosting project files is Dropbox. \longinlinecomment{mp 2}{ Simply go to \href{{https://dropbox.com}}{\nolinkurl{https://dropbox.com}} and watch the video. It explains how files, like \texttt{myfile.py}, perhaps containing much math, like $\partial u/\partial t$, are easily communicated between machines. }{ Simply go to \href{{https://dropbox.com}}{\nolinkurl{https://dropbox.com}} } It
 is very easy to get started with Dropbox, and it allows you to share
 files among \textcolor{red}{(hpl 3:)} \replace{laptops and mobile units}{computers, tablets, and phones}.
+
 % Test horizontal rule
+
 ------
+
 % Coments for editing
+
 First\textcolor{red}{, (\textbf{edit 4}: add comma)} consider a quantity $Q$. \textcolor{red}{(edit 5:)} \replace{To this end,}{We note that}
 $Q>0$, because (\textbf{edit 6}:) \remove{a} negative \textcolor{red}{(edit 7:)} \replace{quantity is}{quantities are} (\textbf{edit 8}:) \remove{just} negative.  \textcolor{red}{ (\textbf{edit 9}:) This comes as no surprise.}
+
 % Test tailored latex figure references with page number
 Let us refer to Figure~\vref{fig:impact} again.
+
 Test references in a list:
+
 \begin{itemize}
  \item \vref{sec1}
+
  \item \vref{subsec1}
+
  \item \vref{fig:impact}
 \end{itemize}
+
 \noindent
 \subsection{Appendix: Testing headings ending with \texttt{verbatim inline} }
+
 The point here is to test 1) \texttt{verbatim} code in headings, and 2)
 ending a heading with verbatim code as this triggers a special
 case in {\LaTeX}.
+
 We also test mdash---used as alternative to hyphen without spaces around,
 or in quotes:
+
 
 \begin{quote}
 \emph{Fun is fun}.---Unknown.
 \end{quote}
 
+
 The ndash should also be tested -- as in the Hanson--Nilson equations
 on page 277--278.
+
 And finally, what about admons, quotes, and boxes? They are tested
 in a separate document: \texttt{admon.do.txt}.
+
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \cleardoublepage\phantomsection  % trick to get correct link to Index
 \printindex
+
 \end{document}
 % #endif
 
@@ -2299,32 +3067,43 @@ in a separate document: \texttt{admon.do.txt}.
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
 %% doconce format html testdoc.do.txt --examples_as_exercises --latex_code_style=default:lst-blue1[style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]@fcod:vrb-gray@sys:vrb[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt] --latex_code_lststyles=mylststyles --latex_packages=varioref
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
 \usepackage{sidecap}
+
 % user-provided packages: --latex_packages=varioref
 \usepackage{varioref}
+
 % 'on page ...' reference with \vref{} and varioref package
 \renewcommand\reftextfaceafter{on page~\thevpagerefnum}
 \renewcommand\reftextfacebefore{on page~\thevpagerefnum}
 \renewcommand\reftextafter{on page~\thevpagerefnum}
 \renewcommand\reftextbefore{on page~\thevpagerefnum}
+
 % Tools for marking corrections
 \usepackage{soul}
 \newcommand{\replace}[2]{{\color{red}\text{\st{#1} #2}}}
 \newcommand{\remove}[1]{{\color{red}\st{#1}}}
+
 % Packages for typesetting blocks of computer code
 \usepackage{fancyvrb,framed,moreverb}
+
 % Define colors
 \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
 \definecolor{tucorange}{rgb}{1.0,0.64,0}
@@ -2345,25 +3124,35 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \definecolor{lightblue2}{rgb}{0.3,0.3,1.0}
 \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
 \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+
 \colorlet{comment_green}{green!50!black}
 \colorlet{string_red}{red!60!black}
 \colorlet{keyword_pink}{magenta!70!black}
 \colorlet{indendifier_green}{green!70!white}
+
 % Backgrounds for code
 \definecolor{cbg_gray}{rgb}{.95, .95, .95}
 \definecolor{bar_gray}{rgb}{.92, .92, .92}
+
 \definecolor{cbg_yellowgray}{rgb}{.95, .95, .85}
 \definecolor{bar_yellowgray}{rgb}{.95, .95, .65}
+
 \colorlet{cbg_yellow2}{yellow!10}
 \colorlet{bar_yellow2}{yellow!20}
+
 \definecolor{cbg_yellow1}{rgb}{.98, .98, 0.8}
 \definecolor{bar_yellow1}{rgb}{.98, .98, 0.4}
+
 \definecolor{cbg_red1}{rgb}{1, 0.85, 0.85}
 \definecolor{bar_red1}{rgb}{1, 0.75, 0.85}
+
 \definecolor{cbg_blue1}{rgb}{0.87843, 0.95686, 1.0}
 \definecolor{bar_blue1}{rgb}{0.7,     0.95686, 1}
+
 %\setlength{\fboxsep}{2mm}  % adjust cod_vpad/pro_vpad background box
+
 %% Background for code blocks (parameter is color name)
+
 %% pro/cod_vpad: gives some vertical padding before and after the text
 %% (but has more simplistic code than _cod/pro_tight+cod/pro).
 %% pro/cod_vpad can be used to enclose Verbatim or lst begin/end for code.
@@ -2371,14 +3160,17 @@ final,                   % draft: marks overfull hboxes, figures with paths
 %% used to enclose Verbatim and other begin/end for code.
 %% (pro/cod is what the ptex2tex program could produce with the
 %% Blue/BlueBar definitions in .ptex2tex.cfg.)
+
 \newenvironment{cod_vpad}[1]{
    \def\FrameCommand{\colorbox{#1}}
    \MakeFramed{\FrameRestore}}
    {\endMakeFramed}
+
 \newenvironment{_cod_tight}[1]{
    \def\FrameCommand{\colorbox{#1}}
    \FrameRule0.6pt\MakeFramed {\FrameRestore}\vskip3mm}
    {\vskip0mm\endMakeFramed}
+
 \newenvironment{cod}[1]{
 \bgroup\rmfamily
 \fboxsep=0mm\relax
@@ -2387,16 +3179,19 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \rightmargin=2\leftmargin\leftmargin=4pt\relax}
 \item\relax}
 {\endlist\end{_cod_tight}\egroup}
+
 %% Background for complete program blocks (parameter 1 is color name
 %% for background, parameter 2 is color for left bar)
 \newenvironment{pro_vpad}[2]{
    \def\FrameCommand{\color{#2}\vrule width 1mm\normalcolor\colorbox{#1}}
    \MakeFramed{\FrameRestore}}
    {\endMakeFramed}
+
 \newenvironment{_pro_tight}[2]{
    \def\FrameCommand{\color{#2}\vrule width 1mm\normalcolor\colorbox{#1}}
    \FrameRule0.6pt\MakeFramed {\advance\hsize-2mm\FrameRestore}\vskip3mm}
    {\vskip0mm\endMakeFramed}
+
 \newenvironment{pro}[2]{
 \bgroup\rmfamily
 \fboxsep=0mm\relax
@@ -2405,14 +3200,18 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \rightmargin=2\leftmargin\leftmargin=4pt\relax}
 \item\relax}
 {\endlist\end{_pro_tight}\egroup}
+
 \usepackage{listingsutf8}
+
 % Common lstlisting parameters
+
 \usepackage{calc}
 \newlength{\lstboxwidth}  % width of lst box
 \newlength{\framethickness}
 \setlength{\framethickness}{0.5mm}
 % for frame=trbl and a framerule that has significant size, set
 % xleftmargin=5mm and xrightmargin=5mm.
+
 \lstset{
   basicstyle=\small \ttfamily,
   breaklines=false,          % break/wrap lines
@@ -2436,10 +3235,13 @@ final,                   % draft: marks overfull hboxes, figures with paths
   escapeinside={(*@}{@*)},   % (*@ \pause @*) in slides and math in code blocks
   extendedchars=\true,       % allows non-ascii chars, does not work with utf-8
 }
+
 % Internally defined styles for lstlisting
+
 \lstdefinestyle{simple}{
 commentstyle={},
 }
+
 % user-defined lst styles in file "mylststyles":
 \lstdefinestyle{myspeciallststyle}{
 keywordstyle=\color{blue}\bfseries,
@@ -2447,14 +3249,19 @@ commentstyle=\color{myteal},
 stringstyle=\color{darkgreen},
 identifierstyle=\color{darkorange},
 }
+
 % end of custom lstdefinestyles
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 \newenvironment{doconcequiz}{}{}
 \newcounter{doconcequizcounter}
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -2471,9 +3278,12 @@ identifierstyle=\color{darkorange},
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 %\VerbatimFootnotes must come after hyperref and footmisc packages
 \VerbatimFootnotes
+
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -2488,11 +3298,15 @@ identifierstyle=\color{darkorange},
 \usepackage[section]{placeins}
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
+
 % newcommands for typesetting inline (doconce) comments
 \newcommand{\shortinlinecomment}[3]{{\color{red}{\bf #1}: #2}}
 \newcommand{\longinlinecomment}[3]{{\color{red}{\bf #1}: #2}}
+
 \usepackage[framemethod=TikZ]{mdframed}
+
 % --- begin definitions of admonition environments ---
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "notice" admon
 \colorlet{mdfbox_notice_background}{gray!5}
@@ -2513,12 +3327,14 @@ identifierstyle=\color{darkorange},
   roundcorner=5,
   needspace=0pt,
 ]{notice_mdfboxmdframed}
+
 \newenvironment{notice_mdfboxadmon}[1][]{
 \begin{notice_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{notice_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "summary" admon
 \colorlet{mdfbox_summary_background}{gray!5}
@@ -2539,12 +3355,14 @@ identifierstyle=\color{darkorange},
   roundcorner=5,
   needspace=0pt,
 ]{summary_mdfboxmdframed}
+
 \newenvironment{summary_mdfboxadmon}[1][]{
 \begin{summary_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{summary_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "warning" admon
 \colorlet{mdfbox_warning_background}{gray!5}
@@ -2565,12 +3383,14 @@ identifierstyle=\color{darkorange},
   roundcorner=5,
   needspace=0pt,
 ]{warning_mdfboxmdframed}
+
 \newenvironment{warning_mdfboxadmon}[1][]{
 \begin{warning_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{warning_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "question" admon
 \colorlet{mdfbox_question_background}{gray!5}
@@ -2591,12 +3411,14 @@ identifierstyle=\color{darkorange},
   roundcorner=5,
   needspace=0pt,
 ]{question_mdfboxmdframed}
+
 \newenvironment{question_mdfboxadmon}[1][]{
 \begin{question_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{question_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "block" admon
 \colorlet{mdfbox_block_background}{gray!5}
@@ -2617,17 +3439,22 @@ identifierstyle=\color{darkorange},
   roundcorner=5,
   needspace=0pt,
 ]{block_mdfboxmdframed}
+
 \newenvironment{block_mdfboxadmon}[1][]{
 \begin{block_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{block_mdfboxmdframed}
 }
+
 % --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 \usepackage{calc}
+
 \newenvironment{doconceexercise}{}{}
 \newcounter{doconceexercisecounter}
 % --- begin definition of \listofexercises command ---
@@ -2638,6 +3465,9 @@ identifierstyle=\color{darkorange},
 \newcommand*{\l@doconceexercise}{\@dottedtocline{0}{0pt}{6.5em}}
 \makeatother
 % --- end definition of \listofexercises command ---
+
+
+
 % ------ header in subexercises ------
 %\newcommand{\subex}[1]{\paragraph{#1}}
 %\newcommand{\subex}[1]{\par\vspace{1.7mm}\noindent{\bf #1}\ \ }
@@ -2648,25 +3478,44 @@ identifierstyle=\color{darkorange},
                   {-0.5em}%
                   {\normalfont\normalsize\bfseries}}
 \makeatother
+
+
 % --- end of standard preamble for documents ---
+
+
 \usepackage{amsthm,tcolorbox}
 \theoremstyle{definition}
 \newtheorem{example}{Example}[section]
+
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
+
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -2674,22 +3523,33 @@ A Document for Testing DocOnce
 \end{spacing}
 }
 \end{center}
+
 % ----------------- author(s) -------------------------
+
 \begin{center}
 {\bf Hans Petter Langtangen${}^{1, 2}$ (\texttt{hpl@simula.no})} \\ [0mm]
 \end{center}
+
+
 \begin{center}
 {\bf Kaare Dump${}^{3}$} \\ [0mm]
 \end{center}
+
+
 \begin{center}
 {\bf A. Dummy Author${}^{}$} \\ [0mm]
 \end{center}
+
+
 \begin{center}
 {\bf I. S. Overworked and Outburned${}^{4, 5, 6, 7}$} \\ [0mm]
 \end{center}
+
+
 \begin{center}
 {\bf J. Doe${}^{}$ (\texttt{j\_doe@cyberspace.com})} \\ [0mm]
 \end{center}
+
 \begin{center}
 % List of all institutions:
 \centerline{{\small ${}^1$Center for Biomedical Computing, Simula Research Laboratory}}
@@ -2702,58 +3562,87 @@ A Document for Testing DocOnce
 \end{center}
     
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
+
 \tableofcontents
+
 \vspace{1cm} % after toc
+
 % !split
+
 The format of this document is
 plain, homemade \textsc{pdf}{\LaTeX} (from DocOnce).
+
 \begin{abstract}
 This is a document with many test constructions for doconce syntax.
 It was used heavily for the development and kept for testing
 numerous constructions, also special and less common cases.
+
 And exactly for test purposes we have an extra line here, which
 is part of the abstract.
+
 % Cannot demonstrate chapter headings since abstract and chapter
 % are mutually exclusive in {\LaTeX}
 \end{abstract}
+
 \section{Section 1}
 \label{sec1}
+
 Here is a nested list:
+
 \begin{itemize}
   \item item1
+
   \item item2
+
   \item item3 which continues on the next line to test that feature
+
   \item and a sublist
 \begin{itemize}
+
     \item with indented subitem1
+
     \item and a subitem2
+
 \end{itemize}
+
 \noindent
   \item and perhaps an ordered sublist
 \begin{enumerate}
+
    \item first item
+
    \item second item, continuing on a new line
 \end{enumerate}
+
 \noindent
 \end{itemize}
+
 \noindent
 \paragraph{Here is a list with paragraph heading.}
+
 \begin{itemize}
   \item item1
+
   \item item2
 \end{itemize}
+
 \noindent
 \paragraph{Here is a list with subsubsection heading.}
 \begin{itemize}
   \item item1
+
   \item item2
 \end{itemize}
+
 \noindent
 
 \begin{quote}
@@ -2763,25 +3652,48 @@ also with hypens:
 \emph{pre}-fix, post-\emph{fix}, \textbf{pre}-fix, post-\textbf{fix}.
 \end{quote}
 
+
 Here are two references. Equation~(\ref{my:eq1}) is fine. Eq.~(\ref{my:eq1}) too.
 Even Equation (\ref{my:eq1}) without the tilde.
+
 \subsection{Subsection 1}
 \label{subsec1}
+
 \index{somefunc@{\rm\texttt{somefunc}} function}
+
 % Refer to section/appendix etc. at the beginning of the line
 % and other special fix situations for HTML.
+
 More text, with a reference back to
 Section~\vref{sec1} and~\vref{subsec1}, and further to the
 sections~\vref{subsec1} and~\vref{subsubsec:ex}, which
 encourages you to do the tasks in the
 Exercises~\vref{demo:ex:1} and~\vref{exer:some:formula}.
 Appendices~\vref{app1} and~\vref{app2} are also nice elements.
+
 \paragraph{Test Section reference at beginning of line and after a sentence.}
 Section~\vref{subsec1} is fine.
 Section~\vref{subsubsec:ex} too.
+
 % sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
+
 \paragraph{Computer code.}
 Let's do some copying from files too. First from subroutine up to the very end,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
       subroutine test()
       integer i
@@ -2802,6 +3714,16 @@ C     END1
 \noindent
 
 and then just the subroutine,
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
 
       subroutine test()
@@ -2819,6 +3741,22 @@ and then just the subroutine,
 
 and finally the complete file with a plain text verbatim environment
 (\texttt{envir=ccq}):
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 C     a comment
 
@@ -2839,7 +3777,14 @@ C     END1
 \end{lstlisting}\end{cod}
 \noindent
 
+
 Testing other code environments. First Python:
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 !bc pycod
 def f(x):
@@ -2850,6 +3795,10 @@ def f(x):
 \noindent
 
 which gets rendered as
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 def f(x):
     return x+1
@@ -2857,9 +3806,15 @@ def f(x):
 \end{lstlisting}\end{cod}
 \noindent
 
+
 Test paragraph and subsubsection headings before
 before code.
+
 \paragraph{Paragraph heading before code.}
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 import sys
 sys.path.insert(0, os.pardir)
@@ -2867,7 +3822,11 @@ sys.path.insert(0, os.pardir)
 \end{lstlisting}\end{cod}
 \noindent
 
+
 \paragraph{Subsubsection heading before code.}
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 def h(z):
     return z+1
@@ -2875,7 +3834,21 @@ def h(z):
 \end{lstlisting}\end{cod}
 \noindent
 
+
 Now a complete program to be shown via Python Online Tutorial:
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 class Line:
     def __init__(self, a, b):
@@ -2894,8 +3867,24 @@ print(y)
 
 \noindent
 (\href{{https://pythontutor.com/visualize.html\#code=class+Line\%3A\%0A++++def+__init__\%28self\%2C+a\%2C+b\%29\%3A\%0A++++++++self.a\%2C+self.b+\%3D+a\%2C+b\%0A\%0A++++def+__call__\%28self\%2C+x\%29\%3A\%0A++++++++a\%2C+b+\%3D+self.a\%2C+self.b\%0A++++++++return+a\%2Ax+\%2B+b\%0A\%0Aline+\%3D+Line\%282\%2C+1\%29\%0Ay+\%3D+line\%28x\%3D3\%29\%0Aprint\%28y\%29&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2&curInstr=0}}{Visualize execution}) 
+
+
 Some more Python code (actually specified as a sage cell, but
 such cells are not supported by this format).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 a = 2
 b = 3
@@ -2913,7 +3902,12 @@ show()
 \end{lstlisting}\end{pro}
 \noindent
 
+
 Then Cython (with -h option so it is hidden in html/sphinx):
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 cpdef f(double x):
     return x + 1
@@ -2921,7 +3915,18 @@ cpdef f(double x):
 \end{lstlisting}\end{cod}
 \noindent
 
+
 Standard Python shell sessions:
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 >>> from numpy import linspace, sin
 >>> # Some comment
@@ -2935,7 +3940,25 @@ Standard Python shell sessions:
 \end{lstlisting}\end{cod}
 \noindent
 
+
 Similar IPython sessions:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 In [1]: from numpy import linspace, sin
 In [2]: # Some comment
@@ -2956,7 +3979,18 @@ output
 \end{lstlisting}\end{cod}
 \noindent
 
+
 Here is the interactive session again, but with \texttt{pyshell-t}.
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 >>> from numpy import linspace, sin
 >>> # Some comment
@@ -2970,8 +4004,17 @@ Here is the interactive session again, but with \texttt{pyshell-t}.
 \end{lstlisting}\end{cod}
 \noindent
 
+
 % This one tests a + sign before a code environment
 C++:
+
+
+
+
+
+
+
+
 \begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=C++,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 #include <iostream>
 
@@ -2987,6 +4030,16 @@ int main()
 % The next should get correctly typset in sphinx (cod is fcod)
 % It also tests emoji before code
 And a little bit of Fortran: \raisebox{-\height+\ht\strutbox}{\includegraphics[height=1.5em]{latex_figs/dizzy_face.png}}
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 !bc cod
       subroutine midpt(x, length, a, b)
@@ -3001,6 +4054,14 @@ And a little bit of Fortran: \raisebox{-\height+\ht\strutbox}{\includegraphics[h
 \noindent
 
 which then is typeset as
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
       subroutine midpt(x, length, a, b)
       real*8 a, b, x
@@ -3012,7 +4073,15 @@ which then is typeset as
 \end{lstlisting}\end{cod}
 \noindent
 
+
 HTML:
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=HTML,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 <table>
 <tr><td>Column 1</td><td>Column 2</td></tr>
@@ -3023,10 +4092,19 @@ HTML:
 \end{lstlisting}\end{cod}
 \noindent
 
+
 But inline HTML code is also important, like text that starts with
 \texttt{<a href="} (which can destroy the following text if not properly
 quoted).
+
 Matlab with comments requires special typesetting:
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Matlab,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 % Comment on the beginning of the line can be escaped by %%
 if a > b
@@ -3037,7 +4115,15 @@ end
 \end{lstlisting}\end{cod}
 \noindent
 
+
 And here is a system call:
+
+
+
+
+
+
+
 \begin{Verbatim}[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt]
 Terminal> mkdir test
 Terminal> cd test
@@ -3047,7 +4133,17 @@ output2
 
 \end{Verbatim}
 
+
 Any valid pygments lexer/language name can appear to, e.g.,
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 !bc restructuredtext
 =======
@@ -3061,6 +4157,13 @@ Some text.
 \noindent
 
 results in
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 =======
 Heading
@@ -3071,9 +4174,66 @@ Some text.
 \end{lstlisting}\end{cod}
 \noindent
 
+
 % Here goes hidden code.
 % Python can be treated by some formats, Fortran is always out.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Finally, \Verb?!bc do? supports highlighting of DocOnce source:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 ======= DocOnce test file =======
 
@@ -3114,11 +4274,13 @@ __Paragraph heading.__ Paragraphs may have headings.
 \end{lstlisting}\end{cod}
 \noindent
 
+
 It is time to test \texttt{verbatim inline font} especially with \texttt{a newline inside the text} and an exclamation mark at the end: \texttt{BEGIN}! For
 spellcheck, test \texttt{a verbatim expression} in \texttt{another} in a \texttt{third}.
 Also test exclamation mark as in \Verb?!bc? and \Verb?!ec? as well as \Verb?a != b?.
 Also test backslashes and braces like \Verb!\begin!, \Verb!\begin{enumerate}!,
 \Verb!\end{this}\end{that}!, and \Verb!{something \inside braces}!.
+
 Here is some \textcolor{red}{red color} and an attempt to write \textcolor{green}{with
 green color containing a linebreak\\
 code.} Some formats will only display \\
@@ -3126,7 +4288,14 @@ this correctly when \texttt{html} \\
 is the output format.
 But here some more running text is added which is not part of
 the previous blocks with line breaks.
+
 \paragraph{Running OS commands.}
+
+
+
+
+
+
 \begin{Verbatim}[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt]
 Terminal> python -c 'print("Testing\noutput\nfrom\nPython.")'
 Testing
@@ -3136,20 +4305,28 @@ Python.
 
 \end{Verbatim}
 
+
 \paragraph{Footnotes.}
 Here is a test of footnotes \footnote{Typesetting of the footnote depends on the format. Plain text does nothing, {\LaTeX} removes the definition and inserts the footnote as part of the {\LaTeX} text. reStructuredText and Sphinx employ a similar type of typesetting as Extended Markdown and DocOnce, and in HTML we keep the same syntax, just displayed properly in HTML.}, which are handy in text.
 They are used in different flavors, now in
+
 \begin{itemize}
  \item list items (note below that footnotes work after math, verbatim, and URLs - bin fact old and emphasize too!)
+
  \item even with math $\nabla^2u$\footnote{Math footnotes can be dangerous since it interferes with an exponent.}
+
  \item and code \texttt{h[i] += 1}\footnote{One-line footnote.} (\emph{must} have space between inline code and footnote!)
+
  \item and \href{{https://google.com}}{links}\footnote{\href{{google.com}}{\nolinkurl{google.com}} is perhaps the most famous web site today.}
 \end{itemize}
+
 \noindent
 which gives flexibility in writing.
 This is the third\footnote{Not much to add here, but the footnote is at the end with only one newline.} example.
+
 Here is some more text before a new definition of a footnote that was
 used above.
+
 
 \begin{notice_mdfboxadmon}[Non-breaking space character.]
 This paragraph aims to test \href{{https://en.wikipedia.org/wiki/Non-breaking_space}}{non-breaking space character}, and a typical
@@ -3162,11 +4339,14 @@ of course remain a tilde in those contexts.)
 \end{notice_mdfboxadmon} % title: Non-breaking space character.
 
 
+
 \subsection{Subsection 2: Testing figures}
 \label{subsec:ex}
 \index{figures}
+
 Test of figures. In particular we refer to Figure~\vref{fig:impact} in which
 there is a flow.
+
 \begin{figure}[!ht]  % fig:impact
   \centerline{\includegraphics[width=0.9\linewidth]{testfigs/wave1D.png}}
   \caption{
@@ -3174,15 +4354,23 @@ there is a flow.
   }
 \end{figure}
 %\clearpage % flush figures fig:impact
+
 Figures without captions are allowed and will be inlined.
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.9\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
+
 \index{movies}
+
 % Test multi-line caption in figure with sidecap=True
+
 Here is figure~\vref{myfig} with a long (illegal) multi-line caption
 containing inline verbatim text:
+
 \begin{SCfigure}
   \centering
   \includegraphics[width=0.9\linewidth]{testfigs/wave1D.png}
@@ -3191,20 +4379,33 @@ containing inline verbatim text:
   }
 \end{SCfigure}
 %\clearpage % flush figures myfig
+
 % Must be a blank line after MOVIE or FIGURE to detect this problem
+
 Test URL as figure name:
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.8\linewidth]{downloaded_figures/f_plot.png}}
+
 \vspace{6mm}
+
 % Test wikimedia type of files that otherwise reside in subdirs
+
 \paragraph{Remark.}
 Movies are tested in separate file \texttt{movies.do.txt}.
+
 % Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
+
 \subsection{The $\theta$ parameter (not $\nabla$?)}
 \label{decay:sec:theta}
+
 Functions do not always need to be advanced, here is one
 involving $\theta$:
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 def f(theta):
     return theta**2
@@ -3212,18 +4413,23 @@ def f(theta):
 \end{lstlisting}\end{cod}
 \noindent
 
+
 \paragraph{More on $\theta$.}
 Here is more text following headline with math.
+
 Newcommands must also be tested in this \report:
 $\half$, $\halfi$, $\x$, $\Ddt{u}$,
 both inline and in block:
+
 \begin{align}
 \Ddt{u} &= 0\nonumber
 \\ 
 \half &= \halfi\\ 
 \half\x &= \normalvec
 \end{align}
+
 Or with align with label and numbers:
+
 \begin{align}
 \Ddt{u} &= 0
 \label{aligneq1}
@@ -3232,9 +4438,12 @@ Or with align with label and numbers:
 \half\x &= \normalvec
 \label{aligneq2}
 \end{align}
+
 % Must test more complicated align and matrix compositions
 % where DocOnce inserts auto-numbered labels etc.
+
 First one numbered (automatically):
+
 \begin{align}
 \begin{pmatrix}
 G_2 + G_3 & -G_3 & -G_2 & 0 \\ 
@@ -3270,7 +4479,9 @@ G_2 + G_3 & -G_3 & -G_2 & 0 \\
 \end{pmatrix}
 \nonumber
 \end{align}
+
 Second numbered (automatically):
+
 \begin{align}
 \begin{pmatrix}
 G_1 + G_2\\ 
@@ -3294,7 +4505,9 @@ y & 2\\
 A \\ B
 \end{pmatrix}
 \end{align}
+
 Both numbered, with label by the user:
+
 \begin{align}
 \begin{pmatrix}
 G_1 + G_2\\ 
@@ -3320,25 +4533,33 @@ A \\ B
 \end{pmatrix}
 \end{align}
 Now we refer to (\ref{mymatrix:eq1})-(\ref{mymatrix:eq2}).
+
 \subsection{Custom Environments}
+
 Here is an attempt to create a theorem environment via Mako
 (for counting theorems) and comment lines to help replacing lines in
 the \texttt{.tex} by proper begin-end {\LaTeX} environments for theorems.
 Should look nice in most formats!
+
 % begin theorem
 \label{theorem:fundamental1}
+
 \paragraph{Theorem 5.}
 Let $a=1$ and $b=2$. Then $c=3$.
 % end theorem
+
 % begin proof
 \paragraph{Proof.}
 Since $c=a+b$, the result follows from straightforward addition.
 $\Diamond$
 % end proof
+
 As we see, the proof of Theorem 5 is a modest
 achievement.
+
 \subsection{Tables}
 \label{subsec:table}
+
 \index{test index with verbatim text@test index with {\rm\texttt{verbatim text}} which is possible}
 \index{test two@test {\rm\texttt{two}} (separate) {\rm\texttt{verbatim expressions}} which is also possible}
 \index{index with!subindex}
@@ -3346,15 +4567,20 @@ achievement.
 \index{index with \textbf{boldface word}}
 \index{index with!\textbf{boldface word} in subentry}
 \index{double \textbf{boldface word}! \textbf{boldface word} in subentry too}
+
 % index with comma could fool sphinx
 \index{index, with comma, and one more}
+
 Let us take this table from the manual:
+
 \begin{table}
 \caption{
 Testing table environment in {\LaTeX}, enabled by testing on the "latex" format
 with the preprocessor.
 \label{mytab}
 }
+
+
 \begin{quote}
 \begin{tabular}{lrr}
 \hline
@@ -3366,9 +4592,21 @@ with the preprocessor.
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 \end{table}
+
 The DocOnce source code reads
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 
   |--------------------------------|
@@ -3383,8 +4621,11 @@ The DocOnce source code reads
 \end{lstlisting}\end{cod}
 \noindent
 
+
 Here is yet another table to test that we can handle more than
 one table:
+
+
 \begin{quote}
 \begin{tabular}{lll}
 \hline
@@ -3396,10 +4637,13 @@ one table:
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 And one with math headings (that are expanded and must be treated
 accordingly), verbatim heading and entry, and no space around the pipe
 symbol:
+
+
 \begin{quote}
 \begin{tabular}{lrrr}
 \hline
@@ -3415,10 +4659,13 @@ symbol:
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 And add one with verbatim headings (with underscores),
 and rows starting with \texttt{|-} because of a negative number,
 and \texttt{|} right before and after verbatim word (with no space):
+
+
 \begin{quote}
 \begin{tabular}{rrrr}
 \hline
@@ -3431,10 +4678,13 @@ and \texttt{|} right before and after verbatim word (with no space):
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 Pipe symbols in verbatim and math text in tables used to pose difficulties,
 but not
 anymore:
+
+
 \begin{quote}
 \begin{tabular}{lr}
 \hline
@@ -3445,8 +4695,11 @@ $x\cap y$   & \texttt{x|y}         \\
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 Here is a table with X alignment:
+
+
 \begin{quote}
 \begin{tabularx}{\linewidth}{cX}
 \hline
@@ -3457,11 +4710,15 @@ l,r,c & standard alignment characters                                           
 \hline
 \end{tabularx}
 \end{quote}
+
 \noindent
 Finally, a table with math
 and URLs.
+
 % Mako code to expand URLs in the table
 % (These types of tables did not work before Jan 2014)
+
+
 \begin{quote}
 \begin{tabular}{ccc}
 \hline
@@ -3473,63 +4730,103 @@ $\nabla\cdot\bm{u} =0 $ & \includegraphics[width=2cm]{../doc/src/manual/mov/wave
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 \subsection{A test of verbatim words in heading with subscript $a_i$: \protect\Verb!my\_file\_v1! and \protect\Verb!my\_file\_v2! }
+
 \paragraph{Paragraph with verbatim and math: \protect\Verb!my\_file\_v1.py! and \protect\Verb!my\_file\_v2.py! define some math $a_{i-1}$.}
 Here is more \Verb!__verbatim__! code and
 some plain text on a new line.
+
 % Test various types of headlines
 \subsection{\textbf{Just bold}}
+
 Some text.
+
 \subsection{\emph{Just emphasize}}
+
 Some text.
+
 \subsection{\texttt{Just verbatim} }
+
 Some text.
+
 \subsection{\textbf{Bold} beginning}
+
 Some text.
+
 \subsection{\emph{Emphasize} beginning}
+
 Some text.
+
 \subsection{\texttt{Verbatim} beginning}
+
 Some text.
+
 \subsection{Maybe \textbf{bold end}}
+
 Some text.
+
 \subsection{Maybe \emph{emphasize end}}
+
 Some text.
+
 \subsection{Maybe \texttt{verbatim end} }
+
 Some text.
+
 \subsection{The middle has \textbf{bold} word}
+
 Some text.
+
 \subsection{The middle has \emph{emphasize} word}
+
 Some text.
+
 \subsection{The middle has \texttt{verbatim} word}
+
 Some text.
+
 \paragraph{\emph{Just emphasize}.}
 Some text.
+
 \paragraph{\texttt{Just verbatim}.}
 Some text.
+
 \paragraph{\emph{Emphasize} beginning.}
 Some text.
+
 \paragraph{\texttt{Verbatim beginning}.}
 Some text.
+
 \paragraph{Maybe \emph{emphasize end}.}
 Some text.
+
 \paragraph{Maybe \texttt{verbatim end}.}
 Some text.
+
 \paragraph{The middle has \emph{emphasize} word.}
 Some text.
+
 \paragraph{The middle has \texttt{verbatim} word.}
 Some text.
+
 \paragraph{Ampersand.}
 We can test Hennes {\&} Mauritz, often abbreviated H{\&}M, but written
 as \Verb!Hennes & Mauritz! and \Verb!H & M!.
 A sole \Verb!&! must also work.
 % Note: substitutions must not occur inside verbatim, just in ordinary text.
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 # Just to check that ampersand works in code blocks:
 c = a & b
 
 \end{lstlisting}\end{cod}
 \noindent
+
 
 \paragraph{Quotes.}
 Let us also add a test of quotes such as ``double quotes, with numbers
@@ -3539,10 +4836,13 @@ ordinary double quotes for all non-LaTeX formats.  Here is another
 sentence that ``caused'' a bug in the past because double backtick
 quotes could imply verbatim text up to a verbatim word starting with
 period, like \texttt{.txt}.
+
 More quotes to be tested for spellcheck:
 (``with parenthesis''), ``with newline''
 and ``with comma'', ``hyphen''-wise, and ``period''.
+
 \subsection{Bibliography test}
+
 Here is an example: \cite{Langtangen_Pedersen_2002} discussed propagation of
 large destructive water waves, \cite{Langtangen_et_al_2002} gave
 an overview of numerical methods for solving the Navier--Stokes equations,
@@ -3553,6 +4853,7 @@ C++ software tools for programming multigrid methods. A real retro
 reference is \cite{Langtangen_1988d} about a big FORTRAN package.
 Multiple references are also possible, e.g., see
 \cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
+
 We need to cite more than 10 papers to reproduce an old formatting
 problem with blanks in the keys in reST format:
 \cite{Langtangen_1992c,Langtangen_1994a,Mortensen_et_al_2011,Langtangen_Pedersen_2002}
@@ -3567,40 +4868,65 @@ back in the days.
 More retro citations are
 the old ME-IN323 book \cite{Langtangen:91} and the
 \cite{Langtangen:94b} OONSKI '94 paper.
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Example \thedoconceexercisecounter: Examples can be typeset as exercises}
                              
 \label{Example}
+
 Examples can start with a subsection heading starting with \texttt{Example:}
 and then, with the command-line option \Verb!--examples_as_exercises! be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
+
 \subex{a)}
 State some problem.
+
 \paragraph{Solution.}
 The answer to this subproblem can be written here.
+
 \subex{b)}
 State some other problem.
+
 \paragraph{Hint 1.}
 A hint can be given.
+
 \paragraph{Hint 2.}
 Maybe even another hint?
+
 \paragraph{Solution.}
 The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \subsection{User-defined environments}
+
 Example~\vref{ex:test:1p1} demonstrates how to write a test function.
 That is, a special test function for a function \texttt{add} appears in
 Example~\vref{ex:test:1p1}.
+
 \begin{example}
 \label{ex:test:1p1}
+
 \noindent\emph{A test function}.
+
 Suppose we want to write a test function for checking the
 implementation of a Python function for addition.
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 def add(a, b):
     return a + b
@@ -3615,12 +4941,18 @@ def test_add():
 \noindent
 
 \end{example}
+
 \begin{example}
 \label{ex:math:1p1}
+
 \noindent\emph{Addition}.
+
 We have
+
 \[ 1 + 1 = 2 \]
 or in tabular form:
+
+
 \begin{quote}
 \begin{tabular}{cc}
 \hline
@@ -3630,8 +4962,10 @@ $1+1$   & $2$    \\
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 \end{example}
+
 \begin{tcolorbox}[%skin=widget,
 boxrule=1mm,
 coltitle=black,
@@ -3640,10 +4974,13 @@ colback=blue!15!white,
 width=(.9\linewidth),before=\hfill,after=\hfill,
 adjusted title={Highlight box!}]
 This environment is used to highlight something:
+
 \[ E = mc^2 \]
 \end{tcolorbox}
+
 \subsection{URLs}
 \label{subsubsec:ex}
+
 Testing of URLs: hpl's home page \href{{https://folk.uio.no/hpl}}{hpl}, or
 the entire URL if desired, \href{{https://folk.uio.no/hpl}}{\nolinkurl{https://folk.uio.no/hpl}}.  Here is a
 plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or
@@ -3655,30 +4992,38 @@ fine to have. Moreover, ``loose'' URLs work, i.e., no quotes, just
 the plain URL as in \href{{https://folk.uio.no/hpl}}{\nolinkurl{https://folk.uio.no/hpl}}, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
 Mail addresses can also be used: \href{{mailto:hpl@simula.no}}{\nolinkurl{hpl@simula.no}}, or just a \href{{mailto:hpl@simula.no}}{mail link}, or a raw \href{{mailto:hpl@simula.no}}{\nolinkurl{mailto:hpl@simula.no}}.
+
 Here are some tough tests of URLs, especially for the \texttt{latex} format:
 \href{{https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{Newton-Cotes} formulas
 and a \href{{https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}}{good book}. Need to test
 Newton-Cotes with percentage in URL too:
 \href{{https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{\nolinkurl{https://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes_formulas}}
 and \href{{https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae}}{\nolinkurl{https://en.wikipedia.org/wiki/Newton-Cotes\#Open_Newton.E2.80.93Cotes_formulae}} which has a shebang.
+
 For the \texttt{--device=paper} option it is important to test that URLs with
 monospace font link text get a footnote
 (unless the \Verb!--latex_no_program_footnotelink!
 is used), as in this reference to
 \href{{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}}{\nolinkurl{decay_mod}}, \href{{https://tinyurl.com/pwyasaa/formulas.ball1.py}}{\nolinkurl{ball1.py}},
 and \href{{https://tinyurl.com/pwyasaa/formulas.ball2.py}}{\nolinkurl{ball2.py}}.
+
 % Comments should be inserted outside paragraphs (because in the rst
 % format extra blanks make a paragraph break).
+
 % Note that when there is no https: or file:, it can be a file link
 % if the link name is URL, url, "URL", or "url". Such files should,
 % if rst output is desired, but placed in a \Verb!_static*! folder.
+
 More tough tests: repeated URLs whose footnotes when using the
 \texttt{--device=paper} option must be correct. We have
 \href{{https://google.com}}{google}, \href{{https://google.com}}{google}, and
 \href{{https://google.com}}{google}, which should result in exactly three
 footnotes.
+
 \subsection{Test of Some {\LaTeX} Fixes}
+
 Let's check abbr.~of some common kind, e.g.~the well-known i.e.
 expression as an example, and 1 vs.~2 which is also often used.
 Dr.~Tang and Prof.~Monsen, or maybe also prof.~Ting,
@@ -3689,41 +5034,58 @@ handled. Likewise, this is test no.~$i$ of DocOnce features.
 Also, look at Fig.~4 to see how the data compares with Tab.~\vref{mytab}.
 Percentage must be fixed: 7\%,  87.65\% and
 50\% at the beginning of the line.
+
 % !split and check if these extra words are included properly in the comment
+
 \section{{\LaTeX} Mathematics}
+
 Here is an equation without label using backslash-bracket environment:
 \[ a = b + c \]
+
 or with number and label, as in (\ref{my:eq1}), using the equation environment:
+
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
+
 We can refer to this equation by (\ref{my:eq1}).
+
 Here is a system without equation numbers, using the align-asterisk environment:
+
 \begin{align*}
 \pmb{a} &= \pmb{q}\times\pmb{n} \\ 
 b &= \nabla^2 u + \nabla^4 v
 \end{align*}
+
 And here is a system of equations with labels in an align environment:
+
 \begin{align}
 a &= q + 4 + 5+ 6 \label{eq1} \\ 
 b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
+
 We can refer to (\ref{eq1})-(\ref{eq2}). They are a bit simpler than
 the Navier--Stokes equations. And test {\LaTeX} hyphen in \texttt{CG-2}.
 Also test $a_{i-j}$ as well as $kx-wt$.
+
 Testing \texttt{alignat} environment:
+
 \begin{alignat}{2}
 a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \label{eq1a} \\ 
 b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
 \end{alignat}
+
 Many of the next environments will fail in non-latex formats.
 Testing multiline:
+
 \begin{multline}
 a = b = q + \\ 
   f + \nabla\cdot\nabla u
 \label{multiline:eq1}
 \end{multline}
+
 Testing split:
+
 \begin{equation}
 \label{split:envir:eq}
 \begin{split}
@@ -3732,51 +5094,78 @@ a = b = q &+ \\
 \end{split}
 \end{equation}
 We can refer to the last equation by (\ref{split:envir:eq}).
+
 Testing gather:
 \begin{gather}
 a = b \\ 
 c = d + 7 + 9
 \end{gather}
+
 Let us refer to (\ref{eq1})-(\ref{eq2}) again, and to the
 alignat variant (\ref{eq1a})-(\ref{eq2a}), and to (\ref{my:eq1}).
+
 Testing eqnarray:
 \begin{eqnarray}
 {\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\ 
 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g \label{myeq2}
 \end{eqnarray}
+
 More mathematical typesetting is demonstrated in the coming exercises.
+
 Below, we have Problem~\vref{demo:ex:1} and Project~\vref{demo:ex:2},
 as well as Projects~\vref{proj:circle1} and~\vref{exer:you}, and in
 between there we have Exercise~\vref{exer:some:formula}.
+
 \section{Exercises}
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Problem \thedoconceexercisecounter: Flip a Coin}
                              
 \label{demo:ex:1}
 % keywords = random numbers; Monte Carlo simulation; ipynb
+
 % Torture tests
+
 \subex{a)}
 Make a program that simulates flipping a coin $N$ times.
 Print out ``tail'' or ``head'' for each flip and
 let the program count the number of heads.
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 1.}
 Use \texttt{r = random.random()} and define head as \texttt{r <= 0.5}.
+
 % --- end hint in exercise ---
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 2.}
 Draw an integer among $\{1,2\}$ with
 \texttt{r = random.randint(1,2)} and define head when \texttt{r} is 1.
+
 % --- end hint in exercise ---
+
 % --- begin answer of exercise ---
 \paragraph{Answer.}
 If the \texttt{random.random()} function returns a number $<1/2$, let it be
 head, otherwise tail. Repeat this $N$ number of times.
 % --- end answer of exercise ---
+
 % --- begin solution of exercise ---
 \paragraph{Solution.}
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 import sys, random
 N = int(sys.argv[1])
@@ -3791,81 +5180,115 @@ print('Flipping a coin %d times gave %d heads' % (N, heads))
 \noindent
 
 % --- end solution of exercise ---
+
 \subex{b)}
 Vectorize the code in a) using boolean indexing.
+
 Vectorized code can be written in many ways.
 Sometimes the code is less intuitive, sometimes not.
 At least there is not much to find in Section~\vref{sec1}.
+
 \subex{c)}
 Vectorize the code in a) using \texttt{numpy.sum}.
+
 % --- begin answer of exercise ---
 \paragraph{Answer.}
 \texttt{np.sum(np.where(r <= 0.5, 1, 0))} or \texttt{np.sum(r <= 0.5)}.
 % --- end answer of exercise ---
+
 In this latter subexercise, we have an
 example where the code is easy to read.
+
 \paragraph{My remarks.}
 Remarks with such a subsubsection is treated as more text
 after the last subexercise. Test a list too:
+
 \begin{enumerate}
 \item Mark 1.
+
 \item Mark 2.
 \end{enumerate}
+
 \noindent
 \noindent Filenames: \Verb!flip_coin.py!, \Verb!flip_coin.pdf!.
+
 % Closing remarks for this Problem
+
 \paragraph{Remarks.}
 These are the exercise remarks, appearing at the very end.
+
 % solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \subsection{Not an exercise}
+
 Should be possible to stick a normal section in the middle of many
 exercises.
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Test of plain text exercise}
                              
 \label{my:exer1}
+
 Very short exercise. What is the capital
 of Norway?
 \noindent Filename: \texttt{myexer1}.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Project \thedoconceexercisecounter: Compute a Probability}
                              
 \label{demo:ex:2}
+
 % Minimalistic exercise
+
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $[0,1)$?
+
 At the end we have a list because that caused problems in {\LaTeX}
 in previous DocOnce versions:
+
 \begin{enumerate}
 \item item1
+
 \item item2
 \end{enumerate}
+
 \noindent
 % --- begin hint in exercise ---
+
 \paragraph{Hint.}
 To answer this question empirically, let a program
 draw $N$ such random numbers using Python's standard \texttt{random} module,
 count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
 compute the probability as $M/N$.
+
 % --- end hint in exercise ---
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Project \thedoconceexercisecounter: Explore Distributions of Random Circles}
                              
 \label{proj:circle1}
 % keywords = ipynb
+
 The formula for a circle is given by
+
 \begin{align}
 x &= x_0 + R\cos 2\pi t,
 \label{circle:x}\\ 
@@ -3877,6 +5300,17 @@ center point, and $t$ is a parameter in the unit interval $[0,1]$.
 For any $t$, $(x,y)$ computed from (\ref{circle:x})-(\ref{circle:y})
 is a point on the circle.
 The formula can be used to generate \texttt{n} points on a circle:
+
+
+
+
+
+
+
+
+
+
+
 \begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 import numpy as np
 
@@ -3891,51 +5325,71 @@ x, y = circle(2.0, 0, 0)
 \end{lstlisting}\end{pro}
 \noindent
 
+
 % Often in an exercise we have some comments about the solution
 % which we normally want to keep where they are.
+
 The goal of this project is to draw $N$ circles with random
 center and radius. Plot each circle using the \texttt{circle} function
 above.
+
 \subex{a)}
 Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint.}
 Use the \texttt{numpy.random} module to draw the
 $x_0$, $y_0$, and $R$ quantities.
+
 % --- end hint in exercise ---
+
 % --- begin answer of exercise ---
 \paragraph{Answer.}
 Here goes the short answer to part a).
 % --- end answer of exercise ---
+
 % --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes a full solution to part a).
 % --- end solution of exercise ---
+
 \subex{b)}
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
 \noindent Filename: \texttt{norm}.
+
 \subex{c)}
 Let $R$ and $(x_0,y_0)$ be normally distributed.
+
 \noindent Filename: \texttt{circles}.
+
 % Closing remarks for this Project
+
 \paragraph{Remarks.}
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Determine some Distance}
                              
 \label{exer:dist}
+
 Intro to this exercise. Questions are in subexercises below.
+
 % --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes a full solution of the whole exercise.
 With some math $a=b$ in this solution:
 \[ \hbox{math in solution: } a = b \]
 And code \texttt{a=b} in this solution:
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 a = b  # code in solution
 
@@ -3943,15 +5397,24 @@ a = b  # code in solution
 \noindent
 
 End of solution is here.
+
 % --- end solution of exercise ---
+
 \subex{a)}
 Subexercises are numbered a), b), etc.
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 1.}
 First hint to subexercise a).
 With math $a=b$ in hint:
+
 \[ a=b. \]
 And with code (in plain verbatim) returning $x+1$ in hint:
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 def func(x):
     return x + 1  # with code in hint
@@ -3959,76 +5422,110 @@ def func(x):
 \end{lstlisting}\end{cod}
 \noindent
 
+
 % --- end hint in exercise ---
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 2.}
 Second hint to subexercise a).
+
 Test list in hint:
+
 \begin{enumerate}
 \item item1
+
 \item item2
 \end{enumerate}
+
 \noindent
 % --- end hint in exercise ---
 \noindent Filename: \Verb!subexer_a.pdf!.
+
 % --- begin answer of exercise ---
 \paragraph{Answer.}
 Short answer to subexercise a).
 With math in answer: $a=b$.
 % --- end answer of exercise ---
+
 \subex{b)}
 Here goes the text for subexercise b).
+
 Some math $\cos^2 x + \sin^2 x = 1$ written one a single line:
+
 \[ \cos^2 x + \sin^2 x = 1 \thinspace .\]
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint.}
 A hint for this subexercise.
+
 % --- end hint in exercise ---
 \noindent Filename: \Verb!subexer_b.pdf!.
+
 % --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes the solution of this subexercise.
 % --- end solution of exercise ---
+
 % No meaning in this weired test example:
 The text here belongs to the main (intro) part of the exercise. Need
 closing remarks to have text after subexercises.
+
 Test list in exercise:
+
 \begin{enumerate}
 \item item1
+
 \item item2
 % Closing remarks for this Exercise
 \end{enumerate}
+
 \noindent
 \paragraph{Remarks.}
 Some final closing remarks, e.g., summarizing the main findings
 and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
+
 \exercisesection{Some exercise without the "Exercise:" prefix}
+
 % Another minimalistic exercise
+
 Just some text. And some math saying that $e^0=1$ on a single line,
 to test that math block insertion is correct:
+
 \[ \exp{(0)} = 1 \]
+
 And a test that the code \texttt{lambda x: x+2} is correctly placed here:
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 lambda x: x+2
 
 \end{lstlisting}\end{cod}
 \noindent
 
+
 % Have some comments at the end of the exercise to see that
 % the Filename: ... is written correctly.
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Solution of differential equation}
                              
 \label{sec:this:exer:de}
+
 
 \begin{doconcequiz}
 \refstepcounter{doconcequizcounter}
@@ -4039,6 +5536,7 @@ lambda x: x+2
 
 \noindent
 Given
+
 \[ \frac{dy}{dx} = -y(x),\quad y(0)=1 \]
 What is the solution of this equation?
 
@@ -4083,6 +5581,7 @@ for $x$ or $y$, not a function $y(x)$.
 must be considered as a good answer. It is more natural,
 though, to write the solution to the problem
 in mathematical notation:
+
 \[ y(x) = e^{-y}.\]
 
 \textbf{D}: Wrong. Equations with derivatives can be solved;
@@ -4102,74 +5601,113 @@ special techniques.
 \end{doconcequiz}
 
 
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Example \thedoconceexercisecounter: Just an example}
                              
+
 % This example needs the --examples_as_exercises option, otherwise
 % it is just typeset as it is written.
+
 \subex{a)}
 What is the capital of Norway?
+
 \paragraph{Answer.}
 Oslo.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \section{Here goes another section}
+
 With some text, before we continue with exercises.
+
 \section{More Exercises}
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Make references to projects and problems}
                              
 \label{exer:some:formula}
+
 % Test comments not at the end only
 Pick a statement from Project~\vref{proj:circle1} or Problem~\vref{demo:ex:1}
 and verify it.
+
 Test list at the end of an exercise without other elements (like subexercise,
 hint, etc.):
+
 \begin{enumerate}
 \item item1
+
 \item item2
 \end{enumerate}
+
 \noindent
 \noindent Filename: \Verb!verify_formula.py!.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Project \thedoconceexercisecounter: References to Project~\vref{demo:ex:2} in a heading works for pdflatex}
                              
 \label{exer:you}
+
 Refer to the previous exercise as Exercise~\vref{exer:some:formula},
 the two before that as Projects~\vref{demo:ex:2} and~\vref{proj:circle1},
 and this one as Project~\vref{exer:you}.
 \noindent Filename: \Verb!selc_composed.pdf!.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \bibliographystyle{plain}
 \bibliography{papers}
+
+
+
 \appendix
+
 \section{Just for testing; part I}
 \label{app1}
+
 This is the first appendix.
+
 \subsection{A subsection within an appendix}
+
 Some text.
+
 \section{Just for testing; part II}
 \label{app2}
+
 This is more stuff for an appendix.
+
 \subsection{Appendix: Testing identical titles}
+
 Without label.
+
 \subsection{Appendix: Testing identical titles}
 \label{test:title:id1}
+
 With label.
+
 \subsection{Appendix: Testing identical titles}
 \label{test:title:id2}
+
 What about inserting a quiz?
+
 
 \begin{doconcequiz}
 \refstepcounter{doconcequizcounter}
@@ -4220,15 +5758,20 @@ Bergen
 \end{doconcequiz}
 
 
+
 \subsection{Appendix: Testing identical titles}
+
 Without label.
+
 
 \begin{notice_mdfboxadmon}[Tip.]
 Here is a tip or hint box, typeset as a notice box.
 \end{notice_mdfboxadmon} % title: Tip.
 
 
+
 \clearpage
+
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
 and share files among several computers and collaborators in a
@@ -4240,6 +5783,7 @@ ensure that every computer and person involved in the project
 have the latest updates of the files.
 Greg Wilson' excellent \href{{https://software-carpentry.org/2010/07/script-for-introduction-to-version-control/}}{Script for Introduction to Version Control} provides a more detailed motivation why you will benefit greatly
 from using version control systems.
+
 
 \begin{summary_mdfboxadmon}[Summary.]
 \textbf{Bold remark:} Make some text with this summary.
@@ -4255,11 +5799,13 @@ Much testing in this document, otherwise stupid content.
 \end{summary_mdfboxadmon} % title: Summary.
 
 
+
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work - and all other important files.
+
 The simplest services for hosting project files are \href{{https://dropbox.com}}{Dropbox} and \href{{https://drive.google.com}}{Google Drive}.
 It is very easy to get started with these systems, and they allow you
 to share files among laptops and mobile units with as many users as
@@ -4268,6 +5814,7 @@ files are stored frequently (several times per minute), and you can go
 back to previous versions for the last 30 days. However, it is
 challenging  to find the right version from the past when there are
 so many of them.
+
 More seriously, when several people may edit files simultaneously, it
 can be difficult detect who did what when, roll back to previous
 versions, and to manually merge the edits when these are
@@ -4277,6 +5824,7 @@ systems.  The following text aims at providing you with the minimum
 information to started with such systems. Numerous other tutorials
 contain more comprehensive material and in-depth explanations of the
 concepts and tools.
+
 The idea with project hosting services is that you have the files
 associated with a project in the cloud. Many people may share these
 files.  Every time you want to work on the project you explicitly
@@ -4286,6 +5834,7 @@ project is hosted.  If you at some point need to go back to a
 version of the files at some particular point in the past,
 this is an easy operation. You can also use tools to see
 what various people have done with the files in the various versions.
+
 All these services are very similar. Below we describe how you get
 started with Bitbucket, GitHub, and Googlecode. Launchpad works very
 similarly to the latter three. All the project hosting services have
@@ -4296,50 +5845,73 @@ The Git tutorials we refer to later in this document contain more
 detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
+
 \subsection{Appendix: Testing inline comments}
+
 % Names can be [ A-Za-z0-9_'+-]+
+
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that
 site. \shortinlinecomment{hpl's semi opinion 1}{ not sure if in the cloud is understood by all. }{ not sure if in } I strongly recommend you to use such sites for all serious
 programming and scientific writing work - and all other important
 files.
+
 The simplest services for hosting project files is Dropbox. \longinlinecomment{mp 2}{ Simply go to \href{{https://dropbox.com}}{\nolinkurl{https://dropbox.com}} and watch the video. It explains how files, like \texttt{myfile.py}, perhaps containing much math, like $\partial u/\partial t$, are easily communicated between machines. }{ Simply go to \href{{https://dropbox.com}}{\nolinkurl{https://dropbox.com}} } It
 is very easy to get started with Dropbox, and it allows you to share
 files among \textcolor{red}{(hpl 3:)} \replace{laptops and mobile units}{computers, tablets, and phones}.
+
 % Test horizontal rule
+
 ------
+
 % Coments for editing
+
 First\textcolor{red}{, (\textbf{edit 4}: add comma)} consider a quantity $Q$. \textcolor{red}{(edit 5:)} \replace{To this end,}{We note that}
 $Q>0$, because (\textbf{edit 6}:) \remove{a} negative \textcolor{red}{(edit 7:)} \replace{quantity is}{quantities are} (\textbf{edit 8}:) \remove{just} negative.  \textcolor{red}{ (\textbf{edit 9}:) This comes as no surprise.}
+
 % Test tailored latex figure references with page number
 Let us refer to Figure~\vref{fig:impact} again.
+
 Test references in a list:
+
 \begin{itemize}
  \item \vref{sec1}
+
  \item \vref{subsec1}
+
  \item \vref{fig:impact}
 \end{itemize}
+
 \noindent
 \subsection{Appendix: Testing headings ending with \texttt{verbatim inline} }
+
 The point here is to test 1) \texttt{verbatim} code in headings, and 2)
 ending a heading with verbatim code as this triggers a special
 case in {\LaTeX}.
+
 We also test mdash---used as alternative to hyphen without spaces around,
 or in quotes:
+
 
 \begin{quote}
 \emph{Fun is fun}.---Unknown.
 \end{quote}
 
+
 The ndash should also be tested -- as in the Hanson--Nilson equations
 on page 277--278.
+
 And finally, what about admons, quotes, and boxes? They are tested
 in a separate document: \texttt{admon.do.txt}.
+
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \cleardoublepage\phantomsection  % trick to get correct link to Index
 \printindex
+
 \end{document}
 % #endif
 
@@ -4381,43 +5953,59 @@ output in testdoc.tex
 %% (https://github.com/doconce/doconce/)
 %% doconce format html testdoc.do.txt --device=paper --examples_as_exercises --latex_double_hyphen --latex_index_in_margin --latex_no_program_footnotelink --latex_title_layout=titlepage --latex_papersize=a4 --latex_colored_table_rows=blue --latex_fancy_header --latex_section_headings=blue --latex_labels_in_margin --latex_double_spacing --latex_todonotes --latex_list_of_exercises=loe --latex_font=palatino --latex_packages=varioref --latex_link_color=blue!90 --draft
 %%
+
+
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 twoside,                 % oneside: electronic viewing, twoside: printing
 draft,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage[a4paper]{geometry}
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
 \usepackage{sidecap}
+
 % user--provided packages: --latex_packages=varioref
 \usepackage{varioref}
+
 % 'on page ...' reference with \vref{} and varioref package
 \renewcommand\reftextfaceafter{on page~\thevpagerefnum}
 \renewcommand\reftextfacebefore{on page~\thevpagerefnum}
 \renewcommand\reftextafter{on page~\thevpagerefnum}
 \renewcommand\reftextbefore{on page~\thevpagerefnum}
+
 % Tools for marking corrections
 \usepackage{soul}
 \newcommand{\replace}[2]{{\color{red}\text{\st{#1} #2}}}
 \newcommand{\remove}[1]{{\color{red}\st{#1}}}
+
 \usepackage{fancyvrb,anslistings} % packages needed for verbatim environments
 \usepackage{minted}
 \usemintedstyle{default}
 \usepackage{fancyvrb}
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 % Set palatino as the default font family:
 \usepackage[sc]{mathpazo}    % Palatino fonts
 \linespread{1.05}            % Palatino needs extra line spread to look nice
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 \newenvironment{doconcequiz}{}{}
 \newcounter{doconcequizcounter}
+
 % Hyperlinks in PDF:
 \colorlet{linkcolor}{blue!90}
 \usepackage{hyperref}
@@ -4434,9 +6022,12 @@ draft,                   % draft: marks overfull hboxes, figures with paths
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 %\VerbatimFootnotes must come after hyperref and footmisc packages
 \VerbatimFootnotes
+
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -4451,6 +6042,7 @@ draft,                   % draft: marks overfull hboxes, figures with paths
 \usepackage[section]{placeins}
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
+
 % enable inline (doconce) comments to be typeset with the todonotes package
 \usepackage{ifthen,xkeyval,tikz,calc,graphicx}
 \usepackage[shadow]{todonotes}
@@ -4459,11 +6051,14 @@ draft,                   % draft: marks overfull hboxes, figures with paths
  \begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
 \newcommand{\longinlinecomment}[3]{%
 \todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
+
 % Display labels for sections, equations, and citations in the margin
 \usepackage{showlabels}
 \showlabels{cite}
+
 \onehalfspacing    % from setspace package
 %\doublespacing
+
 % --- fancyhdr package for fancy headers ---
 \usepackage{fancyhdr}
 \fancyhf{} % sets both header and footer to nothing
@@ -4474,8 +6069,12 @@ draft,                   % draft: marks overfull hboxes, figures with paths
 \fancyhead[LE,RO]{\rightmark} % section
 \fancyhead[RE,LO]{\thepage}
 \pagestyle{fancy}
+
+
 \usepackage[framemethod=TikZ]{mdframed}
+
 % --- begin definitions of admonition environments ---
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "notice" admon
 \colorlet{mdfbox_notice_background}{gray!5}
@@ -4496,12 +6095,14 @@ draft,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{notice_mdfboxmdframed}
+
 \newenvironment{notice_mdfboxadmon}[1][]{
 \begin{notice_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{notice_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "summary" admon
 \colorlet{mdfbox_summary_background}{gray!5}
@@ -4522,12 +6123,14 @@ draft,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{summary_mdfboxmdframed}
+
 \newenvironment{summary_mdfboxadmon}[1][]{
 \begin{summary_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{summary_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "warning" admon
 \colorlet{mdfbox_warning_background}{gray!5}
@@ -4548,12 +6151,14 @@ draft,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{warning_mdfboxmdframed}
+
 \newenvironment{warning_mdfboxadmon}[1][]{
 \begin{warning_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{warning_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "question" admon
 \colorlet{mdfbox_question_background}{gray!5}
@@ -4574,12 +6179,14 @@ draft,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{question_mdfboxmdframed}
+
 \newenvironment{question_mdfboxadmon}[1][]{
 \begin{question_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{question_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "block" admon
 \colorlet{mdfbox_block_background}{gray!5}
@@ -4600,19 +6207,24 @@ draft,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{block_mdfboxmdframed}
+
 \newenvironment{block_mdfboxadmon}[1][]{
 \begin{block_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{block_mdfboxmdframed}
 }
+
 % --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % https://www.ctex.org/documents/packages/layout/titlesec.pdf
 \usepackage{titlesec}  % needed for colored section headings
 %\usepackage[compact]{titlesec}  % reduce the spacing around section headings
+
 % --- section/subsection headings with blue color ---
 \definecolor{seccolor}{cmyk}{.9,.5,0,.35}  % siamltexmm.sty section color
 \titleformat{name=\section}
@@ -4624,6 +6236,7 @@ draft,                   % draft: marks overfull hboxes, figures with paths
 \titleformat{name=\paragraph}[runin]
 {\color{seccolor}\normalfont\normalsize\bfseries}
 {}{}{\indent}
+
 % let the header have a thick gray hrule with section and page in blue above
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\headrule}{{\color{gray!50}%
@@ -4631,12 +6244,16 @@ draft,                   % draft: marks overfull hboxes, figures with paths
 % replace \rightmark and \thepage by bfseries everwyhere to get bold headings
 \fancyhead[LE,RO]{{\color{seccolor}\nouppercase{\rightmark}}} %section
 \fancyhead[RE,LO]{{\color{seccolor}\thepage}}
+
+
 % --- color every two table rows ---
 \let\oldtabular\tabular
 \let\endoldtabular\endtabular
 \definecolor{appleblue}{rgb}{0.93,0.95,1.0}  % Apple blue
 \renewenvironment{tabular}{\rowcolors{2}{white}{appleblue}%
 \oldtabular}{\endoldtabular}
+
+
 \newenvironment{doconceexercise}{}{}
 \newcounter{doconceexercisecounter}
 % --- begin definition of \listofexercises command ---
@@ -4647,6 +6264,9 @@ draft,                   % draft: marks overfull hboxes, figures with paths
 \newcommand*{\l@doconceexercise}{\@dottedtocline{0}{0pt}{6.5em}}
 \makeatother
 % --- end definition of \listofexercises command ---
+
+
+
 % ------ header in subexercises ------
 %\newcommand{\subex}[1]{\paragraph{#1}}
 %\newcommand{\subex}[1]{\par\vspace{1.7mm}\noindent{\bf #1}\ \ }
@@ -4657,24 +6277,42 @@ draft,                   % draft: marks overfull hboxes, figures with paths
                   {-0.5em}%
                   {\normalfont\normalsize\bfseries}}
 \makeatother
+
+
 % --- end of standard preamble for documents ---
+
+
 \usepackage{amsthm,tcolorbox}
 \theoremstyle{definition}
 \newtheorem{example}{Example}[section]
 \newtheorem{theorem}{Theorem}[section]
+
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
 \hbox{\ \ }
 \vfill
@@ -4686,14 +6324,23 @@ draft,                   % draft: marks overfull hboxes, figures with paths
 \\[0.4cm] {\color{seccolor}\rule{\linewidth}{0.5mm}} \\[1.5cm]
 \end{spacing}
 }}}
+
 % ----------------- author(s) -------------------------
+
 \vspace{0.5cm}
+
 {\Large\textsf{Hans Petter Langtangen${}^{1, 2}$ (\texttt{hpl@simula.no})}}\\ [3mm]
+
 {\Large\textsf{Kaare Dump${}^{3}$}}\\ [3mm]
+
 {\Large\textsf{A. Dummy Author${}^{}$}}\\ [3mm]
+
 {\Large\textsf{I. S. Overworked and Outburned${}^{4, 5, 6, 7}$}}\\ [3mm]
+
 {\Large\textsf{J. Doe${}^{}$ (\texttt{j\_doe@cyberspace.com})}}\\ [3mm]
+
 \ \\ [2mm]
+
 {\large\textsf{${}^1$Center for Biomedical Computing, Simula Research Laboratory} \\ [1.5mm]}
 {\large\textsf{${}^2$Department of Informatics, University of Oslo} \\ [1.5mm]}
 {\large\textsf{${}^3$Segfault, Cyberspace} \\ [1.5mm]}
@@ -4702,6 +6349,7 @@ draft,                   % draft: marks overfull hboxes, figures with paths
 {\large\textsf{${}^6$Third Inst, Elsewhere} \\ [1.5mm]}
 {\large\textsf{${}^7$Fourth Inst} \\ [1.5mm]}
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \ \\ [10mm]
 {\large\textsf{Jan 32, 2100}}
@@ -4709,13 +6357,20 @@ draft,                   % draft: marks overfull hboxes, figures with paths
 % --- end date ---
 \vfill
 \clearpage
+
 \tableofcontents
 \listofexercises
+
+
 \listoftodos[List of inline comments]
+
 \clearpage % after toc
+
 % !split
+
 The format of this document is
 plain, homemade \textsc{pdf}{\LaTeX} (from DocOnce).
+
 % --- begin abstract ---
 \ \\ [13mm]
 \begin{center}
@@ -4724,45 +6379,66 @@ plain, homemade \textsc{pdf}{\LaTeX} (from DocOnce).
 This is a document with many test constructions for doconce syntax.
 It was used heavily for the development and kept for testing
 numerous constructions, also special and less common cases.
+
 And exactly for test purposes we have an extra line here, which
 is part of the abstract.
+
 % Cannot demonstrate chapter headings since abstract and chapter
 % are mutually exclusive in {\LaTeX}
 \end{minipage}
 \end{center}
 % --- end abstract ---
+
 \section{Section 1}
 \label{sec1}
+
 Here is a nested list:
+
 \begin{itemize}
   \item item1
+
   \item item2
+
   \item item3 which continues on the next line to test that feature
+
   \item and a sublist
 \begin{itemize}
+
     \item with indented subitem1
+
     \item and a subitem2
+
 \end{itemize}
+
 \noindent
   \item and perhaps an ordered sublist
 \begin{enumerate}
+
    \item first item
+
    \item second item, continuing on a new line
 \end{enumerate}
+
 \noindent
 \end{itemize}
+
 \noindent
 \paragraph{Here is a list with paragraph heading.}
+
 \begin{itemize}
   \item item1
+
   \item item2
 \end{itemize}
+
 \noindent
 \paragraph{Here is a list with subsubsection heading.}
 \begin{itemize}
   \item item1
+
   \item item2
 \end{itemize}
+
 \noindent
 
 \begin{quote}
@@ -4772,25 +6448,48 @@ also with hypens:
 \emph{pre}-fix, post-\emph{fix}, \textbf{pre}-fix, post-\textbf{fix}.
 \end{quote}
 
+
 Here are two references. Equation~(\ref{my:eq1}) is fine. Eq.~(\ref{my:eq1}) too.
 Even Equation (\ref{my:eq1}) without the tilde.
+
 \subsection{Subsection 1}
 \label{subsec1}
+
 \index{somefunc@{\rm\texttt{somefunc}} function}\marginpar{\footnotesize {\rm\texttt{somefunc}} function}
+
 % Refer to section/appendix etc. at the beginning of the line
 % and other special fix situations for HTML.
+
 More text, with a reference back to
 Section~\vref{sec1} and~\vref{subsec1}, and further to the
 sections~\vref{subsec1} and~\vref{subsubsec:ex}, which
 encourages you to do the tasks in the
 Exercises~\vref{demo:ex:1} and~\vref{exer:some:formula}.
 Appendices~\vref{app1} and~\vref{app2} are also nice elements.
+
 \paragraph{Test Section reference at beginning of line and after a sentence.}
 Section~\vref{subsec1} is fine.
 Section~\vref{subsubsec:ex} too.
+
 % sphinx code--blocks: pycod=python cod=fortran cppcod=c++ sys=console
+
 \paragraph{Computer code.}
 Let's do some copying from files too. First from subroutine up to the very end,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{fortran}
       subroutine test()
       integer i
@@ -4809,6 +6508,16 @@ C     END1
 \end{minted}
 
 and then just the subroutine,
+
+
+
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{fortran}
 
       subroutine test()
@@ -4824,6 +6533,22 @@ and then just the subroutine,
 
 and finally the complete file with a plain text verbatim environment
 (\texttt{envir=ccq}):
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 C     a comment
 
@@ -4843,7 +6568,14 @@ C     END1
 
 \end{Verbatim}
 
+
 Testing other code environments. First Python:
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{doconce}
 !bc pycod
 def f(x):
@@ -4853,29 +6585,57 @@ def f(x):
 \end{minted}
 
 which gets rendered as
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 def f(x):
     return x+1
 
 \end{minted}
 
+
 Test paragraph and subsubsection headings before
 before code.
+
 \paragraph{Paragraph heading before code.}
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 import sys
 sys.path.insert(0, os.pardir)
 
 \end{minted}
 
+
 \paragraph{Subsubsection heading before code.}
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 def h(z):
     return z+1
 
 \end{minted}
 
+
 Now a complete program to be shown via Python Online Tutorial:
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 class Line:
     def __init__(self, a, b):
@@ -4891,8 +6651,23 @@ print(y)
 
 \end{Verbatim}
 
+
 Some more Python code (actually specified as a sage cell, but
 such cells are not supported by this format).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{python:nt}
 a = 2
 b = 3
@@ -4909,14 +6684,30 @@ show()
 
 \end{python:nt}
 
+
 Then Cython (with -h option so it is hidden in html/sphinx):
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{cython}
 cpdef f(double x):
     return x + 1
 
 \end{minted}
 
+
 Standard Python shell sessions:
+
+
+
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 >>> from numpy import linspace, sin
 >>> # Some comment
@@ -4929,7 +6720,25 @@ Standard Python shell sessions:
 
 \end{minted}
 
+
 Similar IPython sessions:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{ipy}
 In [1]: from numpy import linspace, sin
 In [2]: # Some comment
@@ -4949,7 +6758,18 @@ output
 
 \end{minted}
 
+
 Here is the interactive session again, but with \texttt{pyshell-t}.
+
+
+
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 >>> from numpy import linspace, sin
 >>> # Some comment
@@ -4962,8 +6782,17 @@ Here is the interactive session again, but with \texttt{pyshell-t}.
 
 \end{minted}
 
+
 % This one tests a + sign before a code environment
 C++:
+
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{c++}
 #include <iostream>
 
@@ -4978,6 +6807,16 @@ int main()
 % The next should get correctly typset in sphinx (cod is fcod)
 % It also tests emoji before code
 And a little bit of Fortran: \raisebox{-\height+\ht\strutbox}{\includegraphics[height=1.5em]{latex_figs/dizzy_face.png}}
+
+
+
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{doconce}
 !bc cod
       subroutine midpt(x, length, a, b)
@@ -4991,6 +6830,14 @@ And a little bit of Fortran: \raisebox{-\height+\ht\strutbox}{\includegraphics[h
 \end{minted}
 
 which then is typeset as
+
+
+
+
+
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
       subroutine midpt(x, length, a, b)
       real*8 a, b, x
@@ -5001,7 +6848,15 @@ which then is typeset as
 
 \end{Verbatim}
 
+
 HTML:
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{html}
 <table>
 <tr><td>Column 1</td><td>Column 2</td></tr>
@@ -5011,10 +6866,19 @@ HTML:
 
 \end{minted}
 
+
 But inline HTML code is also important, like text that starts with
 \texttt{<a href="} (which can destroy the following text if not properly
 quoted).
+
 Matlab with comments requires special typesetting:
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{matlab}
 % Comment on the beginning of the line can be escaped by %%
 if a > b
@@ -5024,7 +6888,15 @@ end
 
 \end{minted}
 
+
 And here is a system call:
+
+
+
+
+
+
+
 \begin{Verbatim}[frame=lines]
 Terminal> mkdir test
 Terminal> cd test
@@ -5034,7 +6906,17 @@ output2
 
 \end{Verbatim}
 
+
 Any valid pygments lexer/language name can appear to, e.g.,
+
+
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{doconce}
 !bc restructuredtext
 =======
@@ -5047,6 +6929,13 @@ Some text.
 \end{minted}
 
 results in
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{restructuredtext}
 =======
 Heading
@@ -5056,9 +6945,66 @@ Some text.
 
 \end{minted}
 
+
 % Here goes hidden code.
 % Python can be treated by some formats, Fortran is always out.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Finally, \Verb?!bc do? supports highlighting of DocOnce source:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{doconce}
 ======= DocOnce test file =======
 
@@ -5098,11 +7044,13 @@ __Paragraph heading.__ Paragraphs may have headings.
 
 \end{minted}
 
+
 It is time to test \texttt{verbatim inline font} especially with \texttt{a newline inside the text} and an exclamation mark at the end: \texttt{BEGIN}! For
 spellcheck, test \texttt{a verbatim expression} in \texttt{another} in a \texttt{third}.
 Also test exclamation mark as in \Verb?!bc? and \Verb?!ec? as well as \Verb?a != b?.
 Also test backslashes and braces like \Verb!\begin!, \Verb!\begin{enumerate}!,
 \Verb!\end{this}\end{that}!, and \Verb!{something \inside braces}!.
+
 Here is some \textcolor{red}{red color} and an attempt to write \textcolor{green}{with
 green color containing a linebreak\\
 code.} Some formats will only display \\
@@ -5110,7 +7058,14 @@ this correctly when \texttt{html} \\
 is the output format.
 But here some more running text is added which is not part of
 the previous blocks with line breaks.
+
 \paragraph{Running OS commands.}
+
+
+
+
+
+
 \begin{Verbatim}[frame=lines]
 Terminal> python -c 'print("Testing\noutput\nfrom\nPython.")'
 Testing
@@ -5120,20 +7075,28 @@ Python.
 
 \end{Verbatim}
 
+
 \paragraph{Footnotes.}
 Here is a test of footnotes \footnote{Typesetting of the footnote depends on the format. Plain text does nothing, {\LaTeX} removes the definition and inserts the footnote as part of the {\LaTeX} text. reStructuredText and Sphinx employ a similar type of typesetting as Extended Markdown and DocOnce, and in HTML we keep the same syntax, just displayed properly in HTML.}, which are handy in text.
 They are used in different flavors, now in
+
 \begin{itemize}
  \item list items (note below that footnotes work after math, verbatim, and URLs - bin fact old and emphasize too!)
+
  \item even with math $\nabla^2u$\footnote{Math footnotes can be dangerous since it interferes with an exponent.}
+
  \item and code \texttt{h[i] += 1}\footnote{One--line footnote.} (\emph{must} have space between inline code and footnote!)
+
  \item and \href{{https://google.com}}{links}\footnote{\texttt{https://google.com}}\footnote{\href{{google.com}}{\nolinkurl{google.com}\footnote{\texttt{google.com}}} is perhaps the most famous web site today.}
 \end{itemize}
+
 \noindent
 which gives flexibility in writing.
 This is the third\footnote{Not much to add here, but the footnote is at the end with only one newline.} example.
+
 Here is some more text before a new definition of a footnote that was
 used above.
+
 
 \begin{notice_mdfboxadmon}[Non--breaking space character.]
 This paragraph aims to test \href{{https://en.wikipedia.org/wiki/Non--breaking_space}}{non--breaking space character}\footnote{\texttt{https://en.wikipedia.org/wiki/Non--breaking\_space}}, and a typical
@@ -5146,11 +7109,14 @@ of course remain a tilde in those contexts.)
 \end{notice_mdfboxadmon} % title: Non--breaking space character.
 
 
+
 \subsection{Subsection 2: Testing figures}
 \label{subsec:ex}
 \index{figures}\marginpar{\footnotesize figures}
+
 Test of figures. In particular we refer to Figure~\vref{fig:impact} in which
 there is a flow.
+
 \begin{figure}[!ht]  % fig:impact
   \centerline{\includegraphics[width=0.9\linewidth]{testfigs/wave1D.png}}
   \caption{
@@ -5158,15 +7124,23 @@ there is a flow.
   }
 \end{figure}
 %\clearpage % flush figures fig:impact
+
 Figures without captions are allowed and will be inlined.
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.9\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
+
 \index{movies}\marginpar{\footnotesize movies}
+
 % Test multi--line caption in figure with sidecap=True
+
 Here is figure~\vref{myfig} with a long (illegal) multi--line caption
 containing inline verbatim text:
+
 \begin{SCfigure}
   \centering
   \includegraphics[width=0.9\linewidth]{testfigs/wave1D.png}
@@ -5175,38 +7149,56 @@ containing inline verbatim text:
   }
 \end{SCfigure}
 %\clearpage % flush figures myfig
+
 % Must be a blank line after MOVIE or FIGURE to detect this problem
+
 Test URL as figure name:
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.8\linewidth]{downloaded_figures/f_plot.png}}
+
 \vspace{6mm}
+
 % Test wikimedia type of files that otherwise reside in subdirs
+
 \paragraph{Remark.}
 Movies are tested in separate file \texttt{movies.do.txt}.
+
 % Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
+
 \subsection{The $\theta$ parameter (not $\nabla$?)}
 \label{decay:sec:theta}
+
 Functions do not always need to be advanced, here is one
 involving $\theta$:
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 def f(theta):
     return theta**2
 
 \end{Verbatim}
 
+
 \paragraph{More on $\theta$.}
 Here is more text following headline with math.
+
 Newcommands must also be tested in this \report:
 $\half$, $\halfi$, $\x$, $\Ddt{u}$,
 both inline and in block:
+
 \begin{align}
 \Ddt{u} &= 0\nonumber
 \\ 
 \half &= \halfi\\ 
 \half\x &= \normalvec
 \end{align}
+
 Or with align with label and numbers:
+
 \begin{align}
 \Ddt{u} &= 0
 \label{aligneq1}
@@ -5215,9 +7207,12 @@ Or with align with label and numbers:
 \half\x &= \normalvec
 \label{aligneq2}
 \end{align}
+
 % Must test more complicated align and matrix compositions
 % where DocOnce inserts auto--numbered labels etc.
+
 First one numbered (automatically):
+
 \begin{align}
 \begin{pmatrix}
 G_2 + G_3 & -G_3 & -G_2 & 0 \\ 
@@ -5253,7 +7248,9 @@ G_2 + G_3 & -G_3 & -G_2 & 0 \\
 \end{pmatrix}
 \nonumber
 \end{align}
+
 Second numbered (automatically):
+
 \begin{align}
 \begin{pmatrix}
 G_1 + G_2\\ 
@@ -5277,7 +7274,9 @@ y & 2\\
 A \\ B
 \end{pmatrix}
 \end{align}
+
 Both numbered, with label by the user:
+
 \begin{align}
 \begin{pmatrix}
 G_1 + G_2\\ 
@@ -5303,25 +7302,33 @@ A \\ B
 \end{pmatrix}
 \end{align}
 Now we refer to (\ref{mymatrix:eq1})-(\ref{mymatrix:eq2}).
+
 \subsection{Custom Environments}
+
 Here is an attempt to create a theorem environment via Mako
 (for counting theorems) and comment lines to help replacing lines in
 the \texttt{.tex} by proper begin--end {\LaTeX} environments for theorems.
 Should look nice in most formats!
+
 \begin{theorem}
 \label{theorem:fundamental1}
 
+
 Let $a=1$ and $b=2$. Then $c=3$.
 \end{theorem}
+
 % begin proof
 \paragraph{Proof.}
 Since $c=a+b$, the result follows from straightforward addition.
 $\Diamond$
 % end proof
+
 As we see, the proof of Theorem 5 is a modest
 achievement.
+
 \subsection{Tables}
 \label{subsec:table}
+
 \index{test index with verbatim text@test index with {\rm\texttt{verbatim text}} which is possible}\marginpar{\footnotesize test index with {\rm\texttt{verbatim text}} which is possible}
 \index{test two@test {\rm\texttt{two}} (separate) {\rm\texttt{verbatim expressions}} which is also possible}\marginpar{\footnotesize test {\rm\texttt{two}} (separate) {\rm\texttt{verbatim expressions}} which is also possible}
 \index{index with!subindex}\marginpar{\footnotesize index with!subindex}
@@ -5329,15 +7336,20 @@ achievement.
 \index{index with \textbf{boldface word}}\marginpar{\footnotesize index with \textbf{boldface word}}
 \index{index with!\textbf{boldface word} in subentry}\marginpar{\footnotesize index with!\textbf{boldface word} in subentry}
 \index{double \textbf{boldface word}! \textbf{boldface word} in subentry too}\marginpar{\footnotesize double \textbf{boldface word}! \textbf{boldface word} in subentry too}
+
 % index with comma could fool sphinx
 \index{index, with comma, and one more}\marginpar{\footnotesize index, with comma, and one more}
+
 Let us take this table from the manual:
+
 \begin{table}
 \caption{
 Testing table environment in {\LaTeX}, enabled by testing on the "latex" format
 with the preprocessor.
 \label{mytab}
 }
+
+
 \begin{quote}
 \begin{tabular}{lrr}
 \hline
@@ -5349,9 +7361,21 @@ with the preprocessor.
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 \end{table}
+
 The DocOnce source code reads
+
+
+
+
+
+
+
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 
   |--------------------------------|
@@ -5365,8 +7389,11 @@ The DocOnce source code reads
 
 \end{Verbatim}
 
+
 Here is yet another table to test that we can handle more than
 one table:
+
+
 \begin{quote}
 \begin{tabular}{lll}
 \hline
@@ -5378,10 +7405,13 @@ one table:
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 And one with math headings (that are expanded and must be treated
 accordingly), verbatim heading and entry, and no space around the pipe
 symbol:
+
+
 \begin{quote}
 \begin{tabular}{lrrr}
 \hline
@@ -5397,10 +7427,13 @@ symbol:
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 And add one with verbatim headings (with underscores),
 and rows starting with \texttt{|-} because of a negative number,
 and \texttt{|} right before and after verbatim word (with no space):
+
+
 \begin{quote}
 \begin{tabular}{rrrr}
 \hline
@@ -5413,10 +7446,13 @@ and \texttt{|} right before and after verbatim word (with no space):
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 Pipe symbols in verbatim and math text in tables used to pose difficulties,
 but not
 anymore:
+
+
 \begin{quote}
 \begin{tabular}{lr}
 \hline
@@ -5427,8 +7463,11 @@ $x\cap y$   & \texttt{x|y}         \\
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 Here is a table with X alignment:
+
+
 \begin{quote}
 \begin{tabularx}{\linewidth}{cX}
 \hline
@@ -5439,11 +7478,15 @@ l,r,c & standard alignment characters                                           
 \hline
 \end{tabularx}
 \end{quote}
+
 \noindent
 Finally, a table with math
 and URLs.
+
 % Mako code to expand URLs in the table
 % (These types of tables did not work before Jan 2014)
+
+
 \begin{quote}
 \begin{tabular}{ccc}
 \hline
@@ -5455,62 +7498,102 @@ $\nabla\cdot\bm{u} =0 $ & \includegraphics[width=2cm]{../doc/src/manual/mov/wave
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 \subsection{A test of verbatim words in heading with subscript $a_i$: \protect\Verb!my\_file\_v1! and \protect\Verb!my\_file\_v2! }
+
 \paragraph{Paragraph with verbatim and math: \protect\Verb!my\_file\_v1.py! and \protect\Verb!my\_file\_v2.py! define some math $a_{i-1}$.}
 Here is more \Verb!__verbatim__! code and
 some plain text on a new line.
+
 % Test various types of headlines
 \subsection{\textbf{Just bold}}
+
 Some text.
+
 \subsection{\emph{Just emphasize}}
+
 Some text.
+
 \subsection{\texttt{Just verbatim} }
+
 Some text.
+
 \subsection{\textbf{Bold} beginning}
+
 Some text.
+
 \subsection{\emph{Emphasize} beginning}
+
 Some text.
+
 \subsection{\texttt{Verbatim} beginning}
+
 Some text.
+
 \subsection{Maybe \textbf{bold end}}
+
 Some text.
+
 \subsection{Maybe \emph{emphasize end}}
+
 Some text.
+
 \subsection{Maybe \texttt{verbatim end} }
+
 Some text.
+
 \subsection{The middle has \textbf{bold} word}
+
 Some text.
+
 \subsection{The middle has \emph{emphasize} word}
+
 Some text.
+
 \subsection{The middle has \texttt{verbatim} word}
+
 Some text.
+
 \paragraph{\emph{Just emphasize}.}
 Some text.
+
 \paragraph{\texttt{Just verbatim}.}
 Some text.
+
 \paragraph{\emph{Emphasize} beginning.}
 Some text.
+
 \paragraph{\texttt{Verbatim beginning}.}
 Some text.
+
 \paragraph{Maybe \emph{emphasize end}.}
 Some text.
+
 \paragraph{Maybe \texttt{verbatim end}.}
 Some text.
+
 \paragraph{The middle has \emph{emphasize} word.}
 Some text.
+
 \paragraph{The middle has \texttt{verbatim} word.}
 Some text.
+
 \paragraph{Ampersand.}
 We can test Hennes {\&} Mauritz, often abbreviated H{\&}M, but written
 as \Verb!Hennes & Mauritz! and \Verb!H & M!.
 A sole \Verb!&! must also work.
 % Note: substitutions must not occur inside verbatim, just in ordinary text.
+
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 # Just to check that ampersand works in code blocks:
 c = a & b
 
 \end{Verbatim}
+
 
 \paragraph{Quotes.}
 Let us also add a test of quotes such as ``double quotes, with numbers
@@ -5520,10 +7603,13 @@ ordinary double quotes for all non--LaTeX formats.  Here is another
 sentence that ``caused'' a bug in the past because double backtick
 quotes could imply verbatim text up to a verbatim word starting with
 period, like \texttt{.txt}.
+
 More quotes to be tested for spellcheck:
 (``with parenthesis''), ``with newline''
 and ``with comma'', ``hyphen''-wise, and ``period''.
+
 \subsection{Bibliography test}
+
 Here is an example: \cite{Langtangen_Pedersen_2002} discussed propagation of
 large destructive water waves, \cite{Langtangen_et_al_2002} gave
 an overview of numerical methods for solving the Navier---Stokes equations,
@@ -5534,6 +7620,7 @@ C++ software tools for programming multigrid methods. A real retro
 reference is \cite{Langtangen_1988d} about a big FORTRAN package.
 Multiple references are also possible, e.g., see
 \cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
+
 We need to cite more than 10 papers to reproduce an old formatting
 problem with blanks in the keys in reST format:
 \cite{Langtangen_1992c,Langtangen_1994a,Mortensen_et_al_2011,Langtangen_Pedersen_2002}
@@ -5548,41 +7635,66 @@ back in the days.
 More retro citations are
 the old ME-IN323 book \cite{Langtangen:91} and the
 \cite{Langtangen:94b} OONSKI '94 paper.
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Example \thedoconceexercisecounter: Examples can be typeset as exercises}
                 \addcontentsline{loe}{doconceexercise}{Example \thedoconceexercisecounter: Examples can be typeset as exercises}
                 
 \label{Example}
+
 Examples can start with a subsection heading starting with \texttt{Example:}
 and then, with the command--line option \Verb!--examples_as_exercises! be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
+
 \subex{a)}
 State some problem.
+
 \paragraph{Solution.}
 The answer to this subproblem can be written here.
+
 \subex{b)}
 State some other problem.
+
 \paragraph{Hint 1.}
 A hint can be given.
+
 \paragraph{Hint 2.}
 Maybe even another hint?
+
 \paragraph{Solution.}
 The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \subsection{User--defined environments}
+
 Example~\vref{ex:test:1p1} demonstrates how to write a test function.
 That is, a special test function for a function \texttt{add} appears in
 Example~\vref{ex:test:1p1}.
+
 \begin{example}
 \label{ex:test:1p1}
+
 \noindent\emph{A test function}.
+
 Suppose we want to write a test function for checking the
 implementation of a Python function for addition.
+
+
+
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 def add(a, b):
     return a + b
@@ -5596,12 +7708,18 @@ def test_add():
 \end{minted}
 
 \end{example}
+
 \begin{example}
 \label{ex:math:1p1}
+
 \noindent\emph{Addition}.
+
 We have
+
 \[ 1 + 1 = 2 \]
 or in tabular form:
+
+
 \begin{quote}
 \begin{tabular}{cc}
 \hline
@@ -5611,8 +7729,10 @@ $1+1$   & $2$    \\
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 \end{example}
+
 \begin{tcolorbox}[%skin=widget,
 boxrule=1mm,
 coltitle=black,
@@ -5621,10 +7741,13 @@ colback=blue!15!white,
 width=(.9\linewidth),before=\hfill,after=\hfill,
 adjusted title={Highlight box!}]
 This environment is used to highlight something:
+
 \[ E = mc^2 \]
 \end{tcolorbox}
+
 \subsection{URLs}
 \label{subsubsec:ex}
+
 Testing of URLs: hpl's home page \href{{https://folk.uio.no/hpl}}{hpl}\footnote{\texttt{https://folk.uio.no/hpl}}, or
 the entire URL if desired, \href{{https://folk.uio.no/hpl}}{\nolinkurl{https://folk.uio.no/hpl}}.  Here is a
 plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}}, or
@@ -5636,30 +7759,38 @@ fine to have. Moreover, ``loose'' URLs work, i.e., no quotes, just
 the plain URL as in \href{{https://folk.uio.no/hpl}}{\nolinkurl{https://folk.uio.no/hpl}}, if followed by space, comma,
 colon, semi--colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
 Mail addresses can also be used: \href{{mailto:hpl@simula.no}}{\nolinkurl{hpl@simula.no}\footnote{\texttt{mailto:hpl@simula.no}}}, or just a \href{{mailto:hpl@simula.no}}{mail link}\footnote{\texttt{mailto:hpl@simula.no}}, or a raw \href{{mailto:hpl@simula.no}}{\nolinkurl{mailto:hpl@simula.no}\footnote{\texttt{mailto:hpl@simula.no}}}.
+
 Here are some tough tests of URLs, especially for the \texttt{latex} format:
 \href{{https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{Newton-Cotes}\footnote{\texttt{https://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes\_formulas}} formulas
 and a \href{{https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}}{good book}\footnote{\texttt{https://www.springer.com/mathematics/computational+science+\%26+engineering/book/978-3-642-23098-1}}. Need to test
 Newton-Cotes with percentage in URL too:
 \href{{https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{\nolinkurl{https://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes_formulas}}
 and \href{{https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae}}{\nolinkurl{https://en.wikipedia.org/wiki/Newton-Cotes\#Open_Newton.E2.80.93Cotes_formulae}} which has a shebang.
+
 For the \texttt{--device=paper} option it is important to test that URLs with
 monospace font link text get a footnote
 (unless the \Verb!--latex_no_program_footnotelink!
 is used), as in this reference to
 \href{{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}}{\nolinkurl{decay_mod}}, \href{{https://tinyurl.com/pwyasaa/formulas.ball1.py}}{\nolinkurl{ball1.py}},
 and \href{{https://tinyurl.com/pwyasaa/formulas.ball2.py}}{\nolinkurl{ball2.py}}.
+
 % Comments should be inserted outside paragraphs (because in the rst
 % format extra blanks make a paragraph break).
+
 % Note that when there is no https: or file:, it can be a file link
 % if the link name is URL, url, "URL", or "url". Such files should,
 % if rst output is desired, but placed in a \Verb!_static*! folder.
+
 More tough tests: repeated URLs whose footnotes when using the
 \texttt{--device=paper} option must be correct. We have
 \href{{https://google.com}}{google}\footnote{\texttt{https://google.com}}, \href{{https://google.com}}{google}\footnote{\texttt{https://google.com}}, and
 \href{{https://google.com}}{google}\footnote{\texttt{https://google.com}}, which should result in exactly three
 footnotes.
+
 \subsection{Test of Some {\LaTeX} Fixes}
+
 Let's check abbr.~of some common kind, e.g.~the well--known i.e.
 expression as an example, and 1 vs.~2 which is also often used.
 Dr.~Tang and Prof.~Monsen, or maybe also prof.~Ting,
@@ -5670,41 +7801,58 @@ handled. Likewise, this is test no.~$i$ of DocOnce features.
 Also, look at Fig.~4 to see how the data compares with Tab.~\vref{mytab}.
 Percentage must be fixed: 7\%,  87.65\% and
 50\% at the beginning of the line.
+
 % !split and check if these extra words are included properly in the comment
+
 \section{{\LaTeX} Mathematics}
+
 Here is an equation without label using backslash--bracket environment:
 \[ a = b + c \]
+
 or with number and label, as in (\ref{my:eq1}), using the equation environment:
+
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
+
 We can refer to this equation by (\ref{my:eq1}).
+
 Here is a system without equation numbers, using the align--asterisk environment:
+
 \begin{align*}
 \pmb{a} &= \pmb{q}\times\pmb{n} \\ 
 b &= \nabla^2 u + \nabla^4 v
 \end{align*}
+
 And here is a system of equations with labels in an align environment:
+
 \begin{align}
 a &= q + 4 + 5+ 6 \label{eq1} \\ 
 b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
+
 We can refer to (\ref{eq1})-(\ref{eq2}). They are a bit simpler than
 the Navier---Stokes equations. And test {\LaTeX} hyphen in \texttt{CG-2}.
 Also test $a_{i-j}$ as well as $kx-wt$.
+
 Testing \texttt{alignat} environment:
+
 \begin{alignat}{2}
 a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \label{eq1a} \\ 
 b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
 \end{alignat}
+
 Many of the next environments will fail in non--latex formats.
 Testing multiline:
+
 \begin{multline}
 a = b = q + \\ 
   f + \nabla\cdot\nabla u
 \label{multiline:eq1}
 \end{multline}
+
 Testing split:
+
 \begin{equation}
 \label{split:envir:eq}
 \begin{split}
@@ -5713,52 +7861,79 @@ a = b = q &+ \\
 \end{split}
 \end{equation}
 We can refer to the last equation by (\ref{split:envir:eq}).
+
 Testing gather:
 \begin{gather}
 a = b \\ 
 c = d + 7 + 9
 \end{gather}
+
 Let us refer to (\ref{eq1})-(\ref{eq2}) again, and to the
 alignat variant (\ref{eq1a})-(\ref{eq2a}), and to (\ref{my:eq1}).
+
 Testing eqnarray:
 \begin{eqnarray}
 {\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\ 
 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g \label{myeq2}
 \end{eqnarray}
+
 More mathematical typesetting is demonstrated in the coming exercises.
+
 Below, we have Problem~\vref{demo:ex:1} and Project~\vref{demo:ex:2},
 as well as Projects~\vref{proj:circle1} and~\vref{exer:you}, and in
 between there we have Exercise~\vref{exer:some:formula}.
+
 \section{Exercises}
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Problem \thedoconceexercisecounter: Flip a Coin}
                 \addcontentsline{loe}{doconceexercise}{Problem \thedoconceexercisecounter: Flip a Coin}
                 
 \label{demo:ex:1}
 % keywords = random numbers; Monte Carlo simulation; ipynb
+
 % Torture tests
+
 \subex{a)}
 Make a program that simulates flipping a coin $N$ times.
 Print out ``tail'' or ``head'' for each flip and
 let the program count the number of heads.
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 1.}
 Use \texttt{r = random.random()} and define head as \texttt{r <= 0.5}.
+
 % --- end hint in exercise ---
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 2.}
 Draw an integer among $\{1,2\}$ with
 \texttt{r = random.randint(1,2)} and define head when \texttt{r} is 1.
+
 % --- end hint in exercise ---
+
 % --- begin answer of exercise ---
 \paragraph{Answer.}
 If the \texttt{random.random()} function returns a number $<1/2$, let it be
 head, otherwise tail. Repeat this $N$ number of times.
 % --- end answer of exercise ---
+
 % --- begin solution of exercise ---
 \paragraph{Solution.}
+
+
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{python}
 import sys, random
 N = int(sys.argv[1])
@@ -5772,84 +7947,118 @@ print('Flipping a coin %d times gave %d heads' % (N, heads))
 \end{minted}
 
 % --- end solution of exercise ---
+
 \subex{b)}
 Vectorize the code in a) using boolean indexing.
+
 Vectorized code can be written in many ways.
 Sometimes the code is less intuitive, sometimes not.
 At least there is not much to find in Section~\vref{sec1}.
+
 \subex{c)}
 Vectorize the code in a) using \texttt{numpy.sum}.
+
 % --- begin answer of exercise ---
 \paragraph{Answer.}
 \texttt{np.sum(np.where(r <= 0.5, 1, 0))} or \texttt{np.sum(r <= 0.5)}.
 % --- end answer of exercise ---
+
 In this latter subexercise, we have an
 example where the code is easy to read.
+
 \paragraph{My remarks.}
 Remarks with such a subsubsection is treated as more text
 after the last subexercise. Test a list too:
+
 \begin{enumerate}
 \item Mark 1.
+
 \item Mark 2.
 \end{enumerate}
+
 \noindent
 \noindent Filenames: \Verb!flip_coin.py!, \Verb!flip_coin.pdf!.
+
 % Closing remarks for this Problem
+
 \paragraph{Remarks.}
 These are the exercise remarks, appearing at the very end.
+
 % solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \subsection{Not an exercise}
+
 Should be possible to stick a normal section in the middle of many
 exercises.
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Test of plain text exercise}
                 \addcontentsline{loe}{doconceexercise}{Exercise \thedoconceexercisecounter: Test of plain text exercise}
                 
 \label{my:exer1}
+
 Very short exercise. What is the capital
 of Norway?
 \noindent Filename: \texttt{myexer1}.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Project \thedoconceexercisecounter: Compute a Probability}
                 \addcontentsline{loe}{doconceexercise}{Project \thedoconceexercisecounter: Compute a Probability}
                 
 \label{demo:ex:2}
+
 % Minimalistic exercise
+
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $[0,1)$?
+
 At the end we have a list because that caused problems in {\LaTeX}
 in previous DocOnce versions:
+
 \begin{enumerate}
 \item item1
+
 \item item2
 \end{enumerate}
+
 \noindent
 % --- begin hint in exercise ---
+
 \paragraph{Hint.}
 To answer this question empirically, let a program
 draw $N$ such random numbers using Python's standard \texttt{random} module,
 count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
 compute the probability as $M/N$.
+
 % --- end hint in exercise ---
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Project \thedoconceexercisecounter: Explore Distributions of Random Circles}
                 \addcontentsline{loe}{doconceexercise}{Project \thedoconceexercisecounter: Explore Distributions of Random Circles}
                 
 \label{proj:circle1}
 % keywords = ipynb
+
 The formula for a circle is given by
+
 \begin{align}
 x &= x_0 + R\cos 2\pi t,
 \label{circle:x}\\ 
@@ -5861,6 +8070,17 @@ center point, and $t$ is a parameter in the unit interval $[0,1]$.
 For any $t$, $(x,y)$ computed from (\ref{circle:x})-(\ref{circle:y})
 is a point on the circle.
 The formula can be used to generate \texttt{n} points on a circle:
+
+
+
+
+
+
+
+
+
+
+
 \begin{python:nt}
 import numpy as np
 
@@ -5874,144 +8094,208 @@ x, y = circle(2.0, 0, 0)
 
 \end{python:nt}
 
+
 % Often in an exercise we have some comments about the solution
 % which we normally want to keep where they are.
+
 The goal of this project is to draw $N$ circles with random
 center and radius. Plot each circle using the \texttt{circle} function
 above.
+
 \subex{a)}
 Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint.}
 Use the \texttt{numpy.random} module to draw the
 $x_0$, $y_0$, and $R$ quantities.
+
 % --- end hint in exercise ---
+
 % --- begin answer of exercise ---
 \paragraph{Answer.}
 Here goes the short answer to part a).
 % --- end answer of exercise ---
+
 % --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes a full solution to part a).
 % --- end solution of exercise ---
+
 \subex{b)}
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
 \noindent Filename: \texttt{norm}.
+
 \subex{c)}
 Let $R$ and $(x_0,y_0)$ be normally distributed.
+
 \noindent Filename: \texttt{circles}.
+
 % Closing remarks for this Project
+
 \paragraph{Remarks.}
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Determine some Distance}
                 \addcontentsline{loe}{doconceexercise}{Exercise \thedoconceexercisecounter: Determine some Distance}
                 
 \label{exer:dist}
+
 Intro to this exercise. Questions are in subexercises below.
+
 % --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes a full solution of the whole exercise.
 With some math $a=b$ in this solution:
 \[ \hbox{math in solution: } a = b \]
 And code \texttt{a=b} in this solution:
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 a = b  # code in solution
 
 \end{Verbatim}
 
 End of solution is here.
+
 % --- end solution of exercise ---
+
 \subex{a)}
 Subexercises are numbered a), b), etc.
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 1.}
 First hint to subexercise a).
 With math $a=b$ in hint:
+
 \[ a=b. \]
 And with code (in plain verbatim) returning $x+1$ in hint:
+
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 def func(x):
     return x + 1  # with code in hint
 
 \end{Verbatim}
 
+
 % --- end hint in exercise ---
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 2.}
 Second hint to subexercise a).
+
 Test list in hint:
+
 \begin{enumerate}
 \item item1
+
 \item item2
 \end{enumerate}
+
 \noindent
 % --- end hint in exercise ---
 \noindent Filename: \Verb!subexer_a.pdf!.
+
 % --- begin answer of exercise ---
 \paragraph{Answer.}
 Short answer to subexercise a).
 With math in answer: $a=b$.
 % --- end answer of exercise ---
+
 \subex{b)}
 Here goes the text for subexercise b).
+
 Some math $\cos^2 x + \sin^2 x = 1$ written one a single line:
+
 \[ \cos^2 x + \sin^2 x = 1 \thinspace .\]
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint.}
 A hint for this subexercise.
+
 % --- end hint in exercise ---
 \noindent Filename: \Verb!subexer_b.pdf!.
+
 % --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes the solution of this subexercise.
 % --- end solution of exercise ---
+
 % No meaning in this weired test example:
 The text here belongs to the main (intro) part of the exercise. Need
 closing remarks to have text after subexercises.
+
 Test list in exercise:
+
 \begin{enumerate}
 \item item1
+
 \item item2
 % Closing remarks for this Exercise
 \end{enumerate}
+
 \noindent
 \paragraph{Remarks.}
 Some final closing remarks, e.g., summarizing the main findings
 and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
+
 \exercisesection{Some exercise without the "Exercise:" prefix}
 \addcontentsline{loe}{doconceexercise}{Some exercise without the "Exercise:" prefix}
+
+
 % Another minimalistic exercise
+
 Just some text. And some math saying that $e^0=1$ on a single line,
 to test that math block insertion is correct:
+
 \[ \exp{(0)} = 1 \]
+
 And a test that the code \texttt{lambda x: x+2} is correctly placed here:
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 lambda x: x+2
 
 \end{Verbatim}
 
+
 % Have some comments at the end of the exercise to see that
 % the Filename: ... is written correctly.
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Solution of differential equation}
                 \addcontentsline{loe}{doconceexercise}{Exercise \thedoconceexercisecounter: Solution of differential equation}
                 
 \label{sec:this:exer:de}
+
 
 \begin{doconcequiz}
 \refstepcounter{doconcequizcounter}
@@ -6022,6 +8306,7 @@ lambda x: x+2
 
 \noindent
 Given
+
 \[ \frac{dy}{dx} = -y(x),\quad y(0)=1 \]
 What is the solution of this equation?
 
@@ -6065,6 +8350,7 @@ for $x$ or $y$, not a function $y(x)$.
 must be considered as a good answer. It is more natural,
 though, to write the solution to the problem
 in mathematical notation:
+
 \[ y(x) = e^{-y}.\]
 
 \textbf{D}: Wrong. Equations with derivatives can be solved;
@@ -6084,77 +8370,116 @@ special techniques.
 \end{doconcequiz}
 
 
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Example \thedoconceexercisecounter: Just an example}
                 \addcontentsline{loe}{doconceexercise}{Example \thedoconceexercisecounter: Just an example}
                 
+
 % This example needs the --examples_as_exercises option, otherwise
 % it is just typeset as it is written.
+
 \subex{a)}
 What is the capital of Norway?
+
 \paragraph{Answer.}
 Oslo.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \section{Here goes another section}
+
 With some text, before we continue with exercises.
+
 \section{More Exercises}
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Make references to projects and problems}
                 \addcontentsline{loe}{doconceexercise}{Exercise \thedoconceexercisecounter: Make references to projects and problems}
                 
 \label{exer:some:formula}
+
 % Test comments not at the end only
 Pick a statement from Project~\vref{proj:circle1} or Problem~\vref{demo:ex:1}
 and verify it.
+
 Test list at the end of an exercise without other elements (like subexercise,
 hint, etc.):
+
 \begin{enumerate}
 \item item1
+
 \item item2
 \end{enumerate}
+
 \noindent
 \noindent Filename: \Verb!verify_formula.py!.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Project \thedoconceexercisecounter: References to Project~\vref{demo:ex:2} in a heading works for pdflatex}
                 \addcontentsline{loe}{doconceexercise}{Project \thedoconceexercisecounter: References to Project~\vref{demo:ex:2} in a heading works for pdflatex}
                 
 \label{exer:you}
+
 Refer to the previous exercise as Exercise~\vref{exer:some:formula},
 the two before that as Projects~\vref{demo:ex:2} and~\vref{proj:circle1},
 and this one as Project~\vref{exer:you}.
 \noindent Filename: \Verb!selc_composed.pdf!.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \bibliographystyle{plain}
 \bibliography{papers}
+
+
+
 \appendix
+
 \section{Just for testing; part I}
 \label{app1}
+
 This is the first appendix.
+
 \subsection{A subsection within an appendix}
+
 Some text.
+
 \section{Just for testing; part II}
 \label{app2}
+
 This is more stuff for an appendix.
+
 \subsection{Appendix: Testing identical titles}
+
 Without label.
+
 \subsection{Appendix: Testing identical titles}
 \label{test:title:id1}
+
 With label.
+
 \subsection{Appendix: Testing identical titles}
 \label{test:title:id2}
+
 What about inserting a quiz?
+
 
 \begin{doconcequiz}
 \refstepcounter{doconcequizcounter}
@@ -6205,15 +8530,20 @@ Bergen
 \end{doconcequiz}
 
 
+
 \subsection{Appendix: Testing identical titles}
+
 Without label.
+
 
 \begin{notice_mdfboxadmon}[Tip.]
 Here is a tip or hint box, typeset as a notice box.
 \end{notice_mdfboxadmon} % title: Tip.
 
 
+
 \clearpage
+
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
 and share files among several computers and collaborators in a
@@ -6225,6 +8555,7 @@ ensure that every computer and person involved in the project
 have the latest updates of the files.
 Greg Wilson' excellent \href{{https://software--carpentry.org/2010/07/script--for-introduction-to--version-control/}}{Script for Introduction to Version Control}\footnote{\texttt{https://software--carpentry.org/2010/07/script--for-introduction-to--version-control/}} provides a more detailed motivation why you will benefit greatly
 from using version control systems.
+
 
 \begin{summary_mdfboxadmon}[Summary.]
 \textbf{Bold remark:} Make some text with this summary.
@@ -6240,11 +8571,13 @@ Much testing in this document, otherwise stupid content.
 \end{summary_mdfboxadmon} % title: Summary.
 
 
+
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work - and all other important files.
+
 The simplest services for hosting project files are \href{{https://dropbox.com}}{Dropbox}\footnote{\texttt{https://dropbox.com}} and \href{{https://drive.google.com}}{Google Drive}\footnote{\texttt{https://drive.google.com}}.
 It is very easy to get started with these systems, and they allow you
 to share files among laptops and mobile units with as many users as
@@ -6253,6 +8586,7 @@ files are stored frequently (several times per minute), and you can go
 back to previous versions for the last 30 days. However, it is
 challenging  to find the right version from the past when there are
 so many of them.
+
 More seriously, when several people may edit files simultaneously, it
 can be difficult detect who did what when, roll back to previous
 versions, and to manually merge the edits when these are
@@ -6262,6 +8596,7 @@ systems.  The following text aims at providing you with the minimum
 information to started with such systems. Numerous other tutorials
 contain more comprehensive material and in--depth explanations of the
 concepts and tools.
+
 The idea with project hosting services is that you have the files
 associated with a project in the cloud. Many people may share these
 files.  Every time you want to work on the project you explicitly
@@ -6271,6 +8606,7 @@ project is hosted.  If you at some point need to go back to a
 version of the files at some particular point in the past,
 this is an easy operation. You can also use tools to see
 what various people have done with the files in the various versions.
+
 All these services are very similar. Below we describe how you get
 started with Bitbucket, GitHub, and Googlecode. Launchpad works very
 similarly to the latter three. All the project hosting services have
@@ -6281,49 +8617,72 @@ The Git tutorials we refer to later in this document contain more
 detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
+
 \subsection{Appendix: Testing inline comments}
+
 % Names can be [ A-Za-z0-9_'+-]+
+
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that
 site. \shortinlinecomment{hpl's semi opinion 1}{ not sure if in the cloud is understood by all. }{ not sure if in } I strongly recommend you to use such sites for all serious
 programming and scientific writing work - and all other important
 files.
+
 The simplest services for hosting project files is Dropbox. \longinlinecomment{mp 2}{ Simply go to \href{{https://dropbox.com}}{\nolinkurl{https://dropbox.com}} and watch the video. It explains how files, like \texttt{myfile.py}, perhaps containing much math, like $\partial u/\partial t$, are easily communicated between machines. }{ Simply go to \href{{https://dropbox.com}}{\nolinkurl{https://dropbox.com}} } It
 is very easy to get started with Dropbox, and it allows you to share
 files among \textcolor{red}{(hpl 3:)} \replace{laptops and mobile units}{computers, tablets, and phones}.
+
 % Test horizontal rule
+
 ------
+
 % Coments for editing
+
 First\textcolor{red}{, (\textbf{edit 4}: add comma)} consider a quantity $Q$. \textcolor{red}{(edit 5:)} \replace{To this end,}{We note that}
 $Q>0$, because (\textbf{edit 6}:) \remove{a} negative \textcolor{red}{(edit 7:)} \replace{quantity is}{quantities are} (\textbf{edit 8}:) \remove{just} negative.  \textcolor{red}{ (\textbf{edit 9}:) This comes as no surprise.}
+
 % Test tailored latex figure references with page number
 Let us refer to Figure~\vref{fig:impact} again.
+
 Test references in a list:
+
 \begin{itemize}
  \item \vref{sec1}
+
  \item \vref{subsec1}
+
  \item \vref{fig:impact}
 \end{itemize}
+
 \noindent
 \subsection{Appendix: Testing headings ending with \texttt{verbatim inline} }
+
 The point here is to test 1) \texttt{verbatim} code in headings, and 2)
 ending a heading with verbatim code as this triggers a special
 case in {\LaTeX}.
+
 We also test mdash---used as alternative to hyphen without spaces around,
 or in quotes:
+
 
 \begin{quote}
 \emph{Fun is fun}.---Unknown.
 \end{quote}
 
+
 The ndash should also be tested -- as in the Hanson---Nilson equations
 on page 277--278.
+
 And finally, what about admons, quotes, and boxes? They are tested
 in a separate document: \texttt{admon.do.txt}.
+
+
 % ------------------- end of main content ---------------
+
 \cleardoublepage\phantomsection  % trick to get correct link to Index
 \printindex
+
 \end{document}
 
 ************** File: testdoc.tex_direct *****************
@@ -6331,32 +8690,43 @@ in a separate document: \texttt{admon.do.txt}.
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
 %% doconce format html testdoc.do.txt --examples_as_exercises --latex_code_style=default:lst-blue1[style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]@fcod:vrb-gray@sys:vrb[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt] --latex_code_lststyles=mylststyles --latex_packages=varioref
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
 \usepackage{sidecap}
+
 % user-provided packages: --latex_packages=varioref
 \usepackage{varioref}
+
 % 'on page ...' reference with \vref{} and varioref package
 \renewcommand\reftextfaceafter{on page~\thevpagerefnum}
 \renewcommand\reftextfacebefore{on page~\thevpagerefnum}
 \renewcommand\reftextafter{on page~\thevpagerefnum}
 \renewcommand\reftextbefore{on page~\thevpagerefnum}
+
 % Tools for marking corrections
 \usepackage{soul}
 \newcommand{\replace}[2]{{\color{red}\text{\st{#1} #2}}}
 \newcommand{\remove}[1]{{\color{red}\st{#1}}}
+
 % Packages for typesetting blocks of computer code
 \usepackage{fancyvrb,framed,moreverb}
+
 % Define colors
 \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
 \definecolor{tucorange}{rgb}{1.0,0.64,0}
@@ -6377,25 +8747,35 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \definecolor{lightblue2}{rgb}{0.3,0.3,1.0}
 \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
 \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+
 \colorlet{comment_green}{green!50!black}
 \colorlet{string_red}{red!60!black}
 \colorlet{keyword_pink}{magenta!70!black}
 \colorlet{indendifier_green}{green!70!white}
+
 % Backgrounds for code
 \definecolor{cbg_gray}{rgb}{.95, .95, .95}
 \definecolor{bar_gray}{rgb}{.92, .92, .92}
+
 \definecolor{cbg_yellowgray}{rgb}{.95, .95, .85}
 \definecolor{bar_yellowgray}{rgb}{.95, .95, .65}
+
 \colorlet{cbg_yellow2}{yellow!10}
 \colorlet{bar_yellow2}{yellow!20}
+
 \definecolor{cbg_yellow1}{rgb}{.98, .98, 0.8}
 \definecolor{bar_yellow1}{rgb}{.98, .98, 0.4}
+
 \definecolor{cbg_red1}{rgb}{1, 0.85, 0.85}
 \definecolor{bar_red1}{rgb}{1, 0.75, 0.85}
+
 \definecolor{cbg_blue1}{rgb}{0.87843, 0.95686, 1.0}
 \definecolor{bar_blue1}{rgb}{0.7,     0.95686, 1}
+
 %\setlength{\fboxsep}{2mm}  % adjust cod_vpad/pro_vpad background box
+
 %% Background for code blocks (parameter is color name)
+
 %% pro/cod_vpad: gives some vertical padding before and after the text
 %% (but has more simplistic code than _cod/pro_tight+cod/pro).
 %% pro/cod_vpad can be used to enclose Verbatim or lst begin/end for code.
@@ -6403,14 +8783,17 @@ final,                   % draft: marks overfull hboxes, figures with paths
 %% used to enclose Verbatim and other begin/end for code.
 %% (pro/cod is what the ptex2tex program could produce with the
 %% Blue/BlueBar definitions in .ptex2tex.cfg.)
+
 \newenvironment{cod_vpad}[1]{
    \def\FrameCommand{\colorbox{#1}}
    \MakeFramed{\FrameRestore}}
    {\endMakeFramed}
+
 \newenvironment{_cod_tight}[1]{
    \def\FrameCommand{\colorbox{#1}}
    \FrameRule0.6pt\MakeFramed {\FrameRestore}\vskip3mm}
    {\vskip0mm\endMakeFramed}
+
 \newenvironment{cod}[1]{
 \bgroup\rmfamily
 \fboxsep=0mm\relax
@@ -6419,16 +8802,19 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \rightmargin=2\leftmargin\leftmargin=4pt\relax}
 \item\relax}
 {\endlist\end{_cod_tight}\egroup}
+
 %% Background for complete program blocks (parameter 1 is color name
 %% for background, parameter 2 is color for left bar)
 \newenvironment{pro_vpad}[2]{
    \def\FrameCommand{\color{#2}\vrule width 1mm\normalcolor\colorbox{#1}}
    \MakeFramed{\FrameRestore}}
    {\endMakeFramed}
+
 \newenvironment{_pro_tight}[2]{
    \def\FrameCommand{\color{#2}\vrule width 1mm\normalcolor\colorbox{#1}}
    \FrameRule0.6pt\MakeFramed {\advance\hsize-2mm\FrameRestore}\vskip3mm}
    {\vskip0mm\endMakeFramed}
+
 \newenvironment{pro}[2]{
 \bgroup\rmfamily
 \fboxsep=0mm\relax
@@ -6437,14 +8823,18 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \rightmargin=2\leftmargin\leftmargin=4pt\relax}
 \item\relax}
 {\endlist\end{_pro_tight}\egroup}
+
 \usepackage{listingsutf8}
+
 % Common lstlisting parameters
+
 \usepackage{calc}
 \newlength{\lstboxwidth}  % width of lst box
 \newlength{\framethickness}
 \setlength{\framethickness}{0.5mm}
 % for frame=trbl and a framerule that has significant size, set
 % xleftmargin=5mm and xrightmargin=5mm.
+
 \lstset{
   basicstyle=\small \ttfamily,
   breaklines=false,          % break/wrap lines
@@ -6468,10 +8858,13 @@ final,                   % draft: marks overfull hboxes, figures with paths
   escapeinside={(*@}{@*)},   % (*@ \pause @*) in slides and math in code blocks
   extendedchars=\true,       % allows non-ascii chars, does not work with utf-8
 }
+
 % Internally defined styles for lstlisting
+
 \lstdefinestyle{simple}{
 commentstyle={},
 }
+
 % user-defined lst styles in file "mylststyles":
 \lstdefinestyle{myspeciallststyle}{
 keywordstyle=\color{blue}\bfseries,
@@ -6479,14 +8872,19 @@ commentstyle=\color{myteal},
 stringstyle=\color{darkgreen},
 identifierstyle=\color{darkorange},
 }
+
 % end of custom lstdefinestyles
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 \newenvironment{doconcequiz}{}{}
 \newcounter{doconcequizcounter}
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -6503,9 +8901,12 @@ identifierstyle=\color{darkorange},
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 %\VerbatimFootnotes must come after hyperref and footmisc packages
 \VerbatimFootnotes
+
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -6520,11 +8921,15 @@ identifierstyle=\color{darkorange},
 \usepackage[section]{placeins}
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
+
 % newcommands for typesetting inline (doconce) comments
 \newcommand{\shortinlinecomment}[3]{{\color{red}{\bf #1}: #2}}
 \newcommand{\longinlinecomment}[3]{{\color{red}{\bf #1}: #2}}
+
 \usepackage[framemethod=TikZ]{mdframed}
+
 % --- begin definitions of admonition environments ---
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "notice" admon
 \colorlet{mdfbox_notice_background}{gray!5}
@@ -6545,12 +8950,14 @@ identifierstyle=\color{darkorange},
   roundcorner=5,
   needspace=0pt,
 ]{notice_mdfboxmdframed}
+
 \newenvironment{notice_mdfboxadmon}[1][]{
 \begin{notice_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{notice_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "summary" admon
 \colorlet{mdfbox_summary_background}{gray!5}
@@ -6571,12 +8978,14 @@ identifierstyle=\color{darkorange},
   roundcorner=5,
   needspace=0pt,
 ]{summary_mdfboxmdframed}
+
 \newenvironment{summary_mdfboxadmon}[1][]{
 \begin{summary_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{summary_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "warning" admon
 \colorlet{mdfbox_warning_background}{gray!5}
@@ -6597,12 +9006,14 @@ identifierstyle=\color{darkorange},
   roundcorner=5,
   needspace=0pt,
 ]{warning_mdfboxmdframed}
+
 \newenvironment{warning_mdfboxadmon}[1][]{
 \begin{warning_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{warning_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "question" admon
 \colorlet{mdfbox_question_background}{gray!5}
@@ -6623,12 +9034,14 @@ identifierstyle=\color{darkorange},
   roundcorner=5,
   needspace=0pt,
 ]{question_mdfboxmdframed}
+
 \newenvironment{question_mdfboxadmon}[1][]{
 \begin{question_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{question_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "block" admon
 \colorlet{mdfbox_block_background}{gray!5}
@@ -6649,17 +9062,22 @@ identifierstyle=\color{darkorange},
   roundcorner=5,
   needspace=0pt,
 ]{block_mdfboxmdframed}
+
 \newenvironment{block_mdfboxadmon}[1][]{
 \begin{block_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{block_mdfboxmdframed}
 }
+
 % --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 \usepackage{calc}
+
 \newenvironment{doconceexercise}{}{}
 \newcounter{doconceexercisecounter}
 % --- begin definition of \listofexercises command ---
@@ -6670,6 +9088,9 @@ identifierstyle=\color{darkorange},
 \newcommand*{\l@doconceexercise}{\@dottedtocline{0}{0pt}{6.5em}}
 \makeatother
 % --- end definition of \listofexercises command ---
+
+
+
 % ------ header in subexercises ------
 %\newcommand{\subex}[1]{\paragraph{#1}}
 %\newcommand{\subex}[1]{\par\vspace{1.7mm}\noindent{\bf #1}\ \ }
@@ -6680,25 +9101,44 @@ identifierstyle=\color{darkorange},
                   {-0.5em}%
                   {\normalfont\normalsize\bfseries}}
 \makeatother
+
+
 % --- end of standard preamble for documents ---
+
+
 \usepackage{amsthm,tcolorbox}
 \theoremstyle{definition}
 \newtheorem{example}{Example}[section]
+
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
+
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -6706,22 +9146,33 @@ A Document for Testing DocOnce
 \end{spacing}
 }
 \end{center}
+
 % ----------------- author(s) -------------------------
+
 \begin{center}
 {\bf Hans Petter Langtangen${}^{1, 2}$ (\texttt{hpl@simula.no})} \\ [0mm]
 \end{center}
+
+
 \begin{center}
 {\bf Kaare Dump${}^{3}$} \\ [0mm]
 \end{center}
+
+
 \begin{center}
 {\bf A. Dummy Author${}^{}$} \\ [0mm]
 \end{center}
+
+
 \begin{center}
 {\bf I. S. Overworked and Outburned${}^{4, 5, 6, 7}$} \\ [0mm]
 \end{center}
+
+
 \begin{center}
 {\bf J. Doe${}^{}$ (\texttt{j\_doe@cyberspace.com})} \\ [0mm]
 \end{center}
+
 \begin{center}
 % List of all institutions:
 \centerline{{\small ${}^1$Center for Biomedical Computing, Simula Research Laboratory}}
@@ -6734,58 +9185,87 @@ A Document for Testing DocOnce
 \end{center}
     
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
+
 \tableofcontents
+
 \vspace{1cm} % after toc
+
 % !split
+
 The format of this document is
 plain, homemade \textsc{pdf}{\LaTeX} (from DocOnce).
+
 \begin{abstract}
 This is a document with many test constructions for doconce syntax.
 It was used heavily for the development and kept for testing
 numerous constructions, also special and less common cases.
+
 And exactly for test purposes we have an extra line here, which
 is part of the abstract.
+
 % Cannot demonstrate chapter headings since abstract and chapter
 % are mutually exclusive in {\LaTeX}
 \end{abstract}
+
 \section{Section 1}
 \label{sec1}
+
 Here is a nested list:
+
 \begin{itemize}
   \item item1
+
   \item item2
+
   \item item3 which continues on the next line to test that feature
+
   \item and a sublist
 \begin{itemize}
+
     \item with indented subitem1
+
     \item and a subitem2
+
 \end{itemize}
+
 \noindent
   \item and perhaps an ordered sublist
 \begin{enumerate}
+
    \item first item
+
    \item second item, continuing on a new line
 \end{enumerate}
+
 \noindent
 \end{itemize}
+
 \noindent
 \paragraph{Here is a list with paragraph heading.}
+
 \begin{itemize}
   \item item1
+
   \item item2
 \end{itemize}
+
 \noindent
 \paragraph{Here is a list with subsubsection heading.}
 \begin{itemize}
   \item item1
+
   \item item2
 \end{itemize}
+
 \noindent
 
 \begin{quote}
@@ -6795,25 +9275,48 @@ also with hypens:
 \emph{pre}-fix, post-\emph{fix}, \textbf{pre}-fix, post-\textbf{fix}.
 \end{quote}
 
+
 Here are two references. Equation~(\ref{my:eq1}) is fine. Eq.~(\ref{my:eq1}) too.
 Even Equation (\ref{my:eq1}) without the tilde.
+
 \subsection{Subsection 1}
 \label{subsec1}
+
 \index{somefunc@{\rm\texttt{somefunc}} function}
+
 % Refer to section/appendix etc. at the beginning of the line
 % and other special fix situations for HTML.
+
 More text, with a reference back to
 Section~\vref{sec1} and~\vref{subsec1}, and further to the
 sections~\vref{subsec1} and~\vref{subsubsec:ex}, which
 encourages you to do the tasks in the
 Exercises~\vref{demo:ex:1} and~\vref{exer:some:formula}.
 Appendices~\vref{app1} and~\vref{app2} are also nice elements.
+
 \paragraph{Test Section reference at beginning of line and after a sentence.}
 Section~\vref{subsec1} is fine.
 Section~\vref{subsubsec:ex} too.
+
 % sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
+
 \paragraph{Computer code.}
 Let's do some copying from files too. First from subroutine up to the very end,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
       subroutine test()
       integer i
@@ -6834,6 +9337,16 @@ C     END1
 \noindent
 
 and then just the subroutine,
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
 
       subroutine test()
@@ -6851,6 +9364,22 @@ and then just the subroutine,
 
 and finally the complete file with a plain text verbatim environment
 (\texttt{envir=ccq}):
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 C     a comment
 
@@ -6871,7 +9400,14 @@ C     END1
 \end{lstlisting}\end{cod}
 \noindent
 
+
 Testing other code environments. First Python:
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 !bc pycod
 def f(x):
@@ -6882,6 +9418,10 @@ def f(x):
 \noindent
 
 which gets rendered as
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 def f(x):
     return x+1
@@ -6889,9 +9429,15 @@ def f(x):
 \end{lstlisting}\end{cod}
 \noindent
 
+
 Test paragraph and subsubsection headings before
 before code.
+
 \paragraph{Paragraph heading before code.}
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 import sys
 sys.path.insert(0, os.pardir)
@@ -6899,7 +9445,11 @@ sys.path.insert(0, os.pardir)
 \end{lstlisting}\end{cod}
 \noindent
 
+
 \paragraph{Subsubsection heading before code.}
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 def h(z):
     return z+1
@@ -6907,7 +9457,21 @@ def h(z):
 \end{lstlisting}\end{cod}
 \noindent
 
+
 Now a complete program to be shown via Python Online Tutorial:
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 class Line:
     def __init__(self, a, b):
@@ -6926,8 +9490,24 @@ print(y)
 
 \noindent
 (\href{{https://pythontutor.com/visualize.html\#code=class+Line\%3A\%0A++++def+__init__\%28self\%2C+a\%2C+b\%29\%3A\%0A++++++++self.a\%2C+self.b+\%3D+a\%2C+b\%0A\%0A++++def+__call__\%28self\%2C+x\%29\%3A\%0A++++++++a\%2C+b+\%3D+self.a\%2C+self.b\%0A++++++++return+a\%2Ax+\%2B+b\%0A\%0Aline+\%3D+Line\%282\%2C+1\%29\%0Ay+\%3D+line\%28x\%3D3\%29\%0Aprint\%28y\%29&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2&curInstr=0}}{Visualize execution}) 
+
+
 Some more Python code (actually specified as a sage cell, but
 such cells are not supported by this format).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 a = 2
 b = 3
@@ -6945,7 +9525,12 @@ show()
 \end{lstlisting}\end{pro}
 \noindent
 
+
 Then Cython (with -h option so it is hidden in html/sphinx):
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 cpdef f(double x):
     return x + 1
@@ -6953,7 +9538,18 @@ cpdef f(double x):
 \end{lstlisting}\end{cod}
 \noindent
 
+
 Standard Python shell sessions:
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 >>> from numpy import linspace, sin
 >>> # Some comment
@@ -6967,7 +9563,25 @@ Standard Python shell sessions:
 \end{lstlisting}\end{cod}
 \noindent
 
+
 Similar IPython sessions:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 In [1]: from numpy import linspace, sin
 In [2]: # Some comment
@@ -6988,7 +9602,18 @@ output
 \end{lstlisting}\end{cod}
 \noindent
 
+
 Here is the interactive session again, but with \texttt{pyshell-t}.
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 >>> from numpy import linspace, sin
 >>> # Some comment
@@ -7002,8 +9627,17 @@ Here is the interactive session again, but with \texttt{pyshell-t}.
 \end{lstlisting}\end{cod}
 \noindent
 
+
 % This one tests a + sign before a code environment
 C++:
+
+
+
+
+
+
+
+
 \begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=C++,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 #include <iostream>
 
@@ -7019,6 +9653,16 @@ int main()
 % The next should get correctly typset in sphinx (cod is fcod)
 % It also tests emoji before code
 And a little bit of Fortran: \raisebox{-\height+\ht\strutbox}{\includegraphics[height=1.5em]{latex_figs/dizzy_face.png}}
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 !bc cod
       subroutine midpt(x, length, a, b)
@@ -7033,6 +9677,14 @@ And a little bit of Fortran: \raisebox{-\height+\ht\strutbox}{\includegraphics[h
 \noindent
 
 which then is typeset as
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
       subroutine midpt(x, length, a, b)
       real*8 a, b, x
@@ -7044,7 +9696,15 @@ which then is typeset as
 \end{lstlisting}\end{cod}
 \noindent
 
+
 HTML:
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=HTML,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 <table>
 <tr><td>Column 1</td><td>Column 2</td></tr>
@@ -7055,10 +9715,19 @@ HTML:
 \end{lstlisting}\end{cod}
 \noindent
 
+
 But inline HTML code is also important, like text that starts with
 \texttt{<a href="} (which can destroy the following text if not properly
 quoted).
+
 Matlab with comments requires special typesetting:
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Matlab,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 % Comment on the beginning of the line can be escaped by %%
 if a > b
@@ -7069,7 +9738,15 @@ end
 \end{lstlisting}\end{cod}
 \noindent
 
+
 And here is a system call:
+
+
+
+
+
+
+
 \begin{Verbatim}[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt]
 Terminal> mkdir test
 Terminal> cd test
@@ -7079,7 +9756,17 @@ output2
 
 \end{Verbatim}
 
+
 Any valid pygments lexer/language name can appear to, e.g.,
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 !bc restructuredtext
 =======
@@ -7093,6 +9780,13 @@ Some text.
 \noindent
 
 results in
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 =======
 Heading
@@ -7103,9 +9797,66 @@ Some text.
 \end{lstlisting}\end{cod}
 \noindent
 
+
 % Here goes hidden code.
 % Python can be treated by some formats, Fortran is always out.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Finally, \Verb?!bc do? supports highlighting of DocOnce source:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 ======= DocOnce test file =======
 
@@ -7146,11 +9897,13 @@ __Paragraph heading.__ Paragraphs may have headings.
 \end{lstlisting}\end{cod}
 \noindent
 
+
 It is time to test \texttt{verbatim inline font} especially with \texttt{a newline inside the text} and an exclamation mark at the end: \texttt{BEGIN}! For
 spellcheck, test \texttt{a verbatim expression} in \texttt{another} in a \texttt{third}.
 Also test exclamation mark as in \Verb?!bc? and \Verb?!ec? as well as \Verb?a != b?.
 Also test backslashes and braces like \Verb!\begin!, \Verb!\begin{enumerate}!,
 \Verb!\end{this}\end{that}!, and \Verb!{something \inside braces}!.
+
 Here is some \textcolor{red}{red color} and an attempt to write \textcolor{green}{with
 green color containing a linebreak\\
 code.} Some formats will only display \\
@@ -7158,7 +9911,14 @@ this correctly when \texttt{html} \\
 is the output format.
 But here some more running text is added which is not part of
 the previous blocks with line breaks.
+
 \paragraph{Running OS commands.}
+
+
+
+
+
+
 \begin{Verbatim}[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt]
 Terminal> python -c 'print("Testing\noutput\nfrom\nPython.")'
 Testing
@@ -7168,20 +9928,28 @@ Python.
 
 \end{Verbatim}
 
+
 \paragraph{Footnotes.}
 Here is a test of footnotes \footnote{Typesetting of the footnote depends on the format. Plain text does nothing, {\LaTeX} removes the definition and inserts the footnote as part of the {\LaTeX} text. reStructuredText and Sphinx employ a similar type of typesetting as Extended Markdown and DocOnce, and in HTML we keep the same syntax, just displayed properly in HTML.}, which are handy in text.
 They are used in different flavors, now in
+
 \begin{itemize}
  \item list items (note below that footnotes work after math, verbatim, and URLs - bin fact old and emphasize too!)
+
  \item even with math $\nabla^2u$\footnote{Math footnotes can be dangerous since it interferes with an exponent.}
+
  \item and code \texttt{h[i] += 1}\footnote{One-line footnote.} (\emph{must} have space between inline code and footnote!)
+
  \item and \href{{https://google.com}}{links}\footnote{\href{{google.com}}{\nolinkurl{google.com}} is perhaps the most famous web site today.}
 \end{itemize}
+
 \noindent
 which gives flexibility in writing.
 This is the third\footnote{Not much to add here, but the footnote is at the end with only one newline.} example.
+
 Here is some more text before a new definition of a footnote that was
 used above.
+
 
 \begin{notice_mdfboxadmon}[Non-breaking space character.]
 This paragraph aims to test \href{{https://en.wikipedia.org/wiki/Non-breaking_space}}{non-breaking space character}, and a typical
@@ -7194,11 +9962,14 @@ of course remain a tilde in those contexts.)
 \end{notice_mdfboxadmon} % title: Non-breaking space character.
 
 
+
 \subsection{Subsection 2: Testing figures}
 \label{subsec:ex}
 \index{figures}
+
 Test of figures. In particular we refer to Figure~\vref{fig:impact} in which
 there is a flow.
+
 \begin{figure}[!ht]  % fig:impact
   \centerline{\includegraphics[width=0.9\linewidth]{testfigs/wave1D.png}}
   \caption{
@@ -7206,15 +9977,23 @@ there is a flow.
   }
 \end{figure}
 %\clearpage % flush figures fig:impact
+
 Figures without captions are allowed and will be inlined.
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.9\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
+
 \index{movies}
+
 % Test multi-line caption in figure with sidecap=True
+
 Here is figure~\vref{myfig} with a long (illegal) multi-line caption
 containing inline verbatim text:
+
 \begin{SCfigure}
   \centering
   \includegraphics[width=0.9\linewidth]{testfigs/wave1D.png}
@@ -7223,20 +10002,33 @@ containing inline verbatim text:
   }
 \end{SCfigure}
 %\clearpage % flush figures myfig
+
 % Must be a blank line after MOVIE or FIGURE to detect this problem
+
 Test URL as figure name:
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.8\linewidth]{downloaded_figures/f_plot.png}}
+
 \vspace{6mm}
+
 % Test wikimedia type of files that otherwise reside in subdirs
+
 \paragraph{Remark.}
 Movies are tested in separate file \texttt{movies.do.txt}.
+
 % Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
+
 \subsection{The $\theta$ parameter (not $\nabla$?)}
 \label{decay:sec:theta}
+
 Functions do not always need to be advanced, here is one
 involving $\theta$:
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 def f(theta):
     return theta**2
@@ -7244,18 +10036,23 @@ def f(theta):
 \end{lstlisting}\end{cod}
 \noindent
 
+
 \paragraph{More on $\theta$.}
 Here is more text following headline with math.
+
 Newcommands must also be tested in this \report:
 $\half$, $\halfi$, $\x$, $\Ddt{u}$,
 both inline and in block:
+
 \begin{align}
 \Ddt{u} &= 0\nonumber
 \\ 
 \half &= \halfi\\ 
 \half\x &= \normalvec
 \end{align}
+
 Or with align with label and numbers:
+
 \begin{align}
 \Ddt{u} &= 0
 \label{aligneq1}
@@ -7264,9 +10061,12 @@ Or with align with label and numbers:
 \half\x &= \normalvec
 \label{aligneq2}
 \end{align}
+
 % Must test more complicated align and matrix compositions
 % where DocOnce inserts auto-numbered labels etc.
+
 First one numbered (automatically):
+
 \begin{align}
 \begin{pmatrix}
 G_2 + G_3 & -G_3 & -G_2 & 0 \\ 
@@ -7302,7 +10102,9 @@ G_2 + G_3 & -G_3 & -G_2 & 0 \\
 \end{pmatrix}
 \nonumber
 \end{align}
+
 Second numbered (automatically):
+
 \begin{align}
 \begin{pmatrix}
 G_1 + G_2\\ 
@@ -7326,7 +10128,9 @@ y & 2\\
 A \\ B
 \end{pmatrix}
 \end{align}
+
 Both numbered, with label by the user:
+
 \begin{align}
 \begin{pmatrix}
 G_1 + G_2\\ 
@@ -7352,25 +10156,33 @@ A \\ B
 \end{pmatrix}
 \end{align}
 Now we refer to (\ref{mymatrix:eq1})-(\ref{mymatrix:eq2}).
+
 \subsection{Custom Environments}
+
 Here is an attempt to create a theorem environment via Mako
 (for counting theorems) and comment lines to help replacing lines in
 the \texttt{.tex} by proper begin-end {\LaTeX} environments for theorems.
 Should look nice in most formats!
+
 % begin theorem
 \label{theorem:fundamental1}
+
 \paragraph{Theorem 5.}
 Let $a=1$ and $b=2$. Then $c=3$.
 % end theorem
+
 % begin proof
 \paragraph{Proof.}
 Since $c=a+b$, the result follows from straightforward addition.
 $\Diamond$
 % end proof
+
 As we see, the proof of Theorem 5 is a modest
 achievement.
+
 \subsection{Tables}
 \label{subsec:table}
+
 \index{test index with verbatim text@test index with {\rm\texttt{verbatim text}} which is possible}
 \index{test two@test {\rm\texttt{two}} (separate) {\rm\texttt{verbatim expressions}} which is also possible}
 \index{index with!subindex}
@@ -7378,15 +10190,20 @@ achievement.
 \index{index with \textbf{boldface word}}
 \index{index with!\textbf{boldface word} in subentry}
 \index{double \textbf{boldface word}! \textbf{boldface word} in subentry too}
+
 % index with comma could fool sphinx
 \index{index, with comma, and one more}
+
 Let us take this table from the manual:
+
 \begin{table}
 \caption{
 Testing table environment in {\LaTeX}, enabled by testing on the "latex" format
 with the preprocessor.
 \label{mytab}
 }
+
+
 \begin{quote}
 \begin{tabular}{lrr}
 \hline
@@ -7398,9 +10215,21 @@ with the preprocessor.
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 \end{table}
+
 The DocOnce source code reads
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 
   |--------------------------------|
@@ -7415,8 +10244,11 @@ The DocOnce source code reads
 \end{lstlisting}\end{cod}
 \noindent
 
+
 Here is yet another table to test that we can handle more than
 one table:
+
+
 \begin{quote}
 \begin{tabular}{lll}
 \hline
@@ -7428,10 +10260,13 @@ one table:
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 And one with math headings (that are expanded and must be treated
 accordingly), verbatim heading and entry, and no space around the pipe
 symbol:
+
+
 \begin{quote}
 \begin{tabular}{lrrr}
 \hline
@@ -7447,10 +10282,13 @@ symbol:
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 And add one with verbatim headings (with underscores),
 and rows starting with \texttt{|-} because of a negative number,
 and \texttt{|} right before and after verbatim word (with no space):
+
+
 \begin{quote}
 \begin{tabular}{rrrr}
 \hline
@@ -7463,10 +10301,13 @@ and \texttt{|} right before and after verbatim word (with no space):
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 Pipe symbols in verbatim and math text in tables used to pose difficulties,
 but not
 anymore:
+
+
 \begin{quote}
 \begin{tabular}{lr}
 \hline
@@ -7477,8 +10318,11 @@ $x\cap y$   & \texttt{x|y}         \\
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 Here is a table with X alignment:
+
+
 \begin{quote}
 \begin{tabularx}{\linewidth}{cX}
 \hline
@@ -7489,11 +10333,15 @@ l,r,c & standard alignment characters                                           
 \hline
 \end{tabularx}
 \end{quote}
+
 \noindent
 Finally, a table with math
 and URLs.
+
 % Mako code to expand URLs in the table
 % (These types of tables did not work before Jan 2014)
+
+
 \begin{quote}
 \begin{tabular}{ccc}
 \hline
@@ -7505,63 +10353,103 @@ $\nabla\cdot\bm{u} =0 $ & \includegraphics[width=2cm]{../doc/src/manual/mov/wave
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 \subsection{A test of verbatim words in heading with subscript $a_i$: \protect\Verb!my\_file\_v1! and \protect\Verb!my\_file\_v2! }
+
 \paragraph{Paragraph with verbatim and math: \protect\Verb!my\_file\_v1.py! and \protect\Verb!my\_file\_v2.py! define some math $a_{i-1}$.}
 Here is more \Verb!__verbatim__! code and
 some plain text on a new line.
+
 % Test various types of headlines
 \subsection{\textbf{Just bold}}
+
 Some text.
+
 \subsection{\emph{Just emphasize}}
+
 Some text.
+
 \subsection{\texttt{Just verbatim} }
+
 Some text.
+
 \subsection{\textbf{Bold} beginning}
+
 Some text.
+
 \subsection{\emph{Emphasize} beginning}
+
 Some text.
+
 \subsection{\texttt{Verbatim} beginning}
+
 Some text.
+
 \subsection{Maybe \textbf{bold end}}
+
 Some text.
+
 \subsection{Maybe \emph{emphasize end}}
+
 Some text.
+
 \subsection{Maybe \texttt{verbatim end} }
+
 Some text.
+
 \subsection{The middle has \textbf{bold} word}
+
 Some text.
+
 \subsection{The middle has \emph{emphasize} word}
+
 Some text.
+
 \subsection{The middle has \texttt{verbatim} word}
+
 Some text.
+
 \paragraph{\emph{Just emphasize}.}
 Some text.
+
 \paragraph{\texttt{Just verbatim}.}
 Some text.
+
 \paragraph{\emph{Emphasize} beginning.}
 Some text.
+
 \paragraph{\texttt{Verbatim beginning}.}
 Some text.
+
 \paragraph{Maybe \emph{emphasize end}.}
 Some text.
+
 \paragraph{Maybe \texttt{verbatim end}.}
 Some text.
+
 \paragraph{The middle has \emph{emphasize} word.}
 Some text.
+
 \paragraph{The middle has \texttt{verbatim} word.}
 Some text.
+
 \paragraph{Ampersand.}
 We can test Hennes {\&} Mauritz, often abbreviated H{\&}M, but written
 as \Verb!Hennes & Mauritz! and \Verb!H & M!.
 A sole \Verb!&! must also work.
 % Note: substitutions must not occur inside verbatim, just in ordinary text.
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 # Just to check that ampersand works in code blocks:
 c = a & b
 
 \end{lstlisting}\end{cod}
 \noindent
+
 
 \paragraph{Quotes.}
 Let us also add a test of quotes such as ``double quotes, with numbers
@@ -7571,10 +10459,13 @@ ordinary double quotes for all non-LaTeX formats.  Here is another
 sentence that ``caused'' a bug in the past because double backtick
 quotes could imply verbatim text up to a verbatim word starting with
 period, like \texttt{.txt}.
+
 More quotes to be tested for spellcheck:
 (``with parenthesis''), ``with newline''
 and ``with comma'', ``hyphen''-wise, and ``period''.
+
 \subsection{Bibliography test}
+
 Here is an example: \cite{Langtangen_Pedersen_2002} discussed propagation of
 large destructive water waves, \cite{Langtangen_et_al_2002} gave
 an overview of numerical methods for solving the Navier--Stokes equations,
@@ -7585,6 +10476,7 @@ C++ software tools for programming multigrid methods. A real retro
 reference is \cite{Langtangen_1988d} about a big FORTRAN package.
 Multiple references are also possible, e.g., see
 \cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
+
 We need to cite more than 10 papers to reproduce an old formatting
 problem with blanks in the keys in reST format:
 \cite{Langtangen_1992c,Langtangen_1994a,Mortensen_et_al_2011,Langtangen_Pedersen_2002}
@@ -7599,40 +10491,65 @@ back in the days.
 More retro citations are
 the old ME-IN323 book \cite{Langtangen:91} and the
 \cite{Langtangen:94b} OONSKI '94 paper.
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Example \thedoconceexercisecounter: Examples can be typeset as exercises}
                              
 \label{Example}
+
 Examples can start with a subsection heading starting with \texttt{Example:}
 and then, with the command-line option \Verb!--examples_as_exercises! be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
+
 \subex{a)}
 State some problem.
+
 \paragraph{Solution.}
 The answer to this subproblem can be written here.
+
 \subex{b)}
 State some other problem.
+
 \paragraph{Hint 1.}
 A hint can be given.
+
 \paragraph{Hint 2.}
 Maybe even another hint?
+
 \paragraph{Solution.}
 The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \subsection{User-defined environments}
+
 Example~\vref{ex:test:1p1} demonstrates how to write a test function.
 That is, a special test function for a function \texttt{add} appears in
 Example~\vref{ex:test:1p1}.
+
 \begin{example}
 \label{ex:test:1p1}
+
 \noindent\emph{A test function}.
+
 Suppose we want to write a test function for checking the
 implementation of a Python function for addition.
+
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 def add(a, b):
     return a + b
@@ -7647,12 +10564,18 @@ def test_add():
 \noindent
 
 \end{example}
+
 \begin{example}
 \label{ex:math:1p1}
+
 \noindent\emph{Addition}.
+
 We have
+
 \[ 1 + 1 = 2 \]
 or in tabular form:
+
+
 \begin{quote}
 \begin{tabular}{cc}
 \hline
@@ -7662,8 +10585,10 @@ $1+1$   & $2$    \\
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 \end{example}
+
 \begin{tcolorbox}[%skin=widget,
 boxrule=1mm,
 coltitle=black,
@@ -7672,10 +10597,13 @@ colback=blue!15!white,
 width=(.9\linewidth),before=\hfill,after=\hfill,
 adjusted title={Highlight box!}]
 This environment is used to highlight something:
+
 \[ E = mc^2 \]
 \end{tcolorbox}
+
 \subsection{URLs}
 \label{subsubsec:ex}
+
 Testing of URLs: hpl's home page \href{{https://folk.uio.no/hpl}}{hpl}, or
 the entire URL if desired, \href{{https://folk.uio.no/hpl}}{\nolinkurl{https://folk.uio.no/hpl}}.  Here is a
 plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or
@@ -7687,30 +10615,38 @@ fine to have. Moreover, ``loose'' URLs work, i.e., no quotes, just
 the plain URL as in \href{{https://folk.uio.no/hpl}}{\nolinkurl{https://folk.uio.no/hpl}}, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
 Mail addresses can also be used: \href{{mailto:hpl@simula.no}}{\nolinkurl{hpl@simula.no}}, or just a \href{{mailto:hpl@simula.no}}{mail link}, or a raw \href{{mailto:hpl@simula.no}}{\nolinkurl{mailto:hpl@simula.no}}.
+
 Here are some tough tests of URLs, especially for the \texttt{latex} format:
 \href{{https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{Newton-Cotes} formulas
 and a \href{{https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}}{good book}. Need to test
 Newton-Cotes with percentage in URL too:
 \href{{https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{\nolinkurl{https://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes_formulas}}
 and \href{{https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae}}{\nolinkurl{https://en.wikipedia.org/wiki/Newton-Cotes\#Open_Newton.E2.80.93Cotes_formulae}} which has a shebang.
+
 For the \texttt{--device=paper} option it is important to test that URLs with
 monospace font link text get a footnote
 (unless the \Verb!--latex_no_program_footnotelink!
 is used), as in this reference to
 \href{{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}}{\nolinkurl{decay_mod}}, \href{{https://tinyurl.com/pwyasaa/formulas.ball1.py}}{\nolinkurl{ball1.py}},
 and \href{{https://tinyurl.com/pwyasaa/formulas.ball2.py}}{\nolinkurl{ball2.py}}.
+
 % Comments should be inserted outside paragraphs (because in the rst
 % format extra blanks make a paragraph break).
+
 % Note that when there is no https: or file:, it can be a file link
 % if the link name is URL, url, "URL", or "url". Such files should,
 % if rst output is desired, but placed in a \Verb!_static*! folder.
+
 More tough tests: repeated URLs whose footnotes when using the
 \texttt{--device=paper} option must be correct. We have
 \href{{https://google.com}}{google}, \href{{https://google.com}}{google}, and
 \href{{https://google.com}}{google}, which should result in exactly three
 footnotes.
+
 \subsection{Test of Some {\LaTeX} Fixes}
+
 Let's check abbr.~of some common kind, e.g.~the well-known i.e.
 expression as an example, and 1 vs.~2 which is also often used.
 Dr.~Tang and Prof.~Monsen, or maybe also prof.~Ting,
@@ -7721,41 +10657,58 @@ handled. Likewise, this is test no.~$i$ of DocOnce features.
 Also, look at Fig.~4 to see how the data compares with Tab.~\vref{mytab}.
 Percentage must be fixed: 7\%,  87.65\% and
 50\% at the beginning of the line.
+
 % !split and check if these extra words are included properly in the comment
+
 \section{{\LaTeX} Mathematics}
+
 Here is an equation without label using backslash-bracket environment:
 \[ a = b + c \]
+
 or with number and label, as in (\ref{my:eq1}), using the equation environment:
+
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
+
 We can refer to this equation by (\ref{my:eq1}).
+
 Here is a system without equation numbers, using the align-asterisk environment:
+
 \begin{align*}
 \pmb{a} &= \pmb{q}\times\pmb{n} \\ 
 b &= \nabla^2 u + \nabla^4 v
 \end{align*}
+
 And here is a system of equations with labels in an align environment:
+
 \begin{align}
 a &= q + 4 + 5+ 6 \label{eq1} \\ 
 b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
+
 We can refer to (\ref{eq1})-(\ref{eq2}). They are a bit simpler than
 the Navier--Stokes equations. And test {\LaTeX} hyphen in \texttt{CG-2}.
 Also test $a_{i-j}$ as well as $kx-wt$.
+
 Testing \texttt{alignat} environment:
+
 \begin{alignat}{2}
 a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \label{eq1a} \\ 
 b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
 \end{alignat}
+
 Many of the next environments will fail in non-latex formats.
 Testing multiline:
+
 \begin{multline}
 a = b = q + \\ 
   f + \nabla\cdot\nabla u
 \label{multiline:eq1}
 \end{multline}
+
 Testing split:
+
 \begin{equation}
 \label{split:envir:eq}
 \begin{split}
@@ -7764,51 +10717,78 @@ a = b = q &+ \\
 \end{split}
 \end{equation}
 We can refer to the last equation by (\ref{split:envir:eq}).
+
 Testing gather:
 \begin{gather}
 a = b \\ 
 c = d + 7 + 9
 \end{gather}
+
 Let us refer to (\ref{eq1})-(\ref{eq2}) again, and to the
 alignat variant (\ref{eq1a})-(\ref{eq2a}), and to (\ref{my:eq1}).
+
 Testing eqnarray:
 \begin{eqnarray}
 {\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\ 
 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g \label{myeq2}
 \end{eqnarray}
+
 More mathematical typesetting is demonstrated in the coming exercises.
+
 Below, we have Problem~\vref{demo:ex:1} and Project~\vref{demo:ex:2},
 as well as Projects~\vref{proj:circle1} and~\vref{exer:you}, and in
 between there we have Exercise~\vref{exer:some:formula}.
+
 \section{Exercises}
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Problem \thedoconceexercisecounter: Flip a Coin}
                              
 \label{demo:ex:1}
 % keywords = random numbers; Monte Carlo simulation; ipynb
+
 % Torture tests
+
 \subex{a)}
 Make a program that simulates flipping a coin $N$ times.
 Print out ``tail'' or ``head'' for each flip and
 let the program count the number of heads.
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 1.}
 Use \texttt{r = random.random()} and define head as \texttt{r <= 0.5}.
+
 % --- end hint in exercise ---
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 2.}
 Draw an integer among $\{1,2\}$ with
 \texttt{r = random.randint(1,2)} and define head when \texttt{r} is 1.
+
 % --- end hint in exercise ---
+
 % --- begin answer of exercise ---
 \paragraph{Answer.}
 If the \texttt{random.random()} function returns a number $<1/2$, let it be
 head, otherwise tail. Repeat this $N$ number of times.
 % --- end answer of exercise ---
+
 % --- begin solution of exercise ---
 \paragraph{Solution.}
+
+
+
+
+
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 import sys, random
 N = int(sys.argv[1])
@@ -7823,81 +10803,115 @@ print('Flipping a coin %d times gave %d heads' % (N, heads))
 \noindent
 
 % --- end solution of exercise ---
+
 \subex{b)}
 Vectorize the code in a) using boolean indexing.
+
 Vectorized code can be written in many ways.
 Sometimes the code is less intuitive, sometimes not.
 At least there is not much to find in Section~\vref{sec1}.
+
 \subex{c)}
 Vectorize the code in a) using \texttt{numpy.sum}.
+
 % --- begin answer of exercise ---
 \paragraph{Answer.}
 \texttt{np.sum(np.where(r <= 0.5, 1, 0))} or \texttt{np.sum(r <= 0.5)}.
 % --- end answer of exercise ---
+
 In this latter subexercise, we have an
 example where the code is easy to read.
+
 \paragraph{My remarks.}
 Remarks with such a subsubsection is treated as more text
 after the last subexercise. Test a list too:
+
 \begin{enumerate}
 \item Mark 1.
+
 \item Mark 2.
 \end{enumerate}
+
 \noindent
 \noindent Filenames: \Verb!flip_coin.py!, \Verb!flip_coin.pdf!.
+
 % Closing remarks for this Problem
+
 \paragraph{Remarks.}
 These are the exercise remarks, appearing at the very end.
+
 % solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \subsection{Not an exercise}
+
 Should be possible to stick a normal section in the middle of many
 exercises.
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Test of plain text exercise}
                              
 \label{my:exer1}
+
 Very short exercise. What is the capital
 of Norway?
 \noindent Filename: \texttt{myexer1}.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Project \thedoconceexercisecounter: Compute a Probability}
                              
 \label{demo:ex:2}
+
 % Minimalistic exercise
+
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $[0,1)$?
+
 At the end we have a list because that caused problems in {\LaTeX}
 in previous DocOnce versions:
+
 \begin{enumerate}
 \item item1
+
 \item item2
 \end{enumerate}
+
 \noindent
 % --- begin hint in exercise ---
+
 \paragraph{Hint.}
 To answer this question empirically, let a program
 draw $N$ such random numbers using Python's standard \texttt{random} module,
 count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
 compute the probability as $M/N$.
+
 % --- end hint in exercise ---
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Project \thedoconceexercisecounter: Explore Distributions of Random Circles}
                              
 \label{proj:circle1}
 % keywords = ipynb
+
 The formula for a circle is given by
+
 \begin{align}
 x &= x_0 + R\cos 2\pi t,
 \label{circle:x}\\ 
@@ -7909,6 +10923,17 @@ center point, and $t$ is a parameter in the unit interval $[0,1]$.
 For any $t$, $(x,y)$ computed from (\ref{circle:x})-(\ref{circle:y})
 is a point on the circle.
 The formula can be used to generate \texttt{n} points on a circle:
+
+
+
+
+
+
+
+
+
+
+
 \begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 import numpy as np
 
@@ -7923,51 +10948,71 @@ x, y = circle(2.0, 0, 0)
 \end{lstlisting}\end{pro}
 \noindent
 
+
 % Often in an exercise we have some comments about the solution
 % which we normally want to keep where they are.
+
 The goal of this project is to draw $N$ circles with random
 center and radius. Plot each circle using the \texttt{circle} function
 above.
+
 \subex{a)}
 Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint.}
 Use the \texttt{numpy.random} module to draw the
 $x_0$, $y_0$, and $R$ quantities.
+
 % --- end hint in exercise ---
+
 % --- begin answer of exercise ---
 \paragraph{Answer.}
 Here goes the short answer to part a).
 % --- end answer of exercise ---
+
 % --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes a full solution to part a).
 % --- end solution of exercise ---
+
 \subex{b)}
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
 \noindent Filename: \texttt{norm}.
+
 \subex{c)}
 Let $R$ and $(x_0,y_0)$ be normally distributed.
+
 \noindent Filename: \texttt{circles}.
+
 % Closing remarks for this Project
+
 \paragraph{Remarks.}
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Determine some Distance}
                              
 \label{exer:dist}
+
 Intro to this exercise. Questions are in subexercises below.
+
 % --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes a full solution of the whole exercise.
 With some math $a=b$ in this solution:
 \[ \hbox{math in solution: } a = b \]
 And code \texttt{a=b} in this solution:
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 a = b  # code in solution
 
@@ -7975,15 +11020,24 @@ a = b  # code in solution
 \noindent
 
 End of solution is here.
+
 % --- end solution of exercise ---
+
 \subex{a)}
 Subexercises are numbered a), b), etc.
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 1.}
 First hint to subexercise a).
 With math $a=b$ in hint:
+
 \[ a=b. \]
 And with code (in plain verbatim) returning $x+1$ in hint:
+
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 def func(x):
     return x + 1  # with code in hint
@@ -7991,76 +11045,110 @@ def func(x):
 \end{lstlisting}\end{cod}
 \noindent
 
+
 % --- end hint in exercise ---
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 2.}
 Second hint to subexercise a).
+
 Test list in hint:
+
 \begin{enumerate}
 \item item1
+
 \item item2
 \end{enumerate}
+
 \noindent
 % --- end hint in exercise ---
 \noindent Filename: \Verb!subexer_a.pdf!.
+
 % --- begin answer of exercise ---
 \paragraph{Answer.}
 Short answer to subexercise a).
 With math in answer: $a=b$.
 % --- end answer of exercise ---
+
 \subex{b)}
 Here goes the text for subexercise b).
+
 Some math $\cos^2 x + \sin^2 x = 1$ written one a single line:
+
 \[ \cos^2 x + \sin^2 x = 1 \thinspace .\]
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint.}
 A hint for this subexercise.
+
 % --- end hint in exercise ---
 \noindent Filename: \Verb!subexer_b.pdf!.
+
 % --- begin solution of exercise ---
 \paragraph{Solution.}
 Here goes the solution of this subexercise.
 % --- end solution of exercise ---
+
 % No meaning in this weired test example:
 The text here belongs to the main (intro) part of the exercise. Need
 closing remarks to have text after subexercises.
+
 Test list in exercise:
+
 \begin{enumerate}
 \item item1
+
 \item item2
 % Closing remarks for this Exercise
 \end{enumerate}
+
 \noindent
 \paragraph{Remarks.}
 Some final closing remarks, e.g., summarizing the main findings
 and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
+
 \exercisesection{Some exercise without the "Exercise:" prefix}
+
 % Another minimalistic exercise
+
 Just some text. And some math saying that $e^0=1$ on a single line,
 to test that math block insertion is correct:
+
 \[ \exp{(0)} = 1 \]
+
 And a test that the code \texttt{lambda x: x+2} is correctly placed here:
+
+
+
 \begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 lambda x: x+2
 
 \end{lstlisting}\end{cod}
 \noindent
 
+
 % Have some comments at the end of the exercise to see that
 % the Filename: ... is written correctly.
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Solution of differential equation}
                              
 \label{sec:this:exer:de}
+
 
 \begin{doconcequiz}
 \refstepcounter{doconcequizcounter}
@@ -8071,6 +11159,7 @@ lambda x: x+2
 
 \noindent
 Given
+
 \[ \frac{dy}{dx} = -y(x),\quad y(0)=1 \]
 What is the solution of this equation?
 
@@ -8115,6 +11204,7 @@ for $x$ or $y$, not a function $y(x)$.
 must be considered as a good answer. It is more natural,
 though, to write the solution to the problem
 in mathematical notation:
+
 \[ y(x) = e^{-y}.\]
 
 \textbf{D}: Wrong. Equations with derivatives can be solved;
@@ -8134,74 +11224,113 @@ special techniques.
 \end{doconcequiz}
 
 
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Example \thedoconceexercisecounter: Just an example}
                              
+
 % This example needs the --examples_as_exercises option, otherwise
 % it is just typeset as it is written.
+
 \subex{a)}
 What is the capital of Norway?
+
 \paragraph{Answer.}
 Oslo.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \section{Here goes another section}
+
 With some text, before we continue with exercises.
+
 \section{More Exercises}
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Make references to projects and problems}
                              
 \label{exer:some:formula}
+
 % Test comments not at the end only
 Pick a statement from Project~\vref{proj:circle1} or Problem~\vref{demo:ex:1}
 and verify it.
+
 Test list at the end of an exercise without other elements (like subexercise,
 hint, etc.):
+
 \begin{enumerate}
 \item item1
+
 \item item2
 \end{enumerate}
+
 \noindent
 \noindent Filename: \Verb!verify_formula.py!.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Project \thedoconceexercisecounter: References to Project~\vref{demo:ex:2} in a heading works for pdflatex}
                              
 \label{exer:you}
+
 Refer to the previous exercise as Exercise~\vref{exer:some:formula},
 the two before that as Projects~\vref{demo:ex:2} and~\vref{proj:circle1},
 and this one as Project~\vref{exer:you}.
 \noindent Filename: \Verb!selc_composed.pdf!.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \bibliographystyle{plain}
 \bibliography{papers}
+
+
+
 \appendix
+
 \section{Just for testing; part I}
 \label{app1}
+
 This is the first appendix.
+
 \subsection{A subsection within an appendix}
+
 Some text.
+
 \section{Just for testing; part II}
 \label{app2}
+
 This is more stuff for an appendix.
+
 \subsection{Appendix: Testing identical titles}
+
 Without label.
+
 \subsection{Appendix: Testing identical titles}
 \label{test:title:id1}
+
 With label.
+
 \subsection{Appendix: Testing identical titles}
 \label{test:title:id2}
+
 What about inserting a quiz?
+
 
 \begin{doconcequiz}
 \refstepcounter{doconcequizcounter}
@@ -8252,15 +11381,20 @@ Bergen
 \end{doconcequiz}
 
 
+
 \subsection{Appendix: Testing identical titles}
+
 Without label.
+
 
 \begin{notice_mdfboxadmon}[Tip.]
 Here is a tip or hint box, typeset as a notice box.
 \end{notice_mdfboxadmon} % title: Tip.
 
 
+
 \clearpage
+
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
 and share files among several computers and collaborators in a
@@ -8272,6 +11406,7 @@ ensure that every computer and person involved in the project
 have the latest updates of the files.
 Greg Wilson' excellent \href{{https://software-carpentry.org/2010/07/script-for-introduction-to-version-control/}}{Script for Introduction to Version Control} provides a more detailed motivation why you will benefit greatly
 from using version control systems.
+
 
 \begin{summary_mdfboxadmon}[Summary.]
 \textbf{Bold remark:} Make some text with this summary.
@@ -8287,11 +11422,13 @@ Much testing in this document, otherwise stupid content.
 \end{summary_mdfboxadmon} % title: Summary.
 
 
+
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work - and all other important files.
+
 The simplest services for hosting project files are \href{{https://dropbox.com}}{Dropbox} and \href{{https://drive.google.com}}{Google Drive}.
 It is very easy to get started with these systems, and they allow you
 to share files among laptops and mobile units with as many users as
@@ -8300,6 +11437,7 @@ files are stored frequently (several times per minute), and you can go
 back to previous versions for the last 30 days. However, it is
 challenging  to find the right version from the past when there are
 so many of them.
+
 More seriously, when several people may edit files simultaneously, it
 can be difficult detect who did what when, roll back to previous
 versions, and to manually merge the edits when these are
@@ -8309,6 +11447,7 @@ systems.  The following text aims at providing you with the minimum
 information to started with such systems. Numerous other tutorials
 contain more comprehensive material and in-depth explanations of the
 concepts and tools.
+
 The idea with project hosting services is that you have the files
 associated with a project in the cloud. Many people may share these
 files.  Every time you want to work on the project you explicitly
@@ -8318,6 +11457,7 @@ project is hosted.  If you at some point need to go back to a
 version of the files at some particular point in the past,
 this is an easy operation. You can also use tools to see
 what various people have done with the files in the various versions.
+
 All these services are very similar. Below we describe how you get
 started with Bitbucket, GitHub, and Googlecode. Launchpad works very
 similarly to the latter three. All the project hosting services have
@@ -8328,50 +11468,73 @@ The Git tutorials we refer to later in this document contain more
 detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
+
 \subsection{Appendix: Testing inline comments}
+
 % Names can be [ A-Za-z0-9_'+-]+
+
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that
 site. \shortinlinecomment{hpl's semi opinion 1}{ not sure if in the cloud is understood by all. }{ not sure if in } I strongly recommend you to use such sites for all serious
 programming and scientific writing work - and all other important
 files.
+
 The simplest services for hosting project files is Dropbox. \longinlinecomment{mp 2}{ Simply go to \href{{https://dropbox.com}}{\nolinkurl{https://dropbox.com}} and watch the video. It explains how files, like \texttt{myfile.py}, perhaps containing much math, like $\partial u/\partial t$, are easily communicated between machines. }{ Simply go to \href{{https://dropbox.com}}{\nolinkurl{https://dropbox.com}} } It
 is very easy to get started with Dropbox, and it allows you to share
 files among \textcolor{red}{(hpl 3:)} \replace{laptops and mobile units}{computers, tablets, and phones}.
+
 % Test horizontal rule
+
 ------
+
 % Coments for editing
+
 First\textcolor{red}{, (\textbf{edit 4}: add comma)} consider a quantity $Q$. \textcolor{red}{(edit 5:)} \replace{To this end,}{We note that}
 $Q>0$, because (\textbf{edit 6}:) \remove{a} negative \textcolor{red}{(edit 7:)} \replace{quantity is}{quantities are} (\textbf{edit 8}:) \remove{just} negative.  \textcolor{red}{ (\textbf{edit 9}:) This comes as no surprise.}
+
 % Test tailored latex figure references with page number
 Let us refer to Figure~\vref{fig:impact} again.
+
 Test references in a list:
+
 \begin{itemize}
  \item \vref{sec1}
+
  \item \vref{subsec1}
+
  \item \vref{fig:impact}
 \end{itemize}
+
 \noindent
 \subsection{Appendix: Testing headings ending with \texttt{verbatim inline} }
+
 The point here is to test 1) \texttt{verbatim} code in headings, and 2)
 ending a heading with verbatim code as this triggers a special
 case in {\LaTeX}.
+
 We also test mdash---used as alternative to hyphen without spaces around,
 or in quotes:
+
 
 \begin{quote}
 \emph{Fun is fun}.---Unknown.
 \end{quote}
 
+
 The ndash should also be tested -- as in the Hanson--Nilson equations
 on page 277--278.
+
 And finally, what about admons, quotes, and boxes? They are tested
 in a separate document: \texttt{admon.do.txt}.
+
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \cleardoublepage\phantomsection  % trick to get correct link to Index
 \printindex
+
 \end{document}
 % #endif
 
@@ -29739,31 +32902,41 @@ dummy2].
 %% see examples). If doconce ptex2tex has envir=minted, it enables the
 %% minted style without needing -DMINTED.
 % #endif
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 chapterprefix=true,      % "Chapter" word at beginning of each chapter
 open=right,              % start new chapters on odd-numbered pages
 10pt]{book}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage{graphicx}
+
 \usepackage{ptex2tex}
 % #ifdef MINTED
 \usepackage{minted}
 \usemintedstyle{default}
 % #endif
 \usepackage{fancyvrb}
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -29780,10 +32953,13 @@ open=right,              % start new chapters on odd-numbered pages
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{3}  % levels in table of contents
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % Redefine double page clear to make it a blank page without headers
 % (from BYUTextbook)
 \makeatletter
@@ -29799,33 +32975,56 @@ open=right,              % start new chapters on odd-numbered pages
 %\renewcommand{\@pnumwidth}{2em}
 %\renewcommand{\@tocrmarg}{2.85em}
 \makeatother
+
 % Make sure blank even-numbered pages before new chapters are
 % totally blank with no header
 \newcommand{\clearemptydoublepage}{\clearpage{\pagestyle{empty}\cleardoublepage}}
 %\let\cleardoublepage\clearemptydoublepage % caused error in the toc
+
 % --- end of standard preamble for documents ---
+
+
+
+
 % References to labels in external documents:
 \usepackage{xr}
+
 \externaldocument{testdoc}
+
 % Add external .aux files to \listfiles list:
 \makeatletter
 \@addtofilelist{testdoc.aux}
 \makeatother
+
+
 % insert custom LaTeX commands...
+
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
+
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -29833,25 +33032,34 @@ Test of one author at one institution
 \end{spacing}
 }
 \end{center}
+
 % ----------------- author(s) -------------------------
+
 \begin{center}
 {\bf John Doe (\texttt{doe@cyberspace.net})}
 \end{center}
+
     \begin{center}
 % List of all institutions:
 \centerline{{\small Cyberspace Inc.}}
 \end{center}
     
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
+
 % Externaldocument: testdoc
+
 \chapter{Generalized References}
 \label{genrefs}
+
 Sometimes a series of individual documents may be assembled to one
 large document. The assembly impacts how references to sections
 are written: when referring to a section in the same document, a label
@@ -29865,7 +33073,10 @@ references and one for external references. Since {\LaTeX} supports
 references to labels in external documents via the \texttt{xr} package,
 the generalized references in DocOnce has a syntax that may utilize
 the \texttt{xr} feature in {\LaTeX}.
+
 The syntax of generalized references reads
+
+
 \bccq
 ref[internal][cite][external]
 
@@ -29887,8 +33098,18 @@ and if the label is in another {\LaTeX} document, the output is just \texttt{cit
 For all
 output formats other than \texttt{latex} and \texttt{pdflatex}, the \texttt{external}
 text will be the output.
+
 Here is an example on a specific generalized reference to a section
 in a document:
+
+
+
+
+
+
+
+
+
 \bccq
 As explained in
 ref[Section ref{subsec:ex}][in "Langtangen, 2012":
@@ -29902,6 +33123,9 @@ cite{testdoc:12}], DocOnce documents may include tables.
 \eccq
 
 With \texttt{latex} or \texttt{pdflatex} as output, this translates to
+
+
+
 \bccq
 As explained in
 Section ref{subsec:ex}, DocOnce documents may include tables.
@@ -29910,6 +33134,11 @@ Section ref{subsec:ex}, DocOnce documents may include tables.
 
 if the label \Verb!{subsec:ex}! appears in the present DocOnce source, and
 otherwise
+
+
+
+
+
 \bccq
 As explained in
 Section ref{subsec:ex} in "Langtangen, 2012":
@@ -29920,6 +33149,13 @@ cite{testdoc:12}, DocOnce documents may include tables.
 
 In a format different from \texttt{latex} and \texttt{pdflatex}, the effective DocOnce
 text becomes
+
+
+
+
+
+
+
 \bccq
 As explained in
 a "section":
@@ -29932,15 +33168,26 @@ cite{testdoc:12}, DocOnce documents may include tables.
 
 The rendered text in the current format \texttt{latex} becomes
 
+
 \begin{quote}
 As explained in
 Section~\ref{subsec:ex}in \href{{https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex}}{Langtangen, 2012}
 \cite{testdoc:12}, DocOnce documents may include tables.
 \end{quote}
 
+
 A reference to an entire external document, which is usually a chapter
 if the reference is internal in the DocOnce source, applies the
 \texttt{refch} syntax:
+
+
+
+
+
+
+
+
+
 \bccq
 As explained in
 refch[Chapter ref{ch:testdoc}]["Langtangen, 2012":
@@ -29954,6 +33201,12 @@ cite{testdoc:12}], DocOnce documents may include tables.
 
 The output now if \texttt{ch:testdoc} is not a label in the document,
 becomes in the \texttt{latex} and \texttt{pdflatex} case
+
+
+
+
+
+
 \bccq
 As explained in
 "Langtangen, 2012":
@@ -29966,16 +33219,23 @@ That is, the internal reference \texttt{Chapter ...} is omitted since
 it is not meaningful to refer to an external document as "Chapter".
 The resulting rendered text in the current format \texttt{latex} becomes
 
+
 \begin{quote}
 As explained in
 \href{{https://hplgit.github.io/doconce/test/demo_testdoc.html}}{Langtangen, 2012}
 \cite{testdoc:12}, DocOnce documents may include tables.
 \end{quote}
 
+
 Note that {\LaTeX} cannot
 have links to local files, so a complete URL on the form
 \texttt{https://...} must be used.
+
 And here is another example with internal references only:
+
+
+
+
 \bccq
 Generalized references are described in ref[Section ref{genrefs}][dummy1][
 dummy2].
@@ -29984,20 +33244,29 @@ dummy2].
 
 The text is rendered to
 
+
 \begin{quote}
 Generalized references are described in
 Section~\ref{genrefs}.
 \end{quote}
 
+
 \chapter{Test of math}
+
 % Here we test the chapter heading to see if latex output then has
 % book style rather than article style.
+
 Inline math, $a=b$, is the only math in this document.
+
 % Need BIBFILE because of \cite{} examples
 \clearemptydoublepage
+
 \bibliographystyle{plain}
 \bibliography{papers}
+
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \end{document}
 % #endif
@@ -30341,19 +33610,28 @@ Inline math, a=b, is the only math in this document.
 %% (https://github.com/doconce/doconce/)
 %% doconce format html author2.do.txt --latex_style=siamltex
 %%
+
+
 %-------------------- begin preamble ----------------------
+
 % Style: SIAM LaTeX2e
 \documentclass[leqno,final]{siamltex}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -30370,56 +33648,90 @@ Inline math, a=b, is the only math in this document.
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \title{Yet Another Scientific Paper}
+
 % ----------------- author(s) -------------------------
+
 \author{Hans Petter Langtangen\thanks{Email: \texttt{hpl@simula.no}. Center for Biomedical Computing, Simula Research Laboratory and Department of Informatics, University of Oslo.}
 \and Kaare Dump\thanks{Segfault, Cyberspace.}
 \and A. Dummy Author
 \and I. S. Overworked and Outburned\thanks{Inst1; Inst2, Somewhere; Third Inst, Elsewhere; and Fourth Inst.}
 \and J. Doe\thanks{Email: \texttt{j\_doe@cyberspace.com}.}}
+
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
 \begin{abstract}
 Here goes
 a very short
 abstract.
 \end{abstract}
+
+
 \begin{keywords}
 test, doconce, paper, multiple authors.
 \end{keywords}
+
 %\tableofcontents  % not legal in SIAM latex style
+
 \vspace{1cm} % after toc
+
 \section{Introduction}
+
 This is a test of a typical paper.
+
 \section{Concluding remarks}
+
 We need to test bibliography too, and for this purpose we need
 a citation like \cite{Langtangen_1992c,Langtangen_1994a}.
+
 \bibliographystyle{plain}
 \bibliography{papers}
+
+
 % ------------------- end of main content ---------------
+
 \end{document}
 
 
@@ -30429,9 +33741,13 @@ a citation like \cite{Langtangen_1992c,Langtangen_1994a}.
 %% (https://github.com/doconce/doconce/)
 %% doconce format html author2.do.txt --latex_style=elsevier
 %%
+
+
 %-------------------- begin preamble ----------------------
+
 % Style: Elsvier LaTeX style
 \documentclass[final]{elsarticle}
+
 % Drop "Submitted to ..." line at the bottom of the first page
 \makeatletter
 \def\ps@pprintTitle{%
@@ -30441,16 +33757,22 @@ a citation like \cite{Langtangen_1992c,Langtangen_1994a}.
   \let\@evenfoot\@oddfoot
 }
 \makeatother
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -30467,27 +33789,46 @@ a citation like \cite{Langtangen_1992c,Langtangen_1994a}.
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \begin{frontmatter}
+
 \title{Yet Another Scientific Paper}
+
 % ----------------- author(s) -------------------------
+
 \author[inst1,inst2]{Hans Petter Langtangen}
 \author[inst3]{Kaare Dump}
 \author[]{A. Dummy Author}
@@ -30499,34 +33840,52 @@ a citation like \cite{Langtangen_1992c,Langtangen_1994a}.
 \address[inst5]{Inst2, Somewhere}
 \address[inst6]{Third Inst, Elsewhere}
 \address[inst7]{Fourth Inst}
+
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
 \begin{abstract}
 Here goes
 a very short
 abstract.
 \end{abstract}
+
+
 \begin{keyword}
 test \sep doconce \sep paper \sep multiple authors
 \end{keyword}
+
 \end{frontmatter}
+
 %\linenumbers
 )
+
 %\tableofcontents
+
 \vspace{1cm} % after toc
+
 \section{Introduction}
+
 This is a test of a typical paper.
+
 \section{Concluding remarks}
+
 We need to test bibliography too, and for this purpose we need
 a citation like \cite{Langtangen_1992c,Langtangen_1994a}.
+
 \bibliographystyle{plain}
 \bibliography{papers}
+
+
 % ------------------- end of main content ---------------
+
 \end{document}
 
 
@@ -39006,43 +42365,57 @@ $$ \hbox{math in solution: } a = b $$
 %% see examples). If doconce ptex2tex has envir=minted, it enables the
 %% minted style without needing -DMINTED.
 % #endif
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,epsfig,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage{graphicx}
 \usepackage{sidecap}
+
 % user-provided packages: --latex_packages=varioref
 \usepackage{varioref}
+
 % 'on page ...' reference with \vref{} and varioref package
 \renewcommand\reftextfaceafter{on page~\thevpagerefnum}
 \renewcommand\reftextfacebefore{on page~\thevpagerefnum}
 \renewcommand\reftextafter{on page~\thevpagerefnum}
 \renewcommand\reftextbefore{on page~\thevpagerefnum}
+
 % Tools for marking corrections
 \usepackage{soul}
 \newcommand{\replace}[2]{{\color{red}\text{\st{#1} #2}}}
 \newcommand{\remove}[1]{{\color{red}\st{#1}}}
+
 \usepackage{ptex2tex}
 % #ifdef MINTED
 \usepackage{minted}
 \usemintedstyle{default}
 % #endif
 \usepackage{fancyvrb}
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 \newenvironment{doconcequiz}{}{}
 \newcounter{doconcequizcounter}
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -39059,9 +42432,12 @@ final,                   % draft: marks overfull hboxes, figures with paths
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 %\VerbatimFootnotes must come after hyperref and footmisc packages
 \VerbatimFootnotes
+
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -39076,9 +42452,11 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \usepackage[section]{placeins}
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
+
 % newcommands for typesetting inline (doconce) comments
 \newcommand{\shortinlinecomment}[3]{{\color{red}{\bf #1}: #2}}
 \newcommand{\longinlinecomment}[3]{{\color{red}{\bf #1}: #2}}
+
 % --- fancyhdr package for fancy headers ---
 \usepackage{fancyhdr}
 \fancyhf{} % sets both header and footer to nothing
@@ -39098,9 +42476,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
+
 \pagestyle{fancy}
+
+
 \usepackage[framemethod=TikZ]{mdframed}
+
 % --- begin definitions of admonition environments ---
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "notice" admon
 \colorlet{mdfbox_notice_background}{gray!5}
@@ -39121,12 +42504,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{notice_mdfboxmdframed}
+
 \newenvironment{notice_mdfboxadmon}[1][]{
 \begin{notice_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{notice_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "summary" admon
 \colorlet{mdfbox_summary_background}{gray!5}
@@ -39147,12 +42532,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{summary_mdfboxmdframed}
+
 \newenvironment{summary_mdfboxadmon}[1][]{
 \begin{summary_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{summary_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "warning" admon
 \colorlet{mdfbox_warning_background}{gray!5}
@@ -39173,12 +42560,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{warning_mdfboxmdframed}
+
 \newenvironment{warning_mdfboxadmon}[1][]{
 \begin{warning_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{warning_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "question" admon
 \colorlet{mdfbox_question_background}{gray!5}
@@ -39199,12 +42588,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{question_mdfboxmdframed}
+
 \newenvironment{question_mdfboxadmon}[1][]{
 \begin{question_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{question_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "block" admon
 \colorlet{mdfbox_block_background}{gray!5}
@@ -39225,17 +42616,22 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{block_mdfboxmdframed}
+
 \newenvironment{block_mdfboxadmon}[1][]{
 \begin{block_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{block_mdfboxmdframed}
 }
+
 % --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 \usepackage{calc}
+
 \newenvironment{doconceexercise}{}{}
 \newcounter{doconceexercisecounter}
 % --- begin definition of \listofexercises command ---
@@ -39246,6 +42642,9 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \newcommand*{\l@doconceexercise}{\@dottedtocline{0}{0pt}{6.5em}}
 \makeatother
 % --- end definition of \listofexercises command ---
+
+
+
 % ------ header in subexercises ------
 %\newcommand{\subex}[1]{\paragraph{#1}}
 %\newcommand{\subex}[1]{\par\vspace{1.7mm}\noindent{\bf #1}\ \ }
@@ -39256,25 +42655,44 @@ final,                   % draft: marks overfull hboxes, figures with paths
                   {-0.5em}%
                   {\normalfont\normalsize\bfseries}}
 \makeatother
+
+
 % --- end of standard preamble for documents ---
+
+
 \usepackage{amsthm,tcolorbox}
 \theoremstyle{definition}
 \newtheorem{example}{Example}[section]
+
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
+
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -39282,22 +42700,33 @@ A Document for Testing DocOnce
 \end{spacing}
 }
 \end{center}
+
 % ----------------- author(s) -------------------------
+
 \begin{center}
 {\bf Hans Petter Langtangen${}^{1, 2}$ (\texttt{hpl@simula.no})} \\ [0mm]
 \end{center}
+
+
 \begin{center}
 {\bf Kaare Dump${}^{3}$} \\ [0mm]
 \end{center}
+
+
 \begin{center}
 {\bf A. Dummy Author${}^{}$} \\ [0mm]
 \end{center}
+
+
 \begin{center}
 {\bf I. S. Overworked and Outburned${}^{4, 5, 6, 7}$} \\ [0mm]
 \end{center}
+
+
 \begin{center}
 {\bf J. Doe${}^{}$ (\texttt{j\_doe@cyberspace.com})} \\ [0mm]
 \end{center}
+
 \begin{center}
 % List of all institutions:
 \centerline{{\small ${}^1$Center for Biomedical Computing, Simula Research Laboratory}}
@@ -39310,59 +42739,89 @@ A Document for Testing DocOnce
 \end{center}
     
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
+
 \tableofcontents
+
 \vspace{1cm} % after toc
+
 % !split
+
 The format of this document is
 plain, homemade {\LaTeX} (from DocOnce).
+
 % Just a comment
+
 \begin{abstract}
 This is a document with many test constructions for doconce syntax.
 It was used heavily for the development and kept for testing
 numerous constructions, also special and less common cases.
+
 And exactly for test purposes we have an extra line here, which
 is part of the abstract.
+
 % Cannot demonstrate chapter headings since abstract and chapter
 % are mutually exclusive in {\LaTeX}
 \end{abstract}
+
 \subsection{Section 1}
 \label{sec1}
+
 Here is a nested list:
+
 \begin{itemize}
   \item item1
+
   \item item2
+
   \item item3 which continues on the next line to test that feature
+
   \item and a sublist
 \begin{itemize}
+
     \item with indented subitem1
+
     \item and a subitem2
+
 \end{itemize}
+
 \noindent
   \item and perhaps an ordered sublist
 \begin{enumerate}
+
    \item first item
+
    \item second item, continuing on a new line
 \end{enumerate}
+
 \noindent
 \end{itemize}
+
 \noindent
 \paragraph{Here is a list with paragraph heading.}
+
 \begin{itemize}
   \item item1
+
   \item item2
 \end{itemize}
+
 \noindent
 \paragraph{Here is a list with subsubsection heading.}
 \begin{itemize}
   \item item1
+
   \item item2
 \end{itemize}
+
 \noindent
 
 \begin{quote}
@@ -39372,25 +42831,48 @@ also with hypens:
 \emph{pre}-fix, post-\emph{fix}, \textbf{pre}-fix, post-\textbf{fix}.
 \end{quote}
 
+
 Here are two references. Equation~(\ref{my:eq1}) is fine. Eq.~(\ref{my:eq1}) too.
 Even Equation (\ref{my:eq1}) without the tilde.
+
 \paragraph{Subsection 1.}
 \label{subsec1}
+
 \index{somefunc@{\rm\texttt{somefunc}} function}
+
 % Refer to section/appendix etc. at the beginning of the line
 % and other special fix situations for HTML.
+
 More text, with a reference back to
 Section~\vref{sec1} and~\vref{subsec1}, and further to the
 sections~\vref{subsec1} and~\vref{subsubsec:ex}, which
 encourages you to do the tasks in the
 Exercises~\vref{demo:ex:1} and~\vref{exer:some:formula}.
 Appendices~\vref{app1} and~\vref{app2} are also nice elements.
+
 \paragraph{Test Section reference at beginning of line and after a sentence.}
 Section~\vref{subsec1} is fine.
 Section~\vref{subsubsec:ex} too.
+
 % sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
+
 \paragraph{Computer code.}
 Let's do some copying from files too. First from subroutine up to the very end,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bfcod
       subroutine test()
       integer i
@@ -39409,6 +42891,16 @@ C     END1
 \efcod
 
 and then just the subroutine,
+
+
+
+
+
+
+
+
+
+
 \bfcod
 
       subroutine test()
@@ -39424,6 +42916,22 @@ and then just the subroutine,
 
 and finally the complete file with a plain text verbatim environment
 (\texttt{envir=ccq}):
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bccq
 C     a comment
 
@@ -39443,7 +42951,14 @@ C     END1
 
 \eccq
 
+
 Testing other code environments. First Python:
+
+
+
+
+
+
 \bdo
 !bc pycod
 def f(x):
@@ -39453,29 +42968,57 @@ def f(x):
 \edo
 
 which gets rendered as
+
+
+
+
 \bpycod
 def f(x):
     return x+1
 
 \epycod
 
+
 Test paragraph and subsubsection headings before
 before code.
+
 \paragraph{Paragraph heading before code.}
+
+
+
+
 \bpycod
 import sys
 sys.path.insert(0, os.pardir)
 
 \epycod
 
+
 \paragraph{Subsubsection heading before code.}
+
+
+
 \bpycod
 def h(z):
     return z+1
 
 \epycod
 
+
 Now a complete program to be shown via Python Online Tutorial:
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bpypro
 class Line:
     def __init__(self, a, b):
@@ -39493,8 +43036,24 @@ print(y)
 
 \noindent
 (\href{{https://pythontutor.com/visualize.html\#code=class+Line\%3A\%0A++++def+__init__\%28self\%2C+a\%2C+b\%29\%3A\%0A++++++++self.a\%2C+self.b+\%3D+a\%2C+b\%0A\%0A++++def+__call__\%28self\%2C+x\%29\%3A\%0A++++++++a\%2C+b+\%3D+self.a\%2C+self.b\%0A++++++++return+a\%2Ax+\%2B+b\%0A\%0Aline+\%3D+Line\%282\%2C+1\%29\%0Ay+\%3D+line\%28x\%3D3\%29\%0Aprint\%28y\%29&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2&curInstr=0}}{Visualize execution}) 
+
+
 Some more Python code (actually specified as a sage cell, but
 such cells are not supported by this format).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bpypro
 a = 2
 b = 3
@@ -39511,14 +43070,30 @@ show()
 
 \epypro
 
+
 Then Cython (with -h option so it is hidden in html/sphinx):
+
+
+
+
 \bcycod
 cpdef f(double x):
     return x + 1
 
 \ecycod
 
+
 Standard Python shell sessions:
+
+
+
+
+
+
+
+
+
+
 \bpyshell
 >>> from numpy import linspace, sin
 >>> # Some comment
@@ -39531,7 +43106,25 @@ Standard Python shell sessions:
 
 \epyshell
 
+
 Similar IPython sessions:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bipy
 In [1]: from numpy import linspace, sin
 In [2]: # Some comment
@@ -39551,7 +43144,18 @@ output
 
 \eipy
 
+
 Here is the interactive session again, but with \texttt{pyshell-t}.
+
+
+
+
+
+
+
+
+
+
 \bpyshell
 >>> from numpy import linspace, sin
 >>> # Some comment
@@ -39564,8 +43168,17 @@ Here is the interactive session again, but with \texttt{pyshell-t}.
 
 \epyshell
 
+
 % This one tests a + sign before a code environment
 C++:
+
+
+
+
+
+
+
+
 \bcpppro
 #include <iostream>
 
@@ -39580,6 +43193,16 @@ int main()
 % The next should get correctly typset in sphinx (cod is fcod)
 % It also tests emoji before code
 And a little bit of Fortran: (\Verb!dizzy_face!)
+
+
+
+
+
+
+
+
+
+
 \bdo
 !bc cod
       subroutine midpt(x, length, a, b)
@@ -39593,6 +43216,14 @@ And a little bit of Fortran: (\Verb!dizzy_face!)
 \edo
 
 which then is typeset as
+
+
+
+
+
+
+
+
 \bcod
       subroutine midpt(x, length, a, b)
       real*8 a, b, x
@@ -39603,7 +43234,15 @@ which then is typeset as
 
 \ecod
 
+
 HTML:
+
+
+
+
+
+
+
 \bhtmlcod
 <table>
 <tr><td>Column 1</td><td>Column 2</td></tr>
@@ -39613,10 +43252,19 @@ HTML:
 
 \ehtmlcod
 
+
 But inline HTML code is also important, like text that starts with
 \texttt{<a href="} (which can destroy the following text if not properly
 quoted).
+
 Matlab with comments requires special typesetting:
+
+
+
+
+
+
+
 \bmcod
 % Comment on the beginning of the line can be escaped by %%
 if a > b
@@ -39626,7 +43274,15 @@ end
 
 \emcod
 
+
 And here is a system call:
+
+
+
+
+
+
+
 \bsys
 Terminal> mkdir test
 Terminal> cd test
@@ -39636,7 +43292,17 @@ output2
 
 \esys
 
+
 Any valid pygments lexer/language name can appear to, e.g.,
+
+
+
+
+
+
+
+
+
 \bdo
 !bc restructuredtext
 =======
@@ -39649,6 +43315,13 @@ Some text.
 \edo
 
 results in
+
+
+
+
+
+
+
 \brestructuredtext
 =======
 Heading
@@ -39658,9 +43331,66 @@ Some text.
 
 \erestructuredtext
 
+
 % Here goes hidden code.
 % Python can be treated by some formats, Fortran is always out.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Finally, \Verb?!bc do? supports highlighting of DocOnce source:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bdo
 ======= DocOnce test file =======
 
@@ -39700,11 +43430,13 @@ __Paragraph heading.__ Paragraphs may have headings.
 
 \edo
 
+
 It is time to test \texttt{verbatim inline font} especially with \texttt{a newline inside the text} and an exclamation mark at the end: \texttt{BEGIN}! For
 spellcheck, test \texttt{a verbatim expression} in \texttt{another} in a \texttt{third}.
 Also test exclamation mark as in \Verb?!bc? and \Verb?!ec? as well as \Verb?a != b?.
 Also test backslashes and braces like \Verb!\begin!, \Verb!\begin{enumerate}!,
 \Verb!\end{this}\end{that}!, and \Verb!{something \inside braces}!.
+
 Here is some \textcolor{red}{red color} and an attempt to write \textcolor{green}{with
 green color containing a linebreak\\
 code.} Some formats will only display \\
@@ -39712,7 +43444,14 @@ this correctly when \texttt{html} \\
 is the output format.
 But here some more running text is added which is not part of
 the previous blocks with line breaks.
+
 \paragraph{Running OS commands.}
+
+
+
+
+
+
 \bsys
 Terminal> python -c 'print("Testing\noutput\nfrom\nPython.")'
 Testing
@@ -39722,20 +43461,28 @@ Python.
 
 \esys
 
+
 \paragraph{Footnotes.}
 Here is a test of footnotes \footnote{Typesetting of the footnote depends on the format. Plain text does nothing, {\LaTeX} removes the definition and inserts the footnote as part of the {\LaTeX} text. reStructuredText and Sphinx employ a similar type of typesetting as Extended Markdown and DocOnce, and in HTML we keep the same syntax, just displayed properly in HTML.}, which are handy in text.
 They are used in different flavors, now in
+
 \begin{itemize}
  \item list items (note below that footnotes work after math, verbatim, and URLs - bin fact old and emphasize too!)
+
  \item even with math $\nabla^2u$\footnote{Math footnotes can be dangerous since it interferes with an exponent.}
+
  \item and code \texttt{h[i] += 1}\footnote{One-line footnote.} (\emph{must} have space between inline code and footnote!)
+
  \item and \href{{https://google.com}}{links}\footnote{\href{{google.com}}{\nolinkurl{google.com}} is perhaps the most famous web site today.}
 \end{itemize}
+
 \noindent
 which gives flexibility in writing.
 This is the third\footnote{Not much to add here, but the footnote is at the end with only one newline.} example.
+
 Here is some more text before a new definition of a footnote that was
 used above.
+
 
 \begin{notice_mdfboxadmon}[Non-breaking space character.]
 This paragraph aims to test \href{{https://en.wikipedia.org/wiki/Non-breaking_space}}{non-breaking space character}, and a typical
@@ -39748,11 +43495,14 @@ of course remain a tilde in those contexts.)
 \end{notice_mdfboxadmon} % title: Non-breaking space character.
 
 
+
 \paragraph{Subsection 2: Testing figures.}
 \label{subsec:ex}
 \index{figures}
+
 Test of figures. In particular we refer to Figure~\vref{fig:impact} in which
 there is a flow.
+
 \begin{figure}[!ht]  % fig:impact
   \centerline{\includegraphics[width=0.9\linewidth]{testfigs/wave1D.png}}
   \caption{
@@ -39760,15 +43510,23 @@ there is a flow.
   }
 \end{figure}
 %\clearpage % flush figures fig:impact
+
 Figures without captions are allowed and will be inlined.
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.9\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
+
 \index{movies}
+
 % Test multi-line caption in figure with sidecap=True
+
 Here is figure~\vref{myfig} with a long (illegal) multi-line caption
 containing inline verbatim text:
+
 \begin{SCfigure}
   \centering
   \includegraphics[width=0.9\linewidth]{testfigs/wave1D.png}
@@ -39777,38 +43535,56 @@ containing inline verbatim text:
   }
 \end{SCfigure}
 %\clearpage % flush figures myfig
+
 % Must be a blank line after MOVIE or FIGURE to detect this problem
+
 Test URL as figure name:
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.8\linewidth]{downloaded_figures/f_plot.png}}
+
 \vspace{6mm}
+
 % Test wikimedia type of files that otherwise reside in subdirs
+
 \paragraph{Remark.}
 Movies are tested in separate file \texttt{movies.do.txt}.
+
 % Somewhat challenging heading with latex math, \t, \n, ? and parenthesis
+
 \paragraph{The $\theta$ parameter (not $\nabla$?).}
 \label{decay:sec:theta}
+
 Functions do not always need to be advanced, here is one
 involving $\theta$:
+
+
+
 \bccq
 def f(theta):
     return theta**2
 
 \eccq
 
+
 \paragraph{More on $\theta$.}
 Here is more text following headline with math.
+
 Newcommands must also be tested in this \report:
 $\half$, $\halfi$, $\x$, $\Ddt{u}$,
 both inline and in block:
+
 \begin{align}
 \Ddt{u} &= 0\nonumber
 \\ 
 \half &= \halfi\\ 
 \half\x &= \normalvec
 \end{align}
+
 Or with align with label and numbers:
+
 \begin{align}
 \Ddt{u} &= 0
 \label{aligneq1}
@@ -39817,9 +43593,12 @@ Or with align with label and numbers:
 \half\x &= \normalvec
 \label{aligneq2}
 \end{align}
+
 % Must test more complicated align and matrix compositions
 % where DocOnce inserts auto-numbered labels etc.
+
 First one numbered (automatically):
+
 \begin{align}
 \begin{pmatrix}
 G_2 + G_3 & -G_3 & -G_2 & 0 \\ 
@@ -39855,7 +43634,9 @@ G_2 + G_3 & -G_3 & -G_2 & 0 \\
 \end{pmatrix}
 \nonumber
 \end{align}
+
 Second numbered (automatically):
+
 \begin{align}
 \begin{pmatrix}
 G_1 + G_2\\ 
@@ -39879,7 +43660,9 @@ y & 2\\
 A \\ B
 \end{pmatrix}
 \end{align}
+
 Both numbered, with label by the user:
+
 \begin{align}
 \begin{pmatrix}
 G_1 + G_2\\ 
@@ -39905,25 +43688,32 @@ A \\ B
 \end{pmatrix}
 \end{align}
 Now we refer to (\ref{mymatrix:eq1})-(\ref{mymatrix:eq2}).
+
 \paragraph{Custom Environments.}
 Here is an attempt to create a theorem environment via Mako
 (for counting theorems) and comment lines to help replacing lines in
 the \texttt{.tex} by proper begin-end {\LaTeX} environments for theorems.
 Should look nice in most formats!
+
 % begin theorem
 \label{theorem:fundamental1}
+
 \paragraph{Theorem 5.}
 Let $a=1$ and $b=2$. Then $c=3$.
 % end theorem
+
 % begin proof
 \paragraph{Proof.}
 Since $c=a+b$, the result follows from straightforward addition.
 $\Diamond$
 % end proof
+
 As we see, the proof of Theorem 5 is a modest
 achievement.
+
 \paragraph{Tables.}
 \label{subsec:table}
+
 \index{test index with verbatim text@test index with {\rm\texttt{verbatim text}} which is possible}
 \index{test two@test {\rm\texttt{two}} (separate) {\rm\texttt{verbatim expressions}} which is also possible}
 \index{index with!subindex}
@@ -39931,15 +43721,20 @@ achievement.
 \index{index with \textbf{boldface word}}
 \index{index with!\textbf{boldface word} in subentry}
 \index{double \textbf{boldface word}! \textbf{boldface word} in subentry too}
+
 % index with comma could fool sphinx
 \index{index, with comma, and one more}
+
 Let us take this table from the manual:
+
 \begin{table}
 \caption{
 Testing table environment in {\LaTeX}, enabled by testing on the "latex" format
 with the preprocessor.
 \label{mytab}
 }
+
+
 \begin{quote}
 \begin{tabular}{lrr}
 \hline
@@ -39951,9 +43746,21 @@ with the preprocessor.
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 \end{table}
+
 The DocOnce source code reads
+
+
+
+
+
+
+
+
+
+
 \bccq
 
   |--------------------------------|
@@ -39967,8 +43774,11 @@ The DocOnce source code reads
 
 \eccq
 
+
 Here is yet another table to test that we can handle more than
 one table:
+
+
 \begin{quote}
 \begin{tabular}{lll}
 \hline
@@ -39980,10 +43790,13 @@ one table:
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 And one with math headings (that are expanded and must be treated
 accordingly), verbatim heading and entry, and no space around the pipe
 symbol:
+
+
 \begin{quote}
 \begin{tabular}{lrrr}
 \hline
@@ -39999,10 +43812,13 @@ symbol:
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 And add one with verbatim headings (with underscores),
 and rows starting with \texttt{|-} because of a negative number,
 and \texttt{|} right before and after verbatim word (with no space):
+
+
 \begin{quote}
 \begin{tabular}{rrrr}
 \hline
@@ -40015,10 +43831,13 @@ and \texttt{|} right before and after verbatim word (with no space):
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 Pipe symbols in verbatim and math text in tables used to pose difficulties,
 but not
 anymore:
+
+
 \begin{quote}
 \begin{tabular}{lr}
 \hline
@@ -40029,8 +43848,11 @@ $x\cap y$   & \texttt{x|y}         \\
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 Here is a table with X alignment:
+
+
 \begin{quote}
 \begin{tabularx}{\linewidth}{cX}
 \hline
@@ -40041,11 +43863,15 @@ l,r,c & standard alignment characters                                           
 \hline
 \end{tabularx}
 \end{quote}
+
 \noindent
 Finally, a table with math
 and URLs.
+
 % Mako code to expand URLs in the table
 % (These types of tables did not work before Jan 2014)
+
+
 \begin{quote}
 \begin{tabular}{ccc}
 \hline
@@ -40057,62 +43883,89 @@ $\nabla\cdot\bm{u} =0 $ & \includegraphics[width=2cm]{../doc/src/manual/mov/wave
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 \paragraph{A test of verbatim words in heading with subscript $a_i$: \protect\Verb!my\_file\_v1! and \protect\Verb!my\_file\_v2!.}
 \paragraph{Paragraph with verbatim and math: \protect\Verb!my\_file\_v1.py! and \protect\Verb!my\_file\_v2.py! define some math $a_{i-1}$.}
 Here is more \Verb!__verbatim__! code and
 some plain text on a new line.
+
 % Test various types of headlines
 \paragraph{\textbf{Just bold}.}
 Some text.
+
 \paragraph{\emph{Just emphasize}.}
 Some text.
+
 \paragraph{\texttt{Just verbatim}.}
 Some text.
+
 \paragraph{\textbf{Bold} beginning.}
 Some text.
+
 \paragraph{\emph{Emphasize} beginning.}
 Some text.
+
 \paragraph{\texttt{Verbatim} beginning.}
 Some text.
+
 \paragraph{Maybe \textbf{bold end}.}
 Some text.
+
 \paragraph{Maybe \emph{emphasize end}.}
 Some text.
+
 \paragraph{Maybe \texttt{verbatim end}.}
 Some text.
+
 \paragraph{The middle has \textbf{bold} word.}
 Some text.
+
 \paragraph{The middle has \emph{emphasize} word.}
 Some text.
+
 \paragraph{The middle has \texttt{verbatim} word.}
 Some text.
+
 \paragraph{\emph{Just emphasize}.}
 Some text.
+
 \paragraph{\texttt{Just verbatim}.}
 Some text.
+
 \paragraph{\emph{Emphasize} beginning.}
 Some text.
+
 \paragraph{\texttt{Verbatim beginning}.}
 Some text.
+
 \paragraph{Maybe \emph{emphasize end}.}
 Some text.
+
 \paragraph{Maybe \texttt{verbatim end}.}
 Some text.
+
 \paragraph{The middle has \emph{emphasize} word.}
 Some text.
+
 \paragraph{The middle has \texttt{verbatim} word.}
 Some text.
+
 \paragraph{Ampersand.}
 We can test Hennes {\&} Mauritz, often abbreviated H{\&}M, but written
 as \Verb!Hennes & Mauritz! and \Verb!H & M!.
 A sole \Verb!&! must also work.
 % Note: substitutions must not occur inside verbatim, just in ordinary text.
+
+
+
+
 \bccq
 # Just to check that ampersand works in code blocks:
 c = a & b
 
 \eccq
+
 
 \paragraph{Quotes.}
 Let us also add a test of quotes such as ``double quotes, with numbers
@@ -40122,9 +43975,11 @@ ordinary double quotes for all non-LaTeX formats.  Here is another
 sentence that ``caused'' a bug in the past because double backtick
 quotes could imply verbatim text up to a verbatim word starting with
 period, like \texttt{.txt}.
+
 More quotes to be tested for spellcheck:
 (``with parenthesis''), ``with newline''
 and ``with comma'', ``hyphen''-wise, and ``period''.
+
 \paragraph{Bibliography test.}
 Here is an example: \cite{Langtangen_Pedersen_2002} discussed propagation of
 large destructive water waves, \cite{Langtangen_et_al_2002} gave
@@ -40136,6 +43991,7 @@ C++ software tools for programming multigrid methods. A real retro
 reference is \cite{Langtangen_1988d} about a big FORTRAN package.
 Multiple references are also possible, e.g., see
 \cite{Langtangen_Pedersen_2002,Mardal_et_al_2003a}.
+
 We need to cite more than 10 papers to reproduce an old formatting
 problem with blanks in the keys in reST format:
 \cite{Langtangen_1992c,Langtangen_1994a,Mortensen_et_al_2011,Langtangen_Pedersen_2002}
@@ -40150,40 +44006,64 @@ back in the days.
 More retro citations are
 the old ME-IN323 book \cite{Langtangen:91} and the
 \cite{Langtangen:94b} OONSKI '94 paper.
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Example \thedoconceexercisecounter: Examples can be typeset as exercises}
                              
 \label{Example}
+
 Examples can start with a subsection heading starting with \texttt{Example:}
 and then, with the command-line option \Verb!--examples_as_exercises! be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
+
 \subex{a)}
 State some problem.
+
 \paragraph{Solution.}
 The answer to this subproblem can be written here.
+
 \subex{b)}
 State some other problem.
+
 \paragraph{Hint 1.}
 A hint can be given.
+
 \paragraph{Hint 2.}
 Maybe even another hint?
+
 \paragraph{Solution.}
 The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \paragraph{User-defined environments.}
 Example~\vref{ex:test:1p1} demonstrates how to write a test function.
 That is, a special test function for a function \texttt{add} appears in
 Example~\vref{ex:test:1p1}.
+
 \begin{example}
 \label{ex:test:1p1}
+
 \noindent\emph{A test function}.
+
 Suppose we want to write a test function for checking the
 implementation of a Python function for addition.
+
+
+
+
+
+
+
+
+
+
 \bpycod
 def add(a, b):
     return a + b
@@ -40197,12 +44077,18 @@ def test_add():
 \epycod
 
 \end{example}
+
 \begin{example}
 \label{ex:math:1p1}
+
 \noindent\emph{Addition}.
+
 We have
+
 \[ 1 + 1 = 2 \]
 or in tabular form:
+
+
 \begin{quote}
 \begin{tabular}{cc}
 \hline
@@ -40212,8 +44098,10 @@ $1+1$   & $2$    \\
 \hline
 \end{tabular}
 \end{quote}
+
 \noindent
 \end{example}
+
 \begin{tcolorbox}[%skin=widget,
 boxrule=1mm,
 coltitle=black,
@@ -40222,10 +44110,13 @@ colback=blue!15!white,
 width=(.9\linewidth),before=\hfill,after=\hfill,
 adjusted title={Highlight box!}]
 This environment is used to highlight something:
+
 \[ E = mc^2 \]
 \end{tcolorbox}
+
 \paragraph{URLs.}
 \label{subsubsec:ex}
+
 Testing of URLs: hpl's home page \href{{https://folk.uio.no/hpl}}{hpl}, or
 the entire URL if desired, \href{{https://folk.uio.no/hpl}}{\nolinkurl{https://folk.uio.no/hpl}}.  Here is a
 plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or
@@ -40237,29 +44128,36 @@ fine to have. Moreover, ``loose'' URLs work, i.e., no quotes, just
 the plain URL as in \href{{https://folk.uio.no/hpl}}{\nolinkurl{https://folk.uio.no/hpl}}, if followed by space, comma,
 colon, semi-colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
+
 Mail addresses can also be used: \href{{mailto:hpl@simula.no}}{\nolinkurl{hpl@simula.no}}, or just a \href{{mailto:hpl@simula.no}}{mail link}, or a raw \href{{mailto:hpl@simula.no}}{\nolinkurl{mailto:hpl@simula.no}}.
+
 Here are some tough tests of URLs, especially for the \texttt{latex} format:
 \href{{https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{Newton-Cotes} formulas
 and a \href{{https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}}{good book}. Need to test
 Newton-Cotes with percentage in URL too:
 \href{{https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{\nolinkurl{https://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes_formulas}}
 and \href{{https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae}}{\nolinkurl{https://en.wikipedia.org/wiki/Newton-Cotes\#Open_Newton.E2.80.93Cotes_formulae}} which has a shebang.
+
 For the \texttt{--device=paper} option it is important to test that URLs with
 monospace font link text get a footnote
 (unless the \Verb!--latex_no_program_footnotelink!
 is used), as in this reference to
 \href{{https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py}}{\nolinkurl{decay_mod}}, \href{{https://tinyurl.com/pwyasaa/formulas.ball1.py}}{\nolinkurl{ball1.py}},
 and \href{{https://tinyurl.com/pwyasaa/formulas.ball2.py}}{\nolinkurl{ball2.py}}.
+
 % Comments should be inserted outside paragraphs (because in the rst
 % format extra blanks make a paragraph break).
+
 % Note that when there is no https: or file:, it can be a file link
 % if the link name is URL, url, "URL", or "url". Such files should,
 % if rst output is desired, but placed in a \Verb!_static*! folder.
+
 More tough tests: repeated URLs whose footnotes when using the
 \texttt{--device=paper} option must be correct. We have
 \href{{https://google.com}}{google}, \href{{https://google.com}}{google}, and
 \href{{https://google.com}}{google}, which should result in exactly three
 footnotes.
+
 \paragraph{Test of Some {\LaTeX} Fixes.}
 Let's check abbr.~of some common kind, e.g.~the well-known i.e.
 expression as an example, and 1 vs.~2 which is also often used.
@@ -40271,41 +44169,58 @@ handled. Likewise, this is test no.~$i$ of DocOnce features.
 Also, look at Fig.~4 to see how the data compares with Tab.~\vref{mytab}.
 Percentage must be fixed: 7\%,  87.65\% and
 50\% at the beginning of the line.
+
 % !split and check if these extra words are included properly in the comment
+
 \subsection{{\LaTeX} Mathematics}
+
 Here is an equation without label using backslash-bracket environment:
 \[ a = b + c \]
+
 or with number and label, as in (\ref{my:eq1}), using the equation environment:
+
 \begin{equation}
 {\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
+
 We can refer to this equation by (\ref{my:eq1}).
+
 Here is a system without equation numbers, using the align-asterisk environment:
+
 \begin{align*}
 \pmb{a} &= \pmb{q}\times\pmb{n} \\ 
 b &= \nabla^2 u + \nabla^4 v
 \end{align*}
+
 And here is a system of equations with labels in an align environment:
+
 \begin{align}
 a &= q + 4 + 5+ 6 \label{eq1} \\ 
 b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
+
 We can refer to (\ref{eq1})-(\ref{eq2}). They are a bit simpler than
 the Navier--Stokes equations. And test {\LaTeX} hyphen in \texttt{CG-2}.
 Also test $a_{i-j}$ as well as $kx-wt$.
+
 Testing \texttt{alignat} environment:
+
 \begin{alignat}{2}
 a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \label{eq1a} \\ 
 b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
 \end{alignat}
+
 Many of the next environments will fail in non-latex formats.
 Testing multiline:
+
 \begin{multline}
 a = b = q + \\ 
   f + \nabla\cdot\nabla u
 \label{multiline:eq1}
 \end{multline}
+
 Testing split:
+
 \begin{equation}
 \label{split:envir:eq}
 \begin{split}
@@ -40314,118 +44229,169 @@ a = b = q &+ \\
 \end{split}
 \end{equation}
 We can refer to the last equation by (\ref{split:envir:eq}).
+
 Testing gather:
 \begin{gather}
 a = b \\ 
 c = d + 7 + 9
 \end{gather}
+
 Let us refer to (\ref{eq1})-(\ref{eq2}) again, and to the
 alignat variant (\ref{eq1a})-(\ref{eq2a}), and to (\ref{my:eq1}).
+
 Testing eqnarray:
 \begin{eqnarray}
 {\partial u\over\partial t} &=& \nabla^2 u + f, \label{myeq1}\\ 
 {\partial v\over\partial t} &=& \nabla\cdot(q(u)\nabla v) + g \label{myeq2}
 \end{eqnarray}
+
 More mathematical typesetting is demonstrated in the coming exercises.
+
 Below, we have Problem~\vref{demo:ex:1} and Project~\vref{demo:ex:2},
 as well as Projects~\vref{proj:circle1} and~\vref{exer:you}, and in
 between there we have Exercise~\vref{exer:some:formula}.
+
 \subsection{Exercises}
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Problem \thedoconceexercisecounter: Flip a Coin}
                              
 \label{demo:ex:1}
 % keywords = random numbers; Monte Carlo simulation; ipynb
+
 % Torture tests
+
 \subex{a)}
 Make a program that simulates flipping a coin $N$ times.
 Print out ``tail'' or ``head'' for each flip and
 let the program count the number of heads.
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 1.}
 Use \texttt{r = random.random()} and define head as \texttt{r <= 0.5}.
+
 % --- end hint in exercise ---
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 2.}
 Draw an integer among $\{1,2\}$ with
 \texttt{r = random.randint(1,2)} and define head when \texttt{r} is 1.
+
 % --- end hint in exercise ---
+
 % removed !bans ... !eans environment (because of the command-line option --without_answers)
+
 % removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
 \subex{b)}
 Vectorize the code in a) using boolean indexing.
+
 Vectorized code can be written in many ways.
 Sometimes the code is less intuitive, sometimes not.
 At least there is not much to find in Section~\vref{sec1}.
+
 \subex{c)}
 Vectorize the code in a) using \texttt{numpy.sum}.
+
 % removed !bans ... !eans environment (because of the command-line option --without_answers)
+
 In this latter subexercise, we have an
 example where the code is easy to read.
+
 \noindent Filenames: \Verb!flip_coin.py!, \Verb!flip_coin.pdf!.
+
 % Closing remarks for this Problem
+
 \paragraph{Remarks.}
 These are the exercise remarks, appearing at the very end.
+
 % solution files: mysol.txt, mysol_flip_coin.py, yet_another.file
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \paragraph{My remarks.}
 Remarks with such a subsubsection is treated as more text
 after the last subexercise. Test a list too:
+
 \begin{enumerate}
 \item Mark 1.
+
 \item Mark 2.
 \end{enumerate}
+
 \noindent
 \paragraph{Not an exercise.}
 Should be possible to stick a normal section in the middle of many
 exercises.
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Test of plain text exercise}
                              
 \label{my:exer1}
+
 Very short exercise. What is the capital
 of Norway?
 \noindent Filename: \texttt{myexer1}.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Project \thedoconceexercisecounter: Compute a Probability}
                              
 \label{demo:ex:2}
+
 % Minimalistic exercise
+
 What is the probability of getting a number between 0.5 and 0.6 when
 drawing uniformly distributed random numbers from the interval $[0,1)$?
+
 At the end we have a list because that caused problems in {\LaTeX}
 in previous DocOnce versions:
+
 \begin{enumerate}
 \item item1
+
 \item item2
 \end{enumerate}
+
 \noindent
 % --- begin hint in exercise ---
+
 \paragraph{Hint.}
 To answer this question empirically, let a program
 draw $N$ such random numbers using Python's standard \texttt{random} module,
 count how many of them, $M$, that fall in the interval $(0.5,0.6)$, and
 compute the probability as $M/N$.
+
 % --- end hint in exercise ---
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Project \thedoconceexercisecounter: Explore Distributions of Random Circles}
                              
 \label{proj:circle1}
 % keywords = ipynb
+
 The formula for a circle is given by
+
 \begin{align}
 x &= x_0 + R\cos 2\pi t,
 \label{circle:x}\\ 
@@ -40437,6 +44403,17 @@ center point, and $t$ is a parameter in the unit interval $[0,1]$.
 For any $t$, $(x,y)$ computed from (\ref{circle:x})-(\ref{circle:y})
 is a point on the circle.
 The formula can be used to generate \texttt{n} points on a circle:
+
+
+
+
+
+
+
+
+
+
+
 \bpypro
 import numpy as np
 
@@ -40450,116 +44427,176 @@ x, y = circle(2.0, 0, 0)
 
 \epypro
 
+
 % Often in an exercise we have some comments about the solution
 % which we normally want to keep where they are.
+
 The goal of this project is to draw $N$ circles with random
 center and radius. Plot each circle using the \texttt{circle} function
 above.
+
 \subex{a)}
 Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint.}
 Use the \texttt{numpy.random} module to draw the
 $x_0$, $y_0$, and $R$ quantities.
+
 % --- end hint in exercise ---
+
 % removed !bans ... !eans environment (because of the command-line option --without_answers)
+
 % removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
 \subex{b)}
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
 \noindent Filename: \texttt{norm}.
+
 \subex{c)}
 Let $R$ and $(x_0,y_0)$ be normally distributed.
+
 \noindent Filename: \texttt{circles}.
+
 % Closing remarks for this Project
+
 \paragraph{Remarks.}
 At the very end of the exercise it may be appropriate to summarize
 and give some perspectives.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Determine some Distance}
                              
 \label{exer:dist}
+
 Intro to this exercise. Questions are in subexercises below.
+
 % removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
 \subex{a)}
 Subexercises are numbered a), b), etc.
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 1.}
 First hint to subexercise a).
 With math $a=b$ in hint:
+
 \[ a=b. \]
 And with code (in plain verbatim) returning $x+1$ in hint:
+
+
+
+
 \bccq
 def func(x):
     return x + 1  # with code in hint
 
 \eccq
 
+
 % --- end hint in exercise ---
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint 2.}
 Second hint to subexercise a).
+
 Test list in hint:
+
 \begin{enumerate}
 \item item1
+
 \item item2
 \end{enumerate}
+
 \noindent
 % --- end hint in exercise ---
 \noindent Filename: \Verb!subexer_a.pdf!.
+
 % removed !bans ... !eans environment (because of the command-line option --without_answers)
+
 \subex{b)}
 Here goes the text for subexercise b).
+
 Some math $\cos^2 x + \sin^2 x = 1$ written one a single line:
+
 \[ \cos^2 x + \sin^2 x = 1 \thinspace .\]
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint.}
 A hint for this subexercise.
+
 % --- end hint in exercise ---
 \noindent Filename: \Verb!subexer_b.pdf!.
+
 % removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
 % No meaning in this weired test example:
 The text here belongs to the main (intro) part of the exercise. Need
 closing remarks to have text after subexercises.
+
 Test list in exercise:
+
 \begin{enumerate}
 \item item1
+
 \item item2
 % Closing remarks for this Exercise
 \end{enumerate}
+
 \noindent
 \paragraph{Remarks.}
 Some final closing remarks, e.g., summarizing the main findings
 and their implications in other problems can be made. These
 remarks will appear at the end of the typeset exercise.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
+
 \exercisesection{Some exercise without the "Exercise:" prefix}
+
 % Another minimalistic exercise
+
 Just some text. And some math saying that $e^0=1$ on a single line,
 to test that math block insertion is correct:
+
 \[ \exp{(0)} = 1 \]
+
 And a test that the code \texttt{lambda x: x+2} is correctly placed here:
+
+
+
 \bccq
 lambda x: x+2
 
 \eccq
 
+
 % Have some comments at the end of the exercise to see that
 % the Filename: ... is written correctly.
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Solution of differential equation}
                              
 \label{sec:this:exer:de}
+
 
 \begin{doconcequiz}
 \refstepcounter{doconcequizcounter}
@@ -40570,6 +44607,7 @@ lambda x: x+2
 
 \noindent
 Given
+
 \[ \frac{dy}{dx} = -y(x),\quad y(0)=1 \]
 What is the solution of this equation?
 
@@ -40603,73 +44641,107 @@ for $x$ or $y$, not a function $y(x)$.
 \end{doconcequiz}
 
 
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Example \thedoconceexercisecounter: Just an example}
                              
+
 % This example needs the --examples_as_exercises option, otherwise
 % it is just typeset as it is written.
+
 \subex{a)}
 What is the capital of Norway?
+
 \paragraph{Answer.}
 Oslo.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \subsection{Here goes another section}
+
 With some text, before we continue with exercises.
+
 \subsection{More Exercises}
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Exercise \thedoconceexercisecounter: Make references to projects and problems}
                              
 \label{exer:some:formula}
+
 % Test comments not at the end only
 Pick a statement from Project~\vref{proj:circle1} or Problem~\vref{demo:ex:1}
 and verify it.
+
 Test list at the end of an exercise without other elements (like subexercise,
 hint, etc.):
+
 \begin{enumerate}
 \item item1
+
 \item item2
 \end{enumerate}
+
 \noindent
 \noindent Filename: \Verb!verify_formula.py!.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Project \thedoconceexercisecounter: References to Project~\vref{demo:ex:2} in a heading works for latex}
                              
 \label{exer:you}
+
 Refer to the previous exercise as Exercise~\vref{exer:some:formula},
 the two before that as Projects~\vref{demo:ex:2} and~\vref{proj:circle1},
 and this one as Project~\vref{exer:you}.
 \noindent Filename: \Verb!selc_composed.pdf!.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 \bibliographystyle{plain}
 \bibliography{papers}
+
 \subsection{Appendix: Just for testing; part I}
 \label{app1}
+
 This is the first appendix.
+
 \paragraph{A subsection within an appendix.}
 Some text.
+
 \subsection{Appendix: Just for testing; part II}
 \label{app2}
+
 This is more stuff for an appendix.
+
 \paragraph{Appendix: Testing identical titles.}
 Without label.
+
 \paragraph{Appendix: Testing identical titles.}
 \label{test:title:id1}
+
 With label.
+
 \paragraph{Appendix: Testing identical titles.}
 \label{test:title:id2}
+
 What about inserting a quiz?
+
 
 \begin{doconcequiz}
 \refstepcounter{doconcequizcounter}
@@ -40701,15 +44773,19 @@ Bergen
 \end{doconcequiz}
 
 
+
 \paragraph{Appendix: Testing identical titles.}
 Without label.
+
 
 \begin{notice_mdfboxadmon}[Tip.]
 Here is a tip or hint box, typeset as a notice box.
 \end{notice_mdfboxadmon} % title: Tip.
 
 
+
 \clearpage
+
 Need a lot of text to surround the summary box.
 Version control systems allow you to record the history of files
 and share files among several computers and collaborators in a
@@ -40721,6 +44797,7 @@ ensure that every computer and person involved in the project
 have the latest updates of the files.
 Greg Wilson' excellent \href{{https://software-carpentry.org/2010/07/script-for-introduction-to-version-control/}}{Script for Introduction to Version Control} provides a more detailed motivation why you will benefit greatly
 from using version control systems.
+
 
 \begin{summary_mdfboxadmon}[Summary.]
 \textbf{Bold remark:} Make some text with this summary.
@@ -40736,11 +44813,13 @@ Much testing in this document, otherwise stupid content.
 \end{summary_mdfboxadmon} % title: Summary.
 
 
+
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work - and all other important files.
+
 The simplest services for hosting project files are \href{{https://dropbox.com}}{Dropbox} and \href{{https://drive.google.com}}{Google Drive}.
 It is very easy to get started with these systems, and they allow you
 to share files among laptops and mobile units with as many users as
@@ -40749,6 +44828,7 @@ files are stored frequently (several times per minute), and you can go
 back to previous versions for the last 30 days. However, it is
 challenging  to find the right version from the past when there are
 so many of them.
+
 More seriously, when several people may edit files simultaneously, it
 can be difficult detect who did what when, roll back to previous
 versions, and to manually merge the edits when these are
@@ -40758,6 +44838,7 @@ systems.  The following text aims at providing you with the minimum
 information to started with such systems. Numerous other tutorials
 contain more comprehensive material and in-depth explanations of the
 concepts and tools.
+
 The idea with project hosting services is that you have the files
 associated with a project in the cloud. Many people may share these
 files.  Every time you want to work on the project you explicitly
@@ -40767,6 +44848,7 @@ project is hosted.  If you at some point need to go back to a
 version of the files at some particular point in the past,
 this is an easy operation. You can also use tools to see
 what various people have done with the files in the various versions.
+
 All these services are very similar. Below we describe how you get
 started with Bitbucket, GitHub, and Googlecode. Launchpad works very
 similarly to the latter three. All the project hosting services have
@@ -40777,50 +44859,71 @@ The Git tutorials we refer to later in this document contain more
 detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
 to get started.
+
 \paragraph{Appendix: Testing inline comments.}
 % Names can be [ A-Za-z0-9_'+-]+
+
 Projects that you want to share among several computers or project
 workers are today most conveniently stored at some web site "in the
 cloud" and updated through communication with that
 site. \shortinlinecomment{hpl's semi opinion 1}{ not sure if in the cloud is understood by all. }{ not sure if in } I strongly recommend you to use such sites for all serious
 programming and scientific writing work - and all other important
 files.
+
 The simplest services for hosting project files is Dropbox. \longinlinecomment{mp 2}{ Simply go to \href{{https://dropbox.com}}{\nolinkurl{https://dropbox.com}} and watch the video. It explains how files, like \texttt{myfile.py}, perhaps containing much math, like $\partial u/\partial t$, are easily communicated between machines. }{ Simply go to \href{{https://dropbox.com}}{\nolinkurl{https://dropbox.com}} } It
 is very easy to get started with Dropbox, and it allows you to share
 files among \textcolor{red}{(hpl 3:)} \replace{laptops and mobile units}{computers, tablets, and phones}.
+
 % Test horizontal rule
+
 ------
+
 % Coments for editing
+
 First\textcolor{red}{, (\textbf{edit 4}: add comma)} consider a quantity $Q$. \textcolor{red}{(edit 5:)} \replace{To this end,}{We note that}
 $Q>0$, because (\textbf{edit 6}:) \remove{a} negative \textcolor{red}{(edit 7:)} \replace{quantity is}{quantities are} (\textbf{edit 8}:) \remove{just} negative.  \textcolor{red}{ (\textbf{edit 9}:) This comes as no surprise.}
+
 % Test tailored latex figure references with page number
 Let us refer to Figure~\vref{fig:impact} again.
+
 Test references in a list:
+
 \begin{itemize}
  \item \vref{sec1}
+
  \item \vref{subsec1}
+
  \item \vref{fig:impact}
 \end{itemize}
+
 \noindent
 \paragraph{Appendix: Testing headings ending with \texttt{verbatim inline}.}
 The point here is to test 1) \texttt{verbatim} code in headings, and 2)
 ending a heading with verbatim code as this triggers a special
 case in {\LaTeX}.
+
 We also test mdash---used as alternative to hyphen without spaces around,
 or in quotes:
+
 
 \begin{quote}
 \emph{Fun is fun}.---Unknown.
 \end{quote}
 
+
 The ndash should also be tested -- as in the Hanson--Nilson equations
 on page 277--278.
+
 And finally, what about admons, quotes, and boxes? They are tested
 in a separate document: \texttt{admon.do.txt}.
+
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \cleardoublepage\phantomsection  % trick to get correct link to Index
 \printindex
+
 \end{document}
 % #endif
 
@@ -45294,29 +49397,39 @@ v_4
 %% see examples). If doconce ptex2tex has envir=minted, it enables the
 %% minted style without needing -DMINTED.
 % #endif
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
+
 \usepackage{ptex2tex}
 % #ifdef MINTED
 \usepackage{minted}
 \usemintedstyle{default}
 % #endif
 \usepackage{fancyvrb}
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -45333,26 +49446,43 @@ final,                   % draft: marks overfull hboxes, figures with paths
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
+
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -45360,10 +49490,13 @@ How various formats can deal with {\LaTeX} math
 \end{spacing}
 }
 \end{center}
+
 % ----------------- author(s) -------------------------
+
 \begin{center}
 {\bf Hans Petter Langtangen${}^{1, 2}$} \\ [0mm]
 \end{center}
+
 \begin{center}
 % List of all institutions:
 \centerline{{\small ${}^1$Simula Research Laboratory}}
@@ -45371,12 +49504,15 @@ How various formats can deal with {\LaTeX} math
 \end{center}
     
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
 \begin{abstract}
 The purpose of this document is to test {\LaTeX} math in DocOnce with
 various output formats.  Most {\LaTeX} math constructions are renedered
@@ -45385,19 +49521,31 @@ constructions may fail.  Unfortunately, only a subset of what works in
 html MathJax also works in sphinx MathJax. The same is true for
 markdown MathJax expresions (e.g., Jupyter notebooks).  Tests and
 examples are provided to illustrate what may go wrong.
+
 The recommendation for writing math that translates to MathJax in
 html, sphinx, and markdown is to stick to the environments \Verb!\[ ... \]!, \texttt{equation}, \texttt{equation*}, \texttt{align}, \texttt{align*}, \texttt{alignat}, and
 \texttt{alignat*} only. Test the math with sphinx output; if it works in that
 format, it should work elsewhere too.
+
 The current version of the document is translated from DocOnce source
 to the format \textbf{pdflatex}.
 \end{abstract}
+
 \section{Test of equation environments}
+
 \subsection{Test 1: Inline math}
+
 We can get an inline equation
 \Verb!$u(t)=e^{-at}$! rendered as $u(t)=e^{-at}$.
+
 \subsection{Test 2: A single equation with label}
+
 An equation with number,
+
+
+
+
+
 \blatexcod
 !bt
 \begin{equation} u(t)=e^{-at} label{eq1a}\end{equation}
@@ -45406,8 +49554,17 @@ An equation with number,
 \elatexcod
 
 looks like
+
 \begin{equation} u(t)=e^{-at} \label{_eq1a}\end{equation}
 Maybe this multi-line version is what we actually prefer to write:
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{equation}
@@ -45419,14 +49576,25 @@ label{eq1b}
 \elatexcod
 
 The result is the same:
+
 \begin{equation}
 u(t)=e^{-at} \label{_eq1b}
 \end{equation}
 We can refer to this equation through its label \texttt{eq1b}: (\ref{_eq1b}).
+
 \subsection{Test 3: Multiple, aligned equations without label and number}
+
 MathJax has historically had some problems with rendering many {\LaTeX}
 math environments, but the \texttt{align*} and \texttt{align} environments have
 always worked.
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{align*}
@@ -45438,12 +49606,25 @@ v(t) - 1 &= \frac{du}{dt}
 \elatexcod
 
 Result:
+
 \begin{align*}
 u(t)&=e^{-at}\\ 
 v(t) - 1 &= \frac{du}{dt}
 \end{align*}
+
 \subsection{Test 4: Multiple, aligned equations with label}
+
 Here, we use \texttt{align} with user-prescribed labels:
+
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{align}
@@ -45457,6 +49638,7 @@ label{eq3b}
 \elatexcod
 
 Result:
+
 \begin{align}
 u(t)&=e^{-at}
 \label{_eq2b}\\ 
@@ -45464,12 +49646,23 @@ v(t) - 1 &= \frac{du}{dt}
 \label{_eq3b}
 \end{align}
 We can refer to the last equations as the system (\ref{_eq2b})-(\ref{_eq3b}).
+
 \subsection{Test 5: Multiple, aligned equations without label}
+
 In {\LaTeX}, equations within an \texttt{align} environment is automatically
 given numbers.  To ensure that an html document with MathJax gets the
 same equation numbers as its latex/pdflatex companion, DocOnce
 generates labels in equations where there is no label prescribed. For
 example,
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{align}
@@ -45482,6 +49675,16 @@ v(t) - 1 &= \frac{du}{dt}
 \elatexcod
 
 is edited to something like
+
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{align}
@@ -45495,12 +49698,24 @@ label{_auto6}
 \elatexcod
 
 and the output gets the two equation numbered.
+
 \begin{align}
 u(t)&=e^{-at}\\ 
 v(t) - 1 &= \frac{du}{dt}
 \end{align}
+
 \subsection{Test 6: Multiple, aligned equations with multiple alignments}
+
 The \texttt{align} environment can be used with two \Verb!&! alignment characters, e.g.,
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{align}
@@ -45513,12 +49728,23 @@ u(0,t) &= u_0(x), & x\in [0,L]
 \elatexcod
 
 The result in pdflatex becomes
+
 \begin{align}
 \frac{\partial u}{\partial t} &= \nabla^2 u, & x\in (0,L),
 \ t\in (0,T]\\ 
 u(0,t) &= u_0(x), & x\in [0,L]
 \end{align}
+
 A better solution is usually to use an \texttt{alignat} environment:
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{alignat}{2}
@@ -45531,13 +49757,24 @@ u(0,t) &= u_0(x), & x\in [0,L]
 \elatexcod
 
 with the rendered result
+
 \begin{alignat}{2}
 \frac{\partial u}{\partial t} &= \nabla^2 u, & x\in (0,L),
 \ t\in (0,T]\\ 
 u(0,t) &= u_0(x), & x\in [0,L]
 \end{alignat}
+
 \subsection{Test 7: Multiple, aligned eqnarray equations without label}
+
 Let us try the old \texttt{eqnarray*} environment.
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{eqnarray*}
@@ -45549,12 +49786,25 @@ v(t) - 1 &=& \frac{du}{dt}
 \elatexcod
 
 which results in
+
 \begin{eqnarray*}
 u(t)&=& e^{-at}\\ 
 v(t) - 1 &=& \frac{du}{dt}
 \end{eqnarray*}
+
 \subsection{Test 8: Multiple, eqnarrayed equations with label}
+
 Here we use \texttt{eqnarray} with labels:
+
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{eqnarray}
@@ -45568,14 +49818,27 @@ label{eq3c}
 \elatexcod
 
 which results in
+
 \begin{eqnarray}
 u(t)&=& e^{-at} \label{_eq2c}\\ 
 v(t) - 1 &=& \frac{du}{dt} \label{_eq3c}
 \end{eqnarray}
 Can we refer to the last equations as the system (\ref{_eq2c})-(\ref{_eq3c})
 in the pdflatex format?
+
 \subsection{Test 9: The \texttt{multiline} environment with label and number}
+
 The {\LaTeX} code
+
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{multline}
@@ -45589,6 +49852,7 @@ label{multiline:eq1}
 \elatexcod
 
 gets rendered as
+
 \begin{multline}
 \int_a^b f(x)dx = \sum_{j=0}^{n} \frac{1}{2} h(f(a+jh) +
 f(a+(j+1)h)) \\ 
@@ -45597,9 +49861,22 @@ f(a+(j+1)h)) \\
 \end{multline}
 and we can hopefully refer to the Trapezoidal rule
 as the formula (\ref{_multiline:eq1}).
+
 \subsection{Test 10: Splitting equations using a split environment}
+
 Although \texttt{align} can be used to split too long equations, a more obvious
 command is \texttt{split}:
+
+
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{equation}
@@ -45613,7 +49890,9 @@ f(a+(j+1)h)) \\
 
 \elatexcod
 
+
 The result becomes
+
 \begin{equation}
 \begin{split}
 \int_a^b f(x)dx = \sum_{j=0}^{n} \frac{1}{2} h(f(a+jh) +
@@ -45621,8 +49900,17 @@ f(a+(j+1)h)) \\
 =\frac{h}{2}f(a) + \frac{h}{2}f(b) + \sum_{j=1}^n f(a+jh)
 \end{split}
 \end{equation}
+
 \subsection{Test 11: Newcommands and boldface bm vs pmb}
+
 First we use the plain old pmb package for bold math. The formula
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \[ \frac{\partial\u}{\partial t} +
@@ -45635,11 +49923,20 @@ First we use the plain old pmb package for bold math. The formula
 and the inline expression \Verb!$\nabla\u (\x)\cdot\normalvec$!
 (with suitable newcommands using pmb)
 get rendered as
+
 \[ \frac{\partial\u}{\partial t} +
 \u\cdot\nabla\u = \nu\nabla^2\u -
 \frac{1}{\varrho}\nabla p,\]
 and $\nabla\u (\x)\cdot\normalvec$.
+
 Somewhat nicer fonts may appear with the more modern \Verb!\bm! command:
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \[ \frac{\partial\ubm}{\partial t} +
@@ -45650,22 +49947,37 @@ Somewhat nicer fonts may appear with the more modern \Verb!\bm! command:
 \elatexcod
 
 (backslash \texttt{ubm} is a newcommand for bold math $u$), for which we get
+
 \[ \frac{\partial\ubm}{\partial t} +
 \ubm\cdot\nabla\ubm = \nu\nabla^2\ubm -
 \frac{1}{\varrho}\nabla p.\]
 Moreover,
+
+
+
 \bccq
 $\nabla\bm{u}(\bm{x})\cdot\bm{n}$
 
 \eccq
 
 becomes $\nabla\bm{u}(\bm{x})\cdot\bm{n}$.
+
 \section{Problematic equations}
+
 Finally, we collect some problematic formulas in MathJax. They all work
 fine in {\LaTeX}. Most of them look fine in html too, but some fail in
 sphinx, ipynb, or markdown.
+
 \subsection{Colored terms in equations}
+
 The {\LaTeX} code
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \[ {\color{blue}\frac{\partial\u}{\partial t}} +
@@ -45675,14 +49987,23 @@ The {\LaTeX} code
 
 \elatexcod
 
+
 results in
+
 \[ {\color{blue}\frac{\partial\u}{\partial t}} +
 \nabla\cdot\nabla\u = \nu\nabla^2\u -
 \frac{1}{\varrho}\nabla p,\]
+
 \subsection{Bar over symbols}
+
 Sometimes one must be extra careful with the {\LaTeX} syntax to get sphinx MathJax
 to render a formula correctly. Consider the combination of a bar over a
 bold math symbol:
+
+
+
+
+
 \blatexcod
 !bt
 \[ \bar\f = f_c^{-1}\f,\]
@@ -45690,9 +50011,17 @@ bold math symbol:
 
 \elatexcod
 
+
 which for pdflatex output results in
+
 \[ \bar\f = f_c^{-1}\f.\]
+
 With sphinx, this formula is not rendered. However, using curly braces for the bar,
+
+
+
+
+
 \blatexcod
 !bt
 \[ \bar{\f} = f_c^{-1}\f,\]
@@ -45700,11 +50029,55 @@ With sphinx, this formula is not rendered. However, using curly braces for the b
 
 \elatexcod
 
+
 makes the output correct also for sphinx:
+
 \[ \bar{\f} = f_c^{-1}\f,\]
+
 \subsection{Matrix formulas}
+
 Here is an \texttt{align} environment with a label and the \texttt{pmatrix}
 environment for matrices and vectors in {\LaTeX}.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{align}
@@ -45747,7 +50120,9 @@ v_4
 
 \elatexcod
 
+
 which becomes
+
 \begin{align}
 \begin{pmatrix}
 G_2 + G_3 & -G_3 & -G_2 & 0 \\ 
@@ -45784,7 +50159,47 @@ v_4
 -i_0
 \end{pmatrix}
 \end{align}
+
 The same matrices without labels in an \texttt{align*} environment:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{align*}
@@ -45826,7 +50241,9 @@ v_4
 
 \elatexcod
 
+
 The rendered result becomes
+
 \begin{align*}
 \begin{pmatrix}
 G_2 + G_3 & -G_3 & -G_2 & 0 \\ 
@@ -45862,7 +50279,9 @@ v_4
 -i_0
 \end{pmatrix}
 \end{align*}
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \end{document}
 % #endif
@@ -51556,31 +55975,42 @@ footnotes.
 %% see examples). If doconce ptex2tex has envir=minted, it enables the
 %% minted style without needing -DMINTED.
 % #endif
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
+
 \usepackage{fancybox}  % make sure fancybox is loaded before fancyvrb
 %\setlength{\fboxsep}{8pt}  % may clash with need in pre/cod envirs
+
 \usepackage{ptex2tex}
 % #ifdef MINTED
 \usepackage{minted}
 \usemintedstyle{default}
 % #endif
 \usepackage{fancyvrb}
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -51597,7 +56027,9 @@ final,                   % draft: marks overfull hboxes, figures with paths
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -51612,6 +56044,7 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \usepackage[section]{placeins}
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
+
 % --- fancyhdr package for fancy headers ---
 \usepackage{fancyhdr}
 \fancyhf{} % sets both header and footer to nothing
@@ -51631,9 +56064,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
+
 \pagestyle{fancy}
+
+
 \usepackage[framemethod=TikZ]{mdframed}
+
 % --- begin definitions of admonition environments ---
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "notice" admon
 \definecolor{mdfbox_notice_background}{rgb}{1,1,1}
@@ -51654,12 +56092,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{notice_mdfboxmdframed}
+
 \newenvironment{notice_mdfboxadmon}[1][]{
 \begin{notice_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{notice_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "summary" admon
 \definecolor{mdfbox_summary_background}{rgb}{1,1,1}
@@ -51680,12 +56120,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{summary_mdfboxmdframed}
+
 \newenvironment{summary_mdfboxadmon}[1][]{
 \begin{summary_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{summary_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "warning" admon
 \definecolor{mdfbox_warning_background}{rgb}{1,1,1}
@@ -51706,12 +56148,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{warning_mdfboxmdframed}
+
 \newenvironment{warning_mdfboxadmon}[1][]{
 \begin{warning_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{warning_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "question" admon
 \definecolor{mdfbox_question_background}{rgb}{1,1,1}
@@ -51732,12 +56176,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{question_mdfboxmdframed}
+
 \newenvironment{question_mdfboxadmon}[1][]{
 \begin{question_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{question_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "block" admon
 \definecolor{mdfbox_block_background}{rgb}{1,1,1}
@@ -51758,32 +56204,50 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{block_mdfboxmdframed}
+
 \newenvironment{block_mdfboxadmon}[1][]{
 \begin{block_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{block_mdfboxmdframed}
 }
+
 % --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
+
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -51791,42 +56255,63 @@ Testing admons
 \end{spacing}
 }
 \end{center}
+
 % ----------------- author(s) -------------------------
+
 \begin{center}
 {\bf H. P. Langtangen${}^{}$} \\ [0mm]
 \end{center}
+
 \begin{center}
 % List of all institutions:
 \end{center}
     
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
+
 % !split
 \section{Introduction}
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
+
 \subsection{Code}
+
 Need some code outside admons for color and font comparisons:
+
+
+
+
 \bpycod
 def some_code(x):
     return sin(x)*exp(1-x)
 
 \epycod
 
+
 And some plain text verbatim:
+
+
+
+
 \bccq
 x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 
 \eccq
 
+
 \subsection{Quotes and boxes}
+
 Here is a plain quote environment.
+
 
 \begin{quote}
 Sayre's law states that
@@ -51837,25 +56322,35 @@ By way of corollary, it adds: \\
 \emph{Source}: \href{{https://en.wikipedia.org/wiki/Sayre's_law}}{wikipedia}
 \end{quote}
 
+
 Does quotes with title also work? No...cannot work in {\LaTeX} and HTML
 and then it does not make sense to support it.
+
 A plain \emph{box} is sometimes useful. Let's show it here for comparison
 with admons (especially the block admon has much in common with a box).
 The box is more aimed at framing a law or an equation.
+
 First a simple block with text, an equation, and a list:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
 A generic equation
+
 \[ f(x) = 0 \]
 must be solved by a numerical method, such as
+
 \begin{itemize}
  \item Newton's method
+
  \item The Bisection method
+
  \item Fixed-point (Picard) iteration by rewriting $f(x)=x - g(x)$
+
  \item The Secant method
 \end{itemize}
+
 \noindent
 \end{minipage}
 \end{Sbox}
@@ -51863,6 +56358,7 @@ must be solved by a numerical method, such as
 \end{center}
 Now test a box with equation only (note that this line continues the
 box, it is not a new paragraph):
+
 
 \begin{center}
 \begin{Sbox}
@@ -51872,15 +56368,21 @@ box, it is not a new paragraph):
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 \\paragraph{Hint.}\n
 Newton's method requires a good start vector to converge fast.
 
 
+
 Let's begin a new paragraph and show a box with code only:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
+
+
+
 \bpycod
 def some_code(x):
     return sin(x)*exp(1-x)
@@ -51890,17 +56392,23 @@ def some_code(x):
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 \subsection{Admonitions}
+
 Let us start with a plain warning environment.
+
 
 \begin{warning_mdfboxadmon}[Warning.]
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
+
 \begin{itemize}
   \item and a list
+
   \item with items
 \end{itemize}
+
 \noindent
 We continue with more text to see how that affects the layout.
 And more and more text.
@@ -51912,11 +56420,18 @@ And more and more text.
 \end{warning_mdfboxadmon} % title: Warning.
 
 
+
 Test warning with title:
+
 
 \begin{warning_mdfboxadmon}[{\large Title ending with math $\sqrt{2}\approx 1.4$}.]
 {\large And here comes some text with bad news in larger font.
+
 Also some code:
+
+
+
+
 \bpycod2
 def f(x):
     return x
@@ -51924,6 +56439,9 @@ def f(x):
 \epycod2
 
 And a complete program
+
+
+
 \bpypro2
 print("Hello, World!")
 
@@ -51932,7 +56450,9 @@ print("Hello, World!")
 \end{warning_mdfboxadmon} % title: {\large Title ending with math $\sqrt{2}\approx 1.4$}.
 
 
+
 Test warning with large title with math:
+
 
 \begin{warning_mdfboxadmon}[{\large Watch out for $\nabla\cdot\bm{u}=0$ equations}.]
 {\large Divergence freedom is often problematic from a numerical point
@@ -51941,7 +56461,9 @@ of view.
 \end{warning_mdfboxadmon} % title: {\large Watch out for $\nabla\cdot\bm{u}=0$ equations}.
 
 
+
 Then we test a block, which is guaranteed to never have any admon icon.
+
 
 \begin{block_mdfboxadmon}[Block with title.]
 \vspace{0.5mm}\par\noindent
@@ -51956,18 +56478,22 @@ of understanding.
 
 
 
+
 \begin{block_mdfboxadmon}[]
 Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
 \end{block_mdfboxadmon} % title: 
 
 
+
 % Note that the final ! does not appear in Sphinx and reST since
 % those formats automatically add : to the admonition title.
+
 
 \begin{notice_mdfboxadmon}[Note eventually!]
 Ah, we are soon close to the end (with illegal font size specification!).
 But first a bit of math where we define $\theta$ and $\bm{r}$:
+
 \begin{align*}
 \theta &= q^2,\\
 \bm{r} &= \varrho\bm{i}
@@ -51975,11 +56501,14 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 \end{notice_mdfboxadmon} % title: Note eventually!
 
 
+
 % Test one word with a number
+
 
 \begin{notice_mdfboxadmon}[Point1.]
 Ah, we are soon close to the end.
 \end{notice_mdfboxadmon} % title: Point1.
+
 
 
 
@@ -51989,23 +56518,35 @@ So, how many admonition environments does DocOnce support?
 
 
 
+
 \begin{question_mdfboxadmon}[Question.]
 \begin{enumerate}
  \item Once more, how many admonition environments does DocOnce support?
 \end{enumerate}
+
 \noindent
 \end{question_mdfboxadmon} % title: Question.
 
 
 
+
 \begin{warning_mdfboxadmon}[Tip.]
 It is of outmost important to
+
 \begin{enumerate}
 \item stay cool
+
 \item read hints and tips carefully
 \end{enumerate}
+
 \noindent
 Because here the thing is to do
+
+
+
+
+
+
 \bpycod2
 import urllib
 
@@ -52016,16 +56557,21 @@ def grab(url, filename):
 \end{warning_mdfboxadmon} % title: Tip.
 
 
+
 Next is a warning without a title ("none" implies no title).
+
 
 \begin{warning_mdfboxadmon}[]
 And here comes some text with bad news.
 \end{warning_mdfboxadmon} % title: 
 
 
+
 \subsection{Going deeper environments}
+
 Here is a long notice environment with a custom title and much
 text, math and code.
+
 
 \begin{notice_mdfboxadmon}[Going deeper.]
 We have some equations that should be preceded by much text, so the
@@ -52033,15 +56579,26 @@ task is to write and write. The number of words, and not the
 meaning, is what counts here. We need desperately to fill up the
 page in the hope that some admonitions will experience a page break,
 which the {\LaTeX} environment should handle with ease.
+
 Let us start with some equations:
+
 \begin{align*}
 \Ddt{u} &= 0
 \\
 \half &= \halfi\\
 \half\x &= \normalvec
 \end{align*}
+
 The implementation of such complicated equations in computer
 code is task that this "Going deeper" environment targets.
+
+
+
+
+
+
+
+
 \bpycod2
 def Dudt(u):
     r = diff(u, t) + u*grad(u)
@@ -52054,6 +56611,46 @@ x = 2*n
 
 And some more text that can help going into the next page.
 Longer computer code requires vertical space:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bpycod2
 class Diff:
     def __init__(self, f, h=1E-5):
@@ -52097,17 +56694,23 @@ class Forward3(Diff):
 \epycod2
 
 And then we add a figure too.
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.7\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
 \end{notice_mdfboxadmon} % title: Going deeper.
 
 
+
 \subsection{The end}
+
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
 just because we can.
+
 
 \begin{summary_mdfboxadmon}[Concluding remarks for the novice.]
 We can summarize the most important things with admons: they have
@@ -52116,10 +56719,13 @@ Titles should be optional.
 \end{summary_mdfboxadmon} % title: Concluding remarks for the novice.
 
 
+
 \paragraph{Remark.}
 The \texttt{remarks} and \texttt{hint} environments are not allowed outside
 exercises (and problems and projects too).
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \end{document}
 % #endif
@@ -52130,22 +56736,31 @@ exercises (and problems and projects too).
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
 %% doconce format html admon.do.txt --latex_admon=colors1 --latex_code_style=lst --cite_doconce
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
+
 \usepackage{fancybox}  % make sure fancybox is loaded before fancyvrb
 %\setlength{\fboxsep}{8pt}  % may clash with need in pre/cod envirs
+
 % Packages for typesetting blocks of computer code
 \usepackage{fancyvrb,framed,moreverb}
+
 % Define colors
 \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
 \definecolor{tucorange}{rgb}{1.0,0.64,0}
@@ -52166,31 +56781,42 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \definecolor{lightblue2}{rgb}{0.3,0.3,1.0}
 \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
 \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+
 \colorlet{comment_green}{green!50!black}
 \colorlet{string_red}{red!60!black}
 \colorlet{keyword_pink}{magenta!70!black}
 \colorlet{indendifier_green}{green!70!white}
+
 % Backgrounds for code
 \definecolor{cbg_gray}{rgb}{.95, .95, .95}
 \definecolor{bar_gray}{rgb}{.92, .92, .92}
+
 \definecolor{cbg_yellowgray}{rgb}{.95, .95, .85}
 \definecolor{bar_yellowgray}{rgb}{.95, .95, .65}
+
 \colorlet{cbg_yellow2}{yellow!10}
 \colorlet{bar_yellow2}{yellow!20}
+
 \definecolor{cbg_yellow1}{rgb}{.98, .98, 0.8}
 \definecolor{bar_yellow1}{rgb}{.98, .98, 0.4}
+
 \definecolor{cbg_red1}{rgb}{1, 0.85, 0.85}
 \definecolor{bar_red1}{rgb}{1, 0.75, 0.85}
+
 \definecolor{cbg_blue1}{rgb}{0.87843, 0.95686, 1.0}
 \definecolor{bar_blue1}{rgb}{0.7,     0.95686, 1}
+
 \usepackage{listingsutf8}
+
 % Common lstlisting parameters
+
 \usepackage{calc}
 \newlength{\lstboxwidth}  % width of lst box
 \newlength{\framethickness}
 \setlength{\framethickness}{0.5mm}
 % for frame=trbl and a framerule that has significant size, set
 % xleftmargin=5mm and xrightmargin=5mm.
+
 \lstset{
   basicstyle=\small \ttfamily,
   breaklines=false,          % break/wrap lines
@@ -52214,16 +56840,22 @@ final,                   % draft: marks overfull hboxes, figures with paths
   escapeinside={(*@}{@*)},   % (*@ \pause @*) in slides and math in code blocks
   extendedchars=\true,       % allows non-ascii chars, does not work with utf-8
 }
+
 % Internally defined styles for lstlisting
+
 \lstdefinestyle{simple}{
 commentstyle={},
 }
+
 % end of custom lstdefinestyles
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -52240,7 +56872,9 @@ commentstyle={},
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -52255,6 +56889,7 @@ commentstyle={},
 \usepackage[section]{placeins}
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
+
 % --- fancyhdr package for fancy headers ---
 \usepackage{fancyhdr}
 \fancyhf{} % sets both header and footer to nothing
@@ -52274,9 +56909,14 @@ commentstyle={},
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
+
 \pagestyle{fancy}
+
+
 \usepackage{framed}
+
 % --- begin definitions of admonition environments ---
+
 % Admonition style "colors1" has its style taken from the NumPy User Guide
 % "notice" admon
 \definecolor{colors1_notice_background}{rgb}{0.988235,0.964706,0.862745}
@@ -52284,6 +56924,7 @@ commentstyle={},
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{colors1_notice_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{notice_colors1admon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
@@ -52293,6 +56934,7 @@ commentstyle={},
 {
 \end{noticeshaded}
 }
+
 % Admonition style "colors1" has its style taken from the NumPy User Guide
 % "summary" admon
 \definecolor{colors1_summary_background}{rgb}{0.988235,0.964706,0.862745}
@@ -52300,6 +56942,7 @@ commentstyle={},
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{colors1_summary_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{summary_colors1admon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
@@ -52309,6 +56952,7 @@ commentstyle={},
 {
 \end{summaryshaded}
 }
+
 % Admonition style "colors1" has its style taken from the NumPy User Guide
 % "warning" admon
 \definecolor{colors1_warning_background}{rgb}{1.0,0.8235294,0.8235294}
@@ -52316,6 +56960,7 @@ commentstyle={},
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{colors1_warning_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{warning_colors1admon}[1][Warning]{
 \begin{warningshaded}
 \noindent
@@ -52325,6 +56970,7 @@ commentstyle={},
 {
 \end{warningshaded}
 }
+
 % Admonition style "colors1" has its style taken from the NumPy User Guide
 % "question" admon
 \definecolor{colors1_question_background}{rgb}{0.988235,0.964706,0.862745}
@@ -52332,6 +56978,7 @@ commentstyle={},
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{colors1_question_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{question_colors1admon}[1][Question]{
 \begin{questionshaded}
 \noindent
@@ -52341,6 +56988,7 @@ commentstyle={},
 {
 \end{questionshaded}
 }
+
 % Admonition style "colors1" has its style taken from the NumPy User Guide
 % "block" admon
 \definecolor{colors1_block_background}{rgb}{0.988235,0.964706,0.862745}
@@ -52348,6 +56996,7 @@ commentstyle={},
 \newenvironment{blockshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{colors1_block_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{block_colors1admon}[1][Block]{
 \begin{blockshaded}
 \noindent
@@ -52357,26 +57006,43 @@ commentstyle={},
 {
 \end{blockshaded}
 }
+
 % --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
+
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -52384,42 +57050,63 @@ Testing admons
 \end{spacing}
 }
 \end{center}
+
 % ----------------- author(s) -------------------------
+
 \begin{center}
 {\bf H. P. Langtangen${}^{}$} \\ [0mm]
 \end{center}
+
 \begin{center}
 % List of all institutions:
 \end{center}
     
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
+
 % !split
 \section{Introduction}
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
+
 \subsection{Code}
+
 Need some code outside admons for color and font comparisons:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def some_code(x):
     return sin(x)*exp(1-x)
 
 \end{lstlisting}
 
+
 And some plain text verbatim:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 
 \end{lstlisting}
 
+
 \subsection{Quotes and boxes}
+
 Here is a plain quote environment.
+
 
 \begin{quote}
 Sayre's law states that
@@ -52430,25 +57117,35 @@ By way of corollary, it adds: \\
 \emph{Source}: \href{{https://en.wikipedia.org/wiki/Sayre's_law}}{wikipedia}
 \end{quote}
 
+
 Does quotes with title also work? No...cannot work in {\LaTeX} and HTML
 and then it does not make sense to support it.
+
 A plain \emph{box} is sometimes useful. Let's show it here for comparison
 with admons (especially the block admon has much in common with a box).
 The box is more aimed at framing a law or an equation.
+
 First a simple block with text, an equation, and a list:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
 A generic equation
+
 \[ f(x) = 0 \]
 must be solved by a numerical method, such as
+
 \begin{itemize}
  \item Newton's method
+
  \item The Bisection method
+
  \item Fixed-point (Picard) iteration by rewriting $f(x)=x - g(x)$
+
  \item The Secant method
 \end{itemize}
+
 \noindent
 \end{minipage}
 \end{Sbox}
@@ -52456,6 +57153,7 @@ must be solved by a numerical method, such as
 \end{center}
 Now test a box with equation only (note that this line continues the
 box, it is not a new paragraph):
+
 
 \begin{center}
 \begin{Sbox}
@@ -52465,15 +57163,21 @@ box, it is not a new paragraph):
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 \paragraph{Hint.}
 Newton's method requires a good start vector to converge fast.
 
 
+
 Let's begin a new paragraph and show a box with code only:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def some_code(x):
     return sin(x)*exp(1-x)
@@ -52483,17 +57187,23 @@ def some_code(x):
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 \subsection{Admonitions}
+
 Let us start with a plain warning environment.
+
 
 \begin{warning_colors1admon}[Warning]
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
+
 \begin{itemize}
   \item and a list
+
   \item with items
 \end{itemize}
+
 \noindent
 We continue with more text to see how that affects the layout.
 And more and more text.
@@ -52505,11 +57215,18 @@ And more and more text.
 \end{warning_colors1admon} % title: Warning
 
 
+
 Test warning with title:
+
 
 \begin{warning_colors1admon}[{\large Title ending with math $\sqrt{2}\approx 1.4$}]
 {\large And here comes some text with bad news in larger font.
+
 Also some code:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def f(x):
     return x
@@ -52517,6 +57234,9 @@ def f(x):
 \end{lstlisting}
 
 And a complete program
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 print("Hello, World!")
 
@@ -52525,7 +57245,9 @@ print("Hello, World!")
 \end{warning_colors1admon} % title: {\large Title ending with math $\sqrt{2}\approx 1.4$}
 
 
+
 Test warning with large title with math:
+
 
 \begin{warning_colors1admon}[{\large Watch out for $\nabla\cdot\bm{u}=0$ equations}]
 {\large Divergence freedom is often problematic from a numerical point
@@ -52534,7 +57256,9 @@ of view.
 \end{warning_colors1admon} % title: {\large Watch out for $\nabla\cdot\bm{u}=0$ equations}
 
 
+
 Then we test a block, which is guaranteed to never have any admon icon.
+
 
 \begin{block_colors1admon}[Block with title]
 \vspace{-3.5mm}\par\noindent
@@ -52549,18 +57273,22 @@ of understanding.
 
 
 
+
 \begin{block_colors1admon}[]
 Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
 \end{block_colors1admon} % title: 
 
 
+
 % Note that the final ! does not appear in Sphinx and reST since
 % those formats automatically add : to the admonition title.
+
 
 \begin{notice_colors1admon}[Note, eventually!]
 Ah, we are soon close to the end (with illegal font size specification!).
 But first a bit of math where we define $\theta$ and $\bm{r}$:
+
 \begin{align*}
 \theta &= q^2,\\
 \bm{r} &= \varrho\bm{i}
@@ -52568,11 +57296,14 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 \end{notice_colors1admon} % title: Note, eventually!
 
 
+
 % Test one word with a number
+
 
 \begin{notice_colors1admon}[Point1]
 Ah, we are soon close to the end.
 \end{notice_colors1admon} % title: Point1
+
 
 
 
@@ -52582,23 +57313,35 @@ So, how many admonition environments does DocOnce support?
 
 
 
+
 \begin{question_colors1admon}[Question]
 \begin{enumerate}
  \item Once more, how many admonition environments does DocOnce support?
 \end{enumerate}
+
 \noindent
 \end{question_colors1admon} % title: Question
 
 
 
+
 \begin{warning_colors1admon}[Tip]
 It is of outmost important to
+
 \begin{enumerate}
 \item stay cool
+
 \item read hints and tips carefully
 \end{enumerate}
+
 \noindent
 Because here the thing is to do
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 import urllib
 
@@ -52609,16 +57352,21 @@ def grab(url, filename):
 \end{warning_colors1admon} % title: Tip
 
 
+
 Next is a warning without a title ("none" implies no title).
+
 
 \begin{warning_colors1admon}[]
 And here comes some text with bad news.
 \end{warning_colors1admon} % title: 
 
 
+
 \subsection{Going deeper environments}
+
 Here is a long notice environment with a custom title and much
 text, math and code.
+
 
 \begin{notice_colors1admon}[Going deeper.]
 We have some equations that should be preceded by much text, so the
@@ -52626,15 +57374,26 @@ task is to write and write. The number of words, and not the
 meaning, is what counts here. We need desperately to fill up the
 page in the hope that some admonitions will experience a page break,
 which the {\LaTeX} environment should handle with ease.
+
 Let us start with some equations:
+
 \begin{align*}
 \Ddt{u} &= 0
 \\
 \half &= \halfi\\
 \half\x &= \normalvec
 \end{align*}
+
 The implementation of such complicated equations in computer
 code is task that this "Going deeper" environment targets.
+
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def Dudt(u):
     r = diff(u, t) + u*grad(u)
@@ -52647,6 +57406,46 @@ x = 2*n
 
 And some more text that can help going into the next page.
 Longer computer code requires vertical space:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 class Diff:
     def __init__(self, f, h=1E-5):
@@ -52690,17 +57489,23 @@ class Forward3(Diff):
 \end{lstlisting}
 
 And then we add a figure too.
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.7\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
 \end{notice_colors1admon} % title: Going deeper.
 
 
+
 \subsection{The end}
+
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
 just because we can.
+
 
 \begin{summary_colors1admon}[Concluding remarks, for the novice]
 We can summarize the most important things with admons: they have
@@ -52709,10 +57514,13 @@ Titles should be optional.
 \end{summary_colors1admon} % title: Concluding remarks, for the novice
 
 
+
 \paragraph{Remark.}
 The \texttt{remarks} and \texttt{hint} environments are not allowed outside
 exercises (and problems and projects too).
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \end{document}
 % #endif
@@ -52723,22 +57531,31 @@ exercises (and problems and projects too).
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
 %% doconce format html admon.do.txt --latex_admon=colors2 --latex_code_style=lst --cite_doconce
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
+
 \usepackage{fancybox}  % make sure fancybox is loaded before fancyvrb
 %\setlength{\fboxsep}{8pt}  % may clash with need in pre/cod envirs
+
 % Packages for typesetting blocks of computer code
 \usepackage{fancyvrb,framed,moreverb}
+
 % Define colors
 \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
 \definecolor{tucorange}{rgb}{1.0,0.64,0}
@@ -52759,31 +57576,42 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \definecolor{lightblue2}{rgb}{0.3,0.3,1.0}
 \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
 \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+
 \colorlet{comment_green}{green!50!black}
 \colorlet{string_red}{red!60!black}
 \colorlet{keyword_pink}{magenta!70!black}
 \colorlet{indendifier_green}{green!70!white}
+
 % Backgrounds for code
 \definecolor{cbg_gray}{rgb}{.95, .95, .95}
 \definecolor{bar_gray}{rgb}{.92, .92, .92}
+
 \definecolor{cbg_yellowgray}{rgb}{.95, .95, .85}
 \definecolor{bar_yellowgray}{rgb}{.95, .95, .65}
+
 \colorlet{cbg_yellow2}{yellow!10}
 \colorlet{bar_yellow2}{yellow!20}
+
 \definecolor{cbg_yellow1}{rgb}{.98, .98, 0.8}
 \definecolor{bar_yellow1}{rgb}{.98, .98, 0.4}
+
 \definecolor{cbg_red1}{rgb}{1, 0.85, 0.85}
 \definecolor{bar_red1}{rgb}{1, 0.75, 0.85}
+
 \definecolor{cbg_blue1}{rgb}{0.87843, 0.95686, 1.0}
 \definecolor{bar_blue1}{rgb}{0.7,     0.95686, 1}
+
 \usepackage{listingsutf8}
+
 % Common lstlisting parameters
+
 \usepackage{calc}
 \newlength{\lstboxwidth}  % width of lst box
 \newlength{\framethickness}
 \setlength{\framethickness}{0.5mm}
 % for frame=trbl and a framerule that has significant size, set
 % xleftmargin=5mm and xrightmargin=5mm.
+
 \lstset{
   basicstyle=\small \ttfamily,
   breaklines=false,          % break/wrap lines
@@ -52807,16 +57635,22 @@ final,                   % draft: marks overfull hboxes, figures with paths
   escapeinside={(*@}{@*)},   % (*@ \pause @*) in slides and math in code blocks
   extendedchars=\true,       % allows non-ascii chars, does not work with utf-8
 }
+
 % Internally defined styles for lstlisting
+
 \lstdefinestyle{simple}{
 commentstyle={},
 }
+
 % end of custom lstdefinestyles
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -52833,7 +57667,9 @@ commentstyle={},
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -52848,6 +57684,7 @@ commentstyle={},
 \usepackage[section]{placeins}
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
+
 % --- fancyhdr package for fancy headers ---
 \usepackage{fancyhdr}
 \fancyhf{} % sets both header and footer to nothing
@@ -52867,15 +57704,21 @@ commentstyle={},
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
+
 \pagestyle{fancy}
+
+
 \usepackage{framed,wrapfig}
+
 % --- begin definitions of admonition environments ---
+
 % Admonition style "colors2", admon "notice"
 \definecolor{colors2_notice_background}{rgb}{0.988235,0.964706,0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{colors2_notice_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{notice_colors2admon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
@@ -52888,12 +57731,14 @@ commentstyle={},
 {
 \end{noticeshaded}
 }
+
 % Admonition style "colors2", admon "summary"
 \definecolor{colors2_summary_background}{rgb}{0.988235,0.964706,0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{colors2_summary_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{summary_colors2admon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
@@ -52906,12 +57751,14 @@ commentstyle={},
 {
 \end{summaryshaded}
 }
+
 % Admonition style "colors2", admon "warning"
 \definecolor{colors2_warning_background}{rgb}{1.0,0.8235294,0.8235294}
 % \fboxsep sets the space between the text and the box
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{colors2_warning_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{warning_colors2admon}[1][Warning]{
 \begin{warningshaded}
 \noindent
@@ -52924,12 +57771,14 @@ commentstyle={},
 {
 \end{warningshaded}
 }
+
 % Admonition style "colors2", admon "question"
 \definecolor{colors2_question_background}{rgb}{0.988235,0.964706,0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{colors2_question_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{question_colors2admon}[1][Question]{
 \begin{questionshaded}
 \noindent
@@ -52942,12 +57791,14 @@ commentstyle={},
 {
 \end{questionshaded}
 }
+
 % Admonition style "colors2", admon "block"
 \definecolor{colors2_block_background}{rgb}{0.988235,0.964706,0.862745}
 % \fboxsep sets the space between the text and the box
 \newenvironment{blockshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{colors2_block_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{block_colors2admon}[1][Block]{
 \begin{blockshaded}
 \noindent
@@ -52957,26 +57808,43 @@ commentstyle={},
 {
 \end{blockshaded}
 }
+
 % --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
+
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -52984,42 +57852,63 @@ Testing admons
 \end{spacing}
 }
 \end{center}
+
 % ----------------- author(s) -------------------------
+
 \begin{center}
 {\bf H. P. Langtangen${}^{}$} \\ [0mm]
 \end{center}
+
 \begin{center}
 % List of all institutions:
 \end{center}
     
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
+
 % !split
 \section{Introduction}
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
+
 \subsection{Code}
+
 Need some code outside admons for color and font comparisons:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def some_code(x):
     return sin(x)*exp(1-x)
 
 \end{lstlisting}
 
+
 And some plain text verbatim:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 
 \end{lstlisting}
 
+
 \subsection{Quotes and boxes}
+
 Here is a plain quote environment.
+
 
 \begin{quote}
 Sayre's law states that
@@ -53030,25 +57919,35 @@ By way of corollary, it adds: \\
 \emph{Source}: \href{{https://en.wikipedia.org/wiki/Sayre's_law}}{wikipedia}
 \end{quote}
 
+
 Does quotes with title also work? No...cannot work in {\LaTeX} and HTML
 and then it does not make sense to support it.
+
 A plain \emph{box} is sometimes useful. Let's show it here for comparison
 with admons (especially the block admon has much in common with a box).
 The box is more aimed at framing a law or an equation.
+
 First a simple block with text, an equation, and a list:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
 A generic equation
+
 \[ f(x) = 0 \]
 must be solved by a numerical method, such as
+
 \begin{itemize}
  \item Newton's method
+
  \item The Bisection method
+
  \item Fixed-point (Picard) iteration by rewriting $f(x)=x - g(x)$
+
  \item The Secant method
 \end{itemize}
+
 \noindent
 \end{minipage}
 \end{Sbox}
@@ -53056,6 +57955,7 @@ must be solved by a numerical method, such as
 \end{center}
 Now test a box with equation only (note that this line continues the
 box, it is not a new paragraph):
+
 
 \begin{center}
 \begin{Sbox}
@@ -53065,15 +57965,21 @@ box, it is not a new paragraph):
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 \paragraph{Hint.}
 Newton's method requires a good start vector to converge fast.
 
 
+
 Let's begin a new paragraph and show a box with code only:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def some_code(x):
     return sin(x)*exp(1-x)
@@ -53083,17 +57989,23 @@ def some_code(x):
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 \subsection{Admonitions}
+
 Let us start with a plain warning environment.
+
 
 \begin{warning_colors2admon}[Warning]
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
+
 \begin{itemize}
   \item and a list
+
   \item with items
 \end{itemize}
+
 \noindent
 We continue with more text to see how that affects the layout.
 And more and more text.
@@ -53105,11 +58017,18 @@ And more and more text.
 \end{warning_colors2admon} % title: Warning
 
 
+
 Test warning with title:
+
 
 \begin{warning_colors2admon}[{\large Title ending with math $\sqrt{2}\approx 1.4$}]
 {\large And here comes some text with bad news in larger font.
+
 Also some code:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def f(x):
     return x
@@ -53117,6 +58036,9 @@ def f(x):
 \end{lstlisting}
 
 And a complete program
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 print("Hello, World!")
 
@@ -53125,7 +58047,9 @@ print("Hello, World!")
 \end{warning_colors2admon} % title: {\large Title ending with math $\sqrt{2}\approx 1.4$}
 
 
+
 Test warning with large title with math:
+
 
 \begin{warning_colors2admon}[{\large Watch out for $\nabla\cdot\bm{u}=0$ equations}]
 {\large Divergence freedom is often problematic from a numerical point
@@ -53134,7 +58058,9 @@ of view.
 \end{warning_colors2admon} % title: {\large Watch out for $\nabla\cdot\bm{u}=0$ equations}
 
 
+
 Then we test a block, which is guaranteed to never have any admon icon.
+
 
 \begin{block_colors2admon}[Block with title]
 \vspace{-2.5mm}\par\noindent
@@ -53149,18 +58075,22 @@ of understanding.
 
 
 
+
 \begin{block_colors2admon}[]
 Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
 \end{block_colors2admon} % title: 
 
 
+
 % Note that the final ! does not appear in Sphinx and reST since
 % those formats automatically add : to the admonition title.
+
 
 \begin{notice_colors2admon}[Note, eventually!]
 Ah, we are soon close to the end (with illegal font size specification!).
 But first a bit of math where we define $\theta$ and $\bm{r}$:
+
 \begin{align*}
 \theta &= q^2,\\
 \bm{r} &= \varrho\bm{i}
@@ -53168,11 +58098,14 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 \end{notice_colors2admon} % title: Note, eventually!
 
 
+
 % Test one word with a number
+
 
 \begin{notice_colors2admon}[Point1]
 Ah, we are soon close to the end.
 \end{notice_colors2admon} % title: Point1
+
 
 
 
@@ -53182,23 +58115,35 @@ So, how many admonition environments does DocOnce support?
 
 
 
+
 \begin{question_colors2admon}[Question]
 \begin{enumerate}
  \item Once more, how many admonition environments does DocOnce support?
 \end{enumerate}
+
 \noindent
 \end{question_colors2admon} % title: Question
 
 
 
+
 \begin{warning_colors2admon}[Tip]
 It is of outmost important to
+
 \begin{enumerate}
 \item stay cool
+
 \item read hints and tips carefully
 \end{enumerate}
+
 \noindent
 Because here the thing is to do
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 import urllib
 
@@ -53209,16 +58154,21 @@ def grab(url, filename):
 \end{warning_colors2admon} % title: Tip
 
 
+
 Next is a warning without a title ("none" implies no title).
+
 
 \begin{warning_colors2admon}[]
 And here comes some text with bad news.
 \end{warning_colors2admon} % title: 
 
 
+
 \subsection{Going deeper environments}
+
 Here is a long notice environment with a custom title and much
 text, math and code.
+
 
 \begin{notice_colors2admon}[Going deeper.]
 We have some equations that should be preceded by much text, so the
@@ -53226,15 +58176,26 @@ task is to write and write. The number of words, and not the
 meaning, is what counts here. We need desperately to fill up the
 page in the hope that some admonitions will experience a page break,
 which the {\LaTeX} environment should handle with ease.
+
 Let us start with some equations:
+
 \begin{align*}
 \Ddt{u} &= 0
 \\
 \half &= \halfi\\
 \half\x &= \normalvec
 \end{align*}
+
 The implementation of such complicated equations in computer
 code is task that this "Going deeper" environment targets.
+
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def Dudt(u):
     r = diff(u, t) + u*grad(u)
@@ -53247,6 +58208,46 @@ x = 2*n
 
 And some more text that can help going into the next page.
 Longer computer code requires vertical space:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 class Diff:
     def __init__(self, f, h=1E-5):
@@ -53290,17 +58291,23 @@ class Forward3(Diff):
 \end{lstlisting}
 
 And then we add a figure too.
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.7\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
 \end{notice_colors2admon} % title: Going deeper.
 
 
+
 \subsection{The end}
+
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
 just because we can.
+
 
 \begin{summary_colors2admon}[Concluding remarks, for the novice]
 We can summarize the most important things with admons: they have
@@ -53309,10 +58316,13 @@ Titles should be optional.
 \end{summary_colors2admon} % title: Concluding remarks, for the novice
 
 
+
 \paragraph{Remark.}
 The \texttt{remarks} and \texttt{hint} environments are not allowed outside
 exercises (and problems and projects too).
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \end{document}
 % #endif
@@ -53323,22 +58333,31 @@ exercises (and problems and projects too).
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
 %% doconce format html admon.do.txt --latex_admon=mdfbox --latex_admon_color=warning:darkgreen!40!white;notice:darkgray!20!white;summary:tucorange!20!white;question:red!50!white;block:darkgreen!40!white --no_abort --latex_code_style=lst --cite_doconce
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
+
 \usepackage{fancybox}  % make sure fancybox is loaded before fancyvrb
 %\setlength{\fboxsep}{8pt}  % may clash with need in pre/cod envirs
+
 % Packages for typesetting blocks of computer code
 \usepackage{fancyvrb,framed,moreverb}
+
 % Define colors
 \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
 \definecolor{tucorange}{rgb}{1.0,0.64,0}
@@ -53359,31 +58378,42 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \definecolor{lightblue2}{rgb}{0.3,0.3,1.0}
 \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
 \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+
 \colorlet{comment_green}{green!50!black}
 \colorlet{string_red}{red!60!black}
 \colorlet{keyword_pink}{magenta!70!black}
 \colorlet{indendifier_green}{green!70!white}
+
 % Backgrounds for code
 \definecolor{cbg_gray}{rgb}{.95, .95, .95}
 \definecolor{bar_gray}{rgb}{.92, .92, .92}
+
 \definecolor{cbg_yellowgray}{rgb}{.95, .95, .85}
 \definecolor{bar_yellowgray}{rgb}{.95, .95, .65}
+
 \colorlet{cbg_yellow2}{yellow!10}
 \colorlet{bar_yellow2}{yellow!20}
+
 \definecolor{cbg_yellow1}{rgb}{.98, .98, 0.8}
 \definecolor{bar_yellow1}{rgb}{.98, .98, 0.4}
+
 \definecolor{cbg_red1}{rgb}{1, 0.85, 0.85}
 \definecolor{bar_red1}{rgb}{1, 0.75, 0.85}
+
 \definecolor{cbg_blue1}{rgb}{0.87843, 0.95686, 1.0}
 \definecolor{bar_blue1}{rgb}{0.7,     0.95686, 1}
+
 \usepackage{listingsutf8}
+
 % Common lstlisting parameters
+
 \usepackage{calc}
 \newlength{\lstboxwidth}  % width of lst box
 \newlength{\framethickness}
 \setlength{\framethickness}{0.5mm}
 % for frame=trbl and a framerule that has significant size, set
 % xleftmargin=5mm and xrightmargin=5mm.
+
 \lstset{
   basicstyle=\small \ttfamily,
   breaklines=false,          % break/wrap lines
@@ -53407,16 +58437,22 @@ final,                   % draft: marks overfull hboxes, figures with paths
   escapeinside={(*@}{@*)},   % (*@ \pause @*) in slides and math in code blocks
   extendedchars=\true,       % allows non-ascii chars, does not work with utf-8
 }
+
 % Internally defined styles for lstlisting
+
 \lstdefinestyle{simple}{
 commentstyle={},
 }
+
 % end of custom lstdefinestyles
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -53433,7 +58469,9 @@ commentstyle={},
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -53448,6 +58486,7 @@ commentstyle={},
 \usepackage[section]{placeins}
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
+
 % --- fancyhdr package for fancy headers ---
 \usepackage{fancyhdr}
 \fancyhf{} % sets both header and footer to nothing
@@ -53467,9 +58506,14 @@ commentstyle={},
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
+
 \pagestyle{fancy}
+
+
 \usepackage[framemethod=TikZ]{mdframed}
+
 % --- begin definitions of admonition environments ---
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "notice" admon
 \colorlet{mdfbox_notice_background}{darkgray!20!white}
@@ -53490,12 +58534,14 @@ commentstyle={},
   roundcorner=5,
   needspace=0pt,
 ]{notice_mdfboxmdframed}
+
 \newenvironment{notice_mdfboxadmon}[1][]{
 \begin{notice_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{notice_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "summary" admon
 \colorlet{mdfbox_summary_background}{tucorange!20!white}
@@ -53516,12 +58562,14 @@ commentstyle={},
   roundcorner=5,
   needspace=0pt,
 ]{summary_mdfboxmdframed}
+
 \newenvironment{summary_mdfboxadmon}[1][]{
 \begin{summary_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{summary_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "warning" admon
 \colorlet{mdfbox_warning_background}{darkgreen!40!white}
@@ -53542,12 +58590,14 @@ commentstyle={},
   roundcorner=5,
   needspace=0pt,
 ]{warning_mdfboxmdframed}
+
 \newenvironment{warning_mdfboxadmon}[1][]{
 \begin{warning_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{warning_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "question" admon
 \colorlet{mdfbox_question_background}{red!50!white}
@@ -53568,12 +58618,14 @@ commentstyle={},
   roundcorner=5,
   needspace=0pt,
 ]{question_mdfboxmdframed}
+
 \newenvironment{question_mdfboxadmon}[1][]{
 \begin{question_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{question_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "block" admon
 \colorlet{mdfbox_block_background}{darkgreen!40!white}
@@ -53594,32 +58646,50 @@ commentstyle={},
   roundcorner=5,
   needspace=0pt,
 ]{block_mdfboxmdframed}
+
 \newenvironment{block_mdfboxadmon}[1][]{
 \begin{block_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{block_mdfboxmdframed}
 }
+
 % --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
+
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -53627,42 +58697,63 @@ Testing admons
 \end{spacing}
 }
 \end{center}
+
 % ----------------- author(s) -------------------------
+
 \begin{center}
 {\bf H. P. Langtangen${}^{}$} \\ [0mm]
 \end{center}
+
 \begin{center}
 % List of all institutions:
 \end{center}
     
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
+
 % !split
 \section{Introduction}
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
+
 \subsection{Code}
+
 Need some code outside admons for color and font comparisons:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def some_code(x):
     return sin(x)*exp(1-x)
 
 \end{lstlisting}
 
+
 And some plain text verbatim:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 
 \end{lstlisting}
 
+
 \subsection{Quotes and boxes}
+
 Here is a plain quote environment.
+
 
 \begin{quote}
 Sayre's law states that
@@ -53673,25 +58764,35 @@ By way of corollary, it adds: \\
 \emph{Source}: \href{{https://en.wikipedia.org/wiki/Sayre's_law}}{wikipedia}
 \end{quote}
 
+
 Does quotes with title also work? No...cannot work in {\LaTeX} and HTML
 and then it does not make sense to support it.
+
 A plain \emph{box} is sometimes useful. Let's show it here for comparison
 with admons (especially the block admon has much in common with a box).
 The box is more aimed at framing a law or an equation.
+
 First a simple block with text, an equation, and a list:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
 A generic equation
+
 \[ f(x) = 0 \]
 must be solved by a numerical method, such as
+
 \begin{itemize}
  \item Newton's method
+
  \item The Bisection method
+
  \item Fixed-point (Picard) iteration by rewriting $f(x)=x - g(x)$
+
  \item The Secant method
 \end{itemize}
+
 \noindent
 \end{minipage}
 \end{Sbox}
@@ -53699,6 +58800,7 @@ must be solved by a numerical method, such as
 \end{center}
 Now test a box with equation only (note that this line continues the
 box, it is not a new paragraph):
+
 
 \begin{center}
 \begin{Sbox}
@@ -53708,15 +58810,21 @@ box, it is not a new paragraph):
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 \paragraph{Hint.}
 Newton's method requires a good start vector to converge fast.
 
 
+
 Let's begin a new paragraph and show a box with code only:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def some_code(x):
     return sin(x)*exp(1-x)
@@ -53726,17 +58834,23 @@ def some_code(x):
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 \subsection{Admonitions}
+
 Let us start with a plain warning environment.
+
 
 \begin{warning_mdfboxadmon}[Warning.]
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
+
 \begin{itemize}
   \item and a list
+
   \item with items
 \end{itemize}
+
 \noindent
 We continue with more text to see how that affects the layout.
 And more and more text.
@@ -53748,11 +58862,18 @@ And more and more text.
 \end{warning_mdfboxadmon} % title: Warning.
 
 
+
 Test warning with title:
+
 
 \begin{warning_mdfboxadmon}[{\large Title ending with math $\sqrt{2}\approx 1.4$}.]
 {\large And here comes some text with bad news in larger font.
+
 Also some code:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def f(x):
     return x
@@ -53760,6 +58881,9 @@ def f(x):
 \end{lstlisting}
 
 And a complete program
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 print("Hello, World!")
 
@@ -53768,7 +58892,9 @@ print("Hello, World!")
 \end{warning_mdfboxadmon} % title: {\large Title ending with math $\sqrt{2}\approx 1.4$}.
 
 
+
 Test warning with large title with math:
+
 
 \begin{warning_mdfboxadmon}[{\large Watch out for $\nabla\cdot\bm{u}=0$ equations}.]
 {\large Divergence freedom is often problematic from a numerical point
@@ -53777,7 +58903,9 @@ of view.
 \end{warning_mdfboxadmon} % title: {\large Watch out for $\nabla\cdot\bm{u}=0$ equations}.
 
 
+
 Then we test a block, which is guaranteed to never have any admon icon.
+
 
 \begin{block_mdfboxadmon}[Block with title.]
 \vspace{0.5mm}\par\noindent
@@ -53792,18 +58920,22 @@ of understanding.
 
 
 
+
 \begin{block_mdfboxadmon}[]
 Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
 \end{block_mdfboxadmon} % title: 
 
 
+
 % Note that the final ! does not appear in Sphinx and reST since
 % those formats automatically add : to the admonition title.
+
 
 \begin{notice_mdfboxadmon}[Note eventually!]
 Ah, we are soon close to the end (with illegal font size specification!).
 But first a bit of math where we define $\theta$ and $\bm{r}$:
+
 \begin{align*}
 \theta &= q^2,\\
 \bm{r} &= \varrho\bm{i}
@@ -53811,11 +58943,14 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 \end{notice_mdfboxadmon} % title: Note eventually!
 
 
+
 % Test one word with a number
+
 
 \begin{notice_mdfboxadmon}[Point1.]
 Ah, we are soon close to the end.
 \end{notice_mdfboxadmon} % title: Point1.
+
 
 
 
@@ -53825,23 +58960,35 @@ So, how many admonition environments does DocOnce support?
 
 
 
+
 \begin{question_mdfboxadmon}[Question.]
 \begin{enumerate}
  \item Once more, how many admonition environments does DocOnce support?
 \end{enumerate}
+
 \noindent
 \end{question_mdfboxadmon} % title: Question.
 
 
 
+
 \begin{warning_mdfboxadmon}[Tip.]
 It is of outmost important to
+
 \begin{enumerate}
 \item stay cool
+
 \item read hints and tips carefully
 \end{enumerate}
+
 \noindent
 Because here the thing is to do
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 import urllib
 
@@ -53852,16 +58999,21 @@ def grab(url, filename):
 \end{warning_mdfboxadmon} % title: Tip.
 
 
+
 Next is a warning without a title ("none" implies no title).
+
 
 \begin{warning_mdfboxadmon}[]
 And here comes some text with bad news.
 \end{warning_mdfboxadmon} % title: 
 
 
+
 \subsection{Going deeper environments}
+
 Here is a long notice environment with a custom title and much
 text, math and code.
+
 
 \begin{notice_mdfboxadmon}[Going deeper.]
 We have some equations that should be preceded by much text, so the
@@ -53869,15 +59021,26 @@ task is to write and write. The number of words, and not the
 meaning, is what counts here. We need desperately to fill up the
 page in the hope that some admonitions will experience a page break,
 which the {\LaTeX} environment should handle with ease.
+
 Let us start with some equations:
+
 \begin{align*}
 \Ddt{u} &= 0
 \\
 \half &= \halfi\\
 \half\x &= \normalvec
 \end{align*}
+
 The implementation of such complicated equations in computer
 code is task that this "Going deeper" environment targets.
+
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def Dudt(u):
     r = diff(u, t) + u*grad(u)
@@ -53890,6 +59053,46 @@ x = 2*n
 
 And some more text that can help going into the next page.
 Longer computer code requires vertical space:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 class Diff:
     def __init__(self, f, h=1E-5):
@@ -53933,17 +59136,23 @@ class Forward3(Diff):
 \end{lstlisting}
 
 And then we add a figure too.
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.7\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
 \end{notice_mdfboxadmon} % title: Going deeper.
 
 
+
 \subsection{The end}
+
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
 just because we can.
+
 
 \begin{summary_mdfboxadmon}[Concluding remarks for the novice.]
 We can summarize the most important things with admons: they have
@@ -53952,10 +59161,13 @@ Titles should be optional.
 \end{summary_mdfboxadmon} % title: Concluding remarks for the novice.
 
 
+
 \paragraph{Remark.}
 The \texttt{remarks} and \texttt{hint} environments are not allowed outside
 exercises (and problems and projects too).
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \end{document}
 % #endif
@@ -53966,22 +59178,31 @@ exercises (and problems and projects too).
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
 %% doconce format html admon.do.txt --latex_admon=graybox2 --no_abort --latex_code_style=lst --cite_doconce
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
+
 \usepackage{fancybox}  % make sure fancybox is loaded before fancyvrb
 %\setlength{\fboxsep}{8pt}  % may clash with need in pre/cod envirs
+
 % Packages for typesetting blocks of computer code
 \usepackage{fancyvrb,framed,moreverb}
+
 % Define colors
 \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
 \definecolor{tucorange}{rgb}{1.0,0.64,0}
@@ -54002,31 +59223,42 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \definecolor{lightblue2}{rgb}{0.3,0.3,1.0}
 \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
 \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+
 \colorlet{comment_green}{green!50!black}
 \colorlet{string_red}{red!60!black}
 \colorlet{keyword_pink}{magenta!70!black}
 \colorlet{indendifier_green}{green!70!white}
+
 % Backgrounds for code
 \definecolor{cbg_gray}{rgb}{.95, .95, .95}
 \definecolor{bar_gray}{rgb}{.92, .92, .92}
+
 \definecolor{cbg_yellowgray}{rgb}{.95, .95, .85}
 \definecolor{bar_yellowgray}{rgb}{.95, .95, .65}
+
 \colorlet{cbg_yellow2}{yellow!10}
 \colorlet{bar_yellow2}{yellow!20}
+
 \definecolor{cbg_yellow1}{rgb}{.98, .98, 0.8}
 \definecolor{bar_yellow1}{rgb}{.98, .98, 0.4}
+
 \definecolor{cbg_red1}{rgb}{1, 0.85, 0.85}
 \definecolor{bar_red1}{rgb}{1, 0.75, 0.85}
+
 \definecolor{cbg_blue1}{rgb}{0.87843, 0.95686, 1.0}
 \definecolor{bar_blue1}{rgb}{0.7,     0.95686, 1}
+
 \usepackage{listingsutf8}
+
 % Common lstlisting parameters
+
 \usepackage{calc}
 \newlength{\lstboxwidth}  % width of lst box
 \newlength{\framethickness}
 \setlength{\framethickness}{0.5mm}
 % for frame=trbl and a framerule that has significant size, set
 % xleftmargin=5mm and xrightmargin=5mm.
+
 \lstset{
   basicstyle=\small \ttfamily,
   breaklines=false,          % break/wrap lines
@@ -54050,16 +59282,22 @@ final,                   % draft: marks overfull hboxes, figures with paths
   escapeinside={(*@}{@*)},   % (*@ \pause @*) in slides and math in code blocks
   extendedchars=\true,       % allows non-ascii chars, does not work with utf-8
 }
+
 % Internally defined styles for lstlisting
+
 \lstdefinestyle{simple}{
 commentstyle={},
 }
+
 % end of custom lstdefinestyles
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -54076,7 +59314,9 @@ commentstyle={},
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -54091,6 +59331,7 @@ commentstyle={},
 \usepackage[section]{placeins}
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
+
 % --- fancyhdr package for fancy headers ---
 \usepackage{fancyhdr}
 \fancyhf{} % sets both header and footer to nothing
@@ -54110,14 +59351,20 @@ commentstyle={},
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
+
 \pagestyle{fancy}
+
+
 \usepackage{wrapfig,calc}
 \usepackage[framemethod=TikZ]{mdframed}  % use latest version: https://github.com/marcodaniel/mdframed
+
 % --- begin definitions of admonition environments ---
+
 % Admonition style "graybox2" is a gray or colored box with a square
 % frame, except for the summary admon which has horizontal rules only
 % Note: this admonition type cannot handle verbatim text!
 \definecolor{graybox2_warning_background}{rgb}{0.94,0.94,0.94}
+
 % colored box of 80% width
 \newcommand{\grayboxhrules}[1]{\begin{center}
 \colorbox{graybox2_warning_background}{\rule{6pt}{0pt}
@@ -54127,6 +59374,7 @@ commentstyle={},
 \parbox[t]{0mm}{\rule[-0.5\baselineskip]{0mm}%
 {\baselineskip}}\hrule\vspace*{0.5\baselineskip}\end{minipage}
 \rule{6pt}{0pt}}\end{center}}
+
 % Fallback for verbatim content in \grayboxhrules
 \newmdenv[
   backgroundcolor=graybox2_warning_background,
@@ -54136,32 +59384,50 @@ commentstyle={},
   rightmargin=23,
   needspace=0pt,
 ]{graybox2mdframed}
+
 \newenvironment{graybox2admon}[1][]{
 \begin{graybox2mdframed}[frametitle=#1]
 }
 {
 \end{graybox2mdframed}
 }
+
 % --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
+
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -54169,42 +59435,63 @@ Testing admons
 \end{spacing}
 }
 \end{center}
+
 % ----------------- author(s) -------------------------
+
 \begin{center}
 {\bf H. P. Langtangen${}^{}$} \\ [0mm]
 \end{center}
+
 \begin{center}
 % List of all institutions:
 \end{center}
     
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
+
 % !split
 \section{Introduction}
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
+
 \subsection{Code}
+
 Need some code outside admons for color and font comparisons:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def some_code(x):
     return sin(x)*exp(1-x)
 
 \end{lstlisting}
 
+
 And some plain text verbatim:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 
 \end{lstlisting}
 
+
 \subsection{Quotes and boxes}
+
 Here is a plain quote environment.
+
 
 \begin{quote}
 Sayre's law states that
@@ -54215,25 +59502,35 @@ By way of corollary, it adds: \\
 \emph{Source}: \href{{https://en.wikipedia.org/wiki/Sayre's_law}}{wikipedia}
 \end{quote}
 
+
 Does quotes with title also work? No...cannot work in {\LaTeX} and HTML
 and then it does not make sense to support it.
+
 A plain \emph{box} is sometimes useful. Let's show it here for comparison
 with admons (especially the block admon has much in common with a box).
 The box is more aimed at framing a law or an equation.
+
 First a simple block with text, an equation, and a list:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
 A generic equation
+
 \[ f(x) = 0 \]
 must be solved by a numerical method, such as
+
 \begin{itemize}
  \item Newton's method
+
  \item The Bisection method
+
  \item Fixed-point (Picard) iteration by rewriting $f(x)=x - g(x)$
+
  \item The Secant method
 \end{itemize}
+
 \noindent
 \end{minipage}
 \end{Sbox}
@@ -54241,6 +59538,7 @@ must be solved by a numerical method, such as
 \end{center}
 Now test a box with equation only (note that this line continues the
 box, it is not a new paragraph):
+
 
 \begin{center}
 \begin{Sbox}
@@ -54250,15 +59548,21 @@ box, it is not a new paragraph):
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 \paragraph{Hint.}
 Newton's method requires a good start vector to converge fast.
 
 
+
 Let's begin a new paragraph and show a box with code only:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def some_code(x):
     return sin(x)*exp(1-x)
@@ -54268,18 +59572,24 @@ def some_code(x):
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 \subsection{Admonitions}
+
 Let us start with a plain warning environment.
+
 
 
 \begin{graybox2admon}[Warning.]
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
+
 \begin{itemize}
   \item and a list
+
   \item with items
 \end{itemize}
+
 \noindent
 We continue with more text to see how that affects the layout.
 And more and more text.
@@ -54292,12 +59602,19 @@ And more and more text.
 
 
 
+
 Test warning with title:
+
 
 
 \begin{graybox2admon}[{\large Title ending with math $\sqrt{2}\approx 1.4$}.]
 {\large And here comes some text with bad news in larger font.
+
 Also some code:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def f(x):
     return x
@@ -54305,6 +59622,9 @@ def f(x):
 \end{lstlisting}
 
 And a complete program
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 print("Hello, World!")
 
@@ -54314,7 +59634,9 @@ print("Hello, World!")
 
 
 
+
 Test warning with large title with math:
+
 
 
 \begin{graybox2admon}[{\large Watch out for $\nabla\cdot\bm{u}=0$ equations}.]
@@ -54325,7 +59647,9 @@ of view.
 
 
 
+
 Then we test a block, which is guaranteed to never have any admon icon.
+
 
 
 \begin{graybox2admon}[Block with title.]
@@ -54343,6 +59667,7 @@ of understanding.
 
 
 
+
 \begin{graybox2admon}[]
 Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
@@ -54350,13 +59675,16 @@ and is useful when you want some admons with icon and some without.
 
 
 
+
 % Note that the final ! does not appear in Sphinx and reST since
 % those formats automatically add : to the admonition title.
+
 
 
 \begin{graybox2admon}[Note eventually!]
 Ah, we are soon close to the end (with illegal font size specification!).
 But first a bit of math where we define $\theta$ and $\bm{r}$:
+
 \begin{align*}
 \theta &= q^2,\\
 \bm{r} &= \varrho\bm{i}
@@ -54365,12 +59693,15 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 
 
 
+
 % Test one word with a number
+
 
 
 \begin{graybox2admon}[Point1.]
 Ah, we are soon close to the end.
 \end{graybox2admon}
+
 
 
 
@@ -54384,10 +59715,12 @@ So, how many admonition environments does DocOnce support?
 
 
 
+
 \begin{graybox2admon}[Question.]
 \begin{enumerate}
  \item Once more, how many admonition environments does DocOnce support?
 \end{enumerate}
+
 \noindent
 \end{graybox2admon}
 
@@ -54395,14 +59728,24 @@ So, how many admonition environments does DocOnce support?
 
 
 
+
 \begin{graybox2admon}[Tip.]
 It is of outmost important to
+
 \begin{enumerate}
 \item stay cool
+
 \item read hints and tips carefully
 \end{enumerate}
+
 \noindent
 Because here the thing is to do
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 import urllib
 
@@ -54414,7 +59757,9 @@ def grab(url, filename):
 
 
 
+
 Next is a warning without a title ("none" implies no title).
+
 
 
 \begin{graybox2admon}[]
@@ -54423,9 +59768,12 @@ And here comes some text with bad news.
 
 
 
+
 \subsection{Going deeper environments}
+
 Here is a long notice environment with a custom title and much
 text, math and code.
+
 
 
 \begin{graybox2admon}[Going deeper.]
@@ -54434,15 +59782,26 @@ task is to write and write. The number of words, and not the
 meaning, is what counts here. We need desperately to fill up the
 page in the hope that some admonitions will experience a page break,
 which the {\LaTeX} environment should handle with ease.
+
 Let us start with some equations:
+
 \begin{align*}
 \Ddt{u} &= 0
 \\
 \half &= \halfi\\
 \half\x &= \normalvec
 \end{align*}
+
 The implementation of such complicated equations in computer
 code is task that this "Going deeper" environment targets.
+
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def Dudt(u):
     r = diff(u, t) + u*grad(u)
@@ -54455,6 +59814,46 @@ x = 2*n
 
 And some more text that can help going into the next page.
 Longer computer code requires vertical space:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 class Diff:
     def __init__(self, f, h=1E-5):
@@ -54498,18 +59897,24 @@ class Forward3(Diff):
 \end{lstlisting}
 
 And then we add a figure too.
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.7\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
 \end{graybox2admon}
 
 
 
+
 \subsection{The end}
+
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
 just because we can.
+
 
 \grayboxhrules{
 \textbf{Concluding remarks, for the novice:} We can summarize the most important things with admons: they have
@@ -54517,10 +59922,13 @@ a different typesetting, and they may have a symbol.
 Titles should be optional.
 }
 
+
 \paragraph{Remark.}
 The \texttt{remarks} and \texttt{hint} environments are not allowed outside
 exercises (and problems and projects too).
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \end{document}
 % #endif
@@ -54531,22 +59939,31 @@ exercises (and problems and projects too).
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
 %% doconce format html admon.do.txt --latex_admon=grayicon --latex_admon_color=gray!20 --latex_code_style=lst --cite_doconce
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
+
 \usepackage{fancybox}  % make sure fancybox is loaded before fancyvrb
 %\setlength{\fboxsep}{8pt}  % may clash with need in pre/cod envirs
+
 % Packages for typesetting blocks of computer code
 \usepackage{fancyvrb,framed,moreverb}
+
 % Define colors
 \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
 \definecolor{tucorange}{rgb}{1.0,0.64,0}
@@ -54567,31 +59984,42 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \definecolor{lightblue2}{rgb}{0.3,0.3,1.0}
 \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
 \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+
 \colorlet{comment_green}{green!50!black}
 \colorlet{string_red}{red!60!black}
 \colorlet{keyword_pink}{magenta!70!black}
 \colorlet{indendifier_green}{green!70!white}
+
 % Backgrounds for code
 \definecolor{cbg_gray}{rgb}{.95, .95, .95}
 \definecolor{bar_gray}{rgb}{.92, .92, .92}
+
 \definecolor{cbg_yellowgray}{rgb}{.95, .95, .85}
 \definecolor{bar_yellowgray}{rgb}{.95, .95, .65}
+
 \colorlet{cbg_yellow2}{yellow!10}
 \colorlet{bar_yellow2}{yellow!20}
+
 \definecolor{cbg_yellow1}{rgb}{.98, .98, 0.8}
 \definecolor{bar_yellow1}{rgb}{.98, .98, 0.4}
+
 \definecolor{cbg_red1}{rgb}{1, 0.85, 0.85}
 \definecolor{bar_red1}{rgb}{1, 0.75, 0.85}
+
 \definecolor{cbg_blue1}{rgb}{0.87843, 0.95686, 1.0}
 \definecolor{bar_blue1}{rgb}{0.7,     0.95686, 1}
+
 \usepackage{listingsutf8}
+
 % Common lstlisting parameters
+
 \usepackage{calc}
 \newlength{\lstboxwidth}  % width of lst box
 \newlength{\framethickness}
 \setlength{\framethickness}{0.5mm}
 % for frame=trbl and a framerule that has significant size, set
 % xleftmargin=5mm and xrightmargin=5mm.
+
 \lstset{
   basicstyle=\small \ttfamily,
   breaklines=false,          % break/wrap lines
@@ -54615,16 +60043,22 @@ final,                   % draft: marks overfull hboxes, figures with paths
   escapeinside={(*@}{@*)},   % (*@ \pause @*) in slides and math in code blocks
   extendedchars=\true,       % allows non-ascii chars, does not work with utf-8
 }
+
 % Internally defined styles for lstlisting
+
 \lstdefinestyle{simple}{
 commentstyle={},
 }
+
 % end of custom lstdefinestyles
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -54641,7 +60075,9 @@ commentstyle={},
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -54656,6 +60092,7 @@ commentstyle={},
 \usepackage[section]{placeins}
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
+
 % --- fancyhdr package for fancy headers ---
 \usepackage{fancyhdr}
 \fancyhf{} % sets both header and footer to nothing
@@ -54675,9 +60112,14 @@ commentstyle={},
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
+
 \pagestyle{fancy}
+
+
 \usepackage{framed,wrapfig}
+
 % --- begin definitions of admonition environments ---
+
 % Admonition style "grayicon" has colored background, no frame, and an icon
 % Admon "notice"
 \colorlet{grayicon_notice_background}{gray!20}
@@ -54685,6 +60127,7 @@ commentstyle={},
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{grayicon_notice_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{notice_grayiconadmon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
@@ -54697,6 +60140,7 @@ commentstyle={},
 {
 \end{noticeshaded}
 }
+
 % Admonition style "grayicon" has colored background, no frame, and an icon
 % Admon "summary"
 \colorlet{grayicon_summary_background}{gray!20}
@@ -54704,6 +60148,7 @@ commentstyle={},
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{grayicon_summary_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{summary_grayiconadmon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
@@ -54716,6 +60161,7 @@ commentstyle={},
 {
 \end{summaryshaded}
 }
+
 % Admonition style "grayicon" has colored background, no frame, and an icon
 % Admon "warning"
 \colorlet{grayicon_warning_background}{gray!20}
@@ -54723,6 +60169,7 @@ commentstyle={},
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{grayicon_warning_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{warning_grayiconadmon}[1][Warning]{
 \begin{warningshaded}
 \noindent
@@ -54735,6 +60182,7 @@ commentstyle={},
 {
 \end{warningshaded}
 }
+
 % Admonition style "grayicon" has colored background, no frame, and an icon
 % Admon "question"
 \colorlet{grayicon_question_background}{gray!20}
@@ -54742,6 +60190,7 @@ commentstyle={},
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{grayicon_question_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{question_grayiconadmon}[1][Question]{
 \begin{questionshaded}
 \noindent
@@ -54754,6 +60203,7 @@ commentstyle={},
 {
 \end{questionshaded}
 }
+
 % Admonition style "grayicon" has colored background, no frame, and an icon
 % Admon "block"
 \colorlet{grayicon_block_background}{gray!20}
@@ -54761,6 +60211,7 @@ commentstyle={},
 \newenvironment{blockshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{grayicon_block_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{block_grayiconadmon}[1][Block]{
 \begin{blockshaded}
 \noindent
@@ -54770,26 +60221,43 @@ commentstyle={},
 {
 \end{blockshaded}
 }
+
 % --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
+
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -54797,42 +60265,63 @@ Testing admons
 \end{spacing}
 }
 \end{center}
+
 % ----------------- author(s) -------------------------
+
 \begin{center}
 {\bf H. P. Langtangen${}^{}$} \\ [0mm]
 \end{center}
+
 \begin{center}
 % List of all institutions:
 \end{center}
     
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
+
 % !split
 \section{Introduction}
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
+
 \subsection{Code}
+
 Need some code outside admons for color and font comparisons:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def some_code(x):
     return sin(x)*exp(1-x)
 
 \end{lstlisting}
 
+
 And some plain text verbatim:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 
 \end{lstlisting}
 
+
 \subsection{Quotes and boxes}
+
 Here is a plain quote environment.
+
 
 \begin{quote}
 Sayre's law states that
@@ -54843,25 +60332,35 @@ By way of corollary, it adds: \\
 \emph{Source}: \href{{https://en.wikipedia.org/wiki/Sayre's_law}}{wikipedia}
 \end{quote}
 
+
 Does quotes with title also work? No...cannot work in {\LaTeX} and HTML
 and then it does not make sense to support it.
+
 A plain \emph{box} is sometimes useful. Let's show it here for comparison
 with admons (especially the block admon has much in common with a box).
 The box is more aimed at framing a law or an equation.
+
 First a simple block with text, an equation, and a list:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
 A generic equation
+
 \[ f(x) = 0 \]
 must be solved by a numerical method, such as
+
 \begin{itemize}
  \item Newton's method
+
  \item The Bisection method
+
  \item Fixed-point (Picard) iteration by rewriting $f(x)=x - g(x)$
+
  \item The Secant method
 \end{itemize}
+
 \noindent
 \end{minipage}
 \end{Sbox}
@@ -54869,6 +60368,7 @@ must be solved by a numerical method, such as
 \end{center}
 Now test a box with equation only (note that this line continues the
 box, it is not a new paragraph):
+
 
 \begin{center}
 \begin{Sbox}
@@ -54878,15 +60378,21 @@ box, it is not a new paragraph):
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 \paragraph{Hint.}
 Newton's method requires a good start vector to converge fast.
 
 
+
 Let's begin a new paragraph and show a box with code only:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def some_code(x):
     return sin(x)*exp(1-x)
@@ -54896,17 +60402,23 @@ def some_code(x):
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 \subsection{Admonitions}
+
 Let us start with a plain warning environment.
+
 
 \begin{warning_grayiconadmon}[Warning]
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
+
 \begin{itemize}
   \item and a list
+
   \item with items
 \end{itemize}
+
 \noindent
 We continue with more text to see how that affects the layout.
 And more and more text.
@@ -54918,11 +60430,18 @@ And more and more text.
 \end{warning_grayiconadmon} % title: Warning
 
 
+
 Test warning with title:
+
 
 \begin{warning_grayiconadmon}[{\large Title ending with math $\sqrt{2}\approx 1.4$}]
 {\large And here comes some text with bad news in larger font.
+
 Also some code:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def f(x):
     return x
@@ -54930,6 +60449,9 @@ def f(x):
 \end{lstlisting}
 
 And a complete program
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 print("Hello, World!")
 
@@ -54938,7 +60460,9 @@ print("Hello, World!")
 \end{warning_grayiconadmon} % title: {\large Title ending with math $\sqrt{2}\approx 1.4$}
 
 
+
 Test warning with large title with math:
+
 
 \begin{warning_grayiconadmon}[{\large Watch out for $\nabla\cdot\bm{u}=0$ equations}]
 {\large Divergence freedom is often problematic from a numerical point
@@ -54947,7 +60471,9 @@ of view.
 \end{warning_grayiconadmon} % title: {\large Watch out for $\nabla\cdot\bm{u}=0$ equations}
 
 
+
 Then we test a block, which is guaranteed to never have any admon icon.
+
 
 \begin{block_grayiconadmon}[Block with title]
 \vspace{-2.5mm}\par\noindent
@@ -54962,18 +60488,22 @@ of understanding.
 
 
 
+
 \begin{block_grayiconadmon}[]
 Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
 \end{block_grayiconadmon} % title: 
 
 
+
 % Note that the final ! does not appear in Sphinx and reST since
 % those formats automatically add : to the admonition title.
+
 
 \begin{notice_grayiconadmon}[Note, eventually!]
 Ah, we are soon close to the end (with illegal font size specification!).
 But first a bit of math where we define $\theta$ and $\bm{r}$:
+
 \begin{align*}
 \theta &= q^2,\\
 \bm{r} &= \varrho\bm{i}
@@ -54981,11 +60511,14 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 \end{notice_grayiconadmon} % title: Note, eventually!
 
 
+
 % Test one word with a number
+
 
 \begin{notice_grayiconadmon}[Point1]
 Ah, we are soon close to the end.
 \end{notice_grayiconadmon} % title: Point1
+
 
 
 
@@ -54995,23 +60528,35 @@ So, how many admonition environments does DocOnce support?
 
 
 
+
 \begin{question_grayiconadmon}[Question]
 \begin{enumerate}
  \item Once more, how many admonition environments does DocOnce support?
 \end{enumerate}
+
 \noindent
 \end{question_grayiconadmon} % title: Question
 
 
 
+
 \begin{warning_grayiconadmon}[Tip]
 It is of outmost important to
+
 \begin{enumerate}
 \item stay cool
+
 \item read hints and tips carefully
 \end{enumerate}
+
 \noindent
 Because here the thing is to do
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 import urllib
 
@@ -55022,16 +60567,21 @@ def grab(url, filename):
 \end{warning_grayiconadmon} % title: Tip
 
 
+
 Next is a warning without a title ("none" implies no title).
+
 
 \begin{warning_grayiconadmon}[]
 And here comes some text with bad news.
 \end{warning_grayiconadmon} % title: 
 
 
+
 \subsection{Going deeper environments}
+
 Here is a long notice environment with a custom title and much
 text, math and code.
+
 
 \begin{notice_grayiconadmon}[Going deeper.]
 We have some equations that should be preceded by much text, so the
@@ -55039,15 +60589,26 @@ task is to write and write. The number of words, and not the
 meaning, is what counts here. We need desperately to fill up the
 page in the hope that some admonitions will experience a page break,
 which the {\LaTeX} environment should handle with ease.
+
 Let us start with some equations:
+
 \begin{align*}
 \Ddt{u} &= 0
 \\
 \half &= \halfi\\
 \half\x &= \normalvec
 \end{align*}
+
 The implementation of such complicated equations in computer
 code is task that this "Going deeper" environment targets.
+
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def Dudt(u):
     r = diff(u, t) + u*grad(u)
@@ -55060,6 +60621,46 @@ x = 2*n
 
 And some more text that can help going into the next page.
 Longer computer code requires vertical space:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 class Diff:
     def __init__(self, f, h=1E-5):
@@ -55103,17 +60704,23 @@ class Forward3(Diff):
 \end{lstlisting}
 
 And then we add a figure too.
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.7\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
 \end{notice_grayiconadmon} % title: Going deeper.
 
 
+
 \subsection{The end}
+
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
 just because we can.
+
 
 \begin{summary_grayiconadmon}[Concluding remarks, for the novice]
 We can summarize the most important things with admons: they have
@@ -55122,10 +60729,13 @@ Titles should be optional.
 \end{summary_grayiconadmon} % title: Concluding remarks, for the novice
 
 
+
 \paragraph{Remark.}
 The \texttt{remarks} and \texttt{hint} environments are not allowed outside
 exercises (and problems and projects too).
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \end{document}
 % #endif
@@ -55136,22 +60746,31 @@ exercises (and problems and projects too).
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
 %% doconce format html admon.do.txt --latex_admon=paragraph-footnotesize --latex_code_style=lst --cite_doconce
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
+
 \usepackage{fancybox}  % make sure fancybox is loaded before fancyvrb
 %\setlength{\fboxsep}{8pt}  % may clash with need in pre/cod envirs
+
 % Packages for typesetting blocks of computer code
 \usepackage{fancyvrb,framed,moreverb}
+
 % Define colors
 \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
 \definecolor{tucorange}{rgb}{1.0,0.64,0}
@@ -55172,31 +60791,42 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \definecolor{lightblue2}{rgb}{0.3,0.3,1.0}
 \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
 \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+
 \colorlet{comment_green}{green!50!black}
 \colorlet{string_red}{red!60!black}
 \colorlet{keyword_pink}{magenta!70!black}
 \colorlet{indendifier_green}{green!70!white}
+
 % Backgrounds for code
 \definecolor{cbg_gray}{rgb}{.95, .95, .95}
 \definecolor{bar_gray}{rgb}{.92, .92, .92}
+
 \definecolor{cbg_yellowgray}{rgb}{.95, .95, .85}
 \definecolor{bar_yellowgray}{rgb}{.95, .95, .65}
+
 \colorlet{cbg_yellow2}{yellow!10}
 \colorlet{bar_yellow2}{yellow!20}
+
 \definecolor{cbg_yellow1}{rgb}{.98, .98, 0.8}
 \definecolor{bar_yellow1}{rgb}{.98, .98, 0.4}
+
 \definecolor{cbg_red1}{rgb}{1, 0.85, 0.85}
 \definecolor{bar_red1}{rgb}{1, 0.75, 0.85}
+
 \definecolor{cbg_blue1}{rgb}{0.87843, 0.95686, 1.0}
 \definecolor{bar_blue1}{rgb}{0.7,     0.95686, 1}
+
 \usepackage{listingsutf8}
+
 % Common lstlisting parameters
+
 \usepackage{calc}
 \newlength{\lstboxwidth}  % width of lst box
 \newlength{\framethickness}
 \setlength{\framethickness}{0.5mm}
 % for frame=trbl and a framerule that has significant size, set
 % xleftmargin=5mm and xrightmargin=5mm.
+
 \lstset{
   basicstyle=\small \ttfamily,
   breaklines=false,          % break/wrap lines
@@ -55220,16 +60850,22 @@ final,                   % draft: marks overfull hboxes, figures with paths
   escapeinside={(*@}{@*)},   % (*@ \pause @*) in slides and math in code blocks
   extendedchars=\true,       % allows non-ascii chars, does not work with utf-8
 }
+
 % Internally defined styles for lstlisting
+
 \lstdefinestyle{simple}{
 commentstyle={},
 }
+
 % end of custom lstdefinestyles
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -55246,7 +60882,9 @@ commentstyle={},
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -55261,6 +60899,7 @@ commentstyle={},
 \usepackage[section]{placeins}
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
+
 % --- fancyhdr package for fancy headers ---
 \usepackage{fancyhdr}
 \fancyhf{} % sets both header and footer to nothing
@@ -55280,29 +60919,50 @@ commentstyle={},
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
+
 \pagestyle{fancy}
+
+
 \usepackage[framemethod=TikZ]{mdframed}
+
 % --- begin definitions of admonition environments ---
+
 % --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
+
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -55310,42 +60970,63 @@ Testing admons
 \end{spacing}
 }
 \end{center}
+
 % ----------------- author(s) -------------------------
+
 \begin{center}
 {\bf H. P. Langtangen${}^{}$} \\ [0mm]
 \end{center}
+
 \begin{center}
 % List of all institutions:
 \end{center}
     
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
+
 % !split
 \section{Introduction}
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
+
 \subsection{Code}
+
 Need some code outside admons for color and font comparisons:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def some_code(x):
     return sin(x)*exp(1-x)
 
 \end{lstlisting}
 
+
 And some plain text verbatim:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 
 \end{lstlisting}
 
+
 \subsection{Quotes and boxes}
+
 Here is a plain quote environment.
+
 
 \begin{quote}
 Sayre's law states that
@@ -55356,25 +61037,35 @@ By way of corollary, it adds: \\
 \emph{Source}: \href{{https://en.wikipedia.org/wiki/Sayre's_law}}{wikipedia}
 \end{quote}
 
+
 Does quotes with title also work? No...cannot work in {\LaTeX} and HTML
 and then it does not make sense to support it.
+
 A plain \emph{box} is sometimes useful. Let's show it here for comparison
 with admons (especially the block admon has much in common with a box).
 The box is more aimed at framing a law or an equation.
+
 First a simple block with text, an equation, and a list:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
 A generic equation
+
 \[ f(x) = 0 \]
 must be solved by a numerical method, such as
+
 \begin{itemize}
  \item Newton's method
+
  \item The Bisection method
+
  \item Fixed-point (Picard) iteration by rewriting $f(x)=x - g(x)$
+
  \item The Secant method
 \end{itemize}
+
 \noindent
 \end{minipage}
 \end{Sbox}
@@ -55382,6 +61073,7 @@ must be solved by a numerical method, such as
 \end{center}
 Now test a box with equation only (note that this line continues the
 box, it is not a new paragraph):
+
 
 \begin{center}
 \begin{Sbox}
@@ -55391,15 +61083,21 @@ box, it is not a new paragraph):
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 \paragraph{Hint.}
 Newton's method requires a good start vector to converge fast.
 
 
+
 Let's begin a new paragraph and show a box with code only:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def some_code(x):
     return sin(x)*exp(1-x)
@@ -55409,8 +61107,11 @@ def some_code(x):
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 \subsection{Admonitions}
+
 Let us start with a plain warning environment.
+
 
 % --- begin paragraph admon ---
 \vspace{3mm}{\footnotesize
@@ -55418,10 +61119,13 @@ Let us start with a plain warning environment.
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
+
 \begin{itemize}
   \item and a list
+
   \item with items
 \end{itemize}
+
 \noindent
 We continue with more text to see how that affects the layout.
 And more and more text.
@@ -55434,13 +61138,20 @@ And more and more text.
 % --- end paragraph admon ---
 
 
+
 Test warning with title:
+
 
 % --- begin paragraph admon ---
 \vspace{3mm}{\footnotesize
 \noindent\textbf{{\large Title ending with math $\sqrt{2}\approx 1.4$}.}
 {\large And here comes some text with bad news in larger font.
+
 Also some code:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def f(x):
     return x
@@ -55448,6 +61159,9 @@ def f(x):
 \end{lstlisting}
 
 And a complete program
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 print("Hello, World!")
 
@@ -55457,7 +61171,9 @@ print("Hello, World!")
 % --- end paragraph admon ---
 
 
+
 Test warning with large title with math:
+
 
 % --- begin paragraph admon ---
 \vspace{3mm}{\footnotesize
@@ -55469,7 +61185,9 @@ of view.
 % --- end paragraph admon ---
 
 
+
 Then we test a block, which is guaranteed to never have any admon icon.
+
 
 % --- begin paragraph admon ---
 \vspace{3mm}{\footnotesize
@@ -55486,6 +61204,7 @@ of understanding.
 
 
 
+
 % --- begin paragraph admon ---
 \vspace{3mm}{\footnotesize
 \noindent\textbf{}
@@ -55495,14 +61214,17 @@ and is useful when you want some admons with icon and some without.
 % --- end paragraph admon ---
 
 
+
 % Note that the final ! does not appear in Sphinx and reST since
 % those formats automatically add : to the admonition title.
+
 
 % --- begin paragraph admon ---
 \vspace{3mm}{\footnotesize
 \noindent\textbf{Note, eventually!}
 Ah, we are soon close to the end (with illegal font size specification!).
 But first a bit of math where we define $\theta$ and $\bm{r}$:
+
 \begin{align*}
 \theta &= q^2,\\
 \bm{r} &= \varrho\bm{i}
@@ -55511,7 +61233,9 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 % --- end paragraph admon ---
 
 
+
 % Test one word with a number
+
 
 % --- begin paragraph admon ---
 \vspace{3mm}{\footnotesize
@@ -55519,6 +61243,7 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 Ah, we are soon close to the end.
 \vspace{3mm}}
 % --- end paragraph admon ---
+
 
 
 
@@ -55531,15 +61256,18 @@ So, how many admonition environments does DocOnce support?
 
 
 
+
 % --- begin paragraph admon ---
 \vspace{3mm}{\footnotesize
 \noindent\textbf{Question.}
 \begin{enumerate}
  \item Once more, how many admonition environments does DocOnce support?
 \end{enumerate}
+
 \noindent
 \vspace{3mm}}
 % --- end paragraph admon ---
+
 
 
 
@@ -55547,12 +61275,21 @@ So, how many admonition environments does DocOnce support?
 \vspace{3mm}{\footnotesize
 \noindent\textbf{Tip.}
 It is of outmost important to
+
 \begin{enumerate}
 \item stay cool
+
 \item read hints and tips carefully
 \end{enumerate}
+
 \noindent
 Because here the thing is to do
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 import urllib
 
@@ -55564,7 +61301,9 @@ def grab(url, filename):
 % --- end paragraph admon ---
 
 
+
 Next is a warning without a title ("none" implies no title).
+
 
 % --- begin paragraph admon ---
 \vspace{3mm}{\footnotesize
@@ -55574,9 +61313,12 @@ And here comes some text with bad news.
 % --- end paragraph admon ---
 
 
+
 \subsection{Going deeper environments}
+
 Here is a long notice environment with a custom title and much
 text, math and code.
+
 
 % --- begin paragraph admon ---
 \vspace{3mm}{\footnotesize
@@ -55586,15 +61328,26 @@ task is to write and write. The number of words, and not the
 meaning, is what counts here. We need desperately to fill up the
 page in the hope that some admonitions will experience a page break,
 which the {\LaTeX} environment should handle with ease.
+
 Let us start with some equations:
+
 \begin{align*}
 \Ddt{u} &= 0
 \\
 \half &= \halfi\\
 \half\x &= \normalvec
 \end{align*}
+
 The implementation of such complicated equations in computer
 code is task that this "Going deeper" environment targets.
+
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def Dudt(u):
     r = diff(u, t) + u*grad(u)
@@ -55607,6 +61360,46 @@ x = 2*n
 
 And some more text that can help going into the next page.
 Longer computer code requires vertical space:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 class Diff:
     def __init__(self, f, h=1E-5):
@@ -55650,18 +61443,24 @@ class Forward3(Diff):
 \end{lstlisting}
 
 And then we add a figure too.
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.7\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
 \vspace{3mm}}
 % --- end paragraph admon ---
 
 
+
 \subsection{The end}
+
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
 just because we can.
+
 
 % --- begin paragraph admon ---
 \vspace{3mm}{\footnotesize
@@ -55673,10 +61472,13 @@ Titles should be optional.
 % --- end paragraph admon ---
 
 
+
 \paragraph{Remark.}
 The \texttt{remarks} and \texttt{hint} environments are not allowed outside
 exercises (and problems and projects too).
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \end{document}
 % #endif
@@ -55687,22 +61489,31 @@ exercises (and problems and projects too).
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
 %% doconce format html admon.do.txt --latex_admon=yellowicon --latex_code_style=lst --cite_doconce
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
+
 \usepackage{fancybox}  % make sure fancybox is loaded before fancyvrb
 %\setlength{\fboxsep}{8pt}  % may clash with need in pre/cod envirs
+
 % Packages for typesetting blocks of computer code
 \usepackage{fancyvrb,framed,moreverb}
+
 % Define colors
 \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
 \definecolor{tucorange}{rgb}{1.0,0.64,0}
@@ -55723,31 +61534,42 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \definecolor{lightblue2}{rgb}{0.3,0.3,1.0}
 \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
 \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+
 \colorlet{comment_green}{green!50!black}
 \colorlet{string_red}{red!60!black}
 \colorlet{keyword_pink}{magenta!70!black}
 \colorlet{indendifier_green}{green!70!white}
+
 % Backgrounds for code
 \definecolor{cbg_gray}{rgb}{.95, .95, .95}
 \definecolor{bar_gray}{rgb}{.92, .92, .92}
+
 \definecolor{cbg_yellowgray}{rgb}{.95, .95, .85}
 \definecolor{bar_yellowgray}{rgb}{.95, .95, .65}
+
 \colorlet{cbg_yellow2}{yellow!10}
 \colorlet{bar_yellow2}{yellow!20}
+
 \definecolor{cbg_yellow1}{rgb}{.98, .98, 0.8}
 \definecolor{bar_yellow1}{rgb}{.98, .98, 0.4}
+
 \definecolor{cbg_red1}{rgb}{1, 0.85, 0.85}
 \definecolor{bar_red1}{rgb}{1, 0.75, 0.85}
+
 \definecolor{cbg_blue1}{rgb}{0.87843, 0.95686, 1.0}
 \definecolor{bar_blue1}{rgb}{0.7,     0.95686, 1}
+
 \usepackage{listingsutf8}
+
 % Common lstlisting parameters
+
 \usepackage{calc}
 \newlength{\lstboxwidth}  % width of lst box
 \newlength{\framethickness}
 \setlength{\framethickness}{0.5mm}
 % for frame=trbl and a framerule that has significant size, set
 % xleftmargin=5mm and xrightmargin=5mm.
+
 \lstset{
   basicstyle=\small \ttfamily,
   breaklines=false,          % break/wrap lines
@@ -55771,16 +61593,22 @@ final,                   % draft: marks overfull hboxes, figures with paths
   escapeinside={(*@}{@*)},   % (*@ \pause @*) in slides and math in code blocks
   extendedchars=\true,       % allows non-ascii chars, does not work with utf-8
 }
+
 % Internally defined styles for lstlisting
+
 \lstdefinestyle{simple}{
 commentstyle={},
 }
+
 % end of custom lstdefinestyles
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -55797,7 +61625,9 @@ commentstyle={},
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -55812,6 +61642,7 @@ commentstyle={},
 \usepackage[section]{placeins}
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
+
 % --- fancyhdr package for fancy headers ---
 \usepackage{fancyhdr}
 \fancyhf{} % sets both header and footer to nothing
@@ -55831,9 +61662,14 @@ commentstyle={},
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
+
 \pagestyle{fancy}
+
+
 \usepackage{framed,wrapfig}
+
 % --- begin definitions of admonition environments ---
+
 % Admonition style "yellowicon" has colored background, yellow icons, and no farme
 % Admon "notice"
 \definecolor{yellowicon_notice_background}{rgb}{0.988235,0.964706,0.862745}
@@ -55841,6 +61677,7 @@ commentstyle={},
 \newenvironment{noticeshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{yellowicon_notice_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{notice_yellowiconadmon}[1][Notice]{
 \begin{noticeshaded}
 \noindent
@@ -55853,6 +61690,7 @@ commentstyle={},
 {
 \end{noticeshaded}
 }
+
 % Admonition style "yellowicon" has colored background, yellow icons, and no farme
 % Admon "summary"
 \definecolor{yellowicon_summary_background}{rgb}{0.988235,0.964706,0.862745}
@@ -55860,6 +61698,7 @@ commentstyle={},
 \newenvironment{summaryshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{yellowicon_summary_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{summary_yellowiconadmon}[1][Summary]{
 \begin{summaryshaded}
 \noindent
@@ -55872,6 +61711,7 @@ commentstyle={},
 {
 \end{summaryshaded}
 }
+
 % Admonition style "yellowicon" has colored background, yellow icons, and no farme
 % Admon "warning"
 \definecolor{yellowicon_warning_background}{rgb}{0.988235,0.964706,0.862745}
@@ -55879,6 +61719,7 @@ commentstyle={},
 \newenvironment{warningshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{yellowicon_warning_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{warning_yellowiconadmon}[1][Warning]{
 \begin{warningshaded}
 \noindent
@@ -55891,6 +61732,7 @@ commentstyle={},
 {
 \end{warningshaded}
 }
+
 % Admonition style "yellowicon" has colored background, yellow icons, and no farme
 % Admon "question"
 \definecolor{yellowicon_question_background}{rgb}{0.988235,0.964706,0.862745}
@@ -55898,6 +61740,7 @@ commentstyle={},
 \newenvironment{questionshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{yellowicon_question_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{question_yellowiconadmon}[1][Question]{
 \begin{questionshaded}
 \noindent
@@ -55910,6 +61753,7 @@ commentstyle={},
 {
 \end{questionshaded}
 }
+
 % Admonition style "yellowicon" has colored background, yellow icons, and no farme
 % Admon "block"
 \definecolor{yellowicon_block_background}{rgb}{0.988235,0.964706,0.862745}
@@ -55917,6 +61761,7 @@ commentstyle={},
 \newenvironment{blockshaded}
 {\def\FrameCommand{\fboxsep=3mm\colorbox{yellowicon_block_background}}
  \MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
 \newenvironment{block_yellowiconadmon}[1][Block]{
 \begin{blockshaded}
 \noindent
@@ -55926,26 +61771,43 @@ commentstyle={},
 {
 \end{blockshaded}
 }
+
 % --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
+
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -55953,42 +61815,63 @@ Testing admons
 \end{spacing}
 }
 \end{center}
+
 % ----------------- author(s) -------------------------
+
 \begin{center}
 {\bf H. P. Langtangen${}^{}$} \\ [0mm]
 \end{center}
+
 \begin{center}
 % List of all institutions:
 \end{center}
     
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
+
 % !split
 \section{Introduction}
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
+
 \subsection{Code}
+
 Need some code outside admons for color and font comparisons:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def some_code(x):
     return sin(x)*exp(1-x)
 
 \end{lstlisting}
 
+
 And some plain text verbatim:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 
 \end{lstlisting}
 
+
 \subsection{Quotes and boxes}
+
 Here is a plain quote environment.
+
 
 \begin{quote}
 Sayre's law states that
@@ -55999,25 +61882,35 @@ By way of corollary, it adds: \\
 \emph{Source}: \href{{https://en.wikipedia.org/wiki/Sayre's_law}}{wikipedia}
 \end{quote}
 
+
 Does quotes with title also work? No...cannot work in {\LaTeX} and HTML
 and then it does not make sense to support it.
+
 A plain \emph{box} is sometimes useful. Let's show it here for comparison
 with admons (especially the block admon has much in common with a box).
 The box is more aimed at framing a law or an equation.
+
 First a simple block with text, an equation, and a list:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
 A generic equation
+
 \[ f(x) = 0 \]
 must be solved by a numerical method, such as
+
 \begin{itemize}
  \item Newton's method
+
  \item The Bisection method
+
  \item Fixed-point (Picard) iteration by rewriting $f(x)=x - g(x)$
+
  \item The Secant method
 \end{itemize}
+
 \noindent
 \end{minipage}
 \end{Sbox}
@@ -56025,6 +61918,7 @@ must be solved by a numerical method, such as
 \end{center}
 Now test a box with equation only (note that this line continues the
 box, it is not a new paragraph):
+
 
 \begin{center}
 \begin{Sbox}
@@ -56034,15 +61928,21 @@ box, it is not a new paragraph):
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 \paragraph{Hint.}
 Newton's method requires a good start vector to converge fast.
 
 
+
 Let's begin a new paragraph and show a box with code only:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def some_code(x):
     return sin(x)*exp(1-x)
@@ -56052,17 +61952,23 @@ def some_code(x):
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 \subsection{Admonitions}
+
 Let us start with a plain warning environment.
+
 
 \begin{warning_yellowiconadmon}[Warning]
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
+
 \begin{itemize}
   \item and a list
+
   \item with items
 \end{itemize}
+
 \noindent
 We continue with more text to see how that affects the layout.
 And more and more text.
@@ -56074,11 +61980,18 @@ And more and more text.
 \end{warning_yellowiconadmon} % title: Warning
 
 
+
 Test warning with title:
+
 
 \begin{warning_yellowiconadmon}[{\large Title ending with math $\sqrt{2}\approx 1.4$}]
 {\large And here comes some text with bad news in larger font.
+
 Also some code:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def f(x):
     return x
@@ -56086,6 +61999,9 @@ def f(x):
 \end{lstlisting}
 
 And a complete program
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 print("Hello, World!")
 
@@ -56094,7 +62010,9 @@ print("Hello, World!")
 \end{warning_yellowiconadmon} % title: {\large Title ending with math $\sqrt{2}\approx 1.4$}
 
 
+
 Test warning with large title with math:
+
 
 \begin{warning_yellowiconadmon}[{\large Watch out for $\nabla\cdot\bm{u}=0$ equations}]
 {\large Divergence freedom is often problematic from a numerical point
@@ -56103,7 +62021,9 @@ of view.
 \end{warning_yellowiconadmon} % title: {\large Watch out for $\nabla\cdot\bm{u}=0$ equations}
 
 
+
 Then we test a block, which is guaranteed to never have any admon icon.
+
 
 \begin{block_yellowiconadmon}[Block with title]
 \vspace{-2.5mm}\par\noindent
@@ -56118,18 +62038,22 @@ of understanding.
 
 
 
+
 \begin{block_yellowiconadmon}[]
 Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
 \end{block_yellowiconadmon} % title: 
 
 
+
 % Note that the final ! does not appear in Sphinx and reST since
 % those formats automatically add : to the admonition title.
+
 
 \begin{notice_yellowiconadmon}[Note, eventually!]
 Ah, we are soon close to the end (with illegal font size specification!).
 But first a bit of math where we define $\theta$ and $\bm{r}$:
+
 \begin{align*}
 \theta &= q^2,\\
 \bm{r} &= \varrho\bm{i}
@@ -56137,11 +62061,14 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 \end{notice_yellowiconadmon} % title: Note, eventually!
 
 
+
 % Test one word with a number
+
 
 \begin{notice_yellowiconadmon}[Point1]
 Ah, we are soon close to the end.
 \end{notice_yellowiconadmon} % title: Point1
+
 
 
 
@@ -56151,23 +62078,35 @@ So, how many admonition environments does DocOnce support?
 
 
 
+
 \begin{question_yellowiconadmon}[Question]
 \begin{enumerate}
  \item Once more, how many admonition environments does DocOnce support?
 \end{enumerate}
+
 \noindent
 \end{question_yellowiconadmon} % title: Question
 
 
 
+
 \begin{warning_yellowiconadmon}[Tip]
 It is of outmost important to
+
 \begin{enumerate}
 \item stay cool
+
 \item read hints and tips carefully
 \end{enumerate}
+
 \noindent
 Because here the thing is to do
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 import urllib
 
@@ -56178,16 +62117,21 @@ def grab(url, filename):
 \end{warning_yellowiconadmon} % title: Tip
 
 
+
 Next is a warning without a title ("none" implies no title).
+
 
 \begin{warning_yellowiconadmon}[]
 And here comes some text with bad news.
 \end{warning_yellowiconadmon} % title: 
 
 
+
 \subsection{Going deeper environments}
+
 Here is a long notice environment with a custom title and much
 text, math and code.
+
 
 \begin{notice_yellowiconadmon}[Going deeper.]
 We have some equations that should be preceded by much text, so the
@@ -56195,15 +62139,26 @@ task is to write and write. The number of words, and not the
 meaning, is what counts here. We need desperately to fill up the
 page in the hope that some admonitions will experience a page break,
 which the {\LaTeX} environment should handle with ease.
+
 Let us start with some equations:
+
 \begin{align*}
 \Ddt{u} &= 0
 \\
 \half &= \halfi\\
 \half\x &= \normalvec
 \end{align*}
+
 The implementation of such complicated equations in computer
 code is task that this "Going deeper" environment targets.
+
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def Dudt(u):
     r = diff(u, t) + u*grad(u)
@@ -56216,6 +62171,46 @@ x = 2*n
 
 And some more text that can help going into the next page.
 Longer computer code requires vertical space:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 class Diff:
     def __init__(self, f, h=1E-5):
@@ -56259,17 +62254,23 @@ class Forward3(Diff):
 \end{lstlisting}
 
 And then we add a figure too.
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.7\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
 \end{notice_yellowiconadmon} % title: Going deeper.
 
 
+
 \subsection{The end}
+
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
 just because we can.
+
 
 \begin{summary_yellowiconadmon}[Concluding remarks, for the novice]
 We can summarize the most important things with admons: they have
@@ -56278,10 +62279,13 @@ Titles should be optional.
 \end{summary_yellowiconadmon} % title: Concluding remarks, for the novice
 
 
+
 \paragraph{Remark.}
 The \texttt{remarks} and \texttt{hint} environments are not allowed outside
 exercises (and problems and projects too).
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \end{document}
 % #endif
@@ -56293,27 +62297,38 @@ exercises (and problems and projects too).
 %% (https://github.com/doconce/doconce/)
 %% doconce format html admon.do.txt --latex_admon=mdfbox --latex_admon_color=1,1,1 --latex_admon_envir_map=2 --cite_doconce --no_abort
 %%
+
+
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
+
 \usepackage{fancybox}  % make sure fancybox is loaded before fancyvrb
 %\setlength{\fboxsep}{8pt}  % may clash with need in pre/cod envirs
+
 \usepackage{fancyvrb} % packages needed for verbatim environments
 \usepackage{minted}
 \usemintedstyle{default}
 \usepackage{fancyvrb}
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -56330,7 +62345,9 @@ final,                   % draft: marks overfull hboxes, figures with paths
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -56345,6 +62362,7 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \usepackage[section]{placeins}
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
+
 % --- fancyhdr package for fancy headers ---
 \usepackage{fancyhdr}
 \fancyhf{} % sets both header and footer to nothing
@@ -56364,9 +62382,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
+
 \pagestyle{fancy}
+
+
 \usepackage[framemethod=TikZ]{mdframed}
+
 % --- begin definitions of admonition environments ---
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "notice" admon
 \definecolor{mdfbox_notice_background}{rgb}{1,1,1}
@@ -56387,12 +62410,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{notice_mdfboxmdframed}
+
 \newenvironment{notice_mdfboxadmon}[1][]{
 \begin{notice_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{notice_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "summary" admon
 \definecolor{mdfbox_summary_background}{rgb}{1,1,1}
@@ -56413,12 +62438,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{summary_mdfboxmdframed}
+
 \newenvironment{summary_mdfboxadmon}[1][]{
 \begin{summary_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{summary_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "warning" admon
 \definecolor{mdfbox_warning_background}{rgb}{1,1,1}
@@ -56439,12 +62466,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{warning_mdfboxmdframed}
+
 \newenvironment{warning_mdfboxadmon}[1][]{
 \begin{warning_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{warning_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "question" admon
 \definecolor{mdfbox_question_background}{rgb}{1,1,1}
@@ -56465,12 +62494,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{question_mdfboxmdframed}
+
 \newenvironment{question_mdfboxadmon}[1][]{
 \begin{question_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{question_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "block" admon
 \definecolor{mdfbox_block_background}{rgb}{1,1,1}
@@ -56491,31 +62522,49 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{block_mdfboxmdframed}
+
 \newenvironment{block_mdfboxadmon}[1][]{
 \begin{block_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{block_mdfboxmdframed}
 }
+
 % --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
+
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -56523,42 +62572,63 @@ Testing admons
 \end{spacing}
 }
 \end{center}
+
 % ----------------- author(s) -------------------------
+
 \begin{center}
 {\bf H. P. Langtangen${}^{}$} \\ [0mm]
 \end{center}
+
 \begin{center}
 % List of all institutions:
 \end{center}
     
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
+
 % !split
 \section{Introduction}
 First some ordinary text to compare font sizes in admonitions
 and the surrounding text.
+
 \subsection{Code}
+
 Need some code outside admons for color and font comparisons:
+
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=0mm]
 def some_code(x):
     return sin(x)*exp(1-x)
 
 \end{Verbatim}
 
+
 And some plain text verbatim:
+
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 x=1.0 y=0.9 z=0.4
 x=1.1 y=0.3 z=0.1
 
 \end{Verbatim}
 
+
 \subsection{Quotes and boxes}
+
 Here is a plain quote environment.
+
 
 \begin{quote}
 Sayre's law states that
@@ -56569,25 +62639,35 @@ By way of corollary, it adds: \\
 \emph{Source}: \href{{https://en.wikipedia.org/wiki/Sayre's_law}}{wikipedia}
 \end{quote}
 
+
 Does quotes with title also work? No...cannot work in {\LaTeX} and HTML
 and then it does not make sense to support it.
+
 A plain \emph{box} is sometimes useful. Let's show it here for comparison
 with admons (especially the block admon has much in common with a box).
 The box is more aimed at framing a law or an equation.
+
 First a simple block with text, an equation, and a list:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
 A generic equation
+
 \[ f(x) = 0 \]
 must be solved by a numerical method, such as
+
 \begin{itemize}
  \item Newton's method
+
  \item The Bisection method
+
  \item Fixed-point (Picard) iteration by rewriting $f(x)=x - g(x)$
+
  \item The Secant method
 \end{itemize}
+
 \noindent
 \end{minipage}
 \end{Sbox}
@@ -56595,6 +62675,7 @@ must be solved by a numerical method, such as
 \end{center}
 Now test a box with equation only (note that this line continues the
 box, it is not a new paragraph):
+
 
 \begin{center}
 \begin{Sbox}
@@ -56604,15 +62685,21 @@ box, it is not a new paragraph):
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 \\paragraph{Hint.}\n
 Newton's method requires a good start vector to converge fast.
 
 
+
 Let's begin a new paragraph and show a box with code only:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=0mm]
 def some_code(x):
     return sin(x)*exp(1-x)
@@ -56622,17 +62709,23 @@ def some_code(x):
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 \subsection{Admonitions}
+
 Let us start with a plain warning environment.
+
 
 \begin{warning_mdfboxadmon}[Warning.]
 And here is a warning about something to pay attention to. We
 test how the heading behave and add quite some extra texts
 in comparison with the other admons.
+
 \begin{itemize}
   \item and a list
+
   \item with items
 \end{itemize}
+
 \noindent
 We continue with more text to see how that affects the layout.
 And more and more text.
@@ -56644,11 +62737,18 @@ And more and more text.
 \end{warning_mdfboxadmon} % title: Warning.
 
 
+
 Test warning with title:
+
 
 \begin{warning_mdfboxadmon}[{\large Title ending with math $\sqrt{2}\approx 1.4$}.]
 {\large And here comes some text with bad news in larger font.
+
 Also some code:
+
+
+
+
 \begin{minted}{python}
 def f(x):
     return x
@@ -56656,6 +62756,9 @@ def f(x):
 \end{minted}
 
 And a complete program
+
+
+
 \begin{minted}{python}
 print("Hello, World!")
 
@@ -56664,7 +62767,9 @@ print("Hello, World!")
 \end{warning_mdfboxadmon} % title: {\large Title ending with math $\sqrt{2}\approx 1.4$}.
 
 
+
 Test warning with large title with math:
+
 
 \begin{warning_mdfboxadmon}[{\large Watch out for $\nabla\cdot\bm{u}=0$ equations}.]
 {\large Divergence freedom is often problematic from a numerical point
@@ -56673,7 +62778,9 @@ of view.
 \end{warning_mdfboxadmon} % title: {\large Watch out for $\nabla\cdot\bm{u}=0$ equations}.
 
 
+
 Then we test a block, which is guaranteed to never have any admon icon.
+
 
 \begin{block_mdfboxadmon}[Block with title.]
 \vspace{0.5mm}\par\noindent
@@ -56688,18 +62795,22 @@ of understanding.
 
 
 
+
 \begin{block_mdfboxadmon}[]
 Here is a block of text with no title. As above, it is typeset without any icon
 and is useful when you want some admons with icon and some without.
 \end{block_mdfboxadmon} % title: 
 
 
+
 % Note that the final ! does not appear in Sphinx and reST since
 % those formats automatically add : to the admonition title.
+
 
 \begin{notice_mdfboxadmon}[Note eventually!]
 Ah, we are soon close to the end (with illegal font size specification!).
 But first a bit of math where we define $\theta$ and $\bm{r}$:
+
 \begin{align*}
 \theta &= q^2,\\
 \bm{r} &= \varrho\bm{i}
@@ -56707,11 +62818,14 @@ But first a bit of math where we define $\theta$ and $\bm{r}$:
 \end{notice_mdfboxadmon} % title: Note eventually!
 
 
+
 % Test one word with a number
+
 
 \begin{notice_mdfboxadmon}[Point1.]
 Ah, we are soon close to the end.
 \end{notice_mdfboxadmon} % title: Point1.
+
 
 
 
@@ -56721,23 +62835,35 @@ So, how many admonition environments does DocOnce support?
 
 
 
+
 \begin{question_mdfboxadmon}[Question.]
 \begin{enumerate}
  \item Once more, how many admonition environments does DocOnce support?
 \end{enumerate}
+
 \noindent
 \end{question_mdfboxadmon} % title: Question.
 
 
 
+
 \begin{warning_mdfboxadmon}[Tip.]
 It is of outmost important to
+
 \begin{enumerate}
 \item stay cool
+
 \item read hints and tips carefully
 \end{enumerate}
+
 \noindent
 Because here the thing is to do
+
+
+
+
+
+
 \begin{minted}{python}
 import urllib
 
@@ -56748,16 +62874,21 @@ def grab(url, filename):
 \end{warning_mdfboxadmon} % title: Tip.
 
 
+
 Next is a warning without a title ("none" implies no title).
+
 
 \begin{warning_mdfboxadmon}[]
 And here comes some text with bad news.
 \end{warning_mdfboxadmon} % title: 
 
 
+
 \subsection{Going deeper environments}
+
 Here is a long notice environment with a custom title and much
 text, math and code.
+
 
 \begin{notice_mdfboxadmon}[Going deeper.]
 We have some equations that should be preceded by much text, so the
@@ -56765,15 +62896,26 @@ task is to write and write. The number of words, and not the
 meaning, is what counts here. We need desperately to fill up the
 page in the hope that some admonitions will experience a page break,
 which the {\LaTeX} environment should handle with ease.
+
 Let us start with some equations:
+
 \begin{align*}
 \Ddt{u} &= 0
 \\
 \half &= \halfi\\
 \half\x &= \normalvec
 \end{align*}
+
 The implementation of such complicated equations in computer
 code is task that this "Going deeper" environment targets.
+
+
+
+
+
+
+
+
 \begin{minted}{python}
 def Dudt(u):
     r = diff(u, t) + u*grad(u)
@@ -56786,6 +62928,46 @@ x = 2*n
 
 And some more text that can help going into the next page.
 Longer computer code requires vertical space:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{minted}{python}
 class Diff:
     def __init__(self, f, h=1E-5):
@@ -56829,17 +63011,23 @@ class Forward3(Diff):
 \end{minted}
 
 And then we add a figure too.
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.7\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
 \end{notice_mdfboxadmon} % title: Going deeper.
 
 
+
 \subsection{The end}
+
 A bit of text before the summary, which we now call "Concluding remarks,
 for the novice",
 just because we can.
+
 
 \begin{summary_mdfboxadmon}[Concluding remarks for the novice.]
 We can summarize the most important things with admons: they have
@@ -56848,10 +63036,13 @@ Titles should be optional.
 \end{summary_mdfboxadmon} % title: Concluding remarks for the novice.
 
 
+
 \paragraph{Remark.}
 The \texttt{remarks} and \texttt{hint} environments are not allowed outside
 exercises (and problems and projects too).
+
 % ------------------- end of main content ---------------
+
 \end{document}
 
 
@@ -66659,31 +72850,42 @@ title (Warning) since no title is specified.
 \definecolor{lightblue2}{rgb}{0.3,0.3,1.0}
 \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
 \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+
 \colorlet{comment_green}{green!50!black}
 \colorlet{string_red}{red!60!black}
 \colorlet{keyword_pink}{magenta!70!black}
 \colorlet{indendifier_green}{green!70!white}
+
 % Backgrounds for code
 \definecolor{cbg_gray}{rgb}{.95, .95, .95}
 \definecolor{bar_gray}{rgb}{.92, .92, .92}
+
 \definecolor{cbg_yellowgray}{rgb}{.95, .95, .85}
 \definecolor{bar_yellowgray}{rgb}{.95, .95, .65}
+
 \colorlet{cbg_yellow2}{yellow!10}
 \colorlet{bar_yellow2}{yellow!20}
+
 \definecolor{cbg_yellow1}{rgb}{.98, .98, 0.8}
 \definecolor{bar_yellow1}{rgb}{.98, .98, 0.4}
+
 \definecolor{cbg_red1}{rgb}{1, 0.85, 0.85}
 \definecolor{bar_red1}{rgb}{1, 0.75, 0.85}
+
 \definecolor{cbg_blue1}{rgb}{0.87843, 0.95686, 1.0}
 \definecolor{bar_blue1}{rgb}{0.7,     0.95686, 1}
+
 \usepackage{listingsutf8}
+
 % Common lstlisting parameters
+
 \usepackage{calc}
 \newlength{\lstboxwidth}  % width of lst box
 \newlength{\framethickness}
 \setlength{\framethickness}{0.5mm}
 % for frame=trbl and a framerule that has significant size, set
 % xleftmargin=5mm and xrightmargin=5mm.
+
 \lstset{
   basicstyle=\small \ttfamily,
   breaklines=false,          % break/wrap lines
@@ -66707,7 +72909,9 @@ title (Warning) since no title is specified.
   escapeinside={(*@}{@*)},   % (*@ \pause @*) in slides and math in code blocks
   extendedchars=\true,       % allows non-ascii chars, does not work with utf-8
 }
+
 % Internally defined styles for lstlisting
+
 % Use this one without additional background color
 \lstdefinestyle{yellow2_fb}{         % approx same colors as in the FEniCS book
 frame=tb,                            % top+bottom frame
@@ -66719,9 +72923,11 @@ commentstyle=\color{comment_green}\slshape,
 stringstyle=\color{string_red},
 identifierstyle=\color{darkorange},
 }
+
 \lstdefinestyle{simple}{
 commentstyle={},
 }
+
 % end of custom lstdefinestyles
 
 \usepackage{amsmath,amssymb,bm}
@@ -66782,26 +72988,42 @@ commentstyle={},
 % Add user's preamble
 
 
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
 
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \title{Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides}
+
 % ----------------- author(s) -------------------------
+
 \author{Hans Petter Langtangen\inst{1,2}}
 \institute{Simula Research Laboratory\inst{1}
 \and
 University of Oslo\inst{2}}
 % ----------------- end author(s) -------------------------
+
 \date{Jan 32, 2100
 % <optional titlepage figure>
 % <optional copyright>
@@ -66821,20 +73043,28 @@ University of Oslo\inst{2}}
 \pause
 \begin{block}{Title with comma, and brackets: $[a,b]$ }
 \footnotesize
+
 \begin{itemize}
   \item Here is a \emph{wave signal} $f(x-ct)$
+
   \item It moves with velocity $c$
+
   \item But here it is just a figure
 \end{itemize}
+
 \noindent
 \end{block}
 
 \column{0.4\textwidth}
 \begin{block}{}
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.7\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
+
 \end{block}
 
 \end{columns}
@@ -66844,9 +73074,11 @@ University of Oslo\inst{2}}
 \frametitle{Slide with pop-ups in red and notes}
 
 \shortinlinecomment{hpl 1}{ Comments are typeset as usual in DocOnce. }{ Comments are typeset as }
+
 \pause
 Here we have a paragraph to pop up in red.\\
 And a line more
+
 \note{
 One can also have ordinary notes.
 Over multiple lines.
@@ -66869,10 +73101,12 @@ Jane Doe\footnote{\texttt{jane.doe@cyber.net}.}}
 \maketitle
 
 \end{lstlisting}
+
 \pause
 \begin{block}{Notice}
 {\LaTeX} has a lot of backslashes.
 \end{block}
+
 \pause
 \begin{lstlisting}[language=TeX,style=yellow2_fb]
 \section{Heading}
@@ -66900,12 +73134,18 @@ bla-bla
 \begin{frame}[plain,fragile]
 \frametitle{Second section}
 
+
 \begin{block}{}
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.8\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
+
 \end{block}
+
 
 \end{frame}
 
@@ -66915,9 +73155,17 @@ bla-bla
 \begin{block}{A simple, mathematical formula where $t\in [0,\pi]$: }
 \[ f(x,y,t) = e^{-xt}\sin\pi y \]
 \end{block}
+
 \begin{block}{Bash demanded more of DocOnce than Python, so let's do Bash: }
 First, inline \Verb@$? != 0@, then comments with dollar variables (and minted
 style):
+
+
+
+
+
+
+
 \begin{lstlisting}[language=bash,style=yellow2_fb]
 var=10
 # $1, $2, ... are command-line args
@@ -66951,19 +73199,24 @@ print(g(13))
 \frametitle{Various admon blocks}
 
 Can use admons to simulate blocks:
+
 \pause
 \begin{block}{Key PDE (with large title and math font): }
 \large
+
 \[ \frac{\partial u}{\partial t} = \nabla^2 u \]
 \end{block}
+
 \pause
 \begin{block}{}
 Just some block with text and a conclusion that something is important.
 This one pops up after the rest of the slide.
 \end{block}
+
 \pause
 \begin{block}{Warning}
 \footnotesize
+
 Can use, e.g., a warning admon to have my own notes, preferably
 inside preprocess/mako if statements to turn notes on and off.
 This one is typeset in a small font and with the default
@@ -67079,28 +73332,44 @@ title (Warning) since no title is specified.
 % Add user's preamble
 
 
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 
 %\pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=5mm]   % pdfnup is more flexible
 
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \title{Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides}
+
 % ----------------- author(s) -------------------------
+
 \author{Hans Petter Langtangen\inst{1,2}}
 \institute{Simula Research Laboratory\inst{1}
 \and
 University of Oslo\inst{2}}
 % ----------------- end author(s) -------------------------
+
 \date{Jan 32, 2100
 % <optional titlepage figure>
 \ \\ 
@@ -67121,20 +73390,28 @@ University of Oslo\inst{2}}
 \pause
 \begin{block}{Title with comma, and brackets: $[a,b]$ }
 \footnotesize
+
 \begin{itemize}
   \item Here is a \emph{wave signal} $f(x-ct)$
+
   \item It moves with velocity $c$
+
   \item But here it is just a figure
 \end{itemize}
+
 \noindent
 \end{block}
 
 \column{0.4\textwidth}
 \begin{block}{}
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.7\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
+
 \end{block}
 
 \end{columns}
@@ -67144,9 +73421,11 @@ University of Oslo\inst{2}}
 \frametitle{Slide with pop-ups in red and notes}
 
 \shortinlinecomment{hpl 1}{ Comments are typeset as usual in DocOnce. }{ Comments are typeset as }
+
 \pause
 Here we have a paragraph to pop up in red.\\
 And a line more
+
 \note{
 One can also have ordinary notes.
 Over multiple lines.
@@ -67169,10 +73448,12 @@ Jane Doe\footnote{\texttt{jane.doe@cyber.net}.}}
 \maketitle
 
 \end{minted}
+
 \pause
 \begin{block}{Notice}
 {\LaTeX} has a lot of backslashes.
 \end{block}
+
 \pause
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{latex}
 \section{Heading}
@@ -67200,12 +73481,18 @@ bla-bla
 \begin{frame}[plain,fragile]
 \frametitle{Second section}
 
+
 \begin{block}{}
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.8\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
+
 \end{block}
+
 
 \end{frame}
 
@@ -67215,9 +73502,17 @@ bla-bla
 \begin{block}{A simple, mathematical formula where $t\in [0,\pi]$: }
 \[ f(x,y,t) = e^{-xt}\sin\pi y \]
 \end{block}
+
 \begin{block}{Bash demanded more of DocOnce than Python, so let's do Bash: }
 First, inline \Verb@$? != 0@, then comments with dollar variables (and minted
 style):
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{bash}
 var=10
 # $1, $2, ... are command-line args
@@ -67251,19 +73546,24 @@ print(g(13))
 \frametitle{Various admon blocks}
 
 Can use admons to simulate blocks:
+
 \pause
 \begin{block}{Key PDE (with large title and math font): }
 \large
+
 \[ \frac{\partial u}{\partial t} = \nabla^2 u \]
 \end{block}
+
 \pause
 \begin{block}{}
 Just some block with text and a conclusion that something is important.
 This one pops up after the rest of the slide.
 \end{block}
+
 \pause
 \begin{block}{Warning}
 \footnotesize
+
 Can use, e.g., a warning admon to have my own notes, preferably
 inside preprocess/mako if statements to turn notes on and off.
 This one is typeset in a small font and with the default
@@ -69315,32 +75615,44 @@ Reveal.initialize({
 %% see examples). If doconce ptex2tex has envir=minted, it enables the
 %% minted style without needing -DMINTED.
 % #endif
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
+
 % Movies are handled by the href package
 \newenvironment{doconce:movie}{}{}
 \newcounter{doconce:movie:counter}
+
+
 \usepackage{ptex2tex}
 % #ifdef MINTED
 \usepackage{minted}
 \usemintedstyle{default}
 % #endif
 \usepackage{fancyvrb}
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -69357,7 +75669,9 @@ final,                   % draft: marks overfull hboxes, figures with paths
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -69372,8 +75686,11 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \usepackage[section]{placeins}
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
+
 \usepackage[framemethod=TikZ]{mdframed}
+
 % --- begin definitions of admonition environments ---
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "notice" admon
 \colorlet{mdfbox_notice_background}{gray!5}
@@ -69394,12 +75711,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{notice_mdfboxmdframed}
+
 \newenvironment{notice_mdfboxadmon}[1][]{
 \begin{notice_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{notice_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "summary" admon
 \colorlet{mdfbox_summary_background}{gray!5}
@@ -69420,12 +75739,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{summary_mdfboxmdframed}
+
 \newenvironment{summary_mdfboxadmon}[1][]{
 \begin{summary_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{summary_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "warning" admon
 \colorlet{mdfbox_warning_background}{gray!5}
@@ -69446,12 +75767,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{warning_mdfboxmdframed}
+
 \newenvironment{warning_mdfboxadmon}[1][]{
 \begin{warning_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{warning_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "question" admon
 \colorlet{mdfbox_question_background}{gray!5}
@@ -69472,12 +75795,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{question_mdfboxmdframed}
+
 \newenvironment{question_mdfboxadmon}[1][]{
 \begin{question_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{question_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "block" admon
 \colorlet{mdfbox_block_background}{gray!5}
@@ -69498,18 +75823,24 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{block_mdfboxmdframed}
+
 \newenvironment{block_mdfboxadmon}[1][]{
 \begin{block_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{block_mdfboxmdframed}
 }
+
 % --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 \newenvironment{doconceexercise}{}{}
 \newcounter{doconceexercisecounter}
+
+
 % ------ header in subexercises ------
 %\newcommand{\subex}[1]{\paragraph{#1}}
 %\newcommand{\subex}[1]{\par\vspace{1.7mm}\noindent{\bf #1}\ \ }
@@ -69520,214 +75851,374 @@ final,                   % draft: marks overfull hboxes, figures with paths
                   {-0.5em}%
                   {\normalfont\normalsize\bfseries}}
 \makeatother
+
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \title{Test slide features}
+
 % ----------------- author(s) -------------------------
+
 \author{Core Dump\inst{1}}
 \institute{Cyber Space Ltd\inst{1}}
 % ----------------- end author(s) -------------------------
+
 \date{Jan 32, 2100
 % <optional titlepage figure>
 % <optional copyright>
 }
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.5\linewidth]{testfigs/doconce1b.png}}
+
 \vspace{6mm}
+
 % !split
+
 % !split
 \subsection{Scientific writing for the future needs to address many new media}
+
 % !bslidecell 00 0.4
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.8\linewidth]{testfigs/ipad.png}}
+
 \vspace{6mm}
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.3\linewidth]{testfigs/iphones.jpg}}
+
 \vspace{6mm}
+
 % FIGURE: [testfigs/mbair, width=400]
+
 % !eslidecell
+
 % !bslidecell 01 0.6
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.7\linewidth]{testfigs/imac.png}}
+
 \vspace{6mm}
+
 % !eslidecell
+
 % !split
 \subsection{The book will probably survive}
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.9\linewidth]{testfigs/oldbooks.jpg}}
+
 \vspace{6mm}
+
 % !split
 \subsection{The classical report will survive}
+
 % !bslidecell 00
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=1.2\linewidth]{testfigs/latex_thesis.jpg}}
+
 \vspace{6mm}
+
 % !eslidecell
+
 % !bslidecell 01
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=1.2\linewidth]{testfigs/latex_paper1.png}}
+
 \vspace{6mm}
+
 % !eslidecell
+
 % !split
 \subsection{Scope}
+
 % * Scientific writing = lecture notes, slides, reports, thesis, books,  ...
 % * (Journal papers typeset by journals are out of scope)
+
 % !bpop
 \begin{itemize}
   \item Scope: documents with \textcolor{red}{much} \emph{math} and \emph{computer code}
+
   \item Key question: What tools should I use for writing?
+
   \item Default answer: {\LaTeX}
+
   \item Alternative: MS Word w/math
+
   \item Recent popular alternative tools: HTML w/MathJax, Sphinx, Markdown, MediaWiki, IPython notebook
 \end{itemize}
+
 \noindent
 % !epop
+
 % !bslidecell 00 0.25
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.3\linewidth]{testfigs/LaTeX_logo.jpg}}
+
 \vspace{6mm}
+
 % !eslidecell
+
 % !bslidecell 01 0.25
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.2\linewidth]{testfigs/MS_Word_logo.jpg}}
+
 \vspace{6mm}
+
 % !eslidecell
+
 % !bslidecell 02 0.5
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.4\linewidth]{testfigs/sphinx_logo.png}}
+
 \vspace{6mm}
+
 % !eslidecell
+
 % !bslidecell 10 0.25
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.2\linewidth]{testfigs/markdown_logo.jpg}}
+
 \vspace{6mm}
+
 % !eslidecell
+
 % !bslidecell 11 0.25
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.2\linewidth]{testfigs/MediaWiki_logo.jpg}}
+
 \vspace{6mm}
+
 % !eslidecell
+
 % !bslidecell 12 0.5
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.6\linewidth]{testfigs/IPython_logo.png}}
+
 \vspace{6mm}
+
 % !eslidecell
+
 % !split
 \subsection{Scientific writing for the future needs to address many new media}
+
 % Insert links here to reports
+
 % !bslidecell 00
 Old days (1985-2005): {\LaTeX} for BW paper output, but now
+
 \begin{enumerate}
   \item BW books
+
   \item Colorful PDF books (printed and screen)
+
   \item Designed web pages
+
   \item Wikis
+
   \item Blog posts
+
   \item Next new fancy format (iBook w/LaTeX?)
 \end{enumerate}
+
 \noindent
 % !eslidecell
+
 % !bslidecell 01
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.9\linewidth]{testfigs/jungle_with_mess.jpg}}
+
 \vspace{6mm}
+
 % !eslidecell
+
 % !split
+
 \subsection{Fundamental question}
+
 When I write some scientific material,
+
 \begin{itemize}
  \item a {\LaTeX} document,
+
  \item a blog post (HTML),
+
  \item some web pages (HTML),
+
  \item a Sphinx document,
+
  \item some Markdown files,
 \end{itemize}
+
 \noindent
 and later want to collect the pieces into a larger document, maybe
 some book, or one big web document, is that at all feasible?
+
 % !bpop highlight-red
 Probably not, but I have a solution :-)
 % !epop
+
 % !split
+
 \subsection{{\LaTeX} is very rich; other tools support only some elements}
+
 \begin{itemize}
  \item {\LaTeX} inline math: works with all ({\LaTeX}, MathJax, Sphinx, Markdown, MediaWiki)
+
  \item {\LaTeX} equation math:
 \begin{itemize}
+
     \item \textbf{LaTeX}: \texttt{equation*}, \texttt{equation}, \texttt{align*}, \texttt{align} + \texttt{eqnarray}, \texttt{split}, \texttt{alignat}, ... (numerous!)
+
     \item \textbf{MathJax}: \texttt{equation*}, \texttt{equation}, \texttt{align*}, \texttt{align}
+
     \item \textbf{MediaWiki}: \texttt{equation*}, \texttt{equation}, \texttt{align*}, \texttt{align}
+
     \item \textbf{Sphinx}: \texttt{equation*}, \texttt{equation}, \texttt{align*}
+
     \item \textbf{Markdown}: \texttt{equation*}, \texttt{equation}, \texttt{eqnarray*}, \texttt{align*} (but no labels)
 \end{itemize}
+
 \noindent
 \end{itemize}
+
 \noindent
 % !split
 \subsection{{\LaTeX} is very rich; other tools support only some elements}
+
 % !bpop
 \begin{itemize}
  \item Figures: all
+
  \item Subfigures: {\LaTeX} (\texttt{subfigure})
+
  \item Movies: {\LaTeX} (can run separately), just raw embedded HTML in others
+
  \item Floating computer code: {\LaTeX}
+
  \item Fixed computer code: all
+
  \item Floating tables: {\LaTeX}; inline tables: all
+
  \item Algorithms: {\LaTeX}
+
  \item Margin notes: {\LaTeX}
+
  \item Page references: {\LaTeX}
+
  \item Footnotes: {\LaTeX}, Sphinx, reStructuredText, MediaWiki
+
  \item Bibliography: {\LaTeX}, Sphinx, reStructuredText, MediaWiki
+
  \item Hyperlinks: all (but not on paper!)
 \end{itemize}
+
 \noindent
 % !epop
+
 % !bpop
 Conclusion: Highly non-trivial to translate a {\LaTeX} document into something
 based on HTML and vice versa.
 % !epop
+
 % !split
 \subsection{DocOnce demo}
+
 \href{{https://hplgit.github.com/teamods/writing_reports/}}{\nolinkurl{https://hplgit.github.com/teamods/writing_reports/}}
+
 \begin{itemize}
  \item LaTeX-based PDF \href{{https://hplgit.github.com/teamods/writing_reports/_static/report.pdf}}{for screen}, \href{{https://hplgit.github.com/teamods/writing_reports/_static/report_4printing.pdf}}{for printing}, \href{{https://hplgit.github.com/teamods/writing_reports/_static/report_4phone.pdf}}{for phone}
+
  \item \href{{https://hplgit.github.com/teamods/writing_reports/_static/report_do.html}}{Plain HTML} or with a \href{{https://hplgit.github.com/teamods/writing_reports/_static/report_vagrant.html}}{template} or \href{{https://hplgit.github.com/teamods/writing_reports/_static/report_github_minimal.html}}{another template} or \href{{https://hplgit.github.com/teamods/writing_reports/_static/report_solarized.html}}{solarized}
+
  \item Sphinx: \href{{https://hplgit.github.com/teamods/writing_reports/_static/sphinx-agni/index.html}}{agni}, \href{{https://hplgit.github.com/teamods/writing_reports/_static/sphinx-pyramid/report.html}}{pyramid}, \href{{https://hplgit.github.com/teamods/writing_reports/_static/sphinx-classy/report.html}}{classy}, \href{{https://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html}}{fenics}, \href{{https://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html}}{redcloud}
+
  \item HTML for \href{{https://doconce-report-demo.blogspot.no/}}{Google} or \href{{https://doconcereportdemo.wordpress.com/}}{Wordpress} blog posts
+
  \item \href{{https://doconcedemo.shoutwiki.com/wiki/DocOnce_demo_page}}{MediaWiki} (Wikipedia, Wikibooks, etc)
+
  \item DocOnce \href{{https://hplgit.github.com/teamods/writing_reports/_static/report.do.txt.html}}{source code} and \href{{https://hplgit.github.io/doconce/doc/src/pub/manual/html/manual.html}}{manual}
 \end{itemize}
+
 \noindent
 % !split
+
 % latex interprets 9 = as chapter and then needs book style...
 \subsection{A tour of DocOnce}
+
 % !split
 \subsection{DocOnce: title, authors, date, toc}
+
+
+
+
+
+
+
+
+
 \bccq
 TITLE: Some Title
 AUTHOR: name1 at institution1, with more info & institution2
@@ -69739,27 +76230,49 @@ TOC: on
 
 \eccq
 
+
 \begin{block}{Notice}
 Title and authors must have all information \emph{on a single line}!
 \end{block}
+
 % !split
 \subsection{DocOnce: abstract}
+
+
+
+
 \bccq
 __Abstract.__
 Here goes the abstract...
 
 \eccq
 
+
 Or:
+
+
+
 \bccq
 __Summary.__
 Here goes the summary...
 
 \eccq
 
+
 % !split
 \subsection{DocOnce: section headings}
+
 Headings are surrounded by \texttt{=} signs:
+
+
+
+
+
+
+
+
+
+
 \bccq
 ======= This is an H1/chapter heading =======
 
@@ -69773,8 +76286,19 @@ __This is a paragraph heading.__
 
 \eccq
 
+
 % !split
 \subsection{DocOnce: markup and lists}
+
+
+
+
+
+
+
+
+
+
 \bccq
  * Bullet list items start with `*`
    and may span several lines
@@ -69787,22 +76311,54 @@ __This is a paragraph heading.__
 
 \eccq
 
+
 This gets rendered as
+
 \begin{itemize}
  \item Bullet lists start with \texttt{*} and may span several lines
+
  \item \emph{Emphasized words} are possible
+
  \item \textbf{Boldface words} are also possible
+
  \item \textcolor{red}{colored words} too
+
  \item \texttt{inline verbatim code} is featured
 \begin{enumerate}
+
   \item and sublists with enumerated items starting with \texttt{o}
+
   \item items are just indented as you would do in email
 \end{enumerate}
+
 \noindent
 \end{itemize}
+
 \noindent
 % !split
 \subsection{DocOnce: labels, references, index items}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bdo
 # Insert index items in the source
 idx{key word1} idx{key word2}
@@ -69827,11 +76383,19 @@ URL: "https://github.com/doconce/doconce"
 
 \edo
 
+
 % !split
 \subsection{DocOnce: figures and movies}
+
 \begin{block}{Notice}
 Figure with HTML and {\LaTeX} info, and caption, \emph{all on one line}:
 \end{block}
+
+
+
+
+
+
 \bccq
 FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
 
@@ -69840,30 +76404,53 @@ FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
 
 \eccq
 
+
 Movies are also supported:
+
+
+
 \bccq
 MOVIE: [https://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
 
 \eccq
 
 and rendered as
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{center}
 \href{{https://www.youtube.com/embed/P8VcZzgdfSc}}{\nolinkurl{https://www.youtube.com/embed/P8VcZzgdfSc}}
 \end{center}
 \end{doconce:movie}
+
+
 % !split
 \subsection{DocOnce: math}
+
 Inline math as in {\LaTeX}:
+
+
+
 \bccq
 ...where $a=\int_{\Omega}fdx$ is an integral.
 
 \eccq
 
 gets rendered as ...where $a=\int_{\Omega}fdx$ is an integral.
+
 An equation environment is surrounded by \Verb?!bt? and \Verb?!et? tags,
 the rest is plain {\LaTeX}:
+
+
+
+
+
+
+
+
+
+
 \bccq
 !bt
 \begin{align}
@@ -69877,15 +76464,34 @@ label{b:eq}
 \eccq
 
 which is rendered as
+
 \begin{align}
 \frac{\partial u}{\partial t} &= \nabla^2 u,
 \label{_a:eq}\\
 \nabla\cdot\pmb{v} & = 0
 \label{_b:eq}
 \end{align}
+
 % !split
 \subsection{DocOnce: displaying code}
+
 Code is enclosed in \Verb?!bc? and \Verb?!ec? tags:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bccq
 !bc pycod
 def solver(I, a, T, dt, theta):
@@ -69905,6 +76511,20 @@ def solver(I, a, T, dt, theta):
 \eccq
 
 This gets rendered as
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bpycod
 def solver(I, a, T, dt, theta):
     """Solve u'=-a*u, u(0)=I, for t in (0,T] with steps of dt."""
@@ -69921,18 +76541,37 @@ def solver(I, a, T, dt, theta):
 
 \epycod
 
+
 \begin{block}{Language-dependent typesetting of code: }
 The \Verb?!bc? command can be followed by a specification of the computer
 language: \texttt{pycod} for Python code snippet, \texttt{pypro} for complete Python
 program, \texttt{fcod} for Fortran snippet, \texttt{fpro} for Fortran program, and so
 forth (\texttt{c} for C, \texttt{cpp} for C++, \texttt{sh} for Unix shells, \texttt{m} for Matlab).
 \end{block}
+
 % !split
 \subsection{DocOnce: displaying interactive demo code}
 \label{slide:pot}
+
 With \Verb?!bc pyoptpro? or a file \texttt{*.pyopt}, the code applies the
 \href{{https://pythontutor.com}}{Online Python Tutor} for displaying
 program flow and state of variables:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bpypro
 def solver(I, a, T, dt, theta):
     dt = float(dt)
@@ -69953,10 +76592,46 @@ print u
 
 \noindent
 (\href{{https://pythontutor.com/visualize.html\#code=def+solver\%28I\%2C+a\%2C+T\%2C+dt\%2C+theta\%29\%3A\%0A++++dt+\%3D+float\%28dt\%29\%0A++++N+\%3D+int\%28round\%28T\%2Fdt\%29\%29\%0A++++T+\%3D+N\%2Adt\%0A++++u+\%3D+\%5B0.0\%5D\%2A\%28N\%2B1\%29\%0A++++t+\%3D+\%5Bi\%2Adt+for+i+in+range\%28N\%2B1\%29\%5D\%0A\%0A++++u\%5B0\%5D+\%3D+I\%0A++++for+n+in+range\%280\%2C+N\%29\%3A\%0A++++++++u\%5Bn\%2B1\%5D+\%3D+\%281+-+\%281-theta\%29\%2Aa\%2Adt\%29\%2F\%281+\%2B+theta\%2Adt\%2Aa\%29\%2Au\%5Bn\%5D\%0A++++return+u\%2C+t\%0A\%0Au\%2C+t+\%3D+solver\%28I\%3D1\%2C+a\%3D1\%2C+T\%3D3\%2C+dt\%3D1.\%2C+theta\%3D0.5\%29\%0Aprint+u&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2&curInstr=0}}{Visualize execution}) 
+
+
 % !split
 \subsection{DocOnce: exercises}
+
 DocOnce offers a special format for \emph{exercises}, \emph{problems}, \emph{projects},
 and \emph{examples}:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bccq
 ===== Problem: Flip a Coin =====
 label{demo:ex:1}
@@ -69992,9 +76667,35 @@ of getting at least three heads out of 5 throws.
 
 \eccq
 
+
 Solutions/answers can easily be left out of the document.
+
 % !split
 \subsection{DocOnce: example on slide code}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bccq
 !split
 ===== Headline =====
@@ -70021,13 +76722,44 @@ And maybe a final comment?
 
 \eccq
 
+
 % !split
 \subsection{DocOnce: example on slide code with cells}
+
 One can introduce a table-like layout with MxN cells and
 put slide elements in various cell. A cell with position
 MN is surrounded by \Verb?!bslidecell MN? and \Verb?!eslidecell?
 tags. Below is an example with a bullet list to the left and
 a figure to the right (two cells, numbered 00 and 01).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bccq
 !split
 ===== Headline =====
@@ -70059,10 +76791,14 @@ FIGURE: [testfigs/broken_pen_and_paper, width=400, frac=0.8]
 
 \eccq
 
+
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \cleardoublepage\phantomsection  % trick to get correct link to Index
 \printindex
+
 \end{document}
 % #endif
 
@@ -70169,29 +76905,48 @@ FIGURE: [testfigs/broken_pen_and_paper, width=400, frac=0.8]
 % Add user's preamble
 
 
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
 
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \title{Test slide features}
+
 % ----------------- author(s) -------------------------
+
 \author{Core Dump\inst{1}}
 \institute{Cyber Space Ltd\inst{1}}
 % ----------------- end author(s) -------------------------
+
 \date{Jan 32, 2100
 \\ \ \\ 
 \centerline{\includegraphics[width=0.5\linewidth]{testfigs/doconce1b.png}}
 % <optional copyright>
 }
+
 \vspace{6mm}
+
+
 
 \vspace{6mm}
 
@@ -70205,20 +76960,30 @@ FIGURE: [testfigs/broken_pen_and_paper, width=400, frac=0.8]
 \begin{columns}
 \column{0.4\textwidth}
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.8\linewidth]{testfigs/ipad.png}}
+
 \vspace{6mm}
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.3\linewidth]{testfigs/iphones.jpg}}
+
 \vspace{6mm}
+
 % FIGURE: [testfigs/mbair, width=400]
+
 
 \column{0.6\textwidth}
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.7\linewidth]{testfigs/imac.png}}
+
 \vspace{6mm}
+
 
 \end{columns}
 \end{frame}
@@ -70227,8 +76992,10 @@ FIGURE: [testfigs/broken_pen_and_paper, width=400, frac=0.8]
 \frametitle{The book will probably survive}
 
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.9\linewidth]{testfigs/oldbooks.jpg}}
+
 \vspace{6mm}
 \end{frame}
 
@@ -70238,15 +77005,21 @@ FIGURE: [testfigs/broken_pen_and_paper, width=400, frac=0.8]
 \begin{columns}
 \column{0.5\textwidth}
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=1.2\linewidth]{testfigs/latex_thesis.jpg}}
+
 \vspace{6mm}
+
 
 \column{0.5\textwidth}
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=1.2\linewidth]{testfigs/latex_paper1.png}}
+
 \vspace{6mm}
+
 
 \end{columns}
 \end{frame}
@@ -70256,57 +77029,82 @@ FIGURE: [testfigs/broken_pen_and_paper, width=400, frac=0.8]
 
 % * Scientific writing = lecture notes, slides, reports, thesis, books,  ...
 % * (Journal papers typeset by journals are out of scope)
+
 \begin{itemize}
 \pause
   \item Scope: documents with \textcolor{red}{much} \emph{math} and \emph{computer code}
+
 \pause
   \item Key question: What tools should I use for writing?
+
 \pause
   \item Default answer: {\LaTeX}
+
 \pause
   \item Alternative: MS Word w/math
+
 \pause
   \item Recent popular alternative tools: HTML w/MathJax, Sphinx, Markdown, MediaWiki, IPython notebook
 \end{itemize}
+
 \noindent
+
 \begin{columns}
 \column{0.25\textwidth}
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.3\linewidth]{testfigs/LaTeX_logo.jpg}}
+
 \vspace{6mm}
+
 
 \column{0.25\textwidth}
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.2\linewidth]{testfigs/MS_Word_logo.jpg}}
+
 \vspace{6mm}
+
 
 \column{0.5\textwidth}
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.4\linewidth]{testfigs/sphinx_logo.png}}
+
 \vspace{6mm}
+
 
 \end{columns}
 \begin{columns}
 \column{0.25\textwidth}
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.2\linewidth]{testfigs/markdown_logo.jpg}}
+
 \vspace{6mm}
+
 
 \column{0.25\textwidth}
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.2\linewidth]{testfigs/MediaWiki_logo.jpg}}
+
 \vspace{6mm}
+
 
 \column{0.5\textwidth}
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.6\linewidth]{testfigs/IPython_logo.png}}
+
 \vspace{6mm}
+
 
 \end{columns}
 \end{frame}
@@ -70315,24 +77113,35 @@ FIGURE: [testfigs/broken_pen_and_paper, width=400, frac=0.8]
 \frametitle{Scientific writing for the future needs to address many new media}
 
 % Insert links here to reports
+
 \begin{columns}
 \column{0.5\textwidth}
 Old days (1985-2005): {\LaTeX} for BW paper output, but now
+
 \begin{enumerate}
   \item BW books
+
   \item Colorful PDF books (printed and screen)
+
   \item Designed web pages
+
   \item Wikis
+
   \item Blog posts
+
   \item Next new fancy format (iBook w/LaTeX?)
 \end{enumerate}
+
 \noindent
 
 \column{0.5\textwidth}
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.9\linewidth]{testfigs/jungle_with_mess.jpg}}
+
 \vspace{6mm}
+
 
 \end{columns}
 \end{frame}
@@ -70341,16 +77150,23 @@ Old days (1985-2005): {\LaTeX} for BW paper output, but now
 \frametitle{Fundamental question}
 
 When I write some scientific material,
+
 \begin{itemize}
  \item a {\LaTeX} document,
+
  \item a blog post (HTML),
+
  \item some web pages (HTML),
+
  \item a Sphinx document,
+
  \item some Markdown files,
 \end{itemize}
+
 \noindent
 and later want to collect the pieces into a larger document, maybe
 some book, or one big web document, is that at all feasible?
+
 \pause
 Probably not, but I have a solution :-)
 \end{frame}
@@ -70360,16 +77176,24 @@ Probably not, but I have a solution :-)
 
 \begin{itemize}
  \item {\LaTeX} inline math: works with all ({\LaTeX}, MathJax, Sphinx, Markdown, MediaWiki)
+
  \item {\LaTeX} equation math:
 \begin{itemize}
+
     \item \textbf{LaTeX}: \texttt{equation*}, \texttt{equation}, \texttt{align*}, \texttt{align} + \texttt{eqnarray}, \texttt{split}, \texttt{alignat}, ... (numerous!)
+
     \item \textbf{MathJax}: \texttt{equation*}, \texttt{equation}, \texttt{align*}, \texttt{align}
+
     \item \textbf{MediaWiki}: \texttt{equation*}, \texttt{equation}, \texttt{align*}, \texttt{align}
+
     \item \textbf{Sphinx}: \texttt{equation*}, \texttt{equation}, \texttt{align*}
+
     \item \textbf{Markdown}: \texttt{equation*}, \texttt{equation}, \texttt{eqnarray*}, \texttt{align*} (but no labels)
 \end{itemize}
+
 \noindent
 \end{itemize}
+
 \noindent
 \end{frame}
 
@@ -70379,30 +77203,43 @@ Probably not, but I have a solution :-)
 \begin{itemize}
 \pause
  \item Figures: all
+
 \pause
  \item Subfigures: {\LaTeX} (\texttt{subfigure})
+
 \pause
  \item Movies: {\LaTeX} (can run separately), just raw embedded HTML in others
+
 \pause
  \item Floating computer code: {\LaTeX}
+
 \pause
  \item Fixed computer code: all
+
 \pause
  \item Floating tables: {\LaTeX}; inline tables: all
+
 \pause
  \item Algorithms: {\LaTeX}
+
 \pause
  \item Margin notes: {\LaTeX}
+
 \pause
  \item Page references: {\LaTeX}
+
 \pause
  \item Footnotes: {\LaTeX}, Sphinx, reStructuredText, MediaWiki
+
 \pause
  \item Bibliography: {\LaTeX}, Sphinx, reStructuredText, MediaWiki
+
 \pause
  \item Hyperlinks: all (but not on paper!)
 \end{itemize}
+
 \noindent
+
 \pause
 Conclusion: Highly non-trivial to translate a {\LaTeX} document into something
 based on HTML and vice versa.
@@ -70412,14 +77249,21 @@ based on HTML and vice versa.
 \frametitle{DocOnce demo}
 
 \href{{https://hplgit.github.com/teamods/writing_reports/}}{\nolinkurl{https://hplgit.github.com/teamods/writing_reports/}}
+
 \begin{itemize}
  \item LaTeX-based PDF \href{{https://hplgit.github.com/teamods/writing_reports/_static/report.pdf}}{for screen}, \href{{https://hplgit.github.com/teamods/writing_reports/_static/report_4printing.pdf}}{for printing}, \href{{https://hplgit.github.com/teamods/writing_reports/_static/report_4phone.pdf}}{for phone}
+
  \item \href{{https://hplgit.github.com/teamods/writing_reports/_static/report_do.html}}{Plain HTML} or with a \href{{https://hplgit.github.com/teamods/writing_reports/_static/report_vagrant.html}}{template} or \href{{https://hplgit.github.com/teamods/writing_reports/_static/report_github_minimal.html}}{another template} or \href{{https://hplgit.github.com/teamods/writing_reports/_static/report_solarized.html}}{solarized}
+
  \item Sphinx: \href{{https://hplgit.github.com/teamods/writing_reports/_static/sphinx-agni/index.html}}{agni}, \href{{https://hplgit.github.com/teamods/writing_reports/_static/sphinx-pyramid/report.html}}{pyramid}, \href{{https://hplgit.github.com/teamods/writing_reports/_static/sphinx-classy/report.html}}{classy}, \href{{https://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html}}{fenics}, \href{{https://hplgit.github.com/teamods/writing_reports/_static/sphinx-fenics_minimal/report.html}}{redcloud}
+
  \item HTML for \href{{https://doconce-report-demo.blogspot.no/}}{Google} or \href{{https://doconcereportdemo.wordpress.com/}}{Wordpress} blog posts
+
  \item \href{{https://doconcedemo.shoutwiki.com/wiki/DocOnce_demo_page}}{MediaWiki} (Wikipedia, Wikibooks, etc)
+
  \item DocOnce \href{{https://hplgit.github.com/teamods/writing_reports/_static/report.do.txt.html}}{source code} and \href{{https://hplgit.github.io/doconce/doc/src/pub/manual/html/manual.html}}{manual}
 \end{itemize}
+
 \noindent
 \end{frame}
 
@@ -70437,6 +77281,7 @@ TOC: on
 
 \end{Verbatim}
 
+
 \begin{block}{Notice}
 Title and authors must have all information \emph{on a single line}!
 \end{block}
@@ -70451,7 +77296,11 @@ Here goes the abstract...
 
 \end{Verbatim}
 
+
 Or:
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 __Summary.__
 Here goes the summary...
@@ -70463,6 +77312,16 @@ Here goes the summary...
 \frametitle{DocOnce: section headings}
 
 Headings are surrounded by \texttt{=} signs:
+
+
+
+
+
+
+
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 ======= This is an H1/chapter heading =======
 
@@ -70492,19 +77351,29 @@ __This is a paragraph heading.__
 
 \end{Verbatim}
 
+
 This gets rendered as
+
 \begin{itemize}
  \item Bullet lists start with \texttt{*} and may span several lines
+
  \item \emph{Emphasized words} are possible
+
  \item \textbf{Boldface words} are also possible
+
  \item \textcolor{red}{colored words} too
+
  \item \texttt{inline verbatim code} is featured
 \begin{enumerate}
+
   \item and sublists with enumerated items starting with \texttt{o}
+
   \item items are just indented as you would do in email
 \end{enumerate}
+
 \noindent
 \end{itemize}
+
 \noindent
 \end{frame}
 
@@ -70542,6 +77411,12 @@ URL: "https://github.com/doconce/doconce"
 \begin{block}{Notice}
 Figure with HTML and {\LaTeX} info, and caption, \emph{all on one line}:
 \end{block}
+
+
+
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
 
@@ -70550,13 +77425,19 @@ FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
 
 \end{Verbatim}
 
+
 Movies are also supported:
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 MOVIE: [https://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
 
 \end{Verbatim}
 
 and rendered as
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{center}
@@ -70569,14 +77450,28 @@ and rendered as
 \frametitle{DocOnce: math}
 
 Inline math as in {\LaTeX}:
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 ...where $a=\int_{\Omega}fdx$ is an integral.
 
 \end{Verbatim}
 
 gets rendered as ...where $a=\int_{\Omega}fdx$ is an integral.
+
 An equation environment is surrounded by \Verb?!bt? and \Verb?!et? tags,
 the rest is plain {\LaTeX}:
+
+
+
+
+
+
+
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 !bt
 \begin{align}
@@ -70590,6 +77485,7 @@ label{b:eq}
 \end{Verbatim}
 
 which is rendered as
+
 \begin{align}
 \frac{\partial u}{\partial t} &= \nabla^2 u,
 \label{_a:eq}\\
@@ -70602,6 +77498,22 @@ which is rendered as
 \frametitle{DocOnce: displaying code}
 
 Code is enclosed in \Verb?!bc? and \Verb?!ec? tags:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 !bc pycod
 def solver(I, a, T, dt, theta):
@@ -70621,6 +77533,20 @@ def solver(I, a, T, dt, theta):
 \end{Verbatim}
 
 This gets rendered as
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{python}
 def solver(I, a, T, dt, theta):
     """Solve u'=-a*u, u(0)=I, for t in (0,T] with steps of dt."""
@@ -70637,6 +77563,7 @@ def solver(I, a, T, dt, theta):
 
 \end{minted}
 
+
 \begin{block}{Language-dependent typesetting of code: }
 The \Verb?!bc? command can be followed by a specification of the computer
 language: \texttt{pycod} for Python code snippet, \texttt{pypro} for complete Python
@@ -70649,9 +77576,26 @@ forth (\texttt{c} for C, \texttt{cpp} for C++, \texttt{sh} for Unix shells, \tex
 \frametitle{DocOnce: displaying interactive demo code}
 
 \label{slide:pot}
+
 With \Verb?!bc pyoptpro? or a file \texttt{*.pyopt}, the code applies the
 \href{{https://pythontutor.com}}{Online Python Tutor} for displaying
 program flow and state of variables:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{python}
 def solver(I, a, T, dt, theta):
     dt = float(dt)
@@ -70679,6 +77623,39 @@ print u
 
 DocOnce offers a special format for \emph{exercises}, \emph{problems}, \emph{projects},
 and \emph{examples}:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 ===== Problem: Flip a Coin =====
 label{demo:ex:1}
@@ -70713,6 +77690,7 @@ of getting at least three heads out of 5 throws.
 !esubex
 
 \end{Verbatim}
+
 
 Solutions/answers can easily be left out of the document.
 \end{frame}
@@ -70755,6 +77733,35 @@ put slide elements in various cell. A cell with position
 MN is surrounded by \Verb?!bslidecell MN? and \Verb?!eslidecell?
 tags. Below is an example with a bullet list to the left and
 a figure to the right (two cells, numbered 00 and 01).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 !split
 ===== Headline =====
@@ -71634,28 +78641,38 @@ MathJax.Hub.Config({
 %% see examples). If doconce ptex2tex has envir=minted, it enables the
 %% minted style without needing -DMINTED.
 % #endif
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
+
 \usepackage{ptex2tex}
 % #ifdef MINTED
 \usepackage{minted}
 \usemintedstyle{default}
 % #endif
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -71672,7 +78689,9 @@ final,                   % draft: marks overfull hboxes, figures with paths
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -71687,8 +78706,11 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \usepackage[section]{placeins}
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
+
 \usepackage[framemethod=TikZ]{mdframed}
+
 % --- begin definitions of admonition environments ---
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "notice" admon
 \colorlet{mdfbox_notice_background}{gray!5}
@@ -71709,12 +78731,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{notice_mdfboxmdframed}
+
 \newenvironment{notice_mdfboxadmon}[1][]{
 \begin{notice_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{notice_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "summary" admon
 \colorlet{mdfbox_summary_background}{gray!5}
@@ -71735,12 +78759,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{summary_mdfboxmdframed}
+
 \newenvironment{summary_mdfboxadmon}[1][]{
 \begin{summary_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{summary_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "warning" admon
 \colorlet{mdfbox_warning_background}{gray!5}
@@ -71761,12 +78787,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{warning_mdfboxmdframed}
+
 \newenvironment{warning_mdfboxadmon}[1][]{
 \begin{warning_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{warning_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "question" admon
 \colorlet{mdfbox_question_background}{gray!5}
@@ -71787,12 +78815,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{question_mdfboxmdframed}
+
 \newenvironment{question_mdfboxadmon}[1][]{
 \begin{question_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{question_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "block" admon
 \colorlet{mdfbox_block_background}{gray!5}
@@ -71813,46 +78843,71 @@ final,                   % draft: marks overfull hboxes, figures with paths
   roundcorner=5,
   needspace=0pt,
 ]{block_mdfboxmdframed}
+
 \newenvironment{block_mdfboxadmon}[1][]{
 \begin{block_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{block_mdfboxmdframed}
 }
+
 % --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \title{On Schemes for Exponential Decay}
+
 % ----------------- author(s) -------------------------
+
 \author{Hans Petter Langtangen\inst{1,2}}
 \institute{Center for Biomedical Computing, Simula Research Laboratory\inst{1}
 \and
 Department of Informatics, University of Oslo\inst{2}}
 % ----------------- end author(s) -------------------------
+
 \date{Jan 32, 2100
 % <optional titlepage figure>
 % <optional copyright>
 }
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.4\linewidth]{../doc/src/slides/fig/CN_logo.pdf}}
+
 \vspace{6mm}
+
 % !split
 \subsection{Goal}
+
 The primary goal of this demo talk is to demonstrate how to write
 talks with \href{{https://github.com/doconce/doconce}}{DocOnce}
 and get them rendered in numerous HTML formats.
@@ -71860,46 +78915,66 @@ and get them rendered in numerous HTML formats.
 This version
 utilizes beamer slides with the theme red_plain.
 \end{block}
+
 % !bnotes
 The talk investigates the accuracy of three finite difference
 schemes for the ordinary differential equation $u'=-au$ with the
 aid of numerical experiments. Numerical artifacts are in particular
 demonstrated.
 % !enotes
+
 % !split
 \section{Methods}
+
 % !split
 \subsection{Mathematical problem}
+
 % !bslidecell 00
+
 \begin{align}
 u'(t) &= -au(t),
 \label{ode}\\ 
 u(0)  &= I,
 \label{initial:value}
 \end{align}
+
 \begin{itemize}
  \item $t\in (0,T]$
+
  \item $a$, $I$, and $T$ are prescribed parameters
+
  \item $u(t)$ is the unknown function
 \end{itemize}
+
 \noindent
 % !eslidecell
+
 % !bslidecell 01
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.5\linewidth]{../doc/src/slides/fig/teacher2.jpg}}
+
 \vspace{6mm}
+
 % !eslidecell
+
 % !split
 \subsection{Numerical solution method}
+
 % !bpop
 \begin{itemize}
  \item Mesh in time: $0= t_0< t_1 \cdots < t_N=T$
+
  \item Assume constant $\Delta t = t_{n}-t_{n-1}$
+
  \item $u^n$: numerical approx to the exact solution at $t_n$
 \end{itemize}
+
 \noindent
 % !epop
+
 % !bpop
 Numerical scheme:
    \[
@@ -71907,9 +78982,26 @@ Numerical scheme:
    \quad n=0,1,\ldots,N-1
    \]
 % !epop
+
 % !split
+
 \subsection{Implementation}
+
 The numerical method is implemented in a Python function:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \bpycod
 def solver(I, a, T, dt, theta):
     """Solve u'=-a*u, u(0)=I, for t in (0,T]; step: dt."""
@@ -71926,38 +79018,55 @@ def solver(I, a, T, dt, theta):
 
 \epycod
 
+
 % !split
 \section{Selected results}
 % Short title: Results
+
 % !split
 \subsection{The Crank-Nicolson method}
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.9\linewidth]{../doc/src/slides/fig/CN.pdf}}
+
 \vspace{6mm}
+
 % !split
 \subsection{The artifacts can be explained by some theory}
+
 % !bpop
 Exact solution of the scheme:
+
 \[ u^n = A^n,\quad A = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}\thinspace .\]
 % !epop
+
 % !bpop
 \begin{itemize}
  \item Stability: $|A| < 1$
+
  \item No oscillations: $A>0$
+
  \item Always for Backward Euler ($\theta=1$)
+
  \item $\Delta t < 1/a$ for Forward Euler ($\theta=0$)
+
  \item $\Delta t < 2/a$ for Crank-Nicolson ($\theta=1/2$)
 \end{itemize}
+
 \noindent
 % !epop
+
 % !bpop
 \begin{block}{Concluding remarks: }
 Only the Backward Euler scheme is guaranteed to always give
 qualitatively correct results.
 \end{block}
 % !epop
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \end{document}
 % #endif
@@ -72065,31 +79174,50 @@ qualitatively correct results.
 % Add user's preamble
 
 
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
 
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \title{On Schemes for Exponential Decay}
+
 % ----------------- author(s) -------------------------
+
 \author{Hans Petter Langtangen\inst{1,2}}
 \institute{Center for Biomedical Computing, Simula Research Laboratory\inst{1}
 \and
 Department of Informatics, University of Oslo\inst{2}}
 % ----------------- end author(s) -------------------------
+
 \date{Jan 32, 2100
 \\ \ \\ 
 \centerline{\includegraphics[width=0.4\linewidth]{../doc/src/slides/fig/CN_logo.pdf}}
 % <optional copyright>
 }
+
 \vspace{6mm}
+
+
 
 \vspace{6mm}
 
@@ -72107,6 +79235,7 @@ and get them rendered in numerous HTML formats.
 This version
 utilizes beamer slides with the theme red_plain.
 \end{block}
+
 \note{
 The talk investigates the accuracy of three finite difference
 schemes for the ordinary differential equation $u'=-au$ with the
@@ -72128,18 +79257,25 @@ u'(t) &= -au(t),
 u(0)  &= I,
 \label{initial:value}
 \end{align}
+
 \begin{itemize}
  \item $t\in (0,T]$
+
  \item $a$, $I$, and $T$ are prescribed parameters
+
  \item $u(t)$ is the unknown function
 \end{itemize}
+
 \noindent
 
 \column{0.5\textwidth}
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.5\linewidth]{../doc/src/slides/fig/teacher2.jpg}}
+
 \vspace{6mm}
+
 
 \end{columns}
 \end{frame}
@@ -72150,12 +79286,16 @@ u(0)  &= I,
 \begin{itemize}
 \pause
  \item Mesh in time: $0= t_0< t_1 \cdots < t_N=T$
+
 \pause
  \item Assume constant $\Delta t = t_{n}-t_{n-1}$
+
 \pause
  \item $u^n$: numerical approx to the exact solution at $t_n$
 \end{itemize}
+
 \noindent
+
 \pause
 Numerical scheme:
    \[
@@ -72168,6 +79308,20 @@ Numerical scheme:
 \frametitle{Implementation}
 
 The numerical method is implemented in a Python function:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{python}
 def solver(I, a, T, dt, theta):
     """Solve u'=-a*u, u(0)=I, for t in (0,T]; step: dt."""
@@ -72191,8 +79345,10 @@ def solver(I, a, T, dt, theta):
 \frametitle{The Crank-Nicolson method}
 
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.9\linewidth]{../doc/src/slides/fig/CN.pdf}}
+
 \vspace{6mm}
 \end{frame}
 
@@ -72201,20 +79357,28 @@ def solver(I, a, T, dt, theta):
 
 \pause
 Exact solution of the scheme:
+
 \[ u^n = A^n,\quad A = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}\thinspace .\]
+
 \begin{itemize}
 \pause
  \item Stability: $|A| < 1$
+
 \pause
  \item No oscillations: $A>0$
+
 \pause
  \item Always for Backward Euler ($\theta=1$)
+
 \pause
  \item $\Delta t < 1/a$ for Forward Euler ($\theta=0$)
+
 \pause
  \item $\Delta t < 2/a$ for Crank-Nicolson ($\theta=1/2$)
 \end{itemize}
+
 \noindent
+
 \pause
 \begin{block}{Concluding remarks: }
 Only the Backward Euler scheme is guaranteed to always give
@@ -73960,35 +81124,49 @@ if (!!(window.safari)) {
 %% see examples). If doconce ptex2tex has envir=minted, it enables the
 %% minted style without needing -DMINTED.
 % #endif
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
+
 \usepackage{fancybox}  % make sure fancybox is loaded before fancyvrb
 %\setlength{\fboxsep}{8pt}  % may clash with need in pre/cod envirs
+
 % Movies are handled by the href package
 \newenvironment{doconce:movie}{}{}
 \newcounter{doconce:movie:counter}
+
 \usepackage{animate}
+
+
 \usepackage{ptex2tex}
 % #ifdef MINTED
 \usepackage{minted}
 \usemintedstyle{default}
 % #endif
 \usepackage{fancyvrb}
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -74005,26 +81183,43 @@ final,                   % draft: marks overfull hboxes, figures with paths
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
+
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -74032,22 +81227,31 @@ This is a demo of movies in DocOnce
 \end{spacing}
 }
 \end{center}
+
 % ----------------- author(s) -------------------------
+
 \begin{center}
 {\bf HPL${}^{}$} \\ [0mm]
 \end{center}
+
 \begin{center}
 % List of all institutions:
 \end{center}
     
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
+
 Here is a movie in WebM format.
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{quote}
@@ -74055,7 +81259,11 @@ Here is a movie in WebM format.
 Movie \arabic{doconce:movie:counter}: 1D wave in WebM. \href{run:../doc/src/manual/mov/wave.webm}{\nolinkurl{../doc/src/manual/mov/wave.webm}}
 \end{quote}
 \end{doconce:movie}
+
+
 Here is the same movie in Ogg format:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{quote}
@@ -74063,7 +81271,11 @@ Here is the same movie in Ogg format:
 Movie \arabic{doconce:movie:counter}: 1D wave in Ogg. \href{run:../doc/src/manual/mov/wave.ogg}{\nolinkurl{../doc/src/manual/mov/wave.ogg}}
 \end{quote}
 \end{doconce:movie}
+
+
 Here is the same movie in MP4 format:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{quote}
@@ -74071,7 +81283,11 @@ Here is the same movie in MP4 format:
 Movie \arabic{doconce:movie:counter}: 1D wave in MP4. \href{run:../doc/src/manual/mov/wave.mp4}{\nolinkurl{../doc/src/manual/mov/wave.mp4}}
 \end{quote}
 \end{doconce:movie}
+
+
 Here is the same movie in Flash format:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{quote}
@@ -74079,8 +81295,12 @@ Here is the same movie in Flash format:
 Movie \arabic{doconce:movie:counter}: 1D wave in Flash. \href{run:../doc/src/manual/mov/wave.flv}{\nolinkurl{../doc/src/manual/mov/wave.flv}}
 \end{quote}
 \end{doconce:movie}
+
+
 And here is a collection of images shown as an animation
 (\Verb!frame_*.png!):
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{center}
@@ -74186,30 +81406,43 @@ And here is a collection of images shown as an animation
 \includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0129.png}
 \end{animateinline}
 \end{center}
+
 \begin{center}  % movie caption
 Movie \arabic{doconce:movie:counter}: Animated collection of images.
 \end{center}
 \end{doconce:movie}
+
+
 Here is the same collection, but with images in cyberspace, given as URLs:
+
+
+
 \bccq
 https://hplgit.github.io/animate/..../frame_%04d.png:80->129
 
 \eccq
+
+
 
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{center}
 Taking images to animate from cyberspace. \Verb!https://hplgit.github.io/animate/doc/pub/mov-animate/frames/frame_%04d.png:80->129!: load \href{{file:///X/X/movie_player1.html}}{\nolinkurl{movie_player1.html}} into a browser
 \end{center}
+
 \begin{center}  % movie caption
 Movie \arabic{doconce:movie:counter}: Taking images to animate from cyberspace.
 \end{center}
 \end{doconce:movie}
+
+
 The movie above in MPEG format, typeset in a box:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{quote}
@@ -74221,7 +81454,10 @@ Movie \arabic{doconce:movie:counter}: 1D wave in MPEG. \label{mov:wave} \href{ru
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 Here is the same movie in AVI format:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{quote}
@@ -74229,7 +81465,11 @@ Here is the same movie in AVI format:
 Movie \arabic{doconce:movie:counter}: 1D wave in AVI. \href{run:../doc/src/manual/mov/wave.avi}{\nolinkurl{../doc/src/manual/mov/wave.avi}}
 \end{quote}
 \end{doconce:movie}
+
+
 Here is the same movie, but with a URL to GitHub:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{quote}
@@ -74237,26 +81477,40 @@ Here is the same movie, but with a URL to GitHub:
 Movie \arabic{doconce:movie:counter}:  \href{https://hplgit.github.io/animate/doc/pub/mov-animate/demo.ogg}{\nolinkurl{https://hplgit.github.io/animate/doc/pub/mov-animate/demo.ogg}}
 \end{quote}
 \end{doconce:movie}
+
+
 Here is a YouTube video:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{center}
 \href{{https://www.youtube.com/watch?v=_O7iUiftbKU}}{\nolinkurl{https://www.youtube.com/watch?v=_O7iUiftbKU}}
 \end{center}
+
 \begin{center}  % movie caption
 Movie \arabic{doconce:movie:counter}: YouTube movie.
 \end{center}
 \end{doconce:movie}
+
+
 And a vimeo video:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{center}\href{{https://vimeo.com/55562330}}{\nolinkurl{https://vimeo.com/55562330}}\end{center}
+
 \begin{center}  % movie caption
 Movie \arabic{doconce:movie:counter}: Vimeo movie.
 \end{center}
 \end{doconce:movie}
+
+
 Finally, let us demonstrate referencing the movie~\ref{mov:wave}.
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \end{document}
 % #endif
@@ -74268,29 +81522,43 @@ Finally, let us demonstrate referencing the movie~\ref{mov:wave}.
 %% (https://github.com/doconce/doconce/)
 %% doconce format html movies.do.txt 
 %%
+
+
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
+
 \usepackage{fancybox}  % make sure fancybox is loaded before fancyvrb
 %\setlength{\fboxsep}{8pt}  % may clash with need in pre/cod envirs
+
 % Movies are handled by the href package
 \newenvironment{doconce:movie}{}{}
 \newcounter{doconce:movie:counter}
+
 \usepackage{animate}
+
+
 \usepackage{fancyvrb} % packages needed for verbatim environments
 \usepackage{fancyvrb}
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -74307,25 +81575,42 @@ final,                   % draft: marks overfull hboxes, figures with paths
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
+
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -74333,22 +81618,31 @@ This is a demo of movies in DocOnce
 \end{spacing}
 }
 \end{center}
+
 % ----------------- author(s) -------------------------
+
 \begin{center}
 {\bf HPL${}^{}$} \\ [0mm]
 \end{center}
+
 \begin{center}
 % List of all institutions:
 \end{center}
     
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
+
 Here is a movie in WebM format.
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{quote}
@@ -74356,7 +81650,11 @@ Here is a movie in WebM format.
 Movie \arabic{doconce:movie:counter}: 1D wave in WebM. \href{run:../doc/src/manual/mov/wave.webm}{\nolinkurl{../doc/src/manual/mov/wave.webm}}
 \end{quote}
 \end{doconce:movie}
+
+
 Here is the same movie in Ogg format:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{quote}
@@ -74364,7 +81662,11 @@ Here is the same movie in Ogg format:
 Movie \arabic{doconce:movie:counter}: 1D wave in Ogg. \href{run:../doc/src/manual/mov/wave.ogg}{\nolinkurl{../doc/src/manual/mov/wave.ogg}}
 \end{quote}
 \end{doconce:movie}
+
+
 Here is the same movie in MP4 format:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{quote}
@@ -74372,7 +81674,11 @@ Here is the same movie in MP4 format:
 Movie \arabic{doconce:movie:counter}: 1D wave in MP4. \href{run:../doc/src/manual/mov/wave.mp4}{\nolinkurl{../doc/src/manual/mov/wave.mp4}}
 \end{quote}
 \end{doconce:movie}
+
+
 Here is the same movie in Flash format:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{quote}
@@ -74380,8 +81686,12 @@ Here is the same movie in Flash format:
 Movie \arabic{doconce:movie:counter}: 1D wave in Flash. \href{run:../doc/src/manual/mov/wave.flv}{\nolinkurl{../doc/src/manual/mov/wave.flv}}
 \end{quote}
 \end{doconce:movie}
+
+
 And here is a collection of images shown as an animation
 (\Verb!frame_*.png!):
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{center}
@@ -74487,30 +81797,43 @@ And here is a collection of images shown as an animation
 \includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0129.png}
 \end{animateinline}
 \end{center}
+
 \begin{center}  % movie caption
 Movie \arabic{doconce:movie:counter}: Animated collection of images.
 \end{center}
 \end{doconce:movie}
+
+
 Here is the same collection, but with images in cyberspace, given as URLs:
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 https://hplgit.github.io/animate/..../frame_%04d.png:80->129
 
 \end{Verbatim}
+
+
 
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{center}
 Taking images to animate from cyberspace. \Verb!https://hplgit.github.io/animate/doc/pub/mov-animate/frames/frame_%04d.png:80->129!: load \href{{file:///X/X/movie_player1.html}}{\nolinkurl{movie_player1.html}} into a browser
 \end{center}
+
 \begin{center}  % movie caption
 Movie \arabic{doconce:movie:counter}: Taking images to animate from cyberspace.
 \end{center}
 \end{doconce:movie}
+
+
 The movie above in MPEG format, typeset in a box:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{quote}
@@ -74522,7 +81845,10 @@ Movie \arabic{doconce:movie:counter}: 1D wave in MPEG. \label{mov:wave} \href{ru
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 Here is the same movie in AVI format:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{quote}
@@ -74530,7 +81856,11 @@ Here is the same movie in AVI format:
 Movie \arabic{doconce:movie:counter}: 1D wave in AVI. \href{run:../doc/src/manual/mov/wave.avi}{\nolinkurl{../doc/src/manual/mov/wave.avi}}
 \end{quote}
 \end{doconce:movie}
+
+
 Here is the same movie, but with a URL to GitHub:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{quote}
@@ -74538,26 +81868,40 @@ Here is the same movie, but with a URL to GitHub:
 Movie \arabic{doconce:movie:counter}:  \href{https://hplgit.github.io/animate/doc/pub/mov-animate/demo.ogg}{\nolinkurl{https://hplgit.github.io/animate/doc/pub/mov-animate/demo.ogg}}
 \end{quote}
 \end{doconce:movie}
+
+
 Here is a YouTube video:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{center}
 \href{{https://www.youtube.com/watch?v=_O7iUiftbKU}}{\nolinkurl{https://www.youtube.com/watch?v=_O7iUiftbKU}}
 \end{center}
+
 \begin{center}  % movie caption
 Movie \arabic{doconce:movie:counter}: YouTube movie.
 \end{center}
 \end{doconce:movie}
+
+
 And a vimeo video:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{center}\href{{https://vimeo.com/55562330}}{\nolinkurl{https://vimeo.com/55562330}}\end{center}
+
 \begin{center}  % movie caption
 Movie \arabic{doconce:movie:counter}: Vimeo movie.
 \end{center}
 \end{doconce:movie}
+
+
 Finally, let us demonstrate referencing the movie~\ref{mov:wave}.
+
 % ------------------- end of main content ---------------
+
 \end{document}
 
 
@@ -74567,31 +81911,44 @@ Finally, let us demonstrate referencing the movie~\ref{mov:wave}.
 %% (https://github.com/doconce/doconce/)
 %% doconce format html movies.do.txt --latex_movie=media9
 %%
+
+
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
+
 \usepackage{fancybox}  % make sure fancybox is loaded before fancyvrb
 %\setlength{\fboxsep}{8pt}  % may clash with need in pre/cod envirs
+
 % Movies are handled by the media9 package
 \newenvironment{doconce:movie}{}{}
 \newcounter{doconce:movie:counter}
 \usepackage{media9}
 \usepackage{movie15}
 \usepackage{animate}
+
+
 \usepackage{fancyvrb} % packages needed for verbatim environments
 \usepackage{fancyvrb}
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -74608,25 +81965,42 @@ final,                   % draft: marks overfull hboxes, figures with paths
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
+
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -74634,22 +82008,31 @@ This is a demo of movies in DocOnce
 \end{spacing}
 }
 \end{center}
+
 % ----------------- author(s) -------------------------
+
 \begin{center}
 {\bf HPL${}^{}$} \\ [0mm]
 \end{center}
+
 \begin{center}
 % List of all institutions:
 \end{center}
     
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
+
 Here is a movie in WebM format.
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{quote}
@@ -74657,7 +82040,11 @@ Here is a movie in WebM format.
 Movie \arabic{doconce:movie:counter}: 1D wave in WebM. \href{run:../doc/src/manual/mov/wave.webm}{\nolinkurl{../doc/src/manual/mov/wave.webm}}
 \end{quote}
 \end{doconce:movie}
+
+
 Here is the same movie in Ogg format:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{quote}
@@ -74665,7 +82052,11 @@ Here is the same movie in Ogg format:
 Movie \arabic{doconce:movie:counter}: 1D wave in Ogg. \href{run:../doc/src/manual/mov/wave.ogg}{\nolinkurl{../doc/src/manual/mov/wave.ogg}}
 \end{quote}
 \end{doconce:movie}
+
+
 Here is the same movie in MP4 format:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{center}
@@ -74683,11 +82074,16 @@ source=../doc/src/manual/mov/wave.mp4
 }]{}{VPlayer.swf}
 %\mediabutton[mediacommand=docsrcmanualmovwavemp4:playPause]{\fbox{\strut Play/Pause}}
 \end{center}
+
 \begin{center}  % movie caption
 Movie \arabic{doconce:movie:counter}: 1D wave in MP4.
 \end{center}
 \end{doconce:movie}
+
+
 Here is the same movie in Flash format:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{center}
@@ -74705,12 +82101,17 @@ source=../doc/src/manual/mov/wave.flv
 }]{}{VPlayer.swf}
 %\mediabutton[mediacommand=docsrcmanualmovwaveflv:playPause]{\fbox{\strut Play/Pause}}
 \end{center}
+
 \begin{center}  % movie caption
 Movie \arabic{doconce:movie:counter}: 1D wave in Flash.
 \end{center}
 \end{doconce:movie}
+
+
 And here is a collection of images shown as an animation
 (\Verb!frame_*.png!):
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{center}
@@ -74816,30 +82217,43 @@ And here is a collection of images shown as an animation
 \includegraphics[width=0.9\textwidth]{../doc/src/manual/mov/wave_frames/frame_0129.png}
 \end{animateinline}
 \end{center}
+
 \begin{center}  % movie caption
 Movie \arabic{doconce:movie:counter}: Animated collection of images.
 \end{center}
 \end{doconce:movie}
+
+
 Here is the same collection, but with images in cyberspace, given as URLs:
+
+
+
 \begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 https://hplgit.github.io/animate/..../frame_%04d.png:80->129
 
 \end{Verbatim}
+
+
 
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{center}
 Taking images to animate from cyberspace. \Verb!https://hplgit.github.io/animate/doc/pub/mov-animate/frames/frame_%04d.png:80->129!: load \href{{file:///X/X/movie_player1.html}}{\nolinkurl{movie_player1.html}} into a browser
 \end{center}
+
 \begin{center}  % movie caption
 Movie \arabic{doconce:movie:counter}: Taking images to animate from cyberspace.
 \end{center}
 \end{doconce:movie}
+
+
 The movie above in MPEG format, typeset in a box:
+
 
 \begin{center}
 \begin{Sbox}
 \begin{minipage}{0.85\linewidth}
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{center}
@@ -74852,12 +82266,14 @@ toolbar,
 text={\small (Loading ../doc/src/manual/mov/wave.mpeg)},
 repeat,
 ]{0.9\linewidth}{0.9\linewidth}{../doc/src/manual/mov/wave.mpeg}
+
 \movieref[rate=0.5]{docsrcmanualmovwavempeg}{Slower}
 \movieref[rate=2]{docsrcmanualmovwavempeg}{Faster}
 \movieref[default]{docsrcmanualmovwavempeg}{Normal}
 \movieref[pause]{docsrcmanualmovwavempeg}{Play/Pause}
 \movieref[stop]{docsrcmanualmovwavempeg}{Stop}
 \end{center}
+
 \begin{center}  % movie caption
 Movie \arabic{doconce:movie:counter}: 1D wave in MPEG. \label{mov:wave}
 \end{center}
@@ -74866,7 +82282,10 @@ Movie \arabic{doconce:movie:counter}: 1D wave in MPEG. \label{mov:wave}
 \end{Sbox}
 \fbox{\TheSbox}
 \end{center}
+
 Here is the same movie in AVI format:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{center}
@@ -74879,17 +82298,23 @@ toolbar,
 text={\small (Loading ../doc/src/manual/mov/wave.avi)},
 repeat,
 ]{0.9\linewidth}{0.9\linewidth}{../doc/src/manual/mov/wave.avi}
+
 \movieref[rate=0.5]{docsrcmanualmovwaveavi}{Slower}
 \movieref[rate=2]{docsrcmanualmovwaveavi}{Faster}
 \movieref[default]{docsrcmanualmovwaveavi}{Normal}
 \movieref[pause]{docsrcmanualmovwaveavi}{Play/Pause}
 \movieref[stop]{docsrcmanualmovwaveavi}{Stop}
 \end{center}
+
 \begin{center}  % movie caption
 Movie \arabic{doconce:movie:counter}: 1D wave in AVI.
 \end{center}
 \end{doconce:movie}
+
+
 Here is the same movie, but with a URL to GitHub:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{quote}
@@ -74897,7 +82322,11 @@ Here is the same movie, but with a URL to GitHub:
 Movie \arabic{doconce:movie:counter}:  \href{https://hplgit.github.io/animate/doc/pub/mov-animate/demo.ogg}{\nolinkurl{https://hplgit.github.io/animate/doc/pub/mov-animate/demo.ogg}}
 \end{quote}
 \end{doconce:movie}
+
+
 Here is a YouTube video:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{center}
@@ -74912,20 +82341,30 @@ modestbranding=1   % no YouTube logo in control bar
 },
 ]{}{https://www.youtube.com/watch?v=_O7iUiftbKU}
 \end{center}
+
 \begin{center}  % movie caption
 Movie \arabic{doconce:movie:counter}: YouTube movie.
 \end{center}
 \end{doconce:movie}
+
+
 And a vimeo video:
+
+
 \begin{doconce:movie}
 \refstepcounter{doconce:movie:counter}
 \begin{center}\href{{https://vimeo.com/55562330}}{\nolinkurl{https://vimeo.com/55562330}}\end{center}
+
 \begin{center}  % movie caption
 Movie \arabic{doconce:movie:counter}: Vimeo movie.
 \end{center}
 \end{doconce:movie}
+
+
 Finally, let us demonstrate referencing the movie~\ref{mov:wave}.
+
 % ------------------- end of main content ---------------
+
 \end{document}
 
 
@@ -75579,8 +83018,12 @@ $b = 1$ is a value suggested by Åsmund Ødegård.
 
 
 ************** File: encoding3.p.tex-ascii *****************
+
 % ------------------- main content ----------------------
+
 Text with a name like Åsmund Ødegård works in general.
+
+
 % ------------------- end of main content ---------------
 
 
@@ -75931,14 +83374,21 @@ end of tocinfo -->
 
 
 ************** File: encoding3.p.tex-ascii-verb *****************
+
 % ------------------- main content ----------------------
+
 Text with a name like Åsmund Ødegård works in general.
 Verbatim blocks with non-ASCII text does not work for HTML, but it works
 for {\LaTeX}. The remedy for HTML is to read the file with UTF-8 encoding.
+
+
+
 \bccq
 a = 1  # Value suggested by Åsmund Ødegård.
 
 \eccq
+
+
 
 % ------------------- end of main content ---------------
 
@@ -76379,15 +83829,21 @@ end of tocinfo -->
 
 
 ************** File: encoding3.p.tex-utf8 *****************
+
 % ------------------- main content ----------------------
+
 Text with a name like Åsmund Ødegård works in general.
+
 This block (in format latex)
 triggers use of \texttt{mako}. For all formats, \texttt{mako} has
 problem with non-ASCII characters anywhere in the text. The remedy
 for all formats is to read the file with UTF-8 encoding. With --debug
 one can see the internal str/unicode representation of the text
 through the various stages of the text transformation process.
+
 $b = 1$ is a value suggested by Åsmund Ødegård.
+
+
 % ------------------- end of main content ---------------
 
 
@@ -77709,22 +85165,31 @@ BIBFILE: papers.pub
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
 %% doconce format html Springer_T2_book.do.txt CHAPTER=chapter BOOK=book APPENDIX=appendix -DPRIMER_BOOK ALG=code --latex_code_style=lst --encoding=utf-8 --device=paper --exercise_numbering=chapter --latex_admon_color=1,1,1 --latex_admon=mdfbox --latex_style=Springer_T4 --latex_title_layout=titlepage --latex_list_of_exercises=loe --latex_table_format=center --latex_admon_title_no_period --exercises_in_zip --exercises_in_zip_filename=chapter --allow_refs_to_external_docs
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 % Style: T4 (Springer)
 % Use svmono.cls with doconce modifications for bibliography (svmonodo.cls)
 \documentclass[graybox,sectrefs,envcountresetchap,open=right,final]{svmonodo}
+
 % Use t4.sty with doconce modifications (t4do.sty)
 \usepackage{t4do}
 \special{papersize=178mm,254mm}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage{graphicx}
+
 % Packages for typesetting blocks of computer code
 \usepackage{fancyvrb,framed,moreverb}
+
 % Define colors
 \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
 \definecolor{tucorange}{rgb}{1.0,0.64,0}
@@ -77745,31 +85210,42 @@ BIBFILE: papers.pub
 \definecolor{lightblue2}{rgb}{0.3,0.3,1.0}
 \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
 \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+
 \colorlet{comment_green}{green!50!black}
 \colorlet{string_red}{red!60!black}
 \colorlet{keyword_pink}{magenta!70!black}
 \colorlet{indendifier_green}{green!70!white}
+
 % Backgrounds for code
 \definecolor{cbg_gray}{rgb}{.95, .95, .95}
 \definecolor{bar_gray}{rgb}{.92, .92, .92}
+
 \definecolor{cbg_yellowgray}{rgb}{.95, .95, .85}
 \definecolor{bar_yellowgray}{rgb}{.95, .95, .65}
+
 \colorlet{cbg_yellow2}{yellow!10}
 \colorlet{bar_yellow2}{yellow!20}
+
 \definecolor{cbg_yellow1}{rgb}{.98, .98, 0.8}
 \definecolor{bar_yellow1}{rgb}{.98, .98, 0.4}
+
 \definecolor{cbg_red1}{rgb}{1, 0.85, 0.85}
 \definecolor{bar_red1}{rgb}{1, 0.75, 0.85}
+
 \definecolor{cbg_blue1}{rgb}{0.87843, 0.95686, 1.0}
 \definecolor{bar_blue1}{rgb}{0.7,     0.95686, 1}
+
 \usepackage{listingsutf8}
+
 % Common lstlisting parameters
+
 \usepackage{calc}
 \newlength{\lstboxwidth}  % width of lst box
 \newlength{\framethickness}
 \setlength{\framethickness}{0.5mm}
 % for frame=trbl and a framerule that has significant size, set
 % xleftmargin=5mm and xrightmargin=5mm.
+
 \lstset{
   basicstyle=\small \ttfamily,
   breaklines=false,          % break/wrap lines
@@ -77793,17 +85269,24 @@ BIBFILE: papers.pub
   escapeinside={(*@}{@*)},   % (*@ \pause @*) in slides and math in code blocks
   extendedchars=\true,       % allows non-ascii chars, does not work with utf-8
 }
+
 % Internally defined styles for lstlisting
+
 \lstdefinestyle{simple}{
 commentstyle={},
 }
+
 % end of custom lstdefinestyles
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
+
 \usepackage{hyperref}
 \hypersetup{
     breaklinks=true,
@@ -77818,9 +85301,13 @@ commentstyle={},
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{3}  % levels in table of contents
+
 \usepackage[framemethod=TikZ]{mdframed}
+
 % --- begin definitions of admonition environments ---
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "notice" admon
 \definecolor{mdfbox_notice_background}{rgb}{1,1,1}
@@ -77841,12 +85328,14 @@ commentstyle={},
   roundcorner=5,
   needspace=0pt,
 ]{notice_mdfboxmdframed}
+
 \newenvironment{notice_mdfboxadmon}[1][]{
 \begin{notice_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{notice_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "summary" admon
 \definecolor{mdfbox_summary_background}{rgb}{1,1,1}
@@ -77867,12 +85356,14 @@ commentstyle={},
   roundcorner=5,
   needspace=0pt,
 ]{summary_mdfboxmdframed}
+
 \newenvironment{summary_mdfboxadmon}[1][]{
 \begin{summary_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{summary_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "warning" admon
 \definecolor{mdfbox_warning_background}{rgb}{1,1,1}
@@ -77893,12 +85384,14 @@ commentstyle={},
   roundcorner=5,
   needspace=0pt,
 ]{warning_mdfboxmdframed}
+
 \newenvironment{warning_mdfboxadmon}[1][]{
 \begin{warning_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{warning_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "question" admon
 \definecolor{mdfbox_question_background}{rgb}{1,1,1}
@@ -77919,12 +85412,14 @@ commentstyle={},
   roundcorner=5,
   needspace=0pt,
 ]{question_mdfboxmdframed}
+
 \newenvironment{question_mdfboxadmon}[1][]{
 \begin{question_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{question_mdfboxmdframed}
 }
+
 % Admonition style "mdfbox" is an oval colored box based on mdframed
 % "block" admon
 \definecolor{mdfbox_block_background}{rgb}{1,1,1}
@@ -77945,16 +85440,20 @@ commentstyle={},
   roundcorner=5,
   needspace=0pt,
 ]{block_mdfboxmdframed}
+
 \newenvironment{block_mdfboxadmon}[1][]{
 \begin{block_mdfboxmdframed}[frametitle=#1]
 }
 {
 \end{block_mdfboxmdframed}
 }
+
 % --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 \newenvironment{doconceexercise}{}{}
 \newcounter{doconceexercisecounter}% --- begin definition of \listofexercises command ---
 \makeatletter
@@ -77967,10 +85466,14 @@ commentstyle={},
 \newcommand*{\l@doconceexercise}{\@dottedtocline{0}{0pt}{6.5em}}
 \makeatother
 % --- end definition of \listofexercises command ---
+
+
 % Let exercises, problems, and projects be numbered per chapter:
 \usepackage{chngcntr}
 \counterwithin{doconceexercisecounter}{chapter}
+
 % \subex{} is defined in t2do.sty or t4do.sty
+
 % Redefine double page clear to make it a blank page without headers
 % (from BYUTextbook)
 \makeatletter
@@ -77986,25 +85489,41 @@ commentstyle={},
 %\renewcommand{\@pnumwidth}{2em}
 %\renewcommand{\@tocrmarg}{2.85em}
 \makeatother
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_keep}
+
 % ------------------- main content ----------------------
+
 % Note on the Springer T2 style: used the modifications in t2do.sty
 % and svmonodo.cls (come bundled with DocOnce).
+
+
 \frontmatter
 \setcounter{page}{3}
 \pagestyle{headings}
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
 \hbox{\ \ }
 \vfill
@@ -78016,13 +85535,19 @@ commentstyle={},
 \\[0.4cm] {\rule{\linewidth}{0.5mm}} \\[1.5cm]
 \end{spacing}
 }}}
+
 % ----------------- author(s) -------------------------
+
 \vspace{0.5cm}
+
 {\Large\textsf{Hans Petter Langtangen${}^{1, 2}$}}\\ [3mm]
+
 \ \\ [2mm]
+
 {\large\textsf{${}^1$Center for Biomedical Computing, Simula Research Laboratory} \\ [1.5mm]}
 {\large\textsf{${}^2$Department of Informatics, University of Oslo} \\ [1.5mm]}
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \ \\ [10mm]
 {\large\textsf{Jan 32, 2100}}
@@ -78030,9 +85555,12 @@ commentstyle={},
 % --- end date ---
 \vfill
 \clearpage
+
 \setpagesize
+
 \chapter*{Preface}
 \addcontentsline{toc}{chapter}{Preface}
+
 The aim of this book is to teach computer programming using examples
 from mathematics and the natural sciences.  We have chosen to use the
 Python programming language because it combines remarkable expressive
@@ -78044,6 +85572,7 @@ Python with compiled languages, like Fortran, C, and C++, which are
 widely used languages for scientific computations.  A seamless
 integration of Python with Java is offered by a special version of
 Python called Jython.
+
 The examples in this book integrate programming with applications to
 mathematics, physics, biology, and finance.  The reader is expected to
 have knowledge of basic one-variable calculus as taught in
@@ -78052,6 +85581,7 @@ advantage to take a university calculus course in parallel, preferably
 containing both classical and numerical aspects of calculus.  Although
 not strictly required, a background in high school physics makes many
 of the examples more meaningful.
+
 Many introductory programming books are quite compact and focus on
 listing functionality of a programming language. However, learning to
 program is learning how to \emph{think} as a programmer.  This book
@@ -78064,6 +85594,7 @@ introduced via examples.  Special attention is paid to verification of
 programs and to finding errors. These topics are very demanding for
 mathematical software, because the unavoidable numerical
 approximation errors are possibly mixed with programming mistakes.
+
 By studying the many examples in the
 book, I hope readers will learn how to think right and thereby
 write programs in a quicker and more reliable way. Remember, nobody can learn
@@ -78071,6 +85602,7 @@ programming by just reading - one has to solve a large amount of
 exercises hands on.  The book is therefore full of exercises of
 various types: modifications of existing examples, completely new
 problems, or debugging of given programs.
+
 \paragraph{Python version 2 or 3?}
 A common problem among Python programmers is to choose between version
 2 or 3, which at the time of this writing means choosing
@@ -78086,6 +85618,7 @@ is to develop for v2.7, which is very close to what is accepted
 in version 3, and then
 use the ranslation tool \emph{2to3} to automatically translate the code
 to version 3.
+
 When using v2.7, one should employ the newest syntax
 and modules that make the differences beween version 2 and 3 very small.
 This strategy is adopted in the present book. Only two
@@ -78098,21 +85631,30 @@ and \texttt{print('Hello')} in version 2 must be turned into a function call
 to any annoying problems when future readers study the book's v2.7
 examples, but program in version 3. Anyway, running 2to3 on the
 example files generates the corresponding version 3 code.
+
 \paragraph{Acknowledgments.}
 Several people have helped to make substantial improvements of the
 text. Here I list only the names with Norwgian characters to
 test the handling of those: Ståle Zerener Haugnæss,
 Tobias Vidarssønn Langhoff, and Håkon Møller.
+
 \vspace{1cm}
+
 \noindent
 \emph{Oslo, May 2015}  \hfill  \emph{Hans Petter Langtangen}
+
 \tableofcontents
 \clearemptydoublepage
 \listofexercises
 \clearemptydoublepage
+
+
 \vspace{1cm} % after toc
+
 \mainmatter
+
 \chapter{Basic array computing and plotting}
+
 This chapter gives an introduction to arrays: how they are created
 and what they can be used for.  Array computing usually ends up with a
 lot of numbers. It may be very hard to understand what these numbers
@@ -78124,20 +85666,35 @@ curve is graph, and the image of curves on the screen is often called
 a plot.  We will use arrays to store the information about points
 along the curve. In a nutshell, array computing demands visualization
 and visualization demands arrays.
+
 All program examples in this chapter can be found as files in the
 folder \href{{https://some.where.net/doconce/test/software/plot}}{\nolinkurl{src/plot}\footnote{\texttt{https://some.where.net/doconce/test/software/plot}}}.
+
 \section{Arrays in Python programs}
 \label{sec:plot:arraycomp}
+
 This section introduces array programming in Python, but first we
 create some lists and show how arrays differ from lists.
+
 \subsection{Using lists for collecting function data}
 \label{sec:plot:listdata}
+
 Suppose we have a function $f(x)$ and want to evaluate this function
 at a number of $x$ points $x_0,x_1,\ldots,x_{n-1}$.  We could collect
 the $n$ pairs $(x_i,f(x_i))$ in a list, or we could collect all the
 $x_i$ values, for $i=0,\ldots,n-1$, in a list and all the associated
 $f(x_i)$ values in another list.  The following interactive session
 demonstrates how to create these three types of lists:
+
+
+
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 >>> def f(x):
 ...     return x**3       # sample function
@@ -78154,11 +85711,16 @@ Here we have used list comprehensions for achieving compact code. Make
 sure that you understand what is going on in these list comprehensions
 (if not, try to write the same code using standard \texttt{for} loops and
 appending new list elements in each pass of the loops).
+
 \index{heterogeneous lists}
+
 The list elements consist of objects of the same type: any element in
 \texttt{pairs} is a list of two \texttt{float} objects, while any element in \texttt{xlist}
 or \texttt{ylist} is a \texttt{float}. Lists are more flexible than that, because an
 element can be an object of any type, e.g.,
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 mylist = [2, 6.0, 'tmp.ps', [0,1]]
 
@@ -78180,6 +85742,7 @@ Lists will be our choice instead of arrays when we need the
 flexibility of adding or removing elements or when the elements may be
 of different object types.
 
+
 \begin{quote}
 \emph{People only become computer programmers if they're
 obsessive about details, crave power over machines, and can bear
@@ -78188,42 +85751,60 @@ stupid they are.} \\
 Gregory J. E. Rawlins \cite{Rawlins_1998}, computer scientist.
 \end{quote}
 
+
 \subsection{Basics of numerical Python arrays}
 \label{sec:plot:array:basics}
+
 \index{Numerical Python} \index{NumPy} \index{numpy@{\rm\texttt{numpy}}}
 \index{array (datatype)} \index{array computing}
 \index{vectorization}
+
 An \emph{array} object can be viewed as a variant of a list, but with the
 following assumptions and features:
+
 \begin{itemize}
   \item All elements must be of the same type, preferably integer, real, or complex numbers, for efficient numerical computing and storage.
+
   \item The number of elements must be known when the array is created.
+
   \item Arrays are not part of standard Python - one needs an additional package called \emph{Numerical Python}, often abbreviated as NumPy. The Python name of the package, to be used in \texttt{import} statements, is \texttt{numpy}.
+
   \item With \texttt{numpy}, a wide range of mathematical operations can be done directly on complete arrays, thereby removing the need for loops over array elements. This is commonly called \emph{vectorization} %or \emph{array computing} and may cause a dramatic speed-up of Python programs. Vectorization makes use of the vector computing concepts from Section~\ref{sec:plot:arraycomp}.
+
   \item Arrays with one index are often called vectors. Arrays with two indices are used as an efficient data structure for tables, instead of lists of lists. Arrays can also have three or more indices.
 \end{itemize}
+
 \noindent
 
 \begin{notice_mdfboxadmon}[Remarks]
+
 \begin{enumerate}
 \item There is actually an object type called \texttt{array} in standard Python, but this data type is not so efficient for mathematical computations, and we will not use it in this book.
+
 \item The number of elements in an array \emph{can} be changed, but at a substantial computational cost.
 \end{enumerate}
+
 \noindent
 \end{notice_mdfboxadmon} % title: Remarks
+
 
 
 The following text lists some important functionality of NumPy arrays.
 A more comprehensive treatment is found in the excellent \emph{NumPy
 Tutorial}, \emph{NumPy User Guide}, \emph{NumPy Reference}, \emph{Guide to NumPy},
 and \emph{NumPy for MATLAB Users}, all accessible at \href{{https://scipy.org}}{scipy.org}\footnote{\texttt{https://scipy.org}}.
+
 \index{zeros@{\rm\texttt{zeros}} (from {\rm\texttt{numpy}})} \index{np.zeros@{\rm\texttt{np.zeros}} function}
 \index{array@{\rm\texttt{array}} (from {\rm\texttt{numpy}})} \index{np.array@{\rm\texttt{np.array}} function}
 \index{np@{\rm\texttt{np}} prefix ({\rm\texttt{numpy}})}
 \index{zeros\_like@{\rm\texttt{zeros\_like}} (from {\rm\texttt{numpy}})}\index{np.zeros\_like@{\rm\texttt{np.zeros\_like}} function}
 
+
 \begin{notice_mdfboxadmon}[Remarks on importing NumPy]
 The statement
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 import numpy as np
 
@@ -78233,6 +85814,9 @@ with subsequent prefixing of all NumPy functions and variables by \texttt{np.},
 has evolved as a standard syntax in the Python scientific computing
 community. However, to make Python programs look closer to MATLAB
 and ease the transition to and from that language, one can do
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 from numpy import *
 
@@ -78243,6 +85827,12 @@ to get rid of the prefix (this is evolved as the standard in
 functions from \texttt{numpy} to be written without the prefix to
 make the formulas as close as possible to the mathematics.
 So, $f(x)=\sinh(x-1)\sin(w t)$ would be coded as
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 from numpy import sinh, sin
 
@@ -78257,15 +85847,22 @@ the program with \emph{a lot} of functions and variables from \texttt{numpy}.
 \end{notice_mdfboxadmon} % title: Remarks on importing NumPy
 
 
+
 To convert a list \texttt{r} to an array,
 we use the \texttt{array} function
 from \texttt{numpy}:
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 a = np.array(r)
 
 \end{lstlisting}
 
 To create a new array of length \texttt{n}, filled with zeros, we write
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 a = np.zeros(n)
 
@@ -78275,6 +85872,9 @@ The array elements are of a type that corresponds to Python's
 \texttt{float} type. A second argument to \texttt{np.zeros} can be used to
 specify other element types, e.g., \texttt{int}.
 A similar function,
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 a = np.zeros_like(c)
 
@@ -78282,18 +85882,27 @@ a = np.zeros_like(c)
 
 generates an array of zeros where the length is that of the array \texttt{c}
 and the element type is the same as those in \texttt{c}.
+
 \index{linspace@{\rm\texttt{linspace}} (from {\rm\texttt{numpy}})}\index{np.linspace@{\rm\texttt{np.linspace}} function}
+
 Often one wants an array to have $n$ elements with uniformly
 distributed values in an interval $[p,q]$. The \texttt{numpy} function
 \texttt{linspace} creates such arrays:
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 a = np.linspace(p, q, n)
 
 \end{lstlisting}
 
+
+
 \begin{center}
 {\small   % for Springer style: small table font and more vspace
+
 \vspace{4mm}
+
 \begin{tabular}{ll}
 \hline
 \multicolumn{1}{c}{ Construction } & \multicolumn{1}{c}{ Meaning } \\
@@ -78317,11 +85926,15 @@ a = np.linspace(p, q, n)
 \texttt{b = a.copy()}    & copy an array                                                       \\
 \hline
 \end{tabular}
+
 \vspace{4mm}
+
 }
 \end{center}
+
 \noindent
 \chapter{Storing results in data files and adding more words here to get a very long chapter heading}
+
 We need to test spaces around footnotes for 2-digit footnotes, which
 means we need a lot of URLs, e.g., to files:
 \href{{https://some.where.net/doconce/test/software/input/ball2_cml.py}}{\nolinkurl{ball2_cml.py}\footnote{\texttt{https://some.where.net/doconce/test/software/input/ball2\_cml.py}}},
@@ -78336,8 +85949,10 @@ means we need a lot of URLs, e.g., to files:
 \href{{https://some.where.net/doconce/test/software/input/Fdeg.dat}}{\nolinkurl{Fdeg.dat}\footnote{\texttt{https://some.where.net/doconce/test/software/input/Fdeg.dat}}},
 \href{{https://some.where.net/doconce/test/software/input/integrate.py}}{\nolinkurl{integrate.py}\footnote{\texttt{https://some.where.net/doconce/test/software/input/integrate.py}}}, and
 \href{{https://some.where.net/doconce/test/software/input/interest.py}}{\nolinkurl{interest.py}\footnote{\texttt{https://some.where.net/doconce/test/software/input/interest.py}}}.
+
 \section{Writing data to file}
 \label{sec:files:writing}
+
 Writing data to file is easy.
 There is basically one function to pay attention to: \texttt{outfile.write(s)},
 which writes a string \texttt{s} to
@@ -78346,6 +85961,9 @@ a file handled by the file object \texttt{outfile}. Unlike \texttt{print},
 does not append a newline character to the written string.
 It will therefore
 often be necessary to add a newline character,
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 outfile.write(s + '\n')
 
@@ -78356,9 +85974,17 @@ and \texttt{s} does not already contain a trailing newline character.
 File writing is then a matter of constructing strings containing the
 text we want to have in the file and for each such string call
 \texttt{outfile.write}.
+
 Writing to a file demands
 the file object \texttt{f}
 to be opened for writing:
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 # write to new file, or overwrite file:
 outfile = open(filename, 'w')
@@ -78368,11 +85994,19 @@ outfile = open(filename, 'a')
 
 \end{lstlisting}
 
+
 \subsection{Example: Writing a table to file}
+
 \paragraph{Problem.}
 As a worked example of file writing,
 we shall write out a nested list with tabular data to file.
 A sample list may take look as
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 [[ 0.75,        0.29619813, -0.29619813, -0.75      ],
  [ 0.29619813,  0.11697778, -0.11697778, -0.29619813],
@@ -78381,13 +86015,21 @@ A sample list may take look as
 
 \end{lstlisting}
 
+
 \paragraph{Solution.}
 We iterate through the rows (first index) in the list, and for each row,
 we iterate through the column values (second index)
 and write each value to the file.
 At the end of each row, we must insert a newline character in the file to get
 a linebreak. The code resides in the file \href{{https://some.where.net/doconce/test/software/input/write1.py}}{\nolinkurl{write1.py}\footnote{\texttt{https://some.where.net/doconce/test/software/input/write1.py}}}.
+
 The resulting data file becomes
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
     0.75000000    0.29619813   -0.29619813   -0.75000000
     0.29619813    0.11697778   -0.11697778   -0.29619813
@@ -78396,7 +86038,15 @@ The resulting data file becomes
 
 \end{lstlisting}
 
+
 An extension of this program consists in adding column and row headings:
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
            column  1     column  2     column  3     column  4
 row  1    0.75000000    0.29619813   -0.29619813   -0.75000000
@@ -78410,6 +86060,13 @@ To obtain this end result, we need to the add some statements to
 the program \texttt{write1.py}. For the column headings we need
 to know the number of columns, i.e., the length of the rows,
 and loop from 1 to this length:
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 ncolumns = len(data[0])
 outfile.write('          ')
@@ -78428,7 +86085,17 @@ a tabular output format, because this gives automatic padding of
 blanks so that the width of the output strings remain the same.
 As always, the tuning of the widths is done in a trial-and-error
 process.
+
 To add the row headings, we need a counter over the row numbers:
+
+
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 row_counter = 1
 for row in data:
@@ -78442,6 +86109,13 @@ for row in data:
 
 The complete code is found in the file \href{{https://some.where.net/doconce/test/software/input/write2.py}}{\nolinkurl{write2.py}\footnote{\texttt{https://some.where.net/doconce/test/software/input/write2.py}}}.
 We could, alternatively, iterate over the indices in the list:
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 for i in range(len(data)):
     outfile.write('row %2d' % (i+1))
@@ -78453,21 +86127,30 @@ for i in range(len(data)):
 
 Some other files and URLs we can mention, just to test a 2-digit footnote,
 are
+
 \begin{itemize}
  \item \href{{https://some.where.net/doconce/test/software/input/addall.py}}{\nolinkurl{addall.py}\footnote{\texttt{https://some.where.net/doconce/test/software/input/addall.py}}}
+
  \item \href{{https://some.where.net/doconce/test/software/input/addall_v1.py}}{\nolinkurl{addall_v1.py}\footnote{\texttt{https://some.where.net/doconce/test/software/input/addall\_v1.py}}}
+
  \item \href{{https://some.where.net/doconce/test/software/input/add_cml.py}}{\nolinkurl{add_cml.py}\footnote{\texttt{https://some.where.net/doconce/test/software/input/add\_cml.py}}}
+
  \item \href{{https://some.where.net/doconce/test/software/input/add_input.py}}{\nolinkurl{add_input.py}\footnote{\texttt{https://some.where.net/doconce/test/software/input/add\_input.py}}}
 \end{itemize}
+
 \noindent
 \subsection{Standard input and output as file objects}
+
 \index{standard input} \index{standard output}
+
 \index{sys.stdin@{\rm\texttt{sys.stdin}}}\index{sys.stdout@{\rm\texttt{sys.stdout}}}
+
 Reading user input from the keyboard applies the function
 \Verb!raw_input! as explained in another section.
 The keyboard is a medium that the computer in fact
 treats as a file, referred to
 as \emph{standard input}.
+
 The \texttt{print} command prints text in the terminal window. This medium
 is also viewed as a file from the computer's point of view and called
 \emph{standard output}. All general-purpose programming languages
@@ -78481,12 +86164,19 @@ We will here describe the file-line objects:
 and \texttt{sys.stdout} for standard output. These objects
 behave as file objects, except that they do not need to be opened or
 closed. The statement
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 s = raw_input('Give s:')
 
 \end{lstlisting}
 
 is equivalent to
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 print('Give s: '),
 s = sys.stdin.readline()
@@ -78496,12 +86186,19 @@ s = sys.stdin.readline()
 Recall that the trailing comma in the \texttt{print} statement avoids the
 newline that \texttt{print} by default adds to the output string.
 Similarly,
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 s = eval(raw_input('Give s:'))
 
 \end{lstlisting}
 
 is equivalent to
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 print('Give s: '),
 s = eval(sys.stdin.readline())
@@ -78509,22 +86206,36 @@ s = eval(sys.stdin.readline())
 \end{lstlisting}
 
 For output to the terminal window, the statement
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 print(s)
 
 \end{lstlisting}
 
 is equivalent to
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 sys.stdout.write(s + '\n')
 
 \end{lstlisting}
+
 
 Why it is handy to have access to standard input and output
 as file objects can be illustrated by an example. Suppose you have a
 function that reads data from a file object \texttt{infile}
 and writes data to a file object \texttt{outfile}.
 A sample function may take the form
+
+
+
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 def x2f(infile, outfile, f):
     for line in infile:
@@ -78543,8 +86254,10 @@ we would need different code, employing \Verb!raw_input!
 and \texttt{print},
 to deal with standard input and output. Now we can write a single
 function that deals with all file media in a unified way.
+
 \index{standard error}
 \index{sys.stderr@{\rm\texttt{sys.stderr}}}
+
 There is also something called \emph{standard error}.
 Usually this is the terminal window, just as standard output, but
 programs can distinguish between writing ordinary output to standard
@@ -78553,6 +86266,10 @@ can be redirected to, e.g., files such that one can separate
 error messages from ordinary output.
 In Python, standard error is the file-like object \texttt{sys.stderr}.
 A typical application of \texttt{sys.stderr} is to report errors:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 if x < 0:
     sys.stderr.write('Illegal value of x'); sys.exit(1)
@@ -78561,11 +86278,15 @@ if x < 0:
 
 This message to \texttt{sys.stderr} is an alternative to
 \texttt{print} or raising an exception.
+
 \paragraph{Redirecting standard input, output, and error.}
 Standard output from a program \texttt{prog}
 can be redirected to a file
 \texttt{output} instead of the screen, by
 using the greater than sign:
+
+
+
 \begin{lstlisting}[language=bash,style=simple,xleftmargin=2mm]
 Terminal> prog > output
 
@@ -78575,6 +86296,9 @@ Here, \texttt{prog} can be any
 program, including a Python program run as \texttt{python myprog.py}.
 Similarly, output to the medium called \emph{standard error}
 can be redirected by
+
+
+
 \begin{lstlisting}[language=bash,style=simple,xleftmargin=2mm]
 Terminal> prog &> output
 
@@ -78582,6 +86306,15 @@ Terminal> prog &> output
 
 For example, error messages are normally written to standard error, which
 is exemplified in this little terminal session on a Unix machine:
+
+
+
+
+
+
+
+
+
 \begin{lstlisting}[language=bash,style=simple,xleftmargin=2mm]
 Terminal> ls bla-bla1 bla-bla2
 ls: cannot access bla-bla1: No such file or directory
@@ -78597,16 +86330,23 @@ When the program reads from standard input (the keyboard),
 we can equally well redirect
 standard input to a file, say with name \Verb!raw_input!, such that
 the program reads from this file rather than from the keyboard:
+
+
+
 \begin{lstlisting}[language=bash,style=simple,xleftmargin=2mm]
 Terminal> prog < input
 
 \end{lstlisting}
 
 Combinations are also possible:
+
+
+
 \begin{lstlisting}[language=bash,style=simple,xleftmargin=2mm]
 Terminal> prog < input > output
 
 \end{lstlisting}
+
 
 \paragraph{Note.}
 The redirection of standard output, input, and error
@@ -78614,59 +86354,86 @@ does not work for Python programs executed with the \texttt{run}
 command inside IPython, only when executed directly
 in the operating system in a terminal window, or with the same
 command prefixed with an exclamation mark in IPython.
+
 \paragraph{References.}
 To check the bibliography, we need to make citations to a book{TCSE3},
 Matplotlib \cite{Matplotlib:paper}, and more books \cite{Mertz,PythonQt}
 as well as Python itself \cite{Python}, and of course NumPy
 \cite{NumPy}.
+
 \section{Exercises}
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Problem \thedoconceexercisecounter: Add numbers}
                 \addcontentsline{loe}{doconceexercise}{Problem \thedoconceexercisecounter: Add numbers}
                 
 \label{exer:add}
+
 Compute
+
 \[ 1 + 1 \]
+
 % --- begin answer of exercise ---
 \paragraph{Answer.}
 
+
 % --- end answer of exercise ---
+
 % --- begin solution of exercise ---
 \paragraph{Solution.}
 Python shell as calculator:
+
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 >>> 1 + 1
 
 
 \end{lstlisting}
 
+
 % --- end solution of exercise ---
 \noindent Filename: \texttt{add}.
+
 \end{doconceexercise}
 % --- end exercise ---
+
 % --- begin exercise ---
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
+
 \exercisesection{Problem \thedoconceexercisecounter: Multiply numbers}
                 \addcontentsline{loe}{doconceexercise}{Problem \thedoconceexercisecounter: Multiply numbers}
                 
 \label{exer:mul}
+
 \subex{a)}
 Compute $1\cdot 3$.
+
 % --- begin answer of exercise ---
 \paragraph{Answer.}
 
 % --- end answer of exercise ---
+
 \subex{b)}
 Compute $2\cdot 3$.
+
 % --- begin hint in exercise ---
+
 \paragraph{Hint.}
 Use a Python shell.
+
 % --- end hint in exercise ---
+
 % --- begin solution of exercise ---
 \paragraph{Solution.}
+
+
+
 \begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
 >>> 2*3
 
@@ -78674,27 +86441,41 @@ Use a Python shell.
 \end{lstlisting}
 
 % --- end solution of exercise ---
+
 \noindent Filename: \texttt{multiply}.
+
 \end{doconceexercise}
 % --- end exercise ---
+
+
+
 \appendix
+
 \chapter{Styles for Springer T2/T4}
+
 The T2/T4 style for DocOnce-generated {\LaTeX} should make use of
 slightly modified \texttt{svmono.cls} and \texttt{t2.sty} files:
+
 \begin{itemize}
  \item \texttt{svmonodo.cls}
+
  \item \texttt{t2do.sty} or \texttt{t4do.sty}
 \end{itemize}
+
 \noindent
 \clearemptydoublepage
 \markboth{Bibliography}{Bibliography}
 \thispagestyle{empty}
+
 \bibliographystyle{plain}
 \bibliography{papers}
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \cleardoublepage\phantomsection  % trick to get correct link to Index
 \printindex
+
 \end{document}
 % #endif
 

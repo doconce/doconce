@@ -135,3 +135,6 @@ cp -r demo/html demo/quickref.pdf demo/quickref.html $dest
 
 dest=../../../../doconce.wiki
 cp -r demo/quickref.md $dest
+
+echo "To remove untracked files run:"
+echo "git clean -fd ../../.."

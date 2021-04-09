@@ -246,8 +246,9 @@ def process_code_blocks(filestr, code_style, format):
     if option("execute"):
         stop(kernel_client)
 
-    # Remove empty lines
-    lines = list(filter(lambda l: len(l), lines))
+    # Remove empty lines for the html format
+    if format in ['html']:
+        lines = list(filter(lambda l: len(l), lines))
 
     filestr = safe_join(lines, delimiter='\n')
     return filestr
