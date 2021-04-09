@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+#set -x
 export PS4='+ l.${LINENO}: ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 # NOTE: There are many doconce errors arising when compiling this manual
 # because it describes doconce syntax in the text, and this syntax is
@@ -215,4 +215,4 @@ dest=../../../../doconce.wiki
 cp demo/manual.md $dest
 
 echo "To remove untracked files run:"
-echo "git clean -f -d"
+echo "git clean -fd ../../.."

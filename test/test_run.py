@@ -1,6 +1,7 @@
 # run this file as:
 # pytest --pdb test_run.py      # then in the debugger:  print(out.stdout)
 # pytest -s test_run.py         #to capture stout
+# pytest -v test_run.py::test_html_remove_whitespace #only one test
 import pytest
 import contextlib
 import tempfile
@@ -205,10 +206,10 @@ def test_doconce_format_html(tdir):
     cp_testdoc(dest=tdir)
     # run doconce format html
     # check that it fails
-    out = subprocess.run(['doconce', 'format', 'html', 'testdoc.do.txtasdasds','--no_abort'])
+    out = subprocess.run('doconce format html fail --no_abort'.split(' '))
     assert out.returncode != 0 # here return code is 1
     # check that it works
-    out = subprocess.run(['doconce','format', 'html', 'testdoc.do.txt', '--examples_as_exercises'],
+    out = subprocess.run('doconce format html testdoc.do.txt --examples_as_exercises'.split(' '),
                          cwd=tdir,  # NB: main process stays in curr dir, subprocesses in tdir
                          stdout=subprocess.PIPE,
                          stderr=subprocess.STDOUT,  # can do this in debugger mode: print(out.stdout)
@@ -224,14 +225,40 @@ def test_doconce_format_html(tdir):
     # TODO test from a different directory
     pass
 
+def test_doconce_format_latex(tdir):
+    # cp files
+    cp_testdoc(dest=tdir)
+    # run doconce format html
+    # check that it fails
+    out = subprocess.run('doconce format latex fail --no_abort'.split(' '))
+    assert out.returncode != 0 # here return code is 1
+    # check that it works
+    out = subprocess.run('doconce format latex testdoc.do.txt --examples_as_exercises'.split(' '),
+                         cwd=tdir,  # NB: main process stays in curr dir, subprocesses in tdir
+                         stdout=subprocess.PIPE,
+                         stderr=subprocess.STDOUT,  # can do this in debugger mode: print(out.stdout)
+                         encoding='utf8')
+    assert out.returncode == 0
+    with open('testdoc.p.tex', 'r') as f:
+        tex = f.read()
+    assert 'common cases.\n\nAnd' in tex
+    assert r' \item \ref{sec1}' in tex
+
+def test_latex_code():
+    from doconce.latex import latex_code
+    # filestr = latex_code('aa',[],[],[],'latex')
+    # TODO cannot do? fails because globals. is not initialized
+    pass
+
+
 def test_doconce_jupyterbook(tdir):
     cp_testdoc(dest=tdir)
     # doconce jupyterbook
     # check that it fails
-    out = subprocess.run(['doconce', 'jupyterbook', 'fail!', '--no_abort'], cwd=tdir)
+    out = subprocess.run('doconce jupyterbook fail --no_abort'.split(' '), cwd=tdir)
     assert out.returncode != 0
     # check that it works
-    out = subprocess.run(['doconce', 'jupyterbook', 'testdoc.do.txt', '--examples_as_exercises','--no_abort'],
+    out = subprocess.run('doconce jupyterbook testdoc.do.txt --examples_as_exercises --no_abort'.split(' '),
                          cwd=tdir,      # NB: main process stays in curr dir, subprocesses in tdir
                          stdout=subprocess.PIPE,
                          stderr=subprocess.STDOUT, #can do this in debugger mode: print(out.stdout)
@@ -240,15 +267,15 @@ def test_doconce_jupyterbook(tdir):
     assert os.path.exists(os.path.join(tdir, '_toc.yml'))
     assert os.path.exists(os.path.join(tdir, '01_testdoc.md'))
     # test --dest and --dest_toc
-    out = subprocess.run(['doconce', 'jupyterbook', 'testdoc.do.txt', '--dest=fail!'],
+    out = subprocess.run('doconce jupyterbook testdoc.do.txt --dest=fail!'.split(' '),
                          cwd = tdir,  # NB: main process stays in curr dir, subprocesses in tdir
                          stdout = subprocess.PIPE,
                          stderr = subprocess.STDOUT,  # can do this in debugger mode: print(out.stdout)
                          encoding = 'utf8')
     assert out.returncode != 0
     os.makedirs(os.path.join(tdir, 'content'))
-    out = subprocess.run(['doconce', 'jupyterbook', 'testdoc.do.txt',
-                          '--dest=content', '--dest_toc=content', '--examples_as_exercises'],
+    out = subprocess.run('doconce jupyterbook testdoc.do.txt '
+                         '--dest=content --dest_toc=content --examples_as_exercises'.split(' '),
                          cwd=tdir,      # NB: main process stays in curr dir, subprocesses in tdir
                          stdout=subprocess.PIPE,
                          stderr=subprocess.STDOUT, #can do this in debugger mode: print(out.stdout)
@@ -276,13 +303,13 @@ def test_doconce_html_slides(tdir):
     # cp files
     cp_testdoc(dest=tdir)
     # first run doconce format html
-    out = subprocess.run(['doconce','format', 'html', 'testdoc.do.txt', '--examples_as_exercises'],
+    out = subprocess.run('doconce format html testdoc.do.txt --examples_as_exercises'.split(' '),
                          cwd=tdir,  # NB: main process stays in curr dir, subprocesses in tdir
                          stdout=subprocess.PIPE,
                          stderr=subprocess.STDOUT,  # can do this in debugger mode: print(out.stdout)
                          encoding='utf8')
     assert out.returncode == 0
-    out = subprocess.run(['doconce', 'html_slides', 'testdoc.do.txt', 'deck'],
+    out = subprocess.run('doconce html_slides testdoc.do.txt deck'.split(' '),
                          cwd=tdir,  # NB: main process stays in curr dir, subprocesses in tdir
                          stdout=subprocess.PIPE,
                          stderr=subprocess.STDOUT,  # can do this in debugger mode: print(out.stdout)
@@ -292,9 +319,9 @@ def test_doconce_html_slides(tdir):
 
 def test_html_remove_whitespace():
     from doconce.html import html_remove_whitespace
-    assert html_remove_whitespace('') == ''
-    # TODO
-    pass
+    assert html_remove_whitespace('') == '\n'
+    out = html_remove_whitespace('\n<p>par 1</p>\n\n<p></p>\n  \n<p>par 2</p>\n\n<!---->\n    \n')
+    assert out == '<p>par 1</p>\n<p>par 2</p>\n<!---->\n    \n'
 
 def test_get_header_parts_footer(tdir):
     from doconce.misc import get_header_parts_footer
