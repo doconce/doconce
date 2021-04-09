@@ -387,7 +387,7 @@ MathJax.Hub.Config({
 <p><span class="tab"> <a href="._testdoc003.html#appendix-testing-identical-titles"> Appendix: Testing identical titles </a></p>
 <p><span class="tab"> <a href="._testdoc003.html#appendix-testing-inline-comments"> Appendix: Testing inline comments </a></p>
 <p><span class="tab"> <a href="._testdoc003.html#appendix-testing-headings-ending-with-verbatim-inline"> Appendix: Testing headings ending with <code>verbatim inline</code> </a></p>
-<p></div></p>
+</div>
 <br>
 
 <p>
@@ -34264,7 +34264,7 @@ MathJax.Hub.Config({
 <p><span class="tab"> <a href="._testdoc003.html#appendix-testing-identical-titles"> Appendix: Testing identical titles </a></p>
 <p><span class="tab"> <a href="._testdoc003.html#appendix-testing-inline-comments"> Appendix: Testing inline comments </a></p>
 <p><span class="tab"> <a href="._testdoc003.html#appendix-testing-headings-ending-with-verbatim-inline"> Appendix: Testing headings ending with <code>verbatim inline</code> </a></p>
-<p></div></p>
+</div>
 <br>
 
 <p>
@@ -35538,15 +35538,15 @@ Python.
 <hr class="figure">
 <center>
 <p class="caption">Figure 1:  Visualization <b>of</b> a <em>wave</em>.  <!-- caption label: fig:impact --> </p>
-<p></center></p>
+</center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=200></p>
-<p></center></p>
+</center>
 
 <p>Figures without captions are allowed and will be inlined.</p>
 
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=200></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <!-- Test multi-line caption in figure with sidecap=True -->
@@ -35558,7 +35558,8 @@ Python.
 <table><tr>
 <td><img src="testfigs/wave1D.png" align="bottom" width=500></td>
 <td><p class="caption">Figure 2:  A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in \( t_{i+1} \).  <!-- caption label: myfig --> </p></td>
-<p></tr></table> </center></p>
+</tr></table>
+</center>
 
 <!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
 
@@ -35566,14 +35567,14 @@ Python.
 
 <br /><br /><center>
 <p><img src="https://raw.github.com/doconce/doconce/master/doc/src/blog/f_plot.png" align="bottom" width=500></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <p>Test SVG figure:</p>
 
 <br /><br /><center>
 <p><img src="https://openclipart.org/people/jpneok/junebug.svg" align="bottom" width=200></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <!-- Test wikimedia type of files that otherwise reside in subdirs -->
@@ -35584,9 +35585,10 @@ Python.
 <p>
 <!-- Bokeh plot -->
 <script type="text/javascript">
-<p>            Bokeh.$(function() {                 var modelid = "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1";                 var modeltype = "PlotContext";                 var elementid = "ffba6087-a45a-46eb-9368-11527f1f0a34";                 Bokeh.logger.info("Realizing plot:")                 Bokeh.logger.info(" - modeltype: PlotContext");                 Bokeh.logger.info(" - modelid: dc6ef912-b325-4c34-996a-cdeb5aa4d7c1");                 Bokeh.logger.info(" - elementid: ffba6087-a45a-46eb-9368-11527f1f0a34");                 var all_models = [{"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 1.0}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, "type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, {"attributes": {"column_names": ["x", "y"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selected": {"2d": {"indices": []}, "1d": {"indices": []}, "0d": {"indices": [], "flag": false}}, "callback": null, "data": {"y": [0.0, 1.0, 8.0, 27.0], "x": [0.0, 1.0, 2.0, 3.0]}, "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, "type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, "type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397", "renderers": []}, "type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, "type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, "type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, "type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, "type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed", "tags": []}, "type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748", "attributes": {"x_range": {"type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, "right": [], "tags": [], "tools": [{"type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}], "title": "Bokeh test", "extra_y_ranges": {}, "renderers": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}], "extra_x_ranges": {}, "below": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}], "tool_events": {"type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "above": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y_range": {"type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, "id": "bac26888-fe18-4833-afe3-61e241eed748", "left": [{"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}]}}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0", "renderers": []}, "type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1", "children": [{"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}]}, "type": "PlotContext", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1"}, {"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 0.1}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, "type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, "type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 1, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, "type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"attributes": {"nonselection_glyph": {"type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "data_source": {"type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "name": null, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selection_glyph": null, "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c", "glyph": {"type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}}, "type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 0, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, "type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, "type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"attributes": {"geometries": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8", "tags": []}, "type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}];                 Bokeh.load_models(all_models);                 var model = Bokeh.Collections(modeltype).get(modelid);                 var view = new model.default_view({model: model, el: '#ffba6087-a45a-46eb-9368-11527f1f0a34'});                 Bokeh.index[modelid] = view             });         </script></p>
+<p>            Bokeh.$(function() {                 var modelid = "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1";                 var modeltype = "PlotContext";                 var elementid = "ffba6087-a45a-46eb-9368-11527f1f0a34";                 Bokeh.logger.info("Realizing plot:")                 Bokeh.logger.info(" - modeltype: PlotContext");                 Bokeh.logger.info(" - modelid: dc6ef912-b325-4c34-996a-cdeb5aa4d7c1");                 Bokeh.logger.info(" - elementid: ffba6087-a45a-46eb-9368-11527f1f0a34");                 var all_models = [{"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 1.0}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, "type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, {"attributes": {"column_names": ["x", "y"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selected": {"2d": {"indices": []}, "1d": {"indices": []}, "0d": {"indices": [], "flag": false}}, "callback": null, "data": {"y": [0.0, 1.0, 8.0, 27.0], "x": [0.0, 1.0, 2.0, 3.0]}, "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, "type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, "type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397", "renderers": []}, "type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, "type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, "type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, "type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, "type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed", "tags": []}, "type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748", "attributes": {"x_range": {"type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, "right": [], "tags": [], "tools": [{"type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}], "title": "Bokeh test", "extra_y_ranges": {}, "renderers": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}], "extra_x_ranges": {}, "below": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}], "tool_events": {"type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "above": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y_range": {"type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, "id": "bac26888-fe18-4833-afe3-61e241eed748", "left": [{"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}]}}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0", "renderers": []}, "type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1", "children": [{"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}]}, "type": "PlotContext", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1"}, {"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 0.1}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, "type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, "type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 1, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, "type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"attributes": {"nonselection_glyph": {"type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "data_source": {"type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "name": null, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selection_glyph": null, "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c", "glyph": {"type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}}, "type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 0, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, "type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, "type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"attributes": {"geometries": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8", "tags": []}, "type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}];                 Bokeh.load_models(all_models);                 var model = Bokeh.Collections(modeltype).get(modelid);                 var view = new model.default_view({model: model, el: '#ffba6087-a45a-46eb-9368-11527f1f0a34'});                 Bokeh.index[modelid] = view             });</p>
+        </script>
 <div class="plotdiv" id="ffba6087-a45a-46eb-9368-11527f1f0a34"></div></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <p>
@@ -36134,7 +36136,7 @@ $$ 1 + 1 = 2 $$
 
 $$ E = mc^2 $$
 
-<p></div></p>
+</div>
 <h2 id="subsubsec:ex">URLs</h2>
 
 <p>Testing of URLs: hpl's home page <a href="https://folk.uio.no/hpl" target="_self">hpl</a>, or the entire URL if desired, <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>.  Here is a plain file link <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self">a link with newline</a>. Can test spaces with the link with word too: <a href="https://folk.uio.no/hpl" target="_self">hpl</a> or <a href="https://folk.uio.no/hpl" target="_self">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" target="_self">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
@@ -37664,7 +37666,7 @@ $(function () {
 <p><span class="tab"> <a href="#appendix-testing-identical-titles"> Appendix: Testing identical titles </a></p>
 <p><span class="tab"> <a href="#appendix-testing-inline-comments"> Appendix: Testing inline comments </a></p>
 <p><span class="tab"> <a href="#appendix-testing-headings-ending-with-verbatim-inline"> Appendix: Testing headings ending with <code>verbatim inline</code> </a></p>
-<p></div></p>
+</div>
 <br>
 
 <p>The format of this document is plain, homemade HTML (from DocOnce).</p>
@@ -38439,15 +38441,15 @@ Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well a
 <hr class="figure">
 <center>
 <p class="caption">Figure 1:  Visualization <b>of</b> a <em>wave</em>.   </p>
-<p></center></p>
+</center>
 <p><img src="https://raw.github.com/hplgit/doconce/master/test/testfigs/wave1D.html" align="bottom" width=200></p>
-<p></center></p>
+</center>
 
 <p>Figures without captions are allowed and will be inlined.</p>
 
 <br /><br /><center>
 <p><img src="https://raw.github.com/hplgit/doconce/master/test/testfigs/wave1D.html" align="bottom" width=200></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <p>Here is figure <a href="#myfig">2</a> with a long (illegal) multi-line caption containing inline verbatim text:</p>
@@ -38457,27 +38459,28 @@ Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well a
 <table><tr>
 <td><img src="https://raw.github.com/hplgit/doconce/master/test/testfigs/wave1D.png" align="bottom" width=500></td>
 <td><p class="caption">Figure 2:  A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in $latex t_{i+1}$.   </p></td>
-<p></tr></table> </center></p>
+</tr></table>
+</center>
 
 <p>Test URL as figure name:</p>
 
 <br /><br /><center>
 <p><img src="https://raw.github.com/doconce/doconce/master/doc/src/blog/f_plot.png" align="bottom" width=500></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <p>Test SVG figure:</p>
 
 <br /><br /><center>
 <p><img src="https://openclipart.org/people/jpneok/junebug.svg" align="bottom" width=200></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <p>HTML output may feature Bokeh plots:</p>
 
 <br /><br /><center>
 <p><img src="https://raw.github.com/hplgit/doconce/master/test/bokeh_test.html" align="bottom" ></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <p>
@@ -39042,7 +39045,8 @@ $latex  1 + 1 = 2  $
 
 $latex  E = mc^2  $
 
-<p></div></p>
+
+</div>
 <h2 id="subsubsec:ex">URLs</h2>
 
 <p>Testing of URLs: hpl's home page <a href="https://folk.uio.no/hpl" target="_blank">hpl</a>, or the entire URL if desired, <a href="https://folk.uio.no/hpl" target="_blank"><tt>https://folk.uio.no/hpl</tt></a>.  Here is a plain file link <a href="testdoc.do.txt" target="_blank"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_blank"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_blank"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_blank"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_blank">a link with newline</a>. Can test spaces with the link with word too: <a href="https://folk.uio.no/hpl" target="_blank">hpl</a> or <a href="https://folk.uio.no/hpl" target="_blank">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" target="_blank">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="https://folk.uio.no/hpl" target="_blank"><tt>https://folk.uio.no/hpl</tt></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
@@ -40132,7 +40136,7 @@ MathJax.Hub.Config({
 <p><span class="tab"> <a href="#appendix-testing-identical-titles"> Appendix: Testing identical titles </a></p>
 <p><span class="tab"> <a href="#appendix-testing-inline-comments"> Appendix: Testing inline comments </a></p>
 <p><span class="tab"> <a href="#appendix-testing-headings-ending-with-verbatim-inline"> Appendix: Testing headings ending with <code>verbatim inline</code> </a></p>
-<p></div></p>
+</div>
 <br>
 
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -40940,15 +40944,15 @@ Python.
 <hr class="figure">
 <center>
 <p class="caption">Figure 1:  Visualization <b>of</b> a <em>wave</em>.  <!-- caption label: fig:impact --> </p>
-<p></center></p>
+</center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=200></p>
-<p></center></p>
+</center>
 
 <p>Figures without captions are allowed and will be inlined.</p>
 
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=200></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <!-- Test multi-line caption in figure with sidecap=True -->
@@ -40960,7 +40964,8 @@ Python.
 <table><tr>
 <td><img src="testfigs/wave1D.png" align="bottom" width=500></td>
 <td><p class="caption">Figure 2:  A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in \( t_{i+1} \).  <!-- caption label: myfig --> </p></td>
-<p></tr></table> </center></p>
+</tr></table>
+</center>
 
 <!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
 
@@ -40968,14 +40973,14 @@ Python.
 
 <br /><br /><center>
 <p><img src="https://raw.github.com/doconce/doconce/master/doc/src/blog/f_plot.png" align="bottom" width=500></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <p>Test SVG figure:</p>
 
 <br /><br /><center>
 <p><img src="https://openclipart.org/people/jpneok/junebug.svg" align="bottom" width=200></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <!-- Test wikimedia type of files that otherwise reside in subdirs -->
@@ -40986,9 +40991,10 @@ Python.
 <p>
 <!-- Bokeh plot -->
 <script type="text/javascript">
-<p>            Bokeh.$(function() {                 var modelid = "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1";                 var modeltype = "PlotContext";                 var elementid = "ffba6087-a45a-46eb-9368-11527f1f0a34";                 Bokeh.logger.info("Realizing plot:")                 Bokeh.logger.info(" - modeltype: PlotContext");                 Bokeh.logger.info(" - modelid: dc6ef912-b325-4c34-996a-cdeb5aa4d7c1");                 Bokeh.logger.info(" - elementid: ffba6087-a45a-46eb-9368-11527f1f0a34");                 var all_models = [{"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 1.0}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, "type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, {"attributes": {"column_names": ["x", "y"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selected": {"2d": {"indices": []}, "1d": {"indices": []}, "0d": {"indices": [], "flag": false}}, "callback": null, "data": {"y": [0.0, 1.0, 8.0, 27.0], "x": [0.0, 1.0, 2.0, 3.0]}, "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, "type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, "type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397", "renderers": []}, "type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, "type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, "type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, "type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, "type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed", "tags": []}, "type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748", "attributes": {"x_range": {"type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, "right": [], "tags": [], "tools": [{"type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}], "title": "Bokeh test", "extra_y_ranges": {}, "renderers": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}], "extra_x_ranges": {}, "below": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}], "tool_events": {"type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "above": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y_range": {"type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, "id": "bac26888-fe18-4833-afe3-61e241eed748", "left": [{"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}]}}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0", "renderers": []}, "type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1", "children": [{"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}]}, "type": "PlotContext", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1"}, {"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 0.1}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, "type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, "type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 1, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, "type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"attributes": {"nonselection_glyph": {"type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "data_source": {"type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "name": null, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selection_glyph": null, "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c", "glyph": {"type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}}, "type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 0, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, "type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, "type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"attributes": {"geometries": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8", "tags": []}, "type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}];                 Bokeh.load_models(all_models);                 var model = Bokeh.Collections(modeltype).get(modelid);                 var view = new model.default_view({model: model, el: '#ffba6087-a45a-46eb-9368-11527f1f0a34'});                 Bokeh.index[modelid] = view             });         </script></p>
+<p>            Bokeh.$(function() {                 var modelid = "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1";                 var modeltype = "PlotContext";                 var elementid = "ffba6087-a45a-46eb-9368-11527f1f0a34";                 Bokeh.logger.info("Realizing plot:")                 Bokeh.logger.info(" - modeltype: PlotContext");                 Bokeh.logger.info(" - modelid: dc6ef912-b325-4c34-996a-cdeb5aa4d7c1");                 Bokeh.logger.info(" - elementid: ffba6087-a45a-46eb-9368-11527f1f0a34");                 var all_models = [{"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 1.0}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, "type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, {"attributes": {"column_names": ["x", "y"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selected": {"2d": {"indices": []}, "1d": {"indices": []}, "0d": {"indices": [], "flag": false}}, "callback": null, "data": {"y": [0.0, 1.0, 8.0, 27.0], "x": [0.0, 1.0, 2.0, 3.0]}, "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, "type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, "type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397", "renderers": []}, "type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, "type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, "type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, "type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, "type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed", "tags": []}, "type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748", "attributes": {"x_range": {"type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, "right": [], "tags": [], "tools": [{"type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}], "title": "Bokeh test", "extra_y_ranges": {}, "renderers": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}], "extra_x_ranges": {}, "below": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}], "tool_events": {"type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "above": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y_range": {"type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, "id": "bac26888-fe18-4833-afe3-61e241eed748", "left": [{"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}]}}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0", "renderers": []}, "type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1", "children": [{"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}]}, "type": "PlotContext", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1"}, {"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 0.1}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, "type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, "type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 1, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, "type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"attributes": {"nonselection_glyph": {"type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "data_source": {"type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "name": null, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selection_glyph": null, "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c", "glyph": {"type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}}, "type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 0, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, "type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, "type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"attributes": {"geometries": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8", "tags": []}, "type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}];                 Bokeh.load_models(all_models);                 var model = Bokeh.Collections(modeltype).get(modelid);                 var view = new model.default_view({model: model, el: '#ffba6087-a45a-46eb-9368-11527f1f0a34'});                 Bokeh.index[modelid] = view             });</p>
+        </script>
 <div class="plotdiv" id="ffba6087-a45a-46eb-9368-11527f1f0a34"></div></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <p>
@@ -41517,7 +41523,7 @@ $$ 1 + 1 = 2 $$
 
 $$ E = mc^2 $$
 
-<p></div></p>
+</div>
 <h2 id="subsubsec:ex">URLs</h2>
 
 <p>Testing of URLs: hpl's home page <a href="https://folk.uio.no/hpl" target="_self">hpl</a>, or the entire URL if desired, <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>.  Here is a plain file link <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self">a link with newline</a>. Can test spaces with the link with word too: <a href="https://folk.uio.no/hpl" target="_self">hpl</a> or <a href="https://folk.uio.no/hpl" target="_self">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" target="_self">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
@@ -51467,7 +51473,7 @@ MathJax.Hub.Config({
 <p><span class="tab"> <a href="._testdoc_vagrant003.html#appendix-testing-identical-titles"> Appendix: Testing identical titles </a></p>
 <p><span class="tab"> <a href="._testdoc_vagrant003.html#appendix-testing-inline-comments"> Appendix: Testing inline comments </a></p>
 <p><span class="tab"> <a href="._testdoc_vagrant003.html#appendix-testing-headings-ending-with-verbatim-inline"> Appendix: Testing headings ending with <code>verbatim inline</code> </a></p>
-<p></div></p>
+</div>
 <br>
 
 <p>
@@ -51912,7 +51918,7 @@ MathJax.Hub.Config({
 <p><span class="tab"> <a href="._testdoc_vagrant003.html#appendix-testing-identical-titles"> Appendix: Testing identical titles </a></p>
 <p><span class="tab"> <a href="._testdoc_vagrant003.html#appendix-testing-inline-comments"> Appendix: Testing inline comments </a></p>
 <p><span class="tab"> <a href="._testdoc_vagrant003.html#appendix-testing-headings-ending-with-verbatim-inline"> Appendix: Testing headings ending with <code>verbatim inline</code> </a></p>
-<p></div></p>
+</div>
 <br>
 
 <p>
@@ -53057,15 +53063,15 @@ Python.
 <hr class="figure">
 <center>
 <p class="caption">Figure 1:  Visualization <b>of</b> a <em>wave</em>.  <!-- caption label: fig:impact --> </p>
-<p></center></p>
+</center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=200></p>
-<p></center></p>
+</center>
 
 <p>Figures without captions are allowed and will be inlined.</p>
 
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=200></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <!-- Test multi-line caption in figure with sidecap=True -->
@@ -53077,7 +53083,8 @@ Python.
 <table><tr>
 <td><img src="testfigs/wave1D.png" align="bottom" width=500></td>
 <td><p class="caption">Figure 2:  A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in \( t_{i+1} \).  <!-- caption label: myfig --> </p></td>
-<p></tr></table> </center></p>
+</tr></table>
+</center>
 
 <!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
 
@@ -53085,14 +53092,14 @@ Python.
 
 <br /><br /><center>
 <p><img src="https://raw.github.com/doconce/doconce/master/doc/src/blog/f_plot.png" align="bottom" width=500></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <p>Test SVG figure:</p>
 
 <br /><br /><center>
 <p><img src="https://openclipart.org/people/jpneok/junebug.svg" align="bottom" width=200></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <!-- Test wikimedia type of files that otherwise reside in subdirs -->
@@ -53103,9 +53110,10 @@ Python.
 <p>
 <!-- Bokeh plot -->
 <script type="text/javascript">
-<p>            Bokeh.$(function() {                 var modelid = "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1";                 var modeltype = "PlotContext";                 var elementid = "ffba6087-a45a-46eb-9368-11527f1f0a34";                 Bokeh.logger.info("Realizing plot:")                 Bokeh.logger.info(" - modeltype: PlotContext");                 Bokeh.logger.info(" - modelid: dc6ef912-b325-4c34-996a-cdeb5aa4d7c1");                 Bokeh.logger.info(" - elementid: ffba6087-a45a-46eb-9368-11527f1f0a34");                 var all_models = [{"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 1.0}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, "type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, {"attributes": {"column_names": ["x", "y"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selected": {"2d": {"indices": []}, "1d": {"indices": []}, "0d": {"indices": [], "flag": false}}, "callback": null, "data": {"y": [0.0, 1.0, 8.0, 27.0], "x": [0.0, 1.0, 2.0, 3.0]}, "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, "type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, "type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397", "renderers": []}, "type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, "type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, "type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, "type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, "type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed", "tags": []}, "type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748", "attributes": {"x_range": {"type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, "right": [], "tags": [], "tools": [{"type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}], "title": "Bokeh test", "extra_y_ranges": {}, "renderers": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}], "extra_x_ranges": {}, "below": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}], "tool_events": {"type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "above": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y_range": {"type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, "id": "bac26888-fe18-4833-afe3-61e241eed748", "left": [{"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}]}}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0", "renderers": []}, "type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1", "children": [{"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}]}, "type": "PlotContext", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1"}, {"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 0.1}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, "type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, "type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 1, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, "type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"attributes": {"nonselection_glyph": {"type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "data_source": {"type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "name": null, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selection_glyph": null, "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c", "glyph": {"type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}}, "type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 0, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, "type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, "type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"attributes": {"geometries": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8", "tags": []}, "type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}];                 Bokeh.load_models(all_models);                 var model = Bokeh.Collections(modeltype).get(modelid);                 var view = new model.default_view({model: model, el: '#ffba6087-a45a-46eb-9368-11527f1f0a34'});                 Bokeh.index[modelid] = view             });         </script></p>
+<p>            Bokeh.$(function() {                 var modelid = "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1";                 var modeltype = "PlotContext";                 var elementid = "ffba6087-a45a-46eb-9368-11527f1f0a34";                 Bokeh.logger.info("Realizing plot:")                 Bokeh.logger.info(" - modeltype: PlotContext");                 Bokeh.logger.info(" - modelid: dc6ef912-b325-4c34-996a-cdeb5aa4d7c1");                 Bokeh.logger.info(" - elementid: ffba6087-a45a-46eb-9368-11527f1f0a34");                 var all_models = [{"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 1.0}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, "type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, {"attributes": {"column_names": ["x", "y"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selected": {"2d": {"indices": []}, "1d": {"indices": []}, "0d": {"indices": [], "flag": false}}, "callback": null, "data": {"y": [0.0, 1.0, 8.0, 27.0], "x": [0.0, 1.0, 2.0, 3.0]}, "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, "type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, "type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397", "renderers": []}, "type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, "type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, "type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, "type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, "type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed", "tags": []}, "type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748", "attributes": {"x_range": {"type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, "right": [], "tags": [], "tools": [{"type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}], "title": "Bokeh test", "extra_y_ranges": {}, "renderers": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}], "extra_x_ranges": {}, "below": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}], "tool_events": {"type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "above": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y_range": {"type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, "id": "bac26888-fe18-4833-afe3-61e241eed748", "left": [{"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}]}}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0", "renderers": []}, "type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1", "children": [{"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}]}, "type": "PlotContext", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1"}, {"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 0.1}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, "type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, "type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 1, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, "type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"attributes": {"nonselection_glyph": {"type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "data_source": {"type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "name": null, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selection_glyph": null, "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c", "glyph": {"type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}}, "type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 0, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, "type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, "type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"attributes": {"geometries": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8", "tags": []}, "type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}];                 Bokeh.load_models(all_models);                 var model = Bokeh.Collections(modeltype).get(modelid);                 var view = new model.default_view({model: model, el: '#ffba6087-a45a-46eb-9368-11527f1f0a34'});                 Bokeh.index[modelid] = view             });</p>
+        </script>
 <div class="plotdiv" id="ffba6087-a45a-46eb-9368-11527f1f0a34"></div></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <p>
@@ -53666,7 +53674,7 @@ $$ 1 + 1 = 2 $$
 
 $$ E = mc^2 $$
 
-<p></div></p>
+</div>
 <h2 id="subsubsec:ex" class="anchor">URLs</h2>
 
 <p>Testing of URLs: hpl's home page <a href="https://folk.uio.no/hpl" target="_self">hpl</a>, or the entire URL if desired, <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>.  Here is a plain file link <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self">a link with newline</a>. Can test spaces with the link with word too: <a href="https://folk.uio.no/hpl" target="_self">hpl</a> or <a href="https://folk.uio.no/hpl" target="_self">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" target="_self">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
@@ -54099,13 +54107,16 @@ $$
 <a href="#exer_2_1" data-toggle="collapse">
 <p>
 <b>Hint 1.</b>
- </a></p>
+</p>
+</a>
 <div class="collapse-group">
 <p><div class="collapse" id="exer_2_1">
 
 <p>Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.</p>
 
-<p></div></p> </div> </p></p>
+</div></p>
+</div>
+</p>
 
 <!-- --- end hint in exercise --- -->
 
@@ -54116,13 +54127,16 @@ $$
 <a href="#exer_2_2" data-toggle="collapse">
 <p>
 <b>Hint 2.</b>
- </a></p>
+</p>
+</a>
 <div class="collapse-group">
 <p><div class="collapse" id="exer_2_2">
 
 <p>Draw an integer among \( \{1,2\} \) with <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.</p>
 
-<p></div></p> </div> </p></p>
+</div></p>
+</div>
+</p>
 
 <!-- --- end hint in exercise --- -->
 
@@ -54133,11 +54147,15 @@ $$
 <a href="#exer_2_3" data-toggle="collapse">
 <p>
 <b>Answer.</b>
- </a></p>
+</p>
+</a>
 <div class="collapse-group">
 <p><div class="collapse" id="exer_2_3">
 
-<p>If the <code>random.random()</code> function returns a number \( < 1/2 \), let it be head, otherwise tail. Repeat this \( N \) number of times. </div></p> </div> </p></p>
+<p>If the <code>random.random()</code> function returns a number \( < 1/2 \), let it be head, otherwise tail. Repeat this \( N \) number of times.</p>
+</div></p>
+</div>
+</p>
 
 <!-- --- end answer of exercise --- -->
 
@@ -54148,7 +54166,8 @@ $$
 <a href="#exer_2_5" data-toggle="collapse">
 <p>
 <b>Solution.</b>
- </a></p>
+</p>
+</a>
 <div class="collapse-group">
 <p><div class="collapse" id="exer_2_5">
 
@@ -54182,7 +54201,9 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
   </div>
 </div>
 
-<p></div></p> </div> </p></p>
+</div></p>
+</div>
+</p>
 
 <!-- --- end solution of exercise --- -->
 
@@ -54203,11 +54224,15 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 <a href="#exer_2_4" data-toggle="collapse">
 <p>
 <b>Answer.</b>
- </a></p>
+</p>
+</a>
 <div class="collapse-group">
 <p><div class="collapse" id="exer_2_4">
 
-<p><code>np.sum(np.where(r &lt;= 0.5, 1, 0))</code> or <code>np.sum(r &lt;= 0.5)</code>. </div></p> </div> </p></p>
+<p><code>np.sum(np.where(r &lt;= 0.5, 1, 0))</code> or <code>np.sum(r &lt;= 0.5)</code>.</p>
+</div></p>
+</div>
+</p>
 
 <!-- --- end answer of exercise --- -->
 
@@ -54261,13 +54286,16 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 <a href="#exer_4_1" data-toggle="collapse">
 <p>
 <b>Hint.</b>
- </a></p>
+</p>
+</a>
 <div class="collapse-group">
 <p><div class="collapse" id="exer_4_1">
 
 <p>To answer this question empirically, let a program draw \( N \) such random numbers using Python's standard <code>random</code> module, count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and compute the probability as \( M/N \).</p>
 
-<p></div></p> </div> </p></p>
+</div></p>
+</div>
+</p>
 
 <!-- --- end hint in exercise --- -->
 
@@ -54338,13 +54366,16 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
 <a href="#exer_5_1" data-toggle="collapse">
 <p>
 <b>Hint.</b>
- </a></p>
+</p>
+</a>
 <div class="collapse-group">
 <p><div class="collapse" id="exer_5_1">
 
 <p>Use the <code>numpy.random</code> module to draw the \( x_0 \), \( y_0 \), and \( R \) quantities.</p>
 
-<p></div></p> </div> </p></p>
+</div></p>
+</div>
+</p>
 
 <!-- --- end hint in exercise --- -->
 
@@ -54355,11 +54386,15 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
 <a href="#exer_5_2" data-toggle="collapse">
 <p>
 <b>Answer.</b>
- </a></p>
+</p>
+</a>
 <div class="collapse-group">
 <p><div class="collapse" id="exer_5_2">
 
-<p>Here goes the short answer to part a). </div></p> </div> </p></p>
+<p>Here goes the short answer to part a).</p>
+</div></p>
+</div>
+</p>
 
 <!-- --- end answer of exercise --- -->
 
@@ -54370,11 +54405,15 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
 <a href="#exer_5_3" data-toggle="collapse">
 <p>
 <b>Solution.</b>
- </a></p>
+</p>
+</a>
 <div class="collapse-group">
 <p><div class="collapse" id="exer_5_3">
 
-<p>Here goes a full solution to part a). </div></p> </div> </p></p>
+<p>Here goes a full solution to part a).</p>
+</div></p>
+</div>
+</p>
 
 <!-- --- end solution of exercise --- -->
 
@@ -54407,7 +54446,8 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
 <a href="#exer_6_5" data-toggle="collapse">
 <p>
 <b>Solution.</b>
- </a></p>
+</p>
+</a>
 <div class="collapse-group">
 <p><div class="collapse" id="exer_6_5">
 
@@ -54441,7 +54481,9 @@ $$ \hbox{math in solution: } a = b $$
 
 <p>End of solution is here.</p>
 
-<p></div></p> </div> </p></p>
+</div></p>
+</div>
+</p>
 
 <!-- --- end solution of exercise --- -->
 
@@ -54456,7 +54498,8 @@ $$ \hbox{math in solution: } a = b $$
 <a href="#exer_6_1" data-toggle="collapse">
 <p>
 <b>Hint 1.</b>
- </a></p>
+</p>
+</a>
 <div class="collapse-group">
 <p><div class="collapse" id="exer_6_1">
 
@@ -54491,7 +54534,10 @@ $$ a=b. $$
   </div>
 </div>
 
-<p></div></p> </div> </p></p>
+
+</div></p>
+</div>
+</p>
 
 <!-- --- end hint in exercise --- -->
 
@@ -54502,7 +54548,8 @@ $$ a=b. $$
 <a href="#exer_6_2" data-toggle="collapse">
 <p>
 <b>Hint 2.</b>
- </a></p>
+</p>
+</a>
 <div class="collapse-group">
 <p><div class="collapse" id="exer_6_2">
 
@@ -54514,7 +54561,9 @@ $$ a=b. $$
 <li> item1</li>
 <li> item2</li>
 </ol>
-<p></div></p> </div> </p></p>
+</div></p>
+</div>
+</p>
 
 <!-- --- end hint in exercise --- -->
 <p>Filename: <code>subexer_a.pdf</code>.</p>
@@ -54526,11 +54575,15 @@ $$ a=b. $$
 <a href="#exer_6_4" data-toggle="collapse">
 <p>
 <b>Answer.</b>
- </a></p>
+</p>
+</a>
 <div class="collapse-group">
 <p><div class="collapse" id="exer_6_4">
 
-<p>Short answer to subexercise a). With math in answer: \( a=b \). </div></p> </div> </p></p>
+<p>Short answer to subexercise a). With math in answer: \( a=b \).</p>
+</div></p>
+</div>
+</p>
 
 <!-- --- end answer of exercise --- -->
 
@@ -54550,13 +54603,16 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 <a href="#exer_6_3" data-toggle="collapse">
 <p>
 <b>Hint.</b>
- </a></p>
+</p>
+</a>
 <div class="collapse-group">
 <p><div class="collapse" id="exer_6_3">
 
 <p>A hint for this subexercise.</p>
 
-<p></div></p> </div> </p></p>
+</div></p>
+</div>
+</p>
 
 <!-- --- end hint in exercise --- -->
 <p>Filename: <code>subexer_b.pdf</code>.</p>
@@ -54568,11 +54624,15 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 <a href="#exer_6_6" data-toggle="collapse">
 <p>
 <b>Solution.</b>
- </a></p>
+</p>
+</a>
 <div class="collapse-group">
 <p><div class="collapse" id="exer_6_6">
 
-<p>Here goes the solution of this subexercise. </div></p> </div> </p></p>
+<p>Here goes the solution of this subexercise.</p>
+</div></p>
+</div>
+</p>
 
 <!-- --- end solution of exercise --- -->
 
@@ -63649,7 +63709,7 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=400></p>
-<p></center></p>
+</center>
 <br /><br/>
 </div>
 
@@ -64314,7 +64374,7 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=400></p>
-<p></center></p>
+</center>
 <br /><br/>
 </div>
 
@@ -64978,7 +65038,7 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=400></p>
-<p></center></p>
+</center>
 <br /><br/>
 </div>
 
@@ -66091,7 +66151,7 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=400></p>
-<p></center></p>
+</center>
 <br /><br/></div>
 </p></td></tr>
 </table>
@@ -66754,7 +66814,7 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=400></p>
-<p></center></p>
+</center>
 <br /><br/>
 </div>
 
@@ -67354,7 +67414,7 @@ x = <span style="color: #B452CD">2</span>*n
 
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=400></p>
-<p></center></p>
+</center>
 <br /><br/>
 </div>
 
@@ -67938,7 +67998,7 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=400></p>
-<p></center></p>
+</center>
 <br /><br/>
 </div>
 
@@ -67982,6 +68042,7 @@ doconce format html admon.do.txt --html_style=bootstrap --pygments_html_style=de
 <meta name="description" content="Testing admons">
 <title>Testing admons</title>
 <!-- Bootstrap style: bootstrap -->
+<!-- doconce format html admon.do.txt --html_style=bootstrap --pygments_html_style=default --html_admon=bootstrap_alert --cite_doconce --html_bootstrap_navbar_links=Google|https://google.com;DocOnce formats|https://hplgit.github.io/teamods/writing_reports/index.html --html_raw_github_url=raw.github -->
 <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- not necessary
 <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -68150,6 +68211,7 @@ doconce format html admon.do.txt --html_style=bootswatch --pygments_html_style=d
 <meta name="description" content="Testing admons">
 <title>Testing admons</title>
 <!-- Bootstrap style: bootswatch -->
+<!-- doconce format html admon.do.txt --html_style=bootswatch --pygments_html_style=default --html_admon=bootstrap_panel --cite_doconce --html_raw_github_url=raw.github -->
 <link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/cosmo/bootstrap.min.css" rel="stylesheet">
 <!-- not necessary
 <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -68740,7 +68802,7 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=400></p>
-<p></center></p>
+</center>
 <br /><br/>
 </div>
 </div>
@@ -68795,6 +68857,7 @@ doconce format html admon.do.txt --html_style=bootstrap --pygments_html_style=de
 <meta name="description" content="Testing admons">
 <title>Testing admons</title>
 <!-- Bootstrap style: bootstrap -->
+<!-- doconce format html admon.do.txt --html_style=bootstrap --pygments_html_style=default --html_admon=bootstrap_alert --cite_doconce --html_bootstrap_navbar_links=Google|https://google.com;DocOnce formats|https://hplgit.github.io/teamods/writing_reports/index.html --html_raw_github_url=raw.github -->
 <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- not necessary
 <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -69323,7 +69386,7 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=400></p>
-<p></center></p>
+</center>
 <br /><br/>
 </div>
 
@@ -70849,7 +70912,7 @@ MathJax.Hub.Config({
 <p>
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=300></p>
-<p></center></p>
+</center>
 <br /><br/>
 </div>
 
@@ -70990,7 +71053,7 @@ bla-bla
 <p>
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=600></p>
-<p></center></p>
+</center>
 <br /><br/>
 </div>
 </section>
@@ -71853,7 +71916,7 @@ MathJax.Hub.Config({
 <p>
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=300></p>
-<p></center></p>
+</center>
 <br /><br/>
 </div>
 
@@ -71987,7 +72050,7 @@ bla-bla
 <p>
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=600></p>
-<p></center></p>
+</center>
 <br /><br/>
 </div>
 
@@ -72280,7 +72343,7 @@ MathJax.Hub.Config({
 <p>
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=300></p>
-<p></center></p>
+</center>
 <br /><br/>
 </div>
 
@@ -72417,7 +72480,7 @@ bla-bla
 <p>
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=600></p>
-<p></center></p>
+</center>
 <br /><br/>
 </div>
 </section>
@@ -74337,7 +74400,7 @@ MathJax.Hub.Config({
 
 <br /><br /><center>
 <p><img src="testfigs/doconce1b.png" align="bottom" width=400></p>
-<p></center></p>
+</center>
 <br /><br/>
 </section>
 
@@ -74377,7 +74440,7 @@ MathJax.Hub.Config({
 <p><span class="tab"> <a href="#doconce-example-on-slide-code-with-cells"> DocOnce: example on slide code with cells </a></p>
 <p><span class="tab"> <a href="#doconce-example-on-slide-code"> DocOnce: example on slide code </a></p>
 <p><span class="tab"> <a href="#headline"> Headline </a></p>
-<p></div></p>
+</div>
 <br>
 </section>
 
@@ -74391,12 +74454,12 @@ MathJax.Hub.Config({
 <td class="padding">
 <br /><br /><center>
 <p><img src="testfigs/ipad.png" align="bottom" width=400></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <br /><br /><center>
 <p><img src="testfigs/iphones.jpg" align="bottom" width=100></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <!-- FIGURE: [testfigs/mbair, width=400] -->
@@ -74405,7 +74468,7 @@ MathJax.Hub.Config({
 <td class="padding">
 <br /><br /><center>
 <p><img src="testfigs/imac.png" align="bottom" width=350></p>
-<p></center></p>
+</center>
 <br /><br/>
 </td>
 </tr>
@@ -74418,7 +74481,7 @@ MathJax.Hub.Config({
 
 <br /><br /><center>
 <p><img src="testfigs/oldbooks.jpg" align="bottom" width=800></p>
-<p></center></p>
+</center>
 <br /><br/>
 </section>
 
@@ -74432,13 +74495,13 @@ MathJax.Hub.Config({
 <td class="padding">
 <br /><br /><center>
 <p><img src="testfigs/latex_thesis.jpg" align="bottom" width=400></p>
-<p></center></p>
+</center>
 <br /><br/>
 </td>
 <td class="padding">
 <br /><br /><center>
 <p><img src="testfigs/latex_paper1.png" align="bottom" width=400></p>
-<p></center></p>
+</center>
 <br /><br/>
 </td>
 </tr>
@@ -74472,19 +74535,19 @@ MathJax.Hub.Config({
 <td class="padding">
 <br /><br /><center>
 <p><img src="testfigs/LaTeX_logo.jpg" align="bottom" width=120></p>
-<p></center></p>
+</center>
 <br /><br/>
 </td>
 <td class="padding">
 <br /><br /><center>
 <p><img src="testfigs/MS_Word_logo.jpg" align="bottom" width=80></p>
-<p></center></p>
+</center>
 <br /><br/>
 </td>
 <td class="padding">
 <br /><br /><center>
 <p><img src="testfigs/sphinx_logo.png" align="bottom" width=200></p>
-<p></center></p>
+</center>
 <br /><br/>
 </td>
 </tr>
@@ -74492,19 +74555,19 @@ MathJax.Hub.Config({
 <td class="padding">
 <br /><br /><center>
 <p><img src="testfigs/markdown_logo.jpg" align="bottom" width=80></p>
-<p></center></p>
+</center>
 <br /><br/>
 </td>
 <td class="padding">
 <br /><br /><center>
 <p><img src="testfigs/MediaWiki_logo.jpg" align="bottom" width=80></p>
-<p></center></p>
+</center>
 <br /><br/>
 </td>
 <td class="padding">
 <br /><br /><center>
 <p><img src="testfigs/IPython_logo.png" align="bottom" width=300></p>
-<p></center></p>
+</center>
 <br /><br/>
 </td>
 </tr>
@@ -74542,7 +74605,7 @@ MathJax.Hub.Config({
 <td class="padding">
 <br /><br /><center>
 <p><img src="testfigs/jungle_with_mess.jpg" align="bottom" width=500></p>
-<p></center></p>
+</center>
 <br /><br/>
 </td>
 </tr>
@@ -75331,7 +75394,7 @@ And maybe a final comment?
 <p>
 <br /><br /><center>
 <p><img src="testfigs/teacher1.gif" align="bottom" width=100></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <p>Key equation:</p>
@@ -75432,7 +75495,7 @@ $$ -\nabla^2 u = f \quad\hbox{in }\Omega $$
 <td class="padding">
 <br /><br /><center>
 <p><img src="testfigs/broken_pen_and_paper.jpg" align="bottom" width=400></p>
-<p></center></p>
+</center>
 <br /><br/>
 </td>
 </tr>
@@ -78129,7 +78192,7 @@ MathJax.Hub.Config({
 
 <br /><br /><center>
 <p><img src="../doc/src/slides/fig/CN_logo.png" align="bottom" width=300></p>
-<p></center></p>
+</center>
 <br /><br/>
 </section>
 
@@ -78195,7 +78258,7 @@ $$
 <td class="padding">
 <br /><br /><center>
 <p><img src="../doc/src/slides/fig/teacher2.jpg" align="bottom" width=250></p>
-<p></center></p>
+</center>
 <br /><br/>
 </td>
 </tr>
@@ -78285,7 +78348,7 @@ $$
 
 <br /><br /><center>
 <p><img src="../doc/src/slides/fig/CN.png" align="bottom" width=600></p>
-<p></center></p>
+</center>
 <br /><br/>
 </section>
 
@@ -86732,6 +86795,7 @@ doconce format html test_boots.do.txt --html_style=bootswatch_journal --pygments
 <meta name="description" content="Test of the Bootstrap style">
 <title>Test of the Bootstrap style</title>
 <!-- Bootstrap style: bootswatch_journal -->
+<!-- doconce format html test_boots.do.txt --html_style=bootswatch_journal --pygments_html_style=default --html_admon=bootstrap_panel --html_code_style=inherit --html_raw_github_url=raw.github -->
 <link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/journal/bootstrap.min.css" rel="stylesheet">
 <!-- not necessary
 <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -86910,6 +86974,7 @@ doconce format html test_boots.do.txt --html_style=bootswatch_journal --pygments
 <meta name="description" content="Test of the Bootstrap style">
 <title>Test of the Bootstrap style</title>
 <!-- Bootstrap style: bootswatch_journal -->
+<!-- doconce format html test_boots.do.txt --html_style=bootswatch_journal --pygments_html_style=default --html_admon=bootstrap_panel --html_code_style=inherit --html_raw_github_url=raw.github -->
 <link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/journal/bootstrap.min.css" rel="stylesheet">
 <!-- not necessary
 <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -87200,6 +87265,7 @@ doconce format html test_boots.do.txt --html_style=bootswatch_journal --pygments
 <meta name="description" content="Test of the Bootstrap style">
 <title>Test of the Bootstrap style</title>
 <!-- Bootstrap style: bootswatch_journal -->
+<!-- doconce format html test_boots.do.txt --html_style=bootswatch_journal --pygments_html_style=default --html_admon=bootstrap_panel --html_code_style=inherit --html_raw_github_url=raw.github -->
 <link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/journal/bootstrap.min.css" rel="stylesheet">
 <!-- not necessary
 <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -89261,7 +89327,7 @@ MathJax.Hub.Config({
 <p><span class="tab"> <a href="#appendix-testing-identical-titles"> Appendix: Testing identical titles </a></p>
 <p><span class="tab"> <a href="#appendix-testing-inline-comments"> Appendix: Testing inline comments </a></p>
 <p><span class="tab"> <a href="#appendix-testing-headings-ending-with-verbatim-inline"> Appendix: Testing headings ending with <code>verbatim inline</code> </a></p>
-<p></div></p>
+</div>
 <br>
 
 <!-- !split -->
@@ -90069,15 +90135,15 @@ Python.
 <hr class="figure">
 <center>
 <p class="caption">Figure 1:  Visualization <b>of</b> a <em>wave</em>.  <!-- caption label: fig:impact --> </p>
-<p></center></p>
+</center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=200></p>
-<p></center></p>
+</center>
 
 <p>Figures without captions are allowed and will be inlined.</p>
 
 <br /><br /><center>
 <p><img src="testfigs/wave1D.png" align="bottom" width=200></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <!-- Test multi-line caption in figure with sidecap=True -->
@@ -90089,7 +90155,8 @@ Python.
 <table><tr>
 <td><img src="testfigs/wave1D.png" align="bottom" width=500></td>
 <td><p class="caption">Figure 2:  A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in \( t_{i+1} \).  <!-- caption label: myfig --> </p></td>
-<p></tr></table> </center></p>
+</tr></table>
+</center>
 
 <!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
 
@@ -90097,14 +90164,14 @@ Python.
 
 <br /><br /><center>
 <p><img src="https://raw.github.com/doconce/doconce/master/doc/src/blog/f_plot.png" align="bottom" width=500></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <p>Test SVG figure:</p>
 
 <br /><br /><center>
 <p><img src="https://openclipart.org/people/jpneok/junebug.svg" align="bottom" width=200></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <!-- Test wikimedia type of files that otherwise reside in subdirs -->
@@ -90115,9 +90182,10 @@ Python.
 <p>
 <!-- Bokeh plot -->
 <script type="text/javascript">
-<p>            Bokeh.$(function() {                 var modelid = "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1";                 var modeltype = "PlotContext";                 var elementid = "ffba6087-a45a-46eb-9368-11527f1f0a34";                 Bokeh.logger.info("Realizing plot:")                 Bokeh.logger.info(" - modeltype: PlotContext");                 Bokeh.logger.info(" - modelid: dc6ef912-b325-4c34-996a-cdeb5aa4d7c1");                 Bokeh.logger.info(" - elementid: ffba6087-a45a-46eb-9368-11527f1f0a34");                 var all_models = [{"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 1.0}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, "type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, {"attributes": {"column_names": ["x", "y"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selected": {"2d": {"indices": []}, "1d": {"indices": []}, "0d": {"indices": [], "flag": false}}, "callback": null, "data": {"y": [0.0, 1.0, 8.0, 27.0], "x": [0.0, 1.0, 2.0, 3.0]}, "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, "type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, "type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397", "renderers": []}, "type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, "type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, "type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, "type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, "type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed", "tags": []}, "type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748", "attributes": {"x_range": {"type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, "right": [], "tags": [], "tools": [{"type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}], "title": "Bokeh test", "extra_y_ranges": {}, "renderers": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}], "extra_x_ranges": {}, "below": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}], "tool_events": {"type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "above": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y_range": {"type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, "id": "bac26888-fe18-4833-afe3-61e241eed748", "left": [{"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}]}}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0", "renderers": []}, "type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1", "children": [{"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}]}, "type": "PlotContext", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1"}, {"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 0.1}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, "type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, "type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 1, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, "type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"attributes": {"nonselection_glyph": {"type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "data_source": {"type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "name": null, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selection_glyph": null, "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c", "glyph": {"type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}}, "type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 0, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, "type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, "type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"attributes": {"geometries": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8", "tags": []}, "type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}];                 Bokeh.load_models(all_models);                 var model = Bokeh.Collections(modeltype).get(modelid);                 var view = new model.default_view({model: model, el: '#ffba6087-a45a-46eb-9368-11527f1f0a34'});                 Bokeh.index[modelid] = view             });         </script></p>
+<p>            Bokeh.$(function() {                 var modelid = "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1";                 var modeltype = "PlotContext";                 var elementid = "ffba6087-a45a-46eb-9368-11527f1f0a34";                 Bokeh.logger.info("Realizing plot:")                 Bokeh.logger.info(" - modeltype: PlotContext");                 Bokeh.logger.info(" - modelid: dc6ef912-b325-4c34-996a-cdeb5aa4d7c1");                 Bokeh.logger.info(" - elementid: ffba6087-a45a-46eb-9368-11527f1f0a34");                 var all_models = [{"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 1.0}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, "type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, {"attributes": {"column_names": ["x", "y"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selected": {"2d": {"indices": []}, "1d": {"indices": []}, "0d": {"indices": [], "flag": false}}, "callback": null, "data": {"y": [0.0, 1.0, 8.0, 27.0], "x": [0.0, 1.0, 2.0, 3.0]}, "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, "type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, "type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397", "renderers": []}, "type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, "type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, "type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, "type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, "type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed", "tags": []}, "type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748", "attributes": {"x_range": {"type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, "right": [], "tags": [], "tools": [{"type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}], "title": "Bokeh test", "extra_y_ranges": {}, "renderers": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}], "extra_x_ranges": {}, "below": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}], "tool_events": {"type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "above": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y_range": {"type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, "id": "bac26888-fe18-4833-afe3-61e241eed748", "left": [{"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}]}}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0", "renderers": []}, "type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1", "children": [{"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}]}, "type": "PlotContext", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1"}, {"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 0.1}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, "type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, "type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 1, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, "type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"attributes": {"nonselection_glyph": {"type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "data_source": {"type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "name": null, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selection_glyph": null, "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c", "glyph": {"type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}}, "type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 0, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, "type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, "type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"attributes": {"geometries": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8", "tags": []}, "type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}];                 Bokeh.load_models(all_models);                 var model = Bokeh.Collections(modeltype).get(modelid);                 var view = new model.default_view({model: model, el: '#ffba6087-a45a-46eb-9368-11527f1f0a34'});                 Bokeh.index[modelid] = view             });</p>
+        </script>
 <div class="plotdiv" id="ffba6087-a45a-46eb-9368-11527f1f0a34"></div></p>
-<p></center></p>
+</center>
 <br /><br/>
 
 <p>
@@ -90646,7 +90714,7 @@ $$ 1 + 1 = 2 $$
 
 $$ E = mc^2 $$
 
-<p></div></p>
+</div>
 <h2 id="subsubsec:ex">URLs</h2>
 
 <p>Testing of URLs: hpl's home page <a href="https://folk.uio.no/hpl" target="_self">hpl</a>, or the entire URL if desired, <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>.  Here is a plain file link <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self">a link with newline</a>. Can test spaces with the link with word too: <a href="https://folk.uio.no/hpl" target="_self">hpl</a> or <a href="https://folk.uio.no/hpl" target="_self">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" target="_self">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>

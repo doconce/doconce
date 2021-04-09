@@ -2461,8 +2461,11 @@ def text_lines(filestr):
         elif re.search(r'<[/]?[li|ol|ul|dl|dt]{2,2}(?:[ ]+[^>]*)*[/]?>', line):
             # Skip lists
             continue
+        elif re.search(r'^\s*(<[^>]*>)+\s*$', line):
+            # Skip single tags e.g. </div> or </tr></table>
+            continue
         elif re.search(r'^\s*<[\w _\-]+[\\]?.*>\s*$', line): #TODO: exclude <a>? see around "Here is a citation using"
-            # Skip lines already wrapped in tags, e.g. lists or <tag ...>
+            # Skip lines already wrapped in tags, e.g. lists or <tag ...> or <p></p>
             continue
         elif re.search('^\s*\\|.*\\|$', line):
             # Skip tables
