@@ -154,7 +154,7 @@ def slides_html():
     # Overview: https://www.impressivewebs.com/html-slidedeck-toolkits/
     # Overview: https://www.sitepoint.com/5-free-html5-presentation-systems/
     # x https://leaverou.github.com/CSSS/
-    # x https://lab.hakim.se/reveal-js/ (easy and fancy)
+        # x https://lab.hakim.se/reveal-js/ (easy and fancy)
     # x https://paulrouget.com/dzslides/ (easy and fancy, Keynote like)
     # https://imakewebthings.com/deck.js/ (also easy)
     # https://code.google.com/p/html5slides/ (also easy)
@@ -273,29 +273,33 @@ css_deck = ('\n'
             '.slide .alert-text-large   { font-size: 130%%; }\n'
             '.slide .alert-text-normal  { font-size: 90%%;  }\n'
             '.slide .alert {\n'
-            '     padding:8px 35px 8px 14px; margin-bottom:18px;\n'
-            '     text-shadow:0 1px 0 rgba(255,255,255,0.5);\n'
-            '     border:5px solid #bababa;\n'
-            '       -webkit-border-radius:14px; -moz-border-radius:14px;\n'
-            '     border-radius:14px\n'
-            '     background-position: 10px 10px;\n'
-            '     background-repeat: no-repeat;\n'
-            '     background-size: 38px;\n'
-            '     padding-left: 30px; /* 55px; if icon */\n'
-            ' }\n'
-            ' .slide .alert-block {padding-top:14px; padding-bottom:14px}\n'
-            ' .slide .alert-block > p, .alert-block > ul {margin-bottom:0}\n'
-            ' /*.slide .alert li {margin-top: 1em}*/\n'
-            ' .deck .alert-block p+p {margin-top:5px}\n'
-            ' /*.slide .alert-notice { background-image: url(https://hplgit.github.io/doconce/\n'
-            ' bundled/html_images//small_gray_notice.png); }\n'
-            ' .slide .alert-summary  { background-image:url(https://hplgit.github.io/doconce/\n'
-            ' bundled/html_images//small_gray_summary.png); }\n'
-            ' .slide .alert-warning { background-image: url(https://hplgit.github.io/doconce/\n'
-            ' bundled/html_images//small_gray_warning.png); }\n'
-            ' .slide .alert-question {background-image:url(https://hplgit.github.io/doconce/\n'
-            ' bundled/html_images/small_gray_question.png); } */\n'
-            '\n'
+            '  padding:8px 35px 8px 14px; margin-bottom:18px;\n'
+            '  text-shadow:0 1px 0 rgba(255,255,255,0.5);\n'
+            '  border:5px solid #bababa;\n'
+            '    -webkit-border-radius:14px; -moz-border-radius:14px;\n'
+            '  border-radius:14px\n'
+            '  background-position: 10px 10px;\n'
+            '  background-repeat: no-repeat;\n'
+            '  background-size: 38px;\n'
+            '  padding-left: 30px; /* 55px; if icon */\n'
+            '}\n'
+            '.slide .alert-block {padding-top:14px; padding-bottom:14px}\n'
+            '.slide .alert-block > p, .alert-block > ul {margin-bottom:0}\n'
+            '/*.slide .alert li {margin-top: 1em}*/\n'
+            '.deck .alert-block p+p {margin-top:5px}\n'
+            '/*.slide .alert-notice { background-image: url(https://hplgit.github.io/doconce/\n'
+            'bundled/html_images//small_gray_notice.png); }\n'
+            '.slide .alert-summary  { background-image:url(https://hplgit.github.io/doconce/\n'
+            'bundled/html_images//small_gray_summary.png); }\n'
+            '.slide .alert-warning { background-image: url(https://hplgit.github.io/doconce/\n'
+            'bundled/html_images//small_gray_warning.png); }\n'
+            '.slide .alert-question {background-image:url(https://hplgit.github.io/doconce/\n'
+            'bundled/html_images/small_gray_question.png); } */\n'
+            'table, th, tr, td {\n'
+            '    border: 2px solid black;\n'
+            '    border-collapse: collapse;\n'
+            '    padding: 2px;\n'
+            '}\n'
             '</style>\n'
             '\n\n')
 
@@ -349,6 +353,11 @@ def get_deck_header(info='<!-- deck.js: https://github.com/imakewebthings/deck.j
     output = boilerplate[boilerplate.find('<head>')+6:boilerplate.find('</head>')]
     output = re.sub(r'\s*<title>[^<>]*</title>\s*', '', output)
     output = info + output + '\n' + css_overrides
+    # Insert a %(theme) variable instead of the default theme
+    c = re.compile(r'(?P<link><link rel="stylesheet"[^>]+themes\/style\/)[^>]+(?P<css>\.css">)')
+    if not re.search(c, output):
+        errwarn('*** error: could not find the theme in Deck boilerplate')
+    output = re.sub(c, '\g<link>%(theme)s\g<css>', output)
     return output
 
 def get_deck_footer(info='<footer>\n<!-- Here goes a footer -->\n</footer>\n\n'):
@@ -374,7 +383,6 @@ def get_deck_footer(info='<footer>\n<!-- Here goes a footer -->\n</footer>\n\n')
     output += boilerplate[boilerplate.rfind('</div>') + 6:boilerplate.rfind('</body>')]
     output = info + output
     return output
-
 
 def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='reveal'):
     if slide_tp not in ['dzslides', 'html5slides']:

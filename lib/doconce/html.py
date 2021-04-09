@@ -3181,14 +3181,16 @@ def define(FILENAME_EXTENSION,
             errwarn('*** wrong --html_style=%s' % html_style)
             _abort()
 
-        style = """
-<!-- Bootstrap style: %s -->
-%s
-<!-- not necessary
-<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
--->
-"""% (html_style, '\n'.join(['<link href="%s" rel="stylesheet">' % url
-                   for url in urls]))
+        style = ('\n'
+                 '<!-- Bootstrap style: %s -->\n'
+                 '<!-- doconce format html %s %s -->\n'
+                 '%s\n'
+                 '<!-- not necessary\n'
+                 '<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">\n'
+                 '-->\n') % (html_style,
+                             globals.filename,
+                             ' '.join(sys.argv[1:]),
+                             '\n'.join(['<link href="%s" rel="stylesheet">' % url for url in urls]))
 
     style_changes = ''
     if option('html_code_style=', 'on') in ('off', 'transparent', 'inherit'):
