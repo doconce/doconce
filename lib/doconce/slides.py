@@ -349,6 +349,11 @@ def get_deck_header(info='<!-- deck.js: https://github.com/imakewebthings/deck.j
     output = boilerplate[boilerplate.find('<head>')+6:boilerplate.find('</head>')]
     output = re.sub(r'\s*<title>[^<>]*</title>\s*', '', output)
     output = info + output + '\n' + css_overrides
+    # Insert a %(theme) variable instead of the default theme
+    c = re.compile(r'(?P<link><link rel="stylesheet"[^>]+themes\/style\/)[^>]+(?P<css>\.css">)')
+    if not re.search(c, output):
+        errwarn('*** error: could not find the theme in Deck boilerplate')
+    output = re.sub(c, '\g<link>%(theme)s\g<css>', output)
     return output
 
 def get_deck_footer(info='<footer>\n<!-- Here goes a footer -->\n</footer>\n\n'):
@@ -374,7 +379,6 @@ def get_deck_footer(info='<footer>\n<!-- Here goes a footer -->\n</footer>\n\n')
     output += boilerplate[boilerplate.rfind('</div>') + 6:boilerplate.rfind('</body>')]
     output = info + output
     return output
-
 
 def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='reveal'):
     if slide_tp not in ['dzslides', 'html5slides']:

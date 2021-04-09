@@ -179,21 +179,21 @@ def test_typeset_lists():
 def test_get_package_data():
     from doconce.slides import get_package_data
     data = get_package_data('deck.js-latest.zip', os.path.join('deck.js-latest','boilerplate.html'))
-    assert '<!DOCTYPE html>' in data
-    assert 'deck.menu.css' in data
+    assert data.find('<!DOCTYPE html>') > -1
+    assert data.find('deck.menu.css') > -1
     data = get_package_data('csss.zip', os.path.join('csss', 'theme.css'))
-    assert '.slide h1 {' in data
+    assert data.find('.slide h1 {') > -1
 
 def test_get_deck_header():
     from doconce.slides import get_deck_header
     output = get_deck_header()
-    assert 'imakewebthings/deck.js' in output
-    assert 'deck.js-latest/' in output
+    assert output.find('imakewebthings/deck.js') > -1
+    assert output.find('deck.js-latest/') > -1
 
 def test_get_deck_footer():
     from doconce.slides import get_deck_footer
     output = get_deck_footer()
-    assert 'Begin extension snippets' in output
+    assert output.find('Begin extension snippets') > -1
 
 
 
@@ -314,19 +314,21 @@ def test_doconce_html_slides(tdir):
                          stderr=subprocess.STDOUT,  # can do this in debugger mode: print(out.stdout)
                          encoding='utf8')
     assert out.returncode == 0
-    out = subprocess.run('doconce html_slides testdoc.do.txt deck'.split(' '),
+    out = subprocess.run('doconce html_slides testdoc deck --html_slide_theme=swiss'.split(' '),
                          cwd=tdir,  # NB: main process stays in curr dir, subprocesses in tdir
                          stdout=subprocess.PIPE,
                          stderr=subprocess.STDOUT,  # can do this in debugger mode: print(out.stdout)
                          encoding='utf8')
     assert out.returncode == 0
-
+    with open('testdoc.html', 'r') as f:
+        html = f.read()
+    assert html.find('themes/style/swiss.css') > -1
 
 def test_html_remove_whitespace():
     from doconce.html import html_remove_whitespace
     assert html_remove_whitespace('') == ''
     out = html_remove_whitespace('\n<p>par 1</p>\n\n<p></p>\n  \n<p>par 2</p>\n\n<!---->\n    \n')
-    assert out == '<p>par 1</p>\n<p>par 2</p>\n<!---->\n    \n'
+    assert out == '\n<p>par 1</p>\n\n<p>par 2</p>\n\n<!---->\n    \n'
 
 def test_get_header_parts_footer(tdir):
     from doconce.misc import get_header_parts_footer
