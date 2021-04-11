@@ -154,7 +154,7 @@ def slides_html():
     # Overview: https://www.impressivewebs.com/html-slidedeck-toolkits/
     # Overview: https://www.sitepoint.com/5-free-html5-presentation-systems/
     # x https://leaverou.github.com/CSSS/
-        # x https://lab.hakim.se/reveal-js/ (easy and fancy)
+    # x https://lab.hakim.se/reveal-js/ (easy and fancy)
     # x https://paulrouget.com/dzslides/ (easy and fancy, Keynote like)
     # https://imakewebthings.com/deck.js/ (also easy)
     # https://code.google.com/p/html5slides/ (also easy)

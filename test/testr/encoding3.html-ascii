@@ -80,6 +80,15 @@ str>>> The tex blocks:
 
 
 ************************************************************
+str>>> The file after changing the level of section headings:
+
+## Test of handling non-ASCII characters in DocOnce
+Text with a name like Åsmund Ødegård works in general.
+
+
+
+
+************************************************************
 str>>> The file after handling exercises:
 
 Text with a name like Åsmund Ødegård works in general.

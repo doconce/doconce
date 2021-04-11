@@ -83172,6 +83172,15 @@ str>>> The tex blocks:
 
 
 ************************************************************
+str>>> The file after changing the level of section headings:
+
+## Test of handling non-ASCII characters in DocOnce
+Text with a name like Åsmund Ødegård works in general.
+
+
+
+
+************************************************************
 str>>> The file after handling exercises:
 
 Text with a name like Åsmund Ødegård works in general.
@@ -83559,6 +83568,19 @@ str>>> The code block types:
 
 ************************************************************
 str>>> The tex blocks:
+
+
+
+
+************************************************************
+str>>> The file after changing the level of section headings:
+
+## Test of handling non-ASCII characters in DocOnce
+Text with a name like Åsmund Ødegård works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+
+0 <<<!!CODE_BLOCK 
 
 
 
@@ -84042,6 +84064,22 @@ str>>> The code block types:
 ************************************************************
 str>>> The tex blocks:
 
+
+
+
+************************************************************
+str>>> The file after changing the level of section headings:
+
+Text with a name like Åsmund Ødegård works in general.
+
+This block (in format html)
+triggers use of `mako`. For all formats, `mako` has
+problem with non-ASCII characters anywhere in the text. The remedy
+for all formats is to read the file with UTF-8 encoding. With --debug
+one can see the internal str/unicode representation of the text
+through the various stages of the text transformation process.
+
+$b = 1$ is a value suggested by Åsmund Ødegård.
 
 
 

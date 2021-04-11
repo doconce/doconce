@@ -39,6 +39,36 @@ main_content_end = globals.main_content_char*19 + ' end of main content ' + \
 # include "latex.py"
 #----------------------------------------------------------------------------
 
+def load_modules(filestr, modules=globals.supported_format_names):
+    """Load all modules
+
+    Load all modules, which most often correspond to py files with the same name:
+    html, latex, pdflatex, rst, sphinx, st, epytext, plain, gwiki,
+    mwiki, cwiki, pandoc, ipynb, matlabnb'
+    :param str filestr: file content
+    :param list(str) modules: list of modules to run, default globals.supported_format_names
+    """
+    for module in [eval(module) for module in modules]:
+        module.define(
+            FILENAME_EXTENSION,
+            BLANKLINE,
+            INLINE_TAGS_SUBST,
+            CODE,
+            LIST,
+            ARGLIST,
+            TABLE,
+            EXERCISE,
+            FIGURE_EXT,
+            CROSS_REFS,
+            INDEX_BIB,
+            TOC,
+            ENVIRS,
+            QUIZ,
+            INTRO,
+            OUTRO,
+            filestr)
+
+
 def encode_error_message(exception, text, print_length=40):
     m = str(exception)
     if "codec can't encode character" in m:
@@ -3446,25 +3476,7 @@ def handle_index_and_bib(filestr, format):
 
     # Needed when caller does not pass though doconce2format()
     if format not in INDEX_BIB.keys():
-        module = eval(format)
-        module.define(
-            FILENAME_EXTENSION,
-            BLANKLINE,
-            INLINE_TAGS_SUBST,
-            CODE,
-            LIST,
-            ARGLIST,
-            TABLE,
-            EXERCISE,
-            FIGURE_EXT,
-            CROSS_REFS,
-            INDEX_BIB,
-            TOC,
-            ENVIRS,
-            QUIZ,
-            INTRO,
-            OUTRO,
-            filestr)
+        load_modules(filestr, [format])
 
     filestr = INDEX_BIB[format](filestr, index, citations, pubfile, pubdata)
 
@@ -4402,6 +4414,33 @@ def write_file(text, out_filename, _encoding = ''):
     f.close()
 
 
+def lift_sections(filestr, sections_up=None, sections_down=None):
+    s2name = {9: 'chapter', 7: 'section', 5: 'subsection', 3: 'subsubsection'}
+    if sections_up:
+        for s in 7, 5, 3:
+            header_old = '=' * s
+            header_new = '=' * (s + 2)
+            errwarn('transforming sections: %s to %s...' % (s2name[s], s2name[s + 2]))
+            pattern = r'^ *%s +(.+?) +%s' % (header_old, header_old)
+            replacement = r'%s \g<1> %s' % (header_new, header_new)
+            filestr = re.sub(pattern, replacement, filestr, flags=re.MULTILINE)
+    if sections_down:
+        for s in 5, 7, 9:
+            header_old = '=' * s
+            header_new = '=' * (s - 2)
+            errwarn('transforming sections: %s to %s...' % (s2name[s], s2name[s - 2]))
+            pattern = r'^ *%s +(.+?) +%s' % (header_old, header_old)
+            replacement = r'%s \g<1> %s' % (header_new, header_new)
+            filestr = re.sub(pattern, replacement, filestr, flags=re.MULTILINE)
+    if sections_up or sections_down:
+        # Fix Exercise, Problem, Project, Example - they must be 5=
+        for s in 7, 3:
+            filestr = re.sub(r'^ *%s +(\{?(Exercise|Problem|Project|Example)\}?):\s*(.+?) +%s' % ('=' * s, '=' * s),
+                             '===== \g<1>: \g<3> =====',
+                             filestr,
+                             flags=re.MULTILINE)
+    return filestr
+
 def doconce2format4docstrings(filestr, format):
     """Run doconce2format on all doc strings in a Python file."""
 
@@ -4455,508 +4494,6 @@ def doconce2format4docstrings(filestr, format):
     return filestr
 
 global _t0, _t1
-
-
-def doconce2format(filestr, format):
-    """Convert string to desired format
-
-    Convert the string content of a file to different formats.
-    Called by format_drive() > file2file()
-
-    :param str filestr:
-    :param format:
-    :return: tuple with modified filestr, bokeh.client session
-    :rtype: Tuple[Union[str, bytes, list], Optional[Any]]
-    """
-    global _t0, _t1
-    _t0 = _t1 = time.time()
-    verbose = int(option('verbose=', 0))
-    if verbose == 0:
-        report_cpu_time = 15
-    elif verbose == 1:
-        report_cpu_time = 5
-    elif verbose == 2:
-        report_cpu_time = 0
-    else:
-        report_cpu_time = 15
-
-    def report_progress(msg):
-        """Write a message about the progress if CPU time of a task takes time."""
-        global _t1
-        cpu_accumulated = time.time() - _t0
-        cpu_last_task = time.time() - _t1
-        _t1 = time.time()
-        if cpu_last_task > report_cpu_time:
-            errwarn('\n...doconce translation: ' + msg +
-                    ' %.1f s' % cpu_last_task +
-                    ' (accumulated time: %.1f)' % cpu_accumulated)
-            time.sleep(1)
-
-    report_progress('finished preprocessors')
-
-    if option('syntax_check=', 'on') == 'on':
-        filestr = fix(filestr, format, verbose=1)
-        syntax_check(filestr, format)
-        report_progress('handled syntax checks')
-
-    global FILENAME_EXTENSION, BLANKLINE, INLINE_TAGS_SUBST, CODE, \
-           LIST, ARGLIST,TABLE, EXERCISE, FIGURE_EXT, CROSS_REFS, INDEX_BIB, \
-           TOC, ENVIRS, INTRO, OUTRO
-
-    for module in [eval(module) for module in  globals.supported_format_names]:
-        module.define(
-            FILENAME_EXTENSION,
-            BLANKLINE,
-            INLINE_TAGS_SUBST,
-            CODE,
-            LIST,
-            ARGLIST,
-            TABLE,
-            EXERCISE,
-            FIGURE_EXT,
-            CROSS_REFS,
-            INDEX_BIB,
-            TOC,
-            ENVIRS,
-            QUIZ,
-            INTRO,
-            OUTRO,
-            filestr)
-
-    # -----------------------------------------------------------------
-
-    # Translate from Markdown syntax if that is requested
-    if option('markdown'):
-        filestr = markdown2doconce(filestr, format)
-        fname = option('md2do_output=', None)
-        if fname is not None:
-            f = open(fname, 'w')
-            f.write(filestr)
-
-    # Next step: standardize newlines
-    filestr = re.sub(r'(\r\n|\r|\n)', '\n', filestr)
-
-    # Next step: set language
-    globals.locale_dict['language'] = option('language=', 'English')
-    if globals.locale_dict['language'] not in globals.locale_dict:
-        print('*** error: language "%s" not supported in locale_dict' % globals.locale_dict['language'])
-        _abort()
-    else:
-        if globals.locale_dict['language'] != 'English':
-            errwarn('*** locale set to ' + globals.locale_dict['language'])
-
-    # Check that all eqrefs have labels in tex blocks (\label{})
-    if option('labelcheck=', 'off') == 'on':
-        num_problems = 0
-        labels = re.findall(r'label\{(.+?)\}', filestr)
-        refs = re.findall(r'ref\{(.+?)\}', filestr)
-        missing_labels = []
-        for ref in refs:
-            if not ref in labels:
-                if ref not in missing_labels:
-                    missing_labels.append(ref)
-        if missing_labels:
-            errwarn('*** error: ref{} has no corresponding label{}:')
-            errwarn('\n'.join(missing_labels))
-            errwarn('    reasons:')
-            errwarn('1.  maybe ref{} is already inside a generalized reference ref[][][]')
-            errwarn('2.  maybe ref{} is needed in a generalized reference ref[][][]')
-            errwarn('3.  this compatibility test is not useful - turn off by --labelcheck=off')
-            _abort()
-
-    # Next step: first reformatting of quizzes
-    filestr, num_quizzes = typeset_quizzes1(
-        filestr, insert_missing_quiz_header=False)
-    if num_quizzes:
-        debugpr('The file after first reformatting of quizzes:', filestr)
-        report_progress('handled first reformatting of quizzes')
-
-    # Next step: run operating system commands and insert output
-    filestr, num_commands = insert_os_commands(filestr, format)
-    debugpr('The file after running @@@OSCMD (from file):', filestr)
-    if num_commands:
-        report_progress('handled @@@OSCMD executions')
-
-    # Next step: insert verbatim code from other (source code) files:
-    # (if the format is latex, we could let ptex2tex do this, but
-    # the CODE start@stop specifications may contain uderscores and
-    # asterix, which will be replaced later and hence destroyed)
-    #if format != 'latex':
-    filestr, num_files = insert_code_from_file(filestr, format)
-    debugpr('The file after inserting @@@CODE (from file):', filestr)
-    if num_files:
-        report_progress('handled @@@CODE copying')
-
-    # Hack to fix a bug with !ec/!et at the end of files, which is not
-    # correctly substituted by '' in rst, sphinx, st, epytext, plain, wikis
-    # (the fix is to add "enough" blank lines - the reason can be
-    # an effective strip of filestr, e.g., through '\n'.join(lines))
-    if format in ('rst', 'sphinx', 'st', 'epytext', 'plain', 'mwiki', 'cwiki', 'gwiki'):
-        filestr = filestr.rstrip()
-        if filestr.endswith('!ec') or filestr.endswith('!et'):
-            filestr += '\n'*10
-
-    # Next step: change \bm{} to \boldsymbol{} for all MathJax-based formats
-    # (must be done before math blocks are removed and again after
-    # newcommands files are inserted)
-    filestr = bm2boldsymbol(filestr, format)
-
-    # Hack for transforming align envirs to separate equations
-    if format in ("sphinx", "ipynb") or option('align2equations'):
-        filestr = align2equations(filestr, format)
-        debugpr('The file after {align} or {alignat} envirs are rewritten as separate equations:', filestr)
-
-    # If ipynb is to make use of Image or movie objects, this results in
-    # a living cell and hence a verbatim block, and figures/movies must be
-    # interpreted before such blocks are removed.
-    call_handle_figures = False  # indicates if handle_figures has been called here or not
-    if format == 'ipynb':
-        if 'FIGURE:' in filestr and option('ipynb_figure=', 'md') == 'Image':
-            call_handle_figures = True
-        if option('figure_prefix=') is not None or \
-           option ('movie_prefix=') is not None:
-            call_handle_figures = True
-        if call_handle_figures:
-            filestr = handle_figures(filestr, format)
-        if 'MOVIE:' in filestr:
-            filestr = re.sub(INLINE_TAGS['movie'],
-                             INLINE_TAGS_SUBST[format]['movie'],
-                             filestr, flags=re.MULTILINE)
-
-    # Next step: IBPLOT commands for inline interactive plots
-    bg_session = None
-    m = re.search('^IBPLOT: *\[', filestr, flags=re.MULTILINE)
-    has_ibplot = True if m else False
-    if has_ibplot:
-        filestr, bg_session = html.embed_IBPLOTs(filestr, format)
-        #bg_session.loop_until_closed()
-        debugpr('The file after inserting interactive IBPLOT curve plots:', filestr)
-
-    # Next step: deal with user-defined environments
-    if '!bu-' in filestr:
-        filestr = typeset_userdef_envirs(filestr, format)
-        debugpr('The file after inserting user-defined environments:', filestr)
-
-    # Next step: remove all verbatim and math blocks
-    filestr, code_blocks, code_block_types, tex_blocks = \
-             remove_code_and_tex(filestr, format)
-    if format in ('html', 'sphinx', 'ipynb', 'matlabnb'):
-        tex_blocks = add_labels_to_all_numbered_equations(tex_blocks)
-        # needed for the split functionality when all user-defined labels are
-        # given tags, then we need labels in all environments that will
-        # create equation numbers
-    debugpr('The file after removal of code/tex blocks:', filestr)
-    debugpr('The code blocks:',
-            safe_join([str(i) + ':\n' + code_blocks[i] for i in range(len(code_blocks))], '\n'))
-    debugpr('The code block types:',
-            safe_join([str(i) + code_block_types[i] for i in range(len(code_block_types))], '\n'))
-    debugpr('The tex blocks:',
-            safe_join([str(i) + ':\n' + tex_blocks[i] for i in range(len(tex_blocks))], '\n'))
-    report_progress('removed all verbatim and latex blocks')
-
-    # Next step: substitute latex-style newcommands in filestr and tex_blocks
-    # (not in code_blocks)
-    if format not in ('latex', 'pdflatex'):
-        newcommand_files = glob.glob('newcommands*_replace.tex')
-        if format in ('sphinx', 'pandoc', 'ipynb'):
-            # replace all newcommands in these formats
-            # (none of them likes a bulk of newcommands, only latex and html)
-            newcommand_files = [name for name in glob.glob('newcommands*.tex')
-                                if not name.endswith('.p.tex')]
-            # (note: could use substitutions (|newcommand|) in rst/sphinx,
-            # but they don't allow arguments so expansion of \newcommand
-            # is probably a better solution)
-        filestr = expand_newcommands(newcommand_files, filestr) # inline math
-        for i in range(len(tex_blocks)):
-            tex_blocks[i] = expand_newcommands(newcommand_files, tex_blocks[i])
-
-    # Check URLs to see if they are valid
-    if option('urlcheck'):
-        urlcheck(filestr)
-
-    # Comment out title, author, date?
-    if option('no_title'):
-        for tag in 'TITLE', 'AUTHOR', 'DATE':
-            filestr = re.sub(r'^%s:' % tag, '#%s:' % tag,
-                             filestr, flags=re.MULTILINE)
-
-    # Lift sections up or down?
-    s2name = {9: 'chapter', 7: 'section', 5: 'subsection', 3: 'subsubsection'}
-    section_level_changed = False
-    if option('sections_up'):
-        for s in 7, 5, 3:
-            header_old = '='*s
-            header_new = '='*(s+2)
-            errwarn('transforming sections: %s to %s...' % (s2name[s], s2name[s+2]))
-            pattern = r'^ *%s +(.+?) +%s' % (header_old, header_old)
-            replacement = r'%s \g<1> %s' % (header_new, header_new)
-            filestr = re.sub(pattern, replacement, filestr, flags=re.MULTILINE)
-        section_level_changed = True
-    if option('sections_down'):
-        for s in 5, 7, 9:
-            header_old = '='*s
-            header_new = '='*(s-2)
-            errwarn('transforming sections: %s to %s...' % (s2name[s], s2name[s-2]))
-            pattern = r'^ *%s +(.+?) +%s' % (header_old, header_old)
-            replacement = r'%s \g<1> %s' % (header_new, header_new)
-            filestr = re.sub(pattern, replacement, filestr, flags=re.MULTILINE)
-        section_level_changed = True
-
-    if section_level_changed:
-        # Fix Exercise, Problem, Project, Example - they must be 5=
-        for s in 7, 3:
-            filestr = re.sub(r'^ *%s +(\{?(Exercise|Problem|Project|Example)\}?):\s*(.+?) +%s' % ('='*s, '='*s),
-                             '===== \g<1>: \g<3> =====',
-                             filestr,
-                             flags=re.MULTILINE)
-        debugpr('The file after changing the level of section headings:', filestr)
-
-    # Remove linebreaks within paragraphs
-    if option('oneline_paragraphs'):  # (does not yet work well)
-        filestr = make_one_line_paragraphs(filestr, format)
-
-    # Wrap text in <p></p>
-    #NOPE
-
-    # Remove inline comments [name: comment]
-    filestr = subst_away_inline_comments(filestr)
-
-    # Next step: remove comments starting with ##
-    pattern = r'^##.+$\n'
-    filestr = re.sub(pattern, '', filestr, flags=re.MULTILINE)
-    # (This is already done by Mako, if the document has Mako markup)
-
-    # Next step: fix stand-alone http(s) URLs (after verbatim blocks are removed,
-    # but before figure handling and inline_tag_subst)
-    pattern = r' (https?://.+?)([ ,?:;!)\n])'
-    filestr = re.sub(pattern, ' URL: "\g<1>"\g<2>', filestr)
-
-    # Next step: deal with exercises
-    filestr = exercises(filestr, format, code_blocks, tex_blocks)
-    debugpr('The file after handling exercises:', filestr)
-
-    # Next step: deal with figures
-    if format != 'ipynb' or not call_handle_figures:
-        filestr = handle_figures(filestr, format)
-    # else: ipynb figures/movies must be handled early above
-    debugpr('The file after handling figures:', filestr)
-    report_progress('figures')
-
-    # Next step: section numbering?
-    # (Do this late, after exercises, but before TOC[] is called and
-    # sections are substituted)
-    if format not in ('latex', 'pdflatex'):
-        if option('section_numbering=', 'off') == 'on':
-            filestr = typeset_section_numbering(filestr, format)
-            debugpr('The file after numbering of chapters and sections:', filestr)
-
-    # Next step: deal with cross referencing e.g. label{} and ref{}, and TOC
-    # (must occur before other format subst)
-    filestr = handle_cross_referencing(filestr, format, tex_blocks)
-    debugpr('The file after handling ref and label cross referencing:', filestr)
-
-    # Next step: deal with index and bibliography
-    # (must be done before lists):
-    filestr = handle_index_and_bib(filestr, format)
-    debugpr('The file after handling index and bibliography:', filestr)
-
-    # Next step: deal with lists. Also process blank lines and comments #
-    filestr = typeset_lists(filestr, format, debug_info=[code_blocks, tex_blocks])
-    debugpr('The file after typesetting of lists:', filestr)
-    report_progress('handled lists')
-
-    # Next step: add space around | in tables to get right substitutions
-    filestr, inserted_space_around_pipe = space_in_tables(filestr)
-    if inserted_space_around_pipe:
-        debugpr('The file after adding space around | in tables:', filestr)
-
-    # Next step: wrap plain text in <p></p> for the html format
-    if format == 'html':
-        filestr = text_lines(filestr)
-
-    # Next step: do substitutions of inline tags
-    filestr = inline_tag_subst(filestr, format)
-    debugpr('The file after all inline substitutions:', filestr)
-    report_progress('inline substitutions')
-
-    # Next step: deal with tables
-    filestr = typeset_tables(filestr, format)
-    debugpr('The file after typesetting of tables:', filestr)
-
-    # Next step: commented out various commands/envirs (!split, !b* !e*)
-    filestr = comment_commands(filestr, format)
-    debugpr('The file after commenting out !commands', filestr)
-
-    # Next step: subst :class:`ClassName` by `ClassName` for
-    # non-rst/sphinx formats:
-    filestr = subst_class_func_mod(filestr, format)
-
-    # Next step: add header and footer, but first wrap main body
-    # of text inside some recognizable delimiters such that we
-    # can distinguish it later from header and footer (especially
-    # if there is no title and header/footer is not added, but
-    # the final fixes in CODE[format] adds another header/footer, e.g.,
-    # puts the main body inside a user-given HTML template or LaTeX template).
-    if format in ('latex', 'pdflatex', 'html'):
-        comment_pattern = INLINE_TAGS_SUBST[format]['comment']
-        delimiter = main_content_begin
-        delimiter = '\n' + comment_pattern % delimiter + '\n'  # wrap as comment
-        filestr = delimiter + '\n' + filestr
-        delimiter = main_content_end
-        delimiter = comment_pattern % delimiter + '\n'  # wrap as comment
-        filestr = filestr + '\n' + delimiter
-
-    # Add header and footer if not an HTML template is specified or if
-    # header and footer is turned off by --no_header_footer
-    if not option('no_header_footer') and \
-           option('html_template=', default='') == '':
-        if format in INTRO:
-            try:
-                filestr = INTRO[format] + filestr
-            except UnicodeDecodeError:
-                # Title etc may contain non-ascii characters
-                if not option('encoding=', '').lower() == 'utf-8':
-                    errwarn('*** error: found non-ascii character(s). Try --encoding=utf-8')
-                    _abort()
-        if format in OUTRO:
-            filestr = filestr + OUTRO[format]
-
-
-    # Need to treat quizzes for ipynb before code and text blocks are inserted
-    if num_quizzes and format == 'ipynb':
-        filestr = typeset_quizzes2(filestr, format)
-        debugpr('The file after second reformatting of quizzes:', filestr)
-        report_progress('handled second reformatting of quizzes')
-
-    # Fix for amounts in dollars: latex requires \$, but the backslash
-    # must be removed for all other formats
-    if format not in ('latex', 'pdflatex'):
-        filestr = re.sub(r'\\\$([\d.,]+\s)', r'$\g<1>', filestr)
-
-    # Next step: insert verbatim and math code blocks again and
-    # substitute code and tex environments:
-    # (this is the place to do package-specific fixes too!)
-    filestr = CODE[format](filestr, code_blocks, code_block_types,
-                           tex_blocks, format)
-    filestr += '\n'
-
-    report_progress('insertion of verbatim and latex blocks')
-    debugpr('The file after inserting intro/outro and tex/code blocks, and fixing last format-specific issues:', filestr)
-
-    # Next step: deal with !b... !e... environments
-    # (done after code and text to ensure correct indentation
-    # in the formats that applies indentation)
-    filestr = typeset_envirs(filestr, format)
-
-    report_progress('!benvir/!eenvir constructions')
-    debugpr('The file after typesetting of admons and the rest of the !b/!e environments:', filestr)
-
-    # Check if we have wrong-spelled environments
-    if not option('examples_as_exercises'):
-        pattern = r'^(![be].+)'
-        m = re.search(pattern, filestr, flags=re.MULTILINE)
-        if m:
-            # Found, but can be inside code block (should have |[be].+ then)
-            # and hence not necessarily an error
-            envir = m.group(1)
-            errwarn('*** error: could not translate environment: %s' % envir)
-            if m.group(1)[2:] in ('sol', 'ans', 'hint', 'subex', 'sol_docend', 'ans_docend',):
-                errwarn(('\nThis is an environment in an exercise. Check if the\n'
-                         '    heading is correct so the subsection was recognized\n'
-                         '    as Exercise, Problem, or Project (Exercise: title).\n\n'
-                         '    Other possible reasons:\n\n'
-                         '     * syntax error in environment name\n'
-                         '     * environment inside code: use | instead of !\n'
-                         '     * or bug in doconce\n\n'
-                         '    context:\n'))
-            errwarn(filestr[m.start()-50:m.end()+50])
-            _abort()
-
-
-    # Next step: change \bm{} to \boldsymbol{} for all MathJax-based formats
-    # (must be done before math blocks are removed and again after
-    # newcommands files are inserted)
-    filestr = bm2boldsymbol(filestr, format)
-
-    # Allow escaping of labels and references, which useful in e.g. the DocOnce
-    # manual where labels or references are inside code examples (the !bc !ec commands)
-    if 'label\{' in filestr or 'ref\{' in filestr:
-        filestr = filestr.replace('label\{', 'label{')
-        filestr = filestr.replace('ref\{', 'ref{')
-
-    # Next step: replace environments starting with | (instead of !)
-    # by ! (for illustration of doconce syntax inside !bc/!ec directives).
-    # Enough to consider |bc, |ec, |bt, and |et since all other environments
-    # are processed when code and tex blocks are removed from the document.
-    if '|b' in filestr or '|e' in filestr:
-        for envir in globals.doconce_envirs:
-            filestr = filestr.replace('|b' + envir, '!b' + envir)
-            filestr = filestr.replace('|e' + envir, '!e' + envir)
-        debugpr('The file after replacing |bc and |bt environments by true !bt and !et (in code blocks):', filestr)
-
-    # Second reformatting of quizzes
-    if num_quizzes and format != 'ipynb':
-        filestr = typeset_quizzes2(filestr, format)
-        debugpr('The file after second reformatting of quizzes:', filestr)
-        report_progress('handled second reformatting of quizzes')
-
-    if format == 'html':
-        # Set value for URL to raw github (doconce) files
-        # (must be done at this late stage)
-        rawgit = option('html_raw_github_url=', 'safe')
-        if rawgit in ('safe', 'cdn.rawgit'):
-            raw_github_url = 'https://cdn.rawgit.com'
-        elif rawgit in ('test', 'rawgit'):
-            raw_github_url = 'https://rawgit.com'
-        elif rawgit in ('github', 'raw.github'):
-            raw_github_url = 'https://raw.github.com'
-        elif rawgit in ('githubusercontent', 'raw.githubusercontent'):
-            raw_github_url = 'https://raw.githubusercontent.com'
-        filestr = filestr.replace('RAW_GITHUB_URL', raw_github_url)
-        if option('html_DOCTYPE'):
-            filestr = '<!DOCTYPE HTML>\n' + filestr
-        if option('xhtml'):
-            try:
-                from bs4 import BeautifulSoup as BS
-            except ImportError:
-                errwarn('*** error: for --xhtml the bs4 BeautifulSoup package must be installed')
-                errwarn('    pip install beautifulsoup4')
-                _abort()
-            soup = BS(filestr, 'lxml')
-            # soup can be used to rewrite the entire doc
-            filestr = soup.prettify()
-
-    # Next step: do some language specific substitutions in headings
-    # (assume correct native language in running text)
-    for word in ['Figure', 'Movie', 'Exercise', 'Project', 'Problem']:
-        filestr = filestr.replace(word, globals.locale_dict[globals.locale_dict['language']][word])
-
-    # Next step: remove exercise solution/answers, notes, etc
-    # (Note: must be done after code and tex blocks are inserted!
-    # Otherwise there is a mismatch between all original blocks
-    # and those present after solutions, answers, etc. are removed)
-    envir2option = dict(sol='solutions', ans='answers', hint='hints')
-    # Recall that the comment syntax is now dependent on the format
-    for envir in 'sol', 'ans', 'hint':
-        option_name = 'without_' + envir2option[envir]
-        if option(option_name):
-            filestr = process_envir(
-                filestr, envir, format, action='remove',
-                reason='(because of the command-line option --%s)\n' % option_name)
-    # Remove exercise answers and solutions written by --answers_at_end and/or --solutions_at_end
-    # in the end of the document unless --solutions_at_end and/or --answers_at_end are used
-    cmd2option = dict(sol_at_end = 'solutions_at_end', ans_at_end = 'answers_at_end')
-    for envir in 'ans_at_end', 'sol_at_end':
-        option_name = cmd2option[envir]
-        if not option(option_name) and format is not 'ipynb': #TODO: 'ipynb' part was used to avoid errors. is it necessary?
-            filestr = process_envir(filestr, envir, format, action='remove',
-                    reason='(because the command-line option --%s was not used)' % option_name)
-    debugpr('The file after potential removal of solutions, answers, hints, etc.:', filestr)
-    cpu = time.time() - _t0
-    if cpu > 15:
-        errwarn('\n\n...doconce format used %.1f s to translate the document (%d lines)\n' % (cpu, filestr.count('\n')))
-        time.sleep(1)
-    return filestr, bg_session
 
 
 def preprocess(filename_in, format, preprocessor_options=[]):
@@ -5553,6 +5090,451 @@ def doconce_format(format, dotext, compile=False,
         for fname in glob.glob(filename_stem + '.*'):
             os.remove(fname)
     return text
+
+
+def doconce2format(filestr, format):
+    """Convert string to desired format
+
+    Convert the string content of a file to different formats.
+    Called by format_drive() > file2file()
+
+    :param str filestr:
+    :param format:
+    :return: tuple with modified filestr, bokeh.client session
+    :rtype: Tuple[Union[str, bytes, list], Optional[Any]]
+    """
+    global _t0, _t1
+    _t0 = _t1 = time.time()
+    verbose = int(option('verbose=', 0))
+    report_cpu_time = {0: 15, 1: 5, 2: 0}.get(verbose, 15)
+
+    def report_progress(msg):
+        """Write a message about the progress if CPU time of a task takes time."""
+        global _t1
+        cpu_accumulated = time.time() - _t0
+        cpu_last_task = time.time() - _t1
+        _t1 = time.time()
+        if cpu_last_task > report_cpu_time:
+            errwarn('\n...doconce translation: ' + msg +
+                    ' %.1f s' % cpu_last_task +
+                    ' (accumulated time: %.1f)' % cpu_accumulated)
+            time.sleep(1)
+    report_progress('finished preprocessors')
+
+    if option('syntax_check=', 'on') == 'on':
+        filestr = fix(filestr, format, verbose=1)
+        syntax_check(filestr, format)
+        report_progress('handled syntax checks')
+
+    global FILENAME_EXTENSION, BLANKLINE, INLINE_TAGS_SUBST, CODE, \
+           LIST, ARGLIST,TABLE, EXERCISE, FIGURE_EXT, CROSS_REFS, INDEX_BIB, \
+           TOC, ENVIRS, INTRO, OUTRO
+
+    # Load all modules
+    load_modules(filestr, modules=globals.supported_format_names)
+
+    # -----------------------------------------------------------------
+
+    # Translate from Markdown syntax if that is requested
+    if option('markdown'):
+        filestr = markdown2doconce(filestr, format)
+        fname = option('md2do_output=', None)
+        if fname is not None:
+            f = open(fname, 'w')
+            f.write(filestr)
+
+    # Next step: standardize newlines
+    filestr = re.sub(r'(\r\n|\r|\n)', '\n', filestr)
+
+    # Next step: set language
+    globals.locale_dict['language'] = option('language=', 'English')
+    if globals.locale_dict['language'] not in globals.locale_dict:
+        print('*** error: language "%s" not supported in locale_dict' % globals.locale_dict['language'])
+        _abort()
+    else:
+        if globals.locale_dict['language'] != 'English':
+            errwarn('*** locale set to ' + globals.locale_dict['language'])
+
+    # Check that all eqrefs have labels in tex blocks (\label{})
+    if option('labelcheck=', 'off') == 'on':
+        num_problems = 0
+        labels = re.findall(r'label\{(.+?)\}', filestr)
+        refs = re.findall(r'ref\{(.+?)\}', filestr)
+        missing_labels = []
+        for ref in refs:
+            if not ref in labels:
+                if ref not in missing_labels:
+                    missing_labels.append(ref)
+        if missing_labels:
+            errwarn('*** error: ref{} has no corresponding label{}:')
+            errwarn('\n'.join(missing_labels))
+            errwarn('    reasons:')
+            errwarn('1.  maybe ref{} is already inside a generalized reference ref[][][]')
+            errwarn('2.  maybe ref{} is needed in a generalized reference ref[][][]')
+            errwarn('3.  this compatibility test is not useful - turn off by --labelcheck=off')
+            _abort()
+
+    # Next step: first reformatting of quizzes
+    filestr, num_quizzes = typeset_quizzes1(
+        filestr, insert_missing_quiz_header=False)
+    if num_quizzes:
+        debugpr('The file after first reformatting of quizzes:', filestr)
+        report_progress('handled first reformatting of quizzes')
+
+    # Next step: run operating system commands and insert output
+    filestr, num_commands = insert_os_commands(filestr, format)
+    debugpr('The file after running @@@OSCMD (from file):', filestr)
+    if num_commands:
+        report_progress('handled @@@OSCMD executions')
+
+    # Next step: insert verbatim code from other (source code) files:
+    # (if the format is latex, we could let ptex2tex do this, but
+    # the CODE start@stop specifications may contain uderscores and
+    # asterix, which will be replaced later and hence destroyed)
+    #if format != 'latex':
+    filestr, num_files = insert_code_from_file(filestr, format)
+    debugpr('The file after inserting @@@CODE (from file):', filestr)
+    if num_files:
+        report_progress('handled @@@CODE copying')
+
+    # Hack to fix a bug with !ec/!et at the end of files, which is not
+    # correctly substituted by '' in rst, sphinx, st, epytext, plain, wikis
+    # (the fix is to add "enough" blank lines - the reason can be
+    # an effective strip of filestr, e.g., through '\n'.join(lines))
+    if format in ('rst', 'sphinx', 'st', 'epytext', 'plain', 'mwiki', 'cwiki', 'gwiki'):
+        filestr = filestr.rstrip()
+        if filestr.endswith('!ec') or filestr.endswith('!et'):
+            filestr += '\n'*10
+
+    # Next step: change \bm{} to \boldsymbol{} for all MathJax-based formats
+    # (must be done before math blocks are removed and again after
+    # newcommands files are inserted)
+    filestr = bm2boldsymbol(filestr, format)
+
+    # Hack for transforming align envirs to separate equations
+    if format in ("sphinx", "ipynb") or option('align2equations'):
+        filestr = align2equations(filestr, format)
+        debugpr('The file after {align} or {alignat} envirs are rewritten as separate equations:', filestr)
+
+    # If ipynb is to make use of Image or movie objects, this results in
+    # a living cell and hence a verbatim block, and figures/movies must be
+    # interpreted before such blocks are removed.
+    call_handle_figures = False  # indicates if handle_figures has been called here or not
+    if format == 'ipynb':
+        if 'FIGURE:' in filestr and option('ipynb_figure=', 'md') == 'Image':
+            call_handle_figures = True
+        if option('figure_prefix=') is not None or \
+           option ('movie_prefix=') is not None:
+            call_handle_figures = True
+        if call_handle_figures:
+            filestr = handle_figures(filestr, format)
+        if 'MOVIE:' in filestr:
+            filestr = re.sub(INLINE_TAGS['movie'],
+                             INLINE_TAGS_SUBST[format]['movie'],
+                             filestr, flags=re.MULTILINE)
+
+    # Next step: IBPLOT commands for inline interactive plots
+    bg_session = None
+    m = re.search('^IBPLOT: *\[', filestr, flags=re.MULTILINE)
+    has_ibplot = True if m else False
+    if has_ibplot:
+        filestr, bg_session = html.embed_IBPLOTs(filestr, format)
+        #bg_session.loop_until_closed()
+        debugpr('The file after inserting interactive IBPLOT curve plots:', filestr)
+
+    # Next step: deal with user-defined environments
+    if '!bu-' in filestr:
+        filestr = typeset_userdef_envirs(filestr, format)
+        debugpr('The file after inserting user-defined environments:', filestr)
+
+    # Next step: remove all verbatim and math blocks
+    filestr, code_blocks, code_block_types, tex_blocks = \
+             remove_code_and_tex(filestr, format)
+    if format in ('html', 'sphinx', 'ipynb', 'matlabnb'):
+        tex_blocks = add_labels_to_all_numbered_equations(tex_blocks)
+        # needed for the split functionality when all user-defined labels are
+        # given tags, then we need labels in all environments that will
+        # create equation numbers
+    debugpr('The file after removal of code/tex blocks:', filestr)
+    debugpr('The code blocks:',
+            safe_join([str(i) + ':\n' + code_blocks[i] for i in range(len(code_blocks))], '\n'))
+    debugpr('The code block types:',
+            safe_join([str(i) + code_block_types[i] for i in range(len(code_block_types))], '\n'))
+    debugpr('The tex blocks:',
+            safe_join([str(i) + ':\n' + tex_blocks[i] for i in range(len(tex_blocks))], '\n'))
+    report_progress('removed all verbatim and latex blocks')
+
+    # Next step: substitute latex-style newcommands in filestr and tex_blocks
+    # (not in code_blocks)
+    if format not in ('latex', 'pdflatex'):
+        newcommand_files = glob.glob('newcommands*_replace.tex')
+        if format in ('sphinx', 'pandoc', 'ipynb'):
+            # replace all newcommands in these formats
+            # (none of them likes a bulk of newcommands, only latex and html)
+            newcommand_files = [name for name in glob.glob('newcommands*.tex')
+                                if not name.endswith('.p.tex')]
+            # (note: could use substitutions (|newcommand|) in rst/sphinx,
+            # but they don't allow arguments so expansion of \newcommand
+            # is probably a better solution)
+        filestr = expand_newcommands(newcommand_files, filestr) # inline math
+        for i in range(len(tex_blocks)):
+            tex_blocks[i] = expand_newcommands(newcommand_files, tex_blocks[i])
+
+    # Check URLs to see if they are valid
+    if option('urlcheck'):
+        urlcheck(filestr)
+
+    # Comment out title, author, date?
+    if option('no_title'):
+        for tag in 'TITLE', 'AUTHOR', 'DATE':
+            filestr = re.sub(r'^%s:' % tag, '#%s:' % tag,
+                             filestr, flags=re.MULTILINE)
+
+    # Lift sections up or down?
+    filestr = lift_sections(filestr, sections_up=option('sections_up'), sections_down=option('sections_down'))
+    debugpr('The file after changing the level of section headings:', filestr)
+
+    # Remove linebreaks within paragraphs
+    if option('oneline_paragraphs'):  # (does not yet work well)
+        filestr = make_one_line_paragraphs(filestr, format)
+
+    # Remove inline comments [name: comment]
+    filestr = subst_away_inline_comments(filestr)
+
+    # Next step: remove comments starting with ##
+    pattern = r'^##.+$\n'
+    filestr = re.sub(pattern, '', filestr, flags=re.MULTILINE)
+    # (This is already done by Mako, if the document has Mako markup)
+
+    # Next step: fix stand-alone http(s) URLs (after verbatim blocks are removed,
+    # but before figure handling and inline_tag_subst)
+    pattern = r' (https?://.+?)([ ,?:;!)\n])'
+    filestr = re.sub(pattern, ' URL: "\g<1>"\g<2>', filestr)
+
+    # Next step: deal with exercises
+    filestr = exercises(filestr, format, code_blocks, tex_blocks)
+    debugpr('The file after handling exercises:', filestr)
+
+    # Next step: deal with figures
+    if format != 'ipynb' or not call_handle_figures:
+        filestr = handle_figures(filestr, format)
+    # else: ipynb figures/movies must be handled early above
+    debugpr('The file after handling figures:', filestr)
+    report_progress('figures')
+
+    # Next step: section numbering?
+    # (Do this late, after exercises, but before TOC[] is called and
+    # sections are substituted)
+    if format not in ('latex', 'pdflatex'):
+        if option('section_numbering=', 'off') == 'on':
+            filestr = typeset_section_numbering(filestr, format)
+            debugpr('The file after numbering of chapters and sections:', filestr)
+
+    # Next step: deal with cross referencing e.g. label{} and ref{}, and TOC
+    # (must occur before other format subst)
+    filestr = handle_cross_referencing(filestr, format, tex_blocks)
+    debugpr('The file after handling ref and label cross referencing:', filestr)
+
+    # Next step: deal with index and bibliography
+    # (must be done before lists):
+    filestr = handle_index_and_bib(filestr, format)
+    debugpr('The file after handling index and bibliography:', filestr)
+
+    # Next step: deal with lists. Also process blank lines and comments #
+    filestr = typeset_lists(filestr, format, debug_info=[code_blocks, tex_blocks])
+    debugpr('The file after typesetting of lists:', filestr)
+    report_progress('handled lists')
+
+    # Next step: add space around | in tables to get right substitutions
+    filestr, inserted_space_around_pipe = space_in_tables(filestr)
+    if inserted_space_around_pipe:
+        debugpr('The file after adding space around | in tables:', filestr)
+
+    # Next step: wrap plain text in <p></p> for the html format
+    if format == 'html':
+        filestr = text_lines(filestr)
+
+    # Next step: do substitutions of inline tags
+    filestr = inline_tag_subst(filestr, format)
+    debugpr('The file after all inline substitutions:', filestr)
+    report_progress('inline substitutions')
+
+    # Next step: deal with tables
+    filestr = typeset_tables(filestr, format)
+    debugpr('The file after typesetting of tables:', filestr)
+
+    # Next step: commented out various commands/envirs (!split, !b* !e*)
+    filestr = comment_commands(filestr, format)
+    debugpr('The file after commenting out !commands', filestr)
+
+    # Next step: subst :class:`ClassName` by `ClassName` for
+    # non-rst/sphinx formats:
+    filestr = subst_class_func_mod(filestr, format)
+
+    # Next step: add header and footer, but first wrap main body
+    # of text inside some recognizable delimiters such that we
+    # can distinguish it later from header and footer (especially
+    # if there is no title and header/footer is not added, but
+    # the final fixes in CODE[format] adds another header/footer, e.g.,
+    # puts the main body inside a user-given HTML template or LaTeX template).
+    if format in ('latex', 'pdflatex', 'html'):
+        comment_pattern = INLINE_TAGS_SUBST[format]['comment']
+        delimiter = main_content_begin
+        delimiter = '\n' + comment_pattern % delimiter + '\n'  # wrap as comment
+        filestr = delimiter + '\n' + filestr
+        delimiter = main_content_end
+        delimiter = comment_pattern % delimiter + '\n'  # wrap as comment
+        filestr = filestr + '\n' + delimiter
+
+    # Add header and footer if not an HTML template is specified or if
+    # header and footer is turned off by --no_header_footer
+    if not option('no_header_footer') and \
+           option('html_template=', default='') == '':
+        if format in INTRO:
+            try:
+                filestr = INTRO[format] + filestr
+            except UnicodeDecodeError:
+                # Title etc may contain non-ascii characters
+                if not option('encoding=', '').lower() == 'utf-8':
+                    errwarn('*** error: found non-ascii character(s). Try --encoding=utf-8')
+                    _abort()
+        if format in OUTRO:
+            filestr = filestr + OUTRO[format]
+
+
+    # Need to treat quizzes for ipynb before code and text blocks are inserted
+    if num_quizzes and format == 'ipynb':
+        filestr = typeset_quizzes2(filestr, format)
+        debugpr('The file after second reformatting of quizzes:', filestr)
+        report_progress('handled second reformatting of quizzes')
+
+    # Fix for amounts in dollars: latex requires \$, but the backslash
+    # must be removed for all other formats
+    if format not in ('latex', 'pdflatex'):
+        filestr = re.sub(r'\\\$([\d.,]+\s)', r'$\g<1>', filestr)
+
+    # Next step: insert verbatim and math code blocks again and
+    # substitute code and tex environments:
+    # (this is the place to do package-specific fixes too!)
+    filestr = CODE[format](filestr, code_blocks, code_block_types, tex_blocks, format)
+    filestr += '\n'
+
+    report_progress('insertion of verbatim and latex blocks')
+    debugpr('The file after inserting intro/outro and tex/code blocks, and fixing last format-specific issues:', filestr)
+
+    # Next step: deal with !b... !e... environments
+    # (done after code and text to ensure correct indentation
+    # in the formats that applies indentation)
+    filestr = typeset_envirs(filestr, format)
+    report_progress('!benvir/!eenvir constructions')
+    debugpr('The file after typesetting of admons and the rest of the !b/!e environments:', filestr)
+
+    # Check if we have wrong-spelled environments
+    if not option('examples_as_exercises'):
+        pattern = r'^(![be].+)'
+        m = re.search(pattern, filestr, flags=re.MULTILINE)
+        if m:
+            # Found, but can be inside code block (should have |[be].+ then)
+            # and hence not necessarily an error
+            envir = m.group(1)
+            errwarn('*** error: could not translate environment: %s' % envir)
+            if m.group(1)[2:] in ('sol', 'ans', 'hint', 'subex', 'sol_docend', 'ans_docend',):
+                errwarn(('\nThis is an environment in an exercise. Check if the\n'
+                         '    heading is correct so the subsection was recognized\n'
+                         '    as Exercise, Problem, or Project (Exercise: title).\n\n'
+                         '    Other possible reasons:\n\n'
+                         '     * syntax error in environment name\n'
+                         '     * environment inside code: use | instead of !\n'
+                         '     * or bug in doconce\n\n'
+                         '    context:\n'))
+            errwarn(filestr[m.start()-50:m.end()+50])
+            _abort()
+
+
+    # Next step: change \bm{} to \boldsymbol{} for all MathJax-based formats
+    # (must be done before math blocks are removed and again after
+    # newcommands files are inserted)
+    filestr = bm2boldsymbol(filestr, format)
+
+    # Allow escaping of labels and references, which useful in e.g. the DocOnce
+    # manual where labels or references are inside code examples (the !bc !ec commands)
+    if 'label\{' in filestr or 'ref\{' in filestr:
+        filestr = filestr.replace('label\{', 'label{')
+        filestr = filestr.replace('ref\{', 'ref{')
+
+    # Next step: replace environments starting with | (instead of !)
+    # by ! (for illustration of doconce syntax inside !bc/!ec directives).
+    # Enough to consider |bc, |ec, |bt, and |et since all other environments
+    # are processed when code and tex blocks are removed from the document.
+    if '|b' in filestr or '|e' in filestr:
+        for envir in globals.doconce_envirs:
+            filestr = filestr.replace('|b' + envir, '!b' + envir)
+            filestr = filestr.replace('|e' + envir, '!e' + envir)
+        debugpr('The file after replacing |bc and |bt environments by true !bt and !et (in code blocks):', filestr)
+
+    # Second reformatting of quizzes
+    if num_quizzes and format != 'ipynb':
+        filestr = typeset_quizzes2(filestr, format)
+        debugpr('The file after second reformatting of quizzes:', filestr)
+        report_progress('handled second reformatting of quizzes')
+
+    if format == 'html':
+        # Set value for URL to raw github (doconce) files
+        # (must be done at this late stage)
+        rawgit = option('html_raw_github_url=', 'safe')
+        if rawgit in ('safe', 'cdn.rawgit'):
+            raw_github_url = 'https://cdn.rawgit.com'
+        elif rawgit in ('test', 'rawgit'):
+            raw_github_url = 'https://rawgit.com'
+        elif rawgit in ('github', 'raw.github'):
+            raw_github_url = 'https://raw.github.com'
+        elif rawgit in ('githubusercontent', 'raw.githubusercontent'):
+            raw_github_url = 'https://raw.githubusercontent.com'
+        filestr = filestr.replace('RAW_GITHUB_URL', raw_github_url)
+        if option('html_DOCTYPE'):
+            filestr = '<!DOCTYPE HTML>\n' + filestr
+        if option('xhtml'):
+            try:
+                from bs4 import BeautifulSoup as BS
+            except ImportError:
+                errwarn('*** error: for --xhtml the bs4 BeautifulSoup package must be installed')
+                errwarn('    pip install beautifulsoup4')
+                _abort()
+            soup = BS(filestr, 'lxml')
+            # soup can be used to rewrite the entire doc
+            filestr = soup.prettify()
+
+    # Next step: do some language specific substitutions in headings
+    # (assume correct native language in running text)
+    for word in ['Figure', 'Movie', 'Exercise', 'Project', 'Problem']:
+        filestr = filestr.replace(word, globals.locale_dict[globals.locale_dict['language']][word])
+
+    # Next step: remove exercise solution/answers, notes, etc
+    # (Note: must be done after code and tex blocks are inserted!
+    # Otherwise there is a mismatch between all original blocks
+    # and those present after solutions, answers, etc. are removed)
+    envir2option = dict(sol='solutions', ans='answers', hint='hints')
+    # Recall that the comment syntax is now dependent on the format
+    for envir in 'sol', 'ans', 'hint':
+        option_name = 'without_' + envir2option[envir]
+        if option(option_name):
+            filestr = process_envir(
+                filestr, envir, format, action='remove',
+                reason='(because of the command-line option --%s)\n' % option_name)
+    # Remove exercise answers and solutions written by --answers_at_end and/or --solutions_at_end
+    # in the end of the document unless --solutions_at_end and/or --answers_at_end are used
+    cmd2option = dict(sol_at_end = 'solutions_at_end', ans_at_end = 'answers_at_end')
+    for envir in 'ans_at_end', 'sol_at_end':
+        option_name = cmd2option[envir]
+        if not option(option_name) and format is not 'ipynb': #TODO: 'ipynb' part was used to avoid errors. is it necessary?
+            filestr = process_envir(filestr, envir, format, action='remove',
+                    reason='(because the command-line option --%s was not used)' % option_name)
+    debugpr('The file after potential removal of solutions, answers, hints, etc.:', filestr)
+    cpu = time.time() - _t0
+    if cpu > 15:
+        errwarn('\n\n...doconce format used %.1f s to translate the document (%d lines)\n' % (cpu, filestr.count('\n')))
+        time.sleep(1)
+    return filestr, bg_session
 
 
 if __name__ == '__main__':

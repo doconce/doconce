@@ -11,6 +11,7 @@ import sys
 import re
 import subprocess
 import shutil
+from doconce.doconce import load_modules
 
 @contextlib.contextmanager
 def cd_context(name):
@@ -56,13 +57,14 @@ def test_find_file_with_extensions(tdir):
         dirname, basename, ext, filename = find_file_with_extensions(fname, allowed_extensions=['.do'])
         assert (dirname, basename, ext, filename) == (None, None, None, None)
 
-def test_folder_checker(tdir):
-    tdir_rel = os.path.relpath(tdir, start=os.getcwd())
+def test_folder_checker(tdir, monkeypatch):
+    #tdir_rel = os.path.relpath(tdir, start=os.getcwd())
     os.makedirs(os.path.join(tdir, 'mydir'))
     os.path.exists(os.path.join(tdir, 'mydir'))
     from doconce.misc import folder_checker
-    # Test that it fails (I cannot, the code contains an _abort)
-    #assert False == folder_checker(dirname='this fails')
+    # Test that it fails
+    monkeypatch.setattr(sys.modules['doconce.misc'], '_abort', lambda *args: sys.exit)
+    assert 'this means failure/' == folder_checker(dirname='this means failure')
     # Test current directory
     out = folder_checker(dirname='.')
     assert out == './'
@@ -146,7 +148,7 @@ def test_string2href():
 
 ### functions in doconce.py
 def test_text_lines():
-    from doconce.doconce import text_lines
+    from doconce.doconce import text_lines, inline_tag_subst
     assert text_lines('') == '\n'
     assert text_lines('a line') == '<p>a line</p>\n'
     assert text_lines('<!--a comment-->') == '<!--a comment-->\n'
@@ -159,23 +161,22 @@ def test_text_lines():
     assert text_lines('a\nb\n!split\nc') == '\n<p>a b</p>\n!split\n<p>c</p>\n'
     assert text_lines('!bpop\n  *\n!epop') == '!bpop\n<p>  *</p>\n!epop\n'
     assert text_lines('The\n `!bslidecell` \ncmd') == '<p>The</p>\n `!bslidecell` \n<p>cmd</p>\n'
-    ''' This one fails due to import
-    from doconce.doconce import inline_tag_subst
-    input = 'Verbatim `pycod -t`'
-    input = inline_tag_subst(input, 'html')
+    load_modules('the global INLINE_TAGS_SUBST is needed', modules=['html'])
+    input = inline_tag_subst('Verbatim `pycod -t`', 'html')
     assert text_lines(input) == '<p>Verbatim <code>pycod -t</code></p>\n'
-    assert text_lines(inline_tag_subst('Some *Italics* with text'),'html') == \
-           '<p>Some <em>Italics</em> with text</p>\n'
-    '''
-    # TODO?: open <div on multiple lines from userdef_environments.py e.g. <div style="width: 60%; padding: 10px;..
-    # TODO?: <p><div title="Wrong!  Equations with derivatives... "><b>Choice D:</b>
+    input = inline_tag_subst('Some *Italics* with text','html')
+    assert text_lines(input) == '<p>Some <em>Italics</em> with text</p>\n'
 
 def test_typeset_lists():
     from doconce.doconce import typeset_lists
     assert typeset_lists('a line', format='html') == 'a line\n'
     # TODO fails because of import
-    #assert typeset_lists('    - keyword x: text', format='html') == ''
-    pass
+    load_modules('the global LIST is needed', modules=['html'])
+    assert typeset_lists('    - keyword x: text', format='html').replace(' ','') == \
+           '\n<dl>\n<dt>keywordx:<dd>\ntext\n</dl>\n\n'
+    load_modules('    - keyword x: text', modules=['latex'])
+    assert typeset_lists('    - keyword x: text', format='latex').replace(' ','') == \
+           '\\begin{description}\n\\item[keywordx:]\ntext\n\\end{description}\n\n\\noindent\n'
 
 
 
