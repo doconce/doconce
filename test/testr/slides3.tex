@@ -99,31 +99,50 @@
 % Add user's preamble
 
 
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
 
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \title{On Schemes for Exponential Decay}
+
 % ----------------- author(s) -------------------------
+
 \author{Hans Petter Langtangen\inst{1,2}}
 \institute{Center for Biomedical Computing, Simula Research Laboratory\inst{1}
 \and
 Department of Informatics, University of Oslo\inst{2}}
 % ----------------- end author(s) -------------------------
+
 \date{Jan 32, 2100
 \\ \ \\ 
 \centerline{\includegraphics[width=0.4\linewidth]{../doc/src/slides/fig/CN_logo.pdf}}
 % <optional copyright>
 }
+
 \vspace{6mm}
+
+
 
 \vspace{6mm}
 
@@ -141,6 +160,7 @@ and get them rendered in numerous HTML formats.
 This version
 utilizes beamer slides with the theme red_plain.
 \end{block}
+
 \note{
 The talk investigates the accuracy of three finite difference
 schemes for the ordinary differential equation $u'=-au$ with the
@@ -162,18 +182,25 @@ u'(t) &= -au(t),
 u(0)  &= I,
 \label{initial:value}
 \end{align}
+
 \begin{itemize}
  \item $t\in (0,T]$
+
  \item $a$, $I$, and $T$ are prescribed parameters
+
  \item $u(t)$ is the unknown function
 \end{itemize}
+
 \noindent
 
 \column{0.5\textwidth}
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.5\linewidth]{../doc/src/slides/fig/teacher2.jpg}}
+
 \vspace{6mm}
+
 
 \end{columns}
 \end{frame}
@@ -184,12 +211,16 @@ u(0)  &= I,
 \begin{itemize}
 \pause
  \item Mesh in time: $0= t_0< t_1 \cdots < t_N=T$
+
 \pause
  \item Assume constant $\Delta t = t_{n}-t_{n-1}$
+
 \pause
  \item $u^n$: numerical approx to the exact solution at $t_n$
 \end{itemize}
+
 \noindent
+
 \pause
 Numerical scheme:
    \[
@@ -202,6 +233,20 @@ Numerical scheme:
 \frametitle{Implementation}
 
 The numerical method is implemented in a Python function:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{python}
 def solver(I, a, T, dt, theta):
     """Solve u'=-a*u, u(0)=I, for t in (0,T]; step: dt."""
@@ -225,8 +270,10 @@ def solver(I, a, T, dt, theta):
 \frametitle{The Crank-Nicolson method}
 
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.9\linewidth]{../doc/src/slides/fig/CN.pdf}}
+
 \vspace{6mm}
 \end{frame}
 
@@ -235,20 +282,28 @@ def solver(I, a, T, dt, theta):
 
 \pause
 Exact solution of the scheme:
+
 \[ u^n = A^n,\quad A = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}\thinspace .\]
+
 \begin{itemize}
 \pause
  \item Stability: $|A| < 1$
+
 \pause
  \item No oscillations: $A>0$
+
 \pause
  \item Always for Backward Euler ($\theta=1$)
+
 \pause
  \item $\Delta t < 1/a$ for Forward Euler ($\theta=0$)
+
 \pause
  \item $\Delta t < 2/a$ for Crank-Nicolson ($\theta=1/2$)
 \end{itemize}
+
 \noindent
+
 \pause
 \begin{block}{Concluding remarks: }
 Only the Backward Euler scheme is guaranteed to always give

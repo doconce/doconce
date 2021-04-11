@@ -449,7 +449,7 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
                          'var link = document.createElement( \'link\' );\n'
                          'link.rel = \'stylesheet\';\n'
                          'link.type = \'text/css\';\n'
-                         r'link.href = window.location.search.match( /print-pdf/gi ) ? \'css/print/pdf.css\' : '
+                         r"link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : "
                          '\'css/print/paper.css\';\n'
                          'document.getElementsByTagName( \'head\' )[0].appendChild( link );\n'
                          '</script>\n'
@@ -574,14 +574,14 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
                     '    viewDistance: 3,\n'
                     '\n'
                     '    // Parallax background image\n'
-                    r'    //parallaxBackgroundImage: \'\', // e.g. '
+                    r"    //parallaxBackgroundImage: '', // e.g. "
                     '"\'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg\'"\n'
                     '\n'
                     '    // Parallax background size\n'
                     '    //parallaxBackgroundSize: \'\' // CSS syntax, e.g. "2100px 900px"\n'
                     '\n'
                     '    theme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme\n'
-                    r'    transition: Reveal.getQueryHash().transition || \'default\', '
+                    r"    transition: Reveal.getQueryHash().transition || 'default', "
                     '// default/cube/page/concave/zoom/linear/none\n'
                     '\n'
                     '});\n'
@@ -1537,7 +1537,12 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
     slide_syntax[slide_tp]['head_lines'] = ''.join(head_lines)
     slide_syntax[slide_tp]['body_lines'] = ''.join(body_lines)
 
-    slides = ('<!DOCTYPE html>\n'
+    slides = ('<!--\n'
+              'HTML file automatically generated from DocOnce source\n'
+              '(https://github.com/doconce/doconce/)\n'
+              'doconce format html %s %s\n'
+              '-->\n') % (filename, ' '.join(sys.argv[1:]))
+    slides += ('<!DOCTYPE html>\n'
               '<html>\n'
               '<head>\n'
               '%(head_lines)s\n\n'

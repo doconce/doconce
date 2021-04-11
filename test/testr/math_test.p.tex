@@ -26,29 +26,39 @@
 %% see examples). If doconce ptex2tex has envir=minted, it enables the
 %% minted style without needing -DMINTED.
 % #endif
+
 % #define PREAMBLE
+
 % #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
+
 \documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
+
 \listfiles               %  print all files needed to compile this document
+
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{bm,ltablex,microtype}
+
 \usepackage[pdftex]{graphicx}
+
 \usepackage{ptex2tex}
 % #ifdef MINTED
 \usepackage{minted}
 \usemintedstyle{default}
 % #endif
 \usepackage{fancyvrb}
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
 % Hyperlinks in PDF:
 \definecolor{linkcolor}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -65,26 +75,43 @@ final,                   % draft: marks overfull hboxes, figures with paths
     bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
+
 \setcounter{tocdepth}{2}  % levels in table of contents
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
+
 % --- end of standard preamble for documents ---
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
 \usepackage[totoc]{idxlayout}   % for index in the toc
 \usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \thispagestyle{empty}
+
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
@@ -92,10 +119,13 @@ How various formats can deal with {\LaTeX} math
 \end{spacing}
 }
 \end{center}
+
 % ----------------- author(s) -------------------------
+
 \begin{center}
 {\bf Hans Petter Langtangen${}^{1, 2}$} \\ [0mm]
 \end{center}
+
 \begin{center}
 % List of all institutions:
 \centerline{{\small ${}^1$Simula Research Laboratory}}
@@ -103,12 +133,15 @@ How various formats can deal with {\LaTeX} math
 \end{center}
     
 % ----------------- end author(s) -------------------------
+
 % --- begin date ---
 \begin{center}
 Jan 32, 2100
 \end{center}
 % --- end date ---
+
 \vspace{1cm}
+
 \begin{abstract}
 The purpose of this document is to test {\LaTeX} math in DocOnce with
 various output formats.  Most {\LaTeX} math constructions are renedered
@@ -117,19 +150,31 @@ constructions may fail.  Unfortunately, only a subset of what works in
 html MathJax also works in sphinx MathJax. The same is true for
 markdown MathJax expresions (e.g., Jupyter notebooks).  Tests and
 examples are provided to illustrate what may go wrong.
+
 The recommendation for writing math that translates to MathJax in
 html, sphinx, and markdown is to stick to the environments \Verb!\[ ... \]!, \texttt{equation}, \texttt{equation*}, \texttt{align}, \texttt{align*}, \texttt{alignat}, and
 \texttt{alignat*} only. Test the math with sphinx output; if it works in that
 format, it should work elsewhere too.
+
 The current version of the document is translated from DocOnce source
 to the format \textbf{pdflatex}.
 \end{abstract}
+
 \section{Test of equation environments}
+
 \subsection{Test 1: Inline math}
+
 We can get an inline equation
 \Verb!$u(t)=e^{-at}$! rendered as $u(t)=e^{-at}$.
+
 \subsection{Test 2: A single equation with label}
+
 An equation with number,
+
+
+
+
+
 \blatexcod
 !bt
 \begin{equation} u(t)=e^{-at} label{eq1a}\end{equation}
@@ -138,8 +183,17 @@ An equation with number,
 \elatexcod
 
 looks like
+
 \begin{equation} u(t)=e^{-at} \label{_eq1a}\end{equation}
 Maybe this multi-line version is what we actually prefer to write:
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{equation}
@@ -151,14 +205,25 @@ label{eq1b}
 \elatexcod
 
 The result is the same:
+
 \begin{equation}
 u(t)=e^{-at} \label{_eq1b}
 \end{equation}
 We can refer to this equation through its label \texttt{eq1b}: (\ref{_eq1b}).
+
 \subsection{Test 3: Multiple, aligned equations without label and number}
+
 MathJax has historically had some problems with rendering many {\LaTeX}
 math environments, but the \texttt{align*} and \texttt{align} environments have
 always worked.
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{align*}
@@ -170,12 +235,25 @@ v(t) - 1 &= \frac{du}{dt}
 \elatexcod
 
 Result:
+
 \begin{align*}
 u(t)&=e^{-at}\\ 
 v(t) - 1 &= \frac{du}{dt}
 \end{align*}
+
 \subsection{Test 4: Multiple, aligned equations with label}
+
 Here, we use \texttt{align} with user-prescribed labels:
+
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{align}
@@ -189,6 +267,7 @@ label{eq3b}
 \elatexcod
 
 Result:
+
 \begin{align}
 u(t)&=e^{-at}
 \label{_eq2b}\\ 
@@ -196,12 +275,23 @@ v(t) - 1 &= \frac{du}{dt}
 \label{_eq3b}
 \end{align}
 We can refer to the last equations as the system (\ref{_eq2b})-(\ref{_eq3b}).
+
 \subsection{Test 5: Multiple, aligned equations without label}
+
 In {\LaTeX}, equations within an \texttt{align} environment is automatically
 given numbers.  To ensure that an html document with MathJax gets the
 same equation numbers as its latex/pdflatex companion, DocOnce
 generates labels in equations where there is no label prescribed. For
 example,
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{align}
@@ -214,6 +304,16 @@ v(t) - 1 &= \frac{du}{dt}
 \elatexcod
 
 is edited to something like
+
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{align}
@@ -227,12 +327,24 @@ label{_auto6}
 \elatexcod
 
 and the output gets the two equation numbered.
+
 \begin{align}
 u(t)&=e^{-at}\\ 
 v(t) - 1 &= \frac{du}{dt}
 \end{align}
+
 \subsection{Test 6: Multiple, aligned equations with multiple alignments}
+
 The \texttt{align} environment can be used with two \Verb!&! alignment characters, e.g.,
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{align}
@@ -245,12 +357,23 @@ u(0,t) &= u_0(x), & x\in [0,L]
 \elatexcod
 
 The result in pdflatex becomes
+
 \begin{align}
 \frac{\partial u}{\partial t} &= \nabla^2 u, & x\in (0,L),
 \ t\in (0,T]\\ 
 u(0,t) &= u_0(x), & x\in [0,L]
 \end{align}
+
 A better solution is usually to use an \texttt{alignat} environment:
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{alignat}{2}
@@ -263,13 +386,24 @@ u(0,t) &= u_0(x), & x\in [0,L]
 \elatexcod
 
 with the rendered result
+
 \begin{alignat}{2}
 \frac{\partial u}{\partial t} &= \nabla^2 u, & x\in (0,L),
 \ t\in (0,T]\\ 
 u(0,t) &= u_0(x), & x\in [0,L]
 \end{alignat}
+
 \subsection{Test 7: Multiple, aligned eqnarray equations without label}
+
 Let us try the old \texttt{eqnarray*} environment.
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{eqnarray*}
@@ -281,12 +415,25 @@ v(t) - 1 &=& \frac{du}{dt}
 \elatexcod
 
 which results in
+
 \begin{eqnarray*}
 u(t)&=& e^{-at}\\ 
 v(t) - 1 &=& \frac{du}{dt}
 \end{eqnarray*}
+
 \subsection{Test 8: Multiple, eqnarrayed equations with label}
+
 Here we use \texttt{eqnarray} with labels:
+
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{eqnarray}
@@ -300,14 +447,27 @@ label{eq3c}
 \elatexcod
 
 which results in
+
 \begin{eqnarray}
 u(t)&=& e^{-at} \label{_eq2c}\\ 
 v(t) - 1 &=& \frac{du}{dt} \label{_eq3c}
 \end{eqnarray}
 Can we refer to the last equations as the system (\ref{_eq2c})-(\ref{_eq3c})
 in the pdflatex format?
+
 \subsection{Test 9: The \texttt{multiline} environment with label and number}
+
 The {\LaTeX} code
+
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{multline}
@@ -321,6 +481,7 @@ label{multiline:eq1}
 \elatexcod
 
 gets rendered as
+
 \begin{multline}
 \int_a^b f(x)dx = \sum_{j=0}^{n} \frac{1}{2} h(f(a+jh) +
 f(a+(j+1)h)) \\ 
@@ -329,9 +490,22 @@ f(a+(j+1)h)) \\
 \end{multline}
 and we can hopefully refer to the Trapezoidal rule
 as the formula (\ref{_multiline:eq1}).
+
 \subsection{Test 10: Splitting equations using a split environment}
+
 Although \texttt{align} can be used to split too long equations, a more obvious
 command is \texttt{split}:
+
+
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{equation}
@@ -345,7 +519,9 @@ f(a+(j+1)h)) \\
 
 \elatexcod
 
+
 The result becomes
+
 \begin{equation}
 \begin{split}
 \int_a^b f(x)dx = \sum_{j=0}^{n} \frac{1}{2} h(f(a+jh) +
@@ -353,8 +529,17 @@ f(a+(j+1)h)) \\
 =\frac{h}{2}f(a) + \frac{h}{2}f(b) + \sum_{j=1}^n f(a+jh)
 \end{split}
 \end{equation}
+
 \subsection{Test 11: Newcommands and boldface bm vs pmb}
+
 First we use the plain old pmb package for bold math. The formula
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \[ \frac{\partial\u}{\partial t} +
@@ -367,11 +552,20 @@ First we use the plain old pmb package for bold math. The formula
 and the inline expression \Verb!$\nabla\u (\x)\cdot\normalvec$!
 (with suitable newcommands using pmb)
 get rendered as
+
 \[ \frac{\partial\u}{\partial t} +
 \u\cdot\nabla\u = \nu\nabla^2\u -
 \frac{1}{\varrho}\nabla p,\]
 and $\nabla\u (\x)\cdot\normalvec$.
+
 Somewhat nicer fonts may appear with the more modern \Verb!\bm! command:
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \[ \frac{\partial\ubm}{\partial t} +
@@ -382,22 +576,37 @@ Somewhat nicer fonts may appear with the more modern \Verb!\bm! command:
 \elatexcod
 
 (backslash \texttt{ubm} is a newcommand for bold math $u$), for which we get
+
 \[ \frac{\partial\ubm}{\partial t} +
 \ubm\cdot\nabla\ubm = \nu\nabla^2\ubm -
 \frac{1}{\varrho}\nabla p.\]
 Moreover,
+
+
+
 \bccq
 $\nabla\bm{u}(\bm{x})\cdot\bm{n}$
 
 \eccq
 
 becomes $\nabla\bm{u}(\bm{x})\cdot\bm{n}$.
+
 \section{Problematic equations}
+
 Finally, we collect some problematic formulas in MathJax. They all work
 fine in {\LaTeX}. Most of them look fine in html too, but some fail in
 sphinx, ipynb, or markdown.
+
 \subsection{Colored terms in equations}
+
 The {\LaTeX} code
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \[ {\color{blue}\frac{\partial\u}{\partial t}} +
@@ -407,14 +616,23 @@ The {\LaTeX} code
 
 \elatexcod
 
+
 results in
+
 \[ {\color{blue}\frac{\partial\u}{\partial t}} +
 \nabla\cdot\nabla\u = \nu\nabla^2\u -
 \frac{1}{\varrho}\nabla p,\]
+
 \subsection{Bar over symbols}
+
 Sometimes one must be extra careful with the {\LaTeX} syntax to get sphinx MathJax
 to render a formula correctly. Consider the combination of a bar over a
 bold math symbol:
+
+
+
+
+
 \blatexcod
 !bt
 \[ \bar\f = f_c^{-1}\f,\]
@@ -422,9 +640,17 @@ bold math symbol:
 
 \elatexcod
 
+
 which for pdflatex output results in
+
 \[ \bar\f = f_c^{-1}\f.\]
+
 With sphinx, this formula is not rendered. However, using curly braces for the bar,
+
+
+
+
+
 \blatexcod
 !bt
 \[ \bar{\f} = f_c^{-1}\f,\]
@@ -432,11 +658,55 @@ With sphinx, this formula is not rendered. However, using curly braces for the b
 
 \elatexcod
 
+
 makes the output correct also for sphinx:
+
 \[ \bar{\f} = f_c^{-1}\f,\]
+
 \subsection{Matrix formulas}
+
 Here is an \texttt{align} environment with a label and the \texttt{pmatrix}
 environment for matrices and vectors in {\LaTeX}.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{align}
@@ -479,7 +749,9 @@ v_4
 
 \elatexcod
 
+
 which becomes
+
 \begin{align}
 \begin{pmatrix}
 G_2 + G_3 & -G_3 & -G_2 & 0 \\ 
@@ -516,7 +788,47 @@ v_4
 -i_0
 \end{pmatrix}
 \end{align}
+
 The same matrices without labels in an \texttt{align*} environment:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \blatexcod
 !bt
 \begin{align*}
@@ -558,7 +870,9 @@ v_4
 
 \elatexcod
 
+
 The rendered result becomes
+
 \begin{align*}
 \begin{pmatrix}
 G_2 + G_3 & -G_3 & -G_2 & 0 \\ 
@@ -594,7 +908,9 @@ v_4
 -i_0
 \end{pmatrix}
 \end{align*}
+
 % ------------------- end of main content ---------------
+
 % #ifdef PREAMBLE
 \end{document}
 % #endif

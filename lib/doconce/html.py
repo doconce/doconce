@@ -3376,18 +3376,18 @@ body { %s; }
     # Had to take DOCTYPE out from 1st line to load css files from github...
     # <!DOCTYPE html>
     INTRO['html'] = ('<!--\n'
-                     'Automatically generated HTML file from DocOnce source\n'
+                     'HTML file automatically generated from DocOnce source\n'
                      '(https://github.com/doconce/doconce/)\n'
                      'doconce format html %s %s\n'
-                     '-->\n'
-                     '<html>\n'
+                     '-->\n') % (globals.filename, ' '.join(sys.argv[1:]))
+    INTRO['html'] += ('<html>\n'
                      '<head>\n'
                      '%s\n'
                      '<title>%s</title>\n'
                      '%s\n'
                      '%s\n'
                      '</head>\n'
-                     '<body>\n\n') % (globals.filename, ' '.join(sys.argv[1:]), meta_tags, title, style, scripts)
+                     '<body>\n\n') % (meta_tags, title, style, scripts)
 
     OUTRO['html'] = ''
     if html_style.startswith('boots'):
