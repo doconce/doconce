@@ -103,28 +103,44 @@
 % Add user's preamble
 
 
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
+
 
 %\pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=5mm]   % pdfnup is more flexible
 
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \title{Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides}
+
 % ----------------- author(s) -------------------------
+
 \author{Hans Petter Langtangen\inst{1,2}}
 \institute{Simula Research Laboratory\inst{1}
 \and
 University of Oslo\inst{2}}
 % ----------------- end author(s) -------------------------
+
 \date{Jan 32, 2100
 % <optional titlepage figure>
 \ \\ 
@@ -145,20 +161,28 @@ University of Oslo\inst{2}}
 \pause
 \begin{block}{Title with comma, and brackets: $[a,b]$ }
 \footnotesize
+
 \begin{itemize}
   \item Here is a \emph{wave signal} $f(x-ct)$
+
   \item It moves with velocity $c$
+
   \item But here it is just a figure
 \end{itemize}
+
 \noindent
 \end{block}
 
 \column{0.4\textwidth}
 \begin{block}{}
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.7\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
+
 \end{block}
 
 \end{columns}
@@ -168,9 +192,11 @@ University of Oslo\inst{2}}
 \frametitle{Slide with pop-ups in red and notes}
 
 \shortinlinecomment{hpl 1}{ Comments are typeset as usual in DocOnce. }{ Comments are typeset as }
+
 \pause
 Here we have a paragraph to pop up in red.\\
 And a line more
+
 \note{
 One can also have ordinary notes.
 Over multiple lines.
@@ -193,10 +219,12 @@ Jane Doe\footnote{\texttt{jane.doe@cyber.net}.}}
 \maketitle
 
 \end{minted}
+
 \pause
 \begin{block}{Notice}
 {\LaTeX} has a lot of backslashes.
 \end{block}
+
 \pause
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{latex}
 \section{Heading}
@@ -224,12 +252,18 @@ bla-bla
 \begin{frame}[plain,fragile]
 \frametitle{Second section}
 
+
 \begin{block}{}
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.8\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
+
 \end{block}
+
 
 \end{frame}
 
@@ -239,9 +273,17 @@ bla-bla
 \begin{block}{A simple, mathematical formula where $t\in [0,\pi]$: }
 \[ f(x,y,t) = e^{-xt}\sin\pi y \]
 \end{block}
+
 \begin{block}{Bash demanded more of DocOnce than Python, so let's do Bash: }
 First, inline \Verb@$? != 0@, then comments with dollar variables (and minted
 style):
+
+
+
+
+
+
+
 \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{bash}
 var=10
 # $1, $2, ... are command-line args
@@ -275,19 +317,24 @@ print(g(13))
 \frametitle{Various admon blocks}
 
 Can use admons to simulate blocks:
+
 \pause
 \begin{block}{Key PDE (with large title and math font): }
 \large
+
 \[ \frac{\partial u}{\partial t} = \nabla^2 u \]
 \end{block}
+
 \pause
 \begin{block}{}
 Just some block with text and a conclusion that something is important.
 This one pops up after the rest of the slide.
 \end{block}
+
 \pause
 \begin{block}{Warning}
 \footnotesize
+
 Can use, e.g., a warning admon to have my own notes, preferably
 inside preprocess/mako if statements to turn notes on and off.
 This one is typeset in a small font and with the default

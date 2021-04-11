@@ -198,13 +198,13 @@ def test_get_deck_footer():
 
 
 ### system test
-def cp_testdoc(dest):
-    shutil.copy('testdoc.do.txt', dest)
-    shutil.copytree('testfigs', os.path.join(dest,'testfigs'))#, dirs_exist_ok=True)
-    shutil.copy('_testdoc.do.txt', dest)
-    shutil.copy('userdef_environments.py', dest)
-    shutil.copy('bokeh_test.html', dest)
-    shutil.copy('testfigs/papers.pub', dest)
+def cp_testdoc(dest, files=None):
+    if not files:
+        files = ['testdoc.do.txt', '_testdoc.do.txt', 'userdef_environments.py', 'bokeh_test.html', 'testfigs/papers.pub']
+    for file in files:
+        shutil.copy(file, dest)
+    # cp the directory with resources anyway
+    shutil.copytree('testfigs', os.path.join(dest, 'testfigs'))  # , dirs_exist_ok=True)
 
 def test_doconce_format_html(tdir):
     # cp files
@@ -307,22 +307,38 @@ def test_doconce_jupyterbook(tdir):
 def test_doconce_html_slides(tdir):
     # cp files
     cp_testdoc(dest=tdir)
-    # first run doconce format html
-    out = subprocess.run('doconce format html testdoc.do.txt --examples_as_exercises'.split(' '),
-                         cwd=tdir,  # NB: main process stays in curr dir, subprocesses in tdir
-                         stdout=subprocess.PIPE,
-                         stderr=subprocess.STDOUT,  # can do this in debugger mode: print(out.stdout)
-                         encoding='utf8')
-    assert out.returncode == 0
-    out = subprocess.run('doconce html_slides testdoc deck --html_slide_theme=swiss'.split(' '),
-                         cwd=tdir,  # NB: main process stays in curr dir, subprocesses in tdir
-                         stdout=subprocess.PIPE,
-                         stderr=subprocess.STDOUT,  # can do this in debugger mode: print(out.stdout)
-                         encoding='utf8')
-    assert out.returncode == 0
-    with open('testdoc.html', 'r') as f:
-        html = f.read()
-    assert html.find('themes/style/swiss.css') > -1
+    with cd_context(tdir):
+        # first run doconce format html
+        out = subprocess.run('doconce format html testdoc.do.txt --examples_as_exercises'.split(' '),
+                             cwd=tdir,  # NB: main process stays in curr dir, subprocesses in tdir
+                             stdout=subprocess.PIPE,
+                             stderr=subprocess.STDOUT,  # can do this in debugger mode: print(out.stdout)
+                             encoding='utf8')
+        #os.system('doconce format html testdoc.do.txt --examples_as_exercises')
+
+        #assert out.returncode == 0
+        # deck.js
+        os.system('cp testdoc.html temp.html')
+        out = subprocess.run('doconce slides_html temp.html deck --html_slide_theme=swiss'.split(' '),
+                             cwd=tdir,  # NB: main process stays in curr dir, subprocesses in tdir
+                             stdout=subprocess.PIPE,
+                             stderr=subprocess.STDOUT,  # can do this in debugger mode: print(out.stdout)
+                             encoding='utf8')
+        assert out.returncode == 0
+        with open('temp.html', 'r') as f:
+            html = f.read()
+        assert html.find('themes/style/swiss.css') > -1
+        # reveal.js slides
+        os.system('cp testdoc.html temp.html')
+        out = subprocess.run('doconce slides_html temp.html reveal --html_slide_theme=solarized'.split(' '),
+                             cwd=tdir,  # NB: main process stays in curr dir, subprocesses in tdir
+                             stdout=subprocess.PIPE,
+                             stderr=subprocess.STDOUT,  # can do this in debugger mode: print(out.stdout)
+                             encoding='utf8')
+        assert out.returncode == 0
+        with open('temp.html', 'r') as f:
+            html = f.read()
+        assert html.find('solarized.css') > -1
 
 def test_html_remove_whitespace():
     from doconce.html import html_remove_whitespace

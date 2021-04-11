@@ -14,7 +14,7 @@ TOC: on
 
 ************** File: testdoc.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg --html_raw_github_url=raw.github
 -->
@@ -32431,7 +32431,7 @@ MathJax.Hub.Config({
 
 ************** File: author1.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html author1.do.txt --html_raw_github_url=raw.github
 -->
@@ -33891,7 +33891,7 @@ a citation like \cite{Langtangen_1992c,Langtangen_1994a}.
 
 ************** File: ._testdoc000.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg --html_raw_github_url=raw.github
 -->
@@ -34284,7 +34284,7 @@ MathJax.Hub.Config({
 
 ************** File: ._testdoc001.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg --html_raw_github_url=raw.github
 -->
@@ -36177,7 +36177,7 @@ $$ E = mc^2 $$
 
 ************** File: ._testdoc002.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg --html_raw_github_url=raw.github
 -->
@@ -37014,7 +37014,7 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 
 ************** File: ._testdoc003.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg --html_raw_github_url=raw.github
 -->
@@ -37410,7 +37410,7 @@ MathJax.Hub.Config({
 
 ************** File: testdoc_wordpress.html *****************
 <!--
-Automatically generated HTML file from DocOnce source (https://github.com/doconce/doconce/) doconce format html testdoc.do.txt --wordpress --examples_as_exercises --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80 --figure_prefix=https://raw.github.com/hplgit/doconce/master/test/ --movie_prefix=https://raw.github.com/hplgit/doconce/master/test/ --html_links_in_new_window --cite_doconce --html_raw_github_url=raw.github
+HTML file automatically generated from DocOnce source (https://github.com/doconce/doconce/) doconce format html testdoc.do.txt --wordpress --examples_as_exercises --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80 --figure_prefix=https://raw.github.com/hplgit/doconce/master/test/ --movie_prefix=https://raw.github.com/hplgit/doconce/master/test/ --html_links_in_new_window --cite_doconce --html_raw_github_url=raw.github
 -->
 <html>
 <head>
@@ -39666,7 +39666,7 @@ $latex  y(x) = e^{-y}. $
 
 ************** File: testdoc_no_solutions.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html testdoc.do.txt --without_answers --without_solutions --examples_as_exercises --html_exercise_icon=default --answers_at_end --solutions_at_end --html_share=https://cyber.space.com/specials,twitter,print,google+,facebook,linkedin --html_raw_github_url=raw.github
 -->
@@ -47757,7 +47757,7 @@ $$
 
 ************** File: math_test_html.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html math_test.do.txt --html_raw_github_url=raw.github --no_abort
 -->
@@ -63108,7 +63108,7 @@ exercises (and problems and projects too).
 
 ************** File: admon_colors.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html admon.do.txt --html_admon=colors --cite_doconce --html_raw_github_url=raw.github
 -->
@@ -63736,7 +63736,7 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 ************** File: admon_gray.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html admon.do.txt --html_admon=gray --html_style=blueish2 --html_admon_shadow --html_box_shadow --cite_doconce --html_raw_github_url=raw.github
 -->
@@ -64403,7 +64403,7 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 ************** File: admon_yellow.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html admon.do.txt --html_admon=yellow --html_admon_shadow --html_box_shadow --cite_doconce --html_raw_github_url=raw.github
 -->
@@ -65471,7 +65471,7 @@ exercises (and problems and projects too).</p>
 </html>
 ************** File: admon_lyx.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html admon.do.txt --html_admon=lyx --html_style=blueish2 --cite_doconce --html_raw_github_url=raw.github
 -->
@@ -66187,7 +66187,7 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 ************** File: admon_paragraph.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html admon.do.txt --html_admon=paragraph --html_style=blueish2 --cite_doconce --html_raw_github_url=raw.github
 -->
@@ -66844,7 +66844,7 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 ************** File: admon_apricot.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html admon.do.txt --html_admon=apricot --html_style=solarized --cite_doconce --html_raw_github_url=raw.github
 -->
@@ -68030,7 +68030,7 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 ************** File: admon_bootstrap_alert.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html admon.do.txt --html_style=bootstrap --pygments_html_style=default --html_admon=bootstrap_alert --cite_doconce --html_bootstrap_navbar_links=Google|https://google.com;DocOnce formats|https://hplgit.github.io/teamods/writing_reports/index.html --html_raw_github_url=raw.github
 -->
@@ -68199,7 +68199,7 @@ MathJax.Hub.Config({
 
 ************** File: admon_bootswatch_panel.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html admon.do.txt --html_style=bootswatch --pygments_html_style=default --html_admon=bootstrap_panel --cite_doconce --html_raw_github_url=raw.github
 -->
@@ -68845,7 +68845,7 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 ************** File: ._admon_bootstrap_alert001.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html admon.do.txt --html_style=bootstrap --pygments_html_style=default --html_admon=bootstrap_alert --cite_doconce --html_bootstrap_navbar_links=Google|https://google.com;DocOnce formats|https://hplgit.github.io/teamods/writing_reports/index.html --html_raw_github_url=raw.github
 -->
@@ -70730,6 +70730,11 @@ title (Warning) since no title is specified.
 !epop
 
 ************** File: slides1_reveal.html *****************
+<!--
+HTML file automatically generated from DocOnce source
+(https://github.com/doconce/doconce/)
+doconce format html slides1.html slides1 reveal --html_slide_themee=simple
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -70778,7 +70783,7 @@ title (Warning) since no title is specified.
 var link = document.createElement( 'link' );
 link.rel = 'stylesheet';
 link.type = 'text/css';
-link.href = window.location.search.match( /print-pdf/gi ) ? \'css/print/pdf.css\' : 'css/print/paper.css';
+link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 document.getElementsByTagName( 'head' )[0].appendChild( link );
 </script>
 
@@ -71247,13 +71252,13 @@ Reveal.initialize({
     viewDistance: 3,
 
     // Parallax background image
-    //parallaxBackgroundImage: \'\', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+    //parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
 
     // Parallax background size
     //parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
 
     theme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
-    transition: Reveal.getQueryHash().transition || \'default\', // default/cube/page/concave/zoom/linear/none
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
 
 });
 
@@ -71682,7 +71687,7 @@ echo "Here are the slide shows:"
 
 ************** File: slides1_1st.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html slides1.do.txt --pygments_html_style=perldoc --keep_pygments_html_bg --html_raw_github_url=raw.github
 -->
@@ -72170,6 +72175,11 @@ $$ \frac{\partial u}{\partial t} = \nabla^2 u $$
 
 
 ************** File: slides1_deck.html *****************
+<!--
+HTML file automatically generated from DocOnce source
+(https://github.com/doconce/doconce/)
+doconce format html slides1.html slides1 deck --html_slide_theme=web-2.0
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -72222,28 +72232,28 @@ hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 .slide .alert-text-large   { font-size: 130%; }
 .slide .alert-text-normal  { font-size: 90%;  }
 .slide .alert {
-     padding:8px 35px 8px 14px; margin-bottom:18px;
-     text-shadow:0 1px 0 rgba(255,255,255,0.5);
-     border:5px solid #bababa;
-       -webkit-border-radius:14px; -moz-border-radius:14px;
-     border-radius:14px
-     background-position: 10px 10px;
-     background-repeat: no-repeat;
-     background-size: 38px;
-     padding-left: 30px; /* 55px; if icon */
- }
- .slide .alert-block {padding-top:14px; padding-bottom:14px}
- .slide .alert-block > p, .alert-block > ul {margin-bottom:0}
- /*.slide .alert li {margin-top: 1em}*/
- .deck .alert-block p+p {margin-top:5px}
- /*.slide .alert-notice { background-image: url(https://hplgit.github.io/doconce/
- bundled/html_images//small_gray_notice.png); }
- .slide .alert-summary  { background-image:url(https://hplgit.github.io/doconce/
- bundled/html_images//small_gray_summary.png); }
- .slide .alert-warning { background-image: url(https://hplgit.github.io/doconce/
- bundled/html_images//small_gray_warning.png); }
- .slide .alert-question {background-image:url(https://hplgit.github.io/doconce/
- bundled/html_images/small_gray_question.png); } */
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:5px solid #bababa;
+    -webkit-border-radius:14px; -moz-border-radius:14px;
+  border-radius:14px
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 30px; /* 55px; if icon */
+}
+.slide .alert-block {padding-top:14px; padding-bottom:14px}
+.slide .alert-block > p, .alert-block > ul {margin-bottom:0}
+/*.slide .alert li {margin-top: 1em}*/
+.deck .alert-block p+p {margin-top:5px}
+/*.slide .alert-notice { background-image: url(https://hplgit.github.io/doconce/
+bundled/html_images//small_gray_notice.png); }
+.slide .alert-summary  { background-image:url(https://hplgit.github.io/doconce/
+bundled/html_images//small_gray_summary.png); }
+.slide .alert-warning { background-image: url(https://hplgit.github.io/doconce/
+bundled/html_images//small_gray_warning.png); }
+.slide .alert-question {background-image:url(https://hplgit.github.io/doconce/
+bundled/html_images/small_gray_question.png); } */
 table, th, tr, td {
     border: 2px solid black;
     border-collapse: collapse;
@@ -74256,6 +74266,11 @@ FIGURE: [testfigs/broken_pen_and_paper, width=400]
 # #endif
 
 ************** File: slides2_reveal.html *****************
+<!--
+HTML file automatically generated from DocOnce source
+(https://github.com/doconce/doconce/)
+doconce format html slides2.html slides2 reveal --html_slide_theme=beigesmall
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -74305,7 +74320,7 @@ FIGURE: [testfigs/broken_pen_and_paper, width=400]
 var link = document.createElement( 'link' );
 link.rel = 'stylesheet';
 link.type = 'text/css';
-link.href = window.location.search.match( /print-pdf/gi ) ? \'css/print/pdf.css\' : 'css/print/paper.css';
+link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 document.getElementsByTagName( 'head' )[0].appendChild( link );
 </script>
 
@@ -75587,13 +75602,13 @@ Reveal.initialize({
     viewDistance: 3,
 
     // Parallax background image
-    //parallaxBackgroundImage: \'\', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+    //parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
 
     // Parallax background size
     //parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
 
     theme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
-    transition: Reveal.getQueryHash().transition || \'default\', // default/cube/page/concave/zoom/linear/none
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
 
 });
 
@@ -78046,6 +78061,11 @@ qualitatively correct results.
 !epop
 
 ************** File: slides3_reveal.html *****************
+<!--
+HTML file automatically generated from DocOnce source
+(https://github.com/doconce/doconce/)
+doconce format html slides3.html slides3 reveal --html_slide_type=beigesmall
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -78094,7 +78114,7 @@ qualitatively correct results.
 var link = document.createElement( 'link' );
 link.rel = 'stylesheet';
 link.type = 'text/css';
-link.href = window.location.search.match( /print-pdf/gi ) ? \'css/print/pdf.css\' : 'css/print/paper.css';
+link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 document.getElementsByTagName( 'head' )[0].appendChild( link );
 </script>
 
@@ -78467,13 +78487,13 @@ Reveal.initialize({
     viewDistance: 3,
 
     // Parallax background image
-    //parallaxBackgroundImage: \'\', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+    //parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
 
     // Parallax background size
     //parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
 
     theme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
-    transition: Reveal.getQueryHash().transition || \'default\', // default/cube/page/concave/zoom/linear/none
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
 
 });
 
@@ -78535,7 +78555,7 @@ Reveal.initialize({
 
 ************** File: ._slides3-solarized3001.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html slides3.do.txt --html_style=solarized3 SLIDE_TYPE=doconce SLIDE_THEME=solarized3 --html_output=slides3-solarized3 --html_raw_github_url=raw.github
 -->
@@ -79628,7 +79648,7 @@ MOVIE: [https://vimeo.com/55562330, width=500 height=278] Vimeo movie.
 Finally, let us demonstrate referencing the movie ref{mov:wave}.
 ************** File: movies_3choices.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html movies.do.txt --html_output=movies_3choices --html_raw_github_url=raw.github
 -->
@@ -80396,7 +80416,7 @@ if (!!(window.safari)) {
 
 ************** File: movies.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html movies.do.txt --no_mp4_webm_ogg_alternatives --html_raw_github_url=raw.github
 -->
@@ -86787,7 +86807,7 @@ Terminal> python prog.py
 
 ************** File: test_boots.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html test_boots.do.txt --html_style=bootswatch_journal --pygments_html_style=default --html_admon=bootstrap_panel --html_code_style=inherit --html_raw_github_url=raw.github
 -->
@@ -86966,7 +86986,7 @@ MathJax.Hub.Config({
 
 ************** File: ._test_boots001.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html test_boots.do.txt --html_style=bootswatch_journal --pygments_html_style=default --html_admon=bootstrap_panel --html_code_style=inherit --html_raw_github_url=raw.github
 -->
@@ -87257,7 +87277,7 @@ MathJax.Hub.Config({
 
 ************** File: ._test_boots002.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html test_boots.do.txt --html_style=bootswatch_journal --pygments_html_style=default --html_admon=bootstrap_panel --html_code_style=inherit --html_raw_github_url=raw.github
 -->
@@ -88898,7 +88918,7 @@ epub_copyright = u'2XXX, Hans Petter Langtangen, Simula, Kaare Dump'
 
 ************** File: testdoc_code_prefix.html *****************
 <!--
-Automatically generated HTML file from DocOnce source
+HTML file automatically generated from DocOnce source
 (https://github.com/doconce/doconce/)
 doconce format html testdoc.do.txt --code_prefix=/X/X/test --html_output=testdoc_code_prefix --examples_as_exercises
 -->

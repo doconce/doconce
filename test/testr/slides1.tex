@@ -61,31 +61,42 @@
 \definecolor{lightblue2}{rgb}{0.3,0.3,1.0}
 \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
 \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+
 \colorlet{comment_green}{green!50!black}
 \colorlet{string_red}{red!60!black}
 \colorlet{keyword_pink}{magenta!70!black}
 \colorlet{indendifier_green}{green!70!white}
+
 % Backgrounds for code
 \definecolor{cbg_gray}{rgb}{.95, .95, .95}
 \definecolor{bar_gray}{rgb}{.92, .92, .92}
+
 \definecolor{cbg_yellowgray}{rgb}{.95, .95, .85}
 \definecolor{bar_yellowgray}{rgb}{.95, .95, .65}
+
 \colorlet{cbg_yellow2}{yellow!10}
 \colorlet{bar_yellow2}{yellow!20}
+
 \definecolor{cbg_yellow1}{rgb}{.98, .98, 0.8}
 \definecolor{bar_yellow1}{rgb}{.98, .98, 0.4}
+
 \definecolor{cbg_red1}{rgb}{1, 0.85, 0.85}
 \definecolor{bar_red1}{rgb}{1, 0.75, 0.85}
+
 \definecolor{cbg_blue1}{rgb}{0.87843, 0.95686, 1.0}
 \definecolor{bar_blue1}{rgb}{0.7,     0.95686, 1}
+
 \usepackage{listingsutf8}
+
 % Common lstlisting parameters
+
 \usepackage{calc}
 \newlength{\lstboxwidth}  % width of lst box
 \newlength{\framethickness}
 \setlength{\framethickness}{0.5mm}
 % for frame=trbl and a framerule that has significant size, set
 % xleftmargin=5mm and xrightmargin=5mm.
+
 \lstset{
   basicstyle=\small \ttfamily,
   breaklines=false,          % break/wrap lines
@@ -109,7 +120,9 @@
   escapeinside={(*@}{@*)},   % (*@ \pause @*) in slides and math in code blocks
   extendedchars=\true,       % allows non-ascii chars, does not work with utf-8
 }
+
 % Internally defined styles for lstlisting
+
 % Use this one without additional background color
 \lstdefinestyle{yellow2_fb}{         % approx same colors as in the FEniCS book
 frame=tb,                            % top+bottom frame
@@ -121,9 +134,11 @@ commentstyle=\color{comment_green}\slshape,
 stringstyle=\color{string_red},
 identifierstyle=\color{darkorange},
 }
+
 \lstdefinestyle{simple}{
 commentstyle={},
 }
+
 % end of custom lstdefinestyles
 
 \usepackage{amsmath,amssymb,bm}
@@ -184,26 +199,42 @@ commentstyle={},
 % Add user's preamble
 
 
+
+
 % insert custom LaTeX commands...
+
 \raggedbottom
 \makeindex
+
 %-------------------- end preamble ----------------------
+
 \begin{document}
+
 % matching end for #ifdef PREAMBLE
 % #endif
+
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_bfmath}
 \input{newcommands_replace}
 
+
 % ------------------- main content ----------------------
+
+
+
 % ----------------- title -------------------------
+
 \title{Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides}
+
 % ----------------- author(s) -------------------------
+
 \author{Hans Petter Langtangen\inst{1,2}}
 \institute{Simula Research Laboratory\inst{1}
 \and
 University of Oslo\inst{2}}
 % ----------------- end author(s) -------------------------
+
 \date{Jan 32, 2100
 % <optional titlepage figure>
 % <optional copyright>
@@ -223,20 +254,28 @@ University of Oslo\inst{2}}
 \pause
 \begin{block}{Title with comma, and brackets: $[a,b]$ }
 \footnotesize
+
 \begin{itemize}
   \item Here is a \emph{wave signal} $f(x-ct)$
+
   \item It moves with velocity $c$
+
   \item But here it is just a figure
 \end{itemize}
+
 \noindent
 \end{block}
 
 \column{0.4\textwidth}
 \begin{block}{}
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.7\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
+
 \end{block}
 
 \end{columns}
@@ -246,9 +285,11 @@ University of Oslo\inst{2}}
 \frametitle{Slide with pop-ups in red and notes}
 
 \shortinlinecomment{hpl 1}{ Comments are typeset as usual in DocOnce. }{ Comments are typeset as }
+
 \pause
 Here we have a paragraph to pop up in red.\\
 And a line more
+
 \note{
 One can also have ordinary notes.
 Over multiple lines.
@@ -271,10 +312,12 @@ Jane Doe\footnote{\texttt{jane.doe@cyber.net}.}}
 \maketitle
 
 \end{lstlisting}
+
 \pause
 \begin{block}{Notice}
 {\LaTeX} has a lot of backslashes.
 \end{block}
+
 \pause
 \begin{lstlisting}[language=TeX,style=yellow2_fb]
 \section{Heading}
@@ -302,12 +345,18 @@ bla-bla
 \begin{frame}[plain,fragile]
 \frametitle{Second section}
 
+
 \begin{block}{}
+
 \vspace{6mm}
+
 % inline figure
 \centerline{\includegraphics[width=0.8\linewidth]{testfigs/wave1D.png}}
+
 \vspace{6mm}
+
 \end{block}
+
 
 \end{frame}
 
@@ -317,9 +366,17 @@ bla-bla
 \begin{block}{A simple, mathematical formula where $t\in [0,\pi]$: }
 \[ f(x,y,t) = e^{-xt}\sin\pi y \]
 \end{block}
+
 \begin{block}{Bash demanded more of DocOnce than Python, so let's do Bash: }
 First, inline \Verb@$? != 0@, then comments with dollar variables (and minted
 style):
+
+
+
+
+
+
+
 \begin{lstlisting}[language=bash,style=yellow2_fb]
 var=10
 # $1, $2, ... are command-line args
@@ -353,19 +410,24 @@ print(g(13))
 \frametitle{Various admon blocks}
 
 Can use admons to simulate blocks:
+
 \pause
 \begin{block}{Key PDE (with large title and math font): }
 \large
+
 \[ \frac{\partial u}{\partial t} = \nabla^2 u \]
 \end{block}
+
 \pause
 \begin{block}{}
 Just some block with text and a conclusion that something is important.
 This one pops up after the rest of the slide.
 \end{block}
+
 \pause
 \begin{block}{Warning}
 \footnotesize
+
 Can use, e.g., a warning admon to have my own notes, preferably
 inside preprocess/mako if statements to turn notes on and off.
 This one is typeset in a small font and with the default
