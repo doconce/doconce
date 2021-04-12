@@ -2,6 +2,7 @@
 # pytest --pdb test_run.py      # then in the debugger:  print(out.stdout)
 # pytest -s test_run.py         #to capture stout
 # pytest -v test_run.py::test_html_remove_whitespace #only one test
+# when assers fail, +/- are left/right
 import pytest
 import contextlib
 import tempfile
@@ -155,6 +156,9 @@ def test_text_lines():
     assert text_lines('</div>') == '</div>\n'
     assert text_lines('  </div>') == '  </div>\n'
     assert text_lines('</table></tr>') == '</table></tr>\n'
+    assert text_lines('a\nb\n!split\nc') == '\n<p>a b</p>\n!split\n<p>c</p>\n'
+    assert text_lines('!bpop\n  *\n!epop') == '!bpop\n<p>  *</p>\n!epop\n'
+    assert text_lines('The\n `!bslidecell` \ncmd') == '<p>The</p>\n `!bslidecell` \n<p>cmd</p>\n'
     ''' This one fails due to import
     from doconce.doconce import inline_tag_subst
     input = 'Verbatim `pycod -t`'

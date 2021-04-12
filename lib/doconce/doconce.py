@@ -2476,16 +2476,11 @@ def text_lines(filestr):
         elif re.search('TOC:', line):
             # Skip TOC:
             continue
-        elif re.search(r'![b|e]\w+\s*', line):
-            # Skip !b<command and !e<command>
+        elif re.search(r'^![b|e]\w+\s*', line):
+            # Skip !b<command and !e<command> at beginning of line
+            # NB other similar commands are present in COMMANDS_TO_COMMENT
             continue
-        # Skip several commands at any position in the line
-        for command in ['cite{', 'label{'] + COMMANDS_TO_COMMENT:
-            # Skip on commands to comment out
-            command_found = line.find(command)
-            if command_found > -1:
-                break
-        if command_found > -1:
+        elif re.search('^!split', line):
             continue
         # If occurrences of inline tags are found, the line contains a tag.
         for tag in INLINE_TAGS.keys():
@@ -2540,15 +2535,24 @@ def text_lines(filestr):
 
 
 def comment_commands(filestr, format):
-    commands = COMMANDS_TO_COMMENT
+    """Comment out commands
+
+    Some commands (in the COMMANDS_TO_COMMENT global, e.g. !split, !b* !e*)
+    appearing in the beginning of a line should be commented out.
+    :param str filestr: text string
+    :param str format: output format
+    :return: filestr
+    :rtype: str
+    """
+    pattern_cmd_to_comment = '^%s( *| +.*)$'
     comment_action = INLINE_TAGS_SUBST[format].get('comment', '# %s')
-    for command in commands:
+    for command in COMMANDS_TO_COMMENT:
         if isinstance(comment_action, basestring):
-            split_comment = comment_action % (command + r'\g<1>')
+            pattern_commented_cmd = comment_action % (command + r'\g<1>')
         elif callable(comment_action):
-            split_comment = comment_action((command + r'\g<1>'))
-        cpattern = re.compile('^%s( *| +.*)$' % command, re.MULTILINE)
-        filestr = cpattern.sub(split_comment, filestr)
+            pattern_commented_cmd = comment_action((command + r'\g<1>'))
+        cpattern = re.compile(pattern_cmd_to_comment % command, re.MULTILINE)
+        filestr = cpattern.sub(pattern_commented_cmd, filestr)
     return filestr
 
 

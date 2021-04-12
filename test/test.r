@@ -35366,9 +35366,7 @@ Some text.
 <!-- Here goes hidden code. -->
 <!-- Python can be treated by some formats, Fortran is always out. -->
 
-
-
-Finally, <code>!bc do</code> supports highlighting of DocOnce source:
+<p>Finally, <code>!bc do</code> supports highlighting of DocOnce source:</p>
 
 
 <!-- code=doconce (!bc do) typeset with pygments style "perldoc" -->
@@ -35462,9 +35460,7 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
   </div>
 </div>
 
-<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>.</p>
-Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>.
-<p>Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
+<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>. Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>. Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
 
 <p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with green color containing a linebreak<br /> code.</font> Some formats will only display <br /> this correctly when <code>html</code> <br /> is the output format. But here some more running text is added which is not part of the previous blocks with line breaks.</p>
 <h3 id="running-os-commands">Running OS commands </h3>
@@ -38314,13 +38310,7 @@ Some text.
   </div>
 </div>
 
-
-
-
-
-
-
-Finally, <code>!bc do</code> supports highlighting of DocOnce source:
+<p>Finally, <code>!bc do</code> supports highlighting of DocOnce source:</p>
 
 
 
@@ -38376,9 +38366,7 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
   </div>
 </div>
 
-<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>.</p>
-Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>.
-<p>Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
+<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>. Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>. Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
 
 <p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with green color containing a linebreak<br /> code.</font> Some formats will only display <br /> this correctly when <code>html</code> <br /> is the output format. But here some more running text is added which is not part of the previous blocks with line breaks.</p>
 <h3 id="running-os-commands">Running OS commands </h3>
@@ -40814,9 +40802,7 @@ Some text.
 <!-- Here goes hidden code. -->
 <!-- Python can be treated by some formats, Fortran is always out. -->
 
-
-
-Finally, <code>!bc do</code> supports highlighting of DocOnce source:
+<p>Finally, <code>!bc do</code> supports highlighting of DocOnce source:</p>
 
 
 <!-- code=doconce (!bc do) typeset with pygments style "default" -->
@@ -40875,9 +40861,7 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
   </div>
 </div>
 
-<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>.</p>
-Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>.
-<p>Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
+<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>. Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>. Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
 
 <p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with green color containing a linebreak<br /> code.</font> Some formats will only display <br /> this correctly when <code>html</code> <br /> is the output format. But here some more running text is added which is not part of the previous blocks with line breaks.</p>
 <h3 id="running-os-commands">Running OS commands </h3>
@@ -52935,9 +52919,7 @@ Some text.
 <!-- Here goes hidden code. -->
 <!-- Python can be treated by some formats, Fortran is always out. -->
 
-
-
-Finally, <code>!bc do</code> supports highlighting of DocOnce source:
+<p>Finally, <code>!bc do</code> supports highlighting of DocOnce source:</p>
 
 
 <!-- code=doconce (!bc do) typeset with pygments style "default" -->
@@ -52996,9 +52978,7 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
   </div>
 </div>
 
-<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>.</p>
-Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>.
-<p>Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
+<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>. Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>. Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
 
 <p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with green color containing a linebreak<br /> code.</font> Some formats will only display <br /> this correctly when <code>html</code> <br /> is the output format. But here some more running text is added which is not part of the previous blocks with line breaks.</p>
 <h3 id="running-os-commands" class="anchor">Running OS commands </h3>
@@ -75074,8 +75054,7 @@ URL: &quot;https://github.com/doconce/doconce&quot;
 
 <p>gets rendered as ...where \( a=\int_{\Omega}fdx \) is an integral.</p>
 
-An equation environment is surrounded by <code>!bt</code> and <code>!et</code> tags,
-<p>the rest is plain LaTeX:</p>
+<p>An equation environment is surrounded by <code>!bt</code> and <code>!et</code> tags, the rest is plain LaTeX:</p>
 
 
 <!-- code=text (!bc ccq) typeset with pygments style "emacs" -->
@@ -75126,7 +75105,7 @@ $$
 <section>
 <h2 id="doconce-displaying-code">DocOnce: displaying code </h2>
 
-Code is enclosed in <code>!bc</code> and <code>!ec</code> tags:
+<p>Code is enclosed in <code>!bc</code> and <code>!ec</code> tags:</p>
 
 
 <!-- code=text (!bc ccq) typeset with pygments style "emacs" -->
@@ -75205,8 +75184,7 @@ def solver(I, a, T, dt, theta):
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Language-dependent typesetting of code:</b>
 <p>
-The <code>!bc</code> command can be followed by a specification of the computer
-<p>language: <code>pycod</code> for Python code snippet, <code>pypro</code> for complete Python program, <code>fcod</code> for Fortran snippet, <code>fpro</code> for Fortran program, and so forth (<code>c</code> for C, <code>cpp</code> for C++, <code>sh</code> for Unix shells, <code>m</code> for Matlab).</p>
+<p>The <code>!bc</code> command can be followed by a specification of the computer language: <code>pycod</code> for Python code snippet, <code>pypro</code> for complete Python program, <code>fcod</code> for Fortran snippet, <code>fpro</code> for Fortran program, and so forth (<code>c</code> for C, <code>cpp</code> for C++, <code>sh</code> for Unix shells, <code>m</code> for Matlab).</p>
 </div>
 </section>
 
@@ -75214,8 +75192,7 @@ The <code>!bc</code> command can be followed by a specification of the computer
 <section>
 <h2 id="slide:pot">DocOnce: displaying interactive demo code</h2>
 
-With <code>!bc pyoptpro</code> or a file <code>*.pyopt</code>, the code applies the
-<p><a href="https://pythontutor.com" target="_self">Online Python Tutor</a> for displaying program flow and state of variables:</p>
+<p>With <code>!bc pyoptpro</code> or a file <code>*.pyopt</code>, the code applies the <a href="https://pythontutor.com" target="_self">Online Python Tutor</a> for displaying program flow and state of variables:</p>
 
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
@@ -75429,9 +75406,7 @@ $$ -\nabla^2 u = f \quad\hbox{in }\Omega $$
 <section>
 <h2 id="doconce-example-on-slide-code-with-cells">DocOnce: example on slide code with cells </h2>
 
-<p>One can introduce a table-like layout with MxN cells and put slide elements in various cell. A cell with position</p>
-MN is surrounded by <code>!bslidecell MN</code> and <code>!eslidecell</code>
-<p>tags. Below is an example with a bullet list to the left and a figure to the right (two cells, numbered 00 and 01).</p>
+<p>One can introduce a table-like layout with MxN cells and put slide elements in various cell. A cell with position MN is surrounded by <code>!bslidecell MN</code> and <code>!eslidecell</code> tags. Below is an example with a bullet list to the left and a figure to the right (two cells, numbered 00 and 01).</p>
 
 
 <!-- code=text (!bc ccq) typeset with pygments style "emacs" -->
@@ -90029,9 +90004,7 @@ Some text.
 <!-- Here goes hidden code. -->
 <!-- Python can be treated by some formats, Fortran is always out. -->
 
-
-
-Finally, <code>!bc do</code> supports highlighting of DocOnce source:
+<p>Finally, <code>!bc do</code> supports highlighting of DocOnce source:</p>
 
 
 <!-- code=doconce (!bc do) typeset with pygments style "default" -->
@@ -90090,9 +90063,7 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
   </div>
 </div>
 
-<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>.</p>
-Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>.
-<p>Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
+<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>. Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>. Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
 
 <p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with green color containing a linebreak<br /> code.</font> Some formats will only display <br /> this correctly when <code>html</code> <br /> is the output format. But here some more running text is added which is not part of the previous blocks with line breaks.</p>
 <h3 id="running-os-commands">Running OS commands </h3>
