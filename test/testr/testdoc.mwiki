@@ -683,7 +683,7 @@ achievement.
 
 Let us take this table from the manual:
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">time</th> <th align="center">velocity</th> <th align="center">acceleration</th> </tr>
 </thead>
@@ -709,7 +709,7 @@ The DocOnce source code reads
 Here is yet another table to test that we can handle more than
 one table:
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="left">time</th> <th align="left">velocity</th> <th align="left">acceleration</th> </tr>
 </thead>
@@ -723,7 +723,7 @@ And one with math headings (that are expanded and must be treated
 accordingly), verbatim heading and entry, and no space around the pipe
 symbol:
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center"><math>i</math></th> <th align="center"><math>h_i</math></th> <th align="center"><math>\bar T_i</math></th> <td align="center"><code>L_i</code></td> </tr>
 </thead>
@@ -741,7 +741,7 @@ And add one with verbatim headings (with underscores),
 and rows starting with <code>|-</code> because of a negative number,
 and <code>|</code> right before and after verbatim word (with no space):
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">exact</th> <td align="center"><code>v_1</code></td> <td align="center"><math>a_i</math> + <code>v_2</code></td> <td align="center"><code>verb_3_</code></td> </tr>
 </thead>
@@ -756,7 +756,7 @@ Pipe symbols in verbatim and math text in tables used to pose difficulties,
 but not
 anymore:
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">   <math>S</math>   </th> <th align="center">        command         </th> </tr>
 </thead>
@@ -767,7 +767,7 @@ anymore:
 </table>
 Here is a table with X alignment:
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center"> Type</th> <th align="center">                                                                                                                Description                                                                                                                 </th> </tr>
 </thead>
@@ -782,7 +782,7 @@ and URLs.
 <!-- Mako code to expand URLs in the table -->
 <!-- (These types of tables did not work before Jan 2014) -->
 
-<table border="1">
+<table class="table" border="1">
 <tr></tr>
 <tbody>
 <tr><td align="center">   <math>\mathcal{L}=0</math>            </td> <td align="center">   [../doc/src/manual/mov/wave_frames/frame_0080.png <code>080</code>]    </td> <td align="center">   [../doc/src/manual/mov/wave_frames/frame_0085.png <code>085</code>]    </td> </tr>
@@ -982,7 +982,7 @@ We have
 </math>
 or in tabular form:
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">    Problem     </th> <th align="center">    Result    </th> </tr>
 </thead>

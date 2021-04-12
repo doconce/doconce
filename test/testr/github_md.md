@@ -33,7 +33,7 @@ def f(x, a=1, b=1, c=1):
 
 #### Remaining functionality
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">function</th> <th align="center">           purpose            </th> <th align="center">      state      </th> </tr>
 </thead>

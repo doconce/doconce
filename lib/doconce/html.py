@@ -2029,7 +2029,7 @@ def html_table(table):
              '    <table class="table table-striped table-hover table-condensed">\n'
              ) % span
     else:
-        s = '<table border="1">\n'
+        s = '<table class="table" border="1">\n'
     for i, row in enumerate(table['rows']):
         if row == ['horizontal rule']:
             continue
