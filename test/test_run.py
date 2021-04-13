@@ -319,12 +319,11 @@ def test_doconce_html_slides(tdir):
                              stdout=subprocess.PIPE,
                              stderr=subprocess.STDOUT,  # can do this in debugger mode: print(out.stdout)
                              encoding='utf8')
-        #os.system('doconce format html testdoc.do.txt --examples_as_exercises')
-
-        #assert out.returncode == 0
-        # deck.js
+        assert out.returncode == 0
+        # deck.js slides
         os.system('cp testdoc.html temp.html')
-        out = subprocess.run('doconce slides_html temp.html deck --html_slide_theme=swiss'.split(' '),
+        out = subprocess.run('doconce slides_html temp.html deck --html_transition_theme=none '
+                             '--html_slide_theme=swiss'.split(' '),
                              cwd=tdir,  # NB: main process stays in curr dir, subprocesses in tdir
                              stdout=subprocess.PIPE,
                              stderr=subprocess.STDOUT,  # can do this in debugger mode: print(out.stdout)
@@ -333,6 +332,7 @@ def test_doconce_html_slides(tdir):
         with open('temp.html', 'r') as f:
             html = f.read()
         assert html.find('themes/style/swiss.css') > -1
+        assert html.find('<link rel="stylesheet" media="screen" href="">') > 10
         # reveal.js slides
         os.system('cp testdoc.html temp.html')
         out = subprocess.run('doconce slides_html temp.html reveal --html_slide_theme=solarized'.split(' '),

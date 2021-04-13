@@ -1402,7 +1402,7 @@ def insert_code_from_file(filestr, format):
             except UnicodeDecodeError as e:
                 code = code.decode('utf-8')
 
-            if code_envir in ('None', 'off', 'none'):
+            if code_envir in ('none', 'none', 'off'):
                 # no need to embed code in anything
                 errwarn(' (no format, just include)')
             elif code_envir is not None:

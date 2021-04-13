@@ -3005,7 +3005,7 @@ def define(FILENAME_EXTENSION,
     else:
         css = css_blueish # default
 
-    if option('pygments_html_style=', None) not in ('no', 'none', 'off') \
+    if option('pygments_html_style=', None) not in ('none', 'None', 'off', 'no') \
         and not option('html_style=', 'blueish').startswith('solarized') \
         and not option('html_style=', 'blueish').startswith('tactile'):
         # Remove pre style as it destroys the background for pygments
@@ -3570,12 +3570,12 @@ def get_pygments_style(code_block_types):
                     errwarn('    automatically changed to --html_style=friendly')
                     errwarn('    (it is recommended not to specify --pygm_style for solarized_dark)')
                     pygm_style = 'friendly'
-        legal_styles = list(get_all_styles()) + ['no', 'none', 'off']
+        legal_styles = list(get_all_styles()) + ['none', 'None', 'off', 'no']
         if pygm_style not in legal_styles:
             errwarn('pygments style "%s" is not legal, must be among\n%s' % (pygm_style, ', '.join(legal_styles)))
             #_abort()
             errwarn('using the "default" style...')
             pygm_style = 'default'
-        if pygm_style in ['no', 'none', 'off']:
+        if pygm_style in ['none', 'None', 'off', 'no']:
             pygm = None
     return pygm, pygm_style
