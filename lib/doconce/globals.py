@@ -44,8 +44,8 @@ style = {
 }
 
 # Regular expressions for inline tags:
-inline_tag_begin = r"""(?P<begin>(^|[(\s~>{!-]|^__|&[mn]dash;))"""
-inline_tag_end = r"""(?P<end>($|[.,?!;:)<}!'\s~\[<&;-]))"""
+inline_tag_begin =  r"(?P<begin>(^|\" |[(\s~>{!-]|^__|&[mn]dash;))"
+inline_tag_end =    r"(?P<end>($|\" |[.,?!;:)<}!'\s~\[<&;-]))"
 
 # Admonitions
 admons = 'notice', 'summary', 'warning', 'question', 'block'

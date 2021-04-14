@@ -2471,7 +2471,23 @@ def text_lines(filestr):
     # Loop on lines and search for inline tags/commands that we do not consider plain text
     lines = filestr.splitlines()
     wrap_last = None
+    def wrap_with_previous(lines, i):
+        """Wrap a line with the previous one"""
+        lines[i] = lines[i - 1][:-4] + '\n' + lines[i] + '\n</p>'
+        lines[i - 1] = ''
+    def wrap_line(wrap='', wrap_last=wrap_last):
+        """Wrap lines. This function shares variables with outer function"""
+        # Wrap in <p></p> the whole line vs around the match
+        if wrap == 'line':
+            # Merge consecutive paragraph <p> tags using wrap_last (see below)
+            if wrap_last == i - 1:
+                wrap_with_previous(lines, i)
+            else:
+                # Wrap the whole line
+                lines[i] = '<p>' + lines[i] + '</p>'
     for i,line in enumerate(lines):
+        # Normal text has to be wrapped by default
+        wrap = 'line'
         # Skip some patterns
         if line == ''  or line.isspace():
             # Skip empty lines
@@ -2494,7 +2510,7 @@ def text_lines(filestr):
         elif re.search(r'^\s*(<[^>]*>)+\s*$', line):
             # Skip single tags e.g. </div> or </tr></table>
             continue
-        elif re.search(r'^\s*<[\w _\-]+[\\]?.*>\s*$', line): #TODO: exclude <a>? see around "Here is a citation using"
+        elif re.search(r'^\s*<[\w _\-]+[\\]?.*>\s*$', line):
             # Skip lines already wrapped in tags, e.g. lists or <tag ...> or <p></p>
             continue
         elif re.search('^\s*\\|.*\\|$', line):
@@ -2512,10 +2528,9 @@ def text_lines(filestr):
             continue
         elif re.search('^!split', line):
             continue
-        # If occurrences of inline tags are found, the line contains a tag.
-        for tag in INLINE_TAGS.keys():
-            # Normal text has to be wrapped by default
-            wrap = 'line'
+        # Process INLINE_TAGS. `paragraph` and `linebreak` are special, see below.
+        # There can be multiple tags in one line. No need to process tags spanning the whole line
+        for tag in INLINE_TAGS.keys() - ['paragraph', 'linebreak']:
             # Compile and run the tag's regex pattern
             tag_pattern = INLINE_TAGS[tag]
             if tag in ('abstract',):
@@ -2527,35 +2542,31 @@ def text_lines(filestr):
             m = c.search(line)
             if m:
                 match = m.group()
-                if tag in ['paragraph']:
-                    wrap = 'around'
-                    break
                 # If the tag takes the whole line, no need to wrap it (except linebreaks)
                 if line == match:
-                    if tag in ['linebreak']:
-                        # Insert linebreak
-                        lines[i] = re.sub(INLINE_TAGS['linebreak'], INLINE_TAGS_SUBST['html']['linebreak'], lines[i])
-                        wrap = 'line'
-                    else:
-                        wrap = ''
-                    break
-        # Wrap in <p></p> the whole line vs around the match
-        if wrap == 'line':
-            # Merge consecutive paragraph <p> tags using wrap_last (see below)
-            if wrap_last == i-1:
-                lines[i] = lines[i-1][:-4] + ' ' + lines[i] + '</p>'
-                lines[i - 1] = ''
-            else:
-                # Wrap the whole line
-                lines[i] = '<p>' + lines[i] + '</p>'
-        elif wrap == 'around':
-            # Wrap text but not the tag
-            begin = line.find(match)
+                    wrap = ''
+                    if wrap_last == i - 1:
+                        wrap_with_previous(lines, i)
+                        wrap_last = i
+        if re.search(INLINE_TAGS['paragraph'], line):
+            # Wrap only the text around the tag
+            match = re.search(INLINE_TAGS['paragraph'], line).group()
+            begin = lines[i].find(match)
             end = begin + len(match)
             line_wrapped = '<p>' + lines[i][:begin] + '\n'
             line_wrapped += match
             line_wrapped += '\n' + lines[i][end:] + '</p>'
             lines[i] = line_wrapped
+            wrap_last = i
+            continue
+        if re.search(INLINE_TAGS['linebreak'], line):
+            match = re.search(INLINE_TAGS['linebreak'], line).group()
+            if line == match:
+                # Insert linebreak
+                lines[i] = re.sub(INLINE_TAGS['linebreak'], INLINE_TAGS_SUBST['html']['linebreak'], lines[i])
+                wrap = 'line'
+        # Wrap plain text (possibly containing inline tags to be processed later)
+        wrap_line(wrap, wrap_last=wrap_last)
         # Keep the last line that was wrapped
         if wrap:
             wrap_last = i
@@ -4157,7 +4168,6 @@ def inline_tag_subst(filestr, format):
             to_ = verbatim.replace('&', marker_text)
             filestr = filestr.replace(from_, to_)
     # Assumption: no ampersands in inline math (of ampersand1/2 type)
-
     debugpr('\n*** Inline tags substitution phase ***')
 
     # Do tags that require almost format-independent treatment such

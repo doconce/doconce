@@ -31,7 +31,7 @@ doconce format html slides1.html slides1 deck --html_slide_theme=web-2.0
   <link rel="stylesheet" media="screen" href="deck.js-latest/themes/style/web-2.0.css">
 
   <!-- Transition theme. More available in /themes/transition/ or create your own. -->
-  <link rel="stylesheet" media="screen" href="deck.js-latest/themes/transition/horizontal-slide.css">
+  <link rel="stylesheet" media="screen" href="">
 
   <!-- Basic black and white print styles -->
   <link rel="stylesheet" media="print" href="deck.js-latest/core/print.css">
@@ -209,14 +209,18 @@ MathJax.Hub.Config({
 
 
 <p class="slide">
-Here we have a paragraph to pop up in red.<br /> And a line more</p>
+Here we have a paragraph to pop up in red.<br />
+And a line more
+</p>
 </p>
 
 
 <div class="notes">
 <!-- press "n" to activate -->
 
-<p>One can also have ordinary notes. Over multiple lines.</p>
+<p>One can also have ordinary notes.
+Over multiple lines.
+</p>
 
 </div>
 </section>
@@ -348,7 +352,9 @@ $$ f(x,y,t) = e^{-xt}\sin\pi y $$
 <div class="alert alert-block alert-block alert-text-normal">
 <b style="font-weight: bold">Bash demanded more of DocOnce than Python, so let's do Bash:</b>
 <p>
-<p>First, inline <code>$? != 0</code>, then comments with dollar variables (and minted style):</p>
+<p>First, inline <code>$? != 0</code>, then comments with dollar variables (and minted
+style):
+</p>
 
 
 <!-- code=bash (!bc shcod) typeset with pygments style "emacs" -->
@@ -430,13 +436,19 @@ $$ \frac{\partial u}{\partial t} = \nabla^2 u $$
 <div class="slide alert alert-block alert-summary alert-text-normal">
 <b style="font-weight: bold"></b>
 <p>
-<p>Just some block with text and a conclusion that something is important. This one pops up after the rest of the slide.</p>
+<p>Just some block with text and a conclusion that something is important.
+This one pops up after the rest of the slide.
+</p>
 </div>
 
 <div class="slide alert alert-block alert-warning alert-text-small">
 <b style="font-weight: bold">Warning</b>
 <p>
-<p>Can use, e.g., a warning admon to have my own notes, preferably inside preprocess/mako if statements to turn notes on and off. This one is typeset in a small font and with the default title (Warning) since no title is specified.</p>
+<p>Can use, e.g., a warning admon to have my own notes, preferably
+inside preprocess/mako if statements to turn notes on and off.
+This one is typeset in a small font and with the default
+title (Warning) since no title is specified.
+</p>
 </div>
 </section>
 

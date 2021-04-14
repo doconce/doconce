@@ -245,15 +245,31 @@ $$
 <br>
 
 <p>
-<b>Summary.</b> The purpose of this document is to test LaTeX math in DocOnce with various output formats.  Most LaTeX math constructions are renedered correctly by MathJax in plain HTML, but some combinations of constructions may fail.  Unfortunately, only a subset of what works in html MathJax also works in sphinx MathJax. The same is true for markdown MathJax expresions (e.g., Jupyter notebooks).  Tests and examples are provided to illustrate what may go wrong.</p>
+<b>Summary.</b> The purpose of this document is to test LaTeX math in DocOnce with
+various output formats.  Most LaTeX math constructions are renedered
+correctly by MathJax in plain HTML, but some combinations of
+constructions may fail.  Unfortunately, only a subset of what works in
+html MathJax also works in sphinx MathJax. The same is true for
+markdown MathJax expresions (e.g., Jupyter notebooks).  Tests and
+examples are provided to illustrate what may go wrong.
+</p>
 
-<p>The recommendation for writing math that translates to MathJax in html, sphinx, and markdown is to stick to the environments <code>\[ ... \]</code>, <code>equation</code>, <code>equation*</code>, <code>align</code>, <code>align*</code>, <code>alignat</code>, and <code>alignat*</code> only. Test the math with sphinx output; if it works in that format, it should work elsewhere too.</p>
+<p>The recommendation for writing math that translates to MathJax in
+html, sphinx, and markdown is to stick to the environments <code>\[
+... \]</code>, <code>equation</code>, <code>equation*</code>, <code>align</code>, <code>align*</code>, <code>alignat</code>, and
+<code>alignat*</code> only. Test the math with sphinx output; if it works in that
+format, it should work elsewhere too.
+</p>
 
-<p>The current version of the document is translated from DocOnce source to the format <b>html</b>.</p>
+<p>The current version of the document is translated from DocOnce source
+to the format <b>html</b>.
+</p>
 <h1 id="test-of-equation-environments">Test of equation environments </h1>
 <h2 id="test-1-inline-math">Test 1: Inline math </h2>
 
-<p>We can get an inline equation <code>$u(t)=e^{-at}$</code> rendered as \( u(t)=e^{-at} \).</p>
+<p>We can get an inline equation
+<code>$u(t)=e^{-at}$</code> rendered as \( u(t)=e^{-at} \).
+</p>
 <h2 id="test-2-a-single-equation-with-label">Test 2: A single equation with label </h2>
 
 <p>An equation with number,</p>
@@ -330,7 +346,10 @@ $$
 <p>We can refer to this equation through its label <code>eq1b</code>: \eqref{_eq1b}.</p>
 <h2 id="test-3-multiple-aligned-equations-without-label-and-number">Test 3: Multiple, aligned equations without label and number </h2>
 
-<p>MathJax has historically had some problems with rendering many LaTeX math environments, but the <code>align*</code> and <code>align</code> environments have always worked.</p>
+<p>MathJax has historically had some problems with rendering many LaTeX
+math environments, but the <code>align*</code> and <code>align</code> environments have
+always worked.
+</p>
 
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
@@ -416,7 +435,12 @@ $$
 <p>We can refer to the last equations as the system \eqref{_eq2b}-\eqref{_eq3b}.</p>
 <h2 id="test-5-multiple-aligned-equations-without-label">Test 5: Multiple, aligned equations without label </h2>
 
-<p>In LaTeX, equations within an <code>align</code> environment is automatically given numbers.  To ensure that an html document with MathJax gets the same equation numbers as its latex/pdflatex companion, DocOnce generates labels in equations where there is no label prescribed. For example,</p>
+<p>In LaTeX, equations within an <code>align</code> environment is automatically
+given numbers.  To ensure that an html document with MathJax gets the
+same equation numbers as its latex/pdflatex companion, DocOnce
+generates labels in equations where there is no label prescribed. For
+example,
+</p>
 
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
@@ -657,7 +681,9 @@ v(t) - 1 &=& \frac{du}{dt} \label{_eq3c}
 \end{eqnarray}
 $$
 
-<p>Can we refer to the last equations as the system \eqref{_eq2c}-\eqref{_eq3c} in the html format?</p>
+<p>Can we refer to the last equations as the system \eqref{_eq2c}-\eqref{_eq3c}
+in the html format?
+</p>
 <h2 id="test-9-the-multiline-environment-with-label-and-number">Test 9: The <code>multiline</code> environment with label and number </h2>
 
 <p>The LaTeX code</p>
@@ -703,10 +729,14 @@ f(a+(j+1)h)) \\
 \end{multline}
 $$
 
-<p>and we can hopefully refer to the Trapezoidal rule as the formula \eqref{_multiline:eq1}.</p>
+<p>and we can hopefully refer to the Trapezoidal rule
+as the formula \eqref{_multiline:eq1}.
+</p>
 <h2 id="test-10-splitting-equations-using-a-split-environment">Test 10: Splitting equations using a split environment </h2>
 
-<p>Although <code>align</code> can be used to split too long equations, a more obvious command is <code>split</code>:</p>
+<p>Although <code>align</code> can be used to split too long equations, a more obvious
+command is <code>split</code>:
+</p>
 
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
@@ -782,7 +812,10 @@ $$
   </div>
 </div>
 
-<p>and the inline expression <code>$\nabla\u (\pmb{x})\cdot\pmb{n}$</code> (with suitable newcommands using pmb) get rendered as</p>
+<p>and the inline expression <code>$\nabla\u (\pmb{x})\cdot\pmb{n}$</code>
+(with suitable newcommands using pmb)
+get rendered as
+</p>
 
 $$ \frac{\partial\u}{\partial t} +
 \u\cdot\nabla\u = \nu\nabla^2\u -
@@ -856,12 +889,17 @@ $$ \frac{\partial\ubm}{\partial t} +
 <div class="alert alert-block alert-warning alert-text-normal">
 <b>Warning</b>
 <p>
-<p>Note: for the html format, <code>\bm</code> was substituted by DocOnce to <code>\boldsymbol</code>.</p>
+<p>Note: for the html format, <code>\bm</code> was substituted by DocOnce
+to <code>\boldsymbol</code>.
+</p>
 </div>
 
 <h1 id="problematic-equations">Problematic equations </h1>
 
-<p>Finally, we collect some problematic formulas in MathJax. They all work fine in LaTeX. Most of them look fine in html too, but some fail in sphinx, ipynb, or markdown.</p>
+<p>Finally, we collect some problematic formulas in MathJax. They all work
+fine in LaTeX. Most of them look fine in html too, but some fail in
+sphinx, ipynb, or markdown.
+</p>
 <h2 id="colored-terms-in-equations">Colored terms in equations </h2>
 
 <p>The LaTeX code</p>
@@ -900,7 +938,10 @@ $$ {\color{blue}\frac{\partial\u}{\partial t}} +
 \frac{1}{\varrho}\nabla p,$$
 <h2 id="bar-over-symbols">Bar over symbols </h2>
 
-<p>Sometimes one must be extra careful with the LaTeX syntax to get sphinx MathJax to render a formula correctly. Consider the combination of a bar over a bold math symbol:</p>
+<p>Sometimes one must be extra careful with the LaTeX syntax to get sphinx MathJax
+to render a formula correctly. Consider the combination of a bar over a
+bold math symbol:
+</p>
 
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
@@ -963,7 +1004,9 @@ $$ \bar\f = f_c^{-1}\f.$$
 $$ \bar{\f} = f_c^{-1}\f,$$
 <h2 id="matrix-formulas">Matrix formulas </h2>
 
-<p>Here is an <code>align</code> environment with a label and the <code>pmatrix</code> environment for matrices and vectors in LaTeX.</p>
+<p>Here is an <code>align</code> environment with a label and the <code>pmatrix</code>
+environment for matrices and vectors in LaTeX.
+</p>
 
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->

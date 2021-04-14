@@ -377,7 +377,9 @@ MathJax.Hub.Config({
  <p><li> some Markdown files,</li>
 </ul>
 <p>
-<p>and later want to collect the pieces into a larger document, maybe some book, or one big web document, is that at all feasible?</p>
+<p>and later want to collect the pieces into a larger document, maybe
+some book, or one big web document, is that at all feasible?
+</p>
 
 
 <p class="fragment">
@@ -434,7 +436,9 @@ Probably not, but I have a solution :-)</p>
 
 
 <p class="fragment">
-Conclusion: Highly non-trivial to translate a LaTeX document into something based on HTML and vice versa.</p>
+Conclusion: Highly non-trivial to translate a LaTeX document into something
+based on HTML and vice versa.
+</p>
 </p>
 </section>
 
@@ -806,7 +810,9 @@ URL: &quot;https://github.com/doconce/doconce&quot;
 
 <p>gets rendered as ...where \( a=\int_{\Omega}fdx \) is an integral.</p>
 
-<p>An equation environment is surrounded by <code>!bt</code> and <code>!et</code> tags, the rest is plain LaTeX:</p>
+<p>An equation environment is surrounded by <code>!bt</code> and <code>!et</code> tags,
+the rest is plain LaTeX:
+</p>
 
 
 <!-- code=text (!bc ccq) typeset with pygments style "emacs" -->
@@ -936,7 +942,11 @@ def solver(I, a, T, dt, theta):
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Language-dependent typesetting of code:</b>
 <p>
-<p>The <code>!bc</code> command can be followed by a specification of the computer language: <code>pycod</code> for Python code snippet, <code>pypro</code> for complete Python program, <code>fcod</code> for Fortran snippet, <code>fpro</code> for Fortran program, and so forth (<code>c</code> for C, <code>cpp</code> for C++, <code>sh</code> for Unix shells, <code>m</code> for Matlab).</p>
+<p>The <code>!bc</code> command can be followed by a specification of the computer
+language: <code>pycod</code> for Python code snippet, <code>pypro</code> for complete Python
+program, <code>fcod</code> for Fortran snippet, <code>fpro</code> for Fortran program, and so
+forth (<code>c</code> for C, <code>cpp</code> for C++, <code>sh</code> for Unix shells, <code>m</code> for Matlab).
+</p>
 </div>
 </section>
 
@@ -944,7 +954,10 @@ def solver(I, a, T, dt, theta):
 <section>
 <h2 id="slide:pot">DocOnce: displaying interactive demo code</h2>
 
-<p>With <code>!bc pyoptpro</code> or a file <code>*.pyopt</code>, the code applies the <a href="https://pythontutor.com" target="_self">Online Python Tutor</a> for displaying program flow and state of variables:</p>
+<p>With <code>!bc pyoptpro</code> or a file <code>*.pyopt</code>, the code applies the
+<a href="https://pythontutor.com" target="_self">Online Python Tutor</a> for displaying
+program flow and state of variables:
+</p>
 
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
@@ -971,7 +984,9 @@ def solver(I, a, T, dt, theta):
 <section>
 <h2 id="doconce-exercises">DocOnce: exercises </h2>
 
-<p>DocOnce offers a special format for <em>exercises</em>, <em>problems</em>, <em>projects</em>, and <em>examples</em>:</p>
+<p>DocOnce offers a special format for <em>exercises</em>, <em>problems</em>, <em>projects</em>,
+and <em>examples</em>:
+</p>
 
 
 <!-- code=text (!bc ccq) typeset with pygments style "emacs" -->
@@ -1042,35 +1057,42 @@ of getting at least three heads out of 5 throws.
 
 <p>
 <b>a)</b>
- Make a program that simulates flipping a coin \( N \) times.</p>
+Make a program that simulates flipping a coin \( N \) times.
+</p>
 
 <!-- --- begin hint in exercise --- -->
 
 <p>
 <b>Hint.</b>
- Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.</p>
+Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.
+</p>
 
 <!-- --- end hint in exercise --- -->
 
 <p>
 <b>b)</b>
- Compute the probability of getting heads.</p>
+Compute the probability of getting heads.
+</p>
 
 <!-- --- begin answer of exercise --- -->
 <p>
 <b>Answer.</b>
- A short answer: 0.5.</p>
+A short answer: 0.5.
+</p>
 <!-- --- end answer of exercise --- -->
 
 <!-- --- begin solution of exercise --- -->
 <p>
 <b>Solution.</b>
- A full solution to this subexercise can go here.</p>
+A full solution to this subexercise can go here.
+</p>
 <!-- --- end solution of exercise --- -->
 
 <p>
 <b>c)</b>
- Make another program that computes the probability of getting at least three heads out of 5 throws.</p>
+Make another program that computes the probability
+of getting at least three heads out of 5 throws.
+</p>
 
 <p>Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.</p>
 <!-- solution files: mysol.txt, mysol_flip_coin.py -->
@@ -1158,7 +1180,12 @@ $$ -\nabla^2 u = f \quad\hbox{in }\Omega $$
 <section>
 <h2 id="doconce-example-on-slide-code-with-cells">DocOnce: example on slide code with cells </h2>
 
-<p>One can introduce a table-like layout with MxN cells and put slide elements in various cell. A cell with position MN is surrounded by <code>!bslidecell MN</code> and <code>!eslidecell</code> tags. Below is an example with a bullet list to the left and a figure to the right (two cells, numbered 00 and 01).</p>
+<p>One can introduce a table-like layout with MxN cells and
+put slide elements in various cell. A cell with position
+MN is surrounded by <code>!bslidecell MN</code> and <code>!eslidecell</code>
+tags. Below is an example with a bullet list to the left and
+a figure to the right (two cells, numbered 00 and 01).
+</p>
 
 
 <!-- code=text (!bc ccq) typeset with pygments style "emacs" -->

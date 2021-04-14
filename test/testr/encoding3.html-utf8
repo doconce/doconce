@@ -23,7 +23,13 @@ MathJax.Hub.Config({
 <!-- ------------------- main content ---------------------- -->
 <p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+problem with non-ASCII characters anywhere in the text. The remedy
+for all formats is to read the file with UTF-8 encoding. With --debug
+one can see the internal str/unicode representation of the text
+through the various stages of the text transformation process.
+</p>
 
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
@@ -324,7 +330,17 @@ named groups: {'begin': '>', 'subst': 'b = 1', 'end': ' '}
 
 
 
-<p>This block (in format html) triggers use of `mako`. For all formats, `mako` has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of `mako`. For all formats, `mako` has
+
+problem with non-ASCII characters anywhere in the text. The remedy
+
+for all formats is to read the file with UTF-8 encoding. With --debug
+
+one can see the internal str/unicode representation of the text
+
+through the various stages of the text transformation process.
+</p>
 
 <p></p>
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
@@ -376,7 +392,17 @@ named groups: {'begin': ' ', 'subst': 'mako', 'end': '.'}
 
 
 
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+
+problem with non-ASCII characters anywhere in the text. The remedy
+
+for all formats is to read the file with UTF-8 encoding. With --debug
+
+one can see the internal str/unicode representation of the text
+
+through the various stages of the text transformation process.
+</p>
 
 <p></p>
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
@@ -454,7 +480,17 @@ str>>> The file after all inline substitutions:
 
 
 
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+
+problem with non-ASCII characters anywhere in the text. The remedy
+
+for all formats is to read the file with UTF-8 encoding. With --debug
+
+one can see the internal str/unicode representation of the text
+
+through the various stages of the text transformation process.
+</p>
 
 <p></p>
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
@@ -471,7 +507,17 @@ str>>> The file after typesetting of tables:
 
 
 
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+
+problem with non-ASCII characters anywhere in the text. The remedy
+
+for all formats is to read the file with UTF-8 encoding. With --debug
+
+one can see the internal str/unicode representation of the text
+
+through the various stages of the text transformation process.
+</p>
 
 <p></p>
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
@@ -488,7 +534,17 @@ str>>> The file after commenting out !commands
 
 
 
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+
+problem with non-ASCII characters anywhere in the text. The remedy
+
+for all formats is to read the file with UTF-8 encoding. With --debug
+
+one can see the internal str/unicode representation of the text
+
+through the various stages of the text transformation process.
+</p>
 
 <p></p>
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
@@ -500,7 +556,13 @@ str>>> File before call to insert_code_blocks (format html):
 <!-- ------------------- main content ---------------------- -->
 <p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 <p></p>
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+problem with non-ASCII characters anywhere in the text. The remedy
+for all formats is to read the file with UTF-8 encoding. With --debug
+one can see the internal str/unicode representation of the text
+through the various stages of the text transformation process.
+</p>
 <p></p>
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
@@ -512,7 +574,13 @@ str>>> File after call to insert_code_and tex (format html):
 <!-- ------------------- main content ---------------------- -->
 <p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 <p></p>
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+problem with non-ASCII characters anywhere in the text. The remedy
+for all formats is to read the file with UTF-8 encoding. With --debug
+one can see the internal str/unicode representation of the text
+through the various stages of the text transformation process.
+</p>
 <p></p>
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
@@ -524,7 +592,13 @@ str>>> After replacement of !bc and !ec (pygmentized code):
 <!-- ------------------- main content ---------------------- -->
 <p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 <p></p>
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+problem with non-ASCII characters anywhere in the text. The remedy
+for all formats is to read the file with UTF-8 encoding. With --debug
+one can see the internal str/unicode representation of the text
+through the various stages of the text transformation process.
+</p>
 <p></p>
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
@@ -558,7 +632,13 @@ MathJax.Hub.Config({
 <!-- ------------------- main content ---------------------- -->
 <p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+problem with non-ASCII characters anywhere in the text. The remedy
+for all formats is to read the file with UTF-8 encoding. With --debug
+one can see the internal str/unicode representation of the text
+through the various stages of the text transformation process.
+</p>
 
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
@@ -593,7 +673,13 @@ MathJax.Hub.Config({
 <!-- ------------------- main content ---------------------- -->
 <p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+problem with non-ASCII characters anywhere in the text. The remedy
+for all formats is to read the file with UTF-8 encoding. With --debug
+one can see the internal str/unicode representation of the text
+through the various stages of the text transformation process.
+</p>
 
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
@@ -628,7 +714,13 @@ MathJax.Hub.Config({
 <!-- ------------------- main content ---------------------- -->
 <p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+problem with non-ASCII characters anywhere in the text. The remedy
+for all formats is to read the file with UTF-8 encoding. With --debug
+one can see the internal str/unicode representation of the text
+through the various stages of the text transformation process.
+</p>
 
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->

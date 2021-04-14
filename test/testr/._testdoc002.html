@@ -306,7 +306,10 @@ b &= \nabla^2 u + \nabla^4 x \tag{14}
 
 $$
 
-<p>We can refer to <a href="#mjx-eqn-13">(13)</a>-<a href="#mjx-eqn-14">(14)</a>. They are a bit simpler than the Navier&ndash;Stokes equations. And test LaTeX hyphen in <code>CG-2</code>. Also test \( a_{i-j} \) as well as \( kx-wt \).</p>
+<p>We can refer to <a href="#mjx-eqn-13">(13)</a>-<a href="#mjx-eqn-14">(14)</a>. They are a bit simpler than
+the Navier&ndash;Stokes equations. And test LaTeX hyphen in <code>CG-2</code>.
+Also test \( a_{i-j} \) as well as \( kx-wt \).
+</p>
 
 <p>Testing <code>alignat</code> environment:</p>
 
@@ -319,7 +322,10 @@ $$
 
 <p>More mathematical typesetting is demonstrated in the coming exercises.</p>
 
-<p>Below, we have <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#demo:ex:2">Project 4: Compute a Probability</a>, as well as <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 11: References in a headings do not work well in html</a>, and in between there we have <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.</p>
+<p>Below, we have <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#demo:ex:2">Project 4: Compute a Probability</a>,
+as well as <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 11: References in a headings do not work well in html</a>, and in
+between there we have <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.
+</p>
 <h1 id="exercises">Exercises </h1>
 
 <!-- --- begin exercise --- -->
@@ -330,13 +336,17 @@ $$
 
 <p>
 <b>a)</b>
- Make a program that simulates flipping a coin \( N \) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
+Make a program that simulates flipping a coin \( N \) times.
+Print out &quot;tail&quot; or &quot;head&quot; for each flip and
+let the program count the number of heads.
+</p>
 
 <!-- --- begin hint in exercise --- -->
 
 <p>
 <b>Hint 1.</b>
- Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.</p>
+Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.
+</p>
 
 <!-- --- end hint in exercise --- -->
 
@@ -344,37 +354,51 @@ $$
 
 <p>
 <b>Hint 2.</b>
- Draw an integer among \( \{1,2\} \) with <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.</p>
+Draw an integer among \( \{1,2\} \) with
+<code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.
+</p>
 
 <!-- --- end hint in exercise --- -->
 
 <!-- --- begin answer of exercise --- -->
 <p>
 <b>Answer.</b>
- If the <code>random.random()</code> function returns a number \( < 1/2 \), let it be head, otherwise tail. Repeat this \( N \) number of times.</p>
+If the <code>random.random()</code> function returns a number \( < 1/2 \), let it be
+head, otherwise tail. Repeat this \( N \) number of times.
+</p>
 <!-- --- end answer of exercise --- -->
 
 
 <p>
 <b>b)</b>
- Vectorize the code in a) using boolean indexing.</p>
+Vectorize the code in a) using boolean indexing.
+</p>
 
-<p>Vectorized code can be written in many ways. Sometimes the code is less intuitive, sometimes not. At least there is not much to find in the section <a href="._testdoc001.html#sec1">Section 1</a>.</p>
+<p>Vectorized code can be written in many ways.
+Sometimes the code is less intuitive, sometimes not.
+At least there is not much to find in the section <a href="._testdoc001.html#sec1">Section 1</a>.
+</p>
 
 <p>
 <b>c)</b>
- Vectorize the code in a) using <code>numpy.sum</code>.</p>
+Vectorize the code in a) using <code>numpy.sum</code>.
+</p>
 
 <!-- --- begin answer of exercise --- -->
 <p>
 <b>Answer.</b>
- <code>np.sum(np.where(r &lt;= 0.5, 1, 0))</code> or <code>np.sum(r &lt;= 0.5)</code>.</p>
+<code>np.sum(np.where(r &lt;= 0.5, 1, 0))</code> or <code>np.sum(r &lt;= 0.5)</code>.
+</p>
 <!-- --- end answer of exercise --- -->
 
-<p>In this latter subexercise, we have an example where the code is easy to read.</p>
+<p>In this latter subexercise, we have an
+example where the code is easy to read.
+</p>
 <h3 id="my-remarks">My remarks </h3>
 
-<p>Remarks with such a subsubsection is treated as more text after the last subexercise. Test a list too:</p>
+<p>Remarks with such a subsubsection is treated as more text
+after the last subexercise. Test a list too:
+</p>
 
 <ol>
 </tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> Mark 1.</li>
@@ -392,12 +416,17 @@ $$
 <!-- --- end exercise --- -->
 <h2 id="not-an-exercise">Not an exercise </h2>
 
-<p>Should be possible to stick a normal section in the middle of many exercises.</p>
+<p>Should be possible to stick a normal section in the middle of many
+exercises.
+</p>
 
 <!-- --- begin exercise --- -->
 <h2 id="my:exer1">Exercise 3: Test of plain text exercise</h2>
 
-<p>Very short exercise. What is the capital of Norway? Filename: <code>myexer1</code>.</p>
+<p>Very short exercise. What is the capital
+of Norway?
+Filename: <code>myexer1</code>.
+</p>
 
 <!-- --- end exercise --- -->
 
@@ -406,9 +435,13 @@ $$
 
 <!-- Minimalistic exercise -->
 
-<p>What is the probability of getting a number between 0.5 and 0.6 when drawing uniformly distributed random numbers from the interval \( [0,1) \)?</p>
+<p>What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval \( [0,1) \)?
+</p>
 
-<p>At the end we have a list because that caused problems in LaTeX in previous DocOnce versions:</p>
+<p>At the end we have a list because that caused problems in LaTeX
+in previous DocOnce versions:
+</p>
 
 <ol>
 </tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> item1</li>
@@ -418,7 +451,11 @@ $$
 
 <p>
 <b>Hint.</b>
- To answer this question empirically, let a program draw \( N \) such random numbers using Python's standard <code>random</code> module, count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and compute the probability as \( M/N \).</p>
+To answer this question empirically, let a program
+draw \( N \) such random numbers using Python's standard <code>random</code> module,
+count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and
+compute the probability as \( M/N \).
+</p>
 
 <!-- --- end hint in exercise --- -->
 
@@ -439,7 +476,12 @@ y &= y_0 + R\sin 2\pi t,
 \end{align}
 $$
 
-<p>where \( R \) is the radius of the circle, \( (x_0,y_0) \) is the center point, and \( t \) is a parameter in the unit interval \( [0,1] \). For any \( t \), \( (x,y) \) computed from <a href="#mjx-eqn-17">(17)</a>-<a href="#mjx-eqn-18">(18)</a> is a point on the circle. The formula can be used to generate <code>n</code> points on a circle:</p>
+<p>where \( R \) is the radius of the circle, \( (x_0,y_0) \) is the
+center point, and \( t \) is a parameter in the unit interval \( [0,1] \).
+For any \( t \), \( (x,y) \) computed from <a href="#mjx-eqn-17">(17)</a>-<a href="#mjx-eqn-18">(18)</a>
+is a point on the circle.
+The formula can be used to generate <code>n</code> points on a circle:
+</p>
 
 
 <!-- code=python (!bc pypro) typeset with pygments style "perldoc" -->
@@ -485,41 +527,53 @@ x, y = circle(<span style="color: #B452CD">2.0</span>, <span style="color: #B452
 <!-- Often in an exercise we have some comments about the solution -->
 <!-- which we normally want to keep where they are. -->
 
-<p>The goal of this project is to draw \( N \) circles with random center and radius. Plot each circle using the <code>circle</code> function above.</p>
+<p>The goal of this project is to draw \( N \) circles with random
+center and radius. Plot each circle using the <code>circle</code> function
+above.
+</p>
 
 <p>
 <b>a)</b>
- Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.</p>
+Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
+</p>
 
 <!-- --- begin hint in exercise --- -->
 
 <p>
 <b>Hint.</b>
- Use the <code>numpy.random</code> module to draw the \( x_0 \), \( y_0 \), and \( R \) quantities.</p>
+Use the <code>numpy.random</code> module to draw the
+\( x_0 \), \( y_0 \), and \( R \) quantities.
+</p>
 
 <!-- --- end hint in exercise --- -->
 
 <!-- --- begin answer of exercise --- -->
 <p>
 <b>Answer.</b>
- Here goes the short answer to part a).</p>
+Here goes the short answer to part a).
+</p>
 <!-- --- end answer of exercise --- -->
 
 
 <p>
 <b>b)</b>
- Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed. Filename: <code>norm</code>.</p>
+Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed.
+Filename: <code>norm</code>.
+</p>
 
 <p>
 <b>c)</b>
- Let \( R \) and \( (x_0,y_0) \) be normally distributed.</p>
+Let \( R \) and \( (x_0,y_0) \) be normally distributed.
+</p>
 
 <p>Filename: <code>circles</code>.</p>
 
 <!-- Closing remarks for this Project -->
 <h3 id="remarks">Remarks </h3>
 
-<p>At the very end of the exercise it may be appropriate to summarize and give some perspectives.</p>
+<p>At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+</p>
 
 <!-- --- end exercise --- -->
 
@@ -531,13 +585,16 @@ x, y = circle(<span style="color: #B452CD">2.0</span>, <span style="color: #B452
 
 <p>
 <b>a)</b>
- Subexercises are numbered a), b), etc.</p>
+Subexercises are numbered a), b), etc.
+</p>
 
 <!-- --- begin hint in exercise --- -->
 
 <p>
 <b>Hint 1.</b>
- First hint to subexercise a). With math \( a=b \) in hint:</p>
+First hint to subexercise a).
+With math \( a=b \) in hint:
+</p>
 
 $$ a=b. $$
 
@@ -577,7 +634,8 @@ $$ a=b. $$
 
 <p>
 <b>Hint 2.</b>
- Second hint to subexercise a).</p>
+Second hint to subexercise a).
+</p>
 
 <p>Test list in hint:</p>
 
@@ -591,12 +649,15 @@ $$ a=b. $$
 <!-- --- begin answer of exercise --- -->
 <p>
 <b>Answer.</b>
- Short answer to subexercise a). With math in answer: \( a=b \).</p>
+Short answer to subexercise a).
+With math in answer: \( a=b \).
+</p>
 <!-- --- end answer of exercise --- -->
 
 <p>
 <b>b)</b>
- Here goes the text for subexercise b).</p>
+Here goes the text for subexercise b).
+</p>
 
 <p>Some math \( \cos^2 x + \sin^2 x = 1 \) written one a single line:</p>
 
@@ -607,14 +668,17 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 
 <p>
 <b>Hint.</b>
- A hint for this subexercise.</p>
+A hint for this subexercise.
+</p>
 
 <!-- --- end hint in exercise --- -->
 <p>Filename: <code>subexer_b.pdf</code>.</p>
 
 
 <!-- No meaning in this weired test example: -->
-<p>The text here belongs to the main (intro) part of the exercise. Need closing remarks to have text after subexercises.</p>
+<p>The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+</p>
 
 <p>Test list in exercise:</p>
 
@@ -625,7 +689,10 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 </ol>
 <h3 id="remarks">Remarks </h3>
 
-<p>Some final closing remarks, e.g., summarizing the main findings and their implications in other problems can be made. These remarks will appear at the end of the typeset exercise.</p>
+<p>Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+</p>
 
 <!-- --- end exercise --- -->
 
@@ -634,7 +701,9 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 
 <!-- Another minimalistic exercise -->
 
-<p>Just some text. And some math saying that \( e^0=1 \) on a single line, to test that math block insertion is correct:</p>
+<p>Just some text. And some math saying that \( e^0=1 \) on a single line,
+to test that math block insertion is correct:
+</p>
 
 $$ \exp{(0)} = 1 $$
 
@@ -717,12 +786,14 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 </div>
 </div></p>
 
-<p><div title="Wrong!  Equations with derivatives can be solved; they are termed  differential equations . "><b>Choice D:</b>
+<p><div title="Wrong!  Equations with derivatives can be solved; they are termed  differential equations .  "><b>Choice D:</b>
 <p>The solution cannot be found because there is a derivative in the equation.</p>
 </div></p>
 
-<p><div title="Wrong!  Equations where the unknown is a function, as \( y(x) \) here, are called  differential equations , and are solved by special techniques. "><b>Choice E:</b>
-<p>The equation is meaningless: an equation must be an equation for \( x \) or \( y \), not a function \( y(x) \).</p>
+<p><div title="Wrong!  Equations where the unknown is a function, as \( y(x) \) here, are called  differential equations , and are solved by special techniques.  "><b>Choice E:</b>
+<p>The equation is meaningless: an equation must be an equation
+for \( x \) or \( y \), not a function \( y(x) \).
+</p>
 </div></p>
 <hr>
 <!-- end quiz -->
@@ -738,11 +809,13 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 
 <p>
 <b>a)</b>
- What is the capital of Norway?</p>
+What is the capital of Norway?
+</p>
 
 <p>
 <b>Answer.</b>
- Oslo.</p>
+Oslo.
+</p>
 
 <!-- --- end exercise --- -->
 <h1 id="here-goes-another-section">Here goes another section </h1>
@@ -754,9 +827,13 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 <h2 id="exer:some:formula">Exercise 10: Make references to projects and problems</h2>
 
 <!-- Test comments not at the end only -->
-<p>Pick a statement from <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and verify it.</p>
+<p>Pick a statement from <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 2: Flip a Coin</a>
+and verify it.
+</p>
 
-<p>Test list at the end of an exercise without other elements (like subexercise, hint, etc.):</p>
+<p>Test list at the end of an exercise without other elements (like subexercise,
+hint, etc.):
+</p>
 
 <ol>
 </tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> item1</li>
@@ -769,7 +846,11 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 <!-- --- begin exercise --- -->
 <h2 id="exer:you">Project 11: References in a headings do not work well in html</h2>
 
-<p>Refer to the previous exercise as <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>, the two before that as <a href="#demo:ex:2">Project 4: Compute a Probability</a> and <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a>, and this one as <a href="#exer:you">Project 11: References in a headings do not work well in html</a>. Filename: <code>selc_composed.pdf</code>.</p>
+<p>Refer to the previous exercise as <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>,
+the two before that as <a href="#demo:ex:2">Project 4: Compute a Probability</a> and <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a>,
+and this one as <a href="#exer:you">Project 11: References in a headings do not work well in html</a>.
+Filename: <code>selc_composed.pdf</code>.
+</p>
 
 <!-- --- end exercise --- -->
 <h1 id="references">References </h1>

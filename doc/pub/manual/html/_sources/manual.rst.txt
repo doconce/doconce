@@ -20,7 +20,7 @@ DocOnce Manual
 %%%%%%%%%%%%%%
 
 :Authors: Hans Petter Langtangen, Kristian Gregorius Hustad
-:Date: Apr 12, 2021
+:Date: Apr 14, 2021
 
 .. lines beginning with # are doconce comment lines
 
