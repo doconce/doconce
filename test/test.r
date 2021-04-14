@@ -17963,7 +17963,7 @@ achievement.
 
 Let us take this table from the manual:
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">time</th> <th align="center">velocity</th> <th align="center">acceleration</th> </tr>
 </thead>
@@ -17989,7 +17989,7 @@ The DocOnce source code reads
 Here is yet another table to test that we can handle more than
 one table:
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="left">time</th> <th align="left">velocity</th> <th align="left">acceleration</th> </tr>
 </thead>
@@ -18003,7 +18003,7 @@ And one with math headings (that are expanded and must be treated
 accordingly), verbatim heading and entry, and no space around the pipe
 symbol:
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center"><math>i</math></th> <th align="center"><math>h_i</math></th> <th align="center"><math>\bar T_i</math></th> <td align="center"><code>L_i</code></td> </tr>
 </thead>
@@ -18021,7 +18021,7 @@ And add one with verbatim headings (with underscores),
 and rows starting with <code>|-</code> because of a negative number,
 and <code>|</code> right before and after verbatim word (with no space):
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">exact</th> <td align="center"><code>v_1</code></td> <td align="center"><math>a_i</math> + <code>v_2</code></td> <td align="center"><code>verb_3_</code></td> </tr>
 </thead>
@@ -18036,7 +18036,7 @@ Pipe symbols in verbatim and math text in tables used to pose difficulties,
 but not
 anymore:
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">   <math>S</math>   </th> <th align="center">        command         </th> </tr>
 </thead>
@@ -18047,7 +18047,7 @@ anymore:
 </table>
 Here is a table with X alignment:
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center"> Type</th> <th align="center">                                                                                                                Description                                                                                                                 </th> </tr>
 </thead>
@@ -18062,7 +18062,7 @@ and URLs.
 <!-- Mako code to expand URLs in the table -->
 <!-- (These types of tables did not work before Jan 2014) -->
 
-<table border="1">
+<table class="table" border="1">
 <tr></tr>
 <tbody>
 <tr><td align="center">   <math>\mathcal{L}=0</math>            </td> <td align="center">   [../doc/src/manual/mov/wave_frames/frame_0080.png <code>080</code>]    </td> <td align="center">   [../doc/src/manual/mov/wave_frames/frame_0085.png <code>085</code>]    </td> </tr>
@@ -18262,7 +18262,7 @@ We have
 </math>
 or in tabular form:
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">    Problem     </th> <th align="center">    Result    </th> </tr>
 </thead>
@@ -27945,7 +27945,7 @@ is at the end with only one newline.
     "\n",
     "Let us take this table from the manual:\n",
     "\n",
-    "<table border=\"1\">\n",
+    "<table class=\"table\" border=\"1\">\n",
     "<thead>\n",
     "<tr><th align=\"center\">time</th> <th align=\"center\">velocity</th> <th align=\"center\">acceleration</th> </tr>\n",
     "</thead>\n",
@@ -27985,7 +27985,7 @@ is at the end with only one newline.
     "Here is yet another table to test that we can handle more than\n",
     "one table:\n",
     "\n",
-    "<table border=\"1\">\n",
+    "<table class=\"table\" border=\"1\">\n",
     "<thead>\n",
     "<tr><th align=\"left\">time</th> <th align=\"left\">velocity</th> <th align=\"left\">acceleration</th> </tr>\n",
     "</thead>\n",
@@ -28000,7 +28000,7 @@ is at the end with only one newline.
     "accordingly), verbatim heading and entry, and no space around the pipe\n",
     "symbol:\n",
     "\n",
-    "<table border=\"1\">\n",
+    "<table class=\"table\" border=\"1\">\n",
     "<thead>\n",
     "<tr><th align=\"center\">$i$</th> <th align=\"center\">$h_i$ </th> <th align=\"center\">$\\bar T_i$</th> <th align=\"center\"> <code>L_i</code> </th> </tr>\n",
     "</thead>\n",
@@ -28019,7 +28019,7 @@ is at the end with only one newline.
     "and rows starting with `|-` because of a negative number,\n",
     "and `|` right before and after verbatim word (with no space):\n",
     "\n",
-    "<table border=\"1\">\n",
+    "<table class=\"table\" border=\"1\">\n",
     "<thead>\n",
     "<tr><th align=\"center\">exact</th> <th align=\"center\"><code>v_1</code> </th> <th align=\"center\">$a_i$ + <code>v_2</code></th> <th align=\"center\"><code>verb_3_</code></th> </tr>\n",
     "</thead>\n",
@@ -28035,7 +28035,7 @@ is at the end with only one newline.
     "but not\n",
     "anymore:\n",
     "\n",
-    "<table border=\"1\">\n",
+    "<table class=\"table\" border=\"1\">\n",
     "<thead>\n",
     "<tr><th align=\"center\">    $S$    </th> <th align=\"center\">   command   </th> </tr>\n",
     "</thead>\n",
@@ -28047,7 +28047,7 @@ is at the end with only one newline.
     "\n",
     "Here is a table with X alignment:\n",
     "\n",
-    "<table border=\"1\">\n",
+    "<table class=\"table\" border=\"1\">\n",
     "<thead>\n",
     "<tr><th align=\"center\"> Type</th> <th align=\"center\">                                                                                                     Description                                                                                                      </th> </tr>\n",
     "</thead>\n",
@@ -28063,7 +28063,7 @@ is at the end with only one newline.
     "<!-- Mako code to expand URLs in the table -->\n",
     "<!-- (These types of tables did not work before Jan 2014) -->\n",
     "\n",
-    "<table border=\"1\">\n",
+    "<table class=\"table\" border=\"1\">\n",
     "<tr></tr>\n",
     "<tbody>\n",
     "<tr><td align=\"center\">   $\\mathcal{L}=0$                    </td> <td align=\"center\">   [<code>080</code>](../doc/src/manual/mov/wave_frames/frame_0080.png)    </td> <td align=\"center\">   [<code>085</code>](../doc/src/manual/mov/wave_frames/frame_0085.png)    </td> </tr>\n",
@@ -28300,7 +28300,7 @@ is at the end with only one newline.
    "source": [
     "or in tabular form:\n",
     "\n",
-    "<table border=\"1\">\n",
+    "<table class=\"table\" border=\"1\">\n",
     "<thead>\n",
     "<tr><th align=\"center\">Problem</th> <th align=\"center\">Result</th> </tr>\n",
     "</thead>\n",
@@ -29908,7 +29908,7 @@ end
 % 
 % Let us take this table from the manual:
 % 
-% <table border="1">
+% <table class="table" border="1">
 % <thead>
 % <tr><th align="center">time</th> <th align="center">velocity</th> <th align="center">acceleration</th> </tr>
 % </thead>
@@ -29932,7 +29932,7 @@ end
 % Here is yet another table to test that we can handle more than
 % one table:
 % 
-% <table border="1">
+% <table class="table" border="1">
 % <thead>
 % <tr><th align="left">time</th> <th align="left">velocity</th> <th align="left">acceleration</th> </tr>
 % </thead>
@@ -29946,7 +29946,7 @@ end
 % accordingly), verbatim heading and entry, and no space around the pipe
 % symbol:
 % 
-% <table border="1">
+% <table class="table" border="1">
 % <thead>
 % <tr><th align="center">$i$</th> <th align="center">$h_i$ </th> <th align="center">$\bar T_i$</th> <th align="center">|L_i|</th> </tr>
 % </thead>
@@ -29964,7 +29964,7 @@ end
 % and rows starting with ||-| because of a negative number,
 % and ||| right before and after verbatim word (with no space):
 % 
-% <table border="1">
+% <table class="table" border="1">
 % <thead>
 % <tr><th align="center">exact</th> <th align="center">|v_1|</th> <th align="center">$a_i$ + |v_2|</th> <th align="center">|verb_3_|</th> </tr>
 % </thead>
@@ -29981,7 +29981,7 @@ end
 % 
 % Here is a table with X alignment:
 % 
-% <table border="1">
+% <table class="table" border="1">
 % <thead>
 % <tr><th align="center"> Type</th> <th align="center">                                                                                                           Description                                                                                                            </th> </tr>
 % </thead>
@@ -29996,7 +29996,7 @@ end
 % % Mako code to expand URLs in the table
 % % (These types of tables did not work before Jan 2014)
 % 
-% <table border="1">
+% <table class="table" border="1">
 % <tr></tr>
 % <tbody>
 % <tr><td align="center">   $\mathcal{L}=0$            </td> <td align="center">   080 <../doc/src/manual/mov/wave_frames/frame_0080.png>    </td> <td align="center">   085 <../doc/src/manual/mov/wave_frames/frame_0085.png>    </td> </tr>
@@ -30174,7 +30174,7 @@ end
 % $$1 + 1 = 2$$
 % or in tabular form:
 % 
-% <table border="1">
+% <table class="table" border="1">
 % <thead>
 % <tr><th align="center">Problem</th> <th align="center">Result</th> </tr>
 % </thead>
@@ -35366,9 +35366,7 @@ Some text.
 <!-- Here goes hidden code. -->
 <!-- Python can be treated by some formats, Fortran is always out. -->
 
-
-
-Finally, <code>!bc do</code> supports highlighting of DocOnce source:
+<p>Finally, <code>!bc do</code> supports highlighting of DocOnce source:</p>
 
 
 <!-- code=doconce (!bc do) typeset with pygments style "perldoc" -->
@@ -35462,9 +35460,7 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
   </div>
 </div>
 
-<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>.</p>
-Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>.
-<p>Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
+<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>. Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>. Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
 
 <p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with green color containing a linebreak<br /> code.</font> Some formats will only display <br /> this correctly when <code>html</code> <br /> is the output format. But here some more running text is added which is not part of the previous blocks with line breaks.</p>
 <h3 id="running-os-commands">Running OS commands </h3>
@@ -35786,7 +35782,7 @@ A \\ B
 
 <p>Let us take this table from the manual:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">time</th> <th align="center">velocity</th> <th align="center">acceleration</th> </tr>
 </thead>
@@ -35837,7 +35833,7 @@ A \\ B
 
 <p>Here is yet another table to test that we can handle more than one table:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="left">time</th> <th align="left">velocity</th> <th align="left">acceleration</th> </tr>
 </thead>
@@ -35850,7 +35846,7 @@ A \\ B
 
 <p>And one with math headings (that are expanded and must be treated accordingly), verbatim heading and entry, and no space around the pipe symbol:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><td align="center">\( i \)</td> <td align="center">\( h_i \)</td> <td align="center">\( \bar T_i \)</td> <td align="center"><code>L_i</code></td> </tr>
 </thead>
@@ -35867,7 +35863,7 @@ A \\ B
 
 <p>And add one with verbatim headings (with underscores), and rows starting with <code>|-</code> because of a negative number, and <code>|</code> right before and after verbatim word (with no space):</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">exact</th> <td align="center"><code>v_1</code></td> <td align="center">\( a_i \) + <code>v_2</code></td> <td align="center"><code>verb_3_</code></td> </tr>
 </thead>
@@ -35881,7 +35877,7 @@ A \\ B
 
 <p>Pipe symbols in verbatim and math text in tables used to pose difficulties, but not anymore:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><td align="center">   \( S \)   </td> <th align="center">        command         </th> </tr>
 </thead>
@@ -35893,7 +35889,7 @@ A \\ B
 
 <p>Here is a table with X alignment:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center"> Type</th> <th align="center">                                                                                                                Description                                                                                                                 </th> </tr>
 </thead>
@@ -35908,7 +35904,7 @@ A \\ B
 <!-- Mako code to expand URLs in the table -->
 <!-- (These types of tables did not work before Jan 2014) -->
 
-<table border="1">
+<table class="table" border="1">
 <tr></tr>
 <tbody>
 <tr><td align="center">   \( \mathcal{L}=0 \)                    </td> <td align="center">   <a href="../doc/src/manual/mov/wave_frames/frame_0080.png"><img src="../doc/src/manual/mov/wave_frames/frame_0080.png" width="300"></a>    </td> <td align="center">   <a href="../doc/src/manual/mov/wave_frames/frame_0085.png"><img src="../doc/src/manual/mov/wave_frames/frame_0085.png" width="300"></a>    </td> </tr>
@@ -36121,7 +36117,7 @@ $$ 1 + 1 = 2 $$
 
 <p>or in tabular form:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center"> Problem </th> <th align="center"> Result</th> </tr>
 </thead>
@@ -38314,13 +38310,7 @@ Some text.
   </div>
 </div>
 
-
-
-
-
-
-
-Finally, <code>!bc do</code> supports highlighting of DocOnce source:
+<p>Finally, <code>!bc do</code> supports highlighting of DocOnce source:</p>
 
 
 
@@ -38376,9 +38366,7 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
   </div>
 </div>
 
-<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>.</p>
-Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>.
-<p>Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
+<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>. Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>. Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
 
 <p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with green color containing a linebreak<br /> code.</font> Some formats will only display <br /> this correctly when <code>html</code> <br /> is the output format. But here some more running text is added which is not part of the previous blocks with line breaks.</p>
 <h3 id="running-os-commands">Running OS commands </h3>
@@ -38726,7 +38714,7 @@ $latex latex \Diamond$
 
 <p>Let us take this table from the manual:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">time</th> <th align="center">velocity</th> <th align="center">acceleration</th> </tr>
 </thead>
@@ -38770,7 +38758,7 @@ $latex latex \Diamond$
 
 <p>Here is yet another table to test that we can handle more than one table:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="left">time</th> <th align="left">velocity</th> <th align="left">acceleration</th> </tr>
 </thead>
@@ -38783,7 +38771,7 @@ $latex latex \Diamond$
 
 <p>And one with math headings (that are expanded and must be treated accordingly), verbatim heading and entry, and no space around the pipe symbol:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">$latex i$</th> <th align="center">$latex h_i$</th> <th align="center">$latex \bar T_i$</th> <td align="center"><code>L_i</code></td> </tr>
 </thead>
@@ -38800,7 +38788,7 @@ $latex latex \Diamond$
 
 <p>And add one with verbatim headings (with underscores), and rows starting with <code>|-</code> because of a negative number, and <code>|</code> right before and after verbatim word (with no space):</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">exact</th> <td align="center"><code>v_1</code></td> <td align="center">$latex a_i$ + <code>v_2</code></td> <td align="center"><code>verb_3_</code></td> </tr>
 </thead>
@@ -38814,7 +38802,7 @@ $latex latex \Diamond$
 
 <p>Pipe symbols in verbatim and math text in tables used to pose difficulties, but not anymore:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">   $latex S$   </th> <th align="center">        command         </th> </tr>
 </thead>
@@ -38826,7 +38814,7 @@ $latex latex \Diamond$
 
 <p>Here is a table with X alignment:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center"> Type</th> <th align="center">                                                                                                                Description                                                                                                                 </th> </tr>
 </thead>
@@ -38841,7 +38829,7 @@ $latex latex \Diamond$
 
 
 
-<table border="1">
+<table class="table" border="1">
 <tr></tr>
 <tbody>
 <tr><td align="center">   $latex \mathcal{L}=0$                    </td> <td align="center">   <a href="../doc/src/manual/mov/wave_frames/frame_0080.png"><img src="../doc/src/manual/mov/wave_frames/frame_0080.png" width="300"></a>    </td> <td align="center">   <a href="../doc/src/manual/mov/wave_frames/frame_0085.png"><img src="../doc/src/manual/mov/wave_frames/frame_0085.png" width="300"></a>    </td> </tr>
@@ -39029,7 +39017,7 @@ $latex  1 + 1 = 2  $
 
 <p>or in tabular form:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">  Problem  </th> <th align="center">  Result </th> </tr>
 </thead>
@@ -40814,9 +40802,7 @@ Some text.
 <!-- Here goes hidden code. -->
 <!-- Python can be treated by some formats, Fortran is always out. -->
 
-
-
-Finally, <code>!bc do</code> supports highlighting of DocOnce source:
+<p>Finally, <code>!bc do</code> supports highlighting of DocOnce source:</p>
 
 
 <!-- code=doconce (!bc do) typeset with pygments style "default" -->
@@ -40875,9 +40861,7 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
   </div>
 </div>
 
-<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>.</p>
-Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>.
-<p>Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
+<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>. Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>. Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
 
 <p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with green color containing a linebreak<br /> code.</font> Some formats will only display <br /> this correctly when <code>html</code> <br /> is the output format. But here some more running text is added which is not part of the previous blocks with line breaks.</p>
 <h3 id="running-os-commands">Running OS commands </h3>
@@ -41190,7 +41174,7 @@ A \\ B
 
 <p>Let us take this table from the manual:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">time</th> <th align="center">velocity</th> <th align="center">acceleration</th> </tr>
 </thead>
@@ -41234,7 +41218,7 @@ A \\ B
 
 <p>Here is yet another table to test that we can handle more than one table:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="left">time</th> <th align="left">velocity</th> <th align="left">acceleration</th> </tr>
 </thead>
@@ -41247,7 +41231,7 @@ A \\ B
 
 <p>And one with math headings (that are expanded and must be treated accordingly), verbatim heading and entry, and no space around the pipe symbol:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><td align="center">\( i \)</td> <td align="center">\( h_i \)</td> <td align="center">\( \bar T_i \)</td> <td align="center"><code>L_i</code></td> </tr>
 </thead>
@@ -41264,7 +41248,7 @@ A \\ B
 
 <p>And add one with verbatim headings (with underscores), and rows starting with <code>|-</code> because of a negative number, and <code>|</code> right before and after verbatim word (with no space):</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">exact</th> <td align="center"><code>v_1</code></td> <td align="center">\( a_i \) + <code>v_2</code></td> <td align="center"><code>verb_3_</code></td> </tr>
 </thead>
@@ -41278,7 +41262,7 @@ A \\ B
 
 <p>Pipe symbols in verbatim and math text in tables used to pose difficulties, but not anymore:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><td align="center">   \( S \)   </td> <th align="center">        command         </th> </tr>
 </thead>
@@ -41290,7 +41274,7 @@ A \\ B
 
 <p>Here is a table with X alignment:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center"> Type</th> <th align="center">                                                                                                                Description                                                                                                                 </th> </tr>
 </thead>
@@ -41305,7 +41289,7 @@ A \\ B
 <!-- Mako code to expand URLs in the table -->
 <!-- (These types of tables did not work before Jan 2014) -->
 
-<table border="1">
+<table class="table" border="1">
 <tr></tr>
 <tbody>
 <tr><td align="center">   \( \mathcal{L}=0 \)                    </td> <td align="center">   <a href="../doc/src/manual/mov/wave_frames/frame_0080.png"><img src="../doc/src/manual/mov/wave_frames/frame_0080.png" width="300"></a>    </td> <td align="center">   <a href="../doc/src/manual/mov/wave_frames/frame_0085.png"><img src="../doc/src/manual/mov/wave_frames/frame_0085.png" width="300"></a>    </td> </tr>
@@ -41508,7 +41492,7 @@ $$ 1 + 1 = 2 $$
 
 <p>or in tabular form:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center"> Problem </th> <th align="center"> Result</th> </tr>
 </thead>
@@ -52935,9 +52919,7 @@ Some text.
 <!-- Here goes hidden code. -->
 <!-- Python can be treated by some formats, Fortran is always out. -->
 
-
-
-Finally, <code>!bc do</code> supports highlighting of DocOnce source:
+<p>Finally, <code>!bc do</code> supports highlighting of DocOnce source:</p>
 
 
 <!-- code=doconce (!bc do) typeset with pygments style "default" -->
@@ -52996,9 +52978,7 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
   </div>
 </div>
 
-<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>.</p>
-Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>.
-<p>Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
+<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>. Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>. Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
 
 <p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with green color containing a linebreak<br /> code.</font> Some formats will only display <br /> this correctly when <code>html</code> <br /> is the output format. But here some more running text is added which is not part of the previous blocks with line breaks.</p>
 <h3 id="running-os-commands" class="anchor">Running OS commands </h3>
@@ -72254,10 +72234,20 @@ bundled/html_images//small_gray_summary.png); }
 bundled/html_images//small_gray_warning.png); }
 .slide .alert-question {background-image:url(https://hplgit.github.io/doconce/
 bundled/html_images/small_gray_question.png); } */
-table, th, tr, td {
+.table table {
     border: 2px solid black;
     border-collapse: collapse;
     padding: 2px;
+}
+.table th {
+    border: 2px solid black;
+    padding: 2px;
+}
+.table tr {
+    border: 2px solid black;
+}
+.table td {
+    border: 2px solid black;
 }
 </style>
 
@@ -75074,8 +75064,7 @@ URL: &quot;https://github.com/doconce/doconce&quot;
 
 <p>gets rendered as ...where \( a=\int_{\Omega}fdx \) is an integral.</p>
 
-An equation environment is surrounded by <code>!bt</code> and <code>!et</code> tags,
-<p>the rest is plain LaTeX:</p>
+<p>An equation environment is surrounded by <code>!bt</code> and <code>!et</code> tags, the rest is plain LaTeX:</p>
 
 
 <!-- code=text (!bc ccq) typeset with pygments style "emacs" -->
@@ -75126,7 +75115,7 @@ $$
 <section>
 <h2 id="doconce-displaying-code">DocOnce: displaying code </h2>
 
-Code is enclosed in <code>!bc</code> and <code>!ec</code> tags:
+<p>Code is enclosed in <code>!bc</code> and <code>!ec</code> tags:</p>
 
 
 <!-- code=text (!bc ccq) typeset with pygments style "emacs" -->
@@ -75205,8 +75194,7 @@ def solver(I, a, T, dt, theta):
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Language-dependent typesetting of code:</b>
 <p>
-The <code>!bc</code> command can be followed by a specification of the computer
-<p>language: <code>pycod</code> for Python code snippet, <code>pypro</code> for complete Python program, <code>fcod</code> for Fortran snippet, <code>fpro</code> for Fortran program, and so forth (<code>c</code> for C, <code>cpp</code> for C++, <code>sh</code> for Unix shells, <code>m</code> for Matlab).</p>
+<p>The <code>!bc</code> command can be followed by a specification of the computer language: <code>pycod</code> for Python code snippet, <code>pypro</code> for complete Python program, <code>fcod</code> for Fortran snippet, <code>fpro</code> for Fortran program, and so forth (<code>c</code> for C, <code>cpp</code> for C++, <code>sh</code> for Unix shells, <code>m</code> for Matlab).</p>
 </div>
 </section>
 
@@ -75214,8 +75202,7 @@ The <code>!bc</code> command can be followed by a specification of the computer
 <section>
 <h2 id="slide:pot">DocOnce: displaying interactive demo code</h2>
 
-With <code>!bc pyoptpro</code> or a file <code>*.pyopt</code>, the code applies the
-<p><a href="https://pythontutor.com" target="_self">Online Python Tutor</a> for displaying program flow and state of variables:</p>
+<p>With <code>!bc pyoptpro</code> or a file <code>*.pyopt</code>, the code applies the <a href="https://pythontutor.com" target="_self">Online Python Tutor</a> for displaying program flow and state of variables:</p>
 
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
@@ -75429,9 +75416,7 @@ $$ -\nabla^2 u = f \quad\hbox{in }\Omega $$
 <section>
 <h2 id="doconce-example-on-slide-code-with-cells">DocOnce: example on slide code with cells </h2>
 
-<p>One can introduce a table-like layout with MxN cells and put slide elements in various cell. A cell with position</p>
-MN is surrounded by <code>!bslidecell MN</code> and <code>!eslidecell</code>
-<p>tags. Below is an example with a bullet list to the left and a figure to the right (two cells, numbered 00 and 01).</p>
+<p>One can introduce a table-like layout with MxN cells and put slide elements in various cell. A cell with position MN is surrounded by <code>!bslidecell MN</code> and <code>!eslidecell</code> tags. Below is an example with a bullet list to the left and a figure to the right (two cells, numbered 00 and 01).</p>
 
 
 <!-- code=text (!bc ccq) typeset with pygments style "emacs" -->
@@ -79567,7 +79552,7 @@ def f(x, a=1, b=1, c=1):
 
 #### Remaining functionality
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">function</th> <th align="center">           purpose            </th> <th align="center">      state      </th> </tr>
 </thead>
@@ -83197,6 +83182,15 @@ str>>> The tex blocks:
 
 
 ************************************************************
+str>>> The file after changing the level of section headings:
+
+## Test of handling non-ASCII characters in DocOnce
+Text with a name like Åsmund Ødegård works in general.
+
+
+
+
+************************************************************
 str>>> The file after handling exercises:
 
 Text with a name like Åsmund Ødegård works in general.
@@ -83584,6 +83578,19 @@ str>>> The code block types:
 
 ************************************************************
 str>>> The tex blocks:
+
+
+
+
+************************************************************
+str>>> The file after changing the level of section headings:
+
+## Test of handling non-ASCII characters in DocOnce
+Text with a name like Åsmund Ødegård works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+
+0 <<<!!CODE_BLOCK 
 
 
 
@@ -84067,6 +84074,22 @@ str>>> The code block types:
 ************************************************************
 str>>> The tex blocks:
 
+
+
+
+************************************************************
+str>>> The file after changing the level of section headings:
+
+Text with a name like Åsmund Ødegård works in general.
+
+This block (in format html)
+triggers use of `mako`. For all formats, `mako` has
+problem with non-ASCII characters anywhere in the text. The remedy
+for all formats is to read the file with UTF-8 encoding. With --debug
+one can see the internal str/unicode representation of the text
+through the various stages of the text transformation process.
+
+$b = 1$ is a value suggested by Åsmund Ødegård.
 
 
 
@@ -90029,9 +90052,7 @@ Some text.
 <!-- Here goes hidden code. -->
 <!-- Python can be treated by some formats, Fortran is always out. -->
 
-
-
-Finally, <code>!bc do</code> supports highlighting of DocOnce source:
+<p>Finally, <code>!bc do</code> supports highlighting of DocOnce source:</p>
 
 
 <!-- code=doconce (!bc do) typeset with pygments style "default" -->
@@ -90090,9 +90111,7 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
   </div>
 </div>
 
-<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>.</p>
-Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>.
-<p>Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
+<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>. Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>. Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
 
 <p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with green color containing a linebreak<br /> code.</font> Some formats will only display <br /> this correctly when <code>html</code> <br /> is the output format. But here some more running text is added which is not part of the previous blocks with line breaks.</p>
 <h3 id="running-os-commands">Running OS commands </h3>
@@ -90405,7 +90424,7 @@ A \\ B
 
 <p>Let us take this table from the manual:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">time</th> <th align="center">velocity</th> <th align="center">acceleration</th> </tr>
 </thead>
@@ -90449,7 +90468,7 @@ A \\ B
 
 <p>Here is yet another table to test that we can handle more than one table:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="left">time</th> <th align="left">velocity</th> <th align="left">acceleration</th> </tr>
 </thead>
@@ -90462,7 +90481,7 @@ A \\ B
 
 <p>And one with math headings (that are expanded and must be treated accordingly), verbatim heading and entry, and no space around the pipe symbol:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><td align="center">\( i \)</td> <td align="center">\( h_i \)</td> <td align="center">\( \bar T_i \)</td> <td align="center"><code>L_i</code></td> </tr>
 </thead>
@@ -90479,7 +90498,7 @@ A \\ B
 
 <p>And add one with verbatim headings (with underscores), and rows starting with <code>|-</code> because of a negative number, and <code>|</code> right before and after verbatim word (with no space):</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">exact</th> <td align="center"><code>v_1</code></td> <td align="center">\( a_i \) + <code>v_2</code></td> <td align="center"><code>verb_3_</code></td> </tr>
 </thead>
@@ -90493,7 +90512,7 @@ A \\ B
 
 <p>Pipe symbols in verbatim and math text in tables used to pose difficulties, but not anymore:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><td align="center">   \( S \)   </td> <th align="center">        command         </th> </tr>
 </thead>
@@ -90505,7 +90524,7 @@ A \\ B
 
 <p>Here is a table with X alignment:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center"> Type</th> <th align="center">                                                                                                                Description                                                                                                                 </th> </tr>
 </thead>
@@ -90520,7 +90539,7 @@ A \\ B
 <!-- Mako code to expand URLs in the table -->
 <!-- (These types of tables did not work before Jan 2014) -->
 
-<table border="1">
+<table class="table" border="1">
 <tr></tr>
 <tbody>
 <tr><td align="center">   \( \mathcal{L}=0 \)                    </td> <td align="center">   <a href="../doc/src/manual/mov/wave_frames/frame_0080.png"><img src="../doc/src/manual/mov/wave_frames/frame_0080.png" width="300"></a>    </td> <td align="center">   <a href="../doc/src/manual/mov/wave_frames/frame_0085.png"><img src="../doc/src/manual/mov/wave_frames/frame_0085.png" width="300"></a>    </td> </tr>
@@ -90723,7 +90742,7 @@ $$ 1 + 1 = 2 $$
 
 <p>or in tabular form:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center"> Problem </th> <th align="center"> Result</th> </tr>
 </thead>

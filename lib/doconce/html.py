@@ -2029,7 +2029,7 @@ def html_table(table):
              '    <table class="table table-striped table-hover table-condensed">\n'
              ) % span
     else:
-        s = '<table border="1">\n'
+        s = '<table class="table" border="1">\n'
     for i, row in enumerate(table['rows']):
         if row == ['horizontal rule']:
             continue
@@ -2981,11 +2981,9 @@ def define(FILENAME_EXTENSION,
         css = css_solarized_thomasf_green
         css_links = css_link_solarized_highlight('light') + '\n' + \
                     css_link_solarized_thomasf_light
-
     elif html_style == 'solarized3_dark':
         css_links = css_link_solarized_highlight('dark') + '\n' + \
                     css_link_solarized_thomasf_dark
-
     elif html_style == 'blueish':
         css = css_blueish
     elif html_style == 'blueish2':
@@ -2999,7 +2997,6 @@ def define(FILENAME_EXTENSION,
                 h1_color = h2_color = 'color: #d5000d;'
             elif html_style.endswith('black'):
                 h1_color = h2_color = 'color: #303030;'
-
         css = css_tactile % (h1_color, h2_color)
     elif html_style == 'rossant':
         css = css_rossant
@@ -3008,7 +3005,7 @@ def define(FILENAME_EXTENSION,
     else:
         css = css_blueish # default
 
-    if option('pygments_html_style=', None) not in ('no', 'none', 'off') \
+    if option('pygments_html_style=', None) not in ('none', 'None', 'off', 'no') \
         and not option('html_style=', 'blueish').startswith('solarized') \
         and not option('html_style=', 'blueish').startswith('tactile'):
         # Remove pre style as it destroys the background for pygments
@@ -3168,15 +3165,16 @@ def define(FILENAME_EXTENSION,
             # Dark styles need some recommended options
             dark_styles = 'amelia cyborg darkly slate superhero'.split()
             if boots_style in dark_styles:
-                if not option('keep_pygments_html_bg') or option('pygments_html_style=', None) is None or option('html_code_style=', None) is None or option('html_pre_style=', None) is None:
-                    errwarn("""\
-*** warning: bootswatch style "%s" is dark and some
-    options to doconce format html are recommended:
-    --pygments_html_style=monokai     # dark background
-    --keep_pygments_html_bg           # keep code background in admons
-    --html_code_style=inherit         # use <code> style in surroundings (no red)
-    --html_pre_style=inherit          # use <pre> style in surroundings
-    """ % boots_style)
+                if not option('keep_pygments_html_bg') or option('pygments_html_style=', None) is None or \
+                        option('html_code_style=', None) is None or option('html_pre_style=', None) is None:
+                    errwarn(('\n'
+                             '*** warning: bootswatch style "%s" is dark and some\n'
+                             '    options to doconce format html are recommended:\n'
+                             '    --pygments_html_style=monokai     # dark background\n'
+                             '    --keep_pygments_html_bg           # keep code background in admons\n'
+                             '    --html_code_style=inherit         # use <code> style in surroundings (no red)\n'
+                             '    --html_pre_style=inherit          # use <pre> style in surroundings\n') %
+                            boots_style)
         else:
             errwarn('*** wrong --html_style=%s' % html_style)
             _abort()
@@ -3194,15 +3192,13 @@ def define(FILENAME_EXTENSION,
 
     style_changes = ''
     if option('html_code_style=', 'on') in ('off', 'transparent', 'inherit'):
-        style_changes += """\
-/* Let inline verbatim have the same color as the surroundings */
-code { color: inherit; background-color: transparent; }
-"""
+        style_changes += ('\n'
+                          '/* Let inline verbatim have the same color as the surroundings */\n'
+                          'code { color: inherit; background-color: transparent; }\n')
     if option('html_pre_style=', 'on') in ('off', 'transparent', 'inherit'):
-        style_changes += """\
-/* Let pre tags for code blocks have the same color as the surroundings */
-pre { color: inherit; background-color: transparent; }
-"""
+        style_changes += ('\n'
+                          '/* Let pre tags for code blocks have the same color as the surroundings */\n'
+                          'pre { color: inherit; background-color: transparent; }\n')
     if html_style.startswith('boots'):
         height = 50  # fixed header hight in pixels, varies with style
         if 'bootswatch' in html_style:
@@ -3574,12 +3570,12 @@ def get_pygments_style(code_block_types):
                     errwarn('    automatically changed to --html_style=friendly')
                     errwarn('    (it is recommended not to specify --pygm_style for solarized_dark)')
                     pygm_style = 'friendly'
-        legal_styles = list(get_all_styles()) + ['no', 'none', 'off']
+        legal_styles = list(get_all_styles()) + ['none', 'None', 'off', 'no']
         if pygm_style not in legal_styles:
             errwarn('pygments style "%s" is not legal, must be among\n%s' % (pygm_style, ', '.join(legal_styles)))
             #_abort()
             errwarn('using the "default" style...')
             pygm_style = 'default'
-        if pygm_style in ['no', 'none', 'off']:
+        if pygm_style in ['none', 'None', 'off', 'no']:
             pygm = None
     return pygm, pygm_style

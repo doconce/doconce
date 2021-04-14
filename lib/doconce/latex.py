@@ -62,11 +62,10 @@ def aux_label2number():
 def get_bib_index_pages():
     """Find the page number for the Index and Bibliography from .aux file."""
     bib_page = idx_page = '9999'
-    # name = dofile_basename + '.aux'
-    name = globals.dofile_basename
-    if not os.path.isfile(name):
+    if not os.path.isfile(globals.dofile_basename):
         return bib_page, idx_page
 
+    name = globals.dofile_basename
     aux = open(name, 'r')
     lines = aux.readlines()
     aux.close()

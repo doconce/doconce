@@ -1,8 +1,8 @@
 # Variables to be shared across modules
 
-dofile_basename = None
-filename = None
-format = None
+dofile_basename = ''
+filename = ''
+format = ''
 encoding = ''
 
 _log = ''

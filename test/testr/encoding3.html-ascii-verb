@@ -106,6 +106,19 @@ str>>> The tex blocks:
 
 
 ************************************************************
+str>>> The file after changing the level of section headings:
+
+## Test of handling non-ASCII characters in DocOnce
+Text with a name like Åsmund Ødegård works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+
+0 <<<!!CODE_BLOCK 
+
+
+
+
+************************************************************
 str>>> The file after handling exercises:
 
 Text with a name like Åsmund Ødegård works in general.

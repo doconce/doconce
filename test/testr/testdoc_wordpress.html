@@ -903,13 +903,7 @@ Some text.
   </div>
 </div>
 
-
-
-
-
-
-
-Finally, <code>!bc do</code> supports highlighting of DocOnce source:
+<p>Finally, <code>!bc do</code> supports highlighting of DocOnce source:</p>
 
 
 
@@ -965,9 +959,7 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
   </div>
 </div>
 
-<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>.</p>
-Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>.
-<p>Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
+<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>. Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>. Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
 
 <p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with green color containing a linebreak<br /> code.</font> Some formats will only display <br /> this correctly when <code>html</code> <br /> is the output format. But here some more running text is added which is not part of the previous blocks with line breaks.</p>
 <h3 id="running-os-commands">Running OS commands </h3>
@@ -1315,7 +1307,7 @@ $latex latex \Diamond$
 
 <p>Let us take this table from the manual:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">time</th> <th align="center">velocity</th> <th align="center">acceleration</th> </tr>
 </thead>
@@ -1359,7 +1351,7 @@ $latex latex \Diamond$
 
 <p>Here is yet another table to test that we can handle more than one table:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="left">time</th> <th align="left">velocity</th> <th align="left">acceleration</th> </tr>
 </thead>
@@ -1372,7 +1364,7 @@ $latex latex \Diamond$
 
 <p>And one with math headings (that are expanded and must be treated accordingly), verbatim heading and entry, and no space around the pipe symbol:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">$latex i$</th> <th align="center">$latex h_i$</th> <th align="center">$latex \bar T_i$</th> <td align="center"><code>L_i</code></td> </tr>
 </thead>
@@ -1389,7 +1381,7 @@ $latex latex \Diamond$
 
 <p>And add one with verbatim headings (with underscores), and rows starting with <code>|-</code> because of a negative number, and <code>|</code> right before and after verbatim word (with no space):</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">exact</th> <td align="center"><code>v_1</code></td> <td align="center">$latex a_i$ + <code>v_2</code></td> <td align="center"><code>verb_3_</code></td> </tr>
 </thead>
@@ -1403,7 +1395,7 @@ $latex latex \Diamond$
 
 <p>Pipe symbols in verbatim and math text in tables used to pose difficulties, but not anymore:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">   $latex S$   </th> <th align="center">        command         </th> </tr>
 </thead>
@@ -1415,7 +1407,7 @@ $latex latex \Diamond$
 
 <p>Here is a table with X alignment:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center"> Type</th> <th align="center">                                                                                                                Description                                                                                                                 </th> </tr>
 </thead>
@@ -1430,7 +1422,7 @@ $latex latex \Diamond$
 
 
 
-<table border="1">
+<table class="table" border="1">
 <tr></tr>
 <tbody>
 <tr><td align="center">   $latex \mathcal{L}=0$                    </td> <td align="center">   <a href="../doc/src/manual/mov/wave_frames/frame_0080.png"><img src="../doc/src/manual/mov/wave_frames/frame_0080.png" width="300"></a>    </td> <td align="center">   <a href="../doc/src/manual/mov/wave_frames/frame_0085.png"><img src="../doc/src/manual/mov/wave_frames/frame_0085.png" width="300"></a>    </td> </tr>
@@ -1618,7 +1610,7 @@ $latex  1 + 1 = 2  $
 
 <p>or in tabular form:</p>
 
-<table border="1">
+<table class="table" border="1">
 <thead>
 <tr><th align="center">  Problem  </th> <th align="center">  Result </th> </tr>
 </thead>
