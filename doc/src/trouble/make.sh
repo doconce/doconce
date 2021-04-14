@@ -1,5 +1,5 @@
 #!/bin/sh -x
-set -x
+#set -x
 doconce clean
 rm -f automake_*
 

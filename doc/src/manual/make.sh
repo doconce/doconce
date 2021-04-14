@@ -109,13 +109,13 @@ doconce replace '\eqref{eq1}' '(ref{eq1})' manual.tex
 #latex -shell-escape manual
 #latex -shell-escape manual
 #dvipdf manual.dvi
-pdflatex -shell-escape manual
-pdflatex -shell-escape manual
+pdflatex -shell-escape manual.tex
+pdflatex -shell-escape manual.tex
 makeindex manual
 bibtex manual
-pdflatex -shell-escape manual
-pdflatex -shell-escape manual
-pdflatex -shell-escape manual
+pdflatex -shell-escape manual.tex
+pdflatex -shell-escape manual.tex
+pdflatex -shell-escape manual.tex
 cp manual.pdf manual_latex.pdf
 
 # doconce pdflatex:

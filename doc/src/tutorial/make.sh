@@ -1,5 +1,5 @@
 #!/bin/sh -x
-set -x
+#set -x
 #export PS4='+ l.${LINENO}: ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 sh -x ./clean.sh
 
@@ -89,4 +89,4 @@ dest=../../../../doconce.wiki
 #cp tutorial.md $dest/
 
 echo "To remove untracked files run:"
-echo "git clean -f -d"
+echo "git clean -f -d ../.."

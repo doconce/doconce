@@ -133,7 +133,9 @@ MathJax.Hub.Config({
 
 <!-- !split -->
 <h1 id="introduction" class="anchor">Introduction </h1>
-<p>First some ordinary text to compare font sizes in admonitions and the surrounding text.</p>
+<p>First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+</p>
 <h2 id="code" class="anchor">Code </h2>
 
 <p>Need some code outside admons for color and font comparisons:</p>
@@ -193,13 +195,24 @@ x=1.1 y=0.3 z=0.1
 <p>Here is a plain quote environment.</p>
 
 <blockquote>
-    <p>Sayre's law states that &quot;in any dispute the intensity of feeling is inversely proportional to the value of the issues at stake.&quot; <br /> By way of corollary, it adds: <br /> &quot;That is why academic politics are so bitter.&quot; <br /> <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a></p>
+    <p>Sayre's law states that
+    &quot;in any dispute the intensity of feeling is inversely
+    proportional to the value of the issues at stake.&quot; <br />
+    By way of corollary, it adds: <br />
+    &quot;That is why academic politics are so bitter.&quot; <br />
+    <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a>
+    </p>
 </blockquote>
 
 
-<p>Does quotes with title also work? No...cannot work in LaTeX and HTML and then it does not make sense to support it.</p>
+<p>Does quotes with title also work? No...cannot work in LaTeX and HTML
+and then it does not make sense to support it.
+</p>
 
-<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison with admons (especially the block admon has much in common with a box). The box is more aimed at framing a law or an equation.</p>
+<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison
+with admons (especially the block admon has much in common with a box).
+The box is more aimed at framing a law or an equation.
+</p>
 
 <p>First a simple block with text, an equation, and a list:</p>
 
@@ -221,7 +234,9 @@ $$ f(x) = 0 $$
 </div>
 <!-- end box -->
 
-<p>Now test a box with equation only (note that this line continues the box, it is not a new paragraph):</p>
+<p>Now test a box with equation only (note that this line continues the
+box, it is not a new paragraph):
+</p>
 
 
 <!-- begin box -->
@@ -276,13 +291,23 @@ $$
 <p>Let us start with a plain warning environment.</p>
 
 <div class="alert alert-block alert-danger alert-text-normal"><b>Warning</b>
-<p>And here is a warning about something to pay attention to. We test how the heading behave and add quite some extra texts in comparison with the other admons.</p>
+<p>And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+</p>
 
 <ul>
   <li> and a list</li>
   <li> with items</li>
 </ul>
-<p>We continue with more text to see how that affects the layout. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text.</p>
+<p>We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+</p>
 </div>
 
 
@@ -347,19 +372,29 @@ $$
 <p>Test warning with large title with math:</p>
 
 <div class="alert alert-block alert-danger alert-text-large"><b>Watch out for \( \nabla\cdot\boldsymbol{u}=0 \) equations</b>
-<p>Divergence freedom is often problematic from a numerical point of view.</p>
+<p>Divergence freedom is often problematic from a numerical point
+of view.
+</p>
 </div>
 
 
 <p>Then we test a block, which is guaranteed to never have any admon icon.</p>
 
 <div class="alert alert-block alert-success alert-text-small"><b>Block with title</b>
-<p>Here is a block of text with title. It is typeset <em>without any icon</em> and is useful when you want some admons with icon and some without. With the small font size, as used here, one can have more comment-style text or text that really goes deeper or talks about fun facts that are not strictly necessary for the main flow of understanding.</p>
+<p>Here is a block of text with title. It is typeset
+<em>without any icon</em> and is useful when you want some admons with icon
+and some without. With the small font size, as used here, one can have
+more comment-style text or text that really goes deeper or talks
+about fun facts that are not strictly necessary for the main flow
+of understanding.
+</p>
 </div>
 
 
 <div class="alert alert-block alert-success alert-text-normal"><b></b>
-<p>Here is a block of text with no title. As above, it is typeset without any icon and is useful when you want some admons with icon and some without.</p>
+<p>Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+</p>
 </div>
 
 
@@ -367,7 +402,9 @@ $$
 <!-- those formats automatically add : to the admonition title. -->
 
 <div class="alert alert-block alert-success alert-text-illegal-size"><b>Note, eventually!</b>
-<p>Ah, we are soon close to the end (with illegal font size specification!). But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):</p>
+<p>Ah, we are soon close to the end (with illegal font size specification!).
+But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
+</p>
 
 $$
 \begin{align*}
@@ -442,10 +479,17 @@ $$
 
 <h2 id="going-deeper-environments" class="anchor">Going deeper environments </h2>
 
-<p>Here is a long notice environment with a custom title and much text, math and code.</p>
+<p>Here is a long notice environment with a custom title and much
+text, math and code.
+</p>
 
 <div class="alert alert-block alert-success alert-text-normal"><b>Going deeper.</b>
-<p>We have some equations that should be preceded by much text, so the task is to write and write. The number of words, and not the meaning, is what counts here. We need desperately to fill up the page in the hope that some admonitions will experience a page break, which the LaTeX environment should handle with ease.</p>
+<p>We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.
+</p>
 
 <p>Let us start with some equations:</p>
 
@@ -458,7 +502,9 @@ $$
 \end{align*}
 $$
 
-<p>The implementation of such complicated equations in computer code is task that this "Going deeper" environment targets.</p>
+<p>The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -488,7 +534,9 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
   </div>
 </div>
 
-<p>And some more text that can help going into the next page. Longer computer code requires vertical space:</p>
+<p>And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -560,16 +608,24 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 <h2 id="the-end" class="anchor">The end </h2>
 
-<p>A bit of text before the summary, which we now call "Concluding remarks, for the novice", just because we can.</p>
+<p>A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+</p>
 
 <div class="alert alert-block alert-warning alert-text-normal"><b>Concluding remarks, for the novice</b>
-<p>We can summarize the most important things with admons: they have a different typesetting, and they may have a symbol. Titles should be optional.</p>
+<p>We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+</p>
 </div>
 
 
 <p>
 <b>Remark.</b>
- The <code>remarks</code> and <code>hint</code> environments are not allowed outside exercises (and problems and projects too).</p>
+The <code>remarks</code> and <code>hint</code> environments are not allowed outside
+exercises (and problems and projects too).
+</p>
 <!-- ------------------- end of main content --------------- -->
 
  </div>

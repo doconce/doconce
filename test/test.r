@@ -31631,7 +31631,9 @@ end of tocinfo -->
 <br>
 <h2 id="this-is-a-test-of-html-templates">This is a test of HTML templates </h2>
 
-<p>Note: When using HTML templates, the DocOnce file cannot have a title (to avoid generating a header). It should neither have an author.</p>
+<p>Note: When using HTML templates, the DocOnce file cannot have a title
+(to avoid generating a header). It should neither have an author.
+</p>
 <h1 id="this-is-a-7-heading">This is a 7 heading </h1>
 
 <p>Here is some code:</p>
@@ -31647,7 +31649,12 @@ class Forward1(Diff):
 </pre>
 <h2 id="this-is-a-5-heading">This is a 5 heading </h2>
 
-<p>The template can be any HTML file with header and footer and three possible slots: <em>title</em>, <em>date</em> and <em>main</em>, where <em>main</em> will become the DocOnce file (the main body of text), <em>title</em> is the first heading in the DocOnce file, and <em>date</em> is extracted from the DocOnce file (if present).</p>
+<p>The template can be any HTML file with header and footer and
+three possible slots: <em>title</em>, <em>date</em> and <em>main</em>,
+where <em>main</em> will become the DocOnce file (the main body of text),
+<em>title</em> is the first heading in the DocOnce file, and
+<em>date</em> is extracted from the DocOnce file (if present).
+</p>
 
 <!-- ------------------- end of main content --------------- -->
 
@@ -31864,7 +31871,9 @@ end of tocinfo -->
 <br>
 <h2 id="this-is-a-test-of-html-templates">This is a test of HTML templates </h2>
 
-<p>Note: When using HTML templates, the DocOnce file cannot have a title (to avoid generating a header). It should neither have an author.</p>
+<p>Note: When using HTML templates, the DocOnce file cannot have a title
+(to avoid generating a header). It should neither have an author.
+</p>
 <h1 id="this-is-a-7-heading">This is a 7 heading </h1>
 
 <p>Here is some code:</p>
@@ -31900,7 +31909,12 @@ end of tocinfo -->
 </div>
 <h2 id="this-is-a-5-heading">This is a 5 heading </h2>
 
-<p>The template can be any HTML file with header and footer and three possible slots: <em>title</em>, <em>date</em> and <em>main</em>, where <em>main</em> will become the DocOnce file (the main body of text), <em>title</em> is the first heading in the DocOnce file, and <em>date</em> is extracted from the DocOnce file (if present).</p>
+<p>The template can be any HTML file with header and footer and
+three possible slots: <em>title</em>, <em>date</em> and <em>main</em>,
+where <em>main</em> will become the DocOnce file (the main body of text),
+<em>title</em> is the first heading in the DocOnce file, and
+<em>date</em> is extracted from the DocOnce file (if present).
+</p>
 
 <!-- ------------------- end of main content --------------- -->
 
@@ -32595,7 +32609,20 @@ MathJax.Hub.Config({
 <h1 id="genrefs">Generalized References</h1>
 </center> <hr>
 
-<p>Sometimes a series of individual documents may be assembled to one large document. The assembly impacts how references to sections are written: when referring to a section in the same document, a label can be used, while references to sections in other documents are written differently, sometimes involving a link (URL) and a citation. Especially if both the individual documents and the large assembly document are to exist side by side, a flexible way of referencing is needed. For this purpose, DocOnce offers <em>generalized references</em> which allows a reference to have two different formulations, one for internal references and one for external references. Since LaTeX supports references to labels in external documents via the <code>xr</code> package, the generalized references in DocOnce has a syntax that may utilize the <code>xr</code> feature in LaTeX.</p>
+<p>Sometimes a series of individual documents may be assembled to one
+large document. The assembly impacts how references to sections
+are written: when referring to a section in the same document, a label
+can be used, while references to sections in other documents are
+written differently, sometimes involving a link (URL) and a citation.
+Especially if both the individual documents and the large assembly document
+are to exist side by side, a flexible way of referencing is needed.
+For this purpose, DocOnce offers <em>generalized references</em> which allows
+a reference to have two different formulations, one for internal
+references and one for external references. Since LaTeX supports
+references to labels in external documents via the <code>xr</code> package,
+the generalized references in DocOnce has a syntax that may utilize
+the <code>xr</code> feature in LaTeX.
+</p>
 
 <p>The syntax of generalized references reads</p>
 
@@ -32622,9 +32649,28 @@ MathJax.Hub.Config({
   </div>
 </div>
 
-<p>If all standard <code>ref</code> references (with curly braces) in the text <code>internal</code> are references to labels in the present document, the above <code>ref</code> command is replaced by the text <code>internal</code>. Otherwise, if cite is non-empty and the format is <code>latex</code> or <code>pdflatex</code> one assumes that the references in <code>internal</code> are to external documents declared by a comment line <code># Externaldocuments: testdoc, mydoc</code> (usually after the title, authors, and date). In this case the output text is <code>internal cite</code> and the LaTeX package <code>xr</code> is used to handle the labels in the external documents. When referring to a complete chapter (not a section in it), which corresponds to a complete external document, it does not make sense to write out <code>internal cite</code> since the <code>internal</code> reference is a chapter number. In such cases, the <code>internal</code> syntax can be used, and if the label is in another LaTeX document, the output is just <code>cite</code>. For all output formats other than <code>latex</code> and <code>pdflatex</code>, the <code>external</code> text will be the output.</p>
+<p>If all standard <code>ref</code> references (with curly braces)
+in the text <code>internal</code> are references
+to labels in the present document, the above <code>ref</code> command is replaced
+by the text <code>internal</code>. Otherwise, if cite is non-empty and the format
+is <code>latex</code> or <code>pdflatex</code> one assumes that the references in <code>internal</code>
+are to external documents declared by a comment line <code>#
+Externaldocuments: testdoc, mydoc</code> (usually after the title, authors,
+and date). In this case the output text is <code>internal cite</code> and the
+LaTeX package <code>xr</code> is used to handle the labels in the external documents.
+When referring to a complete chapter (not a section in it), which
+corresponds to a complete external document, it does not make sense
+to write out <code>internal cite</code> since the <code>internal</code> reference is a
+chapter number. In such cases, the <code>internal</code> syntax can be used,
+and if the label is in another LaTeX document, the output is just <code>cite</code>.
+For all
+output formats other than <code>latex</code> and <code>pdflatex</code>, the <code>external</code>
+text will be the output.
+</p>
 
-<p>Here is an example on a specific generalized reference to a section in a document:</p>
+<p>Here is an example on a specific generalized reference to a section
+in a document:
+</p>
 
 <!-- code=text (!bc ccq) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -32682,7 +32728,9 @@ Section ref{subsec:ex}, DocOnce documents may include tables.
   </div>
 </div>
 
-<p>if the label <code>{subsec:ex}</code> appears in the present DocOnce source, and otherwise</p>
+<p>if the label <code>{subsec:ex}</code> appears in the present DocOnce source, and
+otherwise
+</p>
 
 <!-- code=text (!bc ccq) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -32710,7 +32758,9 @@ cite{testdoc:12}, DocOnce documents may include tables.
   </div>
 </div>
 
-<p>In a format different from <code>latex</code> and <code>pdflatex</code>, the effective DocOnce text becomes</p>
+<p>In a format different from <code>latex</code> and <code>pdflatex</code>, the effective DocOnce
+text becomes
+</p>
 
 <!-- code=text (!bc ccq) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -32743,11 +32793,18 @@ cite{testdoc:12}, DocOnce documents may include tables.
 <p>The rendered text in the current format <code>html</code> becomes</p>
 
 <blockquote>
-    <p>As explained in a <a href="https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex" target="_self">section</a> in the document <a href="https://hplgit.github.io/doconce/test/demo_testdoc.html" target="_self">A Document for Testing DocOnce</a> <a href="#testdoc:12">[1]</a>, DocOnce documents may include tables.</p>
+    <p>As explained in
+    a <a href="https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex" target="_self">section</a> in
+    the document <a href="https://hplgit.github.io/doconce/test/demo_testdoc.html" target="_self">A Document for Testing DocOnce</a>
+    <a href="#testdoc:12">[1]</a>, DocOnce documents may include tables.
+    </p>
 </blockquote>
 
 
-<p>A reference to an entire external document, which is usually a chapter if the reference is internal in the DocOnce source, applies the <code>refch</code> syntax:</p>
+<p>A reference to an entire external document, which is usually a chapter
+if the reference is internal in the DocOnce source, applies the
+<code>refch</code> syntax:
+</p>
 
 
 <!-- code=text (!bc ccq) typeset with pygments style "default" -->
@@ -32779,7 +32836,9 @@ cite{testdoc:12}], DocOnce documents may include tables.
   </div>
 </div>
 
-<p>The output now if <code>ch:testdoc</code> is not a label in the document, becomes in the <code>latex</code> and <code>pdflatex</code> case</p>
+<p>The output now if <code>ch:testdoc</code> is not a label in the document,
+becomes in the <code>latex</code> and <code>pdflatex</code> case
+</p>
 
 
 <!-- code=text (!bc ccq) typeset with pygments style "default" -->
@@ -32808,14 +32867,24 @@ cite{testdoc:12}, DocOnce documents may include tables.
   </div>
 </div>
 
-<p>That is, the internal reference <code>Chapter ...</code> is omitted since it is not meaningful to refer to an external document as "Chapter". The resulting rendered text in the current format <code>html</code> becomes</p>
+<p>That is, the internal reference <code>Chapter ...</code> is omitted since
+it is not meaningful to refer to an external document as "Chapter".
+The resulting rendered text in the current format <code>html</code> becomes
+</p>
 
 <blockquote>
-    <p>As explained in the document <a href="https://hplgit.github.io/doconce/test/demo_testdoc.html" target="_self">A Document for Testing DocOnce</a> <a href="#testdoc:12">[1]</a>, DocOnce documents may include tables.</p>
+    <p>As explained in
+    the document
+    <a href="https://hplgit.github.io/doconce/test/demo_testdoc.html" target="_self">A Document for Testing DocOnce</a>
+    <a href="#testdoc:12">[1]</a>, DocOnce documents may include tables.
+    </p>
 </blockquote>
 
 
-<p>Note that LaTeX cannot have links to local files, so a complete URL on the form <code>https://...</code> must be used.</p>
+<p>Note that LaTeX cannot
+have links to local files, so a complete URL on the form
+<code>https://...</code> must be used.
+</p>
 
 <p>And here is another example with internal references only:</p>
 
@@ -32847,7 +32916,9 @@ dummy2].
 <p>The text is rendered to</p>
 
 <blockquote>
-    <p>Generalized references are described in the section <a href="#genrefs">Generalized References</a>.</p>
+    <p>Generalized references are described in
+    the section <a href="#genrefs">Generalized References</a>.
+    </p>
 </blockquote>
 
 
@@ -34558,12 +34629,19 @@ MathJax.Hub.Config({
 <a name="part0001"></a>
 <!-- !split -->
 
-<p>The format of this document is plain, homemade HTML (from DocOnce).</p>
+<p>The format of this document is
+plain, homemade HTML (from DocOnce).
+</p>
 
 <p>
-<b>Abstract.</b> This is a document with many test constructions for doconce syntax. It was used heavily for the development and kept for testing numerous constructions, also special and less common cases.</p>
+<b>Abstract.</b> This is a document with many test constructions for doconce syntax.
+It was used heavily for the development and kept for testing
+numerous constructions, also special and less common cases.
+</p>
 
-<p>And exactly for test purposes we have an extra line here, which is part of the abstract.</p>
+<p>And exactly for test purposes we have an extra line here, which
+is part of the abstract.
+</p>
 
 <!-- Cannot demonstrate chapter headings since abstract and chapter -->
 <!-- are mutually exclusive in LaTeX -->
@@ -34609,27 +34687,56 @@ MathJax.Hub.Config({
 </td></tr></table>
 
 <blockquote>
-    <p>Here are two lines that make up a block quote for testing <em>emphasized words</em> and <b>boldface words</b>, also with hypens: <em>pre</em>-fix, post-<em>fix</em>, <b>pre</b>-fix, post-<b>fix</b>.</p>
+    <p>Here are two lines that make up
+    a block quote for testing <em>emphasized words</em> and <b>boldface words</b>,
+    also with hypens:
+    <em>pre</em>-fix, post-<em>fix</em>, <b>pre</b>-fix, post-<b>fix</b>.
+    </p>
 </blockquote>
 
 
-<p>Here are two references. Equation&nbsp;<a href="._testdoc002.html#mjx-eqn-12">(12)</a> is fine. Eq.&nbsp;<a href="._testdoc002.html#mjx-eqn-12">(12)</a> too. Even Equation <a href="._testdoc002.html#mjx-eqn-12">(12)</a> without the tilde. This equation appears in another part if this document is split.</p>
+<p>Here are two references. Equation&nbsp;<a href="._testdoc002.html#mjx-eqn-12">(12)</a> is fine. Eq.&nbsp;<a href="._testdoc002.html#mjx-eqn-12">(12)</a> too.
+Even Equation <a href="._testdoc002.html#mjx-eqn-12">(12)</a> without the tilde.
+This equation appears in another part if this document is split.
+</p>
 
-<p>Let us add a paragraph to test that HTML, with WordPress (<code>--wordpress</code> option) can handle linebreaks</p>
+<p>Let us add a paragraph to
+test that HTML,
+with WordPress
+(<code>--wordpress</code> option)
+can handle linebreaks
 <em>correctly</em>,
-<p>even when lines begin with <b>bold words</b> and <code>verbatim words</code> in <font color="red">red color</font>, and <a href="https://google.com" target="_self">links</a> as well as math:</p>
+even when lines begin with
+<b>bold words</b> and
+<code>verbatim words</code> in
+<font color="red">red color</font>, and
+<a href="https://google.com" target="_self">links</a> as well as math:
 \( 1+1=2 \).
+</p>
 
-<p>Test also that <em>emphasize</em> at the end of line, and <b>bold</b> works, as well as <font color="blue">color</font> and <a href="https://google.com" target="_self">links2</a> and <code>verbatim</code> as well.</p>
+<p>Test also that <em>emphasize</em>
+at the end of line, and <b>bold</b>
+works, as well as <font color="blue">color</font>
+and <a href="https://google.com" target="_self">links2</a>
+and <code>verbatim</code>
+as well.
+</p>
 <h2 id="subsec1">Subsection 1</h2>
 
 <!-- Refer to section/appendix etc. at the beginning of the line -->
 <!-- and other special fix situations for HTML. -->
 
-<p>More text, with a reference back to the section <a href="#sec1">Section 1</a> and <a href="#subsec1">Subsection 1</a>, and further to the the sections <a href="#subsec1">Subsection 1</a> and <a href="#subsubsec:ex">URLs</a>, which encourages you to do the tasks in <a href="._testdoc002.html#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="._testdoc002.html#exer:some:formula">Exercise 10: Make references to projects and problems</a>.  <a href="._testdoc002.html#app1">Appendix: Just for testing; part I</a> and <a href="._testdoc002.html#app2">Appendix: Just for testing; part II</a> are also nice elements.</p>
+<p>More text, with a reference back to
+the section <a href="#sec1">Section 1</a> and <a href="#subsec1">Subsection 1</a>, and further to the
+the sections <a href="#subsec1">Subsection 1</a> and <a href="#subsubsec:ex">URLs</a>, which
+encourages you to do the tasks in <a href="._testdoc002.html#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="._testdoc002.html#exer:some:formula">Exercise 10: Make references to projects and problems</a>.
+ <a href="._testdoc002.html#app1">Appendix: Just for testing; part I</a> and <a href="._testdoc002.html#app2">Appendix: Just for testing; part II</a> are also nice elements.
+</p>
 <h3 id="test-section-reference-at-beginning-of-line-and-after-a-sentence">Test Section reference at beginning of line and after a sentence </h3>
 
-<p>The section <a href="#subsec1">Subsection 1</a> is fine. The section <a href="#subsubsec:ex">URLs</a> too.</p>
+<p>The section <a href="#subsec1">Subsection 1</a> is fine.
+The section <a href="#subsubsec:ex">URLs</a> too.
+</p>
 
 <!-- sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console -->
 <h3 id="computer-code">Computer code </h3>
@@ -34723,7 +34830,9 @@ C     END1
   </div>
 </div>
 
-<p>and finally the complete file with a plain text verbatim environment (<code>envir=ccq</code>):</p>
+<p>and finally the complete file with a plain text verbatim environment
+(<code>envir=ccq</code>):
+</p>
 
 <!-- code=text (!bc ccq) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -34829,7 +34938,9 @@ def f(x):
   </div>
 </div>
 
-<p>Test paragraph and subsubsection headings before before code.</p>
+<p>Test paragraph and subsubsection headings before
+before code.
+</p>
 
 <p>
 <b>Paragraph heading before code.</b>
@@ -34894,7 +35005,9 @@ sys.path.insert(<span style="color: #B452CD">0</span>, os.pardir)
   </div>
 </div>
 
-<p>Some more Python code (actually specified as a sage cell, but such cells are not supported by this format).</p>
+<p>Some more Python code (actually specified as a sage cell, but
+such cells are not supported by this format).
+</p>
 
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
@@ -35228,7 +35341,10 @@ function show_hide_code(){
   </div>
 </div>
 
-<p>But inline HTML code is also important, like text that starts with <code>&lt;a href=&quot;</code> (which can destroy the following text if not properly quoted).</p>
+<p>But inline HTML code is also important, like text that starts with
+<code>&lt;a href=&quot;</code> (which can destroy the following text if not properly
+quoted).
+</p>
 
 <p>Matlab with comments requires special typesetting:</p>
 
@@ -35460,9 +35576,22 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
   </div>
 </div>
 
-<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>. Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>. Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
+<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline
+inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For
+spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>.
+Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>.
+Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>,
+<code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.
+</p>
 
-<p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with green color containing a linebreak<br /> code.</font> Some formats will only display <br /> this correctly when <code>html</code> <br /> is the output format. But here some more running text is added which is not part of the previous blocks with line breaks.</p>
+<p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with
+green color containing a linebreak<br />
+code.</font> Some formats will only display <br />
+this correctly when <code>html</code> <br />
+is the output format.
+But here some more running text is added which is not part of
+the previous blocks with line breaks.
+</p>
 <h3 id="running-os-commands">Running OS commands </h3>
 
 
@@ -35498,7 +35627,9 @@ Python.
 </div>
 <h3 id="footnotes">Footnotes </h3>
 
-<p>Here is a test of footnotes [<a id="link_footnote_1" href="#def_footnote_1">1</a>], which are handy in text. They are used in different flavors, now in</p>
+<p>Here is a test of footnotes [<a id="link_footnote_1" href="#def_footnote_1">1</a>], which are handy in text.
+They are used in different flavors, now in
+</p>
 
 <p><table border="0">
 
@@ -35508,27 +35639,50 @@ Python.
  </tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> and <a href="https://google.com" target="_self">links</a> [<a id="link_footnote_4" href="#def_footnote_4">4</a>]</li>
 </td></tr></table>
 
-<p>which gives flexibility in writing. This is the third [<a id="link_footnote_5" href="#def_footnote_5">5</a>] example.</p>
+<p>which gives flexibility in writing.
+This is the third [<a id="link_footnote_5" href="#def_footnote_5">5</a>] example.
+</p>
 
-<p><p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> Typesetting of the footnote depends on the format. Plain text does nothing, LaTeX removes the definition and inserts the footnote as part of the LaTeX text. reStructuredText and Sphinx employ a similar type of typesetting as Extended Markdown and DocOnce, and in HTML we keep the same syntax, just displayed properly in HTML.</p></p>
+<p><p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> Typesetting of the footnote depends on the format.
+Plain text does nothing, LaTeX removes the
+definition and inserts the footnote as part of the LaTeX text.
+reStructuredText and Sphinx employ a similar type of typesetting
+as Extended Markdown and DocOnce, and in HTML we keep the same
+syntax, just displayed properly in HTML.</p>
+</p>
 
-<p><p id="def_footnote_2"><a href="#link_footnote_2"><b>2:</b></a> Math footnotes can be dangerous since it interferes with an exponent.</p></p>
+<p><p id="def_footnote_2"><a href="#link_footnote_2"><b>2:</b></a> Math footnotes can be dangerous since it
+interferes with an exponent.</p>
+</p>
 
 <p id="def_footnote_3"><a href="#link_footnote_3"><b>3:</b></a> One-line footnote.</p>
 
-<p><p id="def_footnote_4"><a href="#link_footnote_4"><b>4:</b></a> <a href="google.com" target="_self"><tt>google.com</tt></a> is perhaps the most famous web site today.</p></p>
+<p><p id="def_footnote_4"><a href="#link_footnote_4"><b>4:</b></a> <a href="google.com" target="_self"><tt>google.com</tt></a> is perhaps the most famous
+web site today.</p>
+</p>
 
-<p>Here is some more text before a new definition of a footnote that was used above.</p>
+<p>Here is some more text before a new definition of a footnote that was
+used above.
+</p>
 
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Non-breaking space character</b>
 <p>
-<p>This paragraph aims to test <a href="https://en.wikipedia.org/wiki/Non-breaking_space" target="_self">non-breaking space character</a>, and a typical example where this is needed is in physical units: 7.4&nbsp;km is traveled in&nbsp;\( 7.4/5.5\approx 1.345 \)&nbsp;s.  Also check that a&nbsp;<a href="https://google.com" target="_self">link</a>&nbsp;is not broken across lines (drag the browser window to test this). (On the other hand, the tilde is used in computer code, e.g., as in <code>[~x for x in y]</code> or in <code>y=~x</code>, and should of course remain a tilde in those contexts.)</p>
+<p>This paragraph aims to test <a href="https://en.wikipedia.org/wiki/Non-breaking_space" target="_self">non-breaking space character</a>, and a typical
+example where this is needed is in physical units: 7.4&nbsp;km is traveled
+in&nbsp;\( 7.4/5.5\approx 1.345 \)&nbsp;s.  Also check that a&nbsp;<a href="https://google.com" target="_self">link</a>&nbsp;is
+not broken across lines (drag the browser window to test this).
+(On the other hand, the tilde is used in
+computer code, e.g., as in <code>[~x for x in y]</code> or in <code>y=~x</code>, and should
+of course remain a tilde in those contexts.)
+</p>
 </div>
 
 <h2 id="subsec:ex">Subsection 2: Testing figures</h2>
 
-<p>Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which there is a flow.</p>
+<p>Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which
+there is a flow.
+</p>
 
 <center> <!-- figure label: --> <div id="fig:impact"></div> <!-- FIGURE -->
 <hr class="figure">
@@ -35547,7 +35701,9 @@ Python.
 
 <!-- Test multi-line caption in figure with sidecap=True -->
 
-<p>Here is figure <a href="#myfig">2</a> with a long (illegal) multi-line caption containing inline verbatim text:</p>
+<p>Here is figure <a href="#myfig">2</a> with a long (illegal) multi-line caption
+containing inline verbatim text:
+</p>
 
 <center> <!-- figure label: --> <div id="myfig"></div> <!-- FIGURE -->
 <hr class="figure">
@@ -35581,7 +35737,21 @@ Python.
 <p>
 <!-- Bokeh plot -->
 <script type="text/javascript">
-<p>            Bokeh.$(function() {                 var modelid = "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1";                 var modeltype = "PlotContext";                 var elementid = "ffba6087-a45a-46eb-9368-11527f1f0a34";                 Bokeh.logger.info("Realizing plot:")                 Bokeh.logger.info(" - modeltype: PlotContext");                 Bokeh.logger.info(" - modelid: dc6ef912-b325-4c34-996a-cdeb5aa4d7c1");                 Bokeh.logger.info(" - elementid: ffba6087-a45a-46eb-9368-11527f1f0a34");                 var all_models = [{"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 1.0}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, "type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, {"attributes": {"column_names": ["x", "y"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selected": {"2d": {"indices": []}, "1d": {"indices": []}, "0d": {"indices": [], "flag": false}}, "callback": null, "data": {"y": [0.0, 1.0, 8.0, 27.0], "x": [0.0, 1.0, 2.0, 3.0]}, "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, "type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, "type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397", "renderers": []}, "type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, "type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, "type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, "type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, "type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed", "tags": []}, "type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748", "attributes": {"x_range": {"type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, "right": [], "tags": [], "tools": [{"type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}], "title": "Bokeh test", "extra_y_ranges": {}, "renderers": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}], "extra_x_ranges": {}, "below": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}], "tool_events": {"type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "above": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y_range": {"type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, "id": "bac26888-fe18-4833-afe3-61e241eed748", "left": [{"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}]}}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0", "renderers": []}, "type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1", "children": [{"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}]}, "type": "PlotContext", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1"}, {"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 0.1}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, "type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, "type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 1, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, "type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"attributes": {"nonselection_glyph": {"type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "data_source": {"type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "name": null, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selection_glyph": null, "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c", "glyph": {"type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}}, "type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 0, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, "type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, "type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"attributes": {"geometries": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8", "tags": []}, "type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}];                 Bokeh.load_models(all_models);                 var model = Bokeh.Collections(modeltype).get(modelid);                 var view = new model.default_view({model: model, el: '#ffba6087-a45a-46eb-9368-11527f1f0a34'});                 Bokeh.index[modelid] = view             });</p>
+<p>            Bokeh.$(function() {
+                var modelid = "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1";
+                var modeltype = "PlotContext";
+                var elementid = "ffba6087-a45a-46eb-9368-11527f1f0a34";
+                Bokeh.logger.info("Realizing plot:")
+                Bokeh.logger.info(" - modeltype: PlotContext");
+                Bokeh.logger.info(" - modelid: dc6ef912-b325-4c34-996a-cdeb5aa4d7c1");
+                Bokeh.logger.info(" - elementid: ffba6087-a45a-46eb-9368-11527f1f0a34");
+                var all_models = [{"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 1.0}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, "type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, {"attributes": {"column_names": ["x", "y"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selected": {"2d": {"indices": []}, "1d": {"indices": []}, "0d": {"indices": [], "flag": false}}, "callback": null, "data": {"y": [0.0, 1.0, 8.0, 27.0], "x": [0.0, 1.0, 2.0, 3.0]}, "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, "type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, "type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397", "renderers": []}, "type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, "type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, "type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, "type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, "type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed", "tags": []}, "type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748", "attributes": {"x_range": {"type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, "right": [], "tags": [], "tools": [{"type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}], "title": "Bokeh test", "extra_y_ranges": {}, "renderers": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}], "extra_x_ranges": {}, "below": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}], "tool_events": {"type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "above": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y_range": {"type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, "id": "bac26888-fe18-4833-afe3-61e241eed748", "left": [{"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}]}}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0", "renderers": []}, "type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1", "children": [{"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}]}, "type": "PlotContext", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1"}, {"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 0.1}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, "type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, "type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 1, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, "type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"attributes": {"nonselection_glyph": {"type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "data_source": {"type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "name": null, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selection_glyph": null, "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c", "glyph": {"type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}}, "type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 0, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, "type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, "type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"attributes": {"geometries": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8", "tags": []}, "type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}];
+                Bokeh.load_models(all_models);
+                var model = Bokeh.Collections(modeltype).get(modelid);
+                var view = new model.default_view({model: model, el: '#ffba6087-a45a-46eb-9368-11527f1f0a34'});
+                Bokeh.index[modelid] = view
+            });
+</p>
         </script>
 <div class="plotdiv" id="ffba6087-a45a-46eb-9368-11527f1f0a34"></div></p>
 </center>
@@ -35589,12 +35759,15 @@ Python.
 
 <p>
 <b>Remark.</b>
- Movies are tested in separate file <code>movies.do.txt</code>.</p>
+Movies are tested in separate file <code>movies.do.txt</code>.
+</p>
 
 <!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
 <h2 id="decay:sec:theta">The \( \theta \) parameter (not \( \nabla \)?)</h2>
 
-<p>Functions do not always need to be advanced, here is one involving \( \theta \):</p>
+<p>Functions do not always need to be advanced, here is one
+involving \( \theta \):
+</p>
 
 <!-- code=text (!bc ccq) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -35626,7 +35799,10 @@ Python.
 <b>More on \( \theta \).</b>
 Here is more text following headline with math.</p>
 
-<p>Newcommands must also be tested in this test report: \( \frac{1}{2} \), \( {1/2} \), \( \pmb{x} \), \( \frac{Du}{dt} \), both inline and in block:</p>
+<p>Newcommands must also be tested in this test report:
+\( \frac{1}{2} \), \( {1/2} \), \( \pmb{x} \), \( \frac{Du}{dt} \),
+both inline and in block:
+</p>
 
 $$
 \begin{align}
@@ -35758,24 +35934,32 @@ A \\ B
 <p>Now we refer to <a href="#mjx-eqn-10">(10)</a>-<a href="#mjx-eqn-11">(11)</a>.</p>
 <h2 id="custom-environments">Custom Environments </h2>
 
-<p>Here is an attempt to create a theorem environment via Mako (for counting theorems) and comment lines to help replacing lines in the <code>.tex</code> by proper begin-end LaTeX environments for theorems. Should look nice in most formats!</p>
+<p>Here is an attempt to create a theorem environment via Mako
+(for counting theorems) and comment lines to help replacing lines in
+the <code>.tex</code> by proper begin-end LaTeX environments for theorems.
+Should look nice in most formats!
+</p>
 
 <!-- begin theorem -->
 <div id="theorem:fundamental1"></div>
 
 <p>
 <b>Theorem 5.</b>
- Let \( a=1 \) and \( b=2 \). Then \( c=3 \).</p>
+Let \( a=1 \) and \( b=2 \). Then \( c=3 \).
+</p>
 <!-- end theorem -->
 
 <!-- begin proof -->
 <p>
 <b>Proof.</b>
- Since \( c=a+b \), the result follows from straightforward addition.</p>
+Since \( c=a+b \), the result follows from straightforward addition.
 \( \Diamond \)
+</p>
 <!-- end proof -->
 
-<p>As we see, the proof of Theorem 5 is a modest achievement.</p>
+<p>As we see, the proof of Theorem 5 is a modest
+achievement.
+</p>
 <h2 id="subsec:table">Tables</h2>
 
 <!-- index with comma could fool sphinx -->
@@ -35831,7 +36015,9 @@ A \\ B
   </div>
 </div>
 
-<p>Here is yet another table to test that we can handle more than one table:</p>
+<p>Here is yet another table to test that we can handle more than
+one table:
+</p>
 
 <table class="table" border="1">
 <thead>
@@ -35844,7 +36030,10 @@ A \\ B
 </tbody>
 </table>
 
-<p>And one with math headings (that are expanded and must be treated accordingly), verbatim heading and entry, and no space around the pipe symbol:</p>
+<p>And one with math headings (that are expanded and must be treated
+accordingly), verbatim heading and entry, and no space around the pipe
+symbol:
+</p>
 
 <table class="table" border="1">
 <thead>
@@ -35861,7 +36050,10 @@ A \\ B
 </tbody>
 </table>
 
-<p>And add one with verbatim headings (with underscores), and rows starting with <code>|-</code> because of a negative number, and <code>|</code> right before and after verbatim word (with no space):</p>
+<p>And add one with verbatim headings (with underscores),
+and rows starting with <code>|-</code> because of a negative number,
+and <code>|</code> right before and after verbatim word (with no space):
+</p>
 
 <table class="table" border="1">
 <thead>
@@ -35875,7 +36067,10 @@ A \\ B
 </tbody>
 </table>
 
-<p>Pipe symbols in verbatim and math text in tables used to pose difficulties, but not anymore:</p>
+<p>Pipe symbols in verbatim and math text in tables used to pose difficulties,
+but not
+anymore:
+</p>
 
 <table class="table" border="1">
 <thead>
@@ -35899,7 +36094,11 @@ A \\ B
 </tbody>
 </table>
 
-<p>Finally, a table with math (<code>bm</code> that expands to <code>boldsymbol</code>, was tricky, but cleanly handled now) and URLs.</p>
+<p>Finally, a table with math
+(<code>bm</code> that expands to <code>boldsymbol</code>, was tricky, but
+cleanly handled now)
+and URLs.
+</p>
 
 <!-- Mako code to expand URLs in the table -->
 <!-- (These types of tables did not work before Jan 2014) -->
@@ -35916,7 +36115,9 @@ A \\ B
 
 <p>
 <b>Paragraph with verbatim and math: <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \( a_{i-1} \).</b>
-Here is more <code>__verbatim__</code> code and some plain text on a new line.</p>
+Here is more <code>__verbatim__</code> code and
+some plain text on a new line.
+</p>
 
 <!-- Test various types of headlines -->
 <h2 id="_just-bold_"><b>Just bold</b> </h2>
@@ -35990,7 +36191,10 @@ Some text.</p>
 
 <p>
 <b>Ampersand.</b>
- We can test Hennes &amp; Mauritz, often abbreviated H&amp;M, but written as <code>Hennes & Mauritz</code> and <code>H & M</code>. A sole <code>&</code> must also work.</p>
+We can test Hennes &amp; Mauritz, often abbreviated H&amp;M, but written
+as <code>Hennes & Mauritz</code> and <code>H & M</code>.
+A sole <code>&</code> must also work.
+</p>
 <!-- Note: substitutions must not occur inside verbatim, just in ordinary text. -->
 
 
@@ -36022,55 +36226,102 @@ c = a &amp; b
 
 <p>
 <b>Quotes.</b>
- Let us also add a test of quotes such as &quot;double quotes, with numbers like 3.14 and newline/comma and hyphen (as in double-quote)&quot;; written in the standard LaTeX-style that gives correct LaTeX formatting and ordinary double quotes for all non-LaTeX formats.  Here is another sentence that &quot;caused&quot; a bug in the past because double backtick quotes could imply verbatim text up to a verbatim word starting with period, like <code>.txt</code>.</p>
+Let us also add a test of quotes such as &quot;double quotes, with numbers
+like 3.14 and newline/comma and hyphen (as in double-quote)&quot;; written
+in the standard LaTeX-style that gives correct LaTeX formatting and
+ordinary double quotes for all non-LaTeX formats.  Here is another
+sentence that &quot;caused&quot; a bug in the past because double backtick
+quotes could imply verbatim text up to a verbatim word starting with
+period, like <code>.txt</code>.
+</p>
 
-<p>More quotes to be tested for spellcheck: (&quot;with parenthesis&quot;), &quot;with newline&quot; and &quot;with comma&quot;, &quot;hyphen&quot;-wise, and &quot;period&quot;.</p>
+<p>More quotes to be tested for spellcheck:
+(&quot;with parenthesis&quot;), &quot;with newline&quot;
+and &quot;with comma&quot;, &quot;hyphen&quot;-wise, and &quot;period&quot;.
+</p>
 <h2 id="bibliography-test">Bibliography test </h2>
 
-<p>Here is an example: <a href="._testdoc002.html#Langtangen_Pedersen_2002">[1]</a> discussed propagation of large destructive water waves, <a href="._testdoc002.html#Langtangen_et_al_2002">[2]</a> gave an overview of numerical methods for solving the Navier&ndash;Stokes equations, while the use of Backward Kolmogorov equations for analyzing random vibrations was investigated in <a href="._testdoc002.html#Langtangen_1994a">[3]</a>. The book chapter <a href="._testdoc002.html#Mardal_et_al_2003a">[4]</a> contains information on C++ software tools for programming multigrid methods. A real retro reference is <a href="._testdoc002.html#Langtangen_1988d">[5]</a> about a big FORTRAN package. Multiple references are also possible, e.g., see <a href="._testdoc002.html#Langtangen_Pedersen_2002">[1]</a> <a href="._testdoc002.html#Mardal_et_al_2003a">[4]</a>.</p>
+<p>Here is an example: <a href="._testdoc002.html#Langtangen_Pedersen_2002">[1]</a> discussed propagation of
+large destructive water waves, <a href="._testdoc002.html#Langtangen_et_al_2002">[2]</a> gave
+an overview of numerical methods for solving the Navier&ndash;Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in <a href="._testdoc002.html#Langtangen_1994a">[3]</a>.
+The book chapter <a href="._testdoc002.html#Mardal_et_al_2003a">[4]</a> contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is <a href="._testdoc002.html#Langtangen_1988d">[5]</a> about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+<a href="._testdoc002.html#Langtangen_Pedersen_2002">[1]</a> <a href="._testdoc002.html#Mardal_et_al_2003a">[4]</a>.
+</p>
 
-<p>We need to cite more than 10 papers to reproduce an old formatting problem with blanks in the keys in reST format:</p>
+<p>We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+</p>
 <a href="._testdoc002.html#Langtangen_1992c">[6]</a> <a href="._testdoc002.html#Langtangen_1994a">[3]</a> <a href="._testdoc002.html#Mortensen_et_al_2011">[7]</a> <a href="._testdoc002.html#Langtangen_Pedersen_2002">[1]</a>
 <p>and</p>
 <a href="._testdoc002.html#Langtangen_et_al_2002">[2]</a> <a href="._testdoc002.html#Glimsdal_et_al_20006">[8]</a> <a href="._testdoc002.html#Rahman_et_al_2006b">[9]</a> <a href="._testdoc002.html#Haga_et_al_2011a">[10]</a> <a href="._testdoc002.html#Langtangen_2003a">[11]</a> <a href="._testdoc002.html#Langtangen_2008a">[12]</a> <a href="._testdoc002.html#Langtangen:95">[13]</a>
-<p>and all the work of <a href="._testdoc002.html#Langtangen_2012">[14]</a> <a href="._testdoc002.html#Mardal_et_al_2003a">[4]</a> <a href="._testdoc002.html#Jeberg_et_al_2004">[15]</a> as well as old work <a href="._testdoc002.html#Langtangen_1988d">[5]</a> and <a href="._testdoc002.html#Langtangen_1989e">[16]</a>, and the talk <a href="._testdoc002.html#Langtangen_talk_2007a">[17]</a>. Langtangen also had two thesis <a href="._testdoc002.html#Langtangen:85">[18]</a> <a href="._testdoc002.html#Langtangen_1989e">[16]</a> back in the days. More retro citations are the old ME-IN323 book <a href="._testdoc002.html#Langtangen:91">[19]</a> and the <a href="._testdoc002.html#Langtangen:94b">[20]</a> OONSKI '94 paper.</p>
+<p>and all the work of
+<a href="._testdoc002.html#Langtangen_2012">[14]</a> <a href="._testdoc002.html#Mardal_et_al_2003a">[4]</a> <a href="._testdoc002.html#Jeberg_et_al_2004">[15]</a> as well as
+old work <a href="._testdoc002.html#Langtangen_1988d">[5]</a> and <a href="._testdoc002.html#Langtangen_1989e">[16]</a>, and the
+talk <a href="._testdoc002.html#Langtangen_talk_2007a">[17]</a>.
+Langtangen also had two thesis <a href="._testdoc002.html#Langtangen:85">[18]</a> <a href="._testdoc002.html#Langtangen_1989e">[16]</a>
+back in the days.
+More retro citations are
+the old ME-IN323 book <a href="._testdoc002.html#Langtangen:91">[19]</a> and the
+<a href="._testdoc002.html#Langtangen:94b">[20]</a> OONSKI '94 paper.
+</p>
 
 <!-- --- begin exercise --- -->
 <h2 id="Example">Example 1: Examples can be typeset as exercises</h2>
 
-<p>Examples can start with a subsection heading starting with <code>Example:</code> and then, with the command-line option <code>--examples_as_exercises</code> be typeset as exercises. This is useful if one has solution environments as part of the example.</p>
+<p>Examples can start with a subsection heading starting with <code>Example:</code>
+and then, with the command-line option <code>--examples_as_exercises</code> be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+</p>
 
 <p>
 <b>a)</b>
- State some problem.</p>
+State some problem.
+</p>
 
 <p>
 <b>Solution.</b>
- The answer to this subproblem can be written here.</p>
+The answer to this subproblem can be written here.
+</p>
 
 <p>
 <b>b)</b>
- State some other problem.</p>
+State some other problem.
+</p>
 
 <p>
 <b>Hint 1.</b>
- A hint can be given.</p>
+A hint can be given.
+</p>
 
 <p>
 <b>Hint 2.</b>
- Maybe even another hint?</p>
+Maybe even another hint?
+</p>
 
 <p>
 <b>Solution.</b>
- The answer to this other subproblem goes here, maybe over multiple doconce input lines.</p>
+The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+</p>
 
 <!-- --- end exercise --- -->
 <h2 id="user-defined-environments">User-defined environments </h2>
 
-<p>The example in the section <a href="#ex:test:1p1">Example 1: A test function</a> demonstrates how to write a test function. That is, a special test function for a function <code>add</code> appears in the example in the section <a href="#ex:test:1p1">Example 1: A test function</a>.</p>
+<p>The example in the section <a href="#ex:test:1p1">Example 1: A test function</a> demonstrates how to write a test function.
+That is, a special test function for a function <code>add</code> appears in
+the example in the section <a href="#ex:test:1p1">Example 1: A test function</a>.
+</p>
 <h2 id="ex:test:1p1">Example 1: A test function</h2>
 
-<p>Suppose we want to write a test function for checking the implementation of a Python function for addition.</p>
+<p>Suppose we want to write a test function for checking the
+implementation of a Python function for addition.
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
@@ -36126,7 +36377,10 @@ $$ 1 + 1 = 2 $$
 </tbody>
 </table>
 
-<p><div style="width: 60%; padding: 10px; border: 1px solid #000;  border-radius: 4px; box-shadow: 8px 8px 5px #888888;  background: #cce5ff;"></p>
+<p><div style="width: 60%; padding: 10px; border: 1px solid #000;
+ border-radius: 4px; box-shadow: 8px 8px 5px #888888;
+ background: #cce5ff;">
+</p>
  <b>Highlight box!</b><hr>
 <p>This environment is used to highlight something:</p>
 
@@ -36135,15 +36389,36 @@ $$ E = mc^2 $$
 </div>
 <h2 id="subsubsec:ex">URLs</h2>
 
-<p>Testing of URLs: hpl's home page <a href="https://folk.uio.no/hpl" target="_self">hpl</a>, or the entire URL if desired, <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>.  Here is a plain file link <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self">a link with newline</a>. Can test spaces with the link with word too: <a href="https://folk.uio.no/hpl" target="_self">hpl</a> or <a href="https://folk.uio.no/hpl" target="_self">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" target="_self">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
+<p>Testing of URLs: hpl's home page <a href="https://folk.uio.no/hpl" target="_self">hpl</a>, or
+the entire URL if desired, <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>.  Here is a
+plain file link <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or
+<a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self">a link with
+newline</a>. Can test spaces with the link with word
+too: <a href="https://folk.uio.no/hpl" target="_self">hpl</a> or <a href="https://folk.uio.no/hpl" target="_self">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" target="_self">link to a
+file</a> is
+fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just
+the plain URL as in <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
+</p>
 
 <p>Mail addresses can also be used: <a href="mailto:hpl@simula.no" target="_self"><tt>hpl@simula.no</tt></a>, or just a <a href="mailto:hpl@simula.no" target="_self">mail link</a>, or a raw <a href="mailto:hpl@simula.no" target="_self"><tt>mailto:hpl@simula.no</tt></a>.</p>
 
-<p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" target="_self">Newton-Cotes</a> formulas and a <a href="https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1" target="_self">good book</a>. Need to test Newton-Cotes with percentage in URL too:</p>
+<p>Here are some tough tests of URLs, especially for the <code>latex</code> format:
+<a href="https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" target="_self">Newton-Cotes</a> formulas
+and a <a href="https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1" target="_self">good book</a>. Need to test
+Newton-Cotes with percentage in URL too:
 <a href="https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" target="_self"><tt>https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas</tt></a>
-<p>and <a href="https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae" target="_self"><tt>https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</tt></a> which has a shebang.</p>
+and <a href="https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae" target="_self"><tt>https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</tt></a> which has a shebang.
+</p>
 
-<p>For the <code>--device=paper</code> option it is important to test that URLs with monospace font link text get a footnote (unless the <code>--latex_no_program_footnotelink</code> is used), as in this reference to <a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py" target="_self"><tt>decay_mod</tt></a>, <a href="https://tinyurl.com/pwyasaa/formulas.ball1.py" target="_self"><tt>ball1.py</tt></a>, and <a href="https://tinyurl.com/pwyasaa/formulas.ball2.py" target="_self"><tt>ball2.py</tt></a>.</p>
+<p>For the <code>--device=paper</code> option it is important to test that URLs with
+monospace font link text get a footnote
+(unless the <code>--latex_no_program_footnotelink</code>
+is used), as in this reference to
+<a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py" target="_self"><tt>decay_mod</tt></a>, <a href="https://tinyurl.com/pwyasaa/formulas.ball1.py" target="_self"><tt>ball1.py</tt></a>,
+and <a href="https://tinyurl.com/pwyasaa/formulas.ball2.py" target="_self"><tt>ball2.py</tt></a>.
+</p>
 
 <!-- Comments should be inserted outside paragraphs (because in the rst -->
 <!-- format extra blanks make a paragraph break). -->
@@ -36152,7 +36427,12 @@ $$ E = mc^2 $$
 <!-- if the link name is URL, url, "URL", or "url". Such files should, -->
 <!-- if rst output is desired, but placed in a <code>_static*</code> folder. -->
 
-<p>More tough tests: repeated URLs whose footnotes when using the <code>--device=paper</code> option must be correct. We have <a href="https://google.com" target="_self">google</a>, <a href="https://google.com" target="_self">google</a>, and <a href="https://google.com" target="_self">google</a>, which should result in exactly three footnotes.</p>
+<p>More tough tests: repeated URLs whose footnotes when using the
+<code>--device=paper</code> option must be correct. We have
+<a href="https://google.com" target="_self">google</a>, <a href="https://google.com" target="_self">google</a>, and
+<a href="https://google.com" target="_self">google</a>, which should result in exactly three
+footnotes.
+</p>
 
 <p>
 <!-- begin bottom navigation -->
@@ -36480,7 +36760,10 @@ b &= \nabla^2 u + \nabla^4 x \tag{14}
 
 $$
 
-<p>We can refer to <a href="#mjx-eqn-13">(13)</a>-<a href="#mjx-eqn-14">(14)</a>. They are a bit simpler than the Navier&ndash;Stokes equations. And test LaTeX hyphen in <code>CG-2</code>. Also test \( a_{i-j} \) as well as \( kx-wt \).</p>
+<p>We can refer to <a href="#mjx-eqn-13">(13)</a>-<a href="#mjx-eqn-14">(14)</a>. They are a bit simpler than
+the Navier&ndash;Stokes equations. And test LaTeX hyphen in <code>CG-2</code>.
+Also test \( a_{i-j} \) as well as \( kx-wt \).
+</p>
 
 <p>Testing <code>alignat</code> environment:</p>
 
@@ -36493,7 +36776,10 @@ $$
 
 <p>More mathematical typesetting is demonstrated in the coming exercises.</p>
 
-<p>Below, we have <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#demo:ex:2">Project 4: Compute a Probability</a>, as well as <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 11: References in a headings do not work well in html</a>, and in between there we have <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.</p>
+<p>Below, we have <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#demo:ex:2">Project 4: Compute a Probability</a>,
+as well as <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 11: References in a headings do not work well in html</a>, and in
+between there we have <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.
+</p>
 <h1 id="exercises">Exercises </h1>
 
 <!-- --- begin exercise --- -->
@@ -36504,13 +36790,17 @@ $$
 
 <p>
 <b>a)</b>
- Make a program that simulates flipping a coin \( N \) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
+Make a program that simulates flipping a coin \( N \) times.
+Print out &quot;tail&quot; or &quot;head&quot; for each flip and
+let the program count the number of heads.
+</p>
 
 <!-- --- begin hint in exercise --- -->
 
 <p>
 <b>Hint 1.</b>
- Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.</p>
+Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.
+</p>
 
 <!-- --- end hint in exercise --- -->
 
@@ -36518,37 +36808,51 @@ $$
 
 <p>
 <b>Hint 2.</b>
- Draw an integer among \( \{1,2\} \) with <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.</p>
+Draw an integer among \( \{1,2\} \) with
+<code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.
+</p>
 
 <!-- --- end hint in exercise --- -->
 
 <!-- --- begin answer of exercise --- -->
 <p>
 <b>Answer.</b>
- If the <code>random.random()</code> function returns a number \( < 1/2 \), let it be head, otherwise tail. Repeat this \( N \) number of times.</p>
+If the <code>random.random()</code> function returns a number \( < 1/2 \), let it be
+head, otherwise tail. Repeat this \( N \) number of times.
+</p>
 <!-- --- end answer of exercise --- -->
 
 
 <p>
 <b>b)</b>
- Vectorize the code in a) using boolean indexing.</p>
+Vectorize the code in a) using boolean indexing.
+</p>
 
-<p>Vectorized code can be written in many ways. Sometimes the code is less intuitive, sometimes not. At least there is not much to find in the section <a href="._testdoc001.html#sec1">Section 1</a>.</p>
+<p>Vectorized code can be written in many ways.
+Sometimes the code is less intuitive, sometimes not.
+At least there is not much to find in the section <a href="._testdoc001.html#sec1">Section 1</a>.
+</p>
 
 <p>
 <b>c)</b>
- Vectorize the code in a) using <code>numpy.sum</code>.</p>
+Vectorize the code in a) using <code>numpy.sum</code>.
+</p>
 
 <!-- --- begin answer of exercise --- -->
 <p>
 <b>Answer.</b>
- <code>np.sum(np.where(r &lt;= 0.5, 1, 0))</code> or <code>np.sum(r &lt;= 0.5)</code>.</p>
+<code>np.sum(np.where(r &lt;= 0.5, 1, 0))</code> or <code>np.sum(r &lt;= 0.5)</code>.
+</p>
 <!-- --- end answer of exercise --- -->
 
-<p>In this latter subexercise, we have an example where the code is easy to read.</p>
+<p>In this latter subexercise, we have an
+example where the code is easy to read.
+</p>
 <h3 id="my-remarks">My remarks </h3>
 
-<p>Remarks with such a subsubsection is treated as more text after the last subexercise. Test a list too:</p>
+<p>Remarks with such a subsubsection is treated as more text
+after the last subexercise. Test a list too:
+</p>
 
 <ol>
 </tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> Mark 1.</li>
@@ -36566,12 +36870,17 @@ $$
 <!-- --- end exercise --- -->
 <h2 id="not-an-exercise">Not an exercise </h2>
 
-<p>Should be possible to stick a normal section in the middle of many exercises.</p>
+<p>Should be possible to stick a normal section in the middle of many
+exercises.
+</p>
 
 <!-- --- begin exercise --- -->
 <h2 id="my:exer1">Exercise 3: Test of plain text exercise</h2>
 
-<p>Very short exercise. What is the capital of Norway? Filename: <code>myexer1</code>.</p>
+<p>Very short exercise. What is the capital
+of Norway?
+Filename: <code>myexer1</code>.
+</p>
 
 <!-- --- end exercise --- -->
 
@@ -36580,9 +36889,13 @@ $$
 
 <!-- Minimalistic exercise -->
 
-<p>What is the probability of getting a number between 0.5 and 0.6 when drawing uniformly distributed random numbers from the interval \( [0,1) \)?</p>
+<p>What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval \( [0,1) \)?
+</p>
 
-<p>At the end we have a list because that caused problems in LaTeX in previous DocOnce versions:</p>
+<p>At the end we have a list because that caused problems in LaTeX
+in previous DocOnce versions:
+</p>
 
 <ol>
 </tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> item1</li>
@@ -36592,7 +36905,11 @@ $$
 
 <p>
 <b>Hint.</b>
- To answer this question empirically, let a program draw \( N \) such random numbers using Python's standard <code>random</code> module, count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and compute the probability as \( M/N \).</p>
+To answer this question empirically, let a program
+draw \( N \) such random numbers using Python's standard <code>random</code> module,
+count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and
+compute the probability as \( M/N \).
+</p>
 
 <!-- --- end hint in exercise --- -->
 
@@ -36613,7 +36930,12 @@ y &= y_0 + R\sin 2\pi t,
 \end{align}
 $$
 
-<p>where \( R \) is the radius of the circle, \( (x_0,y_0) \) is the center point, and \( t \) is a parameter in the unit interval \( [0,1] \). For any \( t \), \( (x,y) \) computed from <a href="#mjx-eqn-17">(17)</a>-<a href="#mjx-eqn-18">(18)</a> is a point on the circle. The formula can be used to generate <code>n</code> points on a circle:</p>
+<p>where \( R \) is the radius of the circle, \( (x_0,y_0) \) is the
+center point, and \( t \) is a parameter in the unit interval \( [0,1] \).
+For any \( t \), \( (x,y) \) computed from <a href="#mjx-eqn-17">(17)</a>-<a href="#mjx-eqn-18">(18)</a>
+is a point on the circle.
+The formula can be used to generate <code>n</code> points on a circle:
+</p>
 
 
 <!-- code=python (!bc pypro) typeset with pygments style "perldoc" -->
@@ -36659,41 +36981,53 @@ x, y = circle(<span style="color: #B452CD">2.0</span>, <span style="color: #B452
 <!-- Often in an exercise we have some comments about the solution -->
 <!-- which we normally want to keep where they are. -->
 
-<p>The goal of this project is to draw \( N \) circles with random center and radius. Plot each circle using the <code>circle</code> function above.</p>
+<p>The goal of this project is to draw \( N \) circles with random
+center and radius. Plot each circle using the <code>circle</code> function
+above.
+</p>
 
 <p>
 <b>a)</b>
- Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.</p>
+Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
+</p>
 
 <!-- --- begin hint in exercise --- -->
 
 <p>
 <b>Hint.</b>
- Use the <code>numpy.random</code> module to draw the \( x_0 \), \( y_0 \), and \( R \) quantities.</p>
+Use the <code>numpy.random</code> module to draw the
+\( x_0 \), \( y_0 \), and \( R \) quantities.
+</p>
 
 <!-- --- end hint in exercise --- -->
 
 <!-- --- begin answer of exercise --- -->
 <p>
 <b>Answer.</b>
- Here goes the short answer to part a).</p>
+Here goes the short answer to part a).
+</p>
 <!-- --- end answer of exercise --- -->
 
 
 <p>
 <b>b)</b>
- Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed. Filename: <code>norm</code>.</p>
+Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed.
+Filename: <code>norm</code>.
+</p>
 
 <p>
 <b>c)</b>
- Let \( R \) and \( (x_0,y_0) \) be normally distributed.</p>
+Let \( R \) and \( (x_0,y_0) \) be normally distributed.
+</p>
 
 <p>Filename: <code>circles</code>.</p>
 
 <!-- Closing remarks for this Project -->
 <h3 id="remarks">Remarks </h3>
 
-<p>At the very end of the exercise it may be appropriate to summarize and give some perspectives.</p>
+<p>At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+</p>
 
 <!-- --- end exercise --- -->
 
@@ -36705,13 +37039,16 @@ x, y = circle(<span style="color: #B452CD">2.0</span>, <span style="color: #B452
 
 <p>
 <b>a)</b>
- Subexercises are numbered a), b), etc.</p>
+Subexercises are numbered a), b), etc.
+</p>
 
 <!-- --- begin hint in exercise --- -->
 
 <p>
 <b>Hint 1.</b>
- First hint to subexercise a). With math \( a=b \) in hint:</p>
+First hint to subexercise a).
+With math \( a=b \) in hint:
+</p>
 
 $$ a=b. $$
 
@@ -36751,7 +37088,8 @@ $$ a=b. $$
 
 <p>
 <b>Hint 2.</b>
- Second hint to subexercise a).</p>
+Second hint to subexercise a).
+</p>
 
 <p>Test list in hint:</p>
 
@@ -36765,12 +37103,15 @@ $$ a=b. $$
 <!-- --- begin answer of exercise --- -->
 <p>
 <b>Answer.</b>
- Short answer to subexercise a). With math in answer: \( a=b \).</p>
+Short answer to subexercise a).
+With math in answer: \( a=b \).
+</p>
 <!-- --- end answer of exercise --- -->
 
 <p>
 <b>b)</b>
- Here goes the text for subexercise b).</p>
+Here goes the text for subexercise b).
+</p>
 
 <p>Some math \( \cos^2 x + \sin^2 x = 1 \) written one a single line:</p>
 
@@ -36781,14 +37122,17 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 
 <p>
 <b>Hint.</b>
- A hint for this subexercise.</p>
+A hint for this subexercise.
+</p>
 
 <!-- --- end hint in exercise --- -->
 <p>Filename: <code>subexer_b.pdf</code>.</p>
 
 
 <!-- No meaning in this weired test example: -->
-<p>The text here belongs to the main (intro) part of the exercise. Need closing remarks to have text after subexercises.</p>
+<p>The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+</p>
 
 <p>Test list in exercise:</p>
 
@@ -36799,7 +37143,10 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 </ol>
 <h3 id="remarks">Remarks </h3>
 
-<p>Some final closing remarks, e.g., summarizing the main findings and their implications in other problems can be made. These remarks will appear at the end of the typeset exercise.</p>
+<p>Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+</p>
 
 <!-- --- end exercise --- -->
 
@@ -36808,7 +37155,9 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 
 <!-- Another minimalistic exercise -->
 
-<p>Just some text. And some math saying that \( e^0=1 \) on a single line, to test that math block insertion is correct:</p>
+<p>Just some text. And some math saying that \( e^0=1 \) on a single line,
+to test that math block insertion is correct:
+</p>
 
 $$ \exp{(0)} = 1 $$
 
@@ -36891,12 +37240,14 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 </div>
 </div></p>
 
-<p><div title="Wrong!  Equations with derivatives can be solved; they are termed  differential equations . "><b>Choice D:</b>
+<p><div title="Wrong!  Equations with derivatives can be solved; they are termed  differential equations .  "><b>Choice D:</b>
 <p>The solution cannot be found because there is a derivative in the equation.</p>
 </div></p>
 
-<p><div title="Wrong!  Equations where the unknown is a function, as \( y(x) \) here, are called  differential equations , and are solved by special techniques. "><b>Choice E:</b>
-<p>The equation is meaningless: an equation must be an equation for \( x \) or \( y \), not a function \( y(x) \).</p>
+<p><div title="Wrong!  Equations where the unknown is a function, as \( y(x) \) here, are called  differential equations , and are solved by special techniques.  "><b>Choice E:</b>
+<p>The equation is meaningless: an equation must be an equation
+for \( x \) or \( y \), not a function \( y(x) \).
+</p>
 </div></p>
 <hr>
 <!-- end quiz -->
@@ -36912,11 +37263,13 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 
 <p>
 <b>a)</b>
- What is the capital of Norway?</p>
+What is the capital of Norway?
+</p>
 
 <p>
 <b>Answer.</b>
- Oslo.</p>
+Oslo.
+</p>
 
 <!-- --- end exercise --- -->
 <h1 id="here-goes-another-section">Here goes another section </h1>
@@ -36928,9 +37281,13 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 <h2 id="exer:some:formula">Exercise 10: Make references to projects and problems</h2>
 
 <!-- Test comments not at the end only -->
-<p>Pick a statement from <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and verify it.</p>
+<p>Pick a statement from <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 2: Flip a Coin</a>
+and verify it.
+</p>
 
-<p>Test list at the end of an exercise without other elements (like subexercise, hint, etc.):</p>
+<p>Test list at the end of an exercise without other elements (like subexercise,
+hint, etc.):
+</p>
 
 <ol>
 </tr><p><tr><td valign='top'><img src="https://hplgit.github.io/doconce/bundled/html_images/bullet_red2.png"></td><td> item1</li>
@@ -36943,7 +37300,11 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 <!-- --- begin exercise --- -->
 <h2 id="exer:you">Project 11: References in a headings do not work well in html</h2>
 
-<p>Refer to the previous exercise as <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>, the two before that as <a href="#demo:ex:2">Project 4: Compute a Probability</a> and <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a>, and this one as <a href="#exer:you">Project 11: References in a headings do not work well in html</a>. Filename: <code>selc_composed.pdf</code>.</p>
+<p>Refer to the previous exercise as <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>,
+the two before that as <a href="#demo:ex:2">Project 4: Compute a Probability</a> and <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a>,
+and this one as <a href="#exer:you">Project 11: References in a headings do not work well in html</a>.
+Filename: <code>selc_composed.pdf</code>.
+</p>
 
 <!-- --- end exercise --- -->
 <h1 id="references">References </h1>
@@ -37319,39 +37680,110 @@ MathJax.Hub.Config({
 </div>
 
 
-<p>Need a lot of text to surround the summary box. Version control systems allow you to record the history of files and share files among several computers and collaborators in a professional way. File changes on one computer are updated or merged with changes on another computer. Especially when working with programs or technical reports it is essential to have changes documented and to ensure that every computer and person involved in the project have the latest updates of the files. Greg Wilson' excellent <a href="https://software-carpentry.org/2010/07/script-for-introduction-to-version-control/" target="_self">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly from using version control systems.</p>
+<p>Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent <a href="https://software-carpentry.org/2010/07/script-for-introduction-to-version-control/" target="_self">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+</p>
 
 <div class="alert alert-block alert-summary alert-text-normal">
 <b>Summary</b>
 <p>
-<p><b>Bold remark:</b> Make some text with this summary. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content.</p>
+<p><b>Bold remark:</b> Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+</p>
 </div>
 
 
-<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site "in the cloud" and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
+<p>Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work - and all other important files.
+</p>
 
-<p>The simplest services for hosting project files are <a href="https://dropbox.com" target="_self">Dropbox</a> and <a href="https://drive.google.com" target="_self">Google Drive</a>. It is very easy to get started with these systems, and they allow you to share files among laptops and mobile units with as many users as you want. The systems offer a kind of version control in that the files are stored frequently (several times per minute), and you can go back to previous versions for the last 30 days. However, it is challenging  to find the right version from the past when there are so many of them.</p>
+<p>The simplest services for hosting project files are <a href="https://dropbox.com" target="_self">Dropbox</a> and <a href="https://drive.google.com" target="_self">Google Drive</a>.
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+</p>
 
-<p>More seriously, when several people may edit files simultaneously, it can be difficult detect who did what when, roll back to previous versions, and to manually merge the edits when these are incompatible. Then one needs more sophisticated tools than Dropbox or Google Drive: project hosting services with true version control systems.  The following text aims at providing you with the minimum information to started with such systems. Numerous other tutorials contain more comprehensive material and in-depth explanations of the concepts and tools.</p>
+<p>More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+</p>
 
-<p>The idea with project hosting services is that you have the files associated with a project in the cloud. Many people may share these files.  Every time you want to work on the project you explicitly update your version of the files, edit the files as you like, and synchronize the files with the "master version" at the site where the project is hosted.  If you at some point need to go back to a version of the files at some particular point in the past, this is an easy operation. You can also use tools to see what various people have done with the files in the various versions.</p>
+<p>The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+</p>
 
-<p>All these services are very similar. Below we describe how you get started with Bitbucket, GitHub, and Googlecode. Launchpad works very similarly to the latter three. All the project hosting services have excellent introductions available at their web sites, but the recipes below are much shorter and aim at getting you started as quickly as possible by concentrating on the most important need-to-know steps. The Git tutorials we refer to later in this document contain more detailed information and constitute of course very valuable readings when you use version control systems every day. The point now is to get started.</p>
+<p>All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+</p>
 <h2 id="appendix-testing-inline-comments">Appendix: Testing inline comments </h2>
 
 <!-- Names can be [ A-Za-z0-9_'+-]+ -->
 
-<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site "in the cloud" and updated through communication with that site. 
+<p>Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that
+site. 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl's semi opinion 1</b>: not sure if in the cloud is understood by all.)</font>
+<font color="red">(<b>hpl's semi opinion 1</b>: not sure if in the cloud is  understood by  all.)</font>
 <!-- end inline comment -->
- I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
+ I strongly recommend you to use such sites for all serious
+programming and scientific writing work - and all other important
+files.
+</p>
 
 <p>The simplest services for hosting project files is Dropbox. 
 <!-- begin inline comment -->
-<font color="red">(<b>mp 2</b>: Simply go to <a href="https://dropbox.com" target="_self"><tt>https://dropbox.com</tt></a> and watch the video. It explains how files, like <code>myfile.py</code>, perhaps containing much math, like \( \partial u/\partial t \), are easily communicated between machines.)</font>
+<font color="red">(<b>mp 2</b>: Simply go to <a href="https://dropbox.com" target="_self"><tt>https://dropbox.com</tt></a> and watch the video. It explains how files, like <code>myfile.py</code>, perhaps containing much math, like  \( \partial u/\partial t \), are easily communicated between machines.)</font>
 <!-- end inline comment -->
- It is very easy to get started with Dropbox, and it allows you to share files among  <font color="red">(<b>hpl 3</b>:)</font> <del> laptops and mobile units </del> <font color="red">computers, tablets, and phones</font>.</p>
+ It
+is very easy to get started with Dropbox, and it allows you to share
+files among  <font color="red">(<b>hpl 3</b>:)</font> <del> laptops and mobile units </del> <font color="red">computers, tablets,  and phones</font>.
+</p>
 
 <!-- Test horizontal rule -->
 
@@ -37359,7 +37791,9 @@ MathJax.Hub.Config({
 
 <!-- Coments for editing -->
 
-<p>First<font color="red">, (<b>edit 4</b>: add comma)</font> consider a quantity \( Q \).  <font color="red">(<b>edit 5</b>:)</font> <del> To this end, </del> <font color="red">We note that</font> \( Q>0 \), because  <font color="red">(<b>edit 6</b>:)</font> <del> a </del> negative  <font color="red">(<b>edit 7</b>:)</font> <del> quantity is </del> <font color="red">quantities are</font>  <font color="red">(<b>edit 8</b>:)</font> <del> just </del> negative.  <font color="red">(<b>edit 9</b>:) This comes as no surprise.</font></p>
+<p>First<font color="red">, (<b>edit 4</b>: add comma)</font> consider a quantity \( Q \).  <font color="red">(<b>edit 5</b>:)</font> <del> To this end, </del> <font color="red">We note that</font>
+\( Q>0 \), because  <font color="red">(<b>edit 6</b>:)</font> <del> a </del> negative  <font color="red">(<b>edit 7</b>:)</font> <del> quantity is </del> <font color="red">quantities  are</font>  <font color="red">(<b>edit 8</b>:)</font> <del> just </del> negative.  <font color="red">(<b>edit 9</b>:) This comes as no surprise.</font>
+</p>
 
 <!-- Test tailored latex figure references with page number -->
 <p>Let us refer to Figure <a href="._testdoc001.html#fig:impact">1</a> again.</p>
@@ -37375,20 +37809,31 @@ MathJax.Hub.Config({
 
 <h2 id="appendix-testing-headings-ending-with-verbatim-inline">Appendix: Testing headings ending with <code>verbatim inline</code> </h2>
 
-<p>The point here is to test 1) <code>verbatim</code> code in headings, and 2) ending a heading with verbatim code as this triggers a special case in LaTeX.</p>
+<p>The point here is to test 1) <code>verbatim</code> code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
+</p>
 
-<p>We also test mdash&mdash;used as alternative to hyphen without spaces around, or in quotes:</p>
+<p>We also test mdash&mdash;used as alternative to hyphen without spaces around,
+or in quotes:
+</p>
 
 <blockquote>
     <p><em>Fun is fun</em>.&mdash;Unknown.</p>
 </blockquote>
 
 
-<p>The ndash should also be tested &ndash; as in the Hanson&ndash;Nilson equations on page 277&ndash;278.</p>
+<p>The ndash should also be tested &ndash; as in the Hanson&ndash;Nilson equations
+on page 277&ndash;278.
+</p>
 
-<p>And finally, what about admons, quotes, and boxes? They are tested in a separate document: <code>admon.do.txt</code>.</p>
+<p>And finally, what about admons, quotes, and boxes? They are tested
+in a separate document: <code>admon.do.txt</code>.
+</p>
 
-<p><p id="def_footnote_5"><a href="._testdoc001.html#link_footnote_5"><b>5:</b></a> Not much to add here, but the footnote is at the end with only one newline.</p></p>
+<p><p id="def_footnote_5"><a href="._testdoc001.html#link_footnote_5"><b>5:</b></a> Not much to add here, but the footnote
+is at the end with only one newline.</p>
+</p>
 <p>
 <!-- begin bottom navigation -->
 <table style="width: 100%"><tr><td>
@@ -37665,12 +38110,15 @@ $(function () {
 </div>
 <br>
 
-<p>The format of this document is plain, homemade HTML (from DocOnce).</p>
+<p>The format of this document is plain, homemade HTML (from DocOnce).
+</p>
 
 <p>
-<b>Abstract.</b> This is a document with many test constructions for doconce syntax. It was used heavily for the development and kept for testing numerous constructions, also special and less common cases.</p>
+<b>Abstract.</b> This is a document with many test constructions for doconce syntax. It was used heavily for the development and kept for testing numerous constructions, also special and less common cases.
+</p>
 
-<p>And exactly for test purposes we have an extra line here, which is part of the abstract.</p>
+<p>And exactly for test purposes we have an extra line here, which is part of the abstract.
+</p>
 <h1 id="sec1">Section 1</h1>
 
 <p>Here is a nested list:</p>
@@ -37704,24 +38152,27 @@ $(function () {
   <li> item2</li>
 </ul>
 <blockquote>
-    <p>Here are two lines that make up a block quote for testing <em>emphasized words</em> and <b>boldface words</b>, also with hypens: <em>pre</em>-fix, post-<em>fix</em>, <b>pre</b>-fix, post-<b>fix</b>.</p>
+    <p>Here are two lines that make up a block quote for testing <em>emphasized words</em> and <b>boldface words</b>, also with hypens: <em>pre</em>-fix, post-<em>fix</em>, <b>pre</b>-fix, post-<b>fix</b>.
+    </p>
 </blockquote>
 
 
-<p>Here are two references. Equation&nbsp;<b>(REF to equation my:eq1 not supported)</b> is fine. Eq.&nbsp;<b>(REF to equation my:eq1 not supported)</b> too. Even Equation <b>(REF to equation my:eq1 not supported)</b> without the tilde. This equation appears in another part if this document is split.</p>
+<p>Here are two references. Equation&nbsp;<b>(REF to equation my:eq1 not supported)</b> is fine. Eq.&nbsp;<b>(REF to equation my:eq1 not supported)</b> too. Even Equation <b>(REF to equation my:eq1 not supported)</b> without the tilde. This equation appears in another part if this document is split.
+</p>
 
-<p>Let us add a paragraph to test that HTML, with WordPress (<code>--wordpress</code> option) can handle linebreaks</p>
-<em>correctly</em>,
-<p>even when lines begin with <b>bold words</b> and <code>verbatim words</code> in <font color="red">red color</font>, and <a href="https://google.com" target="_blank">links</a> as well as math:</p>
-$latex 1+1=2$.
+<p>Let us add a paragraph to test that HTML, with WordPress (<code>--wordpress</code> option) can handle linebreaks <em>correctly</em>, even when lines begin with <b>bold words</b> and <code>verbatim words</code> in <font color="red">red color</font>, and <a href="https://google.com" target="_blank">links</a> as well as math: $latex 1+1=2$.
+</p>
 
-<p>Test also that <em>emphasize</em> at the end of line, and <b>bold</b> works, as well as <font color="blue">color</font> and <a href="https://google.com" target="_blank">links2</a> and <code>verbatim</code> as well.</p>
+<p>Test also that <em>emphasize</em> at the end of line, and <b>bold</b> works, as well as <font color="blue">color</font> and <a href="https://google.com" target="_blank">links2</a> and <code>verbatim</code> as well.
+</p>
 <h2 id="subsec1">Subsection 1</h2>
 
-<p>More text, with a reference back to the section <a href="#sec1">Section 1</a> and <a href="#subsec1">Subsection 1</a>, and further to the the sections <a href="#subsec1">Subsection 1</a> and <a href="#subsubsec:ex">URLs</a>, which encourages you to do the tasks in <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.  <a href="#app1">Appendix: Just for testing; part I</a> and <a href="#app2">Appendix: Just for testing; part II</a> are also nice elements.</p>
+<p>More text, with a reference back to the section <a href="#sec1">Section 1</a> and <a href="#subsec1">Subsection 1</a>, and further to the the sections <a href="#subsec1">Subsection 1</a> and <a href="#subsubsec:ex">URLs</a>, which encourages you to do the tasks in <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.  <a href="#app1">Appendix: Just for testing; part I</a> and <a href="#app2">Appendix: Just for testing; part II</a> are also nice elements.
+</p>
 <h3 id="test-section-reference-at-beginning-of-line-and-after-a-sentence">Test Section reference at beginning of line and after a sentence </h3>
 
-<p>The section <a href="#subsec1">Subsection 1</a> is fine. The section <a href="#subsubsec:ex">URLs</a> too.</p>
+<p>The section <a href="#subsec1">Subsection 1</a> is fine. The section <a href="#subsubsec:ex">URLs</a> too.
+</p>
 <h3 id="computer-code">Computer code </h3>
 
 <p>Let's do some copying from files too. First from subroutine up to the very end,</p>
@@ -37792,7 +38243,8 @@ C     END1
   </div>
 </div>
 
-<p>and finally the complete file with a plain text verbatim environment (<code>envir=ccq</code>):</p>
+<p>and finally the complete file with a plain text verbatim environment (<code>envir=ccq</code>):
+</p>
 
 
 <div class="cell border-box-sizing code_cell rendered">
@@ -37875,7 +38327,8 @@ C     END1
   </div>
 </div>
 
-<p>Test paragraph and subsubsection headings before before code.</p>
+<p>Test paragraph and subsubsection headings before before code.
+</p>
 
 <p>
 <b>Paragraph heading before code.</b>
@@ -37936,7 +38389,8 @@ sys<span style="color: #666666">.</span>path<span style="color: #666666">.</span
   </div>
 </div>
 
-<p>Some more Python code (actually specified as a sage cell, but such cells are not supported by this format).</p>
+<p>Some more Python code (actually specified as a sage cell, but such cells are not supported by this format).
+</p>
 
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
@@ -38202,7 +38656,8 @@ function show_hide_code(){
   </div>
 </div>
 
-<p>But inline HTML code is also important, like text that starts with <code>&lt;a href=&quot;</code> (which can destroy the following text if not properly quoted).</p>
+<p>But inline HTML code is also important, like text that starts with <code>&lt;a href=&quot;</code> (which can destroy the following text if not properly quoted).
+</p>
 
 <p>Matlab with comments requires special typesetting:</p>
 
@@ -38366,9 +38821,14 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
   </div>
 </div>
 
-<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>. Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>. Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
+<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>. Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>. Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.
+</p>
 
-<p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with green color containing a linebreak<br /> code.</font> Some formats will only display <br /> this correctly when <code>html</code> <br /> is the output format. But here some more running text is added which is not part of the previous blocks with line breaks.</p>
+<p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with green color containing a linebreak<br />
+code.</font> Some formats will only display <br />
+this correctly when <code>html</code> <br />
+is the output format. But here some more running text is added which is not part of the previous blocks with line breaks.
+</p>
 <h3 id="running-os-commands">Running OS commands </h3>
 
 
@@ -38395,7 +38855,8 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
 </div>
 <h3 id="footnotes">Footnotes </h3>
 
-<p>Here is a test of footnotes [<a id="link_footnote_1" href="#def_footnote_1">1</a>], which are handy in text. They are used in different flavors, now in</p>
+<p>Here is a test of footnotes [<a id="link_footnote_1" href="#def_footnote_1">1</a>], which are handy in text. They are used in different flavors, now in
+</p>
 
 <ul>
  <li> list items (note below that footnotes work after math, verbatim, and URLs - bin fact old and emphasize too!)</li>
@@ -38403,27 +38864,34 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
  <li> and code <code>h[i] += 1</code> [<a id="link_footnote_3" href="#def_footnote_3">3</a>] (<em>must</em> have space between inline code and footnote!)</li>
  <li> and <a href="https://google.com" target="_blank">links</a> [<a id="link_footnote_4" href="#def_footnote_4">4</a>]</li>
 </ul>
-<p>which gives flexibility in writing. This is the third [<a id="link_footnote_5" href="#def_footnote_5">5</a>] example.</p>
+<p>which gives flexibility in writing. This is the third [<a id="link_footnote_5" href="#def_footnote_5">5</a>] example.
+</p>
 
-<p><p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> Typesetting of the footnote depends on the format. Plain text does nothing, LaTeX removes the definition and inserts the footnote as part of the LaTeX text. reStructuredText and Sphinx employ a similar type of typesetting as Extended Markdown and DocOnce, and in HTML we keep the same syntax, just displayed properly in HTML.</p></p>
+<p><p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> Typesetting of the footnote depends on the format. Plain text does nothing, LaTeX removes the definition and inserts the footnote as part of the LaTeX text. reStructuredText and Sphinx employ a similar type of typesetting as Extended Markdown and DocOnce, and in HTML we keep the same syntax, just displayed properly in HTML.</p>
+</p>
 
-<p><p id="def_footnote_2"><a href="#link_footnote_2"><b>2:</b></a> Math footnotes can be dangerous since it interferes with an exponent.</p></p>
+<p><p id="def_footnote_2"><a href="#link_footnote_2"><b>2:</b></a> Math footnotes can be dangerous since it interferes with an exponent.</p>
+</p>
 
 <p id="def_footnote_3"><a href="#link_footnote_3"><b>3:</b></a> One-line footnote.</p>
 
-<p><p id="def_footnote_4"><a href="#link_footnote_4"><b>4:</b></a> <a href="google.com" target="_blank"><tt>google.com</tt></a> is perhaps the most famous web site today.</p></p>
+<p><p id="def_footnote_4"><a href="#link_footnote_4"><b>4:</b></a> <a href="google.com" target="_blank"><tt>google.com</tt></a> is perhaps the most famous web site today.</p>
+</p>
 
-<p>Here is some more text before a new definition of a footnote that was used above.</p>
+<p>Here is some more text before a new definition of a footnote that was used above.
+</p>
 
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Non-breaking space character</b>
 <p>
-<p>This paragraph aims to test <a href="https://en.wikipedia.org/wiki/Non-breaking_space" target="_blank">non-breaking space character</a>, and a typical example where this is needed is in physical units: 7.4&nbsp;km is traveled in&nbsp;$latex 7.4/5.5\approx 1.345$&nbsp;s.  Also check that a&nbsp;<a href="https://google.com" target="_blank">link</a>&nbsp;is not broken across lines (drag the browser window to test this). (On the other hand, the tilde is used in computer code, e.g., as in <code>[~x for x in y]</code> or in <code>y=~x</code>, and should of course remain a tilde in those contexts.)</p>
+<p>This paragraph aims to test <a href="https://en.wikipedia.org/wiki/Non-breaking_space" target="_blank">non-breaking space character</a>, and a typical example where this is needed is in physical units: 7.4&nbsp;km is traveled in&nbsp;$latex 7.4/5.5\approx 1.345$&nbsp;s.  Also check that a&nbsp;<a href="https://google.com" target="_blank">link</a>&nbsp;is not broken across lines (drag the browser window to test this). (On the other hand, the tilde is used in computer code, e.g., as in <code>[~x for x in y]</code> or in <code>y=~x</code>, and should of course remain a tilde in those contexts.)
+</p>
 </div>
 
 <h2 id="subsec:ex">Subsection 2: Testing figures</h2>
 
-<p>Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which there is a flow.</p>
+<p>Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which there is a flow.
+</p>
 
 <center>  <div id="fig:impact"></div> 
 <hr class="figure">
@@ -38440,7 +38908,8 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
 </center>
 <br /><br/>
 
-<p>Here is figure <a href="#myfig">2</a> with a long (illegal) multi-line caption containing inline verbatim text:</p>
+<p>Here is figure <a href="#myfig">2</a> with a long (illegal) multi-line caption containing inline verbatim text:
+</p>
 
 <center>  <div id="myfig"></div> 
 <hr class="figure">
@@ -38472,11 +38941,12 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
 <br /><br/>
 
 <p>
-<b>Remark.</b>
- Movies are tested in separate file <code>movies.do.txt</code>.</p>
+<b>Remark.</b> Movies are tested in separate file <code>movies.do.txt</code>.
+</p>
 <h2 id="decay:sec:theta">The $latex \theta$ parameter (not $latex \nabla$?)</h2>
 
-<p>Functions do not always need to be advanced, here is one involving $latex \theta$:</p>
+<p>Functions do not always need to be advanced, here is one involving $latex \theta$:
+</p>
 
 
 <div class="cell border-box-sizing code_cell rendered">
@@ -38505,7 +38975,8 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
 <p>
 <b>More on $latex \theta$.</b> Here is more text following headline with math.</p>
 
-<p>Newcommands must also be tested in this test report: $latex \frac{1}{2}$, $latex {1/2}$, $latex \pmb{x}$, $latex \frac{Du}{dt}$, both inline and in block:</p>
+<p>Newcommands must also be tested in this test report: $latex \frac{1}{2}$, $latex {1/2}$, $latex \pmb{x}$, $latex \frac{Du}{dt}$, both inline and in block:
+</p>
 
 
 $latex 
@@ -38695,21 +39166,22 @@ $latex  B
 <p>Now we refer to <b>(REF to equation mymatrix:eq1 not supported)</b>-<b>(REF to equation mymatrix:eq2 not supported)</b>.</p>
 <h2 id="custom-environments">Custom Environments </h2>
 
-<p>Here is an attempt to create a theorem environment via Mako (for counting theorems) and comment lines to help replacing lines in the <code>.tex</code> by proper begin-end LaTeX environments for theorems. Should look nice in most formats!</p>
+<p>Here is an attempt to create a theorem environment via Mako (for counting theorems) and comment lines to help replacing lines in the <code>.tex</code> by proper begin-end LaTeX environments for theorems. Should look nice in most formats!
+</p>
 
 
 <div id="theorem:fundamental1"></div>
 
 <p>
-<b>Theorem 5.</b>
- Let $latex a=1$ and $latex b=2$. Then $latex c=3$.</p>
+<b>Theorem 5.</b> Let $latex a=1$ and $latex b=2$. Then $latex c=3$.
+</p>
 
 <p>
-<b>Proof.</b>
- Since $latex c=a+b$, the result follows from straightforward addition.</p>
-$latex latex \Diamond$
+<b>Proof.</b> Since $latex c=a+b$, the result follows from straightforward addition. $latex latex \Diamond$
+</p>
 
-<p>As we see, the proof of Theorem 5 is a modest achievement.</p>
+<p>As we see, the proof of Theorem 5 is a modest achievement.
+</p>
 <h2 id="subsec:table">Tables</h2>
 
 <p>Let us take this table from the manual:</p>
@@ -38756,7 +39228,8 @@ $latex latex \Diamond$
   </div>
 </div>
 
-<p>Here is yet another table to test that we can handle more than one table:</p>
+<p>Here is yet another table to test that we can handle more than one table:
+</p>
 
 <table class="table" border="1">
 <thead>
@@ -38769,7 +39242,8 @@ $latex latex \Diamond$
 </tbody>
 </table>
 
-<p>And one with math headings (that are expanded and must be treated accordingly), verbatim heading and entry, and no space around the pipe symbol:</p>
+<p>And one with math headings (that are expanded and must be treated accordingly), verbatim heading and entry, and no space around the pipe symbol:
+</p>
 
 <table class="table" border="1">
 <thead>
@@ -38786,7 +39260,8 @@ $latex latex \Diamond$
 </tbody>
 </table>
 
-<p>And add one with verbatim headings (with underscores), and rows starting with <code>|-</code> because of a negative number, and <code>|</code> right before and after verbatim word (with no space):</p>
+<p>And add one with verbatim headings (with underscores), and rows starting with <code>|-</code> because of a negative number, and <code>|</code> right before and after verbatim word (with no space):
+</p>
 
 <table class="table" border="1">
 <thead>
@@ -38800,7 +39275,8 @@ $latex latex \Diamond$
 </tbody>
 </table>
 
-<p>Pipe symbols in verbatim and math text in tables used to pose difficulties, but not anymore:</p>
+<p>Pipe symbols in verbatim and math text in tables used to pose difficulties, but not anymore:
+</p>
 
 <table class="table" border="1">
 <thead>
@@ -38824,7 +39300,8 @@ $latex latex \Diamond$
 </tbody>
 </table>
 
-<p>Finally, a table with math (<code>bm</code> that expands to <code>boldsymbol</code>, was tricky, but cleanly handled now) and URLs.</p>
+<p>Finally, a table with math (<code>bm</code> that expands to <code>boldsymbol</code>, was tricky, but cleanly handled now) and URLs.
+</p>
 
 
 
@@ -38840,7 +39317,8 @@ $latex latex \Diamond$
 <h2 id="a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2">A test of verbatim words in heading with subscript $latex a_i$: <code>my_file_v1</code> and <code>my_file_v2</code> </h2>
 
 <p>
-<b>Paragraph with verbatim and math: <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math $latex a_{i-1}$.</b> Here is more <code>__verbatim__</code> code and some plain text on a new line.</p>
+<b>Paragraph with verbatim and math: <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math $latex a_{i-1}$.</b> Here is more <code>__verbatim__</code> code and some plain text on a new line.
+</p>
 <h2 id="_just-bold_"><b>Just bold</b> </h2>
 
 <p>Some text.</p>
@@ -38903,8 +39381,8 @@ $latex latex \Diamond$
 <b>The middle has <code>verbatim</code> word.</b> Some text.</p>
 
 <p>
-<b>Ampersand.</b>
- We can test Hennes &amp; Mauritz, often abbreviated H&amp;M, but written as <code>Hennes & Mauritz</code> and <code>H & M</code>. A sole <code>&</code> must also work.</p>
+<b>Ampersand.</b> We can test Hennes &amp; Mauritz, often abbreviated H&amp;M, but written as <code>Hennes & Mauritz</code> and <code>H & M</code>. A sole <code>&</code> must also work.
+</p>
 
 
 
@@ -38932,52 +39410,59 @@ $latex latex \Diamond$
 </div>
 
 <p>
-<b>Quotes.</b>
- Let us also add a test of quotes such as &quot;double quotes, with numbers like 3.14 and newline/comma and hyphen (as in double-quote)&quot;; written in the standard LaTeX-style that gives correct LaTeX formatting and ordinary double quotes for all non-LaTeX formats.  Here is another sentence that &quot;caused&quot; a bug in the past because double backtick quotes could imply verbatim text up to a verbatim word starting with period, like <code>.txt</code>.</p>
+<b>Quotes.</b> Let us also add a test of quotes such as &quot;double quotes, with numbers like 3.14 and newline/comma and hyphen (as in double-quote)&quot;; written in the standard LaTeX-style that gives correct LaTeX formatting and ordinary double quotes for all non-LaTeX formats.  Here is another sentence that &quot;caused&quot; a bug in the past because double backtick quotes could imply verbatim text up to a verbatim word starting with period, like <code>.txt</code>.
+</p>
 
-<p>More quotes to be tested for spellcheck: (&quot;with parenthesis&quot;), &quot;with newline&quot; and &quot;with comma&quot;, &quot;hyphen&quot;-wise, and &quot;period&quot;.</p>
+<p>More quotes to be tested for spellcheck: (&quot;with parenthesis&quot;), &quot;with newline&quot; and &quot;with comma&quot;, &quot;hyphen&quot;-wise, and &quot;period&quot;.
+</p>
 <h2 id="bibliography-test">Bibliography test </h2>
 
-<p>Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of large destructive water waves, <a href="#Langtangen_et_al_2002">[2]</a> gave an overview of numerical methods for solving the Navier&ndash;Stokes equations, while the use of Backward Kolmogorov equations for analyzing random vibrations was investigated in <a href="#Langtangen_1994a">[3]</a>. The book chapter <a href="#Mardal_et_al_2003a">[4]</a> contains information on C++ software tools for programming multigrid methods. A real retro reference is <a href="#Langtangen_1988d">[5]</a> about a big FORTRAN package. Multiple references are also possible, e.g., see <a href="#Langtangen_Pedersen_2002">[1]</a> <a href="#Mardal_et_al_2003a">[4]</a>.</p>
+<p>Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of large destructive water waves, <a href="#Langtangen_et_al_2002">[2]</a> gave an overview of numerical methods for solving the Navier&ndash;Stokes equations, while the use of Backward Kolmogorov equations for analyzing random vibrations was investigated in <a href="#Langtangen_1994a">[3]</a>. The book chapter <a href="#Mardal_et_al_2003a">[4]</a> contains information on C++ software tools for programming multigrid methods. A real retro reference is <a href="#Langtangen_1988d">[5]</a> about a big FORTRAN package. Multiple references are also possible, e.g., see <a href="#Langtangen_Pedersen_2002">[1]</a> <a href="#Mardal_et_al_2003a">[4]</a>.
+</p>
 
-<p>We need to cite more than 10 papers to reproduce an old formatting problem with blanks in the keys in reST format:</p>
+<p>We need to cite more than 10 papers to reproduce an old formatting problem with blanks in the keys in reST format:
+</p>
 <a href="#Langtangen_1992c">[6]</a> <a href="#Langtangen_1994a">[3]</a> <a href="#Mortensen_et_al_2011">[7]</a> <a href="#Langtangen_Pedersen_2002">[1]</a>
 <p>and</p>
 <a href="#Langtangen_et_al_2002">[2]</a> <a href="#Glimsdal_et_al_20006">[8]</a> <a href="#Rahman_et_al_2006b">[9]</a> <a href="#Haga_et_al_2011a">[10]</a> <a href="#Langtangen_2003a">[11]</a> <a href="#Langtangen_2008a">[12]</a> <a href="#Langtangen:95">[13]</a>
-<p>and all the work of <a href="#Langtangen_2012">[14]</a> <a href="#Mardal_et_al_2003a">[4]</a> <a href="#Jeberg_et_al_2004">[15]</a> as well as old work <a href="#Langtangen_1988d">[5]</a> and <a href="#Langtangen_1989e">[16]</a>, and the talk <a href="#Langtangen_talk_2007a">[17]</a>. Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen_1989e">[16]</a> back in the days. More retro citations are the old ME-IN323 book <a href="#Langtangen:91">[19]</a> and the <a href="#Langtangen:94b">[20]</a> OONSKI '94 paper.</p>
+<p>and all the work of <a href="#Langtangen_2012">[14]</a> <a href="#Mardal_et_al_2003a">[4]</a> <a href="#Jeberg_et_al_2004">[15]</a> as well as old work <a href="#Langtangen_1988d">[5]</a> and <a href="#Langtangen_1989e">[16]</a>, and the talk <a href="#Langtangen_talk_2007a">[17]</a>. Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen_1989e">[16]</a> back in the days. More retro citations are the old ME-IN323 book <a href="#Langtangen:91">[19]</a> and the <a href="#Langtangen:94b">[20]</a> OONSKI '94 paper.
+</p>
 <h2 id="Example">Example 1: Examples can be typeset as exercises</h2>
 
-<p>Examples can start with a subsection heading starting with <code>Example:</code> and then, with the command-line option <code>--examples_as_exercises</code> be typeset as exercises. This is useful if one has solution environments as part of the example.</p>
+<p>Examples can start with a subsection heading starting with <code>Example:</code> and then, with the command-line option <code>--examples_as_exercises</code> be typeset as exercises. This is useful if one has solution environments as part of the example.
+</p>
 
 <p>
-<b>a)</b>
- State some problem.</p>
+<b>a)</b> State some problem.
+</p>
 
 <p>
-<b>Solution.</b>
- The answer to this subproblem can be written here.</p>
+<b>Solution.</b> The answer to this subproblem can be written here.
+</p>
 
 <p>
-<b>b)</b>
- State some other problem.</p>
+<b>b)</b> State some other problem.
+</p>
 
 <p>
-<b>Hint 1.</b>
- A hint can be given.</p>
+<b>Hint 1.</b> A hint can be given.
+</p>
 
 <p>
-<b>Hint 2.</b>
- Maybe even another hint?</p>
+<b>Hint 2.</b> Maybe even another hint?
+</p>
 
 <p>
-<b>Solution.</b>
- The answer to this other subproblem goes here, maybe over multiple doconce input lines.</p>
+<b>Solution.</b> The answer to this other subproblem goes here, maybe over multiple doconce input lines.
+</p>
 <h2 id="user-defined-environments">User-defined environments </h2>
 
-<p>The example in the section <a href="#ex:test:1p1">Example 1: A test function</a> demonstrates how to write a test function. That is, a special test function for a function <code>add</code> appears in the example in the section <a href="#ex:test:1p1">Example 1: A test function</a>.</p>
+<p>The example in the section <a href="#ex:test:1p1">Example 1: A test function</a> demonstrates how to write a test function. That is, a special test function for a function <code>add</code> appears in the example in the section <a href="#ex:test:1p1">Example 1: A test function</a>.
+</p>
 <h2 id="ex:test:1p1">Example 1: A test function</h2>
 
-<p>Suppose we want to write a test function for checking the implementation of a Python function for addition.</p>
+<p>Suppose we want to write a test function for checking the implementation of a Python function for addition.
+</p>
 
 
 
@@ -39026,7 +39511,10 @@ $latex  1 + 1 = 2  $
 </tbody>
 </table>
 
-<p><div style="width: 60%; padding: 10px; border: 1px solid #000;  border-radius: 4px; box-shadow: 8px 8px 5px #888888;  background: #cce5ff;"></p>
+<p><div style="width: 60%; padding: 10px; border: 1px solid #000;
+ border-radius: 4px; box-shadow: 8px 8px 5px #888888;
+ background: #cce5ff;">
+</p>
  <b>Highlight box!</b><hr>
 <p>This environment is used to highlight something:</p>
 
@@ -39037,17 +39525,19 @@ $latex  E = mc^2  $
 </div>
 <h2 id="subsubsec:ex">URLs</h2>
 
-<p>Testing of URLs: hpl's home page <a href="https://folk.uio.no/hpl" target="_blank">hpl</a>, or the entire URL if desired, <a href="https://folk.uio.no/hpl" target="_blank"><tt>https://folk.uio.no/hpl</tt></a>.  Here is a plain file link <a href="testdoc.do.txt" target="_blank"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_blank"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_blank"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_blank"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_blank">a link with newline</a>. Can test spaces with the link with word too: <a href="https://folk.uio.no/hpl" target="_blank">hpl</a> or <a href="https://folk.uio.no/hpl" target="_blank">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" target="_blank">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="https://folk.uio.no/hpl" target="_blank"><tt>https://folk.uio.no/hpl</tt></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
+<p>Testing of URLs: hpl's home page <a href="https://folk.uio.no/hpl" target="_blank">hpl</a>, or the entire URL if desired, <a href="https://folk.uio.no/hpl" target="_blank"><tt>https://folk.uio.no/hpl</tt></a>.  Here is a plain file link <a href="testdoc.do.txt" target="_blank"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_blank"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_blank"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_blank"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_blank">a link with newline</a>. Can test spaces with the link with word too: <a href="https://folk.uio.no/hpl" target="_blank">hpl</a> or <a href="https://folk.uio.no/hpl" target="_blank">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" target="_blank">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="https://folk.uio.no/hpl" target="_blank"><tt>https://folk.uio.no/hpl</tt></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).
+</p>
 
 <p>Mail addresses can also be used: <a href="mailto:hpl@simula.no" target="_blank"><tt>hpl@simula.no</tt></a>, or just a <a href="mailto:hpl@simula.no" target="_blank">mail link</a>, or a raw <a href="mailto:hpl@simula.no" target="_blank"><tt>mailto:hpl@simula.no</tt></a>.</p>
 
-<p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" target="_blank">Newton-Cotes</a> formulas and a <a href="https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1" target="_blank">good book</a>. Need to test Newton-Cotes with percentage in URL too:</p>
-<a href="https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" target="_blank"><tt>https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas</tt></a>
-<p>and <a href="https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae" target="_blank"><tt>https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</tt></a> which has a shebang.</p>
+<p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" target="_blank">Newton-Cotes</a> formulas and a <a href="https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1" target="_blank">good book</a>. Need to test Newton-Cotes with percentage in URL too: <a href="https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" target="_blank"><tt>https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas</tt></a> and <a href="https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae" target="_blank"><tt>https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</tt></a> which has a shebang.
+</p>
 
-<p>For the <code>--device=paper</code> option it is important to test that URLs with monospace font link text get a footnote (unless the <code>--latex_no_program_footnotelink</code> is used), as in this reference to <a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py" target="_blank"><tt>decay_mod</tt></a>, <a href="https://tinyurl.com/pwyasaa/formulas.ball1.py" target="_blank"><tt>ball1.py</tt></a>, and <a href="https://tinyurl.com/pwyasaa/formulas.ball2.py" target="_blank"><tt>ball2.py</tt></a>.</p>
+<p>For the <code>--device=paper</code> option it is important to test that URLs with monospace font link text get a footnote (unless the <code>--latex_no_program_footnotelink</code> is used), as in this reference to <a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py" target="_blank"><tt>decay_mod</tt></a>, <a href="https://tinyurl.com/pwyasaa/formulas.ball1.py" target="_blank"><tt>ball1.py</tt></a>, and <a href="https://tinyurl.com/pwyasaa/formulas.ball2.py" target="_blank"><tt>ball2.py</tt></a>.
+</p>
 
-<p>More tough tests: repeated URLs whose footnotes when using the <code>--device=paper</code> option must be correct. We have <a href="https://google.com" target="_blank">google</a>, <a href="https://google.com" target="_blank">google</a>, and <a href="https://google.com" target="_blank">google</a>, which should result in exactly three footnotes.</p>
+<p>More tough tests: repeated URLs whose footnotes when using the <code>--device=paper</code> option must be correct. We have <a href="https://google.com" target="_blank">google</a>, <a href="https://google.com" target="_blank">google</a>, and <a href="https://google.com" target="_blank">google</a>, which should result in exactly three footnotes.
+</p>
 <h1 id="latex-mathematics">LaTeX Mathematics </h1>
 
 <p>Here is an equation without label using backslash-bracket environment:</p>
@@ -39083,7 +39573,8 @@ $latex
 b = \nabla^2 u + \nabla^4 x 
  $
 
-<p>We can refer to <b>(REF to equation eq1 not supported)</b>-<b>(REF to equation eq2 not supported)</b>. They are a bit simpler than the Navier&ndash;Stokes equations. And test LaTeX hyphen in <code>CG-2</code>. Also test $latex a_{i-j}$ as well as $latex kx-wt$.</p>
+<p>We can refer to <b>(REF to equation eq1 not supported)</b>-<b>(REF to equation eq2 not supported)</b>. They are a bit simpler than the Navier&ndash;Stokes equations. And test LaTeX hyphen in <code>CG-2</code>. Also test $latex a_{i-j}$ as well as $latex kx-wt$.
+</p>
 
 <p>Testing <code>alignat</code> environment:</p>
 
@@ -39097,25 +39588,26 @@ b = \nabla^2 u + \nabla^4 x  x\in\Omega
 
 <p>More mathematical typesetting is demonstrated in the coming exercises.</p>
 
-<p>Below, we have <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#demo:ex:2">Project 4: Compute a Probability</a>, as well as <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 11: References in a headings do not work well in html</a>, and in between there we have <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.</p>
+<p>Below, we have <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#demo:ex:2">Project 4: Compute a Probability</a>, as well as <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 11: References in a headings do not work well in html</a>, and in between there we have <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.
+</p>
 <h1 id="exercises">Exercises </h1>
 <h2 id="demo:ex:1">Problem 2: Flip a Coin</h2>
 
 <p>
-<b>a)</b>
- Make a program that simulates flipping a coin $latex N$ times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
+<b>a)</b> Make a program that simulates flipping a coin $latex N$ times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.
+</p>
 
 <p>
-<b>Hint 1.</b>
- Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.</p>
+<b>Hint 1.</b> Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.
+</p>
 
 <p>
-<b>Hint 2.</b>
- Draw an integer among $latex \{1,2\}$ with <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.</p>
+<b>Hint 2.</b> Draw an integer among $latex \{1,2\}$ with <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.
+</p>
 
 <p>
-<b>Answer.</b>
- If the <code>random.random()</code> function returns a number $latex <1/2$, let it be head, otherwise tail. Repeat this $latex N$ number of times.</p>
+<b>Answer.</b> If the <code>random.random()</code> function returns a number $latex <1/2$, let it be head, otherwise tail. Repeat this $latex N$ number of times.
+</p>
 
 <p>
 <b>Solution.</b>
@@ -39150,22 +39642,26 @@ N <span style="color: #666666">=</span> <span style="color: #008000">int</span>(
 </div>
 
 <p>
-<b>b)</b>
- Vectorize the code in a) using boolean indexing.</p>
+<b>b)</b> Vectorize the code in a) using boolean indexing.
+</p>
 
-<p>Vectorized code can be written in many ways. Sometimes the code is less intuitive, sometimes not. At least there is not much to find in the section <a href="#sec1">Section 1</a>.</p>
-
-<p>
-<b>c)</b>
- Vectorize the code in a) using <code>numpy.sum</code>.</p>
+<p>Vectorized code can be written in many ways. Sometimes the code is less intuitive, sometimes not. At least there is not much to find in the section <a href="#sec1">Section 1</a>.
+</p>
 
 <p>
-<b>Answer.</b>  <code>np.sum(np.where(r &lt;= 0.5, 1, 0))</code> or <code>np.sum(r &lt;= 0.5)</code>.</p>
+<b>c)</b> Vectorize the code in a) using <code>numpy.sum</code>.
+</p>
 
-<p>In this latter subexercise, we have an example where the code is easy to read.</p>
+<p>
+<b>Answer.</b> <code>np.sum(np.where(r &lt;= 0.5, 1, 0))</code> or <code>np.sum(r &lt;= 0.5)</code>.
+</p>
+
+<p>In this latter subexercise, we have an example where the code is easy to read.
+</p>
 <h3 id="my-remarks">My remarks </h3>
 
-<p>Remarks with such a subsubsection is treated as more text after the last subexercise. Test a list too:</p>
+<p>Remarks with such a subsubsection is treated as more text after the last subexercise. Test a list too:
+</p>
 
 <ol>
 <li> Mark 1.</li>
@@ -39177,15 +39673,19 @@ N <span style="color: #666666">=</span> <span style="color: #008000">int</span>(
 <p>These are the exercise remarks, appearing at the very end.</p>
 <h2 id="not-an-exercise">Not an exercise </h2>
 
-<p>Should be possible to stick a normal section in the middle of many exercises.</p>
+<p>Should be possible to stick a normal section in the middle of many exercises.
+</p>
 <h2 id="my:exer1">Exercise 3: Test of plain text exercise</h2>
 
-<p>Very short exercise. What is the capital of Norway? Filename: <code>myexer1</code>.</p>
+<p>Very short exercise. What is the capital of Norway? Filename: <code>myexer1</code>.
+</p>
 <h2 id="demo:ex:2">Project 4: Compute a Probability</h2>
 
-<p>What is the probability of getting a number between 0.5 and 0.6 when drawing uniformly distributed random numbers from the interval $latex [0,1)$?</p>
+<p>What is the probability of getting a number between 0.5 and 0.6 when drawing uniformly distributed random numbers from the interval $latex [0,1)$?
+</p>
 
-<p>At the end we have a list because that caused problems in LaTeX in previous DocOnce versions:</p>
+<p>At the end we have a list because that caused problems in LaTeX in previous DocOnce versions:
+</p>
 
 <ol>
 <li> item1</li>
@@ -39193,8 +39693,8 @@ N <span style="color: #666666">=</span> <span style="color: #008000">int</span>(
 </ol>
 
 <p>
-<b>Hint.</b>
- To answer this question empirically, let a program draw $latex N$ such random numbers using Python's standard <code>random</code> module, count how many of them, $latex M$, that fall in the interval $latex (0.5,0.6)$, and compute the probability as $latex M/N$.</p>
+<b>Hint.</b> To answer this question empirically, let a program draw $latex N$ such random numbers using Python's standard <code>random</code> module, count how many of them, $latex M$, that fall in the interval $latex (0.5,0.6)$, and compute the probability as $latex M/N$.
+</p>
 <h2 id="proj:circle1">Project 5: Explore Distributions of Random Circles</h2>
 
 <p>The formula for a circle is given by</p>
@@ -39209,7 +39709,8 @@ y = y_0 + R\sin 2\pi t,
 
  $
 
-<p>where $latex R$ is the radius of the circle, $latex (x_0,y_0)$ is the center point, and $latex t$ is a parameter in the unit interval $latex [0,1]$. For any $latex t$, $latex (x,y)$ computed from <b>(REF to equation circle:x not supported)</b>-<b>(REF to equation circle:y not supported)</b> is a point on the circle. The formula can be used to generate <code>n</code> points on a circle:</p>
+<p>where $latex R$ is the radius of the circle, $latex (x_0,y_0)$ is the center point, and $latex t$ is a parameter in the unit interval $latex [0,1]$. For any $latex t$, $latex (x,y)$ computed from <b>(REF to equation circle:x not supported)</b>-<b>(REF to equation circle:y not supported)</b> is a point on the circle. The formula can be used to generate <code>n</code> points on a circle:
+</p>
 
 
 
@@ -39242,43 +39743,45 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
   </div>
 </div>
 
-<p>The goal of this project is to draw $latex N$ circles with random center and radius. Plot each circle using the <code>circle</code> function above.</p>
+<p>The goal of this project is to draw $latex N$ circles with random center and radius. Plot each circle using the <code>circle</code> function above.
+</p>
 
 <p>
-<b>a)</b>
- Let $latex R$ be normally distributed and $latex (x_0,y_0)$ uniformly distributed.</p>
+<b>a)</b> Let $latex R$ be normally distributed and $latex (x_0,y_0)$ uniformly distributed.
+</p>
 
 <p>
-<b>Hint.</b>
- Use the <code>numpy.random</code> module to draw the $latex x_0$, $latex y_0$, and $latex R$ quantities.</p>
+<b>Hint.</b> Use the <code>numpy.random</code> module to draw the $latex x_0$, $latex y_0$, and $latex R$ quantities.
+</p>
 
 <p>
-<b>Answer.</b>
- Here goes the short answer to part a).</p>
+<b>Answer.</b> Here goes the short answer to part a).
+</p>
 
 <p>
-<b>Solution.</b>
- Here goes a full solution to part a).</p>
+<b>Solution.</b> Here goes a full solution to part a).
+</p>
 
 <p>
-<b>b)</b>
- Let $latex R$ be uniformly distributed and $latex (x_0,y_0)$ normally distributed. Filename: <code>norm</code>.</p>
+<b>b)</b> Let $latex R$ be uniformly distributed and $latex (x_0,y_0)$ normally distributed. Filename: <code>norm</code>.
+</p>
 
 <p>
-<b>c)</b>
- Let $latex R$ and $latex (x_0,y_0)$ be normally distributed.</p>
+<b>c)</b> Let $latex R$ and $latex (x_0,y_0)$ be normally distributed.
+</p>
 
 <p>Filename: <code>circles</code>.</p>
 <h3 id="remarks">Remarks </h3>
 
-<p>At the very end of the exercise it may be appropriate to summarize and give some perspectives.</p>
+<p>At the very end of the exercise it may be appropriate to summarize and give some perspectives.
+</p>
 <h2 id="exer:dist">Exercise 6: Determine some Distance</h2>
 
 <p>Intro to this exercise. Questions are in subexercises below.</p>
 
 <p>
-<b>Solution.</b>
- Here goes a full solution of the whole exercise. With some math $latex a=b$ in this solution:</p>
+<b>Solution.</b> Here goes a full solution of the whole exercise. With some math $latex a=b$ in this solution:
+</p>
 
 $latex  \hbox{math in solution: } a = b  $
 
@@ -39310,12 +39813,12 @@ $latex  \hbox{math in solution: } a = b  $
 <p>End of solution is here.</p>
 
 <p>
-<b>a)</b>
- Subexercises are numbered a), b), etc.</p>
+<b>a)</b> Subexercises are numbered a), b), etc.
+</p>
 
 <p>
-<b>Hint 1.</b>
- First hint to subexercise a). With math $latex a=b$ in hint:</p>
+<b>Hint 1.</b> First hint to subexercise a). With math $latex a=b$ in hint:
+</p>
 
 
 $latex  a=b.  $
@@ -39348,8 +39851,8 @@ $latex  a=b.  $
 </div>
 
 <p>
-<b>Hint 2.</b>
- Second hint to subexercise a).</p>
+<b>Hint 2.</b> Second hint to subexercise a).
+</p>
 
 <p>Test list in hint:</p>
 
@@ -39361,12 +39864,12 @@ $latex  a=b.  $
 <p>Filename: <code>subexer_a.pdf</code>.</p>
 
 <p>
-<b>Answer.</b>
- Short answer to subexercise a). With math in answer: $latex a=b$.</p>
+<b>Answer.</b> Short answer to subexercise a). With math in answer: $latex a=b$.
+</p>
 
 <p>
-<b>b)</b>
- Here goes the text for subexercise b).</p>
+<b>b)</b> Here goes the text for subexercise b).
+</p>
 
 <p>Some math $latex \cos^2 x + \sin^2 x = 1$ written one a single line:</p>
 
@@ -39374,16 +39877,17 @@ $latex  a=b.  $
 $latex  \cos^2 x + \sin^2 x = 1 \thinspace . $
 
 <p>
-<b>Hint.</b>
- A hint for this subexercise.</p>
+<b>Hint.</b> A hint for this subexercise.
+</p>
 
 <p>Filename: <code>subexer_b.pdf</code>.</p>
 
 <p>
-<b>Solution.</b>
- Here goes the solution of this subexercise.</p>
+<b>Solution.</b> Here goes the solution of this subexercise.
+</p>
 
-<p>The text here belongs to the main (intro) part of the exercise. Need closing remarks to have text after subexercises.</p>
+<p>The text here belongs to the main (intro) part of the exercise. Need closing remarks to have text after subexercises.
+</p>
 
 <p>Test list in exercise:</p>
 
@@ -39393,10 +39897,12 @@ $latex  \cos^2 x + \sin^2 x = 1 \thinspace . $
 </ol>
 <h3 id="remarks">Remarks </h3>
 
-<p>Some final closing remarks, e.g., summarizing the main findings and their implications in other problems can be made. These remarks will appear at the end of the typeset exercise.</p>
+<p>Some final closing remarks, e.g., summarizing the main findings and their implications in other problems can be made. These remarks will appear at the end of the typeset exercise.
+</p>
 <h2 id="some-exercise-without-the-exercise-prefix">Some exercise without the "Exercise:" prefix </h2>
 
-<p>Just some text. And some math saying that $latex e^0=1$ on a single line, to test that math block insertion is correct:</p>
+<p>Just some text. And some math saying that $latex e^0=1$ on a single line, to test that math block insertion is correct:
+</p>
 
 
 $latex  \exp{(0)} = 1  $
@@ -39473,36 +39979,42 @@ $latex y=e^{y}$
   </div>
 </div>
 
-<p>Ooops, forgot a minus: <code>exp(-x)</code>, otherwise this Python code must be considered as a good answer. It is more natural, though, to write the solution to the problem in mathematical notation:</p>
+<p>Ooops, forgot a minus: <code>exp(-x)</code>, otherwise this Python code must be considered as a good answer. It is more natural, though, to write the solution to the problem in mathematical notation:
+</p>
 
 
 $latex  y(x) = e^{-y}. $
 
 <p>The solution cannot be found because there is a derivative in the equation.</p>
 
-<p>Equations with derivatives can be solved; they are termed <em>differential equations</em>.</p>
+<p>Equations with derivatives can be solved; they are termed <em>differential equations</em>.
+</p>
 
-<p>The equation is meaningless: an equation must be an equation for $latex x$ or $latex y$, not a function $latex y(x)$.</p>
+<p>The equation is meaningless: an equation must be an equation for $latex x$ or $latex y$, not a function $latex y(x)$.
+</p>
 
-<p>Equations where the unknown is a function, as $latex y(x)$ here, are called <em>differential equations</em>, and are solved by special techniques.</p>
+<p>Equations where the unknown is a function, as $latex y(x)$ here, are called <em>differential equations</em>, and are solved by special techniques.
+</p>
 <h2 id="example-9-just-an-example">Example 9: Just an example </h2>
 
 <p>
-<b>a)</b>
- What is the capital of Norway?</p>
+<b>a)</b> What is the capital of Norway?
+</p>
 
 <p>
-<b>Answer.</b>
- Oslo.</p>
+<b>Answer.</b> Oslo.
+</p>
 <h1 id="here-goes-another-section">Here goes another section </h1>
 
 <p>With some text, before we continue with exercises.</p>
 <h1 id="more-exercises">More Exercises </h1>
 <h2 id="exer:some:formula">Exercise 10: Make references to projects and problems</h2>
 
-<p>Pick a statement from <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and verify it.</p>
+<p>Pick a statement from <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and verify it.
+</p>
 
-<p>Test list at the end of an exercise without other elements (like subexercise, hint, etc.):</p>
+<p>Test list at the end of an exercise without other elements (like subexercise, hint, etc.):
+</p>
 
 <ol>
 <li> item1</li>
@@ -39511,7 +40023,8 @@ $latex  y(x) = e^{-y}. $
 <p>Filename: <code>verify_formula.py</code>.</p>
 <h2 id="exer:you">Project 11: References in a headings do not work well in html</h2>
 
-<p>Refer to the previous exercise as <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>, the two before that as <a href="#demo:ex:2">Project 4: Compute a Probability</a> and <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a>, and this one as <a href="#exer:you">Project 11: References in a headings do not work well in html</a>. Filename: <code>selc_composed.pdf</code>.</p>
+<p>Refer to the previous exercise as <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>, the two before that as <a href="#demo:ex:2">Project 4: Compute a Probability</a> and <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a>, and this one as <a href="#exer:you">Project 11: References in a headings do not work well in html</a>. Filename: <code>selc_composed.pdf</code>.
+</p>
 <h1 id="references">References </h1>
 
 
@@ -39580,43 +40093,53 @@ $latex  y(x) = e^{-y}. $
 </div>
 
 
-<p>Need a lot of text to surround the summary box. Version control systems allow you to record the history of files and share files among several computers and collaborators in a professional way. File changes on one computer are updated or merged with changes on another computer. Especially when working with programs or technical reports it is essential to have changes documented and to ensure that every computer and person involved in the project have the latest updates of the files. Greg Wilson' excellent <a href="https://software-carpentry.org/2010/07/script-for-introduction-to-version-control/" target="_blank">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly from using version control systems.</p>
+<p>Need a lot of text to surround the summary box. Version control systems allow you to record the history of files and share files among several computers and collaborators in a professional way. File changes on one computer are updated or merged with changes on another computer. Especially when working with programs or technical reports it is essential to have changes documented and to ensure that every computer and person involved in the project have the latest updates of the files. Greg Wilson' excellent <a href="https://software-carpentry.org/2010/07/script-for-introduction-to-version-control/" target="_blank">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly from using version control systems.
+</p>
 
 <div class="alert alert-block alert-summary alert-text-normal">
 <b>Summary</b>
 <p>
-<p><b>Bold remark:</b> Make some text with this summary. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content.</p>
+<p><b>Bold remark:</b> Make some text with this summary. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content.
+</p>
 </div>
 
 
-<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site "in the cloud" and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
+<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site "in the cloud" and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.
+</p>
 
-<p>The simplest services for hosting project files are <a href="https://dropbox.com" target="_blank">Dropbox</a> and <a href="https://drive.google.com" target="_blank">Google Drive</a>. It is very easy to get started with these systems, and they allow you to share files among laptops and mobile units with as many users as you want. The systems offer a kind of version control in that the files are stored frequently (several times per minute), and you can go back to previous versions for the last 30 days. However, it is challenging  to find the right version from the past when there are so many of them.</p>
+<p>The simplest services for hosting project files are <a href="https://dropbox.com" target="_blank">Dropbox</a> and <a href="https://drive.google.com" target="_blank">Google Drive</a>. It is very easy to get started with these systems, and they allow you to share files among laptops and mobile units with as many users as you want. The systems offer a kind of version control in that the files are stored frequently (several times per minute), and you can go back to previous versions for the last 30 days. However, it is challenging  to find the right version from the past when there are so many of them.
+</p>
 
-<p>More seriously, when several people may edit files simultaneously, it can be difficult detect who did what when, roll back to previous versions, and to manually merge the edits when these are incompatible. Then one needs more sophisticated tools than Dropbox or Google Drive: project hosting services with true version control systems.  The following text aims at providing you with the minimum information to started with such systems. Numerous other tutorials contain more comprehensive material and in-depth explanations of the concepts and tools.</p>
+<p>More seriously, when several people may edit files simultaneously, it can be difficult detect who did what when, roll back to previous versions, and to manually merge the edits when these are incompatible. Then one needs more sophisticated tools than Dropbox or Google Drive: project hosting services with true version control systems.  The following text aims at providing you with the minimum information to started with such systems. Numerous other tutorials contain more comprehensive material and in-depth explanations of the concepts and tools.
+</p>
 
-<p>The idea with project hosting services is that you have the files associated with a project in the cloud. Many people may share these files.  Every time you want to work on the project you explicitly update your version of the files, edit the files as you like, and synchronize the files with the "master version" at the site where the project is hosted.  If you at some point need to go back to a version of the files at some particular point in the past, this is an easy operation. You can also use tools to see what various people have done with the files in the various versions.</p>
+<p>The idea with project hosting services is that you have the files associated with a project in the cloud. Many people may share these files.  Every time you want to work on the project you explicitly update your version of the files, edit the files as you like, and synchronize the files with the "master version" at the site where the project is hosted.  If you at some point need to go back to a version of the files at some particular point in the past, this is an easy operation. You can also use tools to see what various people have done with the files in the various versions.
+</p>
 
-<p>All these services are very similar. Below we describe how you get started with Bitbucket, GitHub, and Googlecode. Launchpad works very similarly to the latter three. All the project hosting services have excellent introductions available at their web sites, but the recipes below are much shorter and aim at getting you started as quickly as possible by concentrating on the most important need-to-know steps. The Git tutorials we refer to later in this document contain more detailed information and constitute of course very valuable readings when you use version control systems every day. The point now is to get started.</p>
+<p>All these services are very similar. Below we describe how you get started with Bitbucket, GitHub, and Googlecode. Launchpad works very similarly to the latter three. All the project hosting services have excellent introductions available at their web sites, but the recipes below are much shorter and aim at getting you started as quickly as possible by concentrating on the most important need-to-know steps. The Git tutorials we refer to later in this document contain more detailed information and constitute of course very valuable readings when you use version control systems every day. The point now is to get started.
+</p>
 <h2 id="appendix-testing-inline-comments">Appendix: Testing inline comments </h2>
 
 <p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site "in the cloud" and updated through communication with that site. 
 
-<font color="red">(<b>hpl's semi opinion 1</b>: not sure if in the cloud is understood by all.)</font>
+<font color="red">(<b>hpl's semi opinion 1</b>: not sure if in the cloud is  understood by  all.)</font>
 
- I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
+ I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.
+</p>
 
 <p>The simplest services for hosting project files is Dropbox. 
 
-<font color="red">(<b>mp 2</b>: Simply go to <a href="https://dropbox.com" target="_blank"><tt>https://dropbox.com</tt></a> and watch the video. It explains how files, like <code>myfile.py</code>, perhaps containing much math, like $latex \partial u/\partial t$, are easily communicated between machines.)</font>
+<font color="red">(<b>mp 2</b>: Simply go to <a href="https://dropbox.com" target="_blank"><tt>https://dropbox.com</tt></a> and watch the video. It explains how files, like <code>myfile.py</code>, perhaps containing much math, like  $latex \partial u/\partial t$, are easily communicated between machines.)</font>
 
- It is very easy to get started with Dropbox, and it allows you to share files among  <font color="red">(<b>hpl 3</b>:)</font> <del> laptops and mobile units </del> <font color="red">computers, tablets, and phones</font>.</p>
+ It is very easy to get started with Dropbox, and it allows you to share files among  <font color="red">(<b>hpl 3</b>:)</font> <del> laptops and mobile units </del> <font color="red">computers, tablets,  and phones</font>.
+</p>
 
 
 
 <hr>
 
-<p>First<font color="red">, (<b>edit 4</b>: add comma)</font> consider a quantity $latex Q$.  <font color="red">(<b>edit 5</b>:)</font> <del> To this end, </del> <font color="red">We note that</font> $latex Q>0$, because  <font color="red">(<b>edit 6</b>:)</font> <del> a </del> negative  <font color="red">(<b>edit 7</b>:)</font> <del> quantity is </del> <font color="red">quantities are</font>  <font color="red">(<b>edit 8</b>:)</font> <del> just </del> negative.  <font color="red">(<b>edit 9</b>:) This comes as no surprise.</font></p>
+<p>First<font color="red">, (<b>edit 4</b>: add comma)</font> consider a quantity $latex Q$.  <font color="red">(<b>edit 5</b>:)</font> <del> To this end, </del> <font color="red">We note that</font> $latex Q>0$, because  <font color="red">(<b>edit 6</b>:)</font> <del> a </del> negative  <font color="red">(<b>edit 7</b>:)</font> <del> quantity is </del> <font color="red">quantities  are</font>  <font color="red">(<b>edit 8</b>:)</font> <del> just </del> negative.  <font color="red">(<b>edit 9</b>:) This comes as no surprise.</font>
+</p>
 
 <p>Let us refer to Figure <a href="#fig:impact">1</a> again.</p>
 
@@ -39629,20 +40152,25 @@ $latex  y(x) = e^{-y}. $
 </ul>
 <h2 id="appendix-testing-headings-ending-with-verbatim-inline">Appendix: Testing headings ending with <code>verbatim inline</code> </h2>
 
-<p>The point here is to test 1) <code>verbatim</code> code in headings, and 2) ending a heading with verbatim code as this triggers a special case in LaTeX.</p>
+<p>The point here is to test 1) <code>verbatim</code> code in headings, and 2) ending a heading with verbatim code as this triggers a special case in LaTeX.
+</p>
 
-<p>We also test mdash&mdash;used as alternative to hyphen without spaces around, or in quotes:</p>
+<p>We also test mdash&mdash;used as alternative to hyphen without spaces around, or in quotes:
+</p>
 
 <blockquote>
     <p><em>Fun is fun</em>.&mdash;Unknown.</p>
 </blockquote>
 
 
-<p>The ndash should also be tested &ndash; as in the Hanson&ndash;Nilson equations on page 277&ndash;278.</p>
+<p>The ndash should also be tested &ndash; as in the Hanson&ndash;Nilson equations on page 277&ndash;278.
+</p>
 
-<p>And finally, what about admons, quotes, and boxes? They are tested in a separate document: <code>admon.do.txt</code>.</p>
+<p>And finally, what about admons, quotes, and boxes? They are tested in a separate document: <code>admon.do.txt</code>.
+</p>
 
-<p><p id="def_footnote_5"><a href="#link_footnote_5"><b>5:</b></a> Not much to add here, but the footnote is at the end with only one newline.</p></p>
+<p><p id="def_footnote_5"><a href="#link_footnote_5"><b>5:</b></a> Not much to add here, but the footnote is at the end with only one newline.</p>
+</p>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
 <center style="font-size:80%">
@@ -40129,12 +40657,19 @@ MathJax.Hub.Config({
 
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<p>The format of this document is plain, homemade HTML (from DocOnce).</p>
+<p>The format of this document is
+plain, homemade HTML (from DocOnce).
+</p>
 
 <p>
-<b>Abstract.</b> This is a document with many test constructions for doconce syntax. It was used heavily for the development and kept for testing numerous constructions, also special and less common cases.</p>
+<b>Abstract.</b> This is a document with many test constructions for doconce syntax.
+It was used heavily for the development and kept for testing
+numerous constructions, also special and less common cases.
+</p>
 
-<p>And exactly for test purposes we have an extra line here, which is part of the abstract.</p>
+<p>And exactly for test purposes we have an extra line here, which
+is part of the abstract.
+</p>
 
 <!-- Cannot demonstrate chapter headings since abstract and chapter -->
 <!-- are mutually exclusive in LaTeX -->
@@ -40172,27 +40707,56 @@ MathJax.Hub.Config({
   <li> item2</li>
 </ul>
 <blockquote>
-    <p>Here are two lines that make up a block quote for testing <em>emphasized words</em> and <b>boldface words</b>, also with hypens: <em>pre</em>-fix, post-<em>fix</em>, <b>pre</b>-fix, post-<b>fix</b>.</p>
+    <p>Here are two lines that make up
+    a block quote for testing <em>emphasized words</em> and <b>boldface words</b>,
+    also with hypens:
+    <em>pre</em>-fix, post-<em>fix</em>, <b>pre</b>-fix, post-<b>fix</b>.
+    </p>
 </blockquote>
 
 
-<p>Here are two references. Equation&nbsp;\eqref{my:eq1} is fine. Eq.&nbsp;\eqref{my:eq1} too. Even Equation \eqref{my:eq1} without the tilde. This equation appears in another part if this document is split.</p>
+<p>Here are two references. Equation&nbsp;\eqref{my:eq1} is fine. Eq.&nbsp;\eqref{my:eq1} too.
+Even Equation \eqref{my:eq1} without the tilde.
+This equation appears in another part if this document is split.
+</p>
 
-<p>Let us add a paragraph to test that HTML, with WordPress (<code>--wordpress</code> option) can handle linebreaks</p>
+<p>Let us add a paragraph to
+test that HTML,
+with WordPress
+(<code>--wordpress</code> option)
+can handle linebreaks
 <em>correctly</em>,
-<p>even when lines begin with <b>bold words</b> and <code>verbatim words</code> in <font color="red">red color</font>, and <a href="https://google.com" target="_self">links</a> as well as math:</p>
+even when lines begin with
+<b>bold words</b> and
+<code>verbatim words</code> in
+<font color="red">red color</font>, and
+<a href="https://google.com" target="_self">links</a> as well as math:
 \( 1+1=2 \).
+</p>
 
-<p>Test also that <em>emphasize</em> at the end of line, and <b>bold</b> works, as well as <font color="blue">color</font> and <a href="https://google.com" target="_self">links2</a> and <code>verbatim</code> as well.</p>
+<p>Test also that <em>emphasize</em>
+at the end of line, and <b>bold</b>
+works, as well as <font color="blue">color</font>
+and <a href="https://google.com" target="_self">links2</a>
+and <code>verbatim</code>
+as well.
+</p>
 <h2 id="subsec1">Subsection 1</h2>
 
 <!-- Refer to section/appendix etc. at the beginning of the line -->
 <!-- and other special fix situations for HTML. -->
 
-<p>More text, with a reference back to the section <a href="#sec1">Section 1</a> and <a href="#subsec1">Subsection 1</a>, and further to the the sections <a href="#subsec1">Subsection 1</a> and <a href="#subsubsec:ex">URLs</a>, which encourages you to do the tasks in <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.  <a href="#app1">Appendix: Just for testing; part I</a> and <a href="#app2">Appendix: Just for testing; part II</a> are also nice elements.</p>
+<p>More text, with a reference back to
+the section <a href="#sec1">Section 1</a> and <a href="#subsec1">Subsection 1</a>, and further to the
+the sections <a href="#subsec1">Subsection 1</a> and <a href="#subsubsec:ex">URLs</a>, which
+encourages you to do the tasks in <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.
+ <a href="#app1">Appendix: Just for testing; part I</a> and <a href="#app2">Appendix: Just for testing; part II</a> are also nice elements.
+</p>
 <h3 id="test-section-reference-at-beginning-of-line-and-after-a-sentence">Test Section reference at beginning of line and after a sentence </h3>
 
-<p>The section <a href="#subsec1">Subsection 1</a> is fine. The section <a href="#subsubsec:ex">URLs</a> too.</p>
+<p>The section <a href="#subsec1">Subsection 1</a> is fine.
+The section <a href="#subsubsec:ex">URLs</a> too.
+</p>
 
 <!-- sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console -->
 <h3 id="computer-code">Computer code </h3>
@@ -40265,7 +40829,9 @@ C     END1
   </div>
 </div>
 
-<p>and finally the complete file with a plain text verbatim environment (<code>envir=ccq</code>):</p>
+<p>and finally the complete file with a plain text verbatim environment
+(<code>envir=ccq</code>):
+</p>
 
 <!-- code=text (!bc ccq) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -40350,7 +40916,9 @@ def f(x):
   </div>
 </div>
 
-<p>Test paragraph and subsubsection headings before before code.</p>
+<p>Test paragraph and subsubsection headings before
+before code.
+</p>
 
 <p>
 <b>Paragraph heading before code.</b>
@@ -40411,7 +40979,9 @@ sys<span style="color: #666666">.</span>path<span style="color: #666666">.</span
   </div>
 </div>
 
-<p>Some more Python code (actually specified as a sage cell, but such cells are not supported by this format).</p>
+<p>Some more Python code (actually specified as a sage cell, but
+such cells are not supported by this format).
+</p>
 
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
@@ -40686,7 +41256,10 @@ function show_hide_code(){
   </div>
 </div>
 
-<p>But inline HTML code is also important, like text that starts with <code>&lt;a href=&quot;</code> (which can destroy the following text if not properly quoted).</p>
+<p>But inline HTML code is also important, like text that starts with
+<code>&lt;a href=&quot;</code> (which can destroy the following text if not properly
+quoted).
+</p>
 
 <p>Matlab with comments requires special typesetting:</p>
 
@@ -40861,9 +41434,22 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
   </div>
 </div>
 
-<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>. Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>. Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
+<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline
+inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For
+spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>.
+Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>.
+Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>,
+<code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.
+</p>
 
-<p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with green color containing a linebreak<br /> code.</font> Some formats will only display <br /> this correctly when <code>html</code> <br /> is the output format. But here some more running text is added which is not part of the previous blocks with line breaks.</p>
+<p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with
+green color containing a linebreak<br />
+code.</font> Some formats will only display <br />
+this correctly when <code>html</code> <br />
+is the output format.
+But here some more running text is added which is not part of
+the previous blocks with line breaks.
+</p>
 <h3 id="running-os-commands">Running OS commands </h3>
 
 
@@ -40894,7 +41480,9 @@ Python.
 </div>
 <h3 id="footnotes">Footnotes </h3>
 
-<p>Here is a test of footnotes [<a id="link_footnote_1" href="#def_footnote_1">1</a>], which are handy in text. They are used in different flavors, now in</p>
+<p>Here is a test of footnotes [<a id="link_footnote_1" href="#def_footnote_1">1</a>], which are handy in text.
+They are used in different flavors, now in
+</p>
 
 <ul>
  <li> list items (note below that footnotes work after math, verbatim, and URLs - bin fact old and emphasize too!)</li>
@@ -40902,27 +41490,50 @@ Python.
  <li> and code <code>h[i] += 1</code> [<a id="link_footnote_3" href="#def_footnote_3">3</a>] (<em>must</em> have space between inline code and footnote!)</li>
  <li> and <a href="https://google.com" target="_self">links</a> [<a id="link_footnote_4" href="#def_footnote_4">4</a>]</li>
 </ul>
-<p>which gives flexibility in writing. This is the third [<a id="link_footnote_5" href="#def_footnote_5">5</a>] example.</p>
+<p>which gives flexibility in writing.
+This is the third [<a id="link_footnote_5" href="#def_footnote_5">5</a>] example.
+</p>
 
-<p><p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> Typesetting of the footnote depends on the format. Plain text does nothing, LaTeX removes the definition and inserts the footnote as part of the LaTeX text. reStructuredText and Sphinx employ a similar type of typesetting as Extended Markdown and DocOnce, and in HTML we keep the same syntax, just displayed properly in HTML.</p></p>
+<p><p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> Typesetting of the footnote depends on the format.
+Plain text does nothing, LaTeX removes the
+definition and inserts the footnote as part of the LaTeX text.
+reStructuredText and Sphinx employ a similar type of typesetting
+as Extended Markdown and DocOnce, and in HTML we keep the same
+syntax, just displayed properly in HTML.</p>
+</p>
 
-<p><p id="def_footnote_2"><a href="#link_footnote_2"><b>2:</b></a> Math footnotes can be dangerous since it interferes with an exponent.</p></p>
+<p><p id="def_footnote_2"><a href="#link_footnote_2"><b>2:</b></a> Math footnotes can be dangerous since it
+interferes with an exponent.</p>
+</p>
 
 <p id="def_footnote_3"><a href="#link_footnote_3"><b>3:</b></a> One-line footnote.</p>
 
-<p><p id="def_footnote_4"><a href="#link_footnote_4"><b>4:</b></a> <a href="google.com" target="_self"><tt>google.com</tt></a> is perhaps the most famous web site today.</p></p>
+<p><p id="def_footnote_4"><a href="#link_footnote_4"><b>4:</b></a> <a href="google.com" target="_self"><tt>google.com</tt></a> is perhaps the most famous
+web site today.</p>
+</p>
 
-<p>Here is some more text before a new definition of a footnote that was used above.</p>
+<p>Here is some more text before a new definition of a footnote that was
+used above.
+</p>
 
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Non-breaking space character</b>
 <p>
-<p>This paragraph aims to test <a href="https://en.wikipedia.org/wiki/Non-breaking_space" target="_self">non-breaking space character</a>, and a typical example where this is needed is in physical units: 7.4&nbsp;km is traveled in&nbsp;\( 7.4/5.5\approx 1.345 \)&nbsp;s.  Also check that a&nbsp;<a href="https://google.com" target="_self">link</a>&nbsp;is not broken across lines (drag the browser window to test this). (On the other hand, the tilde is used in computer code, e.g., as in <code>[~x for x in y]</code> or in <code>y=~x</code>, and should of course remain a tilde in those contexts.)</p>
+<p>This paragraph aims to test <a href="https://en.wikipedia.org/wiki/Non-breaking_space" target="_self">non-breaking space character</a>, and a typical
+example where this is needed is in physical units: 7.4&nbsp;km is traveled
+in&nbsp;\( 7.4/5.5\approx 1.345 \)&nbsp;s.  Also check that a&nbsp;<a href="https://google.com" target="_self">link</a>&nbsp;is
+not broken across lines (drag the browser window to test this).
+(On the other hand, the tilde is used in
+computer code, e.g., as in <code>[~x for x in y]</code> or in <code>y=~x</code>, and should
+of course remain a tilde in those contexts.)
+</p>
 </div>
 
 <h2 id="subsec:ex">Subsection 2: Testing figures</h2>
 
-<p>Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which there is a flow.</p>
+<p>Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which
+there is a flow.
+</p>
 
 <center> <!-- figure label: --> <div id="fig:impact"></div> <!-- FIGURE -->
 <hr class="figure">
@@ -40941,7 +41552,9 @@ Python.
 
 <!-- Test multi-line caption in figure with sidecap=True -->
 
-<p>Here is figure <a href="#myfig">2</a> with a long (illegal) multi-line caption containing inline verbatim text:</p>
+<p>Here is figure <a href="#myfig">2</a> with a long (illegal) multi-line caption
+containing inline verbatim text:
+</p>
 
 <center> <!-- figure label: --> <div id="myfig"></div> <!-- FIGURE -->
 <hr class="figure">
@@ -40975,7 +41588,21 @@ Python.
 <p>
 <!-- Bokeh plot -->
 <script type="text/javascript">
-<p>            Bokeh.$(function() {                 var modelid = "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1";                 var modeltype = "PlotContext";                 var elementid = "ffba6087-a45a-46eb-9368-11527f1f0a34";                 Bokeh.logger.info("Realizing plot:")                 Bokeh.logger.info(" - modeltype: PlotContext");                 Bokeh.logger.info(" - modelid: dc6ef912-b325-4c34-996a-cdeb5aa4d7c1");                 Bokeh.logger.info(" - elementid: ffba6087-a45a-46eb-9368-11527f1f0a34");                 var all_models = [{"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 1.0}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, "type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, {"attributes": {"column_names": ["x", "y"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selected": {"2d": {"indices": []}, "1d": {"indices": []}, "0d": {"indices": [], "flag": false}}, "callback": null, "data": {"y": [0.0, 1.0, 8.0, 27.0], "x": [0.0, 1.0, 2.0, 3.0]}, "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, "type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, "type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397", "renderers": []}, "type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, "type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, "type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, "type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, "type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed", "tags": []}, "type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748", "attributes": {"x_range": {"type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, "right": [], "tags": [], "tools": [{"type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}], "title": "Bokeh test", "extra_y_ranges": {}, "renderers": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}], "extra_x_ranges": {}, "below": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}], "tool_events": {"type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "above": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y_range": {"type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, "id": "bac26888-fe18-4833-afe3-61e241eed748", "left": [{"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}]}}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0", "renderers": []}, "type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1", "children": [{"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}]}, "type": "PlotContext", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1"}, {"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 0.1}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, "type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, "type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 1, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, "type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"attributes": {"nonselection_glyph": {"type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "data_source": {"type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "name": null, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selection_glyph": null, "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c", "glyph": {"type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}}, "type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 0, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, "type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, "type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"attributes": {"geometries": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8", "tags": []}, "type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}];                 Bokeh.load_models(all_models);                 var model = Bokeh.Collections(modeltype).get(modelid);                 var view = new model.default_view({model: model, el: '#ffba6087-a45a-46eb-9368-11527f1f0a34'});                 Bokeh.index[modelid] = view             });</p>
+<p>            Bokeh.$(function() {
+                var modelid = "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1";
+                var modeltype = "PlotContext";
+                var elementid = "ffba6087-a45a-46eb-9368-11527f1f0a34";
+                Bokeh.logger.info("Realizing plot:")
+                Bokeh.logger.info(" - modeltype: PlotContext");
+                Bokeh.logger.info(" - modelid: dc6ef912-b325-4c34-996a-cdeb5aa4d7c1");
+                Bokeh.logger.info(" - elementid: ffba6087-a45a-46eb-9368-11527f1f0a34");
+                var all_models = [{"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 1.0}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, "type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, {"attributes": {"column_names": ["x", "y"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selected": {"2d": {"indices": []}, "1d": {"indices": []}, "0d": {"indices": [], "flag": false}}, "callback": null, "data": {"y": [0.0, 1.0, 8.0, 27.0], "x": [0.0, 1.0, 2.0, 3.0]}, "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, "type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, "type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397", "renderers": []}, "type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, "type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, "type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, "type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, "type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed", "tags": []}, "type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748", "attributes": {"x_range": {"type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, "right": [], "tags": [], "tools": [{"type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}], "title": "Bokeh test", "extra_y_ranges": {}, "renderers": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}], "extra_x_ranges": {}, "below": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}], "tool_events": {"type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "above": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y_range": {"type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, "id": "bac26888-fe18-4833-afe3-61e241eed748", "left": [{"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}]}}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0", "renderers": []}, "type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1", "children": [{"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}]}, "type": "PlotContext", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1"}, {"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 0.1}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, "type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, "type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 1, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, "type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"attributes": {"nonselection_glyph": {"type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "data_source": {"type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "name": null, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selection_glyph": null, "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c", "glyph": {"type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}}, "type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 0, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, "type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, "type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"attributes": {"geometries": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8", "tags": []}, "type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}];
+                Bokeh.load_models(all_models);
+                var model = Bokeh.Collections(modeltype).get(modelid);
+                var view = new model.default_view({model: model, el: '#ffba6087-a45a-46eb-9368-11527f1f0a34'});
+                Bokeh.index[modelid] = view
+            });
+</p>
         </script>
 <div class="plotdiv" id="ffba6087-a45a-46eb-9368-11527f1f0a34"></div></p>
 </center>
@@ -40983,12 +41610,15 @@ Python.
 
 <p>
 <b>Remark.</b>
- Movies are tested in separate file <code>movies.do.txt</code>.</p>
+Movies are tested in separate file <code>movies.do.txt</code>.
+</p>
 
 <!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
 <h2 id="decay:sec:theta">The \( \theta \) parameter (not \( \nabla \)?)</h2>
 
-<p>Functions do not always need to be advanced, here is one involving \( \theta \):</p>
+<p>Functions do not always need to be advanced, here is one
+involving \( \theta \):
+</p>
 
 <!-- code=text (!bc ccq) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -41018,7 +41648,10 @@ Python.
 <b>More on \( \theta \).</b>
 Here is more text following headline with math.</p>
 
-<p>Newcommands must also be tested in this test report: \( \frac{1}{2} \), \( {1/2} \), \( \pmb{x} \), \( \frac{Du}{dt} \), both inline and in block:</p>
+<p>Newcommands must also be tested in this test report:
+\( \frac{1}{2} \), \( {1/2} \), \( \pmb{x} \), \( \frac{Du}{dt} \),
+both inline and in block:
+</p>
 
 $$
 \begin{align}
@@ -41150,24 +41783,32 @@ A \\ B
 <p>Now we refer to \eqref{mymatrix:eq1}-\eqref{mymatrix:eq2}.</p>
 <h2 id="custom-environments">Custom Environments </h2>
 
-<p>Here is an attempt to create a theorem environment via Mako (for counting theorems) and comment lines to help replacing lines in the <code>.tex</code> by proper begin-end LaTeX environments for theorems. Should look nice in most formats!</p>
+<p>Here is an attempt to create a theorem environment via Mako
+(for counting theorems) and comment lines to help replacing lines in
+the <code>.tex</code> by proper begin-end LaTeX environments for theorems.
+Should look nice in most formats!
+</p>
 
 <!-- begin theorem -->
 <div id="theorem:fundamental1"></div>
 
 <p>
 <b>Theorem 5.</b>
- Let \( a=1 \) and \( b=2 \). Then \( c=3 \).</p>
+Let \( a=1 \) and \( b=2 \). Then \( c=3 \).
+</p>
 <!-- end theorem -->
 
 <!-- begin proof -->
 <p>
 <b>Proof.</b>
- Since \( c=a+b \), the result follows from straightforward addition.</p>
+Since \( c=a+b \), the result follows from straightforward addition.
 \( \Diamond \)
+</p>
 <!-- end proof -->
 
-<p>As we see, the proof of Theorem 5 is a modest achievement.</p>
+<p>As we see, the proof of Theorem 5 is a modest
+achievement.
+</p>
 <h2 id="subsec:table">Tables</h2>
 
 <!-- index with comma could fool sphinx -->
@@ -41216,7 +41857,9 @@ A \\ B
   </div>
 </div>
 
-<p>Here is yet another table to test that we can handle more than one table:</p>
+<p>Here is yet another table to test that we can handle more than
+one table:
+</p>
 
 <table class="table" border="1">
 <thead>
@@ -41229,7 +41872,10 @@ A \\ B
 </tbody>
 </table>
 
-<p>And one with math headings (that are expanded and must be treated accordingly), verbatim heading and entry, and no space around the pipe symbol:</p>
+<p>And one with math headings (that are expanded and must be treated
+accordingly), verbatim heading and entry, and no space around the pipe
+symbol:
+</p>
 
 <table class="table" border="1">
 <thead>
@@ -41246,7 +41892,10 @@ A \\ B
 </tbody>
 </table>
 
-<p>And add one with verbatim headings (with underscores), and rows starting with <code>|-</code> because of a negative number, and <code>|</code> right before and after verbatim word (with no space):</p>
+<p>And add one with verbatim headings (with underscores),
+and rows starting with <code>|-</code> because of a negative number,
+and <code>|</code> right before and after verbatim word (with no space):
+</p>
 
 <table class="table" border="1">
 <thead>
@@ -41260,7 +41909,10 @@ A \\ B
 </tbody>
 </table>
 
-<p>Pipe symbols in verbatim and math text in tables used to pose difficulties, but not anymore:</p>
+<p>Pipe symbols in verbatim and math text in tables used to pose difficulties,
+but not
+anymore:
+</p>
 
 <table class="table" border="1">
 <thead>
@@ -41284,7 +41936,11 @@ A \\ B
 </tbody>
 </table>
 
-<p>Finally, a table with math (<code>bm</code> that expands to <code>boldsymbol</code>, was tricky, but cleanly handled now) and URLs.</p>
+<p>Finally, a table with math
+(<code>bm</code> that expands to <code>boldsymbol</code>, was tricky, but
+cleanly handled now)
+and URLs.
+</p>
 
 <!-- Mako code to expand URLs in the table -->
 <!-- (These types of tables did not work before Jan 2014) -->
@@ -41301,7 +41957,9 @@ A \\ B
 
 <p>
 <b>Paragraph with verbatim and math: <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \( a_{i-1} \).</b>
-Here is more <code>__verbatim__</code> code and some plain text on a new line.</p>
+Here is more <code>__verbatim__</code> code and
+some plain text on a new line.
+</p>
 
 <!-- Test various types of headlines -->
 <h2 id="_just-bold_"><b>Just bold</b> </h2>
@@ -41375,7 +42033,10 @@ Some text.</p>
 
 <p>
 <b>Ampersand.</b>
- We can test Hennes &amp; Mauritz, often abbreviated H&amp;M, but written as <code>Hennes & Mauritz</code> and <code>H & M</code>. A sole <code>&</code> must also work.</p>
+We can test Hennes &amp; Mauritz, often abbreviated H&amp;M, but written
+as <code>Hennes & Mauritz</code> and <code>H & M</code>.
+A sole <code>&</code> must also work.
+</p>
 <!-- Note: substitutions must not occur inside verbatim, just in ordinary text. -->
 
 
@@ -41405,55 +42066,102 @@ c = a &amp; b
 
 <p>
 <b>Quotes.</b>
- Let us also add a test of quotes such as &quot;double quotes, with numbers like 3.14 and newline/comma and hyphen (as in double-quote)&quot;; written in the standard LaTeX-style that gives correct LaTeX formatting and ordinary double quotes for all non-LaTeX formats.  Here is another sentence that &quot;caused&quot; a bug in the past because double backtick quotes could imply verbatim text up to a verbatim word starting with period, like <code>.txt</code>.</p>
+Let us also add a test of quotes such as &quot;double quotes, with numbers
+like 3.14 and newline/comma and hyphen (as in double-quote)&quot;; written
+in the standard LaTeX-style that gives correct LaTeX formatting and
+ordinary double quotes for all non-LaTeX formats.  Here is another
+sentence that &quot;caused&quot; a bug in the past because double backtick
+quotes could imply verbatim text up to a verbatim word starting with
+period, like <code>.txt</code>.
+</p>
 
-<p>More quotes to be tested for spellcheck: (&quot;with parenthesis&quot;), &quot;with newline&quot; and &quot;with comma&quot;, &quot;hyphen&quot;-wise, and &quot;period&quot;.</p>
+<p>More quotes to be tested for spellcheck:
+(&quot;with parenthesis&quot;), &quot;with newline&quot;
+and &quot;with comma&quot;, &quot;hyphen&quot;-wise, and &quot;period&quot;.
+</p>
 <h2 id="bibliography-test">Bibliography test </h2>
 
-<p>Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of large destructive water waves, <a href="#Langtangen_et_al_2002">[2]</a> gave an overview of numerical methods for solving the Navier&ndash;Stokes equations, while the use of Backward Kolmogorov equations for analyzing random vibrations was investigated in <a href="#Langtangen_1994a">[3]</a>. The book chapter <a href="#Mardal_et_al_2003a">[4]</a> contains information on C++ software tools for programming multigrid methods. A real retro reference is <a href="#Langtangen_1988d">[5]</a> about a big FORTRAN package. Multiple references are also possible, e.g., see <a href="#Langtangen_Pedersen_2002">[1]</a> <a href="#Mardal_et_al_2003a">[4]</a>.</p>
+<p>Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of
+large destructive water waves, <a href="#Langtangen_et_al_2002">[2]</a> gave
+an overview of numerical methods for solving the Navier&ndash;Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in <a href="#Langtangen_1994a">[3]</a>.
+The book chapter <a href="#Mardal_et_al_2003a">[4]</a> contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is <a href="#Langtangen_1988d">[5]</a> about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+<a href="#Langtangen_Pedersen_2002">[1]</a> <a href="#Mardal_et_al_2003a">[4]</a>.
+</p>
 
-<p>We need to cite more than 10 papers to reproduce an old formatting problem with blanks in the keys in reST format:</p>
+<p>We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+</p>
 <a href="#Langtangen_1992c">[6]</a> <a href="#Langtangen_1994a">[3]</a> <a href="#Mortensen_et_al_2011">[7]</a> <a href="#Langtangen_Pedersen_2002">[1]</a>
 <p>and</p>
 <a href="#Langtangen_et_al_2002">[2]</a> <a href="#Glimsdal_et_al_20006">[8]</a> <a href="#Rahman_et_al_2006b">[9]</a> <a href="#Haga_et_al_2011a">[10]</a> <a href="#Langtangen_2003a">[11]</a> <a href="#Langtangen_2008a">[12]</a> <a href="#Langtangen:95">[13]</a>
-<p>and all the work of <a href="#Langtangen_2012">[14]</a> <a href="#Mardal_et_al_2003a">[4]</a> <a href="#Jeberg_et_al_2004">[15]</a> as well as old work <a href="#Langtangen_1988d">[5]</a> and <a href="#Langtangen_1989e">[16]</a>, and the talk <a href="#Langtangen_talk_2007a">[17]</a>. Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen_1989e">[16]</a> back in the days. More retro citations are the old ME-IN323 book <a href="#Langtangen:91">[19]</a> and the <a href="#Langtangen:94b">[20]</a> OONSKI '94 paper.</p>
+<p>and all the work of
+<a href="#Langtangen_2012">[14]</a> <a href="#Mardal_et_al_2003a">[4]</a> <a href="#Jeberg_et_al_2004">[15]</a> as well as
+old work <a href="#Langtangen_1988d">[5]</a> and <a href="#Langtangen_1989e">[16]</a>, and the
+talk <a href="#Langtangen_talk_2007a">[17]</a>.
+Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen_1989e">[16]</a>
+back in the days.
+More retro citations are
+the old ME-IN323 book <a href="#Langtangen:91">[19]</a> and the
+<a href="#Langtangen:94b">[20]</a> OONSKI '94 paper.
+</p>
 
 <!-- --- begin exercise --- -->
 <h2 id="Example">Example 1: Examples can be typeset as exercises</h2>
 
-<p>Examples can start with a subsection heading starting with <code>Example:</code> and then, with the command-line option <code>--examples_as_exercises</code> be typeset as exercises. This is useful if one has solution environments as part of the example.</p>
+<p>Examples can start with a subsection heading starting with <code>Example:</code>
+and then, with the command-line option <code>--examples_as_exercises</code> be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+</p>
 
 <p>
 <b>a)</b>
- State some problem.</p>
+State some problem.
+</p>
 
 <p>
 <b>Solution.</b>
- The answer to this subproblem can be written here.</p>
+The answer to this subproblem can be written here.
+</p>
 
 <p>
 <b>b)</b>
- State some other problem.</p>
+State some other problem.
+</p>
 
 <p>
 <b>Hint 1.</b>
- A hint can be given.</p>
+A hint can be given.
+</p>
 
 <p>
 <b>Hint 2.</b>
- Maybe even another hint?</p>
+Maybe even another hint?
+</p>
 
 <p>
 <b>Solution.</b>
- The answer to this other subproblem goes here, maybe over multiple doconce input lines.</p>
+The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+</p>
 
 <!-- --- end exercise --- -->
 <h2 id="user-defined-environments">User-defined environments </h2>
 
-<p>The example in the section <a href="#ex:test:1p1">Example 1: A test function</a> demonstrates how to write a test function. That is, a special test function for a function <code>add</code> appears in the example in the section <a href="#ex:test:1p1">Example 1: A test function</a>.</p>
+<p>The example in the section <a href="#ex:test:1p1">Example 1: A test function</a> demonstrates how to write a test function.
+That is, a special test function for a function <code>add</code> appears in
+the example in the section <a href="#ex:test:1p1">Example 1: A test function</a>.
+</p>
 <h2 id="ex:test:1p1">Example 1: A test function</h2>
 
-<p>Suppose we want to write a test function for checking the implementation of a Python function for addition.</p>
+<p>Suppose we want to write a test function for checking the
+implementation of a Python function for addition.
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -41501,7 +42209,10 @@ $$ 1 + 1 = 2 $$
 </tbody>
 </table>
 
-<p><div style="width: 60%; padding: 10px; border: 1px solid #000;  border-radius: 4px; box-shadow: 8px 8px 5px #888888;  background: #cce5ff;"></p>
+<p><div style="width: 60%; padding: 10px; border: 1px solid #000;
+ border-radius: 4px; box-shadow: 8px 8px 5px #888888;
+ background: #cce5ff;">
+</p>
  <b>Highlight box!</b><hr>
 <p>This environment is used to highlight something:</p>
 
@@ -41510,15 +42221,36 @@ $$ E = mc^2 $$
 </div>
 <h2 id="subsubsec:ex">URLs</h2>
 
-<p>Testing of URLs: hpl's home page <a href="https://folk.uio.no/hpl" target="_self">hpl</a>, or the entire URL if desired, <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>.  Here is a plain file link <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self">a link with newline</a>. Can test spaces with the link with word too: <a href="https://folk.uio.no/hpl" target="_self">hpl</a> or <a href="https://folk.uio.no/hpl" target="_self">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" target="_self">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
+<p>Testing of URLs: hpl's home page <a href="https://folk.uio.no/hpl" target="_self">hpl</a>, or
+the entire URL if desired, <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>.  Here is a
+plain file link <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or
+<a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self">a link with
+newline</a>. Can test spaces with the link with word
+too: <a href="https://folk.uio.no/hpl" target="_self">hpl</a> or <a href="https://folk.uio.no/hpl" target="_self">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" target="_self">link to a
+file</a> is
+fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just
+the plain URL as in <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
+</p>
 
 <p>Mail addresses can also be used: <a href="mailto:hpl@simula.no" target="_self"><tt>hpl@simula.no</tt></a>, or just a <a href="mailto:hpl@simula.no" target="_self">mail link</a>, or a raw <a href="mailto:hpl@simula.no" target="_self"><tt>mailto:hpl@simula.no</tt></a>.</p>
 
-<p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" target="_self">Newton-Cotes</a> formulas and a <a href="https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1" target="_self">good book</a>. Need to test Newton-Cotes with percentage in URL too:</p>
+<p>Here are some tough tests of URLs, especially for the <code>latex</code> format:
+<a href="https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" target="_self">Newton-Cotes</a> formulas
+and a <a href="https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1" target="_self">good book</a>. Need to test
+Newton-Cotes with percentage in URL too:
 <a href="https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" target="_self"><tt>https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas</tt></a>
-<p>and <a href="https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae" target="_self"><tt>https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</tt></a> which has a shebang.</p>
+and <a href="https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae" target="_self"><tt>https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</tt></a> which has a shebang.
+</p>
 
-<p>For the <code>--device=paper</code> option it is important to test that URLs with monospace font link text get a footnote (unless the <code>--latex_no_program_footnotelink</code> is used), as in this reference to <a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py" target="_self"><tt>decay_mod</tt></a>, <a href="https://tinyurl.com/pwyasaa/formulas.ball1.py" target="_self"><tt>ball1.py</tt></a>, and <a href="https://tinyurl.com/pwyasaa/formulas.ball2.py" target="_self"><tt>ball2.py</tt></a>.</p>
+<p>For the <code>--device=paper</code> option it is important to test that URLs with
+monospace font link text get a footnote
+(unless the <code>--latex_no_program_footnotelink</code>
+is used), as in this reference to
+<a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py" target="_self"><tt>decay_mod</tt></a>, <a href="https://tinyurl.com/pwyasaa/formulas.ball1.py" target="_self"><tt>ball1.py</tt></a>,
+and <a href="https://tinyurl.com/pwyasaa/formulas.ball2.py" target="_self"><tt>ball2.py</tt></a>.
+</p>
 
 <!-- Comments should be inserted outside paragraphs (because in the rst -->
 <!-- format extra blanks make a paragraph break). -->
@@ -41527,7 +42259,12 @@ $$ E = mc^2 $$
 <!-- if the link name is URL, url, "URL", or "url". Such files should, -->
 <!-- if rst output is desired, but placed in a <code>_static*</code> folder. -->
 
-<p>More tough tests: repeated URLs whose footnotes when using the <code>--device=paper</code> option must be correct. We have <a href="https://google.com" target="_self">google</a>, <a href="https://google.com" target="_self">google</a>, and <a href="https://google.com" target="_self">google</a>, which should result in exactly three footnotes.</p>
+<p>More tough tests: repeated URLs whose footnotes when using the
+<code>--device=paper</code> option must be correct. We have
+<a href="https://google.com" target="_self">google</a>, <a href="https://google.com" target="_self">google</a>, and
+<a href="https://google.com" target="_self">google</a>, which should result in exactly three
+footnotes.
+</p>
 
 <!-- !split and check if these extra words are included properly in the comment -->
 <h1 id="latex-mathematics">LaTeX Mathematics </h1>
@@ -41564,7 +42301,10 @@ b &= \nabla^2 u + \nabla^4 x \label{eq2}
 
 $$
 
-<p>We can refer to \eqref{eq1}-\eqref{eq2}. They are a bit simpler than the Navier&ndash;Stokes equations. And test LaTeX hyphen in <code>CG-2</code>. Also test \( a_{i-j} \) as well as \( kx-wt \).</p>
+<p>We can refer to \eqref{eq1}-\eqref{eq2}. They are a bit simpler than
+the Navier&ndash;Stokes equations. And test LaTeX hyphen in <code>CG-2</code>.
+Also test \( a_{i-j} \) as well as \( kx-wt \).
+</p>
 
 <p>Testing <code>alignat</code> environment:</p>
 
@@ -41577,7 +42317,10 @@ $$
 
 <p>More mathematical typesetting is demonstrated in the coming exercises.</p>
 
-<p>Below, we have <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#demo:ex:2">Project 4: Compute a Probability</a>, as well as <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 11: References in a headings do not work well in html</a>, and in between there we have <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.</p>
+<p>Below, we have <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#demo:ex:2">Project 4: Compute a Probability</a>,
+as well as <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 11: References in a headings do not work well in html</a>, and in
+between there we have <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.
+</p>
 <h1 id="exercises">Exercises </h1>
 
 <!-- --- begin exercise --- -->
@@ -41588,13 +42331,17 @@ $$
 
 <p>
 <b>a)</b>
- Make a program that simulates flipping a coin \( N \) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
+Make a program that simulates flipping a coin \( N \) times.
+Print out &quot;tail&quot; or &quot;head&quot; for each flip and
+let the program count the number of heads.
+</p>
 
 <!-- --- begin hint in exercise --- -->
 
 <p>
 <b>Hint 1.</b>
- Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.</p>
+Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.
+</p>
 
 <!-- --- end hint in exercise --- -->
 
@@ -41602,7 +42349,9 @@ $$
 
 <p>
 <b>Hint 2.</b>
- Draw an integer among \( \{1,2\} \) with <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.</p>
+Draw an integer among \( \{1,2\} \) with
+<code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.
+</p>
 
 <!-- --- end hint in exercise --- -->
 
@@ -41612,20 +42361,29 @@ $$
  -->
 <p>
 <b>b)</b>
- Vectorize the code in a) using boolean indexing.</p>
+Vectorize the code in a) using boolean indexing.
+</p>
 
-<p>Vectorized code can be written in many ways. Sometimes the code is less intuitive, sometimes not. At least there is not much to find in the section <a href="#sec1">Section 1</a>.</p>
+<p>Vectorized code can be written in many ways.
+Sometimes the code is less intuitive, sometimes not.
+At least there is not much to find in the section <a href="#sec1">Section 1</a>.
+</p>
 
 <p>
 <b>c)</b>
- Vectorize the code in a) using <code>numpy.sum</code>.</p>
+Vectorize the code in a) using <code>numpy.sum</code>.
+</p>
 
 <!-- removed !bans ... !eans environment (because of the command-line option --without_answers)
  -->
-<p>In this latter subexercise, we have an example where the code is easy to read.</p>
+<p>In this latter subexercise, we have an
+example where the code is easy to read.
+</p>
 <h3 id="my-remarks">My remarks </h3>
 
-<p>Remarks with such a subsubsection is treated as more text after the last subexercise. Test a list too:</p>
+<p>Remarks with such a subsubsection is treated as more text
+after the last subexercise. Test a list too:
+</p>
 
 <ol>
 <li> Mark 1.</li>
@@ -41643,12 +42401,17 @@ $$
 <!-- --- end exercise --- -->
 <h2 id="not-an-exercise">Not an exercise </h2>
 
-<p>Should be possible to stick a normal section in the middle of many exercises.</p>
+<p>Should be possible to stick a normal section in the middle of many
+exercises.
+</p>
 
 <!-- --- begin exercise --- -->
 <h2 id="my:exer1">Exercise 3: Test of plain text exercise</h2>
 
-<p>Very short exercise. What is the capital of Norway? Filename: <code>myexer1</code>.</p>
+<p>Very short exercise. What is the capital
+of Norway?
+Filename: <code>myexer1</code>.
+</p>
 
 <!-- --- end exercise --- -->
 
@@ -41657,9 +42420,13 @@ $$
 
 <!-- Minimalistic exercise -->
 
-<p>What is the probability of getting a number between 0.5 and 0.6 when drawing uniformly distributed random numbers from the interval \( [0,1) \)?</p>
+<p>What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval \( [0,1) \)?
+</p>
 
-<p>At the end we have a list because that caused problems in LaTeX in previous DocOnce versions:</p>
+<p>At the end we have a list because that caused problems in LaTeX
+in previous DocOnce versions:
+</p>
 
 <ol>
 <li> item1</li>
@@ -41669,7 +42436,11 @@ $$
 
 <p>
 <b>Hint.</b>
- To answer this question empirically, let a program draw \( N \) such random numbers using Python's standard <code>random</code> module, count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and compute the probability as \( M/N \).</p>
+To answer this question empirically, let a program
+draw \( N \) such random numbers using Python's standard <code>random</code> module,
+count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and
+compute the probability as \( M/N \).
+</p>
 
 <!-- --- end hint in exercise --- -->
 
@@ -41690,7 +42461,12 @@ y &= y_0 + R\sin 2\pi t,
 \end{align}
 $$
 
-<p>where \( R \) is the radius of the circle, \( (x_0,y_0) \) is the center point, and \( t \) is a parameter in the unit interval \( [0,1] \). For any \( t \), \( (x,y) \) computed from \eqref{circle:x}-\eqref{circle:y} is a point on the circle. The formula can be used to generate <code>n</code> points on a circle:</p>
+<p>where \( R \) is the radius of the circle, \( (x_0,y_0) \) is the
+center point, and \( t \) is a parameter in the unit interval \( [0,1] \).
+For any \( t \), \( (x,y) \) computed from \eqref{circle:x}-\eqref{circle:y}
+is a point on the circle.
+The formula can be used to generate <code>n</code> points on a circle:
+</p>
 
 
 <!-- code=python (!bc pypro) typeset with pygments style "default" -->
@@ -41727,17 +42503,23 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
 <!-- Often in an exercise we have some comments about the solution -->
 <!-- which we normally want to keep where they are. -->
 
-<p>The goal of this project is to draw \( N \) circles with random center and radius. Plot each circle using the <code>circle</code> function above.</p>
+<p>The goal of this project is to draw \( N \) circles with random
+center and radius. Plot each circle using the <code>circle</code> function
+above.
+</p>
 
 <p>
 <b>a)</b>
- Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.</p>
+Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
+</p>
 
 <!-- --- begin hint in exercise --- -->
 
 <p>
 <b>Hint.</b>
- Use the <code>numpy.random</code> module to draw the \( x_0 \), \( y_0 \), and \( R \) quantities.</p>
+Use the <code>numpy.random</code> module to draw the
+\( x_0 \), \( y_0 \), and \( R \) quantities.
+</p>
 
 <!-- --- end hint in exercise --- -->
 
@@ -41747,18 +42529,23 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
  -->
 <p>
 <b>b)</b>
- Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed. Filename: <code>norm</code>.</p>
+Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed.
+Filename: <code>norm</code>.
+</p>
 
 <p>
 <b>c)</b>
- Let \( R \) and \( (x_0,y_0) \) be normally distributed.</p>
+Let \( R \) and \( (x_0,y_0) \) be normally distributed.
+</p>
 
 <p>Filename: <code>circles</code>.</p>
 
 <!-- Closing remarks for this Project -->
 <h3 id="remarks">Remarks </h3>
 
-<p>At the very end of the exercise it may be appropriate to summarize and give some perspectives.</p>
+<p>At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+</p>
 
 <!-- --- end exercise --- -->
 
@@ -41771,13 +42558,16 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
  -->
 <p>
 <b>a)</b>
- Subexercises are numbered a), b), etc.</p>
+Subexercises are numbered a), b), etc.
+</p>
 
 <!-- --- begin hint in exercise --- -->
 
 <p>
 <b>Hint 1.</b>
- First hint to subexercise a). With math \( a=b \) in hint:</p>
+First hint to subexercise a).
+With math \( a=b \) in hint:
+</p>
 
 $$ a=b. $$
 
@@ -41815,7 +42605,8 @@ $$ a=b. $$
 
 <p>
 <b>Hint 2.</b>
- Second hint to subexercise a).</p>
+Second hint to subexercise a).
+</p>
 
 <p>Test list in hint:</p>
 
@@ -41830,7 +42621,8 @@ $$ a=b. $$
  -->
 <p>
 <b>b)</b>
- Here goes the text for subexercise b).</p>
+Here goes the text for subexercise b).
+</p>
 
 <p>Some math \( \cos^2 x + \sin^2 x = 1 \) written one a single line:</p>
 
@@ -41841,7 +42633,8 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 
 <p>
 <b>Hint.</b>
- A hint for this subexercise.</p>
+A hint for this subexercise.
+</p>
 
 <!-- --- end hint in exercise --- -->
 <p>Filename: <code>subexer_b.pdf</code>.</p>
@@ -41849,7 +42642,9 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 <!-- removed !bsol ... !esol environment (because of the command-line option --without_solutions)
  -->
 <!-- No meaning in this weired test example: -->
-<p>The text here belongs to the main (intro) part of the exercise. Need closing remarks to have text after subexercises.</p>
+<p>The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+</p>
 
 <p>Test list in exercise:</p>
 
@@ -41860,7 +42655,10 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 </ol>
 <h3 id="remarks">Remarks </h3>
 
-<p>Some final closing remarks, e.g., summarizing the main findings and their implications in other problems can be made. These remarks will appear at the end of the typeset exercise.</p>
+<p>Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+</p>
 
 <!-- --- end exercise --- -->
 
@@ -41869,7 +42667,9 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 
 <!-- Another minimalistic exercise -->
 
-<p>Just some text. And some math saying that \( e^0=1 \) on a single line, to test that math block insertion is correct:</p>
+<p>Just some text. And some math saying that \( e^0=1 \) on a single line,
+to test that math block insertion is correct:
+</p>
 
 $$ \exp{(0)} = 1 $$
 
@@ -41948,12 +42748,14 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 </div>
 </div></p>
 
-<p><div title="Wrong!  Equations with derivatives can be solved; they are termed  differential equations . "><b>Choice D:</b>
+<p><div title="Wrong!  Equations with derivatives can be solved; they are termed  differential equations .  "><b>Choice D:</b>
 <p>The solution cannot be found because there is a derivative in the equation.</p>
 </div></p>
 
-<p><div title="Wrong!  Equations where the unknown is a function, as \( y(x) \) here, are called  differential equations , and are solved by special techniques. "><b>Choice E:</b>
-<p>The equation is meaningless: an equation must be an equation for \( x \) or \( y \), not a function \( y(x) \).</p>
+<p><div title="Wrong!  Equations where the unknown is a function, as \( y(x) \) here, are called  differential equations , and are solved by special techniques.  "><b>Choice E:</b>
+<p>The equation is meaningless: an equation must be an equation
+for \( x \) or \( y \), not a function \( y(x) \).
+</p>
 </div></p>
 <hr>
 <!-- end quiz -->
@@ -41969,11 +42771,13 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 
 <p>
 <b>a)</b>
- What is the capital of Norway?</p>
+What is the capital of Norway?
+</p>
 
 <p>
 <b>Answer.</b>
- Oslo.</p>
+Oslo.
+</p>
 
 <!-- --- end exercise --- -->
 <h1 id="here-goes-another-section">Here goes another section </h1>
@@ -41985,9 +42789,13 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 <h2 id="exer:some:formula">Exercise 10: Make references to projects and problems</h2>
 
 <!-- Test comments not at the end only -->
-<p>Pick a statement from <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and verify it.</p>
+<p>Pick a statement from <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 2: Flip a Coin</a>
+and verify it.
+</p>
 
-<p>Test list at the end of an exercise without other elements (like subexercise, hint, etc.):</p>
+<p>Test list at the end of an exercise without other elements (like subexercise,
+hint, etc.):
+</p>
 
 <ol>
 <li> item1</li>
@@ -42000,7 +42808,11 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 <!-- --- begin exercise --- -->
 <h2 id="exer:you">Project 11: References in a headings do not work well in html</h2>
 
-<p>Refer to the previous exercise as <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>, the two before that as <a href="#demo:ex:2">Project 4: Compute a Probability</a> and <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a>, and this one as <a href="#exer:you">Project 11: References in a headings do not work well in html</a>. Filename: <code>selc_composed.pdf</code>.</p>
+<p>Refer to the previous exercise as <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>,
+the two before that as <a href="#demo:ex:2">Project 4: Compute a Probability</a> and <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a>,
+and this one as <a href="#exer:you">Project 11: References in a headings do not work well in html</a>.
+Filename: <code>selc_composed.pdf</code>.
+</p>
 
 <!-- --- end exercise --- -->
 <h1 id="ch:answerssolutions">Answers and Solutions</h1>
@@ -42011,10 +42823,13 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 
 <p>
 <b>a) Solution.</b>
- The answer to this subproblem can be written here.</p>
+The answer to this subproblem can be written here.
+</p>
 <p>
 <b>b) Solution.</b>
- The answer to this other subproblem goes here, maybe over multiple doconce input lines.</p>
+The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+</p>
 
 <!-- --- end exercise --- solution -->
 
@@ -42024,7 +42839,9 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 
 <p>
 <b>a) Answer.</b>
- If the <code>random.random()</code> function returns a number \( < 1/2 \), let it be head, otherwise tail. Repeat this \( N \) number of times.</p>
+If the <code>random.random()</code> function returns a number \( < 1/2 \), let it be
+head, otherwise tail. Repeat this \( N \) number of times.
+</p>
 
 <!-- --- begin solution of exercise at end --- -->
 <p>
@@ -42064,7 +42881,8 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 
 <p>
 <b>c) Answer.</b>
- <code>np.sum(np.where(r &lt;= 0.5, 1, 0))</code> or <code>np.sum(r &lt;= 0.5)</code>.</p>
+<code>np.sum(np.where(r &lt;= 0.5, 1, 0))</code> or <code>np.sum(r &lt;= 0.5)</code>.
+</p>
 
 <!-- --- end exercise --- solution -->
 
@@ -42074,12 +42892,14 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 
 <p>
 <b>a) Answer.</b>
- Here goes the short answer to part a).</p>
+Here goes the short answer to part a).
+</p>
 
 <!-- --- begin solution of exercise at end --- -->
 <p>
 <b>a) Solution.</b>
- Here goes a full solution to part a).</p>
+Here goes a full solution to part a).
+</p>
 <!-- --- end solution of exercise at end --- -->
 
 <!-- --- end exercise --- solution -->
@@ -42090,7 +42910,9 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 
 <p>
 <b>Solution.</b>
- Here goes a full solution of the whole exercise. With some math \( a=b \) in this solution:</p>
+Here goes a full solution of the whole exercise.
+With some math \( a=b \) in this solution:
+</p>
 $$ \hbox{math in solution: } a = b $$
 
 <p>And code <code>a=b</code> in this solution:</p>
@@ -42122,12 +42944,15 @@ $$ \hbox{math in solution: } a = b $$
 
 <p>
 <b>a) Answer.</b>
- Short answer to subexercise a). With math in answer: \( a=b \).</p>
+Short answer to subexercise a).
+With math in answer: \( a=b \).
+</p>
 
 <!-- --- begin solution of exercise at end --- -->
 <p>
 <b>b) Solution.</b>
- Here goes the solution of this subexercise.</p>
+Here goes the solution of this subexercise.
+</p>
 <!-- --- end solution of exercise at end --- -->
 
 <!-- --- end exercise --- solution -->
@@ -42218,39 +43043,110 @@ $$ \hbox{math in solution: } a = b $$
 </div>
 
 
-<p>Need a lot of text to surround the summary box. Version control systems allow you to record the history of files and share files among several computers and collaborators in a professional way. File changes on one computer are updated or merged with changes on another computer. Especially when working with programs or technical reports it is essential to have changes documented and to ensure that every computer and person involved in the project have the latest updates of the files. Greg Wilson' excellent <a href="https://software-carpentry.org/2010/07/script-for-introduction-to-version-control/" target="_self">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly from using version control systems.</p>
+<p>Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent <a href="https://software-carpentry.org/2010/07/script-for-introduction-to-version-control/" target="_self">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+</p>
 
 <div class="alert alert-block alert-summary alert-text-normal">
 <b>Summary</b>
 <p>
-<p><b>Bold remark:</b> Make some text with this summary. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content.</p>
+<p><b>Bold remark:</b> Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+</p>
 </div>
 
 
-<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site "in the cloud" and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
+<p>Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work - and all other important files.
+</p>
 
-<p>The simplest services for hosting project files are <a href="https://dropbox.com" target="_self">Dropbox</a> and <a href="https://drive.google.com" target="_self">Google Drive</a>. It is very easy to get started with these systems, and they allow you to share files among laptops and mobile units with as many users as you want. The systems offer a kind of version control in that the files are stored frequently (several times per minute), and you can go back to previous versions for the last 30 days. However, it is challenging  to find the right version from the past when there are so many of them.</p>
+<p>The simplest services for hosting project files are <a href="https://dropbox.com" target="_self">Dropbox</a> and <a href="https://drive.google.com" target="_self">Google Drive</a>.
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+</p>
 
-<p>More seriously, when several people may edit files simultaneously, it can be difficult detect who did what when, roll back to previous versions, and to manually merge the edits when these are incompatible. Then one needs more sophisticated tools than Dropbox or Google Drive: project hosting services with true version control systems.  The following text aims at providing you with the minimum information to started with such systems. Numerous other tutorials contain more comprehensive material and in-depth explanations of the concepts and tools.</p>
+<p>More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+</p>
 
-<p>The idea with project hosting services is that you have the files associated with a project in the cloud. Many people may share these files.  Every time you want to work on the project you explicitly update your version of the files, edit the files as you like, and synchronize the files with the "master version" at the site where the project is hosted.  If you at some point need to go back to a version of the files at some particular point in the past, this is an easy operation. You can also use tools to see what various people have done with the files in the various versions.</p>
+<p>The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+</p>
 
-<p>All these services are very similar. Below we describe how you get started with Bitbucket, GitHub, and Googlecode. Launchpad works very similarly to the latter three. All the project hosting services have excellent introductions available at their web sites, but the recipes below are much shorter and aim at getting you started as quickly as possible by concentrating on the most important need-to-know steps. The Git tutorials we refer to later in this document contain more detailed information and constitute of course very valuable readings when you use version control systems every day. The point now is to get started.</p>
+<p>All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+</p>
 <h2 id="appendix-testing-inline-comments">Appendix: Testing inline comments </h2>
 
 <!-- Names can be [ A-Za-z0-9_'+-]+ -->
 
-<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site "in the cloud" and updated through communication with that site. 
+<p>Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that
+site. 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl's semi opinion 1</b>: not sure if in the cloud is understood by all.)</font>
+<font color="red">(<b>hpl's semi opinion 1</b>: not sure if in the cloud is  understood by  all.)</font>
 <!-- end inline comment -->
- I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
+ I strongly recommend you to use such sites for all serious
+programming and scientific writing work - and all other important
+files.
+</p>
 
 <p>The simplest services for hosting project files is Dropbox. 
 <!-- begin inline comment -->
-<font color="red">(<b>mp 2</b>: Simply go to <a href="https://dropbox.com" target="_self"><tt>https://dropbox.com</tt></a> and watch the video. It explains how files, like <code>myfile.py</code>, perhaps containing much math, like \( \partial u/\partial t \), are easily communicated between machines.)</font>
+<font color="red">(<b>mp 2</b>: Simply go to <a href="https://dropbox.com" target="_self"><tt>https://dropbox.com</tt></a> and watch the video. It explains how files, like <code>myfile.py</code>, perhaps containing much math, like  \( \partial u/\partial t \), are easily communicated between machines.)</font>
 <!-- end inline comment -->
- It is very easy to get started with Dropbox, and it allows you to share files among  <font color="red">(<b>hpl 3</b>:)</font> <del> laptops and mobile units </del> <font color="red">computers, tablets, and phones</font>.</p>
+ It
+is very easy to get started with Dropbox, and it allows you to share
+files among  <font color="red">(<b>hpl 3</b>:)</font> <del> laptops and mobile units </del> <font color="red">computers, tablets,  and phones</font>.
+</p>
 
 <!-- Test horizontal rule -->
 
@@ -42258,7 +43154,9 @@ $$ \hbox{math in solution: } a = b $$
 
 <!-- Coments for editing -->
 
-<p>First<font color="red">, (<b>edit 4</b>: add comma)</font> consider a quantity \( Q \).  <font color="red">(<b>edit 5</b>:)</font> <del> To this end, </del> <font color="red">We note that</font> \( Q>0 \), because  <font color="red">(<b>edit 6</b>:)</font> <del> a </del> negative  <font color="red">(<b>edit 7</b>:)</font> <del> quantity is </del> <font color="red">quantities are</font>  <font color="red">(<b>edit 8</b>:)</font> <del> just </del> negative.  <font color="red">(<b>edit 9</b>:) This comes as no surprise.</font></p>
+<p>First<font color="red">, (<b>edit 4</b>: add comma)</font> consider a quantity \( Q \).  <font color="red">(<b>edit 5</b>:)</font> <del> To this end, </del> <font color="red">We note that</font>
+\( Q>0 \), because  <font color="red">(<b>edit 6</b>:)</font> <del> a </del> negative  <font color="red">(<b>edit 7</b>:)</font> <del> quantity is </del> <font color="red">quantities  are</font>  <font color="red">(<b>edit 8</b>:)</font> <del> just </del> negative.  <font color="red">(<b>edit 9</b>:) This comes as no surprise.</font>
+</p>
 
 <!-- Test tailored latex figure references with page number -->
 <p>Let us refer to Figure <a href="#fig:impact">1</a> again.</p>
@@ -42272,20 +43170,31 @@ $$ \hbox{math in solution: } a = b $$
 </ul>
 <h2 id="appendix-testing-headings-ending-with-verbatim-inline">Appendix: Testing headings ending with <code>verbatim inline</code> </h2>
 
-<p>The point here is to test 1) <code>verbatim</code> code in headings, and 2) ending a heading with verbatim code as this triggers a special case in LaTeX.</p>
+<p>The point here is to test 1) <code>verbatim</code> code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
+</p>
 
-<p>We also test mdash&mdash;used as alternative to hyphen without spaces around, or in quotes:</p>
+<p>We also test mdash&mdash;used as alternative to hyphen without spaces around,
+or in quotes:
+</p>
 
 <blockquote>
     <p><em>Fun is fun</em>.&mdash;Unknown.</p>
 </blockquote>
 
 
-<p>The ndash should also be tested &ndash; as in the Hanson&ndash;Nilson equations on page 277&ndash;278.</p>
+<p>The ndash should also be tested &ndash; as in the Hanson&ndash;Nilson equations
+on page 277&ndash;278.
+</p>
 
-<p>And finally, what about admons, quotes, and boxes? They are tested in a separate document: <code>admon.do.txt</code>.</p>
+<p>And finally, what about admons, quotes, and boxes? They are tested
+in a separate document: <code>admon.do.txt</code>.
+</p>
 
-<p><p id="def_footnote_5"><a href="#link_footnote_5"><b>5:</b></a> Not much to add here, but the footnote is at the end with only one newline.</p></p>
+<p><p id="def_footnote_5"><a href="#link_footnote_5"><b>5:</b></a> Not much to add here, but the footnote
+is at the end with only one newline.</p>
+</p>
 <!-- ------------------- end of main content --------------- -->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
 
@@ -47987,15 +48896,31 @@ $$
 <br>
 
 <p>
-<b>Summary.</b> The purpose of this document is to test LaTeX math in DocOnce with various output formats.  Most LaTeX math constructions are renedered correctly by MathJax in plain HTML, but some combinations of constructions may fail.  Unfortunately, only a subset of what works in html MathJax also works in sphinx MathJax. The same is true for markdown MathJax expresions (e.g., Jupyter notebooks).  Tests and examples are provided to illustrate what may go wrong.</p>
+<b>Summary.</b> The purpose of this document is to test LaTeX math in DocOnce with
+various output formats.  Most LaTeX math constructions are renedered
+correctly by MathJax in plain HTML, but some combinations of
+constructions may fail.  Unfortunately, only a subset of what works in
+html MathJax also works in sphinx MathJax. The same is true for
+markdown MathJax expresions (e.g., Jupyter notebooks).  Tests and
+examples are provided to illustrate what may go wrong.
+</p>
 
-<p>The recommendation for writing math that translates to MathJax in html, sphinx, and markdown is to stick to the environments <code>\[ ... \]</code>, <code>equation</code>, <code>equation*</code>, <code>align</code>, <code>align*</code>, <code>alignat</code>, and <code>alignat*</code> only. Test the math with sphinx output; if it works in that format, it should work elsewhere too.</p>
+<p>The recommendation for writing math that translates to MathJax in
+html, sphinx, and markdown is to stick to the environments <code>\[
+... \]</code>, <code>equation</code>, <code>equation*</code>, <code>align</code>, <code>align*</code>, <code>alignat</code>, and
+<code>alignat*</code> only. Test the math with sphinx output; if it works in that
+format, it should work elsewhere too.
+</p>
 
-<p>The current version of the document is translated from DocOnce source to the format <b>html</b>.</p>
+<p>The current version of the document is translated from DocOnce source
+to the format <b>html</b>.
+</p>
 <h1 id="test-of-equation-environments">Test of equation environments </h1>
 <h2 id="test-1-inline-math">Test 1: Inline math </h2>
 
-<p>We can get an inline equation <code>$u(t)=e^{-at}$</code> rendered as \( u(t)=e^{-at} \).</p>
+<p>We can get an inline equation
+<code>$u(t)=e^{-at}$</code> rendered as \( u(t)=e^{-at} \).
+</p>
 <h2 id="test-2-a-single-equation-with-label">Test 2: A single equation with label </h2>
 
 <p>An equation with number,</p>
@@ -48072,7 +48997,10 @@ $$
 <p>We can refer to this equation through its label <code>eq1b</code>: \eqref{_eq1b}.</p>
 <h2 id="test-3-multiple-aligned-equations-without-label-and-number">Test 3: Multiple, aligned equations without label and number </h2>
 
-<p>MathJax has historically had some problems with rendering many LaTeX math environments, but the <code>align*</code> and <code>align</code> environments have always worked.</p>
+<p>MathJax has historically had some problems with rendering many LaTeX
+math environments, but the <code>align*</code> and <code>align</code> environments have
+always worked.
+</p>
 
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
@@ -48158,7 +49086,12 @@ $$
 <p>We can refer to the last equations as the system \eqref{_eq2b}-\eqref{_eq3b}.</p>
 <h2 id="test-5-multiple-aligned-equations-without-label">Test 5: Multiple, aligned equations without label </h2>
 
-<p>In LaTeX, equations within an <code>align</code> environment is automatically given numbers.  To ensure that an html document with MathJax gets the same equation numbers as its latex/pdflatex companion, DocOnce generates labels in equations where there is no label prescribed. For example,</p>
+<p>In LaTeX, equations within an <code>align</code> environment is automatically
+given numbers.  To ensure that an html document with MathJax gets the
+same equation numbers as its latex/pdflatex companion, DocOnce
+generates labels in equations where there is no label prescribed. For
+example,
+</p>
 
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
@@ -48399,7 +49332,9 @@ v(t) - 1 &=& \frac{du}{dt} \label{_eq3c}
 \end{eqnarray}
 $$
 
-<p>Can we refer to the last equations as the system \eqref{_eq2c}-\eqref{_eq3c} in the html format?</p>
+<p>Can we refer to the last equations as the system \eqref{_eq2c}-\eqref{_eq3c}
+in the html format?
+</p>
 <h2 id="test-9-the-multiline-environment-with-label-and-number">Test 9: The <code>multiline</code> environment with label and number </h2>
 
 <p>The LaTeX code</p>
@@ -48445,10 +49380,14 @@ f(a+(j+1)h)) \\
 \end{multline}
 $$
 
-<p>and we can hopefully refer to the Trapezoidal rule as the formula \eqref{_multiline:eq1}.</p>
+<p>and we can hopefully refer to the Trapezoidal rule
+as the formula \eqref{_multiline:eq1}.
+</p>
 <h2 id="test-10-splitting-equations-using-a-split-environment">Test 10: Splitting equations using a split environment </h2>
 
-<p>Although <code>align</code> can be used to split too long equations, a more obvious command is <code>split</code>:</p>
+<p>Although <code>align</code> can be used to split too long equations, a more obvious
+command is <code>split</code>:
+</p>
 
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
@@ -48524,7 +49463,10 @@ $$
   </div>
 </div>
 
-<p>and the inline expression <code>$\nabla\u (\pmb{x})\cdot\pmb{n}$</code> (with suitable newcommands using pmb) get rendered as</p>
+<p>and the inline expression <code>$\nabla\u (\pmb{x})\cdot\pmb{n}$</code>
+(with suitable newcommands using pmb)
+get rendered as
+</p>
 
 $$ \frac{\partial\u}{\partial t} +
 \u\cdot\nabla\u = \nu\nabla^2\u -
@@ -48598,12 +49540,17 @@ $$ \frac{\partial\ubm}{\partial t} +
 <div class="alert alert-block alert-warning alert-text-normal">
 <b>Warning</b>
 <p>
-<p>Note: for the html format, <code>\bm</code> was substituted by DocOnce to <code>\boldsymbol</code>.</p>
+<p>Note: for the html format, <code>\bm</code> was substituted by DocOnce
+to <code>\boldsymbol</code>.
+</p>
 </div>
 
 <h1 id="problematic-equations">Problematic equations </h1>
 
-<p>Finally, we collect some problematic formulas in MathJax. They all work fine in LaTeX. Most of them look fine in html too, but some fail in sphinx, ipynb, or markdown.</p>
+<p>Finally, we collect some problematic formulas in MathJax. They all work
+fine in LaTeX. Most of them look fine in html too, but some fail in
+sphinx, ipynb, or markdown.
+</p>
 <h2 id="colored-terms-in-equations">Colored terms in equations </h2>
 
 <p>The LaTeX code</p>
@@ -48642,7 +49589,10 @@ $$ {\color{blue}\frac{\partial\u}{\partial t}} +
 \frac{1}{\varrho}\nabla p,$$
 <h2 id="bar-over-symbols">Bar over symbols </h2>
 
-<p>Sometimes one must be extra careful with the LaTeX syntax to get sphinx MathJax to render a formula correctly. Consider the combination of a bar over a bold math symbol:</p>
+<p>Sometimes one must be extra careful with the LaTeX syntax to get sphinx MathJax
+to render a formula correctly. Consider the combination of a bar over a
+bold math symbol:
+</p>
 
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
@@ -48705,7 +49655,9 @@ $$ \bar\f = f_c^{-1}\f.$$
 $$ \bar{\f} = f_c^{-1}\f,$$
 <h2 id="matrix-formulas">Matrix formulas </h2>
 
-<p>Here is an <code>align</code> environment with a label and the <code>pmatrix</code> environment for matrices and vectors in LaTeX.</p>
+<p>Here is an <code>align</code> environment with a label and the <code>pmatrix</code>
+environment for matrices and vectors in LaTeX.
+</p>
 
 
 <!-- code=latex (!bc latexcod) typeset with pygments style "default" -->
@@ -51123,896 +52075,6 @@ h1, h2, h3, h4, h5, h6 {
   <div class="well" style="padding: 8px 0px;">
    <ul class="nav nav-list">
      <!-- navigation toc: --> <li><a href="#table_of_contents" style="font-size: 80%;"><b>Table of contents</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#sec1" style="font-size: 80%;"><b>Section 1</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#subsec1" style="font-size: 80%;">Subsection 1</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#subsec:ex" style="font-size: 80%;">Subsection 2: Testing figures</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#decay:sec:theta" style="font-size: 80%;">The \( \theta \) parameter (not \( \nabla \)?)</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#custom-environments" style="font-size: 80%;">Custom Environments</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#subsec:table" style="font-size: 80%;">Tables</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2" style="font-size: 80%;">A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#_just-bold_" style="font-size: 80%;"><b>Just bold</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#just-emphasize" style="font-size: 80%;"><em>Just emphasize</em></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#just-verbatim" style="font-size: 80%;"><code>Just verbatim</code></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#_bold_-beginning" style="font-size: 80%;"><b>Bold</b> beginning</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#emphasize-beginning" style="font-size: 80%;"><em>Emphasize</em> beginning</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#verbatim-beginning" style="font-size: 80%;"><code>Verbatim</code> beginning</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#maybe-_bold-end_" style="font-size: 80%;">Maybe <b>bold end</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#maybe-emphasize-end" style="font-size: 80%;">Maybe <em>emphasize end</em></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#maybe-verbatim-end" style="font-size: 80%;">Maybe <code>verbatim end</code></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#the-middle-has-<b>bold</b>-word" style="font-size: 80%;">The middle has <b>bold</b> word</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#the-middle-has-emphasize-word" style="font-size: 80%;">The middle has <em>emphasize</em> word</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#the-middle-has-verbatim-word" style="font-size: 80%;">The middle has <code>verbatim</code> word</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#bibliography-test" style="font-size: 80%;">Bibliography test</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#Example" style="font-size: 80%;">Example 1: Examples can be typeset as exercises</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#user-defined-environments" style="font-size: 80%;">User-defined environments</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#ex:test:1p1" style="font-size: 80%;">Example 1: A test function</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#ex:math:1p1" style="font-size: 80%;">Example 2: Addition</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#subsubsec:ex" style="font-size: 80%;">URLs</a></li>
-     </ul>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#latex-mathematics" style="font-size: 80%;"><b>LaTeX Mathematics</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#exercises" style="font-size: 80%;"><b>Exercises</b></a></li>
-     <ul class="nav">
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#demo:ex:1" style="font-size: 80%;">Problem 2: Flip a Coin</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#not-an-exercise" style="font-size: 80%;">Not an exercise</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#my:exer1" style="font-size: 80%;">Exercise 3: Test of plain text exercise</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#demo:ex:2" style="font-size: 80%;">Project 4: Compute a Probability</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#proj:circle1" style="font-size: 80%;">Project 5: Explore Distributions of Random Circles</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#exer:dist" style="font-size: 80%;">Exercise 6: Determine some Distance</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#some-exercise-without-the-exercise-prefix" style="font-size: 80%;">Some exercise without the "Exercise:" prefix</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#sec:this:exer:de" style="font-size: 80%;">Exercise 8: Solution of differential equation</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#example-9-just-an-example" style="font-size: 80%;">Example 9: Just an example</a></li>
-     </ul>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#here-goes-another-section" style="font-size: 80%;"><b>Here goes another section</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#more-exercises" style="font-size: 80%;"><b>More Exercises</b></a></li>
-     <ul class="nav">
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#exer:some:formula" style="font-size: 80%;">Exercise 10: Make references to projects and problems</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#exer:you" style="font-size: 80%;">Project 11: References in a headings do not work well in html</a></li>
-     </ul>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#references" style="font-size: 80%;"><b>References</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#app1" style="font-size: 80%;"><b>Appendix: Just for testing; part I</b></a></li>
-     <ul class="nav">
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#a-subsection-within-an-appendix" style="font-size: 80%;">A subsection within an appendix</a></li>
-     </ul>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#app2" style="font-size: 80%;"><b>Appendix: Just for testing; part II</b></a></li>
-     <ul class="nav">
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-identical-titles" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#test:title:id1" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#test:title:id2" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-identical-titles" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-inline-comments" style="font-size: 80%;">Appendix: Testing inline comments</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-headings-ending-with-verbatim-inline" style="font-size: 80%;">Appendix: Testing headings ending with <code>verbatim inline</code></a></li>
-
-   </ul>
-  </div>
- </div>
-
- <div class="span9">
-
-<!-- tocinfo
-{'highest level': 1,
- 'sections': [('Table of contents',
-               1,
-               'table_of_contents',
-               'table_of_contents'),
-              ('Section 1', 1, 'sec1', 'sec1'),
-              ('Here is a list with subsubsection heading',
-               3,
-               None,
-               'here-is-a-list-with-subsubsection-heading'),
-              ('Subsection 1', 2, 'subsec1', 'subsec1'),
-              ('Test Section reference at beginning of line and after a '
-               'sentence',
-               3,
-               None,
-               'test-section-reference-at-beginning-of-line-and-after-a-sentence'),
-              ('Computer code', 3, None, 'computer-code'),
-              ('Subsubsection heading before code',
-               3,
-               None,
-               'subsubsection-heading-before-code'),
-              ('Running OS commands', 3, None, 'running-os-commands'),
-              ('Footnotes', 3, None, 'footnotes'),
-              ('Subsection 2: Testing figures', 2, 'subsec:ex', 'subsec:ex'),
-              ('The $\\theta$ parameter (not $\\nabla$?)',
-               2,
-               'decay:sec:theta',
-               'decay:sec:theta'),
-              ('Custom Environments', 2, None, 'custom-environments'),
-              ('Tables', 2, 'subsec:table', 'subsec:table'),
-              ('A test of verbatim words in heading with subscript $a_i$: '
-               '`my_file_v1` and `my_file_v2`',
-               2,
-               None,
-               'a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2'),
-              ('_Just bold_', 2, None, '_just-bold_'),
-              ('*Just emphasize*', 2, None, 'just-emphasize'),
-              ('`Just verbatim`', 2, None, 'just-verbatim'),
-              ('_Bold_ beginning', 2, None, '_bold_-beginning'),
-              ('*Emphasize* beginning', 2, None, 'emphasize-beginning'),
-              ('`Verbatim` beginning', 2, None, 'verbatim-beginning'),
-              ('Maybe _bold end_', 2, None, 'maybe-_bold-end_'),
-              ('Maybe *emphasize end*', 2, None, 'maybe-emphasize-end'),
-              ('Maybe `verbatim end`', 2, None, 'maybe-verbatim-end'),
-              ('The middle has _bold_ word',
-               2,
-               None,
-               'the-middle-has-_bold_-word'),
-              ('The middle has *emphasize* word',
-               2,
-               None,
-               'the-middle-has-emphasize-word'),
-              ('The middle has `verbatim` word',
-               2,
-               None,
-               'the-middle-has-verbatim-word'),
-              ('Bibliography test', 2, None, 'bibliography-test'),
-              ('Example 1: Examples can be typeset as exercises',
-               2,
-               'Example',
-               'Example'),
-              ('User-defined environments',
-               2,
-               None,
-               'user-defined-environments'),
-              ('Example 1: A test function', 2, 'ex:test:1p1', 'ex:test:1p1'),
-              ('Example 2: Addition', 2, 'ex:math:1p1', 'ex:math:1p1'),
-              ('URLs', 2, 'subsubsec:ex', 'subsubsec:ex'),
-              ('LaTeX Mathematics', 1, None, 'latex-mathematics'),
-              ('Exercises', 1, None, 'exercises'),
-              ('Problem 2: Flip a Coin', 2, 'demo:ex:1', 'demo:ex:1'),
-              ('My remarks', 3, None, 'my-remarks'),
-              ('Remarks', 3, None, 'remarks'),
-              ('Not an exercise', 2, None, 'not-an-exercise'),
-              ('Exercise 3: Test of plain text exercise',
-               2,
-               'my:exer1',
-               'my:exer1'),
-              ('Project 4: Compute a Probability', 2, 'demo:ex:2', 'demo:ex:2'),
-              ('Project 5: Explore Distributions of Random Circles',
-               2,
-               'proj:circle1',
-               'proj:circle1'),
-              ('Remarks', 3, None, 'remarks'),
-              ('Exercise 6: Determine some Distance',
-               2,
-               'exer:dist',
-               'exer:dist'),
-              ('Remarks', 3, None, 'remarks'),
-              ('Some exercise without the "Exercise:" prefix',
-               2,
-               None,
-               'some-exercise-without-the-exercise-prefix'),
-              ('Exercise 8: Solution of differential equation',
-               2,
-               'sec:this:exer:de',
-               'sec:this:exer:de'),
-              ('Example 9: Just an example',
-               2,
-               None,
-               'example-9-just-an-example'),
-              ('Here goes another section',
-               1,
-               None,
-               'here-goes-another-section'),
-              ('More Exercises', 1, None, 'more-exercises'),
-              ('Exercise 10: Make references to projects and problems',
-               2,
-               'exer:some:formula',
-               'exer:some:formula'),
-              ('Project 11: References in a headings do not work well in html',
-               2,
-               'exer:you',
-               'exer:you'),
-              ('References', 1, None, 'references'),
-              ('Appendix: Just for testing; part I', 1, 'app1', 'app1'),
-              ('A subsection within an appendix',
-               2,
-               None,
-               'a-subsection-within-an-appendix'),
-              ('Appendix: Just for testing; part II', 1, 'app2', 'app2'),
-              ('Appendix: Testing identical titles',
-               2,
-               None,
-               'appendix-testing-identical-titles'),
-              ('Appendix: Testing identical titles',
-               2,
-               'test:title:id1',
-               'test:title:id1'),
-              ('Appendix: Testing identical titles',
-               2,
-               'test:title:id2',
-               'test:title:id2'),
-              ('Appendix: Testing identical titles',
-               2,
-               None,
-               'appendix-testing-identical-titles'),
-              ('Appendix: Testing inline comments',
-               2,
-               None,
-               'appendix-testing-inline-comments'),
-              ('Appendix: Testing headings ending with `verbatim inline`',
-               2,
-               None,
-               'appendix-testing-headings-ending-with-verbatim-inline')]}
-end of tocinfo -->
-
-
-
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: {
-     equationNumbers: {  autoNumber: "none"  },
-     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
-  }
-});
-</script>
-<script type="text/javascript" async
- src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-<a name="part0000"></a>
-<!-- ------------------- main content ---------------------- -->
-<div class="jumbotron">
-<center>
-<h1>A Document for Testing DocOnce</h1>
-</center>  <!-- document title -->
-
-<!-- author(s): Hans Petter Langtangen, Kaare Dump, A. Dummy Author, I. S. Overworked and Outburned, and J. Doe -->
-<center>
-<b>Hans Petter Langtangen</b> [1, 2] (<tt>hpl at simula.no</tt>)
-</center>
-<center>
-<b>Kaare Dump</b> [3]
-</center>
-<center>
-<b>A. Dummy Author</b> 
-</center>
-<center>
-<b>I. S. Overworked and Outburned</b> [4, 5, 6, 7]
-</center>
-<center>
-<b>J. Doe</b>  (<tt>j_doe at cyberspace.com</tt>)
-</center>
-<!-- institution(s) -->
-<center>
-[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b>
-</center>
-<center>
-[2] <b>Department of Informatics, University of Oslo</b>
-</center>
-<center>
-[3] <b>Segfault, Cyberspace</b>
-</center>
-<center>
-[4] <b>Inst1</b>
-</center>
-<center>
-[5] <b>Inst2, Somewhere</b>
-</center>
-<center>
-[6] <b>Third Inst, Elsewhere</b>
-</center>
-<center>
-[7] <b>Fourth Inst</b>
-</center>
-<br>
-
-<br>
-
-
-</div> <!-- end jumbotron -->
-<h1 id="table_of_contents">Table of contents</h1>
-
-<div class='toc'>
-<p><a href="._testdoc_vagrant001.html#sec1"> Section 1 </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#subsec1"> Subsection 1 </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#subsec:ex"> Subsection 2: Testing figures </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#custom-environments"> Custom Environments </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#subsec:table"> Tables </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#_just-bold_"> <b>Just bold</b> </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#just-emphasize"> <em>Just emphasize</em> </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#just-verbatim"> <code>Just verbatim</code> </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#_bold_-beginning"> <b>Bold</b> beginning </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#emphasize-beginning"> <em>Emphasize</em> beginning </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#verbatim-beginning"> <code>Verbatim</code> beginning </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#maybe-_bold-end_"> Maybe <b>bold end</b> </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#maybe-emphasize-end"> Maybe <em>emphasize end</em> </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#maybe-verbatim-end"> Maybe <code>verbatim end</code> </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#the-middle-has-<b>bold</b>-word"> The middle has <b>bold</b> word </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#the-middle-has-emphasize-word"> The middle has <em>emphasize</em> word </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#the-middle-has-verbatim-word"> The middle has <code>verbatim</code> word </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#bibliography-test"> Bibliography test </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#Example"> Example 1: Examples can be typeset as exercises </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#user-defined-environments"> User-defined environments </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#ex:test:1p1"> Example 1: A test function </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#ex:math:1p1"> Example 2: Addition </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#subsubsec:ex"> URLs </a></p>
-<p><a href="._testdoc_vagrant002.html#latex-mathematics"> LaTeX Mathematics </a></p>
-<p><a href="._testdoc_vagrant002.html#exercises"> Exercises </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#demo:ex:1"> Problem 2: Flip a Coin </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#not-an-exercise"> Not an exercise </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#my:exer1"> Exercise 3: Test of plain text exercise </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#demo:ex:2"> Project 4: Compute a Probability </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#proj:circle1"> Project 5: Explore Distributions of Random Circles </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#exer:dist"> Exercise 6: Determine some Distance </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#some-exercise-without-the-exercise-prefix"> Some exercise without the "Exercise:" prefix </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#sec:this:exer:de"> Exercise 8: Solution of differential equation </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#example-9-just-an-example"> Example 9: Just an example </a></p>
-<p><a href="._testdoc_vagrant002.html#here-goes-another-section"> Here goes another section </a></p>
-<p><a href="._testdoc_vagrant002.html#more-exercises"> More Exercises </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#exer:some:formula"> Exercise 10: Make references to projects and problems </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#exer:you"> Project 11: References in a headings do not work well in html </a></p>
-<p><a href="._testdoc_vagrant002.html#references"> References </a></p>
-<p><a href="._testdoc_vagrant002.html#app1"> Appendix: Just for testing; part I </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#a-subsection-within-an-appendix"> A subsection within an appendix </a></p>
-<p><a href="._testdoc_vagrant002.html#app2"> Appendix: Just for testing; part II </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant003.html#appendix-testing-identical-titles"> Appendix: Testing identical titles </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#test:title:id1"> Appendix: Testing identical titles </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#test:title:id2"> Appendix: Testing identical titles </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant003.html#appendix-testing-identical-titles"> Appendix: Testing identical titles </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant003.html#appendix-testing-inline-comments"> Appendix: Testing inline comments </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant003.html#appendix-testing-headings-ending-with-verbatim-inline"> Appendix: Testing headings ending with <code>verbatim inline</code> </a></p>
-</div>
-<br>
-
-<p>
-<!-- navigation buttons at the bottom of the page -->
-<ul class="pager">
-
-  <li class="next">
-    <a href="._testdoc_vagrant001.html">Next &rarr;</a>
-  </li>
-</ul>
-<!-- ------------------- end of main content --------------- -->
-
- </div>
-
- <div class="row Footer">
-  <div class="span12">
-  <!-- footer --> Here goes a footer, if desired, maybe with author(s) and a copyright &copy;
-  </div>
- </div>
-</div>
-</body>
-</html>
-
-************** File: ._testdoc_vagrant000.html *****************
-<html>
-<head>
-<!-- Bootstrap style: vagrant 1.0 web pages -->
-
-<!--
-This style is adopted from the (now old) vagrant 1.0 web pages.
-
-This style file should be copied and the following elements edited:
-
-Logo heading:
-
- LogoWord
- withSubWord
-
-Navigation links at the top:
-
- GO TO 1
- GO TO 2
-
-Footer at the end
--->
-
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
-
-<title>A Document for Testing DocOnce</title>
-
-<!-- If you copy the css subdirectory (and, e.g., make optional edits):
-<link rel="stylesheet" href="css/twitter_bootstrap.css">
-<link rel="stylesheet" href="css/vagrant.css">
-Otherwise, rely on the URLs below (vagrant.css adapted to Doconce layout)
--->
-
-<link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/twitter_bootstrap.css">
-<link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/vagrant.css">
-
-<!-- Define color of headings here (last definition counts) -->
-<style type="text/css">
-h1, h2, h3, h4, h5, h6 {
-  color: #000;     /* black */
-  color: #999;     /* gray */
-  color: #005580;  /* dark blue */
-  color: #08c;     /* characteristic blue */
-</style>
-
-<!-- Tools for embedded Bokeh plots -->
-<link rel="stylesheet"
-      href="https://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.css"
-      type="text/css" />
-<script type="text/javascript"
-	src="https://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.js">
-</script>
-<script type="text/javascript">
-  Bokeh.set_log_level("info");
-</script>
-
-
-</head>
-<body>
-
-<div class="container">
- <div class="row Header with-border">
-  <div class="span3 Module logo">
-   <h1><a href="/">LogoWord<span class="subtitle">withSubWord</span></a></h1>
-  </div>
-  <div class="span9">
-   <div class="Module navigation">
-   <!-- Navigation at the top of the page -->
-    <ul>
-     <li> <a href="">GO TO 1</a></li>
-     <li> <a href="">GO TO 2</a></li>
-    </ul>
-   </div>
-  </div>
- </div>
-</div>
-
-
-<!-- Here goes the table of contents in the sidebar
-     <li class="active"> means dark blue background for current section
--->
-<div class="row">
- <div class="span3 Module sidebar">
-  <div class="well" style="padding: 8px 0px;">
-   <ul class="nav nav-list">
-     <!-- navigation toc: --> <li><a href="#table_of_contents" style="font-size: 80%;"><b>Table of contents</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#sec1" style="font-size: 80%;"><b>Section 1</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#subsec1" style="font-size: 80%;">Subsection 1</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#subsec:ex" style="font-size: 80%;">Subsection 2: Testing figures</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#decay:sec:theta" style="font-size: 80%;">The \( \theta \) parameter (not \( \nabla \)?)</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#custom-environments" style="font-size: 80%;">Custom Environments</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#subsec:table" style="font-size: 80%;">Tables</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2" style="font-size: 80%;">A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#_just-bold_" style="font-size: 80%;"><b>Just bold</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#just-emphasize" style="font-size: 80%;"><em>Just emphasize</em></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#just-verbatim" style="font-size: 80%;"><code>Just verbatim</code></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#_bold_-beginning" style="font-size: 80%;"><b>Bold</b> beginning</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#emphasize-beginning" style="font-size: 80%;"><em>Emphasize</em> beginning</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#verbatim-beginning" style="font-size: 80%;"><code>Verbatim</code> beginning</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#maybe-_bold-end_" style="font-size: 80%;">Maybe <b>bold end</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#maybe-emphasize-end" style="font-size: 80%;">Maybe <em>emphasize end</em></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#maybe-verbatim-end" style="font-size: 80%;">Maybe <code>verbatim end</code></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#the-middle-has-<b>bold</b>-word" style="font-size: 80%;">The middle has <b>bold</b> word</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#the-middle-has-emphasize-word" style="font-size: 80%;">The middle has <em>emphasize</em> word</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#the-middle-has-verbatim-word" style="font-size: 80%;">The middle has <code>verbatim</code> word</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#bibliography-test" style="font-size: 80%;">Bibliography test</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#Example" style="font-size: 80%;">Example 1: Examples can be typeset as exercises</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#user-defined-environments" style="font-size: 80%;">User-defined environments</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#ex:test:1p1" style="font-size: 80%;">Example 1: A test function</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#ex:math:1p1" style="font-size: 80%;">Example 2: Addition</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#subsubsec:ex" style="font-size: 80%;">URLs</a></li>
-     </ul>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#latex-mathematics" style="font-size: 80%;"><b>LaTeX Mathematics</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#exercises" style="font-size: 80%;"><b>Exercises</b></a></li>
-     <ul class="nav">
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#demo:ex:1" style="font-size: 80%;">Problem 2: Flip a Coin</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#not-an-exercise" style="font-size: 80%;">Not an exercise</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#my:exer1" style="font-size: 80%;">Exercise 3: Test of plain text exercise</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#demo:ex:2" style="font-size: 80%;">Project 4: Compute a Probability</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#proj:circle1" style="font-size: 80%;">Project 5: Explore Distributions of Random Circles</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#exer:dist" style="font-size: 80%;">Exercise 6: Determine some Distance</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#some-exercise-without-the-exercise-prefix" style="font-size: 80%;">Some exercise without the "Exercise:" prefix</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#sec:this:exer:de" style="font-size: 80%;">Exercise 8: Solution of differential equation</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#example-9-just-an-example" style="font-size: 80%;">Example 9: Just an example</a></li>
-     </ul>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#here-goes-another-section" style="font-size: 80%;"><b>Here goes another section</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#more-exercises" style="font-size: 80%;"><b>More Exercises</b></a></li>
-     <ul class="nav">
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#exer:some:formula" style="font-size: 80%;">Exercise 10: Make references to projects and problems</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#exer:you" style="font-size: 80%;">Project 11: References in a headings do not work well in html</a></li>
-     </ul>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#references" style="font-size: 80%;"><b>References</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#app1" style="font-size: 80%;"><b>Appendix: Just for testing; part I</b></a></li>
-     <ul class="nav">
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#a-subsection-within-an-appendix" style="font-size: 80%;">A subsection within an appendix</a></li>
-     </ul>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#app2" style="font-size: 80%;"><b>Appendix: Just for testing; part II</b></a></li>
-     <ul class="nav">
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-identical-titles" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#test:title:id1" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#test:title:id2" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-identical-titles" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-inline-comments" style="font-size: 80%;">Appendix: Testing inline comments</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-headings-ending-with-verbatim-inline" style="font-size: 80%;">Appendix: Testing headings ending with <code>verbatim inline</code></a></li>
-
-   </ul>
-  </div>
- </div>
-
- <div class="span9">
-
-<!-- tocinfo
-{'highest level': 1,
- 'sections': [('Table of contents',
-               1,
-               'table_of_contents',
-               'table_of_contents'),
-              ('Section 1', 1, 'sec1', 'sec1'),
-              ('Here is a list with subsubsection heading',
-               3,
-               None,
-               'here-is-a-list-with-subsubsection-heading'),
-              ('Subsection 1', 2, 'subsec1', 'subsec1'),
-              ('Test Section reference at beginning of line and after a '
-               'sentence',
-               3,
-               None,
-               'test-section-reference-at-beginning-of-line-and-after-a-sentence'),
-              ('Computer code', 3, None, 'computer-code'),
-              ('Subsubsection heading before code',
-               3,
-               None,
-               'subsubsection-heading-before-code'),
-              ('Running OS commands', 3, None, 'running-os-commands'),
-              ('Footnotes', 3, None, 'footnotes'),
-              ('Subsection 2: Testing figures', 2, 'subsec:ex', 'subsec:ex'),
-              ('The $\\theta$ parameter (not $\\nabla$?)',
-               2,
-               'decay:sec:theta',
-               'decay:sec:theta'),
-              ('Custom Environments', 2, None, 'custom-environments'),
-              ('Tables', 2, 'subsec:table', 'subsec:table'),
-              ('A test of verbatim words in heading with subscript $a_i$: '
-               '`my_file_v1` and `my_file_v2`',
-               2,
-               None,
-               'a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2'),
-              ('_Just bold_', 2, None, '_just-bold_'),
-              ('*Just emphasize*', 2, None, 'just-emphasize'),
-              ('`Just verbatim`', 2, None, 'just-verbatim'),
-              ('_Bold_ beginning', 2, None, '_bold_-beginning'),
-              ('*Emphasize* beginning', 2, None, 'emphasize-beginning'),
-              ('`Verbatim` beginning', 2, None, 'verbatim-beginning'),
-              ('Maybe _bold end_', 2, None, 'maybe-_bold-end_'),
-              ('Maybe *emphasize end*', 2, None, 'maybe-emphasize-end'),
-              ('Maybe `verbatim end`', 2, None, 'maybe-verbatim-end'),
-              ('The middle has _bold_ word',
-               2,
-               None,
-               'the-middle-has-_bold_-word'),
-              ('The middle has *emphasize* word',
-               2,
-               None,
-               'the-middle-has-emphasize-word'),
-              ('The middle has `verbatim` word',
-               2,
-               None,
-               'the-middle-has-verbatim-word'),
-              ('Bibliography test', 2, None, 'bibliography-test'),
-              ('Example 1: Examples can be typeset as exercises',
-               2,
-               'Example',
-               'Example'),
-              ('User-defined environments',
-               2,
-               None,
-               'user-defined-environments'),
-              ('Example 1: A test function', 2, 'ex:test:1p1', 'ex:test:1p1'),
-              ('Example 2: Addition', 2, 'ex:math:1p1', 'ex:math:1p1'),
-              ('URLs', 2, 'subsubsec:ex', 'subsubsec:ex'),
-              ('LaTeX Mathematics', 1, None, 'latex-mathematics'),
-              ('Exercises', 1, None, 'exercises'),
-              ('Problem 2: Flip a Coin', 2, 'demo:ex:1', 'demo:ex:1'),
-              ('My remarks', 3, None, 'my-remarks'),
-              ('Remarks', 3, None, 'remarks'),
-              ('Not an exercise', 2, None, 'not-an-exercise'),
-              ('Exercise 3: Test of plain text exercise',
-               2,
-               'my:exer1',
-               'my:exer1'),
-              ('Project 4: Compute a Probability', 2, 'demo:ex:2', 'demo:ex:2'),
-              ('Project 5: Explore Distributions of Random Circles',
-               2,
-               'proj:circle1',
-               'proj:circle1'),
-              ('Remarks', 3, None, 'remarks'),
-              ('Exercise 6: Determine some Distance',
-               2,
-               'exer:dist',
-               'exer:dist'),
-              ('Remarks', 3, None, 'remarks'),
-              ('Some exercise without the "Exercise:" prefix',
-               2,
-               None,
-               'some-exercise-without-the-exercise-prefix'),
-              ('Exercise 8: Solution of differential equation',
-               2,
-               'sec:this:exer:de',
-               'sec:this:exer:de'),
-              ('Example 9: Just an example',
-               2,
-               None,
-               'example-9-just-an-example'),
-              ('Here goes another section',
-               1,
-               None,
-               'here-goes-another-section'),
-              ('More Exercises', 1, None, 'more-exercises'),
-              ('Exercise 10: Make references to projects and problems',
-               2,
-               'exer:some:formula',
-               'exer:some:formula'),
-              ('Project 11: References in a headings do not work well in html',
-               2,
-               'exer:you',
-               'exer:you'),
-              ('References', 1, None, 'references'),
-              ('Appendix: Just for testing; part I', 1, 'app1', 'app1'),
-              ('A subsection within an appendix',
-               2,
-               None,
-               'a-subsection-within-an-appendix'),
-              ('Appendix: Just for testing; part II', 1, 'app2', 'app2'),
-              ('Appendix: Testing identical titles',
-               2,
-               None,
-               'appendix-testing-identical-titles'),
-              ('Appendix: Testing identical titles',
-               2,
-               'test:title:id1',
-               'test:title:id1'),
-              ('Appendix: Testing identical titles',
-               2,
-               'test:title:id2',
-               'test:title:id2'),
-              ('Appendix: Testing identical titles',
-               2,
-               None,
-               'appendix-testing-identical-titles'),
-              ('Appendix: Testing inline comments',
-               2,
-               None,
-               'appendix-testing-inline-comments'),
-              ('Appendix: Testing headings ending with `verbatim inline`',
-               2,
-               None,
-               'appendix-testing-headings-ending-with-verbatim-inline')]}
-end of tocinfo -->
-
-
-
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: {
-     equationNumbers: {  autoNumber: "none"  },
-     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
-  }
-});
-</script>
-<script type="text/javascript" async
- src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-<a name="part0000"></a>
-<!-- ------------------- main content ---------------------- -->
-<div class="jumbotron">
-<center>
-<h1>A Document for Testing DocOnce</h1>
-</center>  <!-- document title -->
-
-<!-- author(s): Hans Petter Langtangen, Kaare Dump, A. Dummy Author, I. S. Overworked and Outburned, and J. Doe -->
-<center>
-<b>Hans Petter Langtangen</b> [1, 2] (<tt>hpl at simula.no</tt>)
-</center>
-<center>
-<b>Kaare Dump</b> [3]
-</center>
-<center>
-<b>A. Dummy Author</b> 
-</center>
-<center>
-<b>I. S. Overworked and Outburned</b> [4, 5, 6, 7]
-</center>
-<center>
-<b>J. Doe</b>  (<tt>j_doe at cyberspace.com</tt>)
-</center>
-<!-- institution(s) -->
-<center>
-[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b>
-</center>
-<center>
-[2] <b>Department of Informatics, University of Oslo</b>
-</center>
-<center>
-[3] <b>Segfault, Cyberspace</b>
-</center>
-<center>
-[4] <b>Inst1</b>
-</center>
-<center>
-[5] <b>Inst2, Somewhere</b>
-</center>
-<center>
-[6] <b>Third Inst, Elsewhere</b>
-</center>
-<center>
-[7] <b>Fourth Inst</b>
-</center>
-<br>
-
-<br>
-
-
-</div> <!-- end jumbotron -->
-<h1 id="table_of_contents">Table of contents</h1>
-
-<div class='toc'>
-<p><a href="._testdoc_vagrant001.html#sec1"> Section 1 </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#subsec1"> Subsection 1 </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#subsec:ex"> Subsection 2: Testing figures </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#custom-environments"> Custom Environments </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#subsec:table"> Tables </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#_just-bold_"> <b>Just bold</b> </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#just-emphasize"> <em>Just emphasize</em> </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#just-verbatim"> <code>Just verbatim</code> </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#_bold_-beginning"> <b>Bold</b> beginning </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#emphasize-beginning"> <em>Emphasize</em> beginning </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#verbatim-beginning"> <code>Verbatim</code> beginning </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#maybe-_bold-end_"> Maybe <b>bold end</b> </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#maybe-emphasize-end"> Maybe <em>emphasize end</em> </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#maybe-verbatim-end"> Maybe <code>verbatim end</code> </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#the-middle-has-<b>bold</b>-word"> The middle has <b>bold</b> word </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#the-middle-has-emphasize-word"> The middle has <em>emphasize</em> word </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#the-middle-has-verbatim-word"> The middle has <code>verbatim</code> word </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#bibliography-test"> Bibliography test </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#Example"> Example 1: Examples can be typeset as exercises </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#user-defined-environments"> User-defined environments </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#ex:test:1p1"> Example 1: A test function </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#ex:math:1p1"> Example 2: Addition </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant001.html#subsubsec:ex"> URLs </a></p>
-<p><a href="._testdoc_vagrant002.html#latex-mathematics"> LaTeX Mathematics </a></p>
-<p><a href="._testdoc_vagrant002.html#exercises"> Exercises </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#demo:ex:1"> Problem 2: Flip a Coin </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#not-an-exercise"> Not an exercise </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#my:exer1"> Exercise 3: Test of plain text exercise </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#demo:ex:2"> Project 4: Compute a Probability </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#proj:circle1"> Project 5: Explore Distributions of Random Circles </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#exer:dist"> Exercise 6: Determine some Distance </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#some-exercise-without-the-exercise-prefix"> Some exercise without the "Exercise:" prefix </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#sec:this:exer:de"> Exercise 8: Solution of differential equation </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#example-9-just-an-example"> Example 9: Just an example </a></p>
-<p><a href="._testdoc_vagrant002.html#here-goes-another-section"> Here goes another section </a></p>
-<p><a href="._testdoc_vagrant002.html#more-exercises"> More Exercises </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#exer:some:formula"> Exercise 10: Make references to projects and problems </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#exer:you"> Project 11: References in a headings do not work well in html </a></p>
-<p><a href="._testdoc_vagrant002.html#references"> References </a></p>
-<p><a href="._testdoc_vagrant002.html#app1"> Appendix: Just for testing; part I </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#a-subsection-within-an-appendix"> A subsection within an appendix </a></p>
-<p><a href="._testdoc_vagrant002.html#app2"> Appendix: Just for testing; part II </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant003.html#appendix-testing-identical-titles"> Appendix: Testing identical titles </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#test:title:id1"> Appendix: Testing identical titles </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant002.html#test:title:id2"> Appendix: Testing identical titles </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant003.html#appendix-testing-identical-titles"> Appendix: Testing identical titles </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant003.html#appendix-testing-inline-comments"> Appendix: Testing inline comments </a></p>
-<p><span class="tab"> <a href="._testdoc_vagrant003.html#appendix-testing-headings-ending-with-verbatim-inline"> Appendix: Testing headings ending with <code>verbatim inline</code> </a></p>
-</div>
-<br>
-
-<p>
-<!-- navigation buttons at the bottom of the page -->
-<ul class="pager">
-
-  <li class="next">
-    <a href="._testdoc_vagrant001.html">Next &rarr;</a>
-  </li>
-</ul>
-<!-- ------------------- end of main content --------------- -->
-
- </div>
-
- <div class="row Footer">
-  <div class="span12">
-  <!-- footer --> Here goes a footer, if desired, maybe with author(s) and a copyright &copy;
-  </div>
- </div>
-</div>
-</body>
-</html>
-
-************** File: ._testdoc_vagrant001.html *****************
-<html>
-<head>
-<!-- Bootstrap style: vagrant 1.0 web pages -->
-
-<!--
-This style is adopted from the (now old) vagrant 1.0 web pages.
-
-This style file should be copied and the following elements edited:
-
-Logo heading:
-
- LogoWord
- withSubWord
-
-Navigation links at the top:
-
- GO TO 1
- GO TO 2
-
-Footer at the end
--->
-
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
-
-<title>A Document for Testing DocOnce</title>
-
-<!-- If you copy the css subdirectory (and, e.g., make optional edits):
-<link rel="stylesheet" href="css/twitter_bootstrap.css">
-<link rel="stylesheet" href="css/vagrant.css">
-Otherwise, rely on the URLs below (vagrant.css adapted to Doconce layout)
--->
-
-<link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/twitter_bootstrap.css">
-<link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/vagrant.css">
-
-<!-- Define color of headings here (last definition counts) -->
-<style type="text/css">
-h1, h2, h3, h4, h5, h6 {
-  color: #000;     /* black */
-  color: #999;     /* gray */
-  color: #005580;  /* dark blue */
-  color: #08c;     /* characteristic blue */
-</style>
-
-<!-- Tools for embedded Bokeh plots -->
-<link rel="stylesheet"
-      href="https://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.css"
-      type="text/css" />
-<script type="text/javascript"
-	src="https://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.js">
-</script>
-<script type="text/javascript">
-  Bokeh.set_log_level("info");
-</script>
-
-
-</head>
-<body>
-
-<div class="container">
- <div class="row Header with-border">
-  <div class="span3 Module logo">
-   <h1><a href="/">LogoWord<span class="subtitle">withSubWord</span></a></h1>
-  </div>
-  <div class="span9">
-   <div class="Module navigation">
-   <!-- Navigation at the top of the page -->
-    <ul>
-     <li> <a href="">GO TO 1</a></li>
-     <li> <a href="">GO TO 2</a></li>
-    </ul>
-   </div>
-  </div>
- </div>
-</div>
-
-
-<!-- Here goes the table of contents in the sidebar
-     <li class="active"> means dark blue background for current section
--->
-<div class="row">
- <div class="span3 Module sidebar">
-  <div class="well" style="padding: 8px 0px;">
-   <ul class="nav nav-list">
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant000.html#table_of_contents" style="font-size: 80%;"><b>Table of contents</b></a></li>
      <!-- navigation toc: --> <li><a href="#sec1" style="font-size: 80%;"><b>Section 1</b></a></li>
      <!-- navigation toc: --> <li><a href="#subsec1" style="font-size: 80%;">Subsection 1</a></li>
      <!-- navigation toc: --> <li><a href="#subsec:ex" style="font-size: 80%;">Subsection 2: Testing figures</a></li>
@@ -52026,7 +52088,7 @@ h1, h2, h3, h4, h5, h6 {
      <!-- navigation toc: --> <li><a href="#_bold_-beginning" style="font-size: 80%;"><b>Bold</b> beginning</a></li>
      <!-- navigation toc: --> <li><a href="#emphasize-beginning" style="font-size: 80%;"><em>Emphasize</em> beginning</a></li>
      <!-- navigation toc: --> <li><a href="#verbatim-beginning" style="font-size: 80%;"><code>Verbatim</code> beginning</a></li>
-     <!-- navigation toc: --> <li><a href="#maybe-_bold-end_" style="font-size: 80%;">Maybe <b>bold end</b></a></li>
+     <!-- navigation toc: --> <li><a href="#maybe-<b>bold-end</b>" style="font-size: 80%;">Maybe <b>bold end</b></a></li>
      <!-- navigation toc: --> <li><a href="#maybe-emphasize-end" style="font-size: 80%;">Maybe <em>emphasize end</em></a></li>
      <!-- navigation toc: --> <li><a href="#maybe-verbatim-end" style="font-size: 80%;">Maybe <code>verbatim end</code></a></li>
      <!-- navigation toc: --> <li><a href="#the-middle-has-<b>bold</b>-word" style="font-size: 80%;">The middle has <b>bold</b> word</a></li>
@@ -52039,38 +52101,38 @@ h1, h2, h3, h4, h5, h6 {
      <!-- navigation toc: --> <li><a href="#ex:math:1p1" style="font-size: 80%;">Example 2: Addition</a></li>
      <!-- navigation toc: --> <li><a href="#subsubsec:ex" style="font-size: 80%;">URLs</a></li>
      </ul>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#latex-mathematics" style="font-size: 80%;"><b>LaTeX Mathematics</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#exercises" style="font-size: 80%;"><b>Exercises</b></a></li>
+     <!-- navigation toc: --> <li><a href="#latex-mathematics" style="font-size: 80%;"><b>LaTeX Mathematics</b></a></li>
+     <!-- navigation toc: --> <li><a href="#exercises" style="font-size: 80%;"><b>Exercises</b></a></li>
      <ul class="nav">
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#demo:ex:1" style="font-size: 80%;">Problem 2: Flip a Coin</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#not-an-exercise" style="font-size: 80%;">Not an exercise</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#my:exer1" style="font-size: 80%;">Exercise 3: Test of plain text exercise</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#demo:ex:2" style="font-size: 80%;">Project 4: Compute a Probability</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#proj:circle1" style="font-size: 80%;">Project 5: Explore Distributions of Random Circles</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#exer:dist" style="font-size: 80%;">Exercise 6: Determine some Distance</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#some-exercise-without-the-exercise-prefix" style="font-size: 80%;">Some exercise without the "Exercise:" prefix</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#sec:this:exer:de" style="font-size: 80%;">Exercise 8: Solution of differential equation</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#example-9-just-an-example" style="font-size: 80%;">Example 9: Just an example</a></li>
+     <!-- navigation toc: --> <li><a href="#demo:ex:1" style="font-size: 80%;">Problem 2: Flip a Coin</a></li>
+     <!-- navigation toc: --> <li><a href="#not-an-exercise" style="font-size: 80%;">Not an exercise</a></li>
+     <!-- navigation toc: --> <li><a href="#my:exer1" style="font-size: 80%;">Exercise 3: Test of plain text exercise</a></li>
+     <!-- navigation toc: --> <li><a href="#demo:ex:2" style="font-size: 80%;">Project 4: Compute a Probability</a></li>
+     <!-- navigation toc: --> <li><a href="#proj:circle1" style="font-size: 80%;">Project 5: Explore Distributions of Random Circles</a></li>
+     <!-- navigation toc: --> <li><a href="#exer:dist" style="font-size: 80%;">Exercise 6: Determine some Distance</a></li>
+     <!-- navigation toc: --> <li><a href="#some-exercise-without-the-exercise-prefix" style="font-size: 80%;">Some exercise without the "Exercise:" prefix</a></li>
+     <!-- navigation toc: --> <li><a href="#sec:this:exer:de" style="font-size: 80%;">Exercise 8: Solution of differential equation</a></li>
+     <!-- navigation toc: --> <li><a href="#example-9-just-an-example" style="font-size: 80%;">Example 9: Just an example</a></li>
      </ul>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#here-goes-another-section" style="font-size: 80%;"><b>Here goes another section</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#more-exercises" style="font-size: 80%;"><b>More Exercises</b></a></li>
+     <!-- navigation toc: --> <li><a href="#here-goes-another-section" style="font-size: 80%;"><b>Here goes another section</b></a></li>
+     <!-- navigation toc: --> <li><a href="#more-exercises" style="font-size: 80%;"><b>More Exercises</b></a></li>
      <ul class="nav">
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#exer:some:formula" style="font-size: 80%;">Exercise 10: Make references to projects and problems</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#exer:you" style="font-size: 80%;">Project 11: References in a headings do not work well in html</a></li>
+     <!-- navigation toc: --> <li><a href="#exer:some:formula" style="font-size: 80%;">Exercise 10: Make references to projects and problems</a></li>
+     <!-- navigation toc: --> <li><a href="#exer:you" style="font-size: 80%;">Project 11: References in a headings do not work well in html</a></li>
      </ul>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#references" style="font-size: 80%;"><b>References</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#app1" style="font-size: 80%;"><b>Appendix: Just for testing; part I</b></a></li>
+     <!-- navigation toc: --> <li><a href="#references" style="font-size: 80%;"><b>References</b></a></li>
+     <!-- navigation toc: --> <li><a href="#app1" style="font-size: 80%;"><b>Appendix: Just for testing; part I</b></a></li>
      <ul class="nav">
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#a-subsection-within-an-appendix" style="font-size: 80%;">A subsection within an appendix</a></li>
+     <!-- navigation toc: --> <li><a href="#a-subsection-within-an-appendix" style="font-size: 80%;">A subsection within an appendix</a></li>
      </ul>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#app2" style="font-size: 80%;"><b>Appendix: Just for testing; part II</b></a></li>
+     <!-- navigation toc: --> <li><a href="#app2" style="font-size: 80%;"><b>Appendix: Just for testing; part II</b></a></li>
      <ul class="nav">
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-identical-titles" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#test:title:id1" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant002.html#test:title:id2" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-identical-titles" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-inline-comments" style="font-size: 80%;">Appendix: Testing inline comments</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-headings-ending-with-verbatim-inline" style="font-size: 80%;">Appendix: Testing headings ending with <code>verbatim inline</code></a></li>
+     <!-- navigation toc: --> <li><a href="#appendix-testing-identical-titles" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
+     <!-- navigation toc: --> <li><a href="#test:title:id1" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
+     <!-- navigation toc: --> <li><a href="#test:title:id2" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
+     <!-- navigation toc: --> <li><a href="#appendix-testing-identical-titles" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
+     <!-- navigation toc: --> <li><a href="#appendix-testing-inline-comments" style="font-size: 80%;">Appendix: Testing inline comments</a></li>
+     <!-- navigation toc: --> <li><a href="#appendix-testing-headings-ending-with-verbatim-inline" style="font-size: 80%;">Appendix: Testing headings ending with <code>verbatim inline</code></a></li>
 
    </ul>
   </div>
@@ -52233,7 +52295,7 @@ end of tocinfo -->
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
-     equationNumbers: {  autoNumber: "none"  },
+     equationNumbers: {  autoNumber: "AMS"  },
      extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
   }
 });
@@ -52243,15 +52305,127 @@ MathJax.Hub.Config({
 </script>
 
 
-<a name="part0001"></a>
+<!-- ------------------- main content ---------------------- -->
+<div class="jumbotron">
+<center>
+<h1>A Document for Testing DocOnce</h1>
+</center>  <!-- document title -->
+
+<!-- author(s): Hans Petter Langtangen, Kaare Dump, A. Dummy Author, I. S. Overworked and Outburned, and J. Doe -->
+<center>
+<b>Hans Petter Langtangen</b> [1, 2] (<tt>hpl at simula.no</tt>)
+</center>
+<center>
+<b>Kaare Dump</b> [3]
+</center>
+<center>
+<b>A. Dummy Author</b> 
+</center>
+<center>
+<b>I. S. Overworked and Outburned</b> [4, 5, 6, 7]
+</center>
+<center>
+<b>J. Doe</b>  (<tt>j_doe at cyberspace.com</tt>)
+</center>
+<!-- institution(s) -->
+<center>
+[1] <b>Center for Biomedical Computing, Simula Research Laboratory</b>
+</center>
+<center>
+[2] <b>Department of Informatics, University of Oslo</b>
+</center>
+<center>
+[3] <b>Segfault, Cyberspace</b>
+</center>
+<center>
+[4] <b>Inst1</b>
+</center>
+<center>
+[5] <b>Inst2, Somewhere</b>
+</center>
+<center>
+[6] <b>Third Inst, Elsewhere</b>
+</center>
+<center>
+[7] <b>Fourth Inst</b>
+</center>
+<br>
+
+<br>
+
+
+</div> <!-- end jumbotron -->
+<h1 id="table_of_contents">Table of contents</h1>
+
+<div class='toc'>
+<p><a href="#sec1"> Section 1 </a></p>
+<p><span class="tab"> <a href="#subsec1"> Subsection 1 </a></p>
+<p><span class="tab"> <a href="#subsec:ex"> Subsection 2: Testing figures </a></p>
+<p><span class="tab"> <a href="#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a></p>
+<p><span class="tab"> <a href="#custom-environments"> Custom Environments </a></p>
+<p><span class="tab"> <a href="#subsec:table"> Tables </a></p>
+<p><span class="tab"> <a href="#a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a></p>
+<p><span class="tab"> <a href="#_just-bold_"> <b>Just bold</b> </a></p>
+<p><span class="tab"> <a href="#just-emphasize"> <em>Just emphasize</em> </a></p>
+<p><span class="tab"> <a href="#just-verbatim"> <code>Just verbatim</code> </a></p>
+<p><span class="tab"> <a href="#_bold_-beginning"> <b>Bold</b> beginning </a></p>
+<p><span class="tab"> <a href="#emphasize-beginning"> <em>Emphasize</em> beginning </a></p>
+<p><span class="tab"> <a href="#verbatim-beginning"> <code>Verbatim</code> beginning </a></p>
+<p><span class="tab"> <a href="#maybe-_bold-end_"> Maybe <b>bold end</b> </a></p>
+<p><span class="tab"> <a href="#maybe-emphasize-end"> Maybe <em>emphasize end</em> </a></p>
+<p><span class="tab"> <a href="#maybe-verbatim-end"> Maybe <code>verbatim end</code> </a></p>
+<p><span class="tab"> <a href="#the-middle-has-<b>bold</b>-word"> The middle has <b>bold</b> word </a></p>
+<p><span class="tab"> <a href="#the-middle-has-emphasize-word"> The middle has <em>emphasize</em> word </a></p>
+<p><span class="tab"> <a href="#the-middle-has-verbatim-word"> The middle has <code>verbatim</code> word </a></p>
+<p><span class="tab"> <a href="#bibliography-test"> Bibliography test </a></p>
+<p><span class="tab"> <a href="#Example"> Example 1: Examples can be typeset as exercises </a></p>
+<p><span class="tab"> <a href="#user-defined-environments"> User-defined environments </a></p>
+<p><span class="tab"> <a href="#ex:test:1p1"> Example 1: A test function </a></p>
+<p><span class="tab"> <a href="#ex:math:1p1"> Example 2: Addition </a></p>
+<p><span class="tab"> <a href="#subsubsec:ex"> URLs </a></p>
+<p><a href="#latex-mathematics"> LaTeX Mathematics </a></p>
+<p><a href="#exercises"> Exercises </a></p>
+<p><span class="tab"> <a href="#demo:ex:1"> Problem 2: Flip a Coin </a></p>
+<p><span class="tab"> <a href="#not-an-exercise"> Not an exercise </a></p>
+<p><span class="tab"> <a href="#my:exer1"> Exercise 3: Test of plain text exercise </a></p>
+<p><span class="tab"> <a href="#demo:ex:2"> Project 4: Compute a Probability </a></p>
+<p><span class="tab"> <a href="#proj:circle1"> Project 5: Explore Distributions of Random Circles </a></p>
+<p><span class="tab"> <a href="#exer:dist"> Exercise 6: Determine some Distance </a></p>
+<p><span class="tab"> <a href="#some-exercise-without-the-exercise-prefix"> Some exercise without the "Exercise:" prefix </a></p>
+<p><span class="tab"> <a href="#sec:this:exer:de"> Exercise 8: Solution of differential equation </a></p>
+<p><span class="tab"> <a href="#example-9-just-an-example"> Example 9: Just an example </a></p>
+<p><a href="#here-goes-another-section"> Here goes another section </a></p>
+<p><a href="#more-exercises"> More Exercises </a></p>
+<p><span class="tab"> <a href="#exer:some:formula"> Exercise 10: Make references to projects and problems </a></p>
+<p><span class="tab"> <a href="#exer:you"> Project 11: References in a headings do not work well in html </a></p>
+<p><a href="#references"> References </a></p>
+<p><a href="#app1"> Appendix: Just for testing; part I </a></p>
+<p><span class="tab"> <a href="#a-subsection-within-an-appendix"> A subsection within an appendix </a></p>
+<p><a href="#app2"> Appendix: Just for testing; part II </a></p>
+<p><span class="tab"> <a href="#appendix-testing-identical-titles"> Appendix: Testing identical titles </a></p>
+<p><span class="tab"> <a href="#test:title:id1"> Appendix: Testing identical titles </a></p>
+<p><span class="tab"> <a href="#test:title:id2"> Appendix: Testing identical titles </a></p>
+<p><span class="tab"> <a href="#appendix-testing-identical-titles"> Appendix: Testing identical titles </a></p>
+<p><span class="tab"> <a href="#appendix-testing-inline-comments"> Appendix: Testing inline comments </a></p>
+<p><span class="tab"> <a href="#appendix-testing-headings-ending-with-verbatim-inline"> Appendix: Testing headings ending with <code>verbatim inline</code> </a></p>
+</div>
+<br>
+
 <!-- !split -->
 
-<p>The format of this document is plain, homemade HTML (from DocOnce).</p>
+<p>The format of this document is
+plain, homemade HTML (from DocOnce).
+</p>
 
 <p>
-<b>Abstract.</b> This is a document with many test constructions for doconce syntax. It was used heavily for the development and kept for testing numerous constructions, also special and less common cases.</p>
+<b>Abstract.</b> This is a document with many test constructions for doconce syntax.
+It was used heavily for the development and kept for testing
+numerous constructions, also special and less common cases.
+</p>
 
-<p>And exactly for test purposes we have an extra line here, which is part of the abstract.</p>
+<p>And exactly for test purposes we have an extra line here, which
+is part of the abstract.
+</p>
 
 <!-- Cannot demonstrate chapter headings since abstract and chapter -->
 <!-- are mutually exclusive in LaTeX -->
@@ -52289,27 +52463,56 @@ MathJax.Hub.Config({
   <li> item2</li>
 </ul>
 <blockquote>
-    <p>Here are two lines that make up a block quote for testing <em>emphasized words</em> and <b>boldface words</b>, also with hypens: <em>pre</em>-fix, post-<em>fix</em>, <b>pre</b>-fix, post-<b>fix</b>.</p>
+    <p>Here are two lines that make up
+    a block quote for testing <em>emphasized words</em> and <b>boldface words</b>,
+    also with hypens:
+    <em>pre</em>-fix, post-<em>fix</em>, <b>pre</b>-fix, post-<b>fix</b>.
+    </p>
 </blockquote>
 
 
-<p>Here are two references. Equation&nbsp;<a href="._testdoc_vagrant002.html#mjx-eqn-12">(12)</a> is fine. Eq.&nbsp;<a href="._testdoc_vagrant002.html#mjx-eqn-12">(12)</a> too. Even Equation <a href="._testdoc_vagrant002.html#mjx-eqn-12">(12)</a> without the tilde. This equation appears in another part if this document is split.</p>
+<p>Here are two references. Equation&nbsp;\eqref{my:eq1} is fine. Eq.&nbsp;\eqref{my:eq1} too.
+Even Equation \eqref{my:eq1} without the tilde.
+This equation appears in another part if this document is split.
+</p>
 
-<p>Let us add a paragraph to test that HTML, with WordPress (<code>--wordpress</code> option) can handle linebreaks</p>
+<p>Let us add a paragraph to
+test that HTML,
+with WordPress
+(<code>--wordpress</code> option)
+can handle linebreaks
 <em>correctly</em>,
-<p>even when lines begin with <b>bold words</b> and <code>verbatim words</code> in <font color="red">red color</font>, and <a href="https://google.com" target="_self">links</a> as well as math:</p>
+even when lines begin with
+<b>bold words</b> and
+<code>verbatim words</code> in
+<font color="red">red color</font>, and
+<a href="https://google.com" target="_self">links</a> as well as math:
 \( 1+1=2 \).
+</p>
 
-<p>Test also that <em>emphasize</em> at the end of line, and <b>bold</b> works, as well as <font color="blue">color</font> and <a href="https://google.com" target="_self">links2</a> and <code>verbatim</code> as well.</p>
+<p>Test also that <em>emphasize</em>
+at the end of line, and <b>bold</b>
+works, as well as <font color="blue">color</font>
+and <a href="https://google.com" target="_self">links2</a>
+and <code>verbatim</code>
+as well.
+</p>
 <h2 id="subsec1" class="anchor">Subsection 1</h2>
 
 <!-- Refer to section/appendix etc. at the beginning of the line -->
 <!-- and other special fix situations for HTML. -->
 
-<p>More text, with a reference back to the section <a href="#sec1">Section 1</a> and <a href="#subsec1">Subsection 1</a>, and further to the the sections <a href="#subsec1">Subsection 1</a> and <a href="#subsubsec:ex">URLs</a>, which encourages you to do the tasks in <a href="._testdoc_vagrant002.html#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="._testdoc_vagrant002.html#exer:some:formula">Exercise 10: Make references to projects and problems</a>.  <a href="._testdoc_vagrant002.html#app1">Appendix: Just for testing; part I</a> and <a href="._testdoc_vagrant002.html#app2">Appendix: Just for testing; part II</a> are also nice elements.</p>
+<p>More text, with a reference back to
+the section <a href="#sec1">Section 1</a> and <a href="#subsec1">Subsection 1</a>, and further to the
+the sections <a href="#subsec1">Subsection 1</a> and <a href="#subsubsec:ex">URLs</a>, which
+encourages you to do the tasks in <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.
+ <a href="#app1">Appendix: Just for testing; part I</a> and <a href="#app2">Appendix: Just for testing; part II</a> are also nice elements.
+</p>
 <h3 id="test-section-reference-at-beginning-of-line-and-after-a-sentence" class="anchor">Test Section reference at beginning of line and after a sentence </h3>
 
-<p>The section <a href="#subsec1">Subsection 1</a> is fine. The section <a href="#subsubsec:ex">URLs</a> too.</p>
+<p>The section <a href="#subsec1">Subsection 1</a> is fine.
+The section <a href="#subsubsec:ex">URLs</a> too.
+</p>
 
 <!-- sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console -->
 <h3 id="computer-code" class="anchor">Computer code </h3>
@@ -52382,7 +52585,9 @@ C     END1
   </div>
 </div>
 
-<p>and finally the complete file with a plain text verbatim environment (<code>envir=ccq</code>):</p>
+<p>and finally the complete file with a plain text verbatim environment
+(<code>envir=ccq</code>):
+</p>
 
 <!-- code=text (!bc ccq) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -52467,7 +52672,9 @@ def f(x):
   </div>
 </div>
 
-<p>Test paragraph and subsubsection headings before before code.</p>
+<p>Test paragraph and subsubsection headings before
+before code.
+</p>
 
 <p>
 <b>Paragraph heading before code.</b>
@@ -52528,7 +52735,9 @@ sys<span style="color: #666666">.</span>path<span style="color: #666666">.</span
   </div>
 </div>
 
-<p>Some more Python code (actually specified as a sage cell, but such cells are not supported by this format).</p>
+<p>Some more Python code (actually specified as a sage cell, but
+such cells are not supported by this format).
+</p>
 
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
@@ -52803,7 +53012,10 @@ function show_hide_code(){
   </div>
 </div>
 
-<p>But inline HTML code is also important, like text that starts with <code>&lt;a href=&quot;</code> (which can destroy the following text if not properly quoted).</p>
+<p>But inline HTML code is also important, like text that starts with
+<code>&lt;a href=&quot;</code> (which can destroy the following text if not properly
+quoted).
+</p>
 
 <p>Matlab with comments requires special typesetting:</p>
 
@@ -52978,9 +53190,22 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
   </div>
 </div>
 
-<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>. Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>. Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
+<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline
+inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For
+spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>.
+Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>.
+Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>,
+<code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.
+</p>
 
-<p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with green color containing a linebreak<br /> code.</font> Some formats will only display <br /> this correctly when <code>html</code> <br /> is the output format. But here some more running text is added which is not part of the previous blocks with line breaks.</p>
+<p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with
+green color containing a linebreak<br />
+code.</font> Some formats will only display <br />
+this correctly when <code>html</code> <br />
+is the output format.
+But here some more running text is added which is not part of
+the previous blocks with line breaks.
+</p>
 <h3 id="running-os-commands" class="anchor">Running OS commands </h3>
 
 
@@ -53011,7 +53236,9 @@ Python.
 </div>
 <h3 id="footnotes" class="anchor">Footnotes </h3>
 
-<p>Here is a test of footnotes <button type="button" class="btn btn-primary btn-xs" rel="tooltip" data-placement="top" title="Typesetting of the footnote depends on the format. Plain text does nothing, LaTeX removes the definition and inserts the footnote as part of the LaTeX text. reStructuredText and Sphinx employ a similar type of typesetting as Extended Markdown and DocOnce, and in HTML we keep the same syntax, just displayed properly in HTML."><a href="#def_footnote_1" id="link_footnote_1" style="color: white">1</a></button>, which are handy in text. They are used in different flavors, now in</p>
+<p>Here is a test of footnotes <button type="button" class="btn btn-primary btn-xs" rel="tooltip" data-placement="top" title="Typesetting of the footnote depends on the format. Plain text does nothing, LaTeX removes the definition and inserts the footnote as part of the LaTeX text. reStructuredText and Sphinx employ a similar type of typesetting as Extended Markdown and DocOnce, and in HTML we keep the same syntax, just displayed properly in HTML."><a href="#def_footnote_1" id="link_footnote_1" style="color: white">1</a></button>, which are handy in text.
+They are used in different flavors, now in
+</p>
 
 <ul>
  <li> list items (note below that footnotes work after math, verbatim, and URLs - bin fact old and emphasize too!)</li>
@@ -53019,25 +53246,48 @@ Python.
  <li> and code <code>h[i] += 1</code> <button type="button" class="btn btn-primary btn-xs" rel="tooltip" data-placement="top" title="One-line footnote."><a href="#def_footnote_3" id="link_footnote_3" style="color: white">3</a></button> (<em>must</em> have space between inline code and footnote!)</li>
  <li> and <a href="https://google.com" target="_self">links</a> <button type="button" class="btn btn-primary btn-xs" rel="tooltip" data-placement="top" title="google.com is perhaps the most famous web site today."><a href="#def_footnote_4" id="link_footnote_4" style="color: white">4</a></button></li>
 </ul>
-<p>which gives flexibility in writing. This is the third <button type="button" class="btn btn-primary btn-xs" rel="tooltip" data-placement="top" title="Not much to add here, but the footnote is at the end with only one newline."><a href="._testdoc_vagrant003.html#def_footnote_5" id="link_footnote_5" style="color: white">5</a></button> example.</p>
+<p>which gives flexibility in writing.
+This is the third <button type="button" class="btn btn-primary btn-xs" rel="tooltip" data-placement="top" title="Not much to add here, but the footnote is at the end with only one newline."><a href="#def_footnote_5" id="link_footnote_5" style="color: white">5</a></button> example.
+</p>
 
-<p><p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> Typesetting of the footnote depends on the format. Plain text does nothing, LaTeX removes the definition and inserts the footnote as part of the LaTeX text. reStructuredText and Sphinx employ a similar type of typesetting as Extended Markdown and DocOnce, and in HTML we keep the same syntax, just displayed properly in HTML.</p></p>
+<p><p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> Typesetting of the footnote depends on the format.
+Plain text does nothing, LaTeX removes the
+definition and inserts the footnote as part of the LaTeX text.
+reStructuredText and Sphinx employ a similar type of typesetting
+as Extended Markdown and DocOnce, and in HTML we keep the same
+syntax, just displayed properly in HTML.</p>
+</p>
 
-<p><p id="def_footnote_2"><a href="#link_footnote_2"><b>2:</b></a> Math footnotes can be dangerous since it interferes with an exponent.</p></p>
+<p><p id="def_footnote_2"><a href="#link_footnote_2"><b>2:</b></a> Math footnotes can be dangerous since it
+interferes with an exponent.</p>
+</p>
 
 <p id="def_footnote_3"><a href="#link_footnote_3"><b>3:</b></a> One-line footnote.</p>
 
-<p><p id="def_footnote_4"><a href="#link_footnote_4"><b>4:</b></a> <a href="google.com" target="_self"><tt>google.com</tt></a> is perhaps the most famous web site today.</p></p>
+<p><p id="def_footnote_4"><a href="#link_footnote_4"><b>4:</b></a> <a href="google.com" target="_self"><tt>google.com</tt></a> is perhaps the most famous
+web site today.</p>
+</p>
 
-<p>Here is some more text before a new definition of a footnote that was used above.</p>
+<p>Here is some more text before a new definition of a footnote that was
+used above.
+</p>
 
 <div class="alert alert-block alert-success alert-text-normal"><b>Non-breaking space character</b>
-<p>This paragraph aims to test <a href="https://en.wikipedia.org/wiki/Non-breaking_space" target="_self">non-breaking space character</a>, and a typical example where this is needed is in physical units: 7.4&nbsp;km is traveled in&nbsp;\( 7.4/5.5\approx 1.345 \)&nbsp;s.  Also check that a&nbsp;<a href="https://google.com" target="_self">link</a>&nbsp;is not broken across lines (drag the browser window to test this). (On the other hand, the tilde is used in computer code, e.g., as in <code>[~x for x in y]</code> or in <code>y=~x</code>, and should of course remain a tilde in those contexts.)</p>
+<p>This paragraph aims to test <a href="https://en.wikipedia.org/wiki/Non-breaking_space" target="_self">non-breaking space character</a>, and a typical
+example where this is needed is in physical units: 7.4&nbsp;km is traveled
+in&nbsp;\( 7.4/5.5\approx 1.345 \)&nbsp;s.  Also check that a&nbsp;<a href="https://google.com" target="_self">link</a>&nbsp;is
+not broken across lines (drag the browser window to test this).
+(On the other hand, the tilde is used in
+computer code, e.g., as in <code>[~x for x in y]</code> or in <code>y=~x</code>, and should
+of course remain a tilde in those contexts.)
+</p>
 </div>
 
 <h2 id="subsec:ex" class="anchor">Subsection 2: Testing figures</h2>
 
-<p>Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which there is a flow.</p>
+<p>Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which
+there is a flow.
+</p>
 
 <center> <!-- figure label: --> <div id="fig:impact"></div> <!-- FIGURE -->
 <hr class="figure">
@@ -53056,7 +53306,9 @@ Python.
 
 <!-- Test multi-line caption in figure with sidecap=True -->
 
-<p>Here is figure <a href="#myfig">2</a> with a long (illegal) multi-line caption containing inline verbatim text:</p>
+<p>Here is figure <a href="#myfig">2</a> with a long (illegal) multi-line caption
+containing inline verbatim text:
+</p>
 
 <center> <!-- figure label: --> <div id="myfig"></div> <!-- FIGURE -->
 <hr class="figure">
@@ -53090,7 +53342,21 @@ Python.
 <p>
 <!-- Bokeh plot -->
 <script type="text/javascript">
-<p>            Bokeh.$(function() {                 var modelid = "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1";                 var modeltype = "PlotContext";                 var elementid = "ffba6087-a45a-46eb-9368-11527f1f0a34";                 Bokeh.logger.info("Realizing plot:")                 Bokeh.logger.info(" - modeltype: PlotContext");                 Bokeh.logger.info(" - modelid: dc6ef912-b325-4c34-996a-cdeb5aa4d7c1");                 Bokeh.logger.info(" - elementid: ffba6087-a45a-46eb-9368-11527f1f0a34");                 var all_models = [{"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 1.0}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, "type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, {"attributes": {"column_names": ["x", "y"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selected": {"2d": {"indices": []}, "1d": {"indices": []}, "0d": {"indices": [], "flag": false}}, "callback": null, "data": {"y": [0.0, 1.0, 8.0, 27.0], "x": [0.0, 1.0, 2.0, 3.0]}, "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, "type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, "type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397", "renderers": []}, "type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, "type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, "type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, "type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, "type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed", "tags": []}, "type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748", "attributes": {"x_range": {"type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, "right": [], "tags": [], "tools": [{"type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}], "title": "Bokeh test", "extra_y_ranges": {}, "renderers": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}], "extra_x_ranges": {}, "below": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}], "tool_events": {"type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "above": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y_range": {"type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, "id": "bac26888-fe18-4833-afe3-61e241eed748", "left": [{"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}]}}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0", "renderers": []}, "type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1", "children": [{"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}]}, "type": "PlotContext", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1"}, {"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 0.1}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, "type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, "type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 1, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, "type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"attributes": {"nonselection_glyph": {"type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "data_source": {"type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "name": null, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selection_glyph": null, "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c", "glyph": {"type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}}, "type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 0, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, "type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, "type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"attributes": {"geometries": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8", "tags": []}, "type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}];                 Bokeh.load_models(all_models);                 var model = Bokeh.Collections(modeltype).get(modelid);                 var view = new model.default_view({model: model, el: '#ffba6087-a45a-46eb-9368-11527f1f0a34'});                 Bokeh.index[modelid] = view             });</p>
+<p>            Bokeh.$(function() {
+                var modelid = "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1";
+                var modeltype = "PlotContext";
+                var elementid = "ffba6087-a45a-46eb-9368-11527f1f0a34";
+                Bokeh.logger.info("Realizing plot:")
+                Bokeh.logger.info(" - modeltype: PlotContext");
+                Bokeh.logger.info(" - modelid: dc6ef912-b325-4c34-996a-cdeb5aa4d7c1");
+                Bokeh.logger.info(" - elementid: ffba6087-a45a-46eb-9368-11527f1f0a34");
+                var all_models = [{"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 1.0}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, "type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, {"attributes": {"column_names": ["x", "y"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selected": {"2d": {"indices": []}, "1d": {"indices": []}, "0d": {"indices": [], "flag": false}}, "callback": null, "data": {"y": [0.0, 1.0, 8.0, 27.0], "x": [0.0, 1.0, 2.0, 3.0]}, "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, "type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, "type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397", "renderers": []}, "type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, "type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, "type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, "type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, "type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed", "tags": []}, "type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748", "attributes": {"x_range": {"type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, "right": [], "tags": [], "tools": [{"type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}], "title": "Bokeh test", "extra_y_ranges": {}, "renderers": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}], "extra_x_ranges": {}, "below": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}], "tool_events": {"type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "above": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y_range": {"type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, "id": "bac26888-fe18-4833-afe3-61e241eed748", "left": [{"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}]}}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0", "renderers": []}, "type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1", "children": [{"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}]}, "type": "PlotContext", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1"}, {"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 0.1}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, "type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, "type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 1, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, "type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"attributes": {"nonselection_glyph": {"type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "data_source": {"type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "name": null, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selection_glyph": null, "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c", "glyph": {"type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}}, "type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 0, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, "type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, "type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"attributes": {"geometries": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8", "tags": []}, "type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}];
+                Bokeh.load_models(all_models);
+                var model = Bokeh.Collections(modeltype).get(modelid);
+                var view = new model.default_view({model: model, el: '#ffba6087-a45a-46eb-9368-11527f1f0a34'});
+                Bokeh.index[modelid] = view
+            });
+</p>
         </script>
 <div class="plotdiv" id="ffba6087-a45a-46eb-9368-11527f1f0a34"></div></p>
 </center>
@@ -53098,12 +53364,15 @@ Python.
 
 <p>
 <b>Remark.</b>
- Movies are tested in separate file <code>movies.do.txt</code>.</p>
+Movies are tested in separate file <code>movies.do.txt</code>.
+</p>
 
 <!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
 <h2 id="decay:sec:theta" class="anchor">The \( \theta \) parameter (not \( \nabla \)?)</h2>
 
-<p>Functions do not always need to be advanced, here is one involving \( \theta \):</p>
+<p>Functions do not always need to be advanced, here is one
+involving \( \theta \):
+</p>
 
 <!-- code=text (!bc ccq) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -53133,16 +53402,19 @@ Python.
 <b>More on \( \theta \).</b>
 Here is more text following headline with math.</p>
 
-<p>Newcommands must also be tested in this test report: \( \frac{1}{2} \), \( {1/2} \), \( \pmb{x} \), \( \frac{Du}{dt} \), both inline and in block:</p>
+<p>Newcommands must also be tested in this test report:
+\( \frac{1}{2} \), \( {1/2} \), \( \pmb{x} \), \( \frac{Du}{dt} \),
+both inline and in block:
+</p>
 
 $$
 \begin{align}
 \frac{Du}{dt} &= 0\nonumber
 \\ 
 \frac{1}{2} &= {1/2}
-\tag{1}\\ 
+\label{_auto1}\\ 
 \frac{1}{2}\pmb{x} &= \pmb{n}
-\tag{2}
+\label{_auto2}
 \end{align}
 $$
 
@@ -53151,12 +53423,12 @@ $$
 $$
 \begin{align}
 \frac{Du}{dt} &= 0
-\tag{3}
+\label{aligneq1}
 \\ 
 \frac{1}{2} &= {1/2}
-\tag{4}\\ 
+\label{_auto3}\\ 
 \frac{1}{2}\pmb{x} &= \pmb{n}
-\tag{5}
+\label{aligneq2}
 \end{align}
 $$
 
@@ -53181,7 +53453,7 @@ G_2 + G_3 & -G_3 & -G_2 & 0 \\
  v_3 \\ 
  v_4
 \end{pmatrix}
-+ \cdots  \tag{6}
++ \cdots  \label{_auto4}
 \\ 
 \begin{pmatrix}
  C_5 + C_6 & -C_6 & 0 & 0 \\ 
@@ -53202,7 +53474,7 @@ G_2 + G_3 & -G_3 & -G_2 & 0 \\
  -i_0
 \end{pmatrix}
 \nonumber
-\tag{7}
+\label{_auto5}
 \end{align}$$
 
 <p>Second numbered (automatically):</p>
@@ -53219,7 +53491,7 @@ G_1 + G_2\\
  v_2
 \end{pmatrix}
 + \cdots\nonumber
-\tag{8}
+\label{_auto6}
 \\ 
 \left(\begin{array}{ll}
 y & 2\\ 
@@ -53231,7 +53503,7 @@ y & 2\\
 &= \begin{pmatrix}
 A \\ B
 \end{pmatrix}
-\tag{9}
+\label{_auto7}
 \end{align}$$
 
 <p>Both numbered, with label by the user:</p>
@@ -53247,9 +53519,9 @@ G_1 + G_2\\
  v_1 \\ 
  v_2
 \end{pmatrix}
-+ \cdots \tag{10}
++ \cdots \label{mymatrix:eq1}
 \\ 
-\tag{11}
+\label{mymatrix:eq2}
 \left(\begin{array}{ll}
 y & 2\\ 
 2 & 1
@@ -53262,27 +53534,35 @@ A \\ B
 \end{pmatrix}
 \end{align}$$
 
-<p>Now we refer to <a href="#mjx-eqn-10">(10)</a>-<a href="#mjx-eqn-11">(11)</a>.</p>
+<p>Now we refer to \eqref{mymatrix:eq1}-\eqref{mymatrix:eq2}.</p>
 <h2 id="custom-environments" class="anchor">Custom Environments </h2>
 
-<p>Here is an attempt to create a theorem environment via Mako (for counting theorems) and comment lines to help replacing lines in the <code>.tex</code> by proper begin-end LaTeX environments for theorems. Should look nice in most formats!</p>
+<p>Here is an attempt to create a theorem environment via Mako
+(for counting theorems) and comment lines to help replacing lines in
+the <code>.tex</code> by proper begin-end LaTeX environments for theorems.
+Should look nice in most formats!
+</p>
 
 <!-- begin theorem -->
 <div id="theorem:fundamental1"></div>
 
 <p>
 <b>Theorem 5.</b>
- Let \( a=1 \) and \( b=2 \). Then \( c=3 \).</p>
+Let \( a=1 \) and \( b=2 \). Then \( c=3 \).
+</p>
 <!-- end theorem -->
 
 <!-- begin proof -->
 <p>
 <b>Proof.</b>
- Since \( c=a+b \), the result follows from straightforward addition.</p>
+Since \( c=a+b \), the result follows from straightforward addition.
 \( \Diamond \)
+</p>
 <!-- end proof -->
 
-<p>As we see, the proof of Theorem 5 is a modest achievement.</p>
+<p>As we see, the proof of Theorem 5 is a modest
+achievement.
+</p>
 <h2 id="subsec:table" class="anchor">Tables</h2>
 
 <!-- index with comma could fool sphinx -->
@@ -53335,7 +53615,9 @@ A \\ B
   </div>
 </div>
 
-<p>Here is yet another table to test that we can handle more than one table:</p>
+<p>Here is yet another table to test that we can handle more than
+one table:
+</p>
 
 <div class="row">
   <div class="col-xs-2">
@@ -53352,7 +53634,10 @@ A \\ B
   </div> <!-- col-xs-2 -->
 </div> <!-- cell row -->
 
-<p>And one with math headings (that are expanded and must be treated accordingly), verbatim heading and entry, and no space around the pipe symbol:</p>
+<p>And one with math headings (that are expanded and must be treated
+accordingly), verbatim heading and entry, and no space around the pipe
+symbol:
+</p>
 
 <div class="row">
   <div class="col-xs-5">
@@ -53373,7 +53658,10 @@ A \\ B
   </div> <!-- col-xs-5 -->
 </div> <!-- cell row -->
 
-<p>And add one with verbatim headings (with underscores), and rows starting with <code>|-</code> because of a negative number, and <code>|</code> right before and after verbatim word (with no space):</p>
+<p>And add one with verbatim headings (with underscores),
+and rows starting with <code>|-</code> because of a negative number,
+and <code>|</code> right before and after verbatim word (with no space):
+</p>
 
 <div class="row">
   <div class="col-xs-8">
@@ -53391,7 +53679,10 @@ A \\ B
   </div> <!-- col-xs-8 -->
 </div> <!-- cell row -->
 
-<p>Pipe symbols in verbatim and math text in tables used to pose difficulties, but not anymore:</p>
+<p>Pipe symbols in verbatim and math text in tables used to pose difficulties,
+but not
+anymore:
+</p>
 
 <div class="row">
   <div class="col-xs-4">
@@ -53423,7 +53714,11 @@ A \\ B
   </div> <!-- col-xs-12 -->
 </div> <!-- cell row -->
 
-<p>Finally, a table with math (<code>bm</code> that expands to <code>boldsymbol</code>, was tricky, but cleanly handled now) and URLs.</p>
+<p>Finally, a table with math
+(<code>bm</code> that expands to <code>boldsymbol</code>, was tricky, but
+cleanly handled now)
+and URLs.
+</p>
 
 <!-- Mako code to expand URLs in the table -->
 <!-- (These types of tables did not work before Jan 2014) -->
@@ -53444,7 +53739,9 @@ A \\ B
 
 <p>
 <b>Paragraph with verbatim and math: <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \( a_{i-1} \).</b>
-Here is more <code>__verbatim__</code> code and some plain text on a new line.</p>
+Here is more <code>__verbatim__</code> code and
+some plain text on a new line.
+</p>
 
 <!-- Test various types of headlines -->
 <h2 id="_just-bold_" class="anchor"><b>Just bold</b> </h2>
@@ -53518,7 +53815,10 @@ Some text.</p>
 
 <p>
 <b>Ampersand.</b>
- We can test Hennes &amp; Mauritz, often abbreviated H&amp;M, but written as <code>Hennes & Mauritz</code> and <code>H & M</code>. A sole <code>&</code> must also work.</p>
+We can test Hennes &amp; Mauritz, often abbreviated H&amp;M, but written
+as <code>Hennes & Mauritz</code> and <code>H & M</code>.
+A sole <code>&</code> must also work.
+</p>
 <!-- Note: substitutions must not occur inside verbatim, just in ordinary text. -->
 
 
@@ -53548,55 +53848,102 @@ c = a &amp; b
 
 <p>
 <b>Quotes.</b>
- Let us also add a test of quotes such as &quot;double quotes, with numbers like 3.14 and newline/comma and hyphen (as in double-quote)&quot;; written in the standard LaTeX-style that gives correct LaTeX formatting and ordinary double quotes for all non-LaTeX formats.  Here is another sentence that &quot;caused&quot; a bug in the past because double backtick quotes could imply verbatim text up to a verbatim word starting with period, like <code>.txt</code>.</p>
+Let us also add a test of quotes such as &quot;double quotes, with numbers
+like 3.14 and newline/comma and hyphen (as in double-quote)&quot;; written
+in the standard LaTeX-style that gives correct LaTeX formatting and
+ordinary double quotes for all non-LaTeX formats.  Here is another
+sentence that &quot;caused&quot; a bug in the past because double backtick
+quotes could imply verbatim text up to a verbatim word starting with
+period, like <code>.txt</code>.
+</p>
 
-<p>More quotes to be tested for spellcheck: (&quot;with parenthesis&quot;), &quot;with newline&quot; and &quot;with comma&quot;, &quot;hyphen&quot;-wise, and &quot;period&quot;.</p>
+<p>More quotes to be tested for spellcheck:
+(&quot;with parenthesis&quot;), &quot;with newline&quot;
+and &quot;with comma&quot;, &quot;hyphen&quot;-wise, and &quot;period&quot;.
+</p>
 <h2 id="bibliography-test" class="anchor">Bibliography test </h2>
 
-<p>Here is an example: <a href="._testdoc_vagrant002.html#Langtangen_Pedersen_2002">[1]</a> discussed propagation of large destructive water waves, <a href="._testdoc_vagrant002.html#Langtangen_et_al_2002">[2]</a> gave an overview of numerical methods for solving the Navier&ndash;Stokes equations, while the use of Backward Kolmogorov equations for analyzing random vibrations was investigated in <a href="._testdoc_vagrant002.html#Langtangen_1994a">[3]</a>. The book chapter <a href="._testdoc_vagrant002.html#Mardal_et_al_2003a">[4]</a> contains information on C++ software tools for programming multigrid methods. A real retro reference is <a href="._testdoc_vagrant002.html#Langtangen_1988d">[5]</a> about a big FORTRAN package. Multiple references are also possible, e.g., see <a href="._testdoc_vagrant002.html#Langtangen_Pedersen_2002">[1]</a> <a href="._testdoc_vagrant002.html#Mardal_et_al_2003a">[4]</a>.</p>
+<p>Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of
+large destructive water waves, <a href="#Langtangen_et_al_2002">[2]</a> gave
+an overview of numerical methods for solving the Navier&ndash;Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in <a href="#Langtangen_1994a">[3]</a>.
+The book chapter <a href="#Mardal_et_al_2003a">[4]</a> contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is <a href="#Langtangen_1988d">[5]</a> about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+<a href="#Langtangen_Pedersen_2002">[1]</a> <a href="#Mardal_et_al_2003a">[4]</a>.
+</p>
 
-<p>We need to cite more than 10 papers to reproduce an old formatting problem with blanks in the keys in reST format:</p>
-<a href="._testdoc_vagrant002.html#Langtangen_1992c">[6]</a> <a href="._testdoc_vagrant002.html#Langtangen_1994a">[3]</a> <a href="._testdoc_vagrant002.html#Mortensen_et_al_2011">[7]</a> <a href="._testdoc_vagrant002.html#Langtangen_Pedersen_2002">[1]</a>
+<p>We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+</p>
+<a href="#Langtangen_1992c">[6]</a> <a href="#Langtangen_1994a">[3]</a> <a href="#Mortensen_et_al_2011">[7]</a> <a href="#Langtangen_Pedersen_2002">[1]</a>
 <p>and</p>
-<a href="._testdoc_vagrant002.html#Langtangen_et_al_2002">[2]</a> <a href="._testdoc_vagrant002.html#Glimsdal_et_al_20006">[8]</a> <a href="._testdoc_vagrant002.html#Rahman_et_al_2006b">[9]</a> <a href="._testdoc_vagrant002.html#Haga_et_al_2011a">[10]</a> <a href="._testdoc_vagrant002.html#Langtangen_2003a">[11]</a> <a href="._testdoc_vagrant002.html#Langtangen_2008a">[12]</a> <a href="._testdoc_vagrant002.html#Langtangen:95">[13]</a>
-<p>and all the work of <a href="._testdoc_vagrant002.html#Langtangen_2012">[14]</a> <a href="._testdoc_vagrant002.html#Mardal_et_al_2003a">[4]</a> <a href="._testdoc_vagrant002.html#Jeberg_et_al_2004">[15]</a> as well as old work <a href="._testdoc_vagrant002.html#Langtangen_1988d">[5]</a> and <a href="._testdoc_vagrant002.html#Langtangen_1989e">[16]</a>, and the talk <a href="._testdoc_vagrant002.html#Langtangen_talk_2007a">[17]</a>. Langtangen also had two thesis <a href="._testdoc_vagrant002.html#Langtangen:85">[18]</a> <a href="._testdoc_vagrant002.html#Langtangen_1989e">[16]</a> back in the days. More retro citations are the old ME-IN323 book <a href="._testdoc_vagrant002.html#Langtangen:91">[19]</a> and the <a href="._testdoc_vagrant002.html#Langtangen:94b">[20]</a> OONSKI '94 paper.</p>
+<a href="#Langtangen_et_al_2002">[2]</a> <a href="#Glimsdal_et_al_20006">[8]</a> <a href="#Rahman_et_al_2006b">[9]</a> <a href="#Haga_et_al_2011a">[10]</a> <a href="#Langtangen_2003a">[11]</a> <a href="#Langtangen_2008a">[12]</a> <a href="#Langtangen:95">[13]</a>
+<p>and all the work of
+<a href="#Langtangen_2012">[14]</a> <a href="#Mardal_et_al_2003a">[4]</a> <a href="#Jeberg_et_al_2004">[15]</a> as well as
+old work <a href="#Langtangen_1988d">[5]</a> and <a href="#Langtangen_1989e">[16]</a>, and the
+talk <a href="#Langtangen_talk_2007a">[17]</a>.
+Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen_1989e">[16]</a>
+back in the days.
+More retro citations are
+the old ME-IN323 book <a href="#Langtangen:91">[19]</a> and the
+<a href="#Langtangen:94b">[20]</a> OONSKI '94 paper.
+</p>
 
 <!-- --- begin exercise --- -->
 <h2 id="Example" class="anchor">Example 1: Examples can be typeset as exercises</h2>
 
-<p>Examples can start with a subsection heading starting with <code>Example:</code> and then, with the command-line option <code>--examples_as_exercises</code> be typeset as exercises. This is useful if one has solution environments as part of the example.</p>
+<p>Examples can start with a subsection heading starting with <code>Example:</code>
+and then, with the command-line option <code>--examples_as_exercises</code> be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+</p>
 
 <p>
 <b>a)</b>
- State some problem.</p>
+State some problem.
+</p>
 
 <p>
 <b>Solution.</b>
- The answer to this subproblem can be written here.</p>
+The answer to this subproblem can be written here.
+</p>
 
 <p>
 <b>b)</b>
- State some other problem.</p>
+State some other problem.
+</p>
 
 <p>
 <b>Hint 1.</b>
- A hint can be given.</p>
+A hint can be given.
+</p>
 
 <p>
 <b>Hint 2.</b>
- Maybe even another hint?</p>
+Maybe even another hint?
+</p>
 
 <p>
 <b>Solution.</b>
- The answer to this other subproblem goes here, maybe over multiple doconce input lines.</p>
+The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+</p>
 
 <!-- --- end exercise --- -->
 <h2 id="user-defined-environments" class="anchor">User-defined environments </h2>
 
-<p>The example in the section <a href="#ex:test:1p1">Example 1: A test function</a> demonstrates how to write a test function. That is, a special test function for a function <code>add</code> appears in the example in the section <a href="#ex:test:1p1">Example 1: A test function</a>.</p>
+<p>The example in the section <a href="#ex:test:1p1">Example 1: A test function</a> demonstrates how to write a test function.
+That is, a special test function for a function <code>add</code> appears in
+the example in the section <a href="#ex:test:1p1">Example 1: A test function</a>.
+</p>
 <h2 id="ex:test:1p1" class="anchor">Example 1: A test function</h2>
 
-<p>Suppose we want to write a test function for checking the implementation of a Python function for addition.</p>
+<p>Suppose we want to write a test function for checking the
+implementation of a Python function for addition.
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -53648,7 +53995,10 @@ $$ 1 + 1 = 2 $$
   </div> <!-- col-xs-1 -->
 </div> <!-- cell row -->
 
-<p><div style="width: 60%; padding: 10px; border: 1px solid #000;  border-radius: 4px; box-shadow: 8px 8px 5px #888888;  background: #cce5ff;"></p>
+<p><div style="width: 60%; padding: 10px; border: 1px solid #000;
+ border-radius: 4px; box-shadow: 8px 8px 5px #888888;
+ background: #cce5ff;">
+</p>
  <b>Highlight box!</b><hr>
 <p>This environment is used to highlight something:</p>
 
@@ -53657,15 +54007,36 @@ $$ E = mc^2 $$
 </div>
 <h2 id="subsubsec:ex" class="anchor">URLs</h2>
 
-<p>Testing of URLs: hpl's home page <a href="https://folk.uio.no/hpl" target="_self">hpl</a>, or the entire URL if desired, <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>.  Here is a plain file link <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self">a link with newline</a>. Can test spaces with the link with word too: <a href="https://folk.uio.no/hpl" target="_self">hpl</a> or <a href="https://folk.uio.no/hpl" target="_self">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" target="_self">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
+<p>Testing of URLs: hpl's home page <a href="https://folk.uio.no/hpl" target="_self">hpl</a>, or
+the entire URL if desired, <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>.  Here is a
+plain file link <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or
+<a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self">a link with
+newline</a>. Can test spaces with the link with word
+too: <a href="https://folk.uio.no/hpl" target="_self">hpl</a> or <a href="https://folk.uio.no/hpl" target="_self">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" target="_self">link to a
+file</a> is
+fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just
+the plain URL as in <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
+</p>
 
 <p>Mail addresses can also be used: <a href="mailto:hpl@simula.no" target="_self"><tt>hpl@simula.no</tt></a>, or just a <a href="mailto:hpl@simula.no" target="_self">mail link</a>, or a raw <a href="mailto:hpl@simula.no" target="_self"><tt>mailto:hpl@simula.no</tt></a>.</p>
 
-<p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" target="_self">Newton-Cotes</a> formulas and a <a href="https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1" target="_self">good book</a>. Need to test Newton-Cotes with percentage in URL too:</p>
+<p>Here are some tough tests of URLs, especially for the <code>latex</code> format:
+<a href="https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" target="_self">Newton-Cotes</a> formulas
+and a <a href="https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1" target="_self">good book</a>. Need to test
+Newton-Cotes with percentage in URL too:
 <a href="https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" target="_self"><tt>https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas</tt></a>
-<p>and <a href="https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae" target="_self"><tt>https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</tt></a> which has a shebang.</p>
+and <a href="https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae" target="_self"><tt>https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</tt></a> which has a shebang.
+</p>
 
-<p>For the <code>--device=paper</code> option it is important to test that URLs with monospace font link text get a footnote (unless the <code>--latex_no_program_footnotelink</code> is used), as in this reference to <a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py" target="_self"><tt>decay_mod</tt></a>, <a href="https://tinyurl.com/pwyasaa/formulas.ball1.py" target="_self"><tt>ball1.py</tt></a>, and <a href="https://tinyurl.com/pwyasaa/formulas.ball2.py" target="_self"><tt>ball2.py</tt></a>.</p>
+<p>For the <code>--device=paper</code> option it is important to test that URLs with
+monospace font link text get a footnote
+(unless the <code>--latex_no_program_footnotelink</code>
+is used), as in this reference to
+<a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py" target="_self"><tt>decay_mod</tt></a>, <a href="https://tinyurl.com/pwyasaa/formulas.ball1.py" target="_self"><tt>ball1.py</tt></a>,
+and <a href="https://tinyurl.com/pwyasaa/formulas.ball2.py" target="_self"><tt>ball2.py</tt></a>.
+</p>
 
 <!-- Comments should be inserted outside paragraphs (because in the rst -->
 <!-- format extra blanks make a paragraph break). -->
@@ -53674,366 +54045,28 @@ $$ E = mc^2 $$
 <!-- if the link name is URL, url, "URL", or "url". Such files should, -->
 <!-- if rst output is desired, but placed in a <code>_static*</code> folder. -->
 
-<p>More tough tests: repeated URLs whose footnotes when using the <code>--device=paper</code> option must be correct. We have <a href="https://google.com" target="_self">google</a>, <a href="https://google.com" target="_self">google</a>, and <a href="https://google.com" target="_self">google</a>, which should result in exactly three footnotes.</p>
+<p>More tough tests: repeated URLs whose footnotes when using the
+<code>--device=paper</code> option must be correct. We have
+<a href="https://google.com" target="_self">google</a>, <a href="https://google.com" target="_self">google</a>, and
+<a href="https://google.com" target="_self">google</a>, which should result in exactly three
+footnotes.
+</p>
 
-<p>
-<!-- navigation buttons at the bottom of the page -->
-<ul class="pager">
-
-  <li class="previous">
-    <a href="._testdoc_vagrant000.html">&larr; Prev</a>
-  </li>
-
-  <li class="next">
-    <a href="._testdoc_vagrant002.html">Next &rarr;</a>
-  </li>
-</ul>
-<!-- ------------------- end of main content --------------- -->
-
- </div>
-
- <div class="row Footer">
-  <div class="span12">
-  <!-- footer --> Here goes a footer, if desired, maybe with author(s) and a copyright &copy;
-  </div>
- </div>
-</div>
-</body>
-</html>
-
-************** File: ._testdoc_vagrant002.html *****************
-<html>
-<head>
-<!-- Bootstrap style: vagrant 1.0 web pages -->
-
-<!--
-This style is adopted from the (now old) vagrant 1.0 web pages.
-
-This style file should be copied and the following elements edited:
-
-Logo heading:
-
- LogoWord
- withSubWord
-
-Navigation links at the top:
-
- GO TO 1
- GO TO 2
-
-Footer at the end
--->
-
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Doconce: http://code.google.com/p/doconce/" />
-
-<title>A Document for Testing DocOnce</title>
-
-<!-- If you copy the css subdirectory (and, e.g., make optional edits):
-<link rel="stylesheet" href="css/twitter_bootstrap.css">
-<link rel="stylesheet" href="css/vagrant.css">
-Otherwise, rely on the URLs below (vagrant.css adapted to Doconce layout)
--->
-
-<link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/twitter_bootstrap.css">
-<link rel="stylesheet" href="https://raw.githubusercontent.com/hplgit/doconce/master/bundled/html_styles/style_vagrant/css/vagrant.css">
-
-<!-- Define color of headings here (last definition counts) -->
-<style type="text/css">
-h1, h2, h3, h4, h5, h6 {
-  color: #000;     /* black */
-  color: #999;     /* gray */
-  color: #005580;  /* dark blue */
-  color: #08c;     /* characteristic blue */
-</style>
-
-<!-- Tools for embedded Bokeh plots -->
-<link rel="stylesheet"
-      href="https://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.css"
-      type="text/css" />
-<script type="text/javascript"
-	src="https://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.js">
-</script>
-<script type="text/javascript">
-  Bokeh.set_log_level("info");
-</script>
-
-
-</head>
-<body>
-
-<div class="container">
- <div class="row Header with-border">
-  <div class="span3 Module logo">
-   <h1><a href="/">LogoWord<span class="subtitle">withSubWord</span></a></h1>
-  </div>
-  <div class="span9">
-   <div class="Module navigation">
-   <!-- Navigation at the top of the page -->
-    <ul>
-     <li> <a href="">GO TO 1</a></li>
-     <li> <a href="">GO TO 2</a></li>
-    </ul>
-   </div>
-  </div>
- </div>
-</div>
-
-
-<!-- Here goes the table of contents in the sidebar
-     <li class="active"> means dark blue background for current section
--->
-<div class="row">
- <div class="span3 Module sidebar">
-  <div class="well" style="padding: 8px 0px;">
-   <ul class="nav nav-list">
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant000.html#table_of_contents" style="font-size: 80%;"><b>Table of contents</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#sec1" style="font-size: 80%;"><b>Section 1</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#subsec1" style="font-size: 80%;">Subsection 1</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#subsec:ex" style="font-size: 80%;">Subsection 2: Testing figures</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#decay:sec:theta" style="font-size: 80%;">The \( \theta \) parameter (not \( \nabla \)?)</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#custom-environments" style="font-size: 80%;">Custom Environments</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#subsec:table" style="font-size: 80%;">Tables</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2" style="font-size: 80%;">A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#_just-bold_" style="font-size: 80%;"><b>Just bold</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#just-emphasize" style="font-size: 80%;"><em>Just emphasize</em></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#just-verbatim" style="font-size: 80%;"><code>Just verbatim</code></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#_bold_-beginning" style="font-size: 80%;"><b>Bold</b> beginning</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#emphasize-beginning" style="font-size: 80%;"><em>Emphasize</em> beginning</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#verbatim-beginning" style="font-size: 80%;"><code>Verbatim</code> beginning</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#maybe-_bold-end_" style="font-size: 80%;">Maybe <b>bold end</b></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#maybe-emphasize-end" style="font-size: 80%;">Maybe <em>emphasize end</em></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#maybe-verbatim-end" style="font-size: 80%;">Maybe <code>verbatim end</code></a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#the-middle-has-<b>bold</b>-word" style="font-size: 80%;">The middle has <b>bold</b> word</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#the-middle-has-emphasize-word" style="font-size: 80%;">The middle has <em>emphasize</em> word</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#the-middle-has-verbatim-word" style="font-size: 80%;">The middle has <code>verbatim</code> word</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#bibliography-test" style="font-size: 80%;">Bibliography test</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#Example" style="font-size: 80%;">Example 1: Examples can be typeset as exercises</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#user-defined-environments" style="font-size: 80%;">User-defined environments</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#ex:test:1p1" style="font-size: 80%;">Example 1: A test function</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#ex:math:1p1" style="font-size: 80%;">Example 2: Addition</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant001.html#subsubsec:ex" style="font-size: 80%;">URLs</a></li>
-     </ul>
-     <!-- navigation toc: --> <li><a href="#latex-mathematics" style="font-size: 80%;"><b>LaTeX Mathematics</b></a></li>
-     <!-- navigation toc: --> <li><a href="#exercises" style="font-size: 80%;"><b>Exercises</b></a></li>
-     <ul class="nav">
-     <!-- navigation toc: --> <li><a href="#demo:ex:1" style="font-size: 80%;">Problem 2: Flip a Coin</a></li>
-     <!-- navigation toc: --> <li><a href="#not-an-exercise" style="font-size: 80%;">Not an exercise</a></li>
-     <!-- navigation toc: --> <li><a href="#my:exer1" style="font-size: 80%;">Exercise 3: Test of plain text exercise</a></li>
-     <!-- navigation toc: --> <li><a href="#demo:ex:2" style="font-size: 80%;">Project 4: Compute a Probability</a></li>
-     <!-- navigation toc: --> <li><a href="#proj:circle1" style="font-size: 80%;">Project 5: Explore Distributions of Random Circles</a></li>
-     <!-- navigation toc: --> <li><a href="#exer:dist" style="font-size: 80%;">Exercise 6: Determine some Distance</a></li>
-     <!-- navigation toc: --> <li><a href="#some-exercise-without-the-exercise-prefix" style="font-size: 80%;">Some exercise without the "Exercise:" prefix</a></li>
-     <!-- navigation toc: --> <li><a href="#sec:this:exer:de" style="font-size: 80%;">Exercise 8: Solution of differential equation</a></li>
-     <!-- navigation toc: --> <li><a href="#example-9-just-an-example" style="font-size: 80%;">Example 9: Just an example</a></li>
-     </ul>
-     <!-- navigation toc: --> <li><a href="#here-goes-another-section" style="font-size: 80%;"><b>Here goes another section</b></a></li>
-     <!-- navigation toc: --> <li><a href="#more-exercises" style="font-size: 80%;"><b>More Exercises</b></a></li>
-     <ul class="nav">
-     <!-- navigation toc: --> <li><a href="#exer:some:formula" style="font-size: 80%;">Exercise 10: Make references to projects and problems</a></li>
-     <!-- navigation toc: --> <li><a href="#exer:you" style="font-size: 80%;">Project 11: References in a headings do not work well in html</a></li>
-     </ul>
-     <!-- navigation toc: --> <li><a href="#references" style="font-size: 80%;"><b>References</b></a></li>
-     <!-- navigation toc: --> <li><a href="#app1" style="font-size: 80%;"><b>Appendix: Just for testing; part I</b></a></li>
-     <ul class="nav">
-     <!-- navigation toc: --> <li><a href="#a-subsection-within-an-appendix" style="font-size: 80%;">A subsection within an appendix</a></li>
-     </ul>
-     <!-- navigation toc: --> <li><a href="#app2" style="font-size: 80%;"><b>Appendix: Just for testing; part II</b></a></li>
-     <ul class="nav">
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-identical-titles" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
-     <!-- navigation toc: --> <li><a href="#test:title:id1" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
-     <!-- navigation toc: --> <li><a href="#test:title:id2" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-identical-titles" style="font-size: 80%;">Appendix: Testing identical titles</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-inline-comments" style="font-size: 80%;">Appendix: Testing inline comments</a></li>
-     <!-- navigation toc: --> <li><a href="._testdoc_vagrant003.html#appendix-testing-headings-ending-with-verbatim-inline" style="font-size: 80%;">Appendix: Testing headings ending with <code>verbatim inline</code></a></li>
-
-   </ul>
-  </div>
- </div>
-
- <div class="span9">
-
-<!-- tocinfo
-{'highest level': 1,
- 'sections': [('Table of contents',
-               1,
-               'table_of_contents',
-               'table_of_contents'),
-              ('Section 1', 1, 'sec1', 'sec1'),
-              ('Here is a list with subsubsection heading',
-               3,
-               None,
-               'here-is-a-list-with-subsubsection-heading'),
-              ('Subsection 1', 2, 'subsec1', 'subsec1'),
-              ('Test Section reference at beginning of line and after a '
-               'sentence',
-               3,
-               None,
-               'test-section-reference-at-beginning-of-line-and-after-a-sentence'),
-              ('Computer code', 3, None, 'computer-code'),
-              ('Subsubsection heading before code',
-               3,
-               None,
-               'subsubsection-heading-before-code'),
-              ('Running OS commands', 3, None, 'running-os-commands'),
-              ('Footnotes', 3, None, 'footnotes'),
-              ('Subsection 2: Testing figures', 2, 'subsec:ex', 'subsec:ex'),
-              ('The $\\theta$ parameter (not $\\nabla$?)',
-               2,
-               'decay:sec:theta',
-               'decay:sec:theta'),
-              ('Custom Environments', 2, None, 'custom-environments'),
-              ('Tables', 2, 'subsec:table', 'subsec:table'),
-              ('A test of verbatim words in heading with subscript $a_i$: '
-               '`my_file_v1` and `my_file_v2`',
-               2,
-               None,
-               'a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2'),
-              ('_Just bold_', 2, None, '_just-bold_'),
-              ('*Just emphasize*', 2, None, 'just-emphasize'),
-              ('`Just verbatim`', 2, None, 'just-verbatim'),
-              ('_Bold_ beginning', 2, None, '_bold_-beginning'),
-              ('*Emphasize* beginning', 2, None, 'emphasize-beginning'),
-              ('`Verbatim` beginning', 2, None, 'verbatim-beginning'),
-              ('Maybe _bold end_', 2, None, 'maybe-_bold-end_'),
-              ('Maybe *emphasize end*', 2, None, 'maybe-emphasize-end'),
-              ('Maybe `verbatim end`', 2, None, 'maybe-verbatim-end'),
-              ('The middle has _bold_ word',
-               2,
-               None,
-               'the-middle-has-_bold_-word'),
-              ('The middle has *emphasize* word',
-               2,
-               None,
-               'the-middle-has-emphasize-word'),
-              ('The middle has `verbatim` word',
-               2,
-               None,
-               'the-middle-has-verbatim-word'),
-              ('Bibliography test', 2, None, 'bibliography-test'),
-              ('Example 1: Examples can be typeset as exercises',
-               2,
-               'Example',
-               'Example'),
-              ('User-defined environments',
-               2,
-               None,
-               'user-defined-environments'),
-              ('Example 1: A test function', 2, 'ex:test:1p1', 'ex:test:1p1'),
-              ('Example 2: Addition', 2, 'ex:math:1p1', 'ex:math:1p1'),
-              ('URLs', 2, 'subsubsec:ex', 'subsubsec:ex'),
-              ('LaTeX Mathematics', 1, None, 'latex-mathematics'),
-              ('Exercises', 1, None, 'exercises'),
-              ('Problem 2: Flip a Coin', 2, 'demo:ex:1', 'demo:ex:1'),
-              ('My remarks', 3, None, 'my-remarks'),
-              ('Remarks', 3, None, 'remarks'),
-              ('Not an exercise', 2, None, 'not-an-exercise'),
-              ('Exercise 3: Test of plain text exercise',
-               2,
-               'my:exer1',
-               'my:exer1'),
-              ('Project 4: Compute a Probability', 2, 'demo:ex:2', 'demo:ex:2'),
-              ('Project 5: Explore Distributions of Random Circles',
-               2,
-               'proj:circle1',
-               'proj:circle1'),
-              ('Remarks', 3, None, 'remarks'),
-              ('Exercise 6: Determine some Distance',
-               2,
-               'exer:dist',
-               'exer:dist'),
-              ('Remarks', 3, None, 'remarks'),
-              ('Some exercise without the "Exercise:" prefix',
-               2,
-               None,
-               'some-exercise-without-the-exercise-prefix'),
-              ('Exercise 8: Solution of differential equation',
-               2,
-               'sec:this:exer:de',
-               'sec:this:exer:de'),
-              ('Example 9: Just an example',
-               2,
-               None,
-               'example-9-just-an-example'),
-              ('Here goes another section',
-               1,
-               None,
-               'here-goes-another-section'),
-              ('More Exercises', 1, None, 'more-exercises'),
-              ('Exercise 10: Make references to projects and problems',
-               2,
-               'exer:some:formula',
-               'exer:some:formula'),
-              ('Project 11: References in a headings do not work well in html',
-               2,
-               'exer:you',
-               'exer:you'),
-              ('References', 1, None, 'references'),
-              ('Appendix: Just for testing; part I', 1, 'app1', 'app1'),
-              ('A subsection within an appendix',
-               2,
-               None,
-               'a-subsection-within-an-appendix'),
-              ('Appendix: Just for testing; part II', 1, 'app2', 'app2'),
-              ('Appendix: Testing identical titles',
-               2,
-               None,
-               'appendix-testing-identical-titles'),
-              ('Appendix: Testing identical titles',
-               2,
-               'test:title:id1',
-               'test:title:id1'),
-              ('Appendix: Testing identical titles',
-               2,
-               'test:title:id2',
-               'test:title:id2'),
-              ('Appendix: Testing identical titles',
-               2,
-               None,
-               'appendix-testing-identical-titles'),
-              ('Appendix: Testing inline comments',
-               2,
-               None,
-               'appendix-testing-inline-comments'),
-              ('Appendix: Testing headings ending with `verbatim inline`',
-               2,
-               None,
-               'appendix-testing-headings-ending-with-verbatim-inline')]}
-end of tocinfo -->
-
-
-
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: {
-     equationNumbers: {  autoNumber: "none"  },
-     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
-  }
-});
-</script>
-<script type="text/javascript" async
- src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-<a name="part0002"></a>
 <!-- !split and check if these extra words are included properly in the comment -->
 <h1 id="latex-mathematics" class="anchor">LaTeX Mathematics </h1>
 
 <p>Here is an equation without label using backslash-bracket environment:</p>
 $$ a = b + c $$
 
-<p>or with number and label, as in <a href="#mjx-eqn-12">(12)</a>, using the equation environment:</p>
+<p>or with number and label, as in \eqref{my:eq1}, using the equation environment:</p>
 
 $$
 \begin{equation}
-{\partial u\over\partial t} = \nabla^2 u \tag{12}
+{\partial u\over\partial t} = \nabla^2 u \label{my:eq1}
 \end{equation}
 $$
 
-<p>We can refer to this equation by <a href="#mjx-eqn-12">(12)</a>.</p>
+<p>We can refer to this equation by \eqref{my:eq1}.</p>
 
 <p>Here is a system without equation numbers, using the align-asterisk environment:</p>
 
@@ -54048,26 +54081,32 @@ $$
 
 $$
 \begin{align}
-a &= q + 4 + 5+ 6 \tag{13} \\ 
-b &= \nabla^2 u + \nabla^4 x \tag{14}
+a &= q + 4 + 5+ 6 \label{eq1} \\ 
+b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
 
 $$
 
-<p>We can refer to <a href="#mjx-eqn-13">(13)</a>-<a href="#mjx-eqn-14">(14)</a>. They are a bit simpler than the Navier&ndash;Stokes equations. And test LaTeX hyphen in <code>CG-2</code>. Also test \( a_{i-j} \) as well as \( kx-wt \).</p>
+<p>We can refer to \eqref{eq1}-\eqref{eq2}. They are a bit simpler than
+the Navier&ndash;Stokes equations. And test LaTeX hyphen in <code>CG-2</code>.
+Also test \( a_{i-j} \) as well as \( kx-wt \).
+</p>
 
 <p>Testing <code>alignat</code> environment:</p>
 
 $$
 \begin{alignat}{2}
-a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \tag{15} \\ 
-b &= \nabla^2 u + \nabla^4 x & x\in\Omega \tag{16}
+a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \label{eq1a} \\ 
+b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
 \end{alignat}
 $$
 
 <p>More mathematical typesetting is demonstrated in the coming exercises.</p>
 
-<p>Below, we have <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#demo:ex:2">Project 4: Compute a Probability</a>, as well as <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 11: References in a headings do not work well in html</a>, and in between there we have <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.</p>
+<p>Below, we have <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#demo:ex:2">Project 4: Compute a Probability</a>,
+as well as <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 11: References in a headings do not work well in html</a>, and in
+between there we have <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.
+</p>
 <h1 id="exercises" class="anchor">Exercises </h1>
 
 <!-- --- begin exercise --- -->
@@ -54078,12 +54117,17 @@ $$
 
 <p>
 <b>a)</b>
- Make a program that simulates flipping a coin \( N \) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
+Make a program that simulates flipping a coin \( N \) times.
+Print out &quot;tail&quot; or &quot;head&quot; for each flip and
+let the program count the number of heads.
+</p>
 
 <!-- --- begin hint in exercise --- -->
 
 <p>
-<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"  data-target="#exer_2_1" style="font-size: 80%;"></a></p>
+<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_2_1" style="font-size: 80%;"></a>
+</p>
 <a href="#exer_2_1" data-toggle="collapse">
 <p>
 <b>Hint 1.</b>
@@ -54103,7 +54147,9 @@ $$
 <!-- --- begin hint in exercise --- -->
 
 <p>
-<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"  data-target="#exer_2_2" style="font-size: 80%;"></a></p>
+<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_2_2" style="font-size: 80%;"></a>
+</p>
 <a href="#exer_2_2" data-toggle="collapse">
 <p>
 <b>Hint 2.</b>
@@ -54112,7 +54158,9 @@ $$
 <div class="collapse-group">
 <p><div class="collapse" id="exer_2_2">
 
-<p>Draw an integer among \( \{1,2\} \) with <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.</p>
+<p>Draw an integer among \( \{1,2\} \) with
+<code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.
+</p>
 
 </div></p>
 </div>
@@ -54123,7 +54171,9 @@ $$
 <!-- --- begin answer of exercise --- -->
 
 <p>
-<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"  data-target="#exer_2_3" style="font-size: 80%;"></a></p>
+<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_2_3" style="font-size: 80%;"></a>
+</p>
 <a href="#exer_2_3" data-toggle="collapse">
 <p>
 <b>Answer.</b>
@@ -54132,7 +54182,9 @@ $$
 <div class="collapse-group">
 <p><div class="collapse" id="exer_2_3">
 
-<p>If the <code>random.random()</code> function returns a number \( < 1/2 \), let it be head, otherwise tail. Repeat this \( N \) number of times.</p>
+<p>If the <code>random.random()</code> function returns a number \( < 1/2 \), let it be
+head, otherwise tail. Repeat this \( N \) number of times.
+</p>
 </div></p>
 </div>
 </p>
@@ -54142,7 +54194,9 @@ $$
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"  data-target="#exer_2_5" style="font-size: 80%;"></a></p>
+<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_2_5" style="font-size: 80%;"></a>
+</p>
 <a href="#exer_2_5" data-toggle="collapse">
 <p>
 <b>Solution.</b>
@@ -54189,18 +54243,25 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 
 <p>
 <b>b)</b>
- Vectorize the code in a) using boolean indexing.</p>
+Vectorize the code in a) using boolean indexing.
+</p>
 
-<p>Vectorized code can be written in many ways. Sometimes the code is less intuitive, sometimes not. At least there is not much to find in the section <a href="._testdoc_vagrant001.html#sec1">Section 1</a>.</p>
+<p>Vectorized code can be written in many ways.
+Sometimes the code is less intuitive, sometimes not.
+At least there is not much to find in the section <a href="#sec1">Section 1</a>.
+</p>
 
 <p>
 <b>c)</b>
- Vectorize the code in a) using <code>numpy.sum</code>.</p>
+Vectorize the code in a) using <code>numpy.sum</code>.
+</p>
 
 <!-- --- begin answer of exercise --- -->
 
 <p>
-<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"  data-target="#exer_2_4" style="font-size: 80%;"></a></p>
+<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_2_4" style="font-size: 80%;"></a>
+</p>
 <a href="#exer_2_4" data-toggle="collapse">
 <p>
 <b>Answer.</b>
@@ -54216,10 +54277,14 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 
 <!-- --- end answer of exercise --- -->
 
-<p>In this latter subexercise, we have an example where the code is easy to read.</p>
+<p>In this latter subexercise, we have an
+example where the code is easy to read.
+</p>
 <h3 id="my-remarks" class="anchor">My remarks </h3>
 
-<p>Remarks with such a subsubsection is treated as more text after the last subexercise. Test a list too:</p>
+<p>Remarks with such a subsubsection is treated as more text
+after the last subexercise. Test a list too:
+</p>
 
 <ol>
 <li> Mark 1.</li>
@@ -54237,12 +54302,17 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 <!-- --- end exercise --- -->
 <h2 id="not-an-exercise" class="anchor">Not an exercise </h2>
 
-<p>Should be possible to stick a normal section in the middle of many exercises.</p>
+<p>Should be possible to stick a normal section in the middle of many
+exercises.
+</p>
 
 <!-- --- begin exercise --- -->
 <h2 id="my:exer1" class="anchor">Exercise 3: Test of plain text exercise</h2>
 
-<p>Very short exercise. What is the capital of Norway? Filename: <code>myexer1</code>.</p>
+<p>Very short exercise. What is the capital
+of Norway?
+Filename: <code>myexer1</code>.
+</p>
 
 <!-- --- end exercise --- -->
 
@@ -54251,9 +54321,13 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 
 <!-- Minimalistic exercise -->
 
-<p>What is the probability of getting a number between 0.5 and 0.6 when drawing uniformly distributed random numbers from the interval \( [0,1) \)?</p>
+<p>What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval \( [0,1) \)?
+</p>
 
-<p>At the end we have a list because that caused problems in LaTeX in previous DocOnce versions:</p>
+<p>At the end we have a list because that caused problems in LaTeX
+in previous DocOnce versions:
+</p>
 
 <ol>
 <li> item1</li>
@@ -54262,7 +54336,9 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 <!-- --- begin hint in exercise --- -->
 
 <p>
-<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"  data-target="#exer_4_1" style="font-size: 80%;"></a></p>
+<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_4_1" style="font-size: 80%;"></a>
+</p>
 <a href="#exer_4_1" data-toggle="collapse">
 <p>
 <b>Hint.</b>
@@ -54271,7 +54347,11 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 <div class="collapse-group">
 <p><div class="collapse" id="exer_4_1">
 
-<p>To answer this question empirically, let a program draw \( N \) such random numbers using Python's standard <code>random</code> module, count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and compute the probability as \( M/N \).</p>
+<p>To answer this question empirically, let a program
+draw \( N \) such random numbers using Python's standard <code>random</code> module,
+count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and
+compute the probability as \( M/N \).
+</p>
 
 </div></p>
 </div>
@@ -54290,13 +54370,18 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 $$
 \begin{align}
 x &= x_0 + R\cos 2\pi t,
-\tag{17}\\ 
+\label{circle:x}\\ 
 y &= y_0 + R\sin 2\pi t,
-\tag{18}
+\label{circle:y}
 \end{align}
 $$
 
-<p>where \( R \) is the radius of the circle, \( (x_0,y_0) \) is the center point, and \( t \) is a parameter in the unit interval \( [0,1] \). For any \( t \), \( (x,y) \) computed from <a href="#mjx-eqn-17">(17)</a>-<a href="#mjx-eqn-18">(18)</a> is a point on the circle. The formula can be used to generate <code>n</code> points on a circle:</p>
+<p>where \( R \) is the radius of the circle, \( (x_0,y_0) \) is the
+center point, and \( t \) is a parameter in the unit interval \( [0,1] \).
+For any \( t \), \( (x,y) \) computed from \eqref{circle:x}-\eqref{circle:y}
+is a point on the circle.
+The formula can be used to generate <code>n</code> points on a circle:
+</p>
 
 
 <!-- code=python (!bc pypro) typeset with pygments style "default" -->
@@ -54333,16 +54418,22 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
 <!-- Often in an exercise we have some comments about the solution -->
 <!-- which we normally want to keep where they are. -->
 
-<p>The goal of this project is to draw \( N \) circles with random center and radius. Plot each circle using the <code>circle</code> function above.</p>
+<p>The goal of this project is to draw \( N \) circles with random
+center and radius. Plot each circle using the <code>circle</code> function
+above.
+</p>
 
 <p>
 <b>a)</b>
- Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.</p>
+Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
+</p>
 
 <!-- --- begin hint in exercise --- -->
 
 <p>
-<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"  data-target="#exer_5_1" style="font-size: 80%;"></a></p>
+<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_5_1" style="font-size: 80%;"></a>
+</p>
 <a href="#exer_5_1" data-toggle="collapse">
 <p>
 <b>Hint.</b>
@@ -54351,7 +54442,9 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
 <div class="collapse-group">
 <p><div class="collapse" id="exer_5_1">
 
-<p>Use the <code>numpy.random</code> module to draw the \( x_0 \), \( y_0 \), and \( R \) quantities.</p>
+<p>Use the <code>numpy.random</code> module to draw the
+\( x_0 \), \( y_0 \), and \( R \) quantities.
+</p>
 
 </div></p>
 </div>
@@ -54362,7 +54455,9 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
 <!-- --- begin answer of exercise --- -->
 
 <p>
-<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"  data-target="#exer_5_2" style="font-size: 80%;"></a></p>
+<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_5_2" style="font-size: 80%;"></a>
+</p>
 <a href="#exer_5_2" data-toggle="collapse">
 <p>
 <b>Answer.</b>
@@ -54381,7 +54476,9 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"  data-target="#exer_5_3" style="font-size: 80%;"></a></p>
+<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_5_3" style="font-size: 80%;"></a>
+</p>
 <a href="#exer_5_3" data-toggle="collapse">
 <p>
 <b>Solution.</b>
@@ -54399,18 +54496,23 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
 
 <p>
 <b>b)</b>
- Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed. Filename: <code>norm</code>.</p>
+Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed.
+Filename: <code>norm</code>.
+</p>
 
 <p>
 <b>c)</b>
- Let \( R \) and \( (x_0,y_0) \) be normally distributed.</p>
+Let \( R \) and \( (x_0,y_0) \) be normally distributed.
+</p>
 
 <p>Filename: <code>circles</code>.</p>
 
 <!-- Closing remarks for this Project -->
 <h3 id="remarks" class="anchor">Remarks </h3>
 
-<p>At the very end of the exercise it may be appropriate to summarize and give some perspectives.</p>
+<p>At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+</p>
 
 <!-- --- end exercise --- -->
 
@@ -54422,7 +54524,9 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"  data-target="#exer_6_5" style="font-size: 80%;"></a></p>
+<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_6_5" style="font-size: 80%;"></a>
+</p>
 <a href="#exer_6_5" data-toggle="collapse">
 <p>
 <b>Solution.</b>
@@ -54431,7 +54535,9 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
 <div class="collapse-group">
 <p><div class="collapse" id="exer_6_5">
 
-<p>Here goes a full solution of the whole exercise. With some math \( a=b \) in this solution:</p>
+<p>Here goes a full solution of the whole exercise.
+With some math \( a=b \) in this solution:
+</p>
 $$ \hbox{math in solution: } a = b $$
 
 <p>And code <code>a=b</code> in this solution:</p>
@@ -54469,12 +54575,15 @@ $$ \hbox{math in solution: } a = b $$
 
 <p>
 <b>a)</b>
- Subexercises are numbered a), b), etc.</p>
+Subexercises are numbered a), b), etc.
+</p>
 
 <!-- --- begin hint in exercise --- -->
 
 <p>
-<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"  data-target="#exer_6_1" style="font-size: 80%;"></a></p>
+<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_6_1" style="font-size: 80%;"></a>
+</p>
 <a href="#exer_6_1" data-toggle="collapse">
 <p>
 <b>Hint 1.</b>
@@ -54483,7 +54592,9 @@ $$ \hbox{math in solution: } a = b $$
 <div class="collapse-group">
 <p><div class="collapse" id="exer_6_1">
 
-<p>First hint to subexercise a). With math \( a=b \) in hint:</p>
+<p>First hint to subexercise a).
+With math \( a=b \) in hint:
+</p>
 
 $$ a=b. $$
 
@@ -54524,7 +54635,9 @@ $$ a=b. $$
 <!-- --- begin hint in exercise --- -->
 
 <p>
-<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"  data-target="#exer_6_2" style="font-size: 80%;"></a></p>
+<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_6_2" style="font-size: 80%;"></a>
+</p>
 <a href="#exer_6_2" data-toggle="collapse">
 <p>
 <b>Hint 2.</b>
@@ -54551,7 +54664,9 @@ $$ a=b. $$
 <!-- --- begin answer of exercise --- -->
 
 <p>
-<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"  data-target="#exer_6_4" style="font-size: 80%;"></a></p>
+<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_6_4" style="font-size: 80%;"></a>
+</p>
 <a href="#exer_6_4" data-toggle="collapse">
 <p>
 <b>Answer.</b>
@@ -54560,7 +54675,9 @@ $$ a=b. $$
 <div class="collapse-group">
 <p><div class="collapse" id="exer_6_4">
 
-<p>Short answer to subexercise a). With math in answer: \( a=b \).</p>
+<p>Short answer to subexercise a).
+With math in answer: \( a=b \).
+</p>
 </div></p>
 </div>
 </p>
@@ -54569,7 +54686,8 @@ $$ a=b. $$
 
 <p>
 <b>b)</b>
- Here goes the text for subexercise b).</p>
+Here goes the text for subexercise b).
+</p>
 
 <p>Some math \( \cos^2 x + \sin^2 x = 1 \) written one a single line:</p>
 
@@ -54579,7 +54697,9 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 <!-- --- begin hint in exercise --- -->
 
 <p>
-<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"  data-target="#exer_6_3" style="font-size: 80%;"></a></p>
+<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_6_3" style="font-size: 80%;"></a>
+</p>
 <a href="#exer_6_3" data-toggle="collapse">
 <p>
 <b>Hint.</b>
@@ -54600,7 +54720,9 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"  data-target="#exer_6_6" style="font-size: 80%;"></a></p>
+<p><a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_6_6" style="font-size: 80%;"></a>
+</p>
 <a href="#exer_6_6" data-toggle="collapse">
 <p>
 <b>Solution.</b>
@@ -54617,7 +54739,9 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 <!-- --- end solution of exercise --- -->
 
 <!-- No meaning in this weired test example: -->
-<p>The text here belongs to the main (intro) part of the exercise. Need closing remarks to have text after subexercises.</p>
+<p>The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+</p>
 
 <p>Test list in exercise:</p>
 
@@ -54628,7 +54752,10 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 </ol>
 <h3 id="remarks" class="anchor">Remarks </h3>
 
-<p>Some final closing remarks, e.g., summarizing the main findings and their implications in other problems can be made. These remarks will appear at the end of the typeset exercise.</p>
+<p>Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+</p>
 
 <!-- --- end exercise --- -->
 
@@ -54637,7 +54764,9 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 
 <!-- Another minimalistic exercise -->
 
-<p>Just some text. And some math saying that \( e^0=1 \) on a single line, to test that math block insertion is correct:</p>
+<p>Just some text. And some math saying that \( e^0=1 \) on a single line,
+to test that math block insertion is correct:
+</p>
 
 $$ \exp{(0)} = 1 $$
 
@@ -54744,7 +54873,11 @@ Correct!
 <div class="collapse-group">
 <p><div class="collapse" id="quiz_id_1_C">
 <img src="https://raw.github.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
-<p>Ooops, forgot a minus: <code>exp(-x)</code>, otherwise this Python code must be considered as a good answer. It is more natural, though, to write the solution to the problem in mathematical notation:</p>
+<p>Ooops, forgot a minus: <code>exp(-x)</code>, otherwise this Python code
+must be considered as a good answer. It is more natural,
+though, to write the solution to the problem
+in mathematical notation:
+</p>
 
 $$ y(x) = e^{-y}.$$
 </div></p>
@@ -54761,7 +54894,10 @@ $$ y(x) = e^{-y}.$$
 <div class="collapse-group">
 <p><div class="collapse" id="quiz_id_1_D">
 <img src="https://raw.github.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
-<p>Equations with derivatives can be solved; they are termed <em>differential equations</em>.</p>
+<p>Equations with derivatives can be solved;
+they are termed <em>differential
+equations</em>.
+</p>
 </div></p>
 </div>
 </p>
@@ -54771,12 +54907,17 @@ $$ y(x) = e^{-y}.$$
  data-target="#quiz_id_1_E" style="font-size: 80%;"></a>
 <a href="#quiz_id_1_E" data-toggle="collapse">
 &nbsp;<b>Choice E:</b>
-<p>The equation is meaningless: an equation must be an equation for \( x \) or \( y \), not a function \( y(x) \).</p>
+<p>The equation is meaningless: an equation must be an equation
+for \( x \) or \( y \), not a function \( y(x) \).
+</p>
 </a>
 <div class="collapse-group">
 <p><div class="collapse" id="quiz_id_1_E">
 <img src="https://raw.github.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
-<p>Equations where the unknown is a function, as \( y(x) \) here, are called <em>differential equations</em>, and are solved by special techniques.</p>
+<p>Equations where the unknown is a function, as \( y(x) \)
+here, are called <em>differential equations</em>, and are solved by
+special techniques.
+</p>
 </div></p>
 </div>
 </p>
@@ -54793,11 +54934,13 @@ $$ y(x) = e^{-y}.$$
 
 <p>
 <b>a)</b>
- What is the capital of Norway?</p>
+What is the capital of Norway?
+</p>
 
 <p>
 <b>Answer.</b>
- Oslo.</p>
+Oslo.
+</p>
 
 <!-- --- end exercise --- -->
 <h1 id="here-goes-another-section" class="anchor">Here goes another section </h1>
@@ -54809,9 +54952,13 @@ $$ y(x) = e^{-y}.$$
 <h2 id="exer:some:formula" class="anchor">Exercise 10: Make references to projects and problems</h2>
 
 <!-- Test comments not at the end only -->
-<p>Pick a statement from <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and verify it.</p>
+<p>Pick a statement from <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 2: Flip a Coin</a>
+and verify it.
+</p>
 
-<p>Test list at the end of an exercise without other elements (like subexercise, hint, etc.):</p>
+<p>Test list at the end of an exercise without other elements (like subexercise,
+hint, etc.):
+</p>
 
 <ol>
 <li> item1</li>
@@ -54824,7 +54971,11 @@ $$ y(x) = e^{-y}.$$
 <!-- --- begin exercise --- -->
 <h2 id="exer:you" class="anchor">Project 11: References in a headings do not work well in html</h2>
 
-<p>Refer to the previous exercise as <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>, the two before that as <a href="#demo:ex:2">Project 4: Compute a Probability</a> and <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a>, and this one as <a href="#exer:you">Project 11: References in a headings do not work well in html</a>. Filename: <code>selc_composed.pdf</code>.</p>
+<p>Refer to the previous exercise as <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>,
+the two before that as <a href="#demo:ex:2">Project 4: Compute a Probability</a> and <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a>,
+and this one as <a href="#exer:you">Project 11: References in a headings do not work well in html</a>.
+Filename: <code>selc_composed.pdf</code>.
+</p>
 
 <!-- --- end exercise --- -->
 <h1 id="references" class="anchor">References </h1>
@@ -54872,18 +55023,234 @@ $$ y(x) = e^{-y}.$$
 
 <p>What about inserting a quiz?</p>
 
+<!-- !split -->
+<h2>Test of quizzes</h2>
+
+<!-- begin quiz -->
+<hr>
 <p>
-<!-- navigation buttons at the bottom of the page -->
-<ul class="pager">
+<b>Question:</b> <p>[Fundamental test:] What is the capital of Norway?</p></p>
 
-  <li class="previous">
-    <a href="._testdoc_vagrant001.html">&larr; Prev</a>
-  </li>
+<p>
+<a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
+ data-target="#quiz_id_2_A" style="font-size: 80%;"></a>
+<a href="#quiz_id_2_A" data-toggle="collapse">
+&nbsp;<b>Choice A:</b>
+<p>[Answer 1:] Stockholm</p>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="quiz_id_2_A">
+<img src="https://raw.github.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
+<p>Stockholm is the capital of Sweden.</p>
+</div></p>
+</div>
+</p>
 
-  <li class="next">
-    <a href="._testdoc_vagrant003.html">Next &rarr;</a>
-  </li>
+<p>
+<a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
+ data-target="#quiz_id_2_B" style="font-size: 80%;"></a>
+<a href="#quiz_id_2_B" data-toggle="collapse">
+&nbsp;<b>Choice B:</b>
+<p>[Answer 2:] London</p>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="quiz_id_2_B">
+<img src="https://raw.github.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
+Wrong!
+</div></p>
+</div>
+</p>
+
+<p>
+<a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
+ data-target="#quiz_id_2_C" style="font-size: 80%;"></a>
+<a href="#quiz_id_2_C" data-toggle="collapse">
+&nbsp;<b>Choice C:</b>
+<p>[Answer 3:] Oslo</p>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="quiz_id_2_C">
+<img src="https://raw.github.com/doconce/doconce/master/bundled/html_images/correct.gif">
+Correct!
+</div></p>
+</div>
+</p>
+
+<p>
+<a class="glyphicon glyphicon-pencil showdetails" data-toggle="collapse"
+ data-target="#quiz_id_2_D" style="font-size: 80%;"></a>
+<a href="#quiz_id_2_D" data-toggle="collapse">
+&nbsp;<b>Choice D:</b>
+<p>Bergen</p>
+</a>
+<div class="collapse-group">
+<p><div class="collapse" id="quiz_id_2_D">
+<img src="https://raw.github.com/doconce/doconce/master/bundled/html_images/incorrect.gif">
+<p>Those from Bergen would claim so, but nobody else.</p>
+</div></p>
+</div>
+</p>
+<!-- end quiz -->
+
+<h2 id="appendix-testing-identical-titles" class="anchor">Appendix: Testing identical titles </h2>
+
+<p>Without label.</p>
+
+<div class="alert alert-block alert-success alert-text-normal"><b>Tip</b>
+<p>Here is a tip or hint box, typeset as a notice box.</p>
+</div>
+
+
+<p>Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent <a href="https://software-carpentry.org/2010/07/script-for-introduction-to-version-control/" target="_self">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+</p>
+
+<div class="alert alert-block alert-warning alert-text-normal"><b>Summary</b>
+<p><b>Bold remark:</b> Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+</p>
+</div>
+
+
+<p>Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work - and all other important files.
+</p>
+
+<p>The simplest services for hosting project files are <a href="https://dropbox.com" target="_self">Dropbox</a> and <a href="https://drive.google.com" target="_self">Google Drive</a>.
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+</p>
+
+<p>More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+</p>
+
+<p>The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+</p>
+
+<p>All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+</p>
+<h2 id="appendix-testing-inline-comments" class="anchor">Appendix: Testing inline comments </h2>
+
+<!-- Names can be [ A-Za-z0-9_'+-]+ -->
+
+<p>Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that
+site. 
+<!-- begin inline comment -->
+<font color="red">(<b>hpl's semi opinion 1</b>: not sure if in the cloud is  understood by  all.)</font>
+<!-- end inline comment -->
+ I strongly recommend you to use such sites for all serious
+programming and scientific writing work - and all other important
+files.
+</p>
+
+<p>The simplest services for hosting project files is Dropbox. 
+<!-- begin inline comment -->
+<font color="red">(<b>mp 2</b>: Simply go to <a href="https://dropbox.com" target="_self"><tt>https://dropbox.com</tt></a> and watch the video. It explains how files, like <code>myfile.py</code>, perhaps containing much math, like  \( \partial u/\partial t \), are easily communicated between machines.)</font>
+<!-- end inline comment -->
+ It
+is very easy to get started with Dropbox, and it allows you to share
+files among  <font color="red">(<b>hpl 3</b>:)</font> <del> laptops and mobile units </del> <font color="red">computers, tablets,  and phones</font>.
+</p>
+
+<!-- Test horizontal rule -->
+
+<hr>
+
+<!-- Coments for editing -->
+
+<p>First<font color="red">, (<b>edit 4</b>: add comma)</font> consider a quantity \( Q \).  <font color="red">(<b>edit 5</b>:)</font> <del> To this end, </del> <font color="red">We note that</font>
+\( Q>0 \), because  <font color="red">(<b>edit 6</b>:)</font> <del> a </del> negative  <font color="red">(<b>edit 7</b>:)</font> <del> quantity is </del> <font color="red">quantities  are</font>  <font color="red">(<b>edit 8</b>:)</font> <del> just </del> negative.  <font color="red">(<b>edit 9</b>:) This comes as no surprise.</font>
+</p>
+
+<!-- Test tailored latex figure references with page number -->
+<p>Let us refer to Figure <a href="#fig:impact">1</a> again.</p>
+
+<p>Test references in a list:</p>
+
+<ul>
+ <li> <a href="#sec1">Section 1</a></li>
+ <li> <a href="#subsec1">Subsection 1</a></li>
+ <li> <a href="#fig:impact">1</a></li>
 </ul>
+<h2 id="appendix-testing-headings-ending-with-verbatim-inline" class="anchor">Appendix: Testing headings ending with <code>verbatim inline</code> </h2>
+
+<p>The point here is to test 1) <code>verbatim</code> code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
+</p>
+
+<p>We also test mdash&mdash;used as alternative to hyphen without spaces around,
+or in quotes:
+</p>
+
+<blockquote>
+    <p><em>Fun is fun</em>.&mdash;Unknown.</p>
+</blockquote>
+
+
+<p>The ndash should also be tested &ndash; as in the Hanson&ndash;Nilson equations
+on page 277&ndash;278.
+</p>
+
+<p>And finally, what about admons, quotes, and boxes? They are tested
+in a separate document: <code>admon.do.txt</code>.
+</p>
+
+<p><p id="def_footnote_5"><a href="#link_footnote_5"><b>5:</b></a> Not much to add here, but the footnote
+is at the end with only one newline.</p>
+</p>
 <!-- ------------------- end of main content --------------- -->
 
  </div>
@@ -54897,6 +55264,12 @@ $$ y(x) = e^{-y}.$$
 </body>
 </html>
 
+************** File: ._testdoc_vagrant000.html *****************
+NOT FOUND!
+************** File: ._testdoc_vagrant001.html *****************
+NOT FOUND!
+************** File: ._testdoc_vagrant002.html *****************
+NOT FOUND!
 ************** File: ._testdoc000.rst *****************
 .. raw:: html
 
@@ -63268,7 +63641,9 @@ MathJax.Hub.Config({
 
 <!-- !split -->
 <h1 id="introduction">Introduction </h1>
-<p>First some ordinary text to compare font sizes in admonitions and the surrounding text.</p>
+<p>First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+</p>
 <h2 id="code">Code </h2>
 
 <p>Need some code outside admons for color and font comparisons:</p>
@@ -63328,13 +63703,24 @@ x=1.1 y=0.3 z=0.1
 <p>Here is a plain quote environment.</p>
 
 <blockquote>
-    <p>Sayre's law states that &quot;in any dispute the intensity of feeling is inversely proportional to the value of the issues at stake.&quot; <br /> By way of corollary, it adds: <br /> &quot;That is why academic politics are so bitter.&quot; <br /> <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a></p>
+    <p>Sayre's law states that
+    &quot;in any dispute the intensity of feeling is inversely
+    proportional to the value of the issues at stake.&quot; <br />
+    By way of corollary, it adds: <br />
+    &quot;That is why academic politics are so bitter.&quot; <br />
+    <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a>
+    </p>
 </blockquote>
 
 
-<p>Does quotes with title also work? No...cannot work in LaTeX and HTML and then it does not make sense to support it.</p>
+<p>Does quotes with title also work? No...cannot work in LaTeX and HTML
+and then it does not make sense to support it.
+</p>
 
-<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison with admons (especially the block admon has much in common with a box). The box is more aimed at framing a law or an equation.</p>
+<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison
+with admons (especially the block admon has much in common with a box).
+The box is more aimed at framing a law or an equation.
+</p>
 
 <p>First a simple block with text, an equation, and a list:</p>
 
@@ -63356,7 +63742,9 @@ $$ f(x) = 0 $$
 </div>
 <!-- end box -->
 
-<p>Now test a box with equation only (note that this line continues the box, it is not a new paragraph):</p>
+<p>Now test a box with equation only (note that this line continues the
+box, it is not a new paragraph):
+</p>
 
 
 <!-- begin box -->
@@ -63411,13 +63799,23 @@ $$
 <p>Let us start with a plain warning environment.</p>
 
 <div class="warning alert-text-normal"><b>Warning</b>
-<p>And here is a warning about something to pay attention to. We test how the heading behave and add quite some extra texts in comparison with the other admons.</p>
+<p>And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+</p>
 
 <ul>
   <li> and a list</li>
   <li> with items</li>
 </ul>
-<p>We continue with more text to see how that affects the layout. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text.</p>
+<p>We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+</p>
 </div>
 
 
@@ -63482,19 +63880,29 @@ $$
 <p>Test warning with large title with math:</p>
 
 <div class="warning alert-text-large"><b>Watch out for \( \nabla\cdot\boldsymbol{u}=0 \) equations</b>
-<p>Divergence freedom is often problematic from a numerical point of view.</p>
+<p>Divergence freedom is often problematic from a numerical point
+of view.
+</p>
 </div>
 
 
 <p>Then we test a block, which is guaranteed to never have any admon icon.</p>
 
 <div class="block alert-text-small"><b>Block with title</b>
-<p>Here is a block of text with title. It is typeset <em>without any icon</em> and is useful when you want some admons with icon and some without. With the small font size, as used here, one can have more comment-style text or text that really goes deeper or talks about fun facts that are not strictly necessary for the main flow of understanding.</p>
+<p>Here is a block of text with title. It is typeset
+<em>without any icon</em> and is useful when you want some admons with icon
+and some without. With the small font size, as used here, one can have
+more comment-style text or text that really goes deeper or talks
+about fun facts that are not strictly necessary for the main flow
+of understanding.
+</p>
 </div>
 
 
 <div class="block alert-text-normal"><b></b>
-<p>Here is a block of text with no title. As above, it is typeset without any icon and is useful when you want some admons with icon and some without.</p>
+<p>Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+</p>
 </div>
 
 
@@ -63502,7 +63910,9 @@ $$
 <!-- those formats automatically add : to the admonition title. -->
 
 <div class="notice alert-text-illegal-size"><b>Note, eventually!</b>
-<p>Ah, we are soon close to the end (with illegal font size specification!). But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):</p>
+<p>Ah, we are soon close to the end (with illegal font size specification!).
+But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
+</p>
 
 $$
 \begin{align*}
@@ -63577,10 +63987,17 @@ $$
 
 <h2 id="going-deeper-environments">Going deeper environments </h2>
 
-<p>Here is a long notice environment with a custom title and much text, math and code.</p>
+<p>Here is a long notice environment with a custom title and much
+text, math and code.
+</p>
 
 <div class="notice alert-text-normal"><b>Going deeper.</b>
-<p>We have some equations that should be preceded by much text, so the task is to write and write. The number of words, and not the meaning, is what counts here. We need desperately to fill up the page in the hope that some admonitions will experience a page break, which the LaTeX environment should handle with ease.</p>
+<p>We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.
+</p>
 
 <p>Let us start with some equations:</p>
 
@@ -63593,7 +64010,9 @@ $$
 \end{align*}
 $$
 
-<p>The implementation of such complicated equations in computer code is task that this "Going deeper" environment targets.</p>
+<p>The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -63623,7 +64042,9 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
   </div>
 </div>
 
-<p>And some more text that can help going into the next page. Longer computer code requires vertical space:</p>
+<p>And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -63695,16 +64116,24 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 <h2 id="the-end">The end </h2>
 
-<p>A bit of text before the summary, which we now call "Concluding remarks, for the novice", just because we can.</p>
+<p>A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+</p>
 
 <div class="summary alert-text-normal"><b>Concluding remarks, for the novice</b>
-<p>We can summarize the most important things with admons: they have a different typesetting, and they may have a symbol. Titles should be optional.</p>
+<p>We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+</p>
 </div>
 
 
 <p>
 <b>Remark.</b>
- The <code>remarks</code> and <code>hint</code> environments are not allowed outside exercises (and problems and projects too).</p>
+The <code>remarks</code> and <code>hint</code> environments are not allowed outside
+exercises (and problems and projects too).
+</p>
 <!-- ------------------- end of main content --------------- -->
 <center style="font-size:80%">
 <!-- copyright --> &copy; 2021, H. P. Langtangen. Made with <a href="https://github.com/doconce/doconce">DocOnce</a>
@@ -63909,7 +64338,9 @@ MathJax.Hub.Config({
 
 <!-- !split -->
 <h1 id="introduction">Introduction </h1>
-<p>First some ordinary text to compare font sizes in admonitions and the surrounding text.</p>
+<p>First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+</p>
 <h2 id="code">Code </h2>
 
 <p>Need some code outside admons for color and font comparisons:</p>
@@ -63969,13 +64400,24 @@ x=1.1 y=0.3 z=0.1
 <p>Here is a plain quote environment.</p>
 
 <blockquote>
-    <p>Sayre's law states that &quot;in any dispute the intensity of feeling is inversely proportional to the value of the issues at stake.&quot; <br /> By way of corollary, it adds: <br /> &quot;That is why academic politics are so bitter.&quot; <br /> <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a></p>
+    <p>Sayre's law states that
+    &quot;in any dispute the intensity of feeling is inversely
+    proportional to the value of the issues at stake.&quot; <br />
+    By way of corollary, it adds: <br />
+    &quot;That is why academic politics are so bitter.&quot; <br />
+    <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a>
+    </p>
 </blockquote>
 
 
-<p>Does quotes with title also work? No...cannot work in LaTeX and HTML and then it does not make sense to support it.</p>
+<p>Does quotes with title also work? No...cannot work in LaTeX and HTML
+and then it does not make sense to support it.
+</p>
 
-<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison with admons (especially the block admon has much in common with a box). The box is more aimed at framing a law or an equation.</p>
+<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison
+with admons (especially the block admon has much in common with a box).
+The box is more aimed at framing a law or an equation.
+</p>
 
 <p>First a simple block with text, an equation, and a list:</p>
 
@@ -63997,7 +64439,9 @@ $$ f(x) = 0 $$
 </div>
 <!-- end box -->
 
-<p>Now test a box with equation only (note that this line continues the box, it is not a new paragraph):</p>
+<p>Now test a box with equation only (note that this line continues the
+box, it is not a new paragraph):
+</p>
 
 
 <!-- begin box -->
@@ -64054,13 +64498,23 @@ $$
 <div class="alert alert-block alert-warning alert-text-normal">
 <b>Warning</b>
 <p>
-<p>And here is a warning about something to pay attention to. We test how the heading behave and add quite some extra texts in comparison with the other admons.</p>
+<p>And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+</p>
 
 <ul>
   <li> and a list</li>
   <li> with items</li>
 </ul>
-<p>We continue with more text to see how that affects the layout. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text.</p>
+<p>We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+</p>
 </div>
 
 
@@ -64129,7 +64583,9 @@ $$
 <div class="alert alert-block alert-warning alert-text-large">
 <b>Watch out for \( \nabla\cdot\boldsymbol{u}=0 \) equations</b>
 <p>
-<p>Divergence freedom is often problematic from a numerical point of view.</p>
+<p>Divergence freedom is often problematic from a numerical point
+of view.
+</p>
 </div>
 
 
@@ -64138,14 +64594,22 @@ $$
 <div class="alert alert-block alert-block alert-text-small">
 <b>Block with title</b>
 <p>
-<p>Here is a block of text with title. It is typeset <em>without any icon</em> and is useful when you want some admons with icon and some without. With the small font size, as used here, one can have more comment-style text or text that really goes deeper or talks about fun facts that are not strictly necessary for the main flow of understanding.</p>
+<p>Here is a block of text with title. It is typeset
+<em>without any icon</em> and is useful when you want some admons with icon
+and some without. With the small font size, as used here, one can have
+more comment-style text or text that really goes deeper or talks
+about fun facts that are not strictly necessary for the main flow
+of understanding.
+</p>
 </div>
 
 
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
-<p>Here is a block of text with no title. As above, it is typeset without any icon and is useful when you want some admons with icon and some without.</p>
+<p>Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+</p>
 </div>
 
 
@@ -64155,7 +64619,9 @@ $$
 <div class="alert alert-block alert-notice alert-text-illegal-size">
 <b>Note, eventually!</b>
 <p>
-<p>Ah, we are soon close to the end (with illegal font size specification!). But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):</p>
+<p>Ah, we are soon close to the end (with illegal font size specification!).
+But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
+</p>
 
 $$
 \begin{align*}
@@ -64240,12 +64706,19 @@ $$
 
 <h2 id="going-deeper-environments">Going deeper environments </h2>
 
-<p>Here is a long notice environment with a custom title and much text, math and code.</p>
+<p>Here is a long notice environment with a custom title and much
+text, math and code.
+</p>
 
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Going deeper.</b>
 <p>
-<p>We have some equations that should be preceded by much text, so the task is to write and write. The number of words, and not the meaning, is what counts here. We need desperately to fill up the page in the hope that some admonitions will experience a page break, which the LaTeX environment should handle with ease.</p>
+<p>We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.
+</p>
 
 <p>Let us start with some equations:</p>
 
@@ -64258,7 +64731,9 @@ $$
 \end{align*}
 $$
 
-<p>The implementation of such complicated equations in computer code is task that this "Going deeper" environment targets.</p>
+<p>The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -64288,7 +64763,9 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
   </div>
 </div>
 
-<p>And some more text that can help going into the next page. Longer computer code requires vertical space:</p>
+<p>And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -64360,18 +64837,26 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 <h2 id="the-end">The end </h2>
 
-<p>A bit of text before the summary, which we now call "Concluding remarks, for the novice", just because we can.</p>
+<p>A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+</p>
 
 <div class="alert alert-block alert-summary alert-text-normal">
 <b>Concluding remarks, for the novice</b>
 <p>
-<p>We can summarize the most important things with admons: they have a different typesetting, and they may have a symbol. Titles should be optional.</p>
+<p>We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+</p>
 </div>
 
 
 <p>
 <b>Remark.</b>
- The <code>remarks</code> and <code>hint</code> environments are not allowed outside exercises (and problems and projects too).</p>
+The <code>remarks</code> and <code>hint</code> environments are not allowed outside
+exercises (and problems and projects too).
+</p>
 <!-- ------------------- end of main content --------------- -->
 <center style="font-size:80%">
 <!-- copyright --> &copy; 2021, H. P. Langtangen. Made with <a href="https://github.com/doconce/doconce">DocOnce</a>
@@ -64573,7 +65058,9 @@ MathJax.Hub.Config({
 
 <!-- !split -->
 <h1 id="introduction">Introduction </h1>
-<p>First some ordinary text to compare font sizes in admonitions and the surrounding text.</p>
+<p>First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+</p>
 <h2 id="code">Code </h2>
 
 <p>Need some code outside admons for color and font comparisons:</p>
@@ -64633,13 +65120,24 @@ x=1.1 y=0.3 z=0.1
 <p>Here is a plain quote environment.</p>
 
 <blockquote>
-    <p>Sayre's law states that &quot;in any dispute the intensity of feeling is inversely proportional to the value of the issues at stake.&quot; <br /> By way of corollary, it adds: <br /> &quot;That is why academic politics are so bitter.&quot; <br /> <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a></p>
+    <p>Sayre's law states that
+    &quot;in any dispute the intensity of feeling is inversely
+    proportional to the value of the issues at stake.&quot; <br />
+    By way of corollary, it adds: <br />
+    &quot;That is why academic politics are so bitter.&quot; <br />
+    <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a>
+    </p>
 </blockquote>
 
 
-<p>Does quotes with title also work? No...cannot work in LaTeX and HTML and then it does not make sense to support it.</p>
+<p>Does quotes with title also work? No...cannot work in LaTeX and HTML
+and then it does not make sense to support it.
+</p>
 
-<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison with admons (especially the block admon has much in common with a box). The box is more aimed at framing a law or an equation.</p>
+<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison
+with admons (especially the block admon has much in common with a box).
+The box is more aimed at framing a law or an equation.
+</p>
 
 <p>First a simple block with text, an equation, and a list:</p>
 
@@ -64661,7 +65159,9 @@ $$ f(x) = 0 $$
 </div>
 <!-- end box -->
 
-<p>Now test a box with equation only (note that this line continues the box, it is not a new paragraph):</p>
+<p>Now test a box with equation only (note that this line continues the
+box, it is not a new paragraph):
+</p>
 
 
 <!-- begin box -->
@@ -64718,13 +65218,23 @@ $$
 <div class="alert alert-block alert-warning alert-text-normal">
 <b>Warning</b>
 <p>
-<p>And here is a warning about something to pay attention to. We test how the heading behave and add quite some extra texts in comparison with the other admons.</p>
+<p>And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+</p>
 
 <ul>
   <li> and a list</li>
   <li> with items</li>
 </ul>
-<p>We continue with more text to see how that affects the layout. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text.</p>
+<p>We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+</p>
 </div>
 
 
@@ -64793,7 +65303,9 @@ $$
 <div class="alert alert-block alert-warning alert-text-large">
 <b>Watch out for \( \nabla\cdot\boldsymbol{u}=0 \) equations</b>
 <p>
-<p>Divergence freedom is often problematic from a numerical point of view.</p>
+<p>Divergence freedom is often problematic from a numerical point
+of view.
+</p>
 </div>
 
 
@@ -64802,14 +65314,22 @@ $$
 <div class="alert alert-block alert-block alert-text-small">
 <b>Block with title</b>
 <p>
-<p>Here is a block of text with title. It is typeset <em>without any icon</em> and is useful when you want some admons with icon and some without. With the small font size, as used here, one can have more comment-style text or text that really goes deeper or talks about fun facts that are not strictly necessary for the main flow of understanding.</p>
+<p>Here is a block of text with title. It is typeset
+<em>without any icon</em> and is useful when you want some admons with icon
+and some without. With the small font size, as used here, one can have
+more comment-style text or text that really goes deeper or talks
+about fun facts that are not strictly necessary for the main flow
+of understanding.
+</p>
 </div>
 
 
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
-<p>Here is a block of text with no title. As above, it is typeset without any icon and is useful when you want some admons with icon and some without.</p>
+<p>Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+</p>
 </div>
 
 
@@ -64819,7 +65339,9 @@ $$
 <div class="alert alert-block alert-notice alert-text-illegal-size">
 <b>Note, eventually!</b>
 <p>
-<p>Ah, we are soon close to the end (with illegal font size specification!). But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):</p>
+<p>Ah, we are soon close to the end (with illegal font size specification!).
+But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
+</p>
 
 $$
 \begin{align*}
@@ -64904,12 +65426,19 @@ $$
 
 <h2 id="going-deeper-environments">Going deeper environments </h2>
 
-<p>Here is a long notice environment with a custom title and much text, math and code.</p>
+<p>Here is a long notice environment with a custom title and much
+text, math and code.
+</p>
 
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Going deeper.</b>
 <p>
-<p>We have some equations that should be preceded by much text, so the task is to write and write. The number of words, and not the meaning, is what counts here. We need desperately to fill up the page in the hope that some admonitions will experience a page break, which the LaTeX environment should handle with ease.</p>
+<p>We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.
+</p>
 
 <p>Let us start with some equations:</p>
 
@@ -64922,7 +65451,9 @@ $$
 \end{align*}
 $$
 
-<p>The implementation of such complicated equations in computer code is task that this "Going deeper" environment targets.</p>
+<p>The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -64952,7 +65483,9 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
   </div>
 </div>
 
-<p>And some more text that can help going into the next page. Longer computer code requires vertical space:</p>
+<p>And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -65024,18 +65557,26 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 <h2 id="the-end">The end </h2>
 
-<p>A bit of text before the summary, which we now call "Concluding remarks, for the novice", just because we can.</p>
+<p>A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+</p>
 
 <div class="alert alert-block alert-summary alert-text-normal">
 <b>Concluding remarks, for the novice</b>
 <p>
-<p>We can summarize the most important things with admons: they have a different typesetting, and they may have a symbol. Titles should be optional.</p>
+<p>We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+</p>
 </div>
 
 
 <p>
 <b>Remark.</b>
- The <code>remarks</code> and <code>hint</code> environments are not allowed outside exercises (and problems and projects too).</p>
+The <code>remarks</code> and <code>hint</code> environments are not allowed outside
+exercises (and problems and projects too).
+</p>
 <!-- ------------------- end of main content --------------- -->
 <center style="font-size:80%">
 <!-- copyright --> &copy; 2021, H. P. Langtangen. Made with <a href="https://github.com/doconce/doconce">DocOnce</a>
@@ -65621,7 +66162,9 @@ MathJax.Hub.Config({
 
 <!-- !split -->
 <h1 id="introduction">Introduction </h1>
-<p>First some ordinary text to compare font sizes in admonitions and the surrounding text.</p>
+<p>First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+</p>
 <h2 id="code">Code </h2>
 
 <p>Need some code outside admons for color and font comparisons:</p>
@@ -65681,13 +66224,24 @@ x=1.1 y=0.3 z=0.1
 <p>Here is a plain quote environment.</p>
 
 <blockquote>
-    <p>Sayre's law states that &quot;in any dispute the intensity of feeling is inversely proportional to the value of the issues at stake.&quot; <br /> By way of corollary, it adds: <br /> &quot;That is why academic politics are so bitter.&quot; <br /> <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a></p>
+    <p>Sayre's law states that
+    &quot;in any dispute the intensity of feeling is inversely
+    proportional to the value of the issues at stake.&quot; <br />
+    By way of corollary, it adds: <br />
+    &quot;That is why academic politics are so bitter.&quot; <br />
+    <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a>
+    </p>
 </blockquote>
 
 
-<p>Does quotes with title also work? No...cannot work in LaTeX and HTML and then it does not make sense to support it.</p>
+<p>Does quotes with title also work? No...cannot work in LaTeX and HTML
+and then it does not make sense to support it.
+</p>
 
-<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison with admons (especially the block admon has much in common with a box). The box is more aimed at framing a law or an equation.</p>
+<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison
+with admons (especially the block admon has much in common with a box).
+The box is more aimed at framing a law or an equation.
+</p>
 
 <p>First a simple block with text, an equation, and a list:</p>
 
@@ -65709,7 +66263,9 @@ $$ f(x) = 0 $$
 </div>
 <!-- end box -->
 
-<p>Now test a box with equation only (note that this line continues the box, it is not a new paragraph):</p>
+<p>Now test a box with equation only (note that this line continues the
+box, it is not a new paragraph):
+</p>
 
 
 <!-- begin box -->
@@ -65771,13 +66327,23 @@ $$
 <th align="left" valign="middle"><b>Warning</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-<div class="alert-text-normal"><p>And here is a warning about something to pay attention to. We test how the heading behave and add quite some extra texts in comparison with the other admons.</p>
+<div class="alert-text-normal"><p>And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+</p>
 
 <ul>
   <li> and a list</li>
   <li> with items</li>
 </ul>
-<p>We continue with more text to see how that affects the layout. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text.</p></div>
+<p>We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+</p></div>
 </p></td></tr>
 </table>
 
@@ -65858,7 +66424,9 @@ $$
 <th align="left" valign="middle"><b>Watch out for \( \nabla\cdot\boldsymbol{u}=0 \) equations</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-<div class="alert-text-large"><p>Divergence freedom is often problematic from a numerical point of view.</p></div>
+<div class="alert-text-large"><p>Divergence freedom is often problematic from a numerical point
+of view.
+</p></div>
 </p></td></tr>
 </table>
 
@@ -65870,7 +66438,13 @@ $$
 <tr><th align="left" valign="middle"><b>Block with title</b></th>
 </tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td> <td align="left" valign="top"><p>
-<div class="alert-text-small"><p>Here is a block of text with title. It is typeset <em>without any icon</em> and is useful when you want some admons with icon and some without. With the small font size, as used here, one can have more comment-style text or text that really goes deeper or talks about fun facts that are not strictly necessary for the main flow of understanding.</p></div>
+<div class="alert-text-small"><p>Here is a block of text with title. It is typeset
+<em>without any icon</em> and is useful when you want some admons with icon
+and some without. With the small font size, as used here, one can have
+more comment-style text or text that really goes deeper or talks
+about fun facts that are not strictly necessary for the main flow
+of understanding.
+</p></div>
 </p></td></tr>
 </table>
 
@@ -65880,7 +66454,9 @@ $$
 <tr><th align="left" valign="middle"><b></b></th>
 </tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td> <td align="left" valign="top"><p>
-<div class="alert-text-normal"><p>Here is a block of text with no title. As above, it is typeset without any icon and is useful when you want some admons with icon and some without.</p></div>
+<div class="alert-text-normal"><p>Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+</p></div>
 </p></td></tr>
 </table>
 
@@ -65896,7 +66472,9 @@ $$
 <th align="left" valign="middle"><b>Note, eventually!</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-<div class="alert-text-illegal-size"><p>Ah, we are soon close to the end (with illegal font size specification!). But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):</p>
+<div class="alert-text-illegal-size"><p>Ah, we are soon close to the end (with illegal font size specification!).
+But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
+</p>
 
 $$
 \begin{align*}
@@ -66012,7 +66590,9 @@ $$</div>
 
 <h2 id="going-deeper-environments">Going deeper environments </h2>
 
-<p>Here is a long notice environment with a custom title and much text, math and code.</p>
+<p>Here is a long notice environment with a custom title and much
+text, math and code.
+</p>
 
 
 <table width="95%" border="0">
@@ -66022,7 +66602,12 @@ $$</div>
 <th align="left" valign="middle"><b>Going deeper.</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-<div class="alert-text-normal"><p>We have some equations that should be preceded by much text, so the task is to write and write. The number of words, and not the meaning, is what counts here. We need desperately to fill up the page in the hope that some admonitions will experience a page break, which the LaTeX environment should handle with ease.</p>
+<div class="alert-text-normal"><p>We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.
+</p>
 
 <p>Let us start with some equations:</p>
 
@@ -66035,7 +66620,9 @@ $$
 \end{align*}
 $$
 
-<p>The implementation of such complicated equations in computer code is task that this "Going deeper" environment targets.</p>
+<p>The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -66065,7 +66652,9 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
   </div>
 </div>
 
-<p>And some more text that can help going into the next page. Longer computer code requires vertical space:</p>
+<p>And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -66138,7 +66727,10 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 <h2 id="the-end">The end </h2>
 
-<p>A bit of text before the summary, which we now call "Concluding remarks, for the novice", just because we can.</p>
+<p>A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+</p>
 
 
 <table width="95%" border="0">
@@ -66148,14 +66740,19 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 <th align="left" valign="middle"><b>Concluding remarks, for the novice</b></th>
 </tr>
 <tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-<div class="alert-text-normal"><p>We can summarize the most important things with admons: they have a different typesetting, and they may have a symbol. Titles should be optional.</p></div>
+<div class="alert-text-normal"><p>We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+</p></div>
 </p></td></tr>
 </table>
 
 
 <p>
 <b>Remark.</b>
- The <code>remarks</code> and <code>hint</code> environments are not allowed outside exercises (and problems and projects too).</p>
+The <code>remarks</code> and <code>hint</code> environments are not allowed outside
+exercises (and problems and projects too).
+</p>
 <!-- ------------------- end of main content --------------- -->
 <center style="font-size:80%">
 <!-- copyright --> &copy; 2021, H. P. Langtangen. Made with <a href="https://github.com/doconce/doconce">DocOnce</a>
@@ -66337,7 +66934,9 @@ MathJax.Hub.Config({
 
 <!-- !split -->
 <h1 id="introduction">Introduction </h1>
-<p>First some ordinary text to compare font sizes in admonitions and the surrounding text.</p>
+<p>First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+</p>
 <h2 id="code">Code </h2>
 
 <p>Need some code outside admons for color and font comparisons:</p>
@@ -66397,13 +66996,24 @@ x=1.1 y=0.3 z=0.1
 <p>Here is a plain quote environment.</p>
 
 <blockquote>
-    <p>Sayre's law states that &quot;in any dispute the intensity of feeling is inversely proportional to the value of the issues at stake.&quot; <br /> By way of corollary, it adds: <br /> &quot;That is why academic politics are so bitter.&quot; <br /> <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a></p>
+    <p>Sayre's law states that
+    &quot;in any dispute the intensity of feeling is inversely
+    proportional to the value of the issues at stake.&quot; <br />
+    By way of corollary, it adds: <br />
+    &quot;That is why academic politics are so bitter.&quot; <br />
+    <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a>
+    </p>
 </blockquote>
 
 
-<p>Does quotes with title also work? No...cannot work in LaTeX and HTML and then it does not make sense to support it.</p>
+<p>Does quotes with title also work? No...cannot work in LaTeX and HTML
+and then it does not make sense to support it.
+</p>
 
-<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison with admons (especially the block admon has much in common with a box). The box is more aimed at framing a law or an equation.</p>
+<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison
+with admons (especially the block admon has much in common with a box).
+The box is more aimed at framing a law or an equation.
+</p>
 
 <p>First a simple block with text, an equation, and a list:</p>
 
@@ -66425,7 +67035,9 @@ $$ f(x) = 0 $$
 </div>
 <!-- end box -->
 
-<p>Now test a box with equation only (note that this line continues the box, it is not a new paragraph):</p>
+<p>Now test a box with equation only (note that this line continues the
+box, it is not a new paragraph):
+</p>
 
 
 <!-- begin box -->
@@ -66483,13 +67095,23 @@ $$
 
 <!-- admonition: warning, typeset as paragraph -->
 <div class="alert-text-normal"><b>Warning</b>
-<p>And here is a warning about something to pay attention to. We test how the heading behave and add quite some extra texts in comparison with the other admons.</p>
+<p>And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+</p>
 
 <ul>
   <li> and a list</li>
   <li> with items</li>
 </ul>
-<p>We continue with more text to see how that affects the layout. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text.</p>
+<p>We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+</p>
 </div>
 
 
@@ -66560,7 +67182,9 @@ $$
 
 <!-- admonition: warning, typeset as paragraph -->
 <div class="alert-text-large"><b>Watch out for \( \nabla\cdot\boldsymbol{u}=0 \) equations</b>
-<p>Divergence freedom is often problematic from a numerical point of view.</p>
+<p>Divergence freedom is often problematic from a numerical point
+of view.
+</p>
 </div>
 
 
@@ -66570,7 +67194,13 @@ $$
 
 <!-- admonition: block, typeset as paragraph -->
 <div class="alert-text-small"><b>Block with title</b>
-<p>Here is a block of text with title. It is typeset <em>without any icon</em> and is useful when you want some admons with icon and some without. With the small font size, as used here, one can have more comment-style text or text that really goes deeper or talks about fun facts that are not strictly necessary for the main flow of understanding.</p>
+<p>Here is a block of text with title. It is typeset
+<em>without any icon</em> and is useful when you want some admons with icon
+and some without. With the small font size, as used here, one can have
+more comment-style text or text that really goes deeper or talks
+about fun facts that are not strictly necessary for the main flow
+of understanding.
+</p>
 </div>
 
 
@@ -66578,7 +67208,9 @@ $$
 
 <!-- admonition: block, typeset as paragraph -->
 <div class="alert-text-normal"><b></b>
-<p>Here is a block of text with no title. As above, it is typeset without any icon and is useful when you want some admons with icon and some without.</p>
+<p>Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+</p>
 </div>
 
 
@@ -66589,7 +67221,9 @@ $$
 
 <!-- admonition: notice, typeset as paragraph -->
 <div class="alert-text-illegal-size"><b>Note, eventually!</b>
-<p>Ah, we are soon close to the end (with illegal font size specification!). But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):</p>
+<p>Ah, we are soon close to the end (with illegal font size specification!).
+But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
+</p>
 
 $$
 \begin{align*}
@@ -66679,13 +67313,20 @@ $$
 
 <h2 id="going-deeper-environments">Going deeper environments </h2>
 
-<p>Here is a long notice environment with a custom title and much text, math and code.</p>
+<p>Here is a long notice environment with a custom title and much
+text, math and code.
+</p>
 
 
 
 <!-- admonition: notice, typeset as paragraph -->
 <div class="alert-text-normal"><b>Going deeper.</b>
-<p>We have some equations that should be preceded by much text, so the task is to write and write. The number of words, and not the meaning, is what counts here. We need desperately to fill up the page in the hope that some admonitions will experience a page break, which the LaTeX environment should handle with ease.</p>
+<p>We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.
+</p>
 
 <p>Let us start with some equations:</p>
 
@@ -66698,7 +67339,9 @@ $$
 \end{align*}
 $$
 
-<p>The implementation of such complicated equations in computer code is task that this "Going deeper" environment targets.</p>
+<p>The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -66728,7 +67371,9 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
   </div>
 </div>
 
-<p>And some more text that can help going into the next page. Longer computer code requires vertical space:</p>
+<p>And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -66800,19 +67445,27 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 <h2 id="the-end">The end </h2>
 
-<p>A bit of text before the summary, which we now call "Concluding remarks, for the novice", just because we can.</p>
+<p>A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+</p>
 
 
 
 <!-- admonition: summary, typeset as paragraph -->
 <div class="alert-text-normal"><b>Concluding remarks, for the novice</b>
-<p>We can summarize the most important things with admons: they have a different typesetting, and they may have a symbol. Titles should be optional.</p>
+<p>We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+</p>
 </div>
 
 
 <p>
 <b>Remark.</b>
- The <code>remarks</code> and <code>hint</code> environments are not allowed outside exercises (and problems and projects too).</p>
+The <code>remarks</code> and <code>hint</code> environments are not allowed outside
+exercises (and problems and projects too).
+</p>
 <!-- ------------------- end of main content --------------- -->
 <center style="font-size:80%">
 <!-- copyright --> &copy; 2021, H. P. Langtangen. Made with <a href="https://github.com/doconce/doconce">DocOnce</a>
@@ -66949,7 +67602,9 @@ MathJax.Hub.Config({
 
 <!-- !split -->
 <h1 id="introduction">Introduction </h1>
-<p>First some ordinary text to compare font sizes in admonitions and the surrounding text.</p>
+<p>First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+</p>
 <h2 id="code">Code </h2>
 
 <p>Need some code outside admons for color and font comparisons:</p>
@@ -67009,13 +67664,24 @@ x=1.1 y=0.3 z=0.1
 <p>Here is a plain quote environment.</p>
 
 <blockquote>
-    <p>Sayre's law states that &quot;in any dispute the intensity of feeling is inversely proportional to the value of the issues at stake.&quot; <br /> By way of corollary, it adds: <br /> &quot;That is why academic politics are so bitter.&quot; <br /> <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a></p>
+    <p>Sayre's law states that
+    &quot;in any dispute the intensity of feeling is inversely
+    proportional to the value of the issues at stake.&quot; <br />
+    By way of corollary, it adds: <br />
+    &quot;That is why academic politics are so bitter.&quot; <br />
+    <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a>
+    </p>
 </blockquote>
 
 
-<p>Does quotes with title also work? No...cannot work in LaTeX and HTML and then it does not make sense to support it.</p>
+<p>Does quotes with title also work? No...cannot work in LaTeX and HTML
+and then it does not make sense to support it.
+</p>
 
-<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison with admons (especially the block admon has much in common with a box). The box is more aimed at framing a law or an equation.</p>
+<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison
+with admons (especially the block admon has much in common with a box).
+The box is more aimed at framing a law or an equation.
+</p>
 
 <p>First a simple block with text, an equation, and a list:</p>
 
@@ -67037,7 +67703,9 @@ $$ f(x) = 0 $$
 </div>
 <!-- end box -->
 
-<p>Now test a box with equation only (note that this line continues the box, it is not a new paragraph):</p>
+<p>Now test a box with equation only (note that this line continues the
+box, it is not a new paragraph):
+</p>
 
 
 <!-- begin box -->
@@ -67094,13 +67762,23 @@ $$
 <div class="alert alert-block alert-warning alert-text-normal">
 <b>Warning</b>
 <p>
-<p>And here is a warning about something to pay attention to. We test how the heading behave and add quite some extra texts in comparison with the other admons.</p>
+<p>And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+</p>
 
 <ul>
   <li> and a list</li>
   <li> with items</li>
 </ul>
-<p>We continue with more text to see how that affects the layout. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text.</p>
+<p>We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+</p>
 </div>
 
 
@@ -67169,7 +67847,9 @@ $$
 <div class="alert alert-block alert-warning alert-text-large">
 <b>Watch out for \( \nabla\cdot\boldsymbol{u}=0 \) equations</b>
 <p>
-<p>Divergence freedom is often problematic from a numerical point of view.</p>
+<p>Divergence freedom is often problematic from a numerical point
+of view.
+</p>
 </div>
 
 
@@ -67178,14 +67858,22 @@ $$
 <div class="alert alert-block alert-block alert-text-small">
 <b>Block with title</b>
 <p>
-<p>Here is a block of text with title. It is typeset <em>without any icon</em> and is useful when you want some admons with icon and some without. With the small font size, as used here, one can have more comment-style text or text that really goes deeper or talks about fun facts that are not strictly necessary for the main flow of understanding.</p>
+<p>Here is a block of text with title. It is typeset
+<em>without any icon</em> and is useful when you want some admons with icon
+and some without. With the small font size, as used here, one can have
+more comment-style text or text that really goes deeper or talks
+about fun facts that are not strictly necessary for the main flow
+of understanding.
+</p>
 </div>
 
 
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
-<p>Here is a block of text with no title. As above, it is typeset without any icon and is useful when you want some admons with icon and some without.</p>
+<p>Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+</p>
 </div>
 
 
@@ -67195,7 +67883,9 @@ $$
 <div class="alert alert-block alert-notice alert-text-illegal-size">
 <b>Note, eventually!</b>
 <p>
-<p>Ah, we are soon close to the end (with illegal font size specification!). But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):</p>
+<p>Ah, we are soon close to the end (with illegal font size specification!).
+But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
+</p>
 
 $$
 \begin{align*}
@@ -67280,12 +67970,19 @@ $$
 
 <h2 id="going-deeper-environments">Going deeper environments </h2>
 
-<p>Here is a long notice environment with a custom title and much text, math and code.</p>
+<p>Here is a long notice environment with a custom title and much
+text, math and code.
+</p>
 
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Going deeper.</b>
 <p>
-<p>We have some equations that should be preceded by much text, so the task is to write and write. The number of words, and not the meaning, is what counts here. We need desperately to fill up the page in the hope that some admonitions will experience a page break, which the LaTeX environment should handle with ease.</p>
+<p>We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.
+</p>
 
 <p>Let us start with some equations:</p>
 
@@ -67298,7 +67995,9 @@ $$
 \end{align*}
 $$
 
-<p>The implementation of such complicated equations in computer code is task that this "Going deeper" environment targets.</p>
+<p>The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
@@ -67328,7 +68027,9 @@ x = <span style="color: #B452CD">2</span>*n
   </div>
 </div>
 
-<p>And some more text that can help going into the next page. Longer computer code requires vertical space:</p>
+<p>And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
@@ -67400,18 +68101,26 @@ x = <span style="color: #B452CD">2</span>*n
 
 <h2 id="the-end">The end </h2>
 
-<p>A bit of text before the summary, which we now call "Concluding remarks, for the novice", just because we can.</p>
+<p>A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+</p>
 
 <div class="alert alert-block alert-summary alert-text-normal">
 <b>Concluding remarks, for the novice</b>
 <p>
-<p>We can summarize the most important things with admons: they have a different typesetting, and they may have a symbol. Titles should be optional.</p>
+<p>We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+</p>
 </div>
 
 
 <p>
 <b>Remark.</b>
- The <code>remarks</code> and <code>hint</code> environments are not allowed outside exercises (and problems and projects too).</p>
+The <code>remarks</code> and <code>hint</code> environments are not allowed outside
+exercises (and problems and projects too).
+</p>
 <!-- ------------------- end of main content --------------- -->
 <center style="font-size:80%">
 <!-- copyright --> &copy; 2021, H. P. Langtangen. Made with <a href="https://github.com/doconce/doconce">DocOnce</a>
@@ -67557,7 +68266,9 @@ MathJax.Hub.Config({
 
 <!-- !split -->
 <h1 id="introduction" class="anchor">Introduction </h1>
-<p>First some ordinary text to compare font sizes in admonitions and the surrounding text.</p>
+<p>First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+</p>
 <h2 id="code" class="anchor">Code </h2>
 
 <p>Need some code outside admons for color and font comparisons:</p>
@@ -67617,13 +68328,24 @@ x=1.1 y=0.3 z=0.1
 <p>Here is a plain quote environment.</p>
 
 <blockquote>
-    <p>Sayre's law states that &quot;in any dispute the intensity of feeling is inversely proportional to the value of the issues at stake.&quot; <br /> By way of corollary, it adds: <br /> &quot;That is why academic politics are so bitter.&quot; <br /> <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a></p>
+    <p>Sayre's law states that
+    &quot;in any dispute the intensity of feeling is inversely
+    proportional to the value of the issues at stake.&quot; <br />
+    By way of corollary, it adds: <br />
+    &quot;That is why academic politics are so bitter.&quot; <br />
+    <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a>
+    </p>
 </blockquote>
 
 
-<p>Does quotes with title also work? No...cannot work in LaTeX and HTML and then it does not make sense to support it.</p>
+<p>Does quotes with title also work? No...cannot work in LaTeX and HTML
+and then it does not make sense to support it.
+</p>
 
-<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison with admons (especially the block admon has much in common with a box). The box is more aimed at framing a law or an equation.</p>
+<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison
+with admons (especially the block admon has much in common with a box).
+The box is more aimed at framing a law or an equation.
+</p>
 
 <p>First a simple block with text, an equation, and a list:</p>
 
@@ -67645,7 +68367,9 @@ $$ f(x) = 0 $$
 </div>
 <!-- end box -->
 
-<p>Now test a box with equation only (note that this line continues the box, it is not a new paragraph):</p>
+<p>Now test a box with equation only (note that this line continues the
+box, it is not a new paragraph):
+</p>
 
 
 <!-- begin box -->
@@ -67700,13 +68424,23 @@ $$
 <p>Let us start with a plain warning environment.</p>
 
 <div class="alert alert-block alert-danger alert-text-normal"><b>Warning</b>
-<p>And here is a warning about something to pay attention to. We test how the heading behave and add quite some extra texts in comparison with the other admons.</p>
+<p>And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+</p>
 
 <ul>
   <li> and a list</li>
   <li> with items</li>
 </ul>
-<p>We continue with more text to see how that affects the layout. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text.</p>
+<p>We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+</p>
 </div>
 
 
@@ -67771,19 +68505,29 @@ $$
 <p>Test warning with large title with math:</p>
 
 <div class="alert alert-block alert-danger alert-text-large"><b>Watch out for \( \nabla\cdot\boldsymbol{u}=0 \) equations</b>
-<p>Divergence freedom is often problematic from a numerical point of view.</p>
+<p>Divergence freedom is often problematic from a numerical point
+of view.
+</p>
 </div>
 
 
 <p>Then we test a block, which is guaranteed to never have any admon icon.</p>
 
 <div class="alert alert-block alert-success alert-text-small"><b>Block with title</b>
-<p>Here is a block of text with title. It is typeset <em>without any icon</em> and is useful when you want some admons with icon and some without. With the small font size, as used here, one can have more comment-style text or text that really goes deeper or talks about fun facts that are not strictly necessary for the main flow of understanding.</p>
+<p>Here is a block of text with title. It is typeset
+<em>without any icon</em> and is useful when you want some admons with icon
+and some without. With the small font size, as used here, one can have
+more comment-style text or text that really goes deeper or talks
+about fun facts that are not strictly necessary for the main flow
+of understanding.
+</p>
 </div>
 
 
 <div class="alert alert-block alert-success alert-text-normal"><b></b>
-<p>Here is a block of text with no title. As above, it is typeset without any icon and is useful when you want some admons with icon and some without.</p>
+<p>Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+</p>
 </div>
 
 
@@ -67791,7 +68535,9 @@ $$
 <!-- those formats automatically add : to the admonition title. -->
 
 <div class="alert alert-block alert-success alert-text-illegal-size"><b>Note, eventually!</b>
-<p>Ah, we are soon close to the end (with illegal font size specification!). But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):</p>
+<p>Ah, we are soon close to the end (with illegal font size specification!).
+But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
+</p>
 
 $$
 \begin{align*}
@@ -67866,10 +68612,17 @@ $$
 
 <h2 id="going-deeper-environments" class="anchor">Going deeper environments </h2>
 
-<p>Here is a long notice environment with a custom title and much text, math and code.</p>
+<p>Here is a long notice environment with a custom title and much
+text, math and code.
+</p>
 
 <div class="alert alert-block alert-success alert-text-normal"><b>Going deeper.</b>
-<p>We have some equations that should be preceded by much text, so the task is to write and write. The number of words, and not the meaning, is what counts here. We need desperately to fill up the page in the hope that some admonitions will experience a page break, which the LaTeX environment should handle with ease.</p>
+<p>We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.
+</p>
 
 <p>Let us start with some equations:</p>
 
@@ -67882,7 +68635,9 @@ $$
 \end{align*}
 $$
 
-<p>The implementation of such complicated equations in computer code is task that this "Going deeper" environment targets.</p>
+<p>The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -67912,7 +68667,9 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
   </div>
 </div>
 
-<p>And some more text that can help going into the next page. Longer computer code requires vertical space:</p>
+<p>And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -67984,16 +68741,24 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 <h2 id="the-end" class="anchor">The end </h2>
 
-<p>A bit of text before the summary, which we now call "Concluding remarks, for the novice", just because we can.</p>
+<p>A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+</p>
 
 <div class="alert alert-block alert-warning alert-text-normal"><b>Concluding remarks, for the novice</b>
-<p>We can summarize the most important things with admons: they have a different typesetting, and they may have a symbol. Titles should be optional.</p>
+<p>We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+</p>
 </div>
 
 
 <p>
 <b>Remark.</b>
- The <code>remarks</code> and <code>hint</code> environments are not allowed outside exercises (and problems and projects too).</p>
+The <code>remarks</code> and <code>hint</code> environments are not allowed outside
+exercises (and problems and projects too).
+</p>
 <!-- ------------------- end of main content --------------- -->
 
  </div>
@@ -68296,7 +69061,9 @@ MathJax.Hub.Config({
 
 <!-- !split -->
 <h1 id="introduction" class="anchor">Introduction </h1>
-<p>First some ordinary text to compare font sizes in admonitions and the surrounding text.</p>
+<p>First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+</p>
 <h2 id="code" class="anchor">Code </h2>
 
 <p>Need some code outside admons for color and font comparisons:</p>
@@ -68356,13 +69123,24 @@ x=1.1 y=0.3 z=0.1
 <p>Here is a plain quote environment.</p>
 
 <blockquote>
-    <p>Sayre's law states that &quot;in any dispute the intensity of feeling is inversely proportional to the value of the issues at stake.&quot; <br /> By way of corollary, it adds: <br /> &quot;That is why academic politics are so bitter.&quot; <br /> <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a></p>
+    <p>Sayre's law states that
+    &quot;in any dispute the intensity of feeling is inversely
+    proportional to the value of the issues at stake.&quot; <br />
+    By way of corollary, it adds: <br />
+    &quot;That is why academic politics are so bitter.&quot; <br />
+    <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a>
+    </p>
 </blockquote>
 
 
-<p>Does quotes with title also work? No...cannot work in LaTeX and HTML and then it does not make sense to support it.</p>
+<p>Does quotes with title also work? No...cannot work in LaTeX and HTML
+and then it does not make sense to support it.
+</p>
 
-<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison with admons (especially the block admon has much in common with a box). The box is more aimed at framing a law or an equation.</p>
+<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison
+with admons (especially the block admon has much in common with a box).
+The box is more aimed at framing a law or an equation.
+</p>
 
 <p>First a simple block with text, an equation, and a list:</p>
 
@@ -68384,7 +69162,9 @@ $$ f(x) = 0 $$
 </div>
 <!-- end box -->
 
-<p>Now test a box with equation only (note that this line continues the box, it is not a new paragraph):</p>
+<p>Now test a box with equation only (note that this line continues the
+box, it is not a new paragraph):
+</p>
 
 
 <!-- begin box -->
@@ -68444,13 +69224,23 @@ $$
   </div>
 <div class="panel-body">
 <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-<p>And here is a warning about something to pay attention to. We test how the heading behave and add quite some extra texts in comparison with the other admons.</p>
+<p>And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+</p>
 
 <ul>
   <li> and a list</li>
   <li> with items</li>
 </ul>
-<p>We continue with more text to see how that affects the layout. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text.</p>
+<p>We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+</p>
 </div>
 </div>
 
@@ -68527,7 +69317,9 @@ $$
   </div>
 <div class="panel-body">
 <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-<p>Divergence freedom is often problematic from a numerical point of view.</p>
+<p>Divergence freedom is often problematic from a numerical point
+of view.
+</p>
 </div>
 </div>
 
@@ -68537,7 +69329,13 @@ $$
 <div class="panel panel-default">
 <div class="panel-body">
 <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-<p>Here is a block of text with title. It is typeset <em>without any icon</em> and is useful when you want some admons with icon and some without. With the small font size, as used here, one can have more comment-style text or text that really goes deeper or talks about fun facts that are not strictly necessary for the main flow of understanding.</p>
+<p>Here is a block of text with title. It is typeset
+<em>without any icon</em> and is useful when you want some admons with icon
+and some without. With the small font size, as used here, one can have
+more comment-style text or text that really goes deeper or talks
+about fun facts that are not strictly necessary for the main flow
+of understanding.
+</p>
 </div>
 </div>
 
@@ -68545,7 +69343,9 @@ $$
 <div class="panel panel-default">
 <div class="panel-body">
 <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-<p>Here is a block of text with no title. As above, it is typeset without any icon and is useful when you want some admons with icon and some without.</p>
+<p>Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+</p>
 </div>
 </div>
 
@@ -68559,7 +69359,9 @@ $$
   </div>
 <div class="panel-body">
 <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-<p>Ah, we are soon close to the end (with illegal font size specification!). But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):</p>
+<p>Ah, we are soon close to the end (with illegal font size specification!).
+But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
+</p>
 
 $$
 \begin{align*}
@@ -68665,7 +69467,9 @@ $$
 
 <h2 id="going-deeper-environments" class="anchor">Going deeper environments </h2>
 
-<p>Here is a long notice environment with a custom title and much text, math and code.</p>
+<p>Here is a long notice environment with a custom title and much
+text, math and code.
+</p>
 
 <div class="panel panel-primary">
   <div class="panel-heading">
@@ -68673,7 +69477,12 @@ $$
   </div>
 <div class="panel-body">
 <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-<p>We have some equations that should be preceded by much text, so the task is to write and write. The number of words, and not the meaning, is what counts here. We need desperately to fill up the page in the hope that some admonitions will experience a page break, which the LaTeX environment should handle with ease.</p>
+<p>We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.
+</p>
 
 <p>Let us start with some equations:</p>
 
@@ -68686,7 +69495,9 @@ $$
 \end{align*}
 $$
 
-<p>The implementation of such complicated equations in computer code is task that this "Going deeper" environment targets.</p>
+<p>The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -68716,7 +69527,9 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
   </div>
 </div>
 
-<p>And some more text that can help going into the next page. Longer computer code requires vertical space:</p>
+<p>And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -68789,7 +69602,10 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 <h2 id="the-end" class="anchor">The end </h2>
 
-<p>A bit of text before the summary, which we now call "Concluding remarks, for the novice", just because we can.</p>
+<p>A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+</p>
 
 <div class="panel panel-danger">
   <div class="panel-heading">
@@ -68797,14 +69613,19 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
   </div>
 <div class="panel-body">
 <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-<p>We can summarize the most important things with admons: they have a different typesetting, and they may have a symbol. Titles should be optional.</p>
+<p>We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+</p>
 </div>
 </div>
 
 
 <p>
 <b>Remark.</b>
- The <code>remarks</code> and <code>hint</code> environments are not allowed outside exercises (and problems and projects too).</p>
+The <code>remarks</code> and <code>hint</code> environments are not allowed outside
+exercises (and problems and projects too).
+</p>
 <!-- ------------------- end of main content --------------- -->
 </div>  <!-- end container -->
 <!-- include javascript, jQuery *first* -->
@@ -68945,7 +69766,9 @@ MathJax.Hub.Config({
 </ul>
 <!-- !split -->
 <h1 id="introduction" class="anchor">Introduction </h1>
-<p>First some ordinary text to compare font sizes in admonitions and the surrounding text.</p>
+<p>First some ordinary text to compare font sizes in admonitions
+and the surrounding text.
+</p>
 <h2 id="code" class="anchor">Code </h2>
 
 <p>Need some code outside admons for color and font comparisons:</p>
@@ -69005,13 +69828,24 @@ x=1.1 y=0.3 z=0.1
 <p>Here is a plain quote environment.</p>
 
 <blockquote>
-    <p>Sayre's law states that &quot;in any dispute the intensity of feeling is inversely proportional to the value of the issues at stake.&quot; <br /> By way of corollary, it adds: <br /> &quot;That is why academic politics are so bitter.&quot; <br /> <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a></p>
+    <p>Sayre's law states that
+    &quot;in any dispute the intensity of feeling is inversely
+    proportional to the value of the issues at stake.&quot; <br />
+    By way of corollary, it adds: <br />
+    &quot;That is why academic politics are so bitter.&quot; <br />
+    <em>Source</em>: <a href="https://en.wikipedia.org/wiki/Sayre's_law" target="_self">wikipedia</a>
+    </p>
 </blockquote>
 
 
-<p>Does quotes with title also work? No...cannot work in LaTeX and HTML and then it does not make sense to support it.</p>
+<p>Does quotes with title also work? No...cannot work in LaTeX and HTML
+and then it does not make sense to support it.
+</p>
 
-<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison with admons (especially the block admon has much in common with a box). The box is more aimed at framing a law or an equation.</p>
+<p>A plain <em>box</em> is sometimes useful. Let's show it here for comparison
+with admons (especially the block admon has much in common with a box).
+The box is more aimed at framing a law or an equation.
+</p>
 
 <p>First a simple block with text, an equation, and a list:</p>
 
@@ -69033,7 +69867,9 @@ $$ f(x) = 0 $$
 </div>
 <!-- end box -->
 
-<p>Now test a box with equation only (note that this line continues the box, it is not a new paragraph):</p>
+<p>Now test a box with equation only (note that this line continues the
+box, it is not a new paragraph):
+</p>
 
 
 <!-- begin box -->
@@ -69088,13 +69924,23 @@ $$
 <p>Let us start with a plain warning environment.</p>
 
 <div class="alert alert-block alert-danger alert-text-normal"><b>Warning</b>
-<p>And here is a warning about something to pay attention to. We test how the heading behave and add quite some extra texts in comparison with the other admons.</p>
+<p>And here is a warning about something to pay attention to. We
+test how the heading behave and add quite some extra texts
+in comparison with the other admons.
+</p>
 
 <ul>
   <li> and a list</li>
   <li> with items</li>
 </ul>
-<p>We continue with more text to see how that affects the layout. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text. And more and more text.</p>
+<p>We continue with more text to see how that affects the layout.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+And more and more text.
+</p>
 </div>
 
 
@@ -69159,19 +70005,29 @@ $$
 <p>Test warning with large title with math:</p>
 
 <div class="alert alert-block alert-danger alert-text-large"><b>Watch out for \( \nabla\cdot\boldsymbol{u}=0 \) equations</b>
-<p>Divergence freedom is often problematic from a numerical point of view.</p>
+<p>Divergence freedom is often problematic from a numerical point
+of view.
+</p>
 </div>
 
 
 <p>Then we test a block, which is guaranteed to never have any admon icon.</p>
 
 <div class="alert alert-block alert-success alert-text-small"><b>Block with title</b>
-<p>Here is a block of text with title. It is typeset <em>without any icon</em> and is useful when you want some admons with icon and some without. With the small font size, as used here, one can have more comment-style text or text that really goes deeper or talks about fun facts that are not strictly necessary for the main flow of understanding.</p>
+<p>Here is a block of text with title. It is typeset
+<em>without any icon</em> and is useful when you want some admons with icon
+and some without. With the small font size, as used here, one can have
+more comment-style text or text that really goes deeper or talks
+about fun facts that are not strictly necessary for the main flow
+of understanding.
+</p>
 </div>
 
 
 <div class="alert alert-block alert-success alert-text-normal"><b></b>
-<p>Here is a block of text with no title. As above, it is typeset without any icon and is useful when you want some admons with icon and some without.</p>
+<p>Here is a block of text with no title. As above, it is typeset without any icon
+and is useful when you want some admons with icon and some without.
+</p>
 </div>
 
 
@@ -69179,7 +70035,9 @@ $$
 <!-- those formats automatically add : to the admonition title. -->
 
 <div class="alert alert-block alert-success alert-text-illegal-size"><b>Note, eventually!</b>
-<p>Ah, we are soon close to the end (with illegal font size specification!). But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):</p>
+<p>Ah, we are soon close to the end (with illegal font size specification!).
+But first a bit of math where we define \( \theta \) and \( \boldsymbol{r} \):
+</p>
 
 $$
 \begin{align*}
@@ -69254,10 +70112,17 @@ $$
 
 <h2 id="going-deeper-environments" class="anchor">Going deeper environments </h2>
 
-<p>Here is a long notice environment with a custom title and much text, math and code.</p>
+<p>Here is a long notice environment with a custom title and much
+text, math and code.
+</p>
 
 <div class="alert alert-block alert-success alert-text-normal"><b>Going deeper.</b>
-<p>We have some equations that should be preceded by much text, so the task is to write and write. The number of words, and not the meaning, is what counts here. We need desperately to fill up the page in the hope that some admonitions will experience a page break, which the LaTeX environment should handle with ease.</p>
+<p>We have some equations that should be preceded by much text, so the
+task is to write and write. The number of words, and not the
+meaning, is what counts here. We need desperately to fill up the
+page in the hope that some admonitions will experience a page break,
+which the LaTeX environment should handle with ease.
+</p>
 
 <p>Let us start with some equations:</p>
 
@@ -69270,7 +70135,9 @@ $$
 \end{align*}
 $$
 
-<p>The implementation of such complicated equations in computer code is task that this "Going deeper" environment targets.</p>
+<p>The implementation of such complicated equations in computer
+code is task that this "Going deeper" environment targets.
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -69300,7 +70167,9 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
   </div>
 </div>
 
-<p>And some more text that can help going into the next page. Longer computer code requires vertical space:</p>
+<p>And some more text that can help going into the next page.
+Longer computer code requires vertical space:
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -69372,16 +70241,24 @@ x <span style="color: #666666">=</span> <span style="color: #666666">2*</span>n
 
 <h2 id="the-end" class="anchor">The end </h2>
 
-<p>A bit of text before the summary, which we now call "Concluding remarks, for the novice", just because we can.</p>
+<p>A bit of text before the summary, which we now call "Concluding remarks,
+for the novice",
+just because we can.
+</p>
 
 <div class="alert alert-block alert-warning alert-text-normal"><b>Concluding remarks, for the novice</b>
-<p>We can summarize the most important things with admons: they have a different typesetting, and they may have a symbol. Titles should be optional.</p>
+<p>We can summarize the most important things with admons: they have
+a different typesetting, and they may have a symbol.
+Titles should be optional.
+</p>
 </div>
 
 
 <p>
 <b>Remark.</b>
- The <code>remarks</code> and <code>hint</code> environments are not allowed outside exercises (and problems and projects too).</p>
+The <code>remarks</code> and <code>hint</code> environments are not allowed outside
+exercises (and problems and projects too).
+</p>
 <p>
 <!-- navigation buttons at the bottom of the page -->
 <ul class="pagination">
@@ -70918,7 +71795,9 @@ MathJax.Hub.Config({
 <p class="fragment">
 
 <span class="fragment highlight-red">
-Here we have a paragraph to pop up in red.<br /> And a line more</p>
+Here we have a paragraph to pop up in red.<br />
+And a line more
+</p>
 </span>
 
 </p>
@@ -70927,7 +71806,9 @@ Here we have a paragraph to pop up in red.<br /> And a line more</p>
 <aside class="notes">
 <!-- click "s" to activate -->
 
-<p>One can also have ordinary notes. Over multiple lines.</p>
+<p>One can also have ordinary notes.
+Over multiple lines.
+</p>
 
 </aside>
 </section>
@@ -71059,7 +71940,9 @@ $$ f(x,y,t) = e^{-xt}\sin\pi y $$
 <div class="alert alert-block alert-block alert-text-normal">
 <b>Bash demanded more of DocOnce than Python, so let's do Bash:</b>
 <p>
-<p>First, inline <code>$? != 0</code>, then comments with dollar variables (and minted style):</p>
+<p>First, inline <code>$? != 0</code>, then comments with dollar variables (and minted
+style):
+</p>
 
 
 <!-- code=bash (!bc shcod) typeset with pygments style "perldoc" -->
@@ -71141,13 +72024,19 @@ $$ \frac{\partial u}{\partial t} = \nabla^2 u $$
 <div class="fragment alert alert-block alert-summary alert-text-normal">
 <b></b>
 <p>
-<p>Just some block with text and a conclusion that something is important. This one pops up after the rest of the slide.</p>
+<p>Just some block with text and a conclusion that something is important.
+This one pops up after the rest of the slide.
+</p>
 </div>
 
 <div class="fragment alert alert-block alert-warning alert-text-small">
 <b>Warning</b>
 <p>
-<p>Can use, e.g., a warning admon to have my own notes, preferably inside preprocess/mako if statements to turn notes on and off. This one is typeset in a small font and with the default title (Warning) since no title is specified.</p>
+<p>Can use, e.g., a warning admon to have my own notes, preferably
+inside preprocess/mako if statements to turn notes on and off.
+This one is typeset in a small font and with the default
+title (Warning) since no title is specified.
+</p>
 </div>
 </section>
 
@@ -71915,11 +72804,15 @@ MathJax.Hub.Config({
 <!-- end inline comment -->
 
 <!-- !bpop highlight-red -->
-<p>Here we have a paragraph to pop up in red.<br /> And a line more</p>
+<p>Here we have a paragraph to pop up in red.<br />
+And a line more
+</p>
 <!-- !epop -->
 
 <!-- !bnotes -->
-<p>One can also have ordinary notes. Over multiple lines.</p>
+<p>One can also have ordinary notes.
+Over multiple lines.
+</p>
 <!-- !enotes -->
 
 <!-- !split -->
@@ -72053,7 +72946,9 @@ $$ f(x,y,t) = e^{-xt}\sin\pi y $$
 <div class="alert alert-block alert-block alert-text-normal">
 <b>Bash demanded more of DocOnce than Python, so let's do Bash:</b>
 <p>
-<p>First, inline <code>$? != 0</code>, then comments with dollar variables (and minted style):</p>
+<p>First, inline <code>$? != 0</code>, then comments with dollar variables (and minted
+style):
+</p>
 
 
 <!-- code=bash (!bc shcod) typeset with pygments style "perldoc" -->
@@ -72135,7 +73030,9 @@ $$ \frac{\partial u}{\partial t} = \nabla^2 u $$
 <div class="alert alert-block alert-summary alert-text-normal">
 <b></b>
 <p>
-<p>Just some block with text and a conclusion that something is important. This one pops up after the rest of the slide.</p>
+<p>Just some block with text and a conclusion that something is important.
+This one pops up after the rest of the slide.
+</p>
 </div>
 
 <!-- !epop -->
@@ -72144,7 +73041,11 @@ $$ \frac{\partial u}{\partial t} = \nabla^2 u $$
 <div class="alert alert-block alert-warning alert-text-small">
 <b>Warning</b>
 <p>
-<p>Can use, e.g., a warning admon to have my own notes, preferably inside preprocess/mako if statements to turn notes on and off. This one is typeset in a small font and with the default title (Warning) since no title is specified.</p>
+<p>Can use, e.g., a warning admon to have my own notes, preferably
+inside preprocess/mako if statements to turn notes on and off.
+This one is typeset in a small font and with the default
+title (Warning) since no title is specified.
+</p>
 </div>
 
 <!-- !epop -->
@@ -72188,7 +73089,7 @@ doconce format html slides1.html slides1 deck --html_slide_theme=web-2.0
   <link rel="stylesheet" media="screen" href="deck.js-latest/themes/style/web-2.0.css">
 
   <!-- Transition theme. More available in /themes/transition/ or create your own. -->
-  <link rel="stylesheet" media="screen" href="deck.js-latest/themes/transition/horizontal-slide.css">
+  <link rel="stylesheet" media="screen" href="">
 
   <!-- Basic black and white print styles -->
   <link rel="stylesheet" media="print" href="deck.js-latest/core/print.css">
@@ -72366,14 +73267,18 @@ MathJax.Hub.Config({
 
 
 <p class="slide">
-Here we have a paragraph to pop up in red.<br /> And a line more</p>
+Here we have a paragraph to pop up in red.<br />
+And a line more
+</p>
 </p>
 
 
 <div class="notes">
 <!-- press "n" to activate -->
 
-<p>One can also have ordinary notes. Over multiple lines.</p>
+<p>One can also have ordinary notes.
+Over multiple lines.
+</p>
 
 </div>
 </section>
@@ -72505,7 +73410,9 @@ $$ f(x,y,t) = e^{-xt}\sin\pi y $$
 <div class="alert alert-block alert-block alert-text-normal">
 <b style="font-weight: bold">Bash demanded more of DocOnce than Python, so let's do Bash:</b>
 <p>
-<p>First, inline <code>$? != 0</code>, then comments with dollar variables (and minted style):</p>
+<p>First, inline <code>$? != 0</code>, then comments with dollar variables (and minted
+style):
+</p>
 
 
 <!-- code=bash (!bc shcod) typeset with pygments style "emacs" -->
@@ -72587,13 +73494,19 @@ $$ \frac{\partial u}{\partial t} = \nabla^2 u $$
 <div class="slide alert alert-block alert-summary alert-text-normal">
 <b style="font-weight: bold"></b>
 <p>
-<p>Just some block with text and a conclusion that something is important. This one pops up after the rest of the slide.</p>
+<p>Just some block with text and a conclusion that something is important.
+This one pops up after the rest of the slide.
+</p>
 </div>
 
 <div class="slide alert alert-block alert-warning alert-text-small">
 <b style="font-weight: bold">Warning</b>
 <p>
-<p>Can use, e.g., a warning admon to have my own notes, preferably inside preprocess/mako if statements to turn notes on and off. This one is typeset in a small font and with the default title (Warning) since no title is specified.</p>
+<p>Can use, e.g., a warning admon to have my own notes, preferably
+inside preprocess/mako if statements to turn notes on and off.
+This one is typeset in a small font and with the default
+title (Warning) since no title is specified.
+</p>
 </div>
 </section>
 
@@ -74635,7 +75548,9 @@ MathJax.Hub.Config({
  <p><li> some Markdown files,</li>
 </ul>
 <p>
-<p>and later want to collect the pieces into a larger document, maybe some book, or one big web document, is that at all feasible?</p>
+<p>and later want to collect the pieces into a larger document, maybe
+some book, or one big web document, is that at all feasible?
+</p>
 
 
 <p class="fragment">
@@ -74692,7 +75607,9 @@ Probably not, but I have a solution :-)</p>
 
 
 <p class="fragment">
-Conclusion: Highly non-trivial to translate a LaTeX document into something based on HTML and vice versa.</p>
+Conclusion: Highly non-trivial to translate a LaTeX document into something
+based on HTML and vice versa.
+</p>
 </p>
 </section>
 
@@ -75064,7 +75981,9 @@ URL: &quot;https://github.com/doconce/doconce&quot;
 
 <p>gets rendered as ...where \( a=\int_{\Omega}fdx \) is an integral.</p>
 
-<p>An equation environment is surrounded by <code>!bt</code> and <code>!et</code> tags, the rest is plain LaTeX:</p>
+<p>An equation environment is surrounded by <code>!bt</code> and <code>!et</code> tags,
+the rest is plain LaTeX:
+</p>
 
 
 <!-- code=text (!bc ccq) typeset with pygments style "emacs" -->
@@ -75194,7 +76113,11 @@ def solver(I, a, T, dt, theta):
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Language-dependent typesetting of code:</b>
 <p>
-<p>The <code>!bc</code> command can be followed by a specification of the computer language: <code>pycod</code> for Python code snippet, <code>pypro</code> for complete Python program, <code>fcod</code> for Fortran snippet, <code>fpro</code> for Fortran program, and so forth (<code>c</code> for C, <code>cpp</code> for C++, <code>sh</code> for Unix shells, <code>m</code> for Matlab).</p>
+<p>The <code>!bc</code> command can be followed by a specification of the computer
+language: <code>pycod</code> for Python code snippet, <code>pypro</code> for complete Python
+program, <code>fcod</code> for Fortran snippet, <code>fpro</code> for Fortran program, and so
+forth (<code>c</code> for C, <code>cpp</code> for C++, <code>sh</code> for Unix shells, <code>m</code> for Matlab).
+</p>
 </div>
 </section>
 
@@ -75202,7 +76125,10 @@ def solver(I, a, T, dt, theta):
 <section>
 <h2 id="slide:pot">DocOnce: displaying interactive demo code</h2>
 
-<p>With <code>!bc pyoptpro</code> or a file <code>*.pyopt</code>, the code applies the <a href="https://pythontutor.com" target="_self">Online Python Tutor</a> for displaying program flow and state of variables:</p>
+<p>With <code>!bc pyoptpro</code> or a file <code>*.pyopt</code>, the code applies the
+<a href="https://pythontutor.com" target="_self">Online Python Tutor</a> for displaying
+program flow and state of variables:
+</p>
 
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
@@ -75229,7 +76155,9 @@ def solver(I, a, T, dt, theta):
 <section>
 <h2 id="doconce-exercises">DocOnce: exercises </h2>
 
-<p>DocOnce offers a special format for <em>exercises</em>, <em>problems</em>, <em>projects</em>, and <em>examples</em>:</p>
+<p>DocOnce offers a special format for <em>exercises</em>, <em>problems</em>, <em>projects</em>,
+and <em>examples</em>:
+</p>
 
 
 <!-- code=text (!bc ccq) typeset with pygments style "emacs" -->
@@ -75300,35 +76228,42 @@ of getting at least three heads out of 5 throws.
 
 <p>
 <b>a)</b>
- Make a program that simulates flipping a coin \( N \) times.</p>
+Make a program that simulates flipping a coin \( N \) times.
+</p>
 
 <!-- --- begin hint in exercise --- -->
 
 <p>
 <b>Hint.</b>
- Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.</p>
+Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.
+</p>
 
 <!-- --- end hint in exercise --- -->
 
 <p>
 <b>b)</b>
- Compute the probability of getting heads.</p>
+Compute the probability of getting heads.
+</p>
 
 <!-- --- begin answer of exercise --- -->
 <p>
 <b>Answer.</b>
- A short answer: 0.5.</p>
+A short answer: 0.5.
+</p>
 <!-- --- end answer of exercise --- -->
 
 <!-- --- begin solution of exercise --- -->
 <p>
 <b>Solution.</b>
- A full solution to this subexercise can go here.</p>
+A full solution to this subexercise can go here.
+</p>
 <!-- --- end solution of exercise --- -->
 
 <p>
 <b>c)</b>
- Make another program that computes the probability of getting at least three heads out of 5 throws.</p>
+Make another program that computes the probability
+of getting at least three heads out of 5 throws.
+</p>
 
 <p>Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.</p>
 <!-- solution files: mysol.txt, mysol_flip_coin.py -->
@@ -75416,7 +76351,12 @@ $$ -\nabla^2 u = f \quad\hbox{in }\Omega $$
 <section>
 <h2 id="doconce-example-on-slide-code-with-cells">DocOnce: example on slide code with cells </h2>
 
-<p>One can introduce a table-like layout with MxN cells and put slide elements in various cell. A cell with position MN is surrounded by <code>!bslidecell MN</code> and <code>!eslidecell</code> tags. Below is an example with a bullet list to the left and a figure to the right (two cells, numbered 00 and 01).</p>
+<p>One can introduce a table-like layout with MxN cells and
+put slide elements in various cell. A cell with position
+MN is surrounded by <code>!bslidecell MN</code> and <code>!eslidecell</code>
+tags. Below is an example with a bullet list to the left and
+a figure to the right (two cells, numbered 00 and 01).
+</p>
 
 
 <!-- code=text (!bc ccq) typeset with pygments style "emacs" -->
@@ -78209,25 +79149,36 @@ MathJax.Hub.Config({
 <section>
 <h2 id="goal">Goal </h2>
 
-<p>The primary goal of this demo talk is to demonstrate how to write talks with <a href="https://github.com/doconce/doconce" target="_self">DocOnce</a> and get them rendered in numerous HTML formats.</p>
+<p>The primary goal of this demo talk is to demonstrate how to write
+talks with <a href="https://github.com/doconce/doconce" target="_self">DocOnce</a>
+and get them rendered in numerous HTML formats.
+</p>
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Layout</b>
 <p>
-<p>This version utilizes reveal slides with the theme beigesmall.</p>
+<p>This version
+utilizes reveal slides with the theme beigesmall.
+</p>
 </div>
 
 
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Notice</b>
 <p>
-<p>Speaker notes show up by pressing "s".</p>
+<p>Speaker notes show up by
+pressing "s".
+</p>
 </div>
 
 
 <aside class="notes">
 <!-- click "s" to activate -->
 
-<p>The talk investigates the accuracy of three finite difference schemes for the ordinary differential equation \( u'=-au \) with the aid of numerical experiments. Numerical artifacts are in particular demonstrated.</p>
+<p>The talk investigates the accuracy of three finite difference
+schemes for the ordinary differential equation \( u'=-au \) with the
+aid of numerical experiments. Numerical artifacts are in particular
+demonstrated.
+</p>
 
 </aside>
 </section>
@@ -78387,7 +79338,9 @@ $$ u^n = A^n,\quad A = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}\thi
 <div class="fragment alert alert-block alert-summary alert-text-normal">
 <b>Concluding remarks:</b>
 <p>
-<p>Only the Backward Euler scheme is guaranteed to always give qualitatively correct results.</p>
+<p>Only the Backward Euler scheme is guaranteed to always give
+qualitatively correct results.
+</p>
 </div>
 </section>
 
@@ -78649,11 +79602,16 @@ MathJax.Hub.Config({
 <!-- !split -->
 <h2 id="goal">Goal </h2>
 
-<p>The primary goal of this demo talk is to demonstrate how to write talks with <a href="https://github.com/doconce/doconce" target="_self">DocOnce</a> and get them rendered in numerous HTML formats.</p>
+<p>The primary goal of this demo talk is to demonstrate how to write
+talks with <a href="https://github.com/doconce/doconce" target="_self">DocOnce</a>
+and get them rendered in numerous HTML formats.
+</p>
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Layout</b>
 <p>
-<p>This version utilizes doconce slides with the theme solarized3.</p>
+<p>This version
+utilizes doconce slides with the theme solarized3.
+</p>
 </div>
 
 
@@ -79770,7 +80728,14 @@ end of tocinfo -->
 </center> <!-- date -->
 <br>
 
-<p>Here is a movie in WebM format. Note that in HTML format a WebM movie may actually be the MP4 version of this movie three alternative sources (MP4, WebM, OGG) are inserted in the HTML code by default. The command-line option <code>--no_mp4_webm_ogg_alternatives</code> makes the HTML code use exactly the specified movie file.</p>
+<p>Here is a movie in WebM format.
+Note that in HTML format a WebM movie
+may actually be the MP4 version of this movie
+three alternative sources (MP4, WebM, OGG)
+are inserted in the HTML code by default. The command-line
+option <code>--no_mp4_webm_ogg_alternatives</code> makes the HTML
+code use exactly the specified movie file.
+</p>
 
 <div>
 <video  loop controls width='700' height='400' preload='none'>
@@ -79823,7 +80788,9 @@ if (!!(window.safari)) {
 <embed src="../doc/src/manual/mov/wave.flv" width=700 height=400 autoplay="false" loop="true"></embed>
 <p><em>1D wave in Flash.</em></p>
 
-<p>And here is a collection of images shown as an animation (<code>frame_*.png</code>):</p>
+<p>And here is a collection of images shown as an animation
+(<code>frame_*.png</code>):
+</p>
 
 <script language="Javascript">
 <!---
@@ -80538,7 +81505,14 @@ end of tocinfo -->
 </center> <!-- date -->
 <br>
 
-<p>Here is a movie in WebM format. Note that in HTML format a WebM movie may actually be the MP4 version of this movie three alternative sources (MP4, WebM, OGG) are inserted in the HTML code by default. The command-line option <code>--no_mp4_webm_ogg_alternatives</code> makes the HTML code use exactly the specified movie file.</p>
+<p>Here is a movie in WebM format.
+Note that in HTML format a WebM movie
+may actually be the MP4 version of this movie
+three alternative sources (MP4, WebM, OGG)
+are inserted in the HTML code by default. The command-line
+option <code>--no_mp4_webm_ogg_alternatives</code> makes the HTML
+code use exactly the specified movie file.
+</p>
 
 <div>
 <video  loop controls width='700' height='400' preload='none'>
@@ -80591,7 +81565,9 @@ if (!!(window.safari)) {
 <embed src="../doc/src/manual/mov/wave.flv" width=700 height=400 autoplay="false" loop="true"></embed>
 <p><em>1D wave in Flash.</em></p>
 
-<p>And here is a collection of images shown as an animation (<code>frame_*.png</code>):</p>
+<p>And here is a collection of images shown as an animation
+(<code>frame_*.png</code>):
+</p>
 
 <script language="Javascript">
 <!---
@@ -83481,7 +84457,10 @@ a = 1  # Value suggested by Åsmund Ødegård.
 end of tocinfo -->
 
 <!-- ------------------- main content ---------------------- -->
-<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+</p>
 
 <pre>a = 1  # Value suggested by Åsmund Ødegård.
 </pre>
@@ -83798,7 +84777,11 @@ str>>> The file after all inline substitutions:
 
 
 
-<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+</p>
 
 <p></p>
 0 <<<!!CODE_BLOCK 
@@ -83811,7 +84794,11 @@ str>>> The file after typesetting of tables:
 
 
 
-<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+</p>
 
 <p></p>
 0 <<<!!CODE_BLOCK 
@@ -83824,7 +84811,11 @@ str>>> The file after commenting out !commands
 
 
 
-<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+</p>
 
 <p></p>
 0 <<<!!CODE_BLOCK 
@@ -83836,7 +84827,10 @@ str>>> The file after commenting out !commands
 str>>> File before call to insert_code_blocks (format html):
 
 <!-- ------------------- main content ---------------------- -->
-<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+</p>
 <p></p>
 <pre>a = 1  # Value suggested by Åsmund Ødegård.
 </pre>
@@ -83848,7 +84842,10 @@ str>>> File before call to insert_code_blocks (format html):
 str>>> File after call to insert_code_and tex (format html):
 
 <!-- ------------------- main content ---------------------- -->
-<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+</p>
 <p></p>
 <pre>a = 1  # Value suggested by Åsmund Ødegård.
 </pre>
@@ -83860,7 +84857,10 @@ str>>> File after call to insert_code_and tex (format html):
 str>>> After replacement of !bc and !ec (pygmentized code):
 
 <!-- ------------------- main content ---------------------- -->
-<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+</p>
 <p></p>
 <pre>a = 1  # Value suggested by Åsmund Ødegård.
 </pre>
@@ -83877,7 +84877,10 @@ str>>> The file after inserting intro/outro and tex/code blocks, and fixing last
 end of tocinfo -->
 
 <!-- ------------------- main content ---------------------- -->
-<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+</p>
 
 <pre>a = 1  # Value suggested by Åsmund Ødegård.
 </pre>
@@ -83895,7 +84898,10 @@ str>>> The file after typesetting of admons and the rest of the !b/!e environmen
 end of tocinfo -->
 
 <!-- ------------------- main content ---------------------- -->
-<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+</p>
 
 <pre>a = 1  # Value suggested by Åsmund Ødegård.
 </pre>
@@ -83913,7 +84919,10 @@ str>>> The file after potential removal of solutions, answers, hints, etc.:
 end of tocinfo -->
 
 <!-- ------------------- main content ---------------------- -->
-<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general. Verbatim blocks with non-ASCII text does not work for HTML, but it works for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.</p>
+<p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.
+Verbatim blocks with non-ASCII text does not work for HTML, but it works
+for LaTeX. The remedy for HTML is to read the file with UTF-8 encoding.
+</p>
 
 <pre>a = 1  # Value suggested by Åsmund Ødegård.
 </pre>
@@ -83967,7 +84976,13 @@ MathJax.Hub.Config({
 <!-- ------------------- main content ---------------------- -->
 <p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+problem with non-ASCII characters anywhere in the text. The remedy
+for all formats is to read the file with UTF-8 encoding. With --debug
+one can see the internal str/unicode representation of the text
+through the various stages of the text transformation process.
+</p>
 
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
@@ -84268,7 +85283,17 @@ named groups: {'begin': '>', 'subst': 'b = 1', 'end': ' '}
 
 
 
-<p>This block (in format html) triggers use of `mako`. For all formats, `mako` has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of `mako`. For all formats, `mako` has
+
+problem with non-ASCII characters anywhere in the text. The remedy
+
+for all formats is to read the file with UTF-8 encoding. With --debug
+
+one can see the internal str/unicode representation of the text
+
+through the various stages of the text transformation process.
+</p>
 
 <p></p>
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
@@ -84320,7 +85345,17 @@ named groups: {'begin': ' ', 'subst': 'mako', 'end': '.'}
 
 
 
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+
+problem with non-ASCII characters anywhere in the text. The remedy
+
+for all formats is to read the file with UTF-8 encoding. With --debug
+
+one can see the internal str/unicode representation of the text
+
+through the various stages of the text transformation process.
+</p>
 
 <p></p>
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
@@ -84398,7 +85433,17 @@ str>>> The file after all inline substitutions:
 
 
 
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+
+problem with non-ASCII characters anywhere in the text. The remedy
+
+for all formats is to read the file with UTF-8 encoding. With --debug
+
+one can see the internal str/unicode representation of the text
+
+through the various stages of the text transformation process.
+</p>
 
 <p></p>
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
@@ -84415,7 +85460,17 @@ str>>> The file after typesetting of tables:
 
 
 
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+
+problem with non-ASCII characters anywhere in the text. The remedy
+
+for all formats is to read the file with UTF-8 encoding. With --debug
+
+one can see the internal str/unicode representation of the text
+
+through the various stages of the text transformation process.
+</p>
 
 <p></p>
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
@@ -84432,7 +85487,17 @@ str>>> The file after commenting out !commands
 
 
 
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+
+problem with non-ASCII characters anywhere in the text. The remedy
+
+for all formats is to read the file with UTF-8 encoding. With --debug
+
+one can see the internal str/unicode representation of the text
+
+through the various stages of the text transformation process.
+</p>
 
 <p></p>
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
@@ -84444,7 +85509,13 @@ str>>> File before call to insert_code_blocks (format html):
 <!-- ------------------- main content ---------------------- -->
 <p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 <p></p>
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+problem with non-ASCII characters anywhere in the text. The remedy
+for all formats is to read the file with UTF-8 encoding. With --debug
+one can see the internal str/unicode representation of the text
+through the various stages of the text transformation process.
+</p>
 <p></p>
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
@@ -84456,7 +85527,13 @@ str>>> File after call to insert_code_and tex (format html):
 <!-- ------------------- main content ---------------------- -->
 <p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 <p></p>
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+problem with non-ASCII characters anywhere in the text. The remedy
+for all formats is to read the file with UTF-8 encoding. With --debug
+one can see the internal str/unicode representation of the text
+through the various stages of the text transformation process.
+</p>
 <p></p>
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
@@ -84468,7 +85545,13 @@ str>>> After replacement of !bc and !ec (pygmentized code):
 <!-- ------------------- main content ---------------------- -->
 <p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 <p></p>
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+problem with non-ASCII characters anywhere in the text. The remedy
+for all formats is to read the file with UTF-8 encoding. With --debug
+one can see the internal str/unicode representation of the text
+through the various stages of the text transformation process.
+</p>
 <p></p>
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
@@ -84502,7 +85585,13 @@ MathJax.Hub.Config({
 <!-- ------------------- main content ---------------------- -->
 <p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+problem with non-ASCII characters anywhere in the text. The remedy
+for all formats is to read the file with UTF-8 encoding. With --debug
+one can see the internal str/unicode representation of the text
+through the various stages of the text transformation process.
+</p>
 
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
@@ -84537,7 +85626,13 @@ MathJax.Hub.Config({
 <!-- ------------------- main content ---------------------- -->
 <p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+problem with non-ASCII characters anywhere in the text. The remedy
+for all formats is to read the file with UTF-8 encoding. With --debug
+one can see the internal str/unicode representation of the text
+through the various stages of the text transformation process.
+</p>
 
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
@@ -84572,7 +85667,13 @@ MathJax.Hub.Config({
 <!-- ------------------- main content ---------------------- -->
 <p>Text with a name like &#197;smund &#216;deg&#229;rd works in general.</p>
 
-<p>This block (in format html) triggers use of <code>mako</code>. For all formats, <code>mako</code> has problem with non-ASCII characters anywhere in the text. The remedy for all formats is to read the file with UTF-8 encoding. With --debug one can see the internal str/unicode representation of the text through the various stages of the text transformation process.</p>
+<p>This block (in format html)
+triggers use of <code>mako</code>. For all formats, <code>mako</code> has
+problem with non-ASCII characters anywhere in the text. The remedy
+for all formats is to read the file with UTF-8 encoding. With --debug
+one can see the internal str/unicode representation of the text
+through the various stages of the text transformation process.
+</p>
 
 <p>\( b = 1 \) is a value suggested by &#197;smund &#216;deg&#229;rd.</p>
 <!-- ------------------- end of main content --------------- -->
@@ -87205,7 +88306,9 @@ MathJax.Hub.Config({
   </div>
 <div class="panel-body">
 <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-<p>How many admon styles are supported by the DocOnce Boostrap and Bootswatch styles?</p>
+<p>How many admon styles are supported by the DocOnce Boostrap and Bootswatch
+styles?
+</p>
 </div>
 </div>
 
@@ -87415,7 +88518,9 @@ MathJax.Hub.Config({
 <h1 id="sec:examples" class="anchor">Horizontal alignment of document elements</h1>
 <h2 id="principles-of-grid-structures" class="anchor">Principles of grid structures </h2>
 
-<p>The HTML page can feature a grid structure of cells, defined by the following syntax in case of a 1x3 grid:</p>
+<p>The HTML page can feature a grid structure of cells, defined by
+the following syntax in case of a 1x3 grid:
+</p>
 
 
 <!-- code=text (!bc ccq) typeset with pygments style "default" -->
@@ -87462,18 +88567,22 @@ MathJax.Hub.Config({
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 <p>
 <b>Mathematics.</b>
- Given a function</p>
+Given a function
+</p>
 
 $$ f(x) = e^{-ax}\sin wx\thinspace .$$
 
-<p>Write a program for evaluating \( f(x) \), and test the program for the value of \( f(0) \).</p>
+<p>Write a program for evaluating \( f(x) \), and test the program
+for the value of \( f(0) \).
+</p>
   </div> <!-- column col-sm-4 -->
   <div class="col-sm-4">
 
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 <p>
 <b>Implementation.</b>
- The Python implementation reads</p>
+The Python implementation reads
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -87501,7 +88610,9 @@ $$ f(x) = e^{-ax}\sin wx\thinspace .$$
   </div>
 </div>
 
-<p>where <code>a</code> and <code>w</code> must be <em>global variables</em>, initialized in the main program.</p>
+<p>where <code>a</code> and <code>w</code> must be <em>global variables</em>, initialized in the
+main program.
+</p>
   </div> <!-- column col-sm-4 -->
   <div class="col-sm-4">
 
@@ -87509,7 +88620,8 @@ $$ f(x) = e^{-ax}\sin wx\thinspace .$$
 
 <p>
 <b>Computational experiment.</b>
- With a main program</p>
+With a main program
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -87583,7 +88695,9 @@ w <span style="color: #666666">=</span> pi
 
 $$ f(x) = e^{-ax}\sin wx\thinspace .$$
 
-<p>Write a program for evaluating \( f(x) \), and test the program for the value of \( f(0) \).</p>
+<p>Write a program for evaluating \( f(x) \), and test the program
+for the value of \( f(0) \).
+</p>
 </div>
 </div>
 
@@ -87625,7 +88739,9 @@ $$ f(x) = e^{-ax}\sin wx\thinspace .$$
   </div>
 </div>
 
-<p>where <code>a</code> and <code>w</code> must be <em>global variables</em>, initialized in the main program.</p>
+<p>where <code>a</code> and <code>w</code> must be <em>global variables</em>, initialized in the
+main program.
+</p>
 </div>
 </div>
 
@@ -87948,7 +89064,11 @@ end of tocinfo -->
 <!-- Important to test both heading (for rst and plain) and running text -->
 <h3 id="test-of-&#230;-&#248;-&#229;-in-headline">Test of &#230;, &#248;, &#229; in headline </h3>
 
-<p>Name with Norwegian characters: &#197;smund &#216;deg&#229;rd. Test inline tagging too: &quot;&#216;deg&#229;rd&quot;, <em>&#216;deg&#229;rd</em>, <b>&#216;deg&#229;rd</b>. [&#197;smund: non-English chars in names in inline comments are not accepted.]</p>
+<p>Name with Norwegian characters: &#197;smund &#216;deg&#229;rd.
+Test inline tagging too: &quot;&#216;deg&#229;rd&quot;, <em>&#216;deg&#229;rd</em>, <b>&#216;deg&#229;rd</b>.
+[&#197;smund: non-English chars in names in inline
+comments are not accepted.]
+</p>
 <!-- ------------------- end of main content --------------- -->
 
 
@@ -89379,12 +90499,19 @@ MathJax.Hub.Config({
 
 <!-- !split -->
 
-<p>The format of this document is plain, homemade HTML (from DocOnce).</p>
+<p>The format of this document is
+plain, homemade HTML (from DocOnce).
+</p>
 
 <p>
-<b>Abstract.</b> This is a document with many test constructions for doconce syntax. It was used heavily for the development and kept for testing numerous constructions, also special and less common cases.</p>
+<b>Abstract.</b> This is a document with many test constructions for doconce syntax.
+It was used heavily for the development and kept for testing
+numerous constructions, also special and less common cases.
+</p>
 
-<p>And exactly for test purposes we have an extra line here, which is part of the abstract.</p>
+<p>And exactly for test purposes we have an extra line here, which
+is part of the abstract.
+</p>
 
 <!-- Cannot demonstrate chapter headings since abstract and chapter -->
 <!-- are mutually exclusive in LaTeX -->
@@ -89422,27 +90549,56 @@ MathJax.Hub.Config({
   <li> item2</li>
 </ul>
 <blockquote>
-    <p>Here are two lines that make up a block quote for testing <em>emphasized words</em> and <b>boldface words</b>, also with hypens: <em>pre</em>-fix, post-<em>fix</em>, <b>pre</b>-fix, post-<b>fix</b>.</p>
+    <p>Here are two lines that make up
+    a block quote for testing <em>emphasized words</em> and <b>boldface words</b>,
+    also with hypens:
+    <em>pre</em>-fix, post-<em>fix</em>, <b>pre</b>-fix, post-<b>fix</b>.
+    </p>
 </blockquote>
 
 
-<p>Here are two references. Equation&nbsp;\eqref{my:eq1} is fine. Eq.&nbsp;\eqref{my:eq1} too. Even Equation \eqref{my:eq1} without the tilde. This equation appears in another part if this document is split.</p>
+<p>Here are two references. Equation&nbsp;\eqref{my:eq1} is fine. Eq.&nbsp;\eqref{my:eq1} too.
+Even Equation \eqref{my:eq1} without the tilde.
+This equation appears in another part if this document is split.
+</p>
 
-<p>Let us add a paragraph to test that HTML, with WordPress (<code>--wordpress</code> option) can handle linebreaks</p>
+<p>Let us add a paragraph to
+test that HTML,
+with WordPress
+(<code>--wordpress</code> option)
+can handle linebreaks
 <em>correctly</em>,
-<p>even when lines begin with <b>bold words</b> and <code>verbatim words</code> in <font color="red">red color</font>, and <a href="https://google.com" target="_self">links</a> as well as math:</p>
+even when lines begin with
+<b>bold words</b> and
+<code>verbatim words</code> in
+<font color="red">red color</font>, and
+<a href="https://google.com" target="_self">links</a> as well as math:
 \( 1+1=2 \).
+</p>
 
-<p>Test also that <em>emphasize</em> at the end of line, and <b>bold</b> works, as well as <font color="blue">color</font> and <a href="https://google.com" target="_self">links2</a> and <code>verbatim</code> as well.</p>
+<p>Test also that <em>emphasize</em>
+at the end of line, and <b>bold</b>
+works, as well as <font color="blue">color</font>
+and <a href="https://google.com" target="_self">links2</a>
+and <code>verbatim</code>
+as well.
+</p>
 <h2 id="subsec1">Subsection 1</h2>
 
 <!-- Refer to section/appendix etc. at the beginning of the line -->
 <!-- and other special fix situations for HTML. -->
 
-<p>More text, with a reference back to the section <a href="#sec1">Section 1</a> and <a href="#subsec1">Subsection 1</a>, and further to the the sections <a href="#subsec1">Subsection 1</a> and <a href="#subsubsec:ex">URLs</a>, which encourages you to do the tasks in <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.  <a href="#app1">Appendix: Just for testing; part I</a> and <a href="#app2">Appendix: Just for testing; part II</a> are also nice elements.</p>
+<p>More text, with a reference back to
+the section <a href="#sec1">Section 1</a> and <a href="#subsec1">Subsection 1</a>, and further to the
+the sections <a href="#subsec1">Subsection 1</a> and <a href="#subsubsec:ex">URLs</a>, which
+encourages you to do the tasks in <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.
+ <a href="#app1">Appendix: Just for testing; part I</a> and <a href="#app2">Appendix: Just for testing; part II</a> are also nice elements.
+</p>
 <h3 id="test-section-reference-at-beginning-of-line-and-after-a-sentence">Test Section reference at beginning of line and after a sentence </h3>
 
-<p>The section <a href="#subsec1">Subsection 1</a> is fine. The section <a href="#subsubsec:ex">URLs</a> too.</p>
+<p>The section <a href="#subsec1">Subsection 1</a> is fine.
+The section <a href="#subsubsec:ex">URLs</a> too.
+</p>
 
 <!-- sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console -->
 <h3 id="computer-code">Computer code </h3>
@@ -89515,7 +90671,9 @@ C     END1
   </div>
 </div>
 
-<p>and finally the complete file with a plain text verbatim environment (<code>envir=ccq</code>):</p>
+<p>and finally the complete file with a plain text verbatim environment
+(<code>envir=ccq</code>):
+</p>
 
 <!-- code=text (!bc ccq) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -89600,7 +90758,9 @@ def f(x):
   </div>
 </div>
 
-<p>Test paragraph and subsubsection headings before before code.</p>
+<p>Test paragraph and subsubsection headings before
+before code.
+</p>
 
 <p>
 <b>Paragraph heading before code.</b>
@@ -89661,7 +90821,9 @@ sys<span style="color: #666666">.</span>path<span style="color: #666666">.</span
   </div>
 </div>
 
-<p>Some more Python code (actually specified as a sage cell, but such cells are not supported by this format).</p>
+<p>Some more Python code (actually specified as a sage cell, but
+such cells are not supported by this format).
+</p>
 
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
@@ -89936,7 +91098,10 @@ function show_hide_code(){
   </div>
 </div>
 
-<p>But inline HTML code is also important, like text that starts with <code>&lt;a href=&quot;</code> (which can destroy the following text if not properly quoted).</p>
+<p>But inline HTML code is also important, like text that starts with
+<code>&lt;a href=&quot;</code> (which can destroy the following text if not properly
+quoted).
+</p>
 
 <p>Matlab with comments requires special typesetting:</p>
 
@@ -90111,9 +91276,22 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
   </div>
 </div>
 
-<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>. Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>. Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>, <code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.</p>
+<p>It is time to test <code>verbatim inline font</code> especially with <code>a newline
+inside the text</code> and an exclamation mark at the end: <code>BEGIN</code>! For
+spellcheck, test <code>a verbatim expression</code> in <code>another</code> in a <code>third</code>.
+Also test exclamation mark as in <code>!bc</code> and <code>!ec</code> as well as <code>a != b</code>.
+Also test backslashes and braces like <code>\begin</code>, <code>\begin{enumerate}</code>,
+<code>\end{this}\end{that}</code>, and <code>{something \inside braces}</code>.
+</p>
 
-<p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with green color containing a linebreak<br /> code.</font> Some formats will only display <br /> this correctly when <code>html</code> <br /> is the output format. But here some more running text is added which is not part of the previous blocks with line breaks.</p>
+<p>Here is some <font color="red">red color</font> and an attempt to write <font color="green">with
+green color containing a linebreak<br />
+code.</font> Some formats will only display <br />
+this correctly when <code>html</code> <br />
+is the output format.
+But here some more running text is added which is not part of
+the previous blocks with line breaks.
+</p>
 <h3 id="running-os-commands">Running OS commands </h3>
 
 
@@ -90144,7 +91322,9 @@ Python.
 </div>
 <h3 id="footnotes">Footnotes </h3>
 
-<p>Here is a test of footnotes [<a id="link_footnote_1" href="#def_footnote_1">1</a>], which are handy in text. They are used in different flavors, now in</p>
+<p>Here is a test of footnotes [<a id="link_footnote_1" href="#def_footnote_1">1</a>], which are handy in text.
+They are used in different flavors, now in
+</p>
 
 <ul>
  <li> list items (note below that footnotes work after math, verbatim, and URLs - bin fact old and emphasize too!)</li>
@@ -90152,27 +91332,50 @@ Python.
  <li> and code <code>h[i] += 1</code> [<a id="link_footnote_3" href="#def_footnote_3">3</a>] (<em>must</em> have space between inline code and footnote!)</li>
  <li> and <a href="https://google.com" target="_self">links</a> [<a id="link_footnote_4" href="#def_footnote_4">4</a>]</li>
 </ul>
-<p>which gives flexibility in writing. This is the third [<a id="link_footnote_5" href="#def_footnote_5">5</a>] example.</p>
+<p>which gives flexibility in writing.
+This is the third [<a id="link_footnote_5" href="#def_footnote_5">5</a>] example.
+</p>
 
-<p><p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> Typesetting of the footnote depends on the format. Plain text does nothing, LaTeX removes the definition and inserts the footnote as part of the LaTeX text. reStructuredText and Sphinx employ a similar type of typesetting as Extended Markdown and DocOnce, and in HTML we keep the same syntax, just displayed properly in HTML.</p></p>
+<p><p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> Typesetting of the footnote depends on the format.
+Plain text does nothing, LaTeX removes the
+definition and inserts the footnote as part of the LaTeX text.
+reStructuredText and Sphinx employ a similar type of typesetting
+as Extended Markdown and DocOnce, and in HTML we keep the same
+syntax, just displayed properly in HTML.</p>
+</p>
 
-<p><p id="def_footnote_2"><a href="#link_footnote_2"><b>2:</b></a> Math footnotes can be dangerous since it interferes with an exponent.</p></p>
+<p><p id="def_footnote_2"><a href="#link_footnote_2"><b>2:</b></a> Math footnotes can be dangerous since it
+interferes with an exponent.</p>
+</p>
 
 <p id="def_footnote_3"><a href="#link_footnote_3"><b>3:</b></a> One-line footnote.</p>
 
-<p><p id="def_footnote_4"><a href="#link_footnote_4"><b>4:</b></a> <a href="google.com" target="_self"><tt>google.com</tt></a> is perhaps the most famous web site today.</p></p>
+<p><p id="def_footnote_4"><a href="#link_footnote_4"><b>4:</b></a> <a href="google.com" target="_self"><tt>google.com</tt></a> is perhaps the most famous
+web site today.</p>
+</p>
 
-<p>Here is some more text before a new definition of a footnote that was used above.</p>
+<p>Here is some more text before a new definition of a footnote that was
+used above.
+</p>
 
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Non-breaking space character</b>
 <p>
-<p>This paragraph aims to test <a href="https://en.wikipedia.org/wiki/Non-breaking_space" target="_self">non-breaking space character</a>, and a typical example where this is needed is in physical units: 7.4&nbsp;km is traveled in&nbsp;\( 7.4/5.5\approx 1.345 \)&nbsp;s.  Also check that a&nbsp;<a href="https://google.com" target="_self">link</a>&nbsp;is not broken across lines (drag the browser window to test this). (On the other hand, the tilde is used in computer code, e.g., as in <code>[~x for x in y]</code> or in <code>y=~x</code>, and should of course remain a tilde in those contexts.)</p>
+<p>This paragraph aims to test <a href="https://en.wikipedia.org/wiki/Non-breaking_space" target="_self">non-breaking space character</a>, and a typical
+example where this is needed is in physical units: 7.4&nbsp;km is traveled
+in&nbsp;\( 7.4/5.5\approx 1.345 \)&nbsp;s.  Also check that a&nbsp;<a href="https://google.com" target="_self">link</a>&nbsp;is
+not broken across lines (drag the browser window to test this).
+(On the other hand, the tilde is used in
+computer code, e.g., as in <code>[~x for x in y]</code> or in <code>y=~x</code>, and should
+of course remain a tilde in those contexts.)
+</p>
 </div>
 
 <h2 id="subsec:ex">Subsection 2: Testing figures</h2>
 
-<p>Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which there is a flow.</p>
+<p>Test of figures. In particular we refer to Figure <a href="#fig:impact">1</a> in which
+there is a flow.
+</p>
 
 <center> <!-- figure label: --> <div id="fig:impact"></div> <!-- FIGURE -->
 <hr class="figure">
@@ -90191,7 +91394,9 @@ Python.
 
 <!-- Test multi-line caption in figure with sidecap=True -->
 
-<p>Here is figure <a href="#myfig">2</a> with a long (illegal) multi-line caption containing inline verbatim text:</p>
+<p>Here is figure <a href="#myfig">2</a> with a long (illegal) multi-line caption
+containing inline verbatim text:
+</p>
 
 <center> <!-- figure label: --> <div id="myfig"></div> <!-- FIGURE -->
 <hr class="figure">
@@ -90225,7 +91430,21 @@ Python.
 <p>
 <!-- Bokeh plot -->
 <script type="text/javascript">
-<p>            Bokeh.$(function() {                 var modelid = "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1";                 var modeltype = "PlotContext";                 var elementid = "ffba6087-a45a-46eb-9368-11527f1f0a34";                 Bokeh.logger.info("Realizing plot:")                 Bokeh.logger.info(" - modeltype: PlotContext");                 Bokeh.logger.info(" - modelid: dc6ef912-b325-4c34-996a-cdeb5aa4d7c1");                 Bokeh.logger.info(" - elementid: ffba6087-a45a-46eb-9368-11527f1f0a34");                 var all_models = [{"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 1.0}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, "type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, {"attributes": {"column_names": ["x", "y"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selected": {"2d": {"indices": []}, "1d": {"indices": []}, "0d": {"indices": [], "flag": false}}, "callback": null, "data": {"y": [0.0, 1.0, 8.0, 27.0], "x": [0.0, 1.0, 2.0, 3.0]}, "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, "type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, "type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397", "renderers": []}, "type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, "type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, "type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, "type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, "type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed", "tags": []}, "type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748", "attributes": {"x_range": {"type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, "right": [], "tags": [], "tools": [{"type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}], "title": "Bokeh test", "extra_y_ranges": {}, "renderers": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}], "extra_x_ranges": {}, "below": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}], "tool_events": {"type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "above": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y_range": {"type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, "id": "bac26888-fe18-4833-afe3-61e241eed748", "left": [{"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}]}}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0", "renderers": []}, "type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1", "children": [{"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}]}, "type": "PlotContext", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1"}, {"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 0.1}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, "type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, "type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 1, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, "type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"attributes": {"nonselection_glyph": {"type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "data_source": {"type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "name": null, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selection_glyph": null, "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c", "glyph": {"type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}}, "type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 0, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, "type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, "type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"attributes": {"geometries": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8", "tags": []}, "type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}];                 Bokeh.load_models(all_models);                 var model = Bokeh.Collections(modeltype).get(modelid);                 var view = new model.default_view({model: model, el: '#ffba6087-a45a-46eb-9368-11527f1f0a34'});                 Bokeh.index[modelid] = view             });</p>
+<p>            Bokeh.$(function() {
+                var modelid = "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1";
+                var modeltype = "PlotContext";
+                var elementid = "ffba6087-a45a-46eb-9368-11527f1f0a34";
+                Bokeh.logger.info("Realizing plot:")
+                Bokeh.logger.info(" - modeltype: PlotContext");
+                Bokeh.logger.info(" - modelid: dc6ef912-b325-4c34-996a-cdeb5aa4d7c1");
+                Bokeh.logger.info(" - elementid: ffba6087-a45a-46eb-9368-11527f1f0a34");
+                var all_models = [{"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 1.0}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, "type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, {"attributes": {"column_names": ["x", "y"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selected": {"2d": {"indices": []}, "1d": {"indices": []}, "0d": {"indices": [], "flag": false}}, "callback": null, "data": {"y": [0.0, 1.0, 8.0, 27.0], "x": [0.0, 1.0, 2.0, 3.0]}, "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, "type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, "type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397", "renderers": []}, "type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, "type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, "type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, "type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "mantissas": [2, 5, 10], "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93", "num_minor_ticks": 5}, "type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, "type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed", "tags": []}, "type": "BasicTickFormatter", "id": "a1aa95e9-9b48-4736-8854-fd7faf6b25ed"}, {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748", "attributes": {"x_range": {"type": "DataRange1d", "id": "294cc5ee-f95b-4023-8b38-eb845e408397"}, "right": [], "tags": [], "tools": [{"type": "PanTool", "id": "26f46aa8-dc6f-4265-84dd-4525866c89d0"}, {"type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"type": "BoxZoomTool", "id": "d242820f-6005-4e2d-aaca-d2a19392726a"}, {"type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"type": "ResizeTool", "id": "8a41a3f3-b32f-4813-bc9d-78656dd129b0"}, {"type": "ResetTool", "id": "2de49bc5-9815-4275-a6de-e81ef1840cbe"}, {"type": "HelpTool", "id": "734545fc-60c1-4271-bc10-b2b490266002"}], "title": "Bokeh test", "extra_y_ranges": {}, "renderers": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}, {"type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}], "extra_x_ranges": {}, "below": [{"type": "LinearAxis", "id": "6980f350-9b3e-40f2-9ebb-d8a349a0207e"}], "tool_events": {"type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "above": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y_range": {"type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, "id": "bac26888-fe18-4833-afe3-61e241eed748", "left": [{"type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}]}}, {"attributes": {"names": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0", "renderers": []}, "type": "DataRange1d", "id": "c973a007-1e1b-45a1-a7ba-d05f16dfaad0"}, {"attributes": {"tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1", "children": [{"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}]}, "type": "PlotContext", "id": "dc6ef912-b325-4c34-996a-cdeb5aa4d7c1"}, {"attributes": {"line_color": {"value": "#1f77b4"}, "line_alpha": {"value": 0.1}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "y": {"field": "y"}, "x": {"field": "x"}, "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "dimensions": ["width", "height"], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, "type": "WheelZoomTool", "id": "747f14a5-9f75-417c-8168-fb0a0ae3aa11"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "formatter": {"type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, "type": "LinearAxis", "id": "ade0b05a-7b91-42dd-98de-74fb64acf6f7"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 1, "ticker": {"type": "BasicTicker", "id": "d8f3c08e-df44-47cd-ab00-9391128fc8ba"}, "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, "type": "Grid", "id": "b9b421c8-77f3-4e7e-826b-ac6bf659b06a"}, {"attributes": {"nonselection_glyph": {"type": "Line", "id": "af17e0b1-cd09-4529-b97b-aefe6bff3ee2"}, "data_source": {"type": "ColumnDataSource", "id": "51fd7aaa-934d-4dab-97d6-7be6eea30d89"}, "name": null, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "selection_glyph": null, "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c", "glyph": {"type": "Line", "id": "f55b6039-f6a1-48ce-be42-ce4e37ec18de"}}, "type": "GlyphRenderer", "id": "2880ba24-eb39-4b26-b4fc-475578d6fd4c"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "dimension": 0, "ticker": {"type": "BasicTicker", "id": "71a73f31-ff56-477b-83da-62dfb4cb7d93"}, "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, "type": "Grid", "id": "4765692c-4f39-462b-91c6-28b2f2981e00"}, {"attributes": {"plot": {"subtype": "Figure", "type": "Plot", "id": "bac26888-fe18-4833-afe3-61e241eed748"}, "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, "type": "PreviewSaveTool", "id": "0c4a0cdc-08d4-4019-b03a-c03954d8f00a"}, {"attributes": {"geometries": [], "tags": [], "doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, "type": "ToolEvents", "id": "1695660e-4ea6-4d6d-9921-0d71ad942082"}, {"attributes": {"doc": "c82fd997-ea77-4590-926c-2e524ba8395d", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8", "tags": []}, "type": "BasicTickFormatter", "id": "e6be9566-7576-4bac-a09f-bf95a818d7f8"}];
+                Bokeh.load_models(all_models);
+                var model = Bokeh.Collections(modeltype).get(modelid);
+                var view = new model.default_view({model: model, el: '#ffba6087-a45a-46eb-9368-11527f1f0a34'});
+                Bokeh.index[modelid] = view
+            });
+</p>
         </script>
 <div class="plotdiv" id="ffba6087-a45a-46eb-9368-11527f1f0a34"></div></p>
 </center>
@@ -90233,12 +91452,15 @@ Python.
 
 <p>
 <b>Remark.</b>
- Movies are tested in separate file <code>movies.do.txt</code>.</p>
+Movies are tested in separate file <code>movies.do.txt</code>.
+</p>
 
 <!-- Somewhat challenging heading with latex math, \t, \n, ? and parenthesis -->
 <h2 id="decay:sec:theta">The \( \theta \) parameter (not \( \nabla \)?)</h2>
 
-<p>Functions do not always need to be advanced, here is one involving \( \theta \):</p>
+<p>Functions do not always need to be advanced, here is one
+involving \( \theta \):
+</p>
 
 <!-- code=text (!bc ccq) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -90268,7 +91490,10 @@ Python.
 <b>More on \( \theta \).</b>
 Here is more text following headline with math.</p>
 
-<p>Newcommands must also be tested in this test report: \( \frac{1}{2} \), \( {1/2} \), \( \pmb{x} \), \( \frac{Du}{dt} \), both inline and in block:</p>
+<p>Newcommands must also be tested in this test report:
+\( \frac{1}{2} \), \( {1/2} \), \( \pmb{x} \), \( \frac{Du}{dt} \),
+both inline and in block:
+</p>
 
 $$
 \begin{align}
@@ -90400,24 +91625,32 @@ A \\ B
 <p>Now we refer to \eqref{mymatrix:eq1}-\eqref{mymatrix:eq2}.</p>
 <h2 id="custom-environments">Custom Environments </h2>
 
-<p>Here is an attempt to create a theorem environment via Mako (for counting theorems) and comment lines to help replacing lines in the <code>.tex</code> by proper begin-end LaTeX environments for theorems. Should look nice in most formats!</p>
+<p>Here is an attempt to create a theorem environment via Mako
+(for counting theorems) and comment lines to help replacing lines in
+the <code>.tex</code> by proper begin-end LaTeX environments for theorems.
+Should look nice in most formats!
+</p>
 
 <!-- begin theorem -->
 <div id="theorem:fundamental1"></div>
 
 <p>
 <b>Theorem 5.</b>
- Let \( a=1 \) and \( b=2 \). Then \( c=3 \).</p>
+Let \( a=1 \) and \( b=2 \). Then \( c=3 \).
+</p>
 <!-- end theorem -->
 
 <!-- begin proof -->
 <p>
 <b>Proof.</b>
- Since \( c=a+b \), the result follows from straightforward addition.</p>
+Since \( c=a+b \), the result follows from straightforward addition.
 \( \Diamond \)
+</p>
 <!-- end proof -->
 
-<p>As we see, the proof of Theorem 5 is a modest achievement.</p>
+<p>As we see, the proof of Theorem 5 is a modest
+achievement.
+</p>
 <h2 id="subsec:table">Tables</h2>
 
 <!-- index with comma could fool sphinx -->
@@ -90466,7 +91699,9 @@ A \\ B
   </div>
 </div>
 
-<p>Here is yet another table to test that we can handle more than one table:</p>
+<p>Here is yet another table to test that we can handle more than
+one table:
+</p>
 
 <table class="table" border="1">
 <thead>
@@ -90479,7 +91714,10 @@ A \\ B
 </tbody>
 </table>
 
-<p>And one with math headings (that are expanded and must be treated accordingly), verbatim heading and entry, and no space around the pipe symbol:</p>
+<p>And one with math headings (that are expanded and must be treated
+accordingly), verbatim heading and entry, and no space around the pipe
+symbol:
+</p>
 
 <table class="table" border="1">
 <thead>
@@ -90496,7 +91734,10 @@ A \\ B
 </tbody>
 </table>
 
-<p>And add one with verbatim headings (with underscores), and rows starting with <code>|-</code> because of a negative number, and <code>|</code> right before and after verbatim word (with no space):</p>
+<p>And add one with verbatim headings (with underscores),
+and rows starting with <code>|-</code> because of a negative number,
+and <code>|</code> right before and after verbatim word (with no space):
+</p>
 
 <table class="table" border="1">
 <thead>
@@ -90510,7 +91751,10 @@ A \\ B
 </tbody>
 </table>
 
-<p>Pipe symbols in verbatim and math text in tables used to pose difficulties, but not anymore:</p>
+<p>Pipe symbols in verbatim and math text in tables used to pose difficulties,
+but not
+anymore:
+</p>
 
 <table class="table" border="1">
 <thead>
@@ -90534,7 +91778,11 @@ A \\ B
 </tbody>
 </table>
 
-<p>Finally, a table with math (<code>bm</code> that expands to <code>boldsymbol</code>, was tricky, but cleanly handled now) and URLs.</p>
+<p>Finally, a table with math
+(<code>bm</code> that expands to <code>boldsymbol</code>, was tricky, but
+cleanly handled now)
+and URLs.
+</p>
 
 <!-- Mako code to expand URLs in the table -->
 <!-- (These types of tables did not work before Jan 2014) -->
@@ -90551,7 +91799,9 @@ A \\ B
 
 <p>
 <b>Paragraph with verbatim and math: <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \( a_{i-1} \).</b>
-Here is more <code>__verbatim__</code> code and some plain text on a new line.</p>
+Here is more <code>__verbatim__</code> code and
+some plain text on a new line.
+</p>
 
 <!-- Test various types of headlines -->
 <h2 id="_just-bold_"><b>Just bold</b> </h2>
@@ -90625,7 +91875,10 @@ Some text.</p>
 
 <p>
 <b>Ampersand.</b>
- We can test Hennes &amp; Mauritz, often abbreviated H&amp;M, but written as <code>Hennes & Mauritz</code> and <code>H & M</code>. A sole <code>&</code> must also work.</p>
+We can test Hennes &amp; Mauritz, often abbreviated H&amp;M, but written
+as <code>Hennes & Mauritz</code> and <code>H & M</code>.
+A sole <code>&</code> must also work.
+</p>
 <!-- Note: substitutions must not occur inside verbatim, just in ordinary text. -->
 
 
@@ -90655,55 +91908,102 @@ c = a &amp; b
 
 <p>
 <b>Quotes.</b>
- Let us also add a test of quotes such as &quot;double quotes, with numbers like 3.14 and newline/comma and hyphen (as in double-quote)&quot;; written in the standard LaTeX-style that gives correct LaTeX formatting and ordinary double quotes for all non-LaTeX formats.  Here is another sentence that &quot;caused&quot; a bug in the past because double backtick quotes could imply verbatim text up to a verbatim word starting with period, like <code>.txt</code>.</p>
+Let us also add a test of quotes such as &quot;double quotes, with numbers
+like 3.14 and newline/comma and hyphen (as in double-quote)&quot;; written
+in the standard LaTeX-style that gives correct LaTeX formatting and
+ordinary double quotes for all non-LaTeX formats.  Here is another
+sentence that &quot;caused&quot; a bug in the past because double backtick
+quotes could imply verbatim text up to a verbatim word starting with
+period, like <code>.txt</code>.
+</p>
 
-<p>More quotes to be tested for spellcheck: (&quot;with parenthesis&quot;), &quot;with newline&quot; and &quot;with comma&quot;, &quot;hyphen&quot;-wise, and &quot;period&quot;.</p>
+<p>More quotes to be tested for spellcheck:
+(&quot;with parenthesis&quot;), &quot;with newline&quot;
+and &quot;with comma&quot;, &quot;hyphen&quot;-wise, and &quot;period&quot;.
+</p>
 <h2 id="bibliography-test">Bibliography test </h2>
 
-<p>Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of large destructive water waves, <a href="#Langtangen_et_al_2002">[2]</a> gave an overview of numerical methods for solving the Navier&ndash;Stokes equations, while the use of Backward Kolmogorov equations for analyzing random vibrations was investigated in <a href="#Langtangen_1994a">[3]</a>. The book chapter <a href="#Mardal_et_al_2003a">[4]</a> contains information on C++ software tools for programming multigrid methods. A real retro reference is <a href="#Langtangen_1988d">[5]</a> about a big FORTRAN package. Multiple references are also possible, e.g., see <a href="#Langtangen_Pedersen_2002">[1]</a> <a href="#Mardal_et_al_2003a">[4]</a>.</p>
+<p>Here is an example: <a href="#Langtangen_Pedersen_2002">[1]</a> discussed propagation of
+large destructive water waves, <a href="#Langtangen_et_al_2002">[2]</a> gave
+an overview of numerical methods for solving the Navier&ndash;Stokes equations,
+while the use of Backward Kolmogorov equations for analyzing
+random vibrations was investigated in <a href="#Langtangen_1994a">[3]</a>.
+The book chapter <a href="#Mardal_et_al_2003a">[4]</a> contains information on
+C++ software tools for programming multigrid methods. A real retro
+reference is <a href="#Langtangen_1988d">[5]</a> about a big FORTRAN package.
+Multiple references are also possible, e.g., see
+<a href="#Langtangen_Pedersen_2002">[1]</a> <a href="#Mardal_et_al_2003a">[4]</a>.
+</p>
 
-<p>We need to cite more than 10 papers to reproduce an old formatting problem with blanks in the keys in reST format:</p>
+<p>We need to cite more than 10 papers to reproduce an old formatting
+problem with blanks in the keys in reST format:
+</p>
 <a href="#Langtangen_1992c">[6]</a> <a href="#Langtangen_1994a">[3]</a> <a href="#Mortensen_et_al_2011">[7]</a> <a href="#Langtangen_Pedersen_2002">[1]</a>
 <p>and</p>
 <a href="#Langtangen_et_al_2002">[2]</a> <a href="#Glimsdal_et_al_20006">[8]</a> <a href="#Rahman_et_al_2006b">[9]</a> <a href="#Haga_et_al_2011a">[10]</a> <a href="#Langtangen_2003a">[11]</a> <a href="#Langtangen_2008a">[12]</a> <a href="#Langtangen:95">[13]</a>
-<p>and all the work of <a href="#Langtangen_2012">[14]</a> <a href="#Mardal_et_al_2003a">[4]</a> <a href="#Jeberg_et_al_2004">[15]</a> as well as old work <a href="#Langtangen_1988d">[5]</a> and <a href="#Langtangen_1989e">[16]</a>, and the talk <a href="#Langtangen_talk_2007a">[17]</a>. Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen_1989e">[16]</a> back in the days. More retro citations are the old ME-IN323 book <a href="#Langtangen:91">[19]</a> and the <a href="#Langtangen:94b">[20]</a> OONSKI '94 paper.</p>
+<p>and all the work of
+<a href="#Langtangen_2012">[14]</a> <a href="#Mardal_et_al_2003a">[4]</a> <a href="#Jeberg_et_al_2004">[15]</a> as well as
+old work <a href="#Langtangen_1988d">[5]</a> and <a href="#Langtangen_1989e">[16]</a>, and the
+talk <a href="#Langtangen_talk_2007a">[17]</a>.
+Langtangen also had two thesis <a href="#Langtangen:85">[18]</a> <a href="#Langtangen_1989e">[16]</a>
+back in the days.
+More retro citations are
+the old ME-IN323 book <a href="#Langtangen:91">[19]</a> and the
+<a href="#Langtangen:94b">[20]</a> OONSKI '94 paper.
+</p>
 
 <!-- --- begin exercise --- -->
 <h2 id="Example">Example 1: Examples can be typeset as exercises</h2>
 
-<p>Examples can start with a subsection heading starting with <code>Example:</code> and then, with the command-line option <code>--examples_as_exercises</code> be typeset as exercises. This is useful if one has solution environments as part of the example.</p>
+<p>Examples can start with a subsection heading starting with <code>Example:</code>
+and then, with the command-line option <code>--examples_as_exercises</code> be
+typeset as exercises. This is useful if one has solution
+environments as part of the example.
+</p>
 
 <p>
 <b>a)</b>
- State some problem.</p>
+State some problem.
+</p>
 
 <p>
 <b>Solution.</b>
- The answer to this subproblem can be written here.</p>
+The answer to this subproblem can be written here.
+</p>
 
 <p>
 <b>b)</b>
- State some other problem.</p>
+State some other problem.
+</p>
 
 <p>
 <b>Hint 1.</b>
- A hint can be given.</p>
+A hint can be given.
+</p>
 
 <p>
 <b>Hint 2.</b>
- Maybe even another hint?</p>
+Maybe even another hint?
+</p>
 
 <p>
 <b>Solution.</b>
- The answer to this other subproblem goes here, maybe over multiple doconce input lines.</p>
+The answer to this other subproblem goes here,
+maybe over multiple doconce input lines.
+</p>
 
 <!-- --- end exercise --- -->
 <h2 id="user-defined-environments">User-defined environments </h2>
 
-<p>The example in the section <a href="#ex:test:1p1">Example 1: A test function</a> demonstrates how to write a test function. That is, a special test function for a function <code>add</code> appears in the example in the section <a href="#ex:test:1p1">Example 1: A test function</a>.</p>
+<p>The example in the section <a href="#ex:test:1p1">Example 1: A test function</a> demonstrates how to write a test function.
+That is, a special test function for a function <code>add</code> appears in
+the example in the section <a href="#ex:test:1p1">Example 1: A test function</a>.
+</p>
 <h2 id="ex:test:1p1">Example 1: A test function</h2>
 
-<p>Suppose we want to write a test function for checking the implementation of a Python function for addition.</p>
+<p>Suppose we want to write a test function for checking the
+implementation of a Python function for addition.
+</p>
 
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
@@ -90751,7 +92051,10 @@ $$ 1 + 1 = 2 $$
 </tbody>
 </table>
 
-<p><div style="width: 60%; padding: 10px; border: 1px solid #000;  border-radius: 4px; box-shadow: 8px 8px 5px #888888;  background: #cce5ff;"></p>
+<p><div style="width: 60%; padding: 10px; border: 1px solid #000;
+ border-radius: 4px; box-shadow: 8px 8px 5px #888888;
+ background: #cce5ff;">
+</p>
  <b>Highlight box!</b><hr>
 <p>This environment is used to highlight something:</p>
 
@@ -90760,15 +92063,36 @@ $$ E = mc^2 $$
 </div>
 <h2 id="subsubsec:ex">URLs</h2>
 
-<p>Testing of URLs: hpl's home page <a href="https://folk.uio.no/hpl" target="_self">hpl</a>, or the entire URL if desired, <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>.  Here is a plain file link <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self">a link with newline</a>. Can test spaces with the link with word too: <a href="https://folk.uio.no/hpl" target="_self">hpl</a> or <a href="https://folk.uio.no/hpl" target="_self">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" target="_self">link to a file</a> is fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just the plain URL as in <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>, if followed by space, comma, colon, semi-colon, question mark, exclamation mark, but not a period (which gets confused with the periods inside the URL).</p>
+<p>Testing of URLs: hpl's home page <a href="https://folk.uio.no/hpl" target="_self">hpl</a>, or
+the entire URL if desired, <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>.  Here is a
+plain file link <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a>, or
+<a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self"><tt>testdoc.do.txt</tt></a> or <a href="testdoc.do.txt" target="_self">a link with
+newline</a>. Can test spaces with the link with word
+too: <a href="https://folk.uio.no/hpl" target="_self">hpl</a> or <a href="https://folk.uio.no/hpl" target="_self">hpl</a>. Also <code>file:///</code> works: <a href="file:///home/hpl/vc/doconce/doc/demos/manual/manual.html" target="_self">link to a
+file</a> is
+fine to have. Moreover, &quot;loose&quot; URLs work, i.e., no quotes, just
+the plain URL as in <a href="https://folk.uio.no/hpl" target="_self"><tt>https://folk.uio.no/hpl</tt></a>, if followed by space, comma,
+colon, semi-colon, question mark, exclamation mark, but not a period
+(which gets confused with the periods inside the URL).
+</p>
 
 <p>Mail addresses can also be used: <a href="mailto:hpl@simula.no" target="_self"><tt>hpl@simula.no</tt></a>, or just a <a href="mailto:hpl@simula.no" target="_self">mail link</a>, or a raw <a href="mailto:hpl@simula.no" target="_self"><tt>mailto:hpl@simula.no</tt></a>.</p>
 
-<p>Here are some tough tests of URLs, especially for the <code>latex</code> format: <a href="https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" target="_self">Newton-Cotes</a> formulas and a <a href="https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1" target="_self">good book</a>. Need to test Newton-Cotes with percentage in URL too:</p>
+<p>Here are some tough tests of URLs, especially for the <code>latex</code> format:
+<a href="https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" target="_self">Newton-Cotes</a> formulas
+and a <a href="https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1" target="_self">good book</a>. Need to test
+Newton-Cotes with percentage in URL too:
 <a href="https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas" target="_self"><tt>https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas</tt></a>
-<p>and <a href="https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae" target="_self"><tt>https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</tt></a> which has a shebang.</p>
+and <a href="https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae" target="_self"><tt>https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae</tt></a> which has a shebang.
+</p>
 
-<p>For the <code>--device=paper</code> option it is important to test that URLs with monospace font link text get a footnote (unless the <code>--latex_no_program_footnotelink</code> is used), as in this reference to <a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py" target="_self"><tt>decay_mod</tt></a>, <a href="https://tinyurl.com/pwyasaa/formulas.ball1.py" target="_self"><tt>ball1.py</tt></a>, and <a href="https://tinyurl.com/pwyasaa/formulas.ball2.py" target="_self"><tt>ball2.py</tt></a>.</p>
+<p>For the <code>--device=paper</code> option it is important to test that URLs with
+monospace font link text get a footnote
+(unless the <code>--latex_no_program_footnotelink</code>
+is used), as in this reference to
+<a href="https://github.com/hplgit/INF5620/tree/gh-pages/src/decay/experiments/decay_mod.py" target="_self"><tt>decay_mod</tt></a>, <a href="https://tinyurl.com/pwyasaa/formulas.ball1.py" target="_self"><tt>ball1.py</tt></a>,
+and <a href="https://tinyurl.com/pwyasaa/formulas.ball2.py" target="_self"><tt>ball2.py</tt></a>.
+</p>
 
 <!-- Comments should be inserted outside paragraphs (because in the rst -->
 <!-- format extra blanks make a paragraph break). -->
@@ -90777,7 +92101,12 @@ $$ E = mc^2 $$
 <!-- if the link name is URL, url, "URL", or "url". Such files should, -->
 <!-- if rst output is desired, but placed in a <code>_static*</code> folder. -->
 
-<p>More tough tests: repeated URLs whose footnotes when using the <code>--device=paper</code> option must be correct. We have <a href="https://google.com" target="_self">google</a>, <a href="https://google.com" target="_self">google</a>, and <a href="https://google.com" target="_self">google</a>, which should result in exactly three footnotes.</p>
+<p>More tough tests: repeated URLs whose footnotes when using the
+<code>--device=paper</code> option must be correct. We have
+<a href="https://google.com" target="_self">google</a>, <a href="https://google.com" target="_self">google</a>, and
+<a href="https://google.com" target="_self">google</a>, which should result in exactly three
+footnotes.
+</p>
 
 <!-- !split and check if these extra words are included properly in the comment -->
 <h1 id="latex-mathematics">LaTeX Mathematics </h1>
@@ -90814,7 +92143,10 @@ b &= \nabla^2 u + \nabla^4 x \label{eq2}
 
 $$
 
-<p>We can refer to \eqref{eq1}-\eqref{eq2}. They are a bit simpler than the Navier&ndash;Stokes equations. And test LaTeX hyphen in <code>CG-2</code>. Also test \( a_{i-j} \) as well as \( kx-wt \).</p>
+<p>We can refer to \eqref{eq1}-\eqref{eq2}. They are a bit simpler than
+the Navier&ndash;Stokes equations. And test LaTeX hyphen in <code>CG-2</code>.
+Also test \( a_{i-j} \) as well as \( kx-wt \).
+</p>
 
 <p>Testing <code>alignat</code> environment:</p>
 
@@ -90827,7 +92159,10 @@ $$
 
 <p>More mathematical typesetting is demonstrated in the coming exercises.</p>
 
-<p>Below, we have <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#demo:ex:2">Project 4: Compute a Probability</a>, as well as <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 11: References in a headings do not work well in html</a>, and in between there we have <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.</p>
+<p>Below, we have <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and <a href="#demo:ex:2">Project 4: Compute a Probability</a>,
+as well as <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> and <a href="#exer:you">Project 11: References in a headings do not work well in html</a>, and in
+between there we have <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>.
+</p>
 <h1 id="exercises">Exercises </h1>
 
 <!-- --- begin exercise --- -->
@@ -90838,13 +92173,17 @@ $$
 
 <p>
 <b>a)</b>
- Make a program that simulates flipping a coin \( N \) times. Print out &quot;tail&quot; or &quot;head&quot; for each flip and let the program count the number of heads.</p>
+Make a program that simulates flipping a coin \( N \) times.
+Print out &quot;tail&quot; or &quot;head&quot; for each flip and
+let the program count the number of heads.
+</p>
 
 <!-- --- begin hint in exercise --- -->
 
 <p>
 <b>Hint 1.</b>
- Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.</p>
+Use <code>r = random.random()</code> and define head as <code>r &lt;= 0.5</code>.
+</p>
 
 <!-- --- end hint in exercise --- -->
 
@@ -90852,14 +92191,18 @@ $$
 
 <p>
 <b>Hint 2.</b>
- Draw an integer among \( \{1,2\} \) with <code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.</p>
+Draw an integer among \( \{1,2\} \) with
+<code>r = random.randint(1,2)</code> and define head when <code>r</code> is 1.
+</p>
 
 <!-- --- end hint in exercise --- -->
 
 <!-- --- begin answer of exercise --- -->
 <p>
 <b>Answer.</b>
- If the <code>random.random()</code> function returns a number \( < 1/2 \), let it be head, otherwise tail. Repeat this \( N \) number of times.</p>
+If the <code>random.random()</code> function returns a number \( < 1/2 \), let it be
+head, otherwise tail. Repeat this \( N \) number of times.
+</p>
 <!-- --- end answer of exercise --- -->
 
 <!-- --- begin solution of exercise --- -->
@@ -90900,24 +92243,34 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 
 <p>
 <b>b)</b>
- Vectorize the code in a) using boolean indexing.</p>
+Vectorize the code in a) using boolean indexing.
+</p>
 
-<p>Vectorized code can be written in many ways. Sometimes the code is less intuitive, sometimes not. At least there is not much to find in the section <a href="#sec1">Section 1</a>.</p>
+<p>Vectorized code can be written in many ways.
+Sometimes the code is less intuitive, sometimes not.
+At least there is not much to find in the section <a href="#sec1">Section 1</a>.
+</p>
 
 <p>
 <b>c)</b>
- Vectorize the code in a) using <code>numpy.sum</code>.</p>
+Vectorize the code in a) using <code>numpy.sum</code>.
+</p>
 
 <!-- --- begin answer of exercise --- -->
 <p>
 <b>Answer.</b>
- <code>np.sum(np.where(r &lt;= 0.5, 1, 0))</code> or <code>np.sum(r &lt;= 0.5)</code>.</p>
+<code>np.sum(np.where(r &lt;= 0.5, 1, 0))</code> or <code>np.sum(r &lt;= 0.5)</code>.
+</p>
 <!-- --- end answer of exercise --- -->
 
-<p>In this latter subexercise, we have an example where the code is easy to read.</p>
+<p>In this latter subexercise, we have an
+example where the code is easy to read.
+</p>
 <h3 id="my-remarks">My remarks </h3>
 
-<p>Remarks with such a subsubsection is treated as more text after the last subexercise. Test a list too:</p>
+<p>Remarks with such a subsubsection is treated as more text
+after the last subexercise. Test a list too:
+</p>
 
 <ol>
 <li> Mark 1.</li>
@@ -90935,12 +92288,17 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 <!-- --- end exercise --- -->
 <h2 id="not-an-exercise">Not an exercise </h2>
 
-<p>Should be possible to stick a normal section in the middle of many exercises.</p>
+<p>Should be possible to stick a normal section in the middle of many
+exercises.
+</p>
 
 <!-- --- begin exercise --- -->
 <h2 id="my:exer1">Exercise 3: Test of plain text exercise</h2>
 
-<p>Very short exercise. What is the capital of Norway? Filename: <code>myexer1</code>.</p>
+<p>Very short exercise. What is the capital
+of Norway?
+Filename: <code>myexer1</code>.
+</p>
 
 <!-- --- end exercise --- -->
 
@@ -90949,9 +92307,13 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 
 <!-- Minimalistic exercise -->
 
-<p>What is the probability of getting a number between 0.5 and 0.6 when drawing uniformly distributed random numbers from the interval \( [0,1) \)?</p>
+<p>What is the probability of getting a number between 0.5 and 0.6 when
+drawing uniformly distributed random numbers from the interval \( [0,1) \)?
+</p>
 
-<p>At the end we have a list because that caused problems in LaTeX in previous DocOnce versions:</p>
+<p>At the end we have a list because that caused problems in LaTeX
+in previous DocOnce versions:
+</p>
 
 <ol>
 <li> item1</li>
@@ -90961,7 +92323,11 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 
 <p>
 <b>Hint.</b>
- To answer this question empirically, let a program draw \( N \) such random numbers using Python's standard <code>random</code> module, count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and compute the probability as \( M/N \).</p>
+To answer this question empirically, let a program
+draw \( N \) such random numbers using Python's standard <code>random</code> module,
+count how many of them, \( M \), that fall in the interval \( (0.5,0.6) \), and
+compute the probability as \( M/N \).
+</p>
 
 <!-- --- end hint in exercise --- -->
 
@@ -90982,7 +92348,12 @@ y &= y_0 + R\sin 2\pi t,
 \end{align}
 $$
 
-<p>where \( R \) is the radius of the circle, \( (x_0,y_0) \) is the center point, and \( t \) is a parameter in the unit interval \( [0,1] \). For any \( t \), \( (x,y) \) computed from \eqref{circle:x}-\eqref{circle:y} is a point on the circle. The formula can be used to generate <code>n</code> points on a circle:</p>
+<p>where \( R \) is the radius of the circle, \( (x_0,y_0) \) is the
+center point, and \( t \) is a parameter in the unit interval \( [0,1] \).
+For any \( t \), \( (x,y) \) computed from \eqref{circle:x}-\eqref{circle:y}
+is a point on the circle.
+The formula can be used to generate <code>n</code> points on a circle:
+</p>
 
 
 <!-- code=python (!bc pypro) typeset with pygments style "default" -->
@@ -91019,46 +92390,59 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
 <!-- Often in an exercise we have some comments about the solution -->
 <!-- which we normally want to keep where they are. -->
 
-<p>The goal of this project is to draw \( N \) circles with random center and radius. Plot each circle using the <code>circle</code> function above.</p>
+<p>The goal of this project is to draw \( N \) circles with random
+center and radius. Plot each circle using the <code>circle</code> function
+above.
+</p>
 
 <p>
 <b>a)</b>
- Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.</p>
+Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
+</p>
 
 <!-- --- begin hint in exercise --- -->
 
 <p>
 <b>Hint.</b>
- Use the <code>numpy.random</code> module to draw the \( x_0 \), \( y_0 \), and \( R \) quantities.</p>
+Use the <code>numpy.random</code> module to draw the
+\( x_0 \), \( y_0 \), and \( R \) quantities.
+</p>
 
 <!-- --- end hint in exercise --- -->
 
 <!-- --- begin answer of exercise --- -->
 <p>
 <b>Answer.</b>
- Here goes the short answer to part a).</p>
+Here goes the short answer to part a).
+</p>
 <!-- --- end answer of exercise --- -->
 
 <!-- --- begin solution of exercise --- -->
 <p>
 <b>Solution.</b>
- Here goes a full solution to part a).</p>
+Here goes a full solution to part a).
+</p>
 <!-- --- end solution of exercise --- -->
 
 <p>
 <b>b)</b>
- Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed. Filename: <code>norm</code>.</p>
+Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed.
+Filename: <code>norm</code>.
+</p>
 
 <p>
 <b>c)</b>
- Let \( R \) and \( (x_0,y_0) \) be normally distributed.</p>
+Let \( R \) and \( (x_0,y_0) \) be normally distributed.
+</p>
 
 <p>Filename: <code>circles</code>.</p>
 
 <!-- Closing remarks for this Project -->
 <h3 id="remarks">Remarks </h3>
 
-<p>At the very end of the exercise it may be appropriate to summarize and give some perspectives.</p>
+<p>At the very end of the exercise it may be appropriate to summarize
+and give some perspectives.
+</p>
 
 <!-- --- end exercise --- -->
 
@@ -91070,7 +92454,9 @@ x, y <span style="color: #666666">=</span> circle(<span style="color: #666666">2
 <!-- --- begin solution of exercise --- -->
 <p>
 <b>Solution.</b>
- Here goes a full solution of the whole exercise. With some math \( a=b \) in this solution:</p>
+Here goes a full solution of the whole exercise.
+With some math \( a=b \) in this solution:
+</p>
 $$ \hbox{math in solution: } a = b $$
 
 <p>And code <code>a=b</code> in this solution:</p>
@@ -91104,13 +92490,16 @@ $$ \hbox{math in solution: } a = b $$
 
 <p>
 <b>a)</b>
- Subexercises are numbered a), b), etc.</p>
+Subexercises are numbered a), b), etc.
+</p>
 
 <!-- --- begin hint in exercise --- -->
 
 <p>
 <b>Hint 1.</b>
- First hint to subexercise a). With math \( a=b \) in hint:</p>
+First hint to subexercise a).
+With math \( a=b \) in hint:
+</p>
 
 $$ a=b. $$
 
@@ -91148,7 +92537,8 @@ $$ a=b. $$
 
 <p>
 <b>Hint 2.</b>
- Second hint to subexercise a).</p>
+Second hint to subexercise a).
+</p>
 
 <p>Test list in hint:</p>
 
@@ -91162,12 +92552,15 @@ $$ a=b. $$
 <!-- --- begin answer of exercise --- -->
 <p>
 <b>Answer.</b>
- Short answer to subexercise a). With math in answer: \( a=b \).</p>
+Short answer to subexercise a).
+With math in answer: \( a=b \).
+</p>
 <!-- --- end answer of exercise --- -->
 
 <p>
 <b>b)</b>
- Here goes the text for subexercise b).</p>
+Here goes the text for subexercise b).
+</p>
 
 <p>Some math \( \cos^2 x + \sin^2 x = 1 \) written one a single line:</p>
 
@@ -91178,7 +92571,8 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 
 <p>
 <b>Hint.</b>
- A hint for this subexercise.</p>
+A hint for this subexercise.
+</p>
 
 <!-- --- end hint in exercise --- -->
 <p>Filename: <code>subexer_b.pdf</code>.</p>
@@ -91186,11 +92580,14 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 <!-- --- begin solution of exercise --- -->
 <p>
 <b>Solution.</b>
- Here goes the solution of this subexercise.</p>
+Here goes the solution of this subexercise.
+</p>
 <!-- --- end solution of exercise --- -->
 
 <!-- No meaning in this weired test example: -->
-<p>The text here belongs to the main (intro) part of the exercise. Need closing remarks to have text after subexercises.</p>
+<p>The text here belongs to the main (intro) part of the exercise. Need
+closing remarks to have text after subexercises.
+</p>
 
 <p>Test list in exercise:</p>
 
@@ -91201,7 +92598,10 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 </ol>
 <h3 id="remarks">Remarks </h3>
 
-<p>Some final closing remarks, e.g., summarizing the main findings and their implications in other problems can be made. These remarks will appear at the end of the typeset exercise.</p>
+<p>Some final closing remarks, e.g., summarizing the main findings
+and their implications in other problems can be made. These
+remarks will appear at the end of the typeset exercise.
+</p>
 
 <!-- --- end exercise --- -->
 
@@ -91210,7 +92610,9 @@ $$ \cos^2 x + \sin^2 x = 1 \thinspace .$$
 
 <!-- Another minimalistic exercise -->
 
-<p>Just some text. And some math saying that \( e^0=1 \) on a single line, to test that math block insertion is correct:</p>
+<p>Just some text. And some math saying that \( e^0=1 \) on a single line,
+to test that math block insertion is correct:
+</p>
 
 $$ \exp{(0)} = 1 $$
 
@@ -91289,12 +92691,14 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 </div>
 </div></p>
 
-<p><div title="Wrong!  Equations with derivatives can be solved; they are termed  differential equations . "><b>Choice D:</b>
+<p><div title="Wrong!  Equations with derivatives can be solved; they are termed  differential equations .  "><b>Choice D:</b>
 <p>The solution cannot be found because there is a derivative in the equation.</p>
 </div></p>
 
-<p><div title="Wrong!  Equations where the unknown is a function, as \( y(x) \) here, are called  differential equations , and are solved by special techniques. "><b>Choice E:</b>
-<p>The equation is meaningless: an equation must be an equation for \( x \) or \( y \), not a function \( y(x) \).</p>
+<p><div title="Wrong!  Equations where the unknown is a function, as \( y(x) \) here, are called  differential equations , and are solved by special techniques.  "><b>Choice E:</b>
+<p>The equation is meaningless: an equation must be an equation
+for \( x \) or \( y \), not a function \( y(x) \).
+</p>
 </div></p>
 <hr>
 <!-- end quiz -->
@@ -91310,11 +92714,13 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 
 <p>
 <b>a)</b>
- What is the capital of Norway?</p>
+What is the capital of Norway?
+</p>
 
 <p>
 <b>Answer.</b>
- Oslo.</p>
+Oslo.
+</p>
 
 <!-- --- end exercise --- -->
 <h1 id="here-goes-another-section">Here goes another section </h1>
@@ -91326,9 +92732,13 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 <h2 id="exer:some:formula">Exercise 10: Make references to projects and problems</h2>
 
 <!-- Test comments not at the end only -->
-<p>Pick a statement from <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 2: Flip a Coin</a> and verify it.</p>
+<p>Pick a statement from <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a> or <a href="#demo:ex:1">Problem 2: Flip a Coin</a>
+and verify it.
+</p>
 
-<p>Test list at the end of an exercise without other elements (like subexercise, hint, etc.):</p>
+<p>Test list at the end of an exercise without other elements (like subexercise,
+hint, etc.):
+</p>
 
 <ol>
 <li> item1</li>
@@ -91341,7 +92751,11 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 <!-- --- begin exercise --- -->
 <h2 id="exer:you">Project 11: References in a headings do not work well in html</h2>
 
-<p>Refer to the previous exercise as <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>, the two before that as <a href="#demo:ex:2">Project 4: Compute a Probability</a> and <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a>, and this one as <a href="#exer:you">Project 11: References in a headings do not work well in html</a>. Filename: <code>selc_composed.pdf</code>.</p>
+<p>Refer to the previous exercise as <a href="#exer:some:formula">Exercise 10: Make references to projects and problems</a>,
+the two before that as <a href="#demo:ex:2">Project 4: Compute a Probability</a> and <a href="#proj:circle1">Project 5: Explore Distributions of Random Circles</a>,
+and this one as <a href="#exer:you">Project 11: References in a headings do not work well in html</a>.
+Filename: <code>selc_composed.pdf</code>.
+</p>
 
 <!-- --- end exercise --- -->
 <h1 id="references">References </h1>
@@ -91426,39 +92840,110 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 </div>
 
 
-<p>Need a lot of text to surround the summary box. Version control systems allow you to record the history of files and share files among several computers and collaborators in a professional way. File changes on one computer are updated or merged with changes on another computer. Especially when working with programs or technical reports it is essential to have changes documented and to ensure that every computer and person involved in the project have the latest updates of the files. Greg Wilson' excellent <a href="https://software-carpentry.org/2010/07/script-for-introduction-to-version-control/" target="_self">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly from using version control systems.</p>
+<p>Need a lot of text to surround the summary box.
+Version control systems allow you to record the history of files
+and share files among several computers and collaborators in a
+professional way. File changes on one computer are updated or
+merged with changes on another computer. Especially when working
+with programs or technical reports it is essential
+to have changes documented and to
+ensure that every computer and person involved in the project
+have the latest updates of the files.
+Greg Wilson' excellent <a href="https://software-carpentry.org/2010/07/script-for-introduction-to-version-control/" target="_self">Script for Introduction to Version Control</a> provides a more detailed motivation why you will benefit greatly
+from using version control systems.
+</p>
 
 <div class="alert alert-block alert-summary alert-text-normal">
 <b>Summary</b>
 <p>
-<p><b>Bold remark:</b> Make some text with this summary. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content. Much testing in this document, otherwise stupid content.</p>
+<p><b>Bold remark:</b> Make some text with this summary.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+Much testing in this document, otherwise stupid content.
+</p>
 </div>
 
 
-<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site "in the cloud" and updated through communication with that site. I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
+<p>Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that site. I strongly
+recommend you to use such sites for all serious programming and
+scientific writing work - and all other important files.
+</p>
 
-<p>The simplest services for hosting project files are <a href="https://dropbox.com" target="_self">Dropbox</a> and <a href="https://drive.google.com" target="_self">Google Drive</a>. It is very easy to get started with these systems, and they allow you to share files among laptops and mobile units with as many users as you want. The systems offer a kind of version control in that the files are stored frequently (several times per minute), and you can go back to previous versions for the last 30 days. However, it is challenging  to find the right version from the past when there are so many of them.</p>
+<p>The simplest services for hosting project files are <a href="https://dropbox.com" target="_self">Dropbox</a> and <a href="https://drive.google.com" target="_self">Google Drive</a>.
+It is very easy to get started with these systems, and they allow you
+to share files among laptops and mobile units with as many users as
+you want. The systems offer a kind of version control in that the
+files are stored frequently (several times per minute), and you can go
+back to previous versions for the last 30 days. However, it is
+challenging  to find the right version from the past when there are
+so many of them.
+</p>
 
-<p>More seriously, when several people may edit files simultaneously, it can be difficult detect who did what when, roll back to previous versions, and to manually merge the edits when these are incompatible. Then one needs more sophisticated tools than Dropbox or Google Drive: project hosting services with true version control systems.  The following text aims at providing you with the minimum information to started with such systems. Numerous other tutorials contain more comprehensive material and in-depth explanations of the concepts and tools.</p>
+<p>More seriously, when several people may edit files simultaneously, it
+can be difficult detect who did what when, roll back to previous
+versions, and to manually merge the edits when these are
+incompatible. Then one needs more sophisticated tools than Dropbox or
+Google Drive: project hosting services with true version control
+systems.  The following text aims at providing you with the minimum
+information to started with such systems. Numerous other tutorials
+contain more comprehensive material and in-depth explanations of the
+concepts and tools.
+</p>
 
-<p>The idea with project hosting services is that you have the files associated with a project in the cloud. Many people may share these files.  Every time you want to work on the project you explicitly update your version of the files, edit the files as you like, and synchronize the files with the "master version" at the site where the project is hosted.  If you at some point need to go back to a version of the files at some particular point in the past, this is an easy operation. You can also use tools to see what various people have done with the files in the various versions.</p>
+<p>The idea with project hosting services is that you have the files
+associated with a project in the cloud. Many people may share these
+files.  Every time you want to work on the project you explicitly
+update your version of the files, edit the files as you like, and
+synchronize the files with the "master version" at the site where the
+project is hosted.  If you at some point need to go back to a
+version of the files at some particular point in the past,
+this is an easy operation. You can also use tools to see
+what various people have done with the files in the various versions.
+</p>
 
-<p>All these services are very similar. Below we describe how you get started with Bitbucket, GitHub, and Googlecode. Launchpad works very similarly to the latter three. All the project hosting services have excellent introductions available at their web sites, but the recipes below are much shorter and aim at getting you started as quickly as possible by concentrating on the most important need-to-know steps. The Git tutorials we refer to later in this document contain more detailed information and constitute of course very valuable readings when you use version control systems every day. The point now is to get started.</p>
+<p>All these services are very similar. Below we describe how you get
+started with Bitbucket, GitHub, and Googlecode. Launchpad works very
+similarly to the latter three. All the project hosting services have
+excellent introductions available at their web sites, but the recipes
+below are much shorter and aim at getting you started as quickly as
+possible by concentrating on the most important need-to-know steps.
+The Git tutorials we refer to later in this document contain more
+detailed information and constitute of course very valuable readings
+when you use version control systems every day. The point now is
+to get started.
+</p>
 <h2 id="appendix-testing-inline-comments">Appendix: Testing inline comments </h2>
 
 <!-- Names can be [ A-Za-z0-9_'+-]+ -->
 
-<p>Projects that you want to share among several computers or project workers are today most conveniently stored at some web site "in the cloud" and updated through communication with that site. 
+<p>Projects that you want to share among several computers or project
+workers are today most conveniently stored at some web site "in the
+cloud" and updated through communication with that
+site. 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl's semi opinion 1</b>: not sure if in the cloud is understood by all.)</font>
+<font color="red">(<b>hpl's semi opinion 1</b>: not sure if in the cloud is  understood by  all.)</font>
 <!-- end inline comment -->
- I strongly recommend you to use such sites for all serious programming and scientific writing work - and all other important files.</p>
+ I strongly recommend you to use such sites for all serious
+programming and scientific writing work - and all other important
+files.
+</p>
 
 <p>The simplest services for hosting project files is Dropbox. 
 <!-- begin inline comment -->
-<font color="red">(<b>mp 2</b>: Simply go to <a href="https://dropbox.com" target="_self"><tt>https://dropbox.com</tt></a> and watch the video. It explains how files, like <code>myfile.py</code>, perhaps containing much math, like \( \partial u/\partial t \), are easily communicated between machines.)</font>
+<font color="red">(<b>mp 2</b>: Simply go to <a href="https://dropbox.com" target="_self"><tt>https://dropbox.com</tt></a> and watch the video. It explains how files, like <code>myfile.py</code>, perhaps containing much math, like  \( \partial u/\partial t \), are easily communicated between machines.)</font>
 <!-- end inline comment -->
- It is very easy to get started with Dropbox, and it allows you to share files among  <font color="red">(<b>hpl 3</b>:)</font> <del> laptops and mobile units </del> <font color="red">computers, tablets, and phones</font>.</p>
+ It
+is very easy to get started with Dropbox, and it allows you to share
+files among  <font color="red">(<b>hpl 3</b>:)</font> <del> laptops and mobile units </del> <font color="red">computers, tablets,  and phones</font>.
+</p>
 
 <!-- Test horizontal rule -->
 
@@ -91466,7 +92951,9 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 
 <!-- Coments for editing -->
 
-<p>First<font color="red">, (<b>edit 4</b>: add comma)</font> consider a quantity \( Q \).  <font color="red">(<b>edit 5</b>:)</font> <del> To this end, </del> <font color="red">We note that</font> \( Q>0 \), because  <font color="red">(<b>edit 6</b>:)</font> <del> a </del> negative  <font color="red">(<b>edit 7</b>:)</font> <del> quantity is </del> <font color="red">quantities are</font>  <font color="red">(<b>edit 8</b>:)</font> <del> just </del> negative.  <font color="red">(<b>edit 9</b>:) This comes as no surprise.</font></p>
+<p>First<font color="red">, (<b>edit 4</b>: add comma)</font> consider a quantity \( Q \).  <font color="red">(<b>edit 5</b>:)</font> <del> To this end, </del> <font color="red">We note that</font>
+\( Q>0 \), because  <font color="red">(<b>edit 6</b>:)</font> <del> a </del> negative  <font color="red">(<b>edit 7</b>:)</font> <del> quantity is </del> <font color="red">quantities  are</font>  <font color="red">(<b>edit 8</b>:)</font> <del> just </del> negative.  <font color="red">(<b>edit 9</b>:) This comes as no surprise.</font>
+</p>
 
 <!-- Test tailored latex figure references with page number -->
 <p>Let us refer to Figure <a href="#fig:impact">1</a> again.</p>
@@ -91480,20 +92967,31 @@ $$ \frac{dy}{dx} = -y(x),\quad y(0)=1 $$
 </ul>
 <h2 id="appendix-testing-headings-ending-with-verbatim-inline">Appendix: Testing headings ending with <code>verbatim inline</code> </h2>
 
-<p>The point here is to test 1) <code>verbatim</code> code in headings, and 2) ending a heading with verbatim code as this triggers a special case in LaTeX.</p>
+<p>The point here is to test 1) <code>verbatim</code> code in headings, and 2)
+ending a heading with verbatim code as this triggers a special
+case in LaTeX.
+</p>
 
-<p>We also test mdash&mdash;used as alternative to hyphen without spaces around, or in quotes:</p>
+<p>We also test mdash&mdash;used as alternative to hyphen without spaces around,
+or in quotes:
+</p>
 
 <blockquote>
     <p><em>Fun is fun</em>.&mdash;Unknown.</p>
 </blockquote>
 
 
-<p>The ndash should also be tested &ndash; as in the Hanson&ndash;Nilson equations on page 277&ndash;278.</p>
+<p>The ndash should also be tested &ndash; as in the Hanson&ndash;Nilson equations
+on page 277&ndash;278.
+</p>
 
-<p>And finally, what about admons, quotes, and boxes? They are tested in a separate document: <code>admon.do.txt</code>.</p>
+<p>And finally, what about admons, quotes, and boxes? They are tested
+in a separate document: <code>admon.do.txt</code>.
+</p>
 
-<p><p id="def_footnote_5"><a href="#link_footnote_5"><b>5:</b></a> Not much to add here, but the footnote is at the end with only one newline.</p></p>
+<p><p id="def_footnote_5"><a href="#link_footnote_5"><b>5:</b></a> Not much to add here, but the footnote
+is at the end with only one newline.</p>
+</p>
 <!-- ------------------- end of main content --------------- -->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
 </body>
