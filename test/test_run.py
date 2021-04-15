@@ -335,7 +335,8 @@ def test_doconce_html_slides(tdir):
         assert html.find('<link rel="stylesheet" media="screen" href="">') > 10
         # reveal.js slides
         os.system('cp testdoc.html temp.html')
-        out = subprocess.run('doconce slides_html temp.html reveal --html_slide_theme=solarized'.split(' '),
+        out = subprocess.run('doconce slides_html temp.html reveal '
+                             '--html_slide_theme=solarized --html_slide_transition=none'.split(' '),
                              cwd=tdir,  # NB: main process stays in curr dir, subprocesses in tdir
                              stdout=subprocess.PIPE,
                              stderr=subprocess.STDOUT,  # can do this in debugger mode: print(out.stdout)
