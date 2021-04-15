@@ -12,7 +12,6 @@ doconce format html slides1.html slides1 deck --html_slide_theme=web-2.0
 <meta name="description" content="Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides">
 <title>Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides</title>
 
-
 <!-- deck.js: https://github.com/imakewebthings/deck.js -->
 
   <meta charset="utf-8">
@@ -77,24 +76,12 @@ bundled/html_images//small_gray_summary.png); }
 bundled/html_images//small_gray_warning.png); }
 .slide .alert-question {background-image:url(https://hplgit.github.io/doconce/
 bundled/html_images/small_gray_question.png); } */
-.table table {
-    border: 2px solid black;
-    border-collapse: collapse;
-    padding: 2px;
-}
-.table th {
-    border: 2px solid black;
-    padding: 2px;
-}
-.table tr {
-    border: 2px solid black;
-}
-.table td {
-    border: 2px solid black;
+.table table, .table th, .table tr, .table tr td {
+  border: 2px solid black;
+  border-collapse: collapse;
+  padding: 2px;
 }
 </style>
-
-
 
 
 <!-- Styles for table layout of slides -->
@@ -136,7 +123,6 @@ MathJax.Hub.Config({
 
 
 
-
 <section class="slide">
 <!-- ------------------- main content ---------------------- -->
 <h2 style="text-align: center;">Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides</h2>  <!-- document title -->
@@ -157,12 +143,10 @@ MathJax.Hub.Config({
 <br>
 </section>
 
-
 <section class="slide">
 <h1 id="this-is-the-first-section">This is the first section </h1>
 <!-- Short title: First -->
 </section>
-
 
 <section class="slide">
 <h2 id="figure-and-bullet-list">Figure and bullet list </h2>
@@ -199,7 +183,6 @@ MathJax.Hub.Config({
 </table>
 </section>
 
-
 <section class="slide">
 <h2 id="slide-with-pop-ups-in-red-and-notes">Slide with pop-ups in red and notes </h2>
 
@@ -224,7 +207,6 @@ Over multiple lines.
 
 </div>
 </section>
-
 
 <section class="slide">
 <h2 id="a-latex-document">A LaTeX document </h2>
@@ -290,7 +272,6 @@ bla-bla
 </div>
 </section>
 
-
 <section class="slide">
 <h2 id="an-html-document">An HTML document </h2>
 
@@ -322,7 +303,6 @@ bla-bla
 </div>
 </section>
 
-
 <section class="slide">
 <h1 id="second-section">Second section </h1>
 
@@ -335,7 +315,6 @@ bla-bla
 <br /><br/>
 </div>
 </section>
-
 
 <section class="slide">
 <h2 id="some-math-and-computer-code">Some math and computer code </h2>
@@ -385,7 +364,6 @@ style):
 </div>
 </section>
 
-
 <section class="slide">
 <h2 id="pop-ups-inside-code-blocks-for-beamer-slides-only">Pop ups inside code blocks (for Beamer slides only) </h2>
 
@@ -418,7 +396,6 @@ style):
   </div>
 </div>
 </section>
-
 
 <section class="slide">
 <h2 id="various-admon-blocks">Various admon blocks </h2>

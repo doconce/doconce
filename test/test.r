@@ -71601,8 +71601,6 @@ doconce format html slides1.html slides1 reveal --html_slide_themee=simple
 <meta name="description" content="Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides">
 <title>Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides</title>
 
-
-
 <!-- reveal.js: https://lab.hakim.se/reveal-js/ -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -71645,35 +71643,79 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 </script>
 
 <style type="text/css">
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
-    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .reveal .alert-text-small   { font-size: 80%;  }
-    .reveal .alert-text-large   { font-size: 130%; }
-    .reveal .alert-text-normal  { font-size: 90%;  }
-    .reveal .alert {
-             padding:8px 35px 8px 14px; margin-bottom:18px;
-             text-shadow:0 1px 0 rgba(255,255,255,0.5);
-             border:5px solid #bababa;
-             -webkit-border-radius: 14px; -moz-border-radius: 14px;
-             border-radius:14px;
-             background-position: 10px 10px;
-             background-repeat: no-repeat;
-             background-size: 38px;
-             padding-left: 30px; /* 55px; if icon */
-     }
-     .reveal .alert-block {padding-top:14px; padding-bottom:14px}
-     .reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
-     /*.reveal .alert li {margin-top: 1em}*/
-     .reveal .alert-block p+p {margin-top:5px}
-     /*.reveal .alert-notice { background-image: url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_notice.png); }
-     .reveal .alert-summary  { background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_summary.png); }
-     .reveal .alert-warning { background-image: url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_warning.png); }
-     .reveal .alert-question {background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_question.png); } */
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+.reveal .alert-text-small   { font-size: 80%;  }
+.reveal .alert-text-large   { font-size: 130%; }
+.reveal .alert-text-normal  { font-size: 90%;  }
+.reveal .alert {
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:5px solid #bababa;
+  -webkit-border-radius: 14px; -moz-border-radius: 14px;
+  border-radius:14px;
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 30px; /* 55px; if icon */
+}
+.reveal .alert-block {padding-top:14px; padding-bottom:14px}
+.reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
+/*.reveal .alert li {margin-top: 1em}*/
+.reveal .alert-block p+p {margin-top:5px}
+/*.reveal .alert-notice { background-image: url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_notice.png); }
+.reveal .alert-summary  { background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_summary.png); }
+.reveal .alert-warning { background-image: url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_warning.png); }
+.reveal .alert-question {background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_question.png); } */
+/* Override reveal.js table border */
+.reveal table td {
+  border: 0;
+}
 
+<style type="text/css">
+/* Override h1, h2, ... styles */
+h1 { font-size: 2.8em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.4em; }
+h4 { font-size: 1.3em; }
+h1, h2, h3, h4 { font-weight: bold; line-height: 1.2; }
+body { overflow: auto; } /* vertical scrolling */
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+.slide .alert-text-small   { font-size: 80%;  }
+.slide .alert-text-large   { font-size: 130%; }
+.slide .alert-text-normal  { font-size: 90%;  }
+.slide .alert {
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:5px solid #bababa;
+    -webkit-border-radius:14px; -moz-border-radius:14px;
+  border-radius:14px
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 30px; /* 55px; if icon */
+}
+.slide .alert-block {padding-top:14px; padding-bottom:14px}
+.slide .alert-block > p, .alert-block > ul {margin-bottom:0}
+/*.slide .alert li {margin-top: 1em}*/
+.deck .alert-block p+p {margin-top:5px}
+/*.slide .alert-notice { background-image: url(https://hplgit.github.io/doconce/
+bundled/html_images//small_gray_notice.png); }
+.slide .alert-summary  { background-image:url(https://hplgit.github.io/doconce/
+bundled/html_images//small_gray_summary.png); }
+.slide .alert-warning { background-image: url(https://hplgit.github.io/doconce/
+bundled/html_images//small_gray_warning.png); }
+.slide .alert-question {background-image:url(https://hplgit.github.io/doconce/
+bundled/html_images/small_gray_question.png); } */
+.table table, .table th, .table tr, .table tr td {
+  border: 2px solid black;
+  border-collapse: collapse;
+  padding: 2px;
+}
 </style>
-
-
 
 
 <!-- Styles for table layout of slides -->
@@ -71691,10 +71733,6 @@ td.padding {
 
 <body>
 <div class="reveal">
-
-<!-- Any section element inside the <div class="slides"> container
-     is displayed as a slide -->
-
 <div class="slides">
 
 
@@ -71712,7 +71750,6 @@ MathJax.Hub.Config({
 <script type="text/javascript" async
  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-
 
 
 
@@ -71741,12 +71778,10 @@ MathJax.Hub.Config({
 <br>
 </section>
 
-
 <section>
 <h1 id="this-is-the-first-section">This is the first section </h1>
 <!-- Short title: First -->
 </section>
-
 
 <section>
 <h2 id="figure-and-bullet-list">Figure and bullet list </h2>
@@ -71783,7 +71818,6 @@ MathJax.Hub.Config({
 </table>
 </section>
 
-
 <section>
 <h2 id="slide-with-pop-ups-in-red-and-notes">Slide with pop-ups in red and notes </h2>
 
@@ -71812,7 +71846,6 @@ Over multiple lines.
 
 </aside>
 </section>
-
 
 <section>
 <h2 id="a-latex-document">A LaTeX document </h2>
@@ -71878,7 +71911,6 @@ bla-bla
 </div>
 </section>
 
-
 <section>
 <h2 id="an-html-document">An HTML document </h2>
 
@@ -71910,7 +71942,6 @@ bla-bla
 </div>
 </section>
 
-
 <section>
 <h1 id="second-section">Second section </h1>
 
@@ -71923,7 +71954,6 @@ bla-bla
 <br /><br/>
 </div>
 </section>
-
 
 <section>
 <h2 id="some-math-and-computer-code">Some math and computer code </h2>
@@ -71973,7 +72003,6 @@ style):
 </div>
 </section>
 
-
 <section>
 <h2 id="pop-ups-inside-code-blocks-for-beamer-slides-only">Pop ups inside code blocks (for Beamer slides only) </h2>
 
@@ -72006,7 +72035,6 @@ style):
   </div>
 </div>
 </section>
-
 
 <section>
 <h2 id="various-admon-blocks">Various admon blocks </h2>
@@ -72053,124 +72081,124 @@ title (Warning) since no title is specified.
 // https://github.com/hakimel/reveal.js#configuration
 Reveal.initialize({
 
-    // Display navigation controls in the bottom right corner
-    controls: true,
+  // Display navigation controls in the bottom right corner
+  controls: true,
 
-    // Display progress bar (below the horiz. slider)
-    progress: true,
+  // Display progress bar (below the horiz. slider)
+  progress: true,
 
-    // Display the page number of the current slide
-    slideNumber: true,
+  // Display the page number of the current slide
+  slideNumber: true,
 
-    // Push each slide change to the browser history
-    history: false,
+  // Push each slide change to the browser history
+  history: false,
 
-    // Enable keyboard shortcuts for navigation
-    keyboard: true,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
 
-    // Enable the slide overview mode
-    overview: true,
+  // Enable the slide overview mode
+  overview: true,
 
-    // Vertical centering of slides
-    //center: true,
-    center: false,
+  // Vertical centering of slides
+  //center: true,
+  center: false,
 
-    // Enables touch navigation on devices with touch input
-    touch: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
 
-    // Loop the presentation
-    loop: false,
+  // Loop the presentation
+  loop: false,
 
-    // Change the presentation direction to be RTL
-    rtl: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
 
-    // Turns fragments on and off globally
-    fragments: true,
+  // Turns fragments on and off globally
+  fragments: true,
 
-    // Flags if the presentation is running in an embedded mode,
-    // i.e. contained within a limited portion of the screen
-    embedded: false,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
 
-    // Number of milliseconds between automatically proceeding to the
-    // next slide, disabled when set to 0, this value can be overwritten
-    // by using a data-autoslide attribute on your slides
-    autoSlide: 0,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
 
-    // Stop auto-sliding after user input
-    autoSlideStoppable: true,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
 
-    // Enable slide navigation via mouse wheel
-    mouseWheel: false,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: false,
 
-    // Hides the address bar on mobile devices
-    hideAddressBar: true,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
 
-    // Opens links in an iframe preview overlay
-    previewLinks: false,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
 
-    // Transition style
-    transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+  // Transition style
+  transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
 
-    // Transition speed
-    transitionSpeed: 'default', // default/fast/slow
+  // Transition speed
+  transitionSpeed: 'default', // default/fast/slow
 
-    // Transition style for full page slide backgrounds
-    backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
+  // Transition style for full page slide backgrounds
+  backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
 
-    // Number of slides away from the current that are visible
-    viewDistance: 3,
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
 
-    // Parallax background image
+  // Parallax background image
     //parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
 
-    // Parallax background size
-    //parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
+  // Parallax background size
+  //parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
 
-    theme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
-    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+  theme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
+    transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/none
 
 });
 
 Reveal.initialize({
-    dependencies: [
-        // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
-        { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+  dependencies: [
+      // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
+      { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
 
-        // Interpret Markdown in <section> elements
-        { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      // Interpret Markdown in <section> elements
+      { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 
-        // Syntax highlight for <code> elements
-        { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      // Syntax highlight for <code> elements
+      { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 
-        // Zoom in and out with Alt+click
-        { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Zoom in and out with Alt+click
+      { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
 
-        // Speaker notes
-        { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Speaker notes
+      { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
 
-        // Remote control your reveal.js presentation using a touch device
-        //{ src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Remote control your reveal.js presentation using a touch device
+      //{ src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } },
 
-        // MathJax
-        //{ src: 'reveal.js/plugin/math/math.js', async: true }
-    ]
+      // MathJax
+      //{ src: 'reveal.js/plugin/math/math.js', async: true }
+  ]
 });
 
 Reveal.initialize({
 
-    // The "normal" size of the presentation, aspect ratio will be preserved
-    // when the presentation is scaled to fit different resolutions. Can be
-    // specified using percentage units.
-    width: 1170,  // original: 960,
-    height: 700,
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1170,  // original: 960,
+  height: 700,
 
-    // Factor of the display size that should remain empty around the content
-    margin: 0.1,
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
 
-    // Bounds for smallest/largest possible scale to apply to content
-    minScale: 0.2,
-    maxScale: 1.0
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.0
 
 });
 </script>
@@ -72179,7 +72207,7 @@ Reveal.initialize({
 <div style="position: absolute; bottom: 0px; left: 0; margin-left: 0px">
 <img src="somelogo.png">
 </div>
-     end footer logo -->
+   end footer logo -->
 
 
 
@@ -73070,7 +73098,6 @@ doconce format html slides1.html slides1 deck --html_slide_theme=web-2.0
 <meta name="description" content="Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides">
 <title>Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides</title>
 
-
 <!-- deck.js: https://github.com/imakewebthings/deck.js -->
 
   <meta charset="utf-8">
@@ -73135,24 +73162,12 @@ bundled/html_images//small_gray_summary.png); }
 bundled/html_images//small_gray_warning.png); }
 .slide .alert-question {background-image:url(https://hplgit.github.io/doconce/
 bundled/html_images/small_gray_question.png); } */
-.table table {
-    border: 2px solid black;
-    border-collapse: collapse;
-    padding: 2px;
-}
-.table th {
-    border: 2px solid black;
-    padding: 2px;
-}
-.table tr {
-    border: 2px solid black;
-}
-.table td {
-    border: 2px solid black;
+.table table, .table th, .table tr, .table tr td {
+  border: 2px solid black;
+  border-collapse: collapse;
+  padding: 2px;
 }
 </style>
-
-
 
 
 <!-- Styles for table layout of slides -->
@@ -73194,7 +73209,6 @@ MathJax.Hub.Config({
 
 
 
-
 <section class="slide">
 <!-- ------------------- main content ---------------------- -->
 <h2 style="text-align: center;">Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides</h2>  <!-- document title -->
@@ -73215,12 +73229,10 @@ MathJax.Hub.Config({
 <br>
 </section>
 
-
 <section class="slide">
 <h1 id="this-is-the-first-section">This is the first section </h1>
 <!-- Short title: First -->
 </section>
-
 
 <section class="slide">
 <h2 id="figure-and-bullet-list">Figure and bullet list </h2>
@@ -73257,7 +73269,6 @@ MathJax.Hub.Config({
 </table>
 </section>
 
-
 <section class="slide">
 <h2 id="slide-with-pop-ups-in-red-and-notes">Slide with pop-ups in red and notes </h2>
 
@@ -73282,7 +73293,6 @@ Over multiple lines.
 
 </div>
 </section>
-
 
 <section class="slide">
 <h2 id="a-latex-document">A LaTeX document </h2>
@@ -73348,7 +73358,6 @@ bla-bla
 </div>
 </section>
 
-
 <section class="slide">
 <h2 id="an-html-document">An HTML document </h2>
 
@@ -73380,7 +73389,6 @@ bla-bla
 </div>
 </section>
 
-
 <section class="slide">
 <h1 id="second-section">Second section </h1>
 
@@ -73393,7 +73401,6 @@ bla-bla
 <br /><br/>
 </div>
 </section>
-
 
 <section class="slide">
 <h2 id="some-math-and-computer-code">Some math and computer code </h2>
@@ -73443,7 +73450,6 @@ style):
 </div>
 </section>
 
-
 <section class="slide">
 <h2 id="pop-ups-inside-code-blocks-for-beamer-slides-only">Pop ups inside code blocks (for Beamer slides only) </h2>
 
@@ -73476,7 +73482,6 @@ style):
   </div>
 </div>
 </section>
-
 
 <section class="slide">
 <h2 id="various-admon-blocks">Various admon blocks </h2>
@@ -73570,9 +73575,9 @@ title (Warning) since no title is specified.
 <title>Document for Testing Some Basic and Some Challenging Constructs in DocOnce Slides</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <style type="text/css">
-   @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
-   @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
-   @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+  @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+  @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+  @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 
 body { font-family: 'Droid Serif'; }
 h1, h2, h3 {
@@ -75184,8 +75189,6 @@ doconce format html slides2.html slides2 reveal --html_slide_theme=beigesmall
 <meta name="keywords" content="key word1,key word2">
 <title>Test slide features</title>
 
-
-
 <!-- reveal.js: https://lab.hakim.se/reveal-js/ -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -75228,35 +75231,79 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 </script>
 
 <style type="text/css">
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
-    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .reveal .alert-text-small   { font-size: 80%;  }
-    .reveal .alert-text-large   { font-size: 130%; }
-    .reveal .alert-text-normal  { font-size: 90%;  }
-    .reveal .alert {
-             padding:8px 35px 8px 14px; margin-bottom:18px;
-             text-shadow:0 1px 0 rgba(255,255,255,0.5);
-             border:5px solid #bababa;
-             -webkit-border-radius: 14px; -moz-border-radius: 14px;
-             border-radius:14px;
-             background-position: 10px 10px;
-             background-repeat: no-repeat;
-             background-size: 38px;
-             padding-left: 30px; /* 55px; if icon */
-     }
-     .reveal .alert-block {padding-top:14px; padding-bottom:14px}
-     .reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
-     /*.reveal .alert li {margin-top: 1em}*/
-     .reveal .alert-block p+p {margin-top:5px}
-     /*.reveal .alert-notice { background-image: url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_notice.png); }
-     .reveal .alert-summary  { background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_summary.png); }
-     .reveal .alert-warning { background-image: url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_warning.png); }
-     .reveal .alert-question {background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_question.png); } */
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+.reveal .alert-text-small   { font-size: 80%;  }
+.reveal .alert-text-large   { font-size: 130%; }
+.reveal .alert-text-normal  { font-size: 90%;  }
+.reveal .alert {
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:5px solid #bababa;
+  -webkit-border-radius: 14px; -moz-border-radius: 14px;
+  border-radius:14px;
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 30px; /* 55px; if icon */
+}
+.reveal .alert-block {padding-top:14px; padding-bottom:14px}
+.reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
+/*.reveal .alert li {margin-top: 1em}*/
+.reveal .alert-block p+p {margin-top:5px}
+/*.reveal .alert-notice { background-image: url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_notice.png); }
+.reveal .alert-summary  { background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_summary.png); }
+.reveal .alert-warning { background-image: url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_warning.png); }
+.reveal .alert-question {background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_question.png); } */
+/* Override reveal.js table border */
+.reveal table td {
+  border: 0;
+}
 
+<style type="text/css">
+/* Override h1, h2, ... styles */
+h1 { font-size: 2.8em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.4em; }
+h4 { font-size: 1.3em; }
+h1, h2, h3, h4 { font-weight: bold; line-height: 1.2; }
+body { overflow: auto; } /* vertical scrolling */
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+.slide .alert-text-small   { font-size: 80%;  }
+.slide .alert-text-large   { font-size: 130%; }
+.slide .alert-text-normal  { font-size: 90%;  }
+.slide .alert {
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:5px solid #bababa;
+    -webkit-border-radius:14px; -moz-border-radius:14px;
+  border-radius:14px
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 30px; /* 55px; if icon */
+}
+.slide .alert-block {padding-top:14px; padding-bottom:14px}
+.slide .alert-block > p, .alert-block > ul {margin-bottom:0}
+/*.slide .alert li {margin-top: 1em}*/
+.deck .alert-block p+p {margin-top:5px}
+/*.slide .alert-notice { background-image: url(https://hplgit.github.io/doconce/
+bundled/html_images//small_gray_notice.png); }
+.slide .alert-summary  { background-image:url(https://hplgit.github.io/doconce/
+bundled/html_images//small_gray_summary.png); }
+.slide .alert-warning { background-image: url(https://hplgit.github.io/doconce/
+bundled/html_images//small_gray_warning.png); }
+.slide .alert-question {background-image:url(https://hplgit.github.io/doconce/
+bundled/html_images/small_gray_question.png); } */
+.table table, .table th, .table tr, .table tr td {
+  border: 2px solid black;
+  border-collapse: collapse;
+  padding: 2px;
+}
 </style>
-
-
 
 
 <!-- Styles for table layout of slides -->
@@ -75274,10 +75321,6 @@ td.padding {
 
 <body>
 <div class="reveal">
-
-<!-- Any section element inside the <div class="slides"> container
-     is displayed as a slide -->
-
 <div class="slides">
 
 
@@ -75295,7 +75338,6 @@ MathJax.Hub.Config({
 <script type="text/javascript" async
  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-
 
 
 
@@ -75325,7 +75367,6 @@ MathJax.Hub.Config({
 </center>
 <br /><br/>
 </section>
-
 
 <section>
 <h1 id="table_of_contents">Table of contents</h1>
@@ -75366,7 +75407,6 @@ MathJax.Hub.Config({
 <br>
 </section>
 
-
 <section>
 <h2 id="scientific-writing-for-the-future-needs-to-address-many-new-media">Scientific writing for the future needs to address many new media </h2>
 
@@ -75397,7 +75437,6 @@ MathJax.Hub.Config({
 </table>
 </section>
 
-
 <section>
 <h2 id="the-book-will-probably-survive">The book will probably survive </h2>
 
@@ -75406,7 +75445,6 @@ MathJax.Hub.Config({
 </center>
 <br /><br/>
 </section>
-
 
 <section>
 <h2 id="the-classical-report-will-survive">The classical report will survive </h2>
@@ -75429,7 +75467,6 @@ MathJax.Hub.Config({
 </tr>
 </table>
 </section>
-
 
 <section>
 <h2 id="scope">Scope </h2>
@@ -75496,7 +75533,6 @@ MathJax.Hub.Config({
 </table>
 </section>
 
-
 <section>
 <h2 id="scientific-writing-for-the-future-needs-to-address-many-new-media">Scientific writing for the future needs to address many new media </h2>
 
@@ -75534,7 +75570,6 @@ MathJax.Hub.Config({
 </table>
 </section>
 
-
 <section>
 <h2 id="fundamental-question">Fundamental question </h2>
 
@@ -75562,7 +75597,6 @@ Probably not, but I have a solution :-)</p>
 </p>
 </section>
 
-
 <section>
 <h2 id="latex-is-very-rich-other-tools-support-only-some-elements">LaTeX is very rich; other tools support only some elements </h2>
 
@@ -75584,7 +75618,6 @@ Probably not, but I have a solution :-)</p>
 <p>
 </ul>
 </section>
-
 
 <section>
 <h2 id="latex-is-very-rich-other-tools-support-only-some-elements">LaTeX is very rich; other tools support only some elements </h2>
@@ -75613,7 +75646,6 @@ based on HTML and vice versa.
 </p>
 </section>
 
-
 <section>
 <h2 id="doconce-demo">DocOnce demo </h2>
 
@@ -75629,11 +75661,9 @@ based on HTML and vice versa.
 </ul>
 </section>
 
-
 <section>
 <h1 id="a-tour-of-doconce">A tour of DocOnce </h1>
 </section>
-
 
 <section>
 <h2 id="doconce-title-authors-date-toc">DocOnce: title, authors, date, toc </h2>
@@ -75675,7 +75705,6 @@ TOC: on
 <p>Title and authors must have all information <em>on a single line</em>!</p>
 </div>
 </section>
-
 
 <section>
 <h2 id="doconce-abstract">DocOnce: abstract </h2>
@@ -75732,7 +75761,6 @@ Here goes the summary...
 </div>
 </section>
 
-
 <section>
 <h2 id="doconce-section-headings">DocOnce: section headings </h2>
 
@@ -75779,7 +75807,6 @@ __This is a paragraph heading.__
 <b>This is a paragraph heading.</b>
 </p>
 </section>
-
 
 <section>
 <h2 id="doconce-markup-and-lists">DocOnce: markup and lists </h2>
@@ -75833,7 +75860,6 @@ __This is a paragraph heading.__
 </ul>
 </section>
 
-
 <section>
 <h2 id="doconce-labels-references-index-items">DocOnce: labels, references, index items </h2>
 
@@ -75879,7 +75905,6 @@ URL: &quot;https://github.com/doconce/doconce&quot;
   </div>
 </div>
 </section>
-
 
 <section>
 <h2 id="doconce-figures-and-movies">DocOnce: figures and movies </h2>
@@ -75948,7 +75973,6 @@ URL: &quot;https://github.com/doconce/doconce&quot;
 
 <iframe width="420" height="315" src="https://www.youtube.com/embed/P8VcZzgdfSc" frameborder="0" allowfullscreen></iframe>
 </section>
-
 
 <section>
 <h2 id="doconce-math">DocOnce: math </h2>
@@ -76029,7 +76053,6 @@ $$
 $$
 <p>&nbsp;<br>
 </section>
-
 
 <section>
 <h2 id="doconce-displaying-code">DocOnce: displaying code </h2>
@@ -76121,7 +76144,6 @@ forth (<code>c</code> for C, <code>cpp</code> for C++, <code>sh</code> for Unix 
 </div>
 </section>
 
-
 <section>
 <h2 id="slide:pot">DocOnce: displaying interactive demo code</h2>
 
@@ -76150,7 +76172,6 @@ program flow and state of variables:
   </div>
 </div>
 </section>
-
 
 <section>
 <h2 id="doconce-exercises">DocOnce: exercises </h2>
@@ -76216,7 +76237,6 @@ of getting at least three heads out of 5 throws.
 <p>Solutions/answers can easily be left out of the document.</p>
 </section>
 
-
 <section>
 <h2 id="doconce-exercises">DocOnce: exercises </h2>
 
@@ -76271,7 +76291,6 @@ of getting at least three heads out of 5 throws.
 <!-- --- end exercise --- -->
 </section>
 
-
 <section>
 <h2 id="doconce-example-on-slide-code">DocOnce: example on slide code </h2>
 
@@ -76321,7 +76340,6 @@ And maybe a final comment?
 </div>
 </section>
 
-
 <section>
 <h2 id="doconce-example-on-slide-code">DocOnce: example on slide code </h2>
 
@@ -76346,7 +76364,6 @@ $$ -\nabla^2 u = f \quad\hbox{in }\Omega $$
 
 <p>And maybe a final comment?</p>
 </section>
-
 
 <section>
 <h2 id="doconce-example-on-slide-code-with-cells">DocOnce: example on slide code with cells </h2>
@@ -76409,7 +76426,6 @@ FIGURE: [testfigs/broken_pen_and_paper, width=400, frac=0.8]
 </div>
 </section>
 
-
 <section>
 <h2 id="doconce-example-on-slide-code">DocOnce: example on slide code </h2>
 
@@ -76459,124 +76475,124 @@ $$ -\nabla^2 u = f \quad\hbox{in }\Omega $$
 // https://github.com/hakimel/reveal.js#configuration
 Reveal.initialize({
 
-    // Display navigation controls in the bottom right corner
-    controls: true,
+  // Display navigation controls in the bottom right corner
+  controls: true,
 
-    // Display progress bar (below the horiz. slider)
-    progress: true,
+  // Display progress bar (below the horiz. slider)
+  progress: true,
 
-    // Display the page number of the current slide
-    slideNumber: true,
+  // Display the page number of the current slide
+  slideNumber: true,
 
-    // Push each slide change to the browser history
-    history: false,
+  // Push each slide change to the browser history
+  history: false,
 
-    // Enable keyboard shortcuts for navigation
-    keyboard: true,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
 
-    // Enable the slide overview mode
-    overview: true,
+  // Enable the slide overview mode
+  overview: true,
 
-    // Vertical centering of slides
-    //center: true,
-    center: false,
+  // Vertical centering of slides
+  //center: true,
+  center: false,
 
-    // Enables touch navigation on devices with touch input
-    touch: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
 
-    // Loop the presentation
-    loop: false,
+  // Loop the presentation
+  loop: false,
 
-    // Change the presentation direction to be RTL
-    rtl: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
 
-    // Turns fragments on and off globally
-    fragments: true,
+  // Turns fragments on and off globally
+  fragments: true,
 
-    // Flags if the presentation is running in an embedded mode,
-    // i.e. contained within a limited portion of the screen
-    embedded: false,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
 
-    // Number of milliseconds between automatically proceeding to the
-    // next slide, disabled when set to 0, this value can be overwritten
-    // by using a data-autoslide attribute on your slides
-    autoSlide: 0,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
 
-    // Stop auto-sliding after user input
-    autoSlideStoppable: true,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
 
-    // Enable slide navigation via mouse wheel
-    mouseWheel: false,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: false,
 
-    // Hides the address bar on mobile devices
-    hideAddressBar: true,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
 
-    // Opens links in an iframe preview overlay
-    previewLinks: false,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
 
-    // Transition style
-    transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+  // Transition style
+  transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
 
-    // Transition speed
-    transitionSpeed: 'default', // default/fast/slow
+  // Transition speed
+  transitionSpeed: 'default', // default/fast/slow
 
-    // Transition style for full page slide backgrounds
-    backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
+  // Transition style for full page slide backgrounds
+  backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
 
-    // Number of slides away from the current that are visible
-    viewDistance: 3,
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
 
-    // Parallax background image
+  // Parallax background image
     //parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
 
-    // Parallax background size
-    //parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
+  // Parallax background size
+  //parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
 
-    theme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
-    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+  theme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
+    transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/none
 
 });
 
 Reveal.initialize({
-    dependencies: [
-        // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
-        { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+  dependencies: [
+      // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
+      { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
 
-        // Interpret Markdown in <section> elements
-        { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      // Interpret Markdown in <section> elements
+      { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 
-        // Syntax highlight for <code> elements
-        { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      // Syntax highlight for <code> elements
+      { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 
-        // Zoom in and out with Alt+click
-        { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Zoom in and out with Alt+click
+      { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
 
-        // Speaker notes
-        { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Speaker notes
+      { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
 
-        // Remote control your reveal.js presentation using a touch device
-        //{ src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Remote control your reveal.js presentation using a touch device
+      //{ src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } },
 
-        // MathJax
-        //{ src: 'reveal.js/plugin/math/math.js', async: true }
-    ]
+      // MathJax
+      //{ src: 'reveal.js/plugin/math/math.js', async: true }
+  ]
 });
 
 Reveal.initialize({
 
-    // The "normal" size of the presentation, aspect ratio will be preserved
-    // when the presentation is scaled to fit different resolutions. Can be
-    // specified using percentage units.
-    width: 1170,  // original: 960,
-    height: 700,
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1170,  // original: 960,
+  height: 700,
 
-    // Factor of the display size that should remain empty around the content
-    margin: 0.1,
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
 
-    // Bounds for smallest/largest possible scale to apply to content
-    minScale: 0.2,
-    maxScale: 1.0
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.0
 
 });
 </script>
@@ -76585,7 +76601,7 @@ Reveal.initialize({
 <div style="position: absolute; bottom: 0px; left: 0; margin-left: 0px">
 <img src="somelogo.png">
 </div>
-     end footer logo -->
+   end footer logo -->
 
 
 
@@ -79000,8 +79016,6 @@ doconce format html slides3.html slides3 reveal --html_slide_type=beigesmall
 <meta name="description" content="On Schemes for Exponential Decay">
 <title>On Schemes for Exponential Decay</title>
 
-
-
 <!-- reveal.js: https://lab.hakim.se/reveal-js/ -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -79044,35 +79058,79 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 </script>
 
 <style type="text/css">
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
-    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .reveal .alert-text-small   { font-size: 80%;  }
-    .reveal .alert-text-large   { font-size: 130%; }
-    .reveal .alert-text-normal  { font-size: 90%;  }
-    .reveal .alert {
-             padding:8px 35px 8px 14px; margin-bottom:18px;
-             text-shadow:0 1px 0 rgba(255,255,255,0.5);
-             border:5px solid #bababa;
-             -webkit-border-radius: 14px; -moz-border-radius: 14px;
-             border-radius:14px;
-             background-position: 10px 10px;
-             background-repeat: no-repeat;
-             background-size: 38px;
-             padding-left: 30px; /* 55px; if icon */
-     }
-     .reveal .alert-block {padding-top:14px; padding-bottom:14px}
-     .reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
-     /*.reveal .alert li {margin-top: 1em}*/
-     .reveal .alert-block p+p {margin-top:5px}
-     /*.reveal .alert-notice { background-image: url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_notice.png); }
-     .reveal .alert-summary  { background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_summary.png); }
-     .reveal .alert-warning { background-image: url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_warning.png); }
-     .reveal .alert-question {background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_question.png); } */
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+.reveal .alert-text-small   { font-size: 80%;  }
+.reveal .alert-text-large   { font-size: 130%; }
+.reveal .alert-text-normal  { font-size: 90%;  }
+.reveal .alert {
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:5px solid #bababa;
+  -webkit-border-radius: 14px; -moz-border-radius: 14px;
+  border-radius:14px;
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 30px; /* 55px; if icon */
+}
+.reveal .alert-block {padding-top:14px; padding-bottom:14px}
+.reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
+/*.reveal .alert li {margin-top: 1em}*/
+.reveal .alert-block p+p {margin-top:5px}
+/*.reveal .alert-notice { background-image: url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_notice.png); }
+.reveal .alert-summary  { background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_summary.png); }
+.reveal .alert-warning { background-image: url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_warning.png); }
+.reveal .alert-question {background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_question.png); } */
+/* Override reveal.js table border */
+.reveal table td {
+  border: 0;
+}
 
+<style type="text/css">
+/* Override h1, h2, ... styles */
+h1 { font-size: 2.8em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.4em; }
+h4 { font-size: 1.3em; }
+h1, h2, h3, h4 { font-weight: bold; line-height: 1.2; }
+body { overflow: auto; } /* vertical scrolling */
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+.slide .alert-text-small   { font-size: 80%;  }
+.slide .alert-text-large   { font-size: 130%; }
+.slide .alert-text-normal  { font-size: 90%;  }
+.slide .alert {
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:5px solid #bababa;
+    -webkit-border-radius:14px; -moz-border-radius:14px;
+  border-radius:14px
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 30px; /* 55px; if icon */
+}
+.slide .alert-block {padding-top:14px; padding-bottom:14px}
+.slide .alert-block > p, .alert-block > ul {margin-bottom:0}
+/*.slide .alert li {margin-top: 1em}*/
+.deck .alert-block p+p {margin-top:5px}
+/*.slide .alert-notice { background-image: url(https://hplgit.github.io/doconce/
+bundled/html_images//small_gray_notice.png); }
+.slide .alert-summary  { background-image:url(https://hplgit.github.io/doconce/
+bundled/html_images//small_gray_summary.png); }
+.slide .alert-warning { background-image: url(https://hplgit.github.io/doconce/
+bundled/html_images//small_gray_warning.png); }
+.slide .alert-question {background-image:url(https://hplgit.github.io/doconce/
+bundled/html_images/small_gray_question.png); } */
+.table table, .table th, .table tr, .table tr td {
+  border: 2px solid black;
+  border-collapse: collapse;
+  padding: 2px;
+}
 </style>
-
-
 
 
 <!-- Styles for table layout of slides -->
@@ -79090,10 +79148,6 @@ td.padding {
 
 <body>
 <div class="reveal">
-
-<!-- Any section element inside the <div class="slides"> container
-     is displayed as a slide -->
-
 <div class="slides">
 
 
@@ -79111,7 +79165,6 @@ MathJax.Hub.Config({
 <script type="text/javascript" async
  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-
 
 
 
@@ -79144,7 +79197,6 @@ MathJax.Hub.Config({
 </center>
 <br /><br/>
 </section>
-
 
 <section>
 <h2 id="goal">Goal </h2>
@@ -79183,11 +79235,9 @@ demonstrated.
 </aside>
 </section>
 
-
 <section>
 <h1 id="methods">Methods </h1>
 </section>
-
 
 <section>
 <h2 id="mathematical-problem">Mathematical problem </h2>
@@ -79225,7 +79275,6 @@ $$
 </table>
 </section>
 
-
 <section>
 <h2 id="numerical-solution-method">Numerical solution method </h2>
 
@@ -79248,13 +79297,11 @@ $$
 </p>
 </section>
 
-
 <section>
 <h2 id="forward-euler-explained">Forward Euler explained </h2>
 
 <iframe width="640" height="480" src="https://www.youtube.com/embed/PtJrPEIHNJw" frameborder="0" allowfullscreen></iframe>
 </section>
-
 
 <section>
 <h2 id="implementation">Implementation </h2>
@@ -79296,12 +79343,10 @@ $$
 </div>
 </section>
 
-
 <section>
 <h1 id="selected-results">Selected results </h1>
 <!-- Short title: Results -->
 </section>
-
 
 <section>
 <h2 id="the-crank-nicolson-method">The Crank-Nicolson method </h2>
@@ -79311,7 +79356,6 @@ $$
 </center>
 <br /><br/>
 </section>
-
 
 <section>
 <h2 id="the-artifacts-can-be-explained-by-some-theory">The artifacts can be explained by some theory </h2>
@@ -79357,124 +79401,124 @@ qualitatively correct results.
 // https://github.com/hakimel/reveal.js#configuration
 Reveal.initialize({
 
-    // Display navigation controls in the bottom right corner
-    controls: true,
+  // Display navigation controls in the bottom right corner
+  controls: true,
 
-    // Display progress bar (below the horiz. slider)
-    progress: true,
+  // Display progress bar (below the horiz. slider)
+  progress: true,
 
-    // Display the page number of the current slide
-    slideNumber: true,
+  // Display the page number of the current slide
+  slideNumber: true,
 
-    // Push each slide change to the browser history
-    history: false,
+  // Push each slide change to the browser history
+  history: false,
 
-    // Enable keyboard shortcuts for navigation
-    keyboard: true,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
 
-    // Enable the slide overview mode
-    overview: true,
+  // Enable the slide overview mode
+  overview: true,
 
-    // Vertical centering of slides
-    //center: true,
-    center: false,
+  // Vertical centering of slides
+  //center: true,
+  center: false,
 
-    // Enables touch navigation on devices with touch input
-    touch: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
 
-    // Loop the presentation
-    loop: false,
+  // Loop the presentation
+  loop: false,
 
-    // Change the presentation direction to be RTL
-    rtl: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
 
-    // Turns fragments on and off globally
-    fragments: true,
+  // Turns fragments on and off globally
+  fragments: true,
 
-    // Flags if the presentation is running in an embedded mode,
-    // i.e. contained within a limited portion of the screen
-    embedded: false,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
 
-    // Number of milliseconds between automatically proceeding to the
-    // next slide, disabled when set to 0, this value can be overwritten
-    // by using a data-autoslide attribute on your slides
-    autoSlide: 0,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
 
-    // Stop auto-sliding after user input
-    autoSlideStoppable: true,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
 
-    // Enable slide navigation via mouse wheel
-    mouseWheel: false,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: false,
 
-    // Hides the address bar on mobile devices
-    hideAddressBar: true,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
 
-    // Opens links in an iframe preview overlay
-    previewLinks: false,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
 
-    // Transition style
-    transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+  // Transition style
+  transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
 
-    // Transition speed
-    transitionSpeed: 'default', // default/fast/slow
+  // Transition speed
+  transitionSpeed: 'default', // default/fast/slow
 
-    // Transition style for full page slide backgrounds
-    backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
+  // Transition style for full page slide backgrounds
+  backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
 
-    // Number of slides away from the current that are visible
-    viewDistance: 3,
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
 
-    // Parallax background image
+  // Parallax background image
     //parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
 
-    // Parallax background size
-    //parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
+  // Parallax background size
+  //parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
 
-    theme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
-    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+  theme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
+    transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/none
 
 });
 
 Reveal.initialize({
-    dependencies: [
-        // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
-        { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+  dependencies: [
+      // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
+      { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
 
-        // Interpret Markdown in <section> elements
-        { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      // Interpret Markdown in <section> elements
+      { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 
-        // Syntax highlight for <code> elements
-        { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      // Syntax highlight for <code> elements
+      { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 
-        // Zoom in and out with Alt+click
-        { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Zoom in and out with Alt+click
+      { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
 
-        // Speaker notes
-        { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Speaker notes
+      { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
 
-        // Remote control your reveal.js presentation using a touch device
-        //{ src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Remote control your reveal.js presentation using a touch device
+      //{ src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } },
 
-        // MathJax
-        //{ src: 'reveal.js/plugin/math/math.js', async: true }
-    ]
+      // MathJax
+      //{ src: 'reveal.js/plugin/math/math.js', async: true }
+  ]
 });
 
 Reveal.initialize({
 
-    // The "normal" size of the presentation, aspect ratio will be preserved
-    // when the presentation is scaled to fit different resolutions. Can be
-    // specified using percentage units.
-    width: 1170,  // original: 960,
-    height: 700,
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1170,  // original: 960,
+  height: 700,
 
-    // Factor of the display size that should remain empty around the content
-    margin: 0.1,
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
 
-    // Bounds for smallest/largest possible scale to apply to content
-    minScale: 0.2,
-    maxScale: 1.0
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.0
 
 });
 </script>
@@ -79483,7 +79527,7 @@ Reveal.initialize({
 <div style="position: absolute; bottom: 0px; left: 0; margin-left: 0px">
 <img src="somelogo.png">
 </div>
-     end footer logo -->
+   end footer logo -->
 
 
 
