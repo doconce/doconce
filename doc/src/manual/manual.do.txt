@@ -3433,7 +3433,7 @@ By default, `pro` is used for complete programs, `cod` is for a code
 snippet. The syntax `Xcod` and `Xpro` imply a program or snippet in
 computer language `X`, where `X` can be `f` for Fortran, `c` for C,
 `cpp` for C++, `sh` for Unix shells, `pl` for Perl, `m` for Matlab,
-`cy` for Cython, `r` for Ruby, `js` for JavaScript, `latex` for LaTeX,
+`cy` for Cython, `rb` for Ruby, `js` for JavaScript, `latex` for LaTeX,
 `html` for HTML, and `py` for Python.  With no `X` prefix, `cod` and
 `pro` implies Python code. The argument `sys` after `!bc` means a
 verbatim environment suitable for operating system commands (and

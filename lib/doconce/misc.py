@@ -1327,11 +1327,12 @@ def ptex2tex():
     # All envirs in the .ptex2tex.cfg file as of June 2012.
     # (Recall that the longest names must come first so that they
     # are substituted first, e.g., \bcc after \bccod)
-    envirs = 'pro pypro cypro cpppro cpro fpro plpro shpro mpro cod pycod cycod cppcod ccod fcod plcod shcod mcod rst cppans pyans fans bashans swigans uflans sni dat dsni sys slin ipy pyshell rpy plin ver warn rule summ ccq cc ccl txt'.split()
-    envirs += ['htmlcod', 'htmlpro', 'html',
-               'rbpro', 'rbcod', 'rb',
-               'xmlpro', 'xmlcod', 'xml',
-               'latexpro', 'latexcod', 'latex']
+    envirs = ['pro', 'pypro', 'cypro', 'cpppro', 'cpro', 'fpro', 'plpro', 'shpro', 'mpro',
+              'cod', 'pycod', 'cycod', 'cppcod', 'ccod', 'fcod', 'plcod', 'shcod', 'mcod',
+              'rst', 'cppans', 'pyans', 'fans', 'bashans', 'swigans', 'uflans', 'sni',
+              'dat', 'dsni', 'sys', 'slin', 'ipy', 'pyshell', 'rpy', 'plin', 'ver', 'warn',
+              'rule', 'summ', 'ccq', 'cc', 'ccl', 'txt', 'htmlcod', 'htmlpro', 'html', 'rbpro',
+              'rbcod', 'rb', 'xmlpro', 'xmlcod', 'xml', 'latexpro', 'latexcod', 'latex']
     # envirs is not longer used - we just read what the user has in the file
 
     # Accept all envirs in envir2pygments, plus all

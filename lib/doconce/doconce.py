@@ -568,7 +568,7 @@ def syntax_check(filestr, format):
                              re.MULTILINE)
         m = pattern.search(filestr2)
         if m and format in ('rst', 'plain', 'epytext', 'st'):
-            errwarn('\n*** error: must in format "%s" have a plain sentence before\n'
+            errwarn('\n*** error: the "%s" format must have a plain sentence before\n'
                     'a code block like !bc/!bt/@@@CODE, not a section/paragraph heading,\n'
                     'table, or comment:\n\n---------------------------------' % format)
             errwarn(filestr2[m.start()-40:m.start()+80])
@@ -606,6 +606,17 @@ def syntax_check(filestr, format):
         _abort()
 
     begin_end_consistency_checks(filestr, globals.doconce_envirs)
+
+    # Check syntax for code blocks
+    cblocks = re.findall(r'^!bc[ \w-]*\n', filestr, re.MULTILINE)
+    for cblock in cblocks:
+        m = re.search(globals.pattern_code_block, cblock)
+        if not m:
+            errwarn('*** error in code block: ')
+            errwarn('    syntax for a a code block line: `!bc X[cod|pro][postfix]`')
+            errwarn('    where X is a programming language. Offending line:')
+            errwarn('    ' + cblock)
+            _abort()
 
     # Check that !bt-!et directives surround math blocks
     inside_code = False
