@@ -11,7 +11,7 @@ from .misc import option, errwarn, _abort
 # used in sphinx_dir
 import time, shutil, glob, re
 from doconce.misc import system, load_preprocessed_doconce_file
-from .globals import postfix_regex
+from .globals import postfix_regex, code_block_regex
 
 # RunestoneInteractive book counters
 question_counter = 0
@@ -365,7 +365,6 @@ def sphinx_code(filestr, code_blocks, code_block_types,
 
     # Make correct code-block:: language constructions
     legal_pygments_languages = get_legal_pygments_lexers()
-    code_block_regex = r'^!bc\s+%s' + postfix_regex + '\s*\n'
     for key in set(code_block_types):
         if key in envir2pygments:
             if not envir2pygments[key] in legal_pygments_languages:

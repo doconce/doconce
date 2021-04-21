@@ -39,7 +39,7 @@ import re, os, subprocess, sys, subprocess
 from .common import default_movie, plain_exercise, insert_code_blocks, insert_tex_blocks
 from .plaintext import plain_quiz
 from .misc import _abort, errwarn
-from .globals import postfix_regex
+from .globals import postfix_regex, code_block_regex
 
 
 def align2equations(math_text):
@@ -116,7 +116,6 @@ def mwiki_code(filestr, code_blocks, code_block_types,
                       ipy='python', pyshell='python',
                       )
 
-    code_block_regex = r'^!bc\s+%s' + postfix_regex + '\s*\n'
     for key in envir2lang:
         language = envir2lang[key]
         cpattern = re.compile(code_block_regex % key, flags=re.MULTILINE)

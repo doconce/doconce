@@ -147,6 +147,26 @@ def test_string2href():
 
 
 ### functions in doconce.py
+def test_syntax_check():
+    from doconce.doconce import syntax_check
+    # Check that it fails with sys.exit(1) in _abort
+    with pytest.raises(SystemExit) as e:
+        syntax_check('!bc FAIL', 'html')
+    assert e.type == SystemExit
+    assert e.value.code == 1
+    with pytest.raises(SystemExit) as e:
+        syntax_check('!bc pycod -t\n!ec', 'html')
+    assert e.type == SystemExit
+    assert e.value.code == 1
+    # Test working examples
+    assert syntax_check('!bc cod\n!ec', 'html') == None
+    assert syntax_check('!bc txt-h\n!ec', 'format does not matter') == None
+    with open('testdoc.do.txt', 'r') as f:
+        txt = f.read()
+    assert syntax_check(txt,'latex') == None
+    # test language in.ptex2tex.cfg
+    assert syntax_check('!bc verb_commandhid\n!ec', 'latex') == None
+
 def test_text_lines():
     from doconce.doconce import text_lines, inline_tag_subst
     assert text_lines('') == '\n'
@@ -158,9 +178,9 @@ def test_text_lines():
     assert text_lines('</div>') == '</div>\n'
     assert text_lines('  </div>') == '  </div>\n'
     assert text_lines('</table></tr>') == '</table></tr>\n'
-    assert text_lines('a\nb\n!split\nc') == '\n<p>a b</p>\n!split\n<p>c</p>\n'
+    assert text_lines('a\nb\n!split\nc') == '\n<p>a\nb\n</p>\n!split\n<p>c</p>\n'
     assert text_lines('!bpop\n  *\n!epop') == '!bpop\n<p>  *</p>\n!epop\n'
-    assert text_lines('The\n `!bslidecell` \ncmd') == '<p>The</p>\n `!bslidecell` \n<p>cmd</p>\n'
+    assert text_lines('The\n `!bslidecell` \ncmd') == '\n\n<p>The\n `!bslidecell` \n\ncmd\n</p>\n'
     load_modules('the global INLINE_TAGS_SUBST is needed', modules=['html'])
     input = inline_tag_subst('Verbatim `pycod -t`', 'html')
     assert text_lines(input) == '<p>Verbatim <code>pycod -t</code></p>\n'

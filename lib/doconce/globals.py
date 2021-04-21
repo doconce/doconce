@@ -22,9 +22,28 @@ doconce_envirs = ['c', 't',                # verbatim and tex blocks
             'quiz', 'u-',
             ]
 
+## Typesetting Styles: !bc X[cod|pro][postfix]
+# Languages X
+languages = ['cod','pro', #TODO: keep?
+             'f', 'c', 'cpp', 'sh', 'pl', 'm', 'cy', 'rb', 'js',
+             'latex', 'html', 'py', 'sys', 'dat', 'pyshell', 'ipy', 'pysc',
+             'pyopt', 'csv', 'txt', 'xml', 'do'] #TODO: not mentioned in manual
+# Additional envirs in the .ptex2tex.cfg file as of June 2012.
+# Recall that the longest names must come first to be substituted first e.g. bccod before bcc
+languages += ['rst', 'cppans', 'pyans', 'fans', 'bashans', 'swigans', 'uflans', 'sni',
+              'dsni', 'slin', 'rpy', 'plin', 'ver', 'warn',
+              'rule', 'summ', 'ccq', 'cc', 'ccl', 'restructuredtext',
+              '[\w]*?'] #any, non greedy. This is because there are more
 # Postfixes allowed on code blocks e.g. `pycod-e` and regex to catch them
 postfix_code_block = ['hid', '-h', '-e', '-t', 'out']
+pattern_code_block = r'^!bc\s' + \
+          '(?:(?P<language>' + '|'.join(languages) + ')?)' + \
+          '(?P<type>' + '|'.join(['', 'cod', 'pro']) + ')' + \
+          '(?:(?P<postfix>' + '|'.join(postfix_code_block) + ')?)' + \
+          '\s*$'
+# Code block regex pattern to be used with %s, see e.g. pandoc, sphinx, mwiki
 postfix_regex = '(?:' + '|'.join(postfix_code_block) + '|)'
+code_block_regex = r'^!bc\s+%s' + postfix_regex + '\s*\n'
 
 main_content_char = '-'
 

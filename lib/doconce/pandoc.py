@@ -17,7 +17,7 @@ from .common import default_movie, plain_exercise, table_analysis, DEFAULT_ARGLI
      insert_code_blocks, insert_tex_blocks, bibliography, indent_lines, fix_ref_section_chapter
 from .html import html_movie, html_table
 from .misc import option, errwarn
-from .globals import postfix_regex
+from .globals import postfix_regex, code_block_regex
 
 # Mapping of envirs to correct Pandoc verbatim environment
 language2pandoc = dict(
@@ -172,7 +172,6 @@ def pandoc_code(filestr, code_blocks, code_block_types,
 
         # Code blocks apply the ~~~~~ delimiter, with blank lines before
         # and after
-        code_block_regex = r'^!bc\s+%s' + postfix_regex + '\s*\n'
         for key in language2pandoc:
             language = language2pandoc[key]
             if github_md:
