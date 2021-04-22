@@ -281,6 +281,28 @@ def test_latex_code():
     pass
 
 
+def test_doconce_format_ipynb(tdir):
+    # cp files
+    cp_testdoc(dest=tdir)
+    # doconce format ipynb
+    # check that it fails
+    out = subprocess.run('doconce format ipynb fail --no_abort'.split(' '), cwd=tdir)
+    assert out.returncode != 0
+    # check that it works
+    out = subprocess.run('doconce format ipynb testdoc.do.txt --examples_as_exercises --execute'.split(' '),
+                         cwd=tdir,  # NB: main process stays in curr dir, subprocesses in tdir
+                         stdout=subprocess.PIPE,
+                         stderr=subprocess.STDOUT,  # can do this in debugger mode: print(out.stdout)
+                         encoding='utf8')
+    assert out.returncode == 0
+    assert os.path.exists(os.path.join(tdir, 'testdoc.ipynb'))
+    with open('testdoc.ipynb', 'r') as f:
+        ipynb = f.read()
+    # Check that subex are in their own cell
+    pos_subex1 = ipynb.find('State some problem.')
+    pos_subex2 = ipynb.find('State some other problem.')
+    assert ipynb[pos_subex1:pos_subex2].find('"source":') > 0
+
 def test_doconce_jupyterbook(tdir):
     cp_testdoc(dest=tdir)
     # doconce jupyterbook

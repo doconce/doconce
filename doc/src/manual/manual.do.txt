@@ -2622,7 +2622,7 @@ name of the result file(s) (if the answer to the exercise is to be handed
 in) and a solution file. The DocOnce code looks like this:
 
 !bc do
-===== Project: Determine the Distance to the Moon =====
+===== Exercise: Determine the Distance to the Moon =====
 label{proj:moondist}
 file=earth2moon.pdf
 solution=eart2moon_sol.do.txt
@@ -2630,11 +2630,22 @@ solution=eart2moon_sol.do.txt
 The running text of the project goes here....
 
 !ec
-DocOnce will recognize the exercise, problem, project, or example *title*,
+DocOnce will recognize the exercise, example, problem or project  *title*,
 the optional *label*, the optional *name of the answer file* (`file=`), the
 optional name of the *solution* file (`solution=`),
-and the *running text*. In addition,
-one can add subexercise environments, starting with `!bsubex` and ending
+and the *running text*. The `file=` or `files=` command accepts a comma-separated list of filenames or file basenames.
+
+|-----------------------------------------------------|
+| Commands            | Behavior                      |
+|--l----------------------------l---------------------|
+| === Exercise/Example/..: .. === | Header with Exercise, Problem, Project, or Example title |
+| file=               | Answer file                   |
+| files=              | Answer files, comma separated |
+| solution=           | Solution file                 |
+|-----------------------------------------------------|
+
+
+In addition, one can add subexercise environments, starting with `!bsubex` and ending
 with `!esubex`, on the beginning of separate lines.
 Within the main exercise or
 a subexercise, three other environments are possible: (full) solution,
@@ -2643,9 +2654,16 @@ directives `!bans`, `!eans`, `!bsol`, `!esol`, `!bhint`, `!ehint`, which
 all must appear on the beginning of a separate line (just as
 `!bc` and `!ec`).
 
-The `file=` or `files=` command accepts a comma-separated list of filenames.
-Sometimes it is appropriate to skip the file extension and just give
-a filestem, as in `file=earth2moon`.
+
+|-----------------------------------------------------|
+| Begin-end directive | Behavior                      |
+|-----l--------------------l--------------------------|
+| |bsubex - |esubex   | Subexercise                   |
+| |bans - |eans       | Answer                        |
+| |bsol - |esol       | Solution                      |
+| |bhint - |ehint     | Hint                          |
+|-----------------------------------------------------|
+
 
 === Solutions ===
 idx{`--without_answers`}
@@ -2666,7 +2684,34 @@ examples.
 The command line options `--answers_at_end` and `--solutions_at_end`
 write all answers and solutions to exercises to a separate section in the end of the document, respectively. These can be combinee with `--without_answers` and `--without_solutions` to remove answers and solutions from the main text.
 
+|---------------------------------------------------------------|
+| Command option        | Behavior                              |
+|--l-------------------------------------l----------------------|
+| --without\_answers    | Turn off output of answers            |
+| --without\_solutions  | Turn off output of solutions          |
+| --answers\_at\_end    | Answers in the end of the document    |
+| --solutions\_at\_end  | Solutions in the end of the document  |
+|---------------------------------------------------------------|
+
+
 The commands `!anshide` and `!solhide` can be used to hide from the main text answers and solutions, respectively, until the `!ansoff` and `!soloff` commands are encountered. Similarly, the `!ansdocend` and `!soldocend` commands move answers and solutions to the end of the book. 
+
+|-------------------------------------------------------------|
+| Command             | Behavior                              |
+|-----------l-------------------------l-----------------------|
+| !anshide            | Hide answers until !solhide           |
+| !solhide            | Hide solutions until !solhide         |
+| !ansoff             | Restore answers' visibility           |
+| !soloff             | Restore solutions visibility          |
+| !ansdocend          | Answers in the end of the document    |
+| !soldocend          | Answers in the end of the document    |
+|-------------------------------------------------------------|
+
+!bwarning Avoid !split inside exercises
+`!split` and new (sub)sections mark the end of an exercise. 
+Therefore you should not place a `!split` inside an answer, solution, subexercise or 
+DocOnce might throw an error.
+!ewarning
 
 !bwarning Avoid headings in solutions
 Headings in solutions in exercises will
@@ -3393,8 +3438,8 @@ Here is a plain code block:
 
 !bc do
 |bc dat
-% Could be a comment line in some file
-% And some data
+% Comment line in some file
+% Some data:
 1.003 1.025
 2.204 1.730
 3.001 1.198
@@ -3403,8 +3448,8 @@ Here is a plain code block:
 which gets rendered as
 
 !bc dat
-% Could be a comment line in some file
-% And some data
+% Comment line in some file
+% Some data:
 1.003 1.025
 2.204 1.730
 3.001 1.198
@@ -3418,64 +3463,120 @@ below or equal to 67 characters.
 
 === Typesetting Styles ===
 
-There may be an argument after the `!bc` tag to specify a certain
-environment (in LaTeX, HTML, or Sphinx) for
-typesetting the verbatim code. For instance, `!bc dat` corresponds to
-the data file environment and `!bc cod` is typically used for a code
-snippet. There are some predefined environments explained below. If
-there is no argument specifying the environment, one assumes some
-plain verbatim typesetting (usually just the most plain verbatim
-style in LaTeX or HTML, or `python` in Sphinx,
-or if `ptex2tex` is used, the environment
-corresponds to `ccq` which is defined in the config file `.ptex2tex.cfg`).
 
-By default, `pro` is used for complete programs, `cod` is for a code
-snippet. The syntax `Xcod` and `Xpro` imply a program or snippet in
-computer language `X`, where `X` can be `f` for Fortran, `c` for C,
-`cpp` for C++, `sh` for Unix shells, `pl` for Perl, `m` for Matlab,
-`cy` for Cython, `rb` for Ruby, `js` for JavaScript, `latex` for LaTeX,
-`html` for HTML, and `py` for Python.  With no `X` prefix, `cod` and
-`pro` implies Python code. The argument `sys` after `!bc` means a
-verbatim environment suitable for operating system commands (and
-output).  As mentioned, `dat` is for a data file or print out,
-`pyshell` is for plain interactive Python shell sessions, `ipy`
-for interactive IPython sessions, and `pysc` turns on interactive
-Python code in executable HTML windows (using a SageMathCell server)
-while being equivalent to `pycod` in other formats.
+The `!bc` tag takes arguments with the following syntax: 
 
-Notebooks and other executable code snippets in HTML may need some
-initializing code before a snippet works, and if such code is
-not intended for being shown in the text, one can use the `Xhid`
-argument to `!bc`, where `hid` indicates a hidden snippet. It becomes
-executable in live code environments but is otherwise not shown.
+!bc do
+|bc LANG[cod|pro][postfix]
+!ec
+
+
+The first argument `LANG` can be one of the predefined environments explained in the table below or a custom one defined in the config file `.ptex2tex.cfg`. 
+
+The second argument is optional can be  either `cod` or `pro`. By default, `pro` is used for complete programs, `cod` is for a code snippet. 
+
+|---------------------------------------|
+| LANG    | Language                    |
+|----l------------l---------------------|
+|  py     | python code                 |
+|  sys    | OS commands                 |
+|  dat    | data file/print out         |
+|  sh     | Unix shell                  |
+|  c      | C                           |
+|  cpp    | C++                         |
+|  pl     | Perl                        |
+|  m      | Matlab                      |
+|  f      | fortran                     |
+|  js     | Javascript                  |
+|  latex  | LaTeX                       |
+|  html   | HTML                        |
+|  cy     | Cython                      |
+|  rb     | Ruby                        |
+|  pyshell| interactive Python shell    |
+|  ipy    | interactive IPython session |
+|  pysc   | interactive Python SageMathCell in the html format |
+|---------------------------------------------------------|
+
+The third `posfix` argument modifies the code block visibility or code execution when using the `--execute` option (see the next paragraphs).
+
+
+|--------------------------------------------------|
+| Postfix | Behavior                | Example      |
+|--l--------l----------------------------l---------|
+| -t  | Display as text             | !bc py-t     |
+| out | Code output                 | !bc pyout    |
+| hid | Hide code                   | !bc pycodhid |
+| -e  | Hide code (also in ipynb)   | !bc pycod-t  |
+| -h  | Toggle visibility in html   | !bc pycod-h  |
+|--------------------------------------------------|
 
 idx{`--latex_code_style=`}
 
 All these definitions of the arguments after `!bc` can be redefined
 in command-line arguments for the `--latex_code_style=` option,
 the `.ptex2tex.cfg` configuration file for `ptex2tex`, and in
-the `sphinx code-blocks` comments for Sphinx, see below.
-
-idx {`-t` code envir postfix}
+the `sphinx code-blocks` comments for Sphinx (see below).
 
 === Executable and Non-Executable Code ===
 
-The `ipynb` and `matlabnb` formats create notebooks where computer
-code can be executed. Sometimes one wants to show code that is *not*
-to be executed, but just shown as a text block. Any code environment
-with a postfix `-t` indicates that the code is not to be executed, only
-displayed. For example, `!bc pycod-t` is a Python snippet not intended
-for execution. All other formats than the notebook formats ignore the
-`-t` postfix.
+The `ipynb` and `matlabnb` formats and `doconce jupyterbook` create notebooks where computer code can be executed by the end user. The `--execute` option allows the compiler to execute all code during compilation, for example: 
 
-idx {`-h` code envir postfix}
+!bc do
+doconce format ipynb mydoc.do.txt --execute
+!ec
 
-=== Hiding code blocks in HTML ===
+The postfix arguments override the effect of `--execute` at the code block level. 
+The `-t` postfix shows code rendered as text, i.e. code that is only meant to be displayed. 
+Thereafter, the `out` postfix can be used to display code output as text. This combination is useful, for example, to display as text a code snippet followed by an error:
 
-Code blocks in HTML can be visible or not by clicking on an associated
-button _Show/hide code_. The behavior is triggered by a postfix `-h` to
-the code environment, e.g., `!bc pycod-h` or `!bc pro-h`.
-The `-h` postfix has no impact on other output formats.
+!bc do
+|bc pycod-t
+10 / 0
+|ec
+|bc pycod-out
+ZeroDivisionError: division by zero
+|ec
+!ec
+
+All formats other than ipynb, matlabnb formats ignore the `-t` postfix.
+
+=== Hiding code blocks ===
+
+Notebooks and other executable code snippets in HTML or ipynb may need some
+initializing code before a snippet works. 
+The `hid`, `-e`, and `-h` postfixes can be used to hide such code, but still execute it using the `--execute` option in live code environments. 
+
+The `-h` postfix hides a code block in all formats except ipynb: 
+
+!bc do
+|bc pyhid
+import sys, os
+|ec
+!ec
+
+This behavior is usually not desired in e.g. the ipynb format, as it might cause the code to fail. The `-e` postfix is a stronger version of `-h` and it hides code for all formats. This can be used, for example, to execute system operations that do not need to be visible to the end user.
+
+The `-h` postfix is used only in the html format. 
+This postfix shows a Show/hide code button below the code block, 
+allowing a user to toggle the code visibility. 
+This can be used, for example, to initially hide the answer to an exercise:
+
+!bc do
+|bsubex
+Test 1: Write a for-statement in Python to print out each element in a list `l`.
+|esubex
+
+|bans
+Click to see the answer:
+
+|bc pycod-h
+for el in l:
+  print(el)
+|ec
+
+|eans
+!ec
+
 
 idx{`sphinx code-blocks:`}
 
@@ -3580,9 +3681,9 @@ copied into a verbatim block, typset in a `!bc Xpro` environment, where
 becomes `!bc fpro` and will typically lead to some Fortran-style
 formatting).  The
 second line has a `fromto:` directive, which implies copying code
-between two lines in the code, typset within a !`bc Xcod`
-environment (again, `X` is the filename extension, implying the
-type of file). Note that the `pro` and `cod` arguments are only used for LaTeX
+between two lines in the code, typset within a !`bc LANGcod`
+environment (again, `LANG` is the programming language). 
+Note that the `pro` and `cod` arguments are only used for LaTeX
 and Sphinx output, all other formats will have the code typeset within
 a plain `!bc` environment.) Two regular expressions, separated by the
 `@` sign, define the ``from'' and ``to'' lines.  The ``from'' line is

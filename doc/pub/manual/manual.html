@@ -239,10 +239,7 @@ in.collapse+a.btn.showdetails:before { content:'Hide details'; }
                3,
                None,
                'executable-and-non-executable-code'),
-              ('Hiding code blocks in HTML',
-               3,
-               None,
-               'hiding-code-blocks-in-html'),
+              ('Hiding code blocks', 3, None, 'hiding-code-blocks'),
               ('Customizing Code Environments Types for Sphinx',
                3,
                None,
@@ -737,7 +734,7 @@ $$
      <!-- navigation toc: --> <li><a href="#sec:verbatim:blocks" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Blocks of Verbatim Computer Code</a></li>
      <!-- navigation toc: --> <li><a href="#typesetting-styles" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Typesetting Styles</a></li>
      <!-- navigation toc: --> <li><a href="#executable-and-non-executable-code" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Executable and Non-Executable Code</a></li>
-     <!-- navigation toc: --> <li><a href="#hiding-code-blocks-in-html" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hiding code blocks in HTML</a></li>
+     <!-- navigation toc: --> <li><a href="#hiding-code-blocks" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hiding code blocks</a></li>
      <!-- navigation toc: --> <li><a href="#customizing-code-environments-types-for-sphinx" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Customizing Code Environments Types for Sphinx</a></li>
      <!-- navigation toc: --> <li><a href="#examples" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Examples</a></li>
      <!-- navigation toc: --> <li><a href="#copying-code-from-source-files" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copying Code from Source Files</a></li>
@@ -926,7 +923,7 @@ $$
 </center>
 <br>
 <center>
-<h4>Apr 14, 2021</h4>
+<h4>Apr 22, 2021</h4>
 </center> <!-- date -->
 <br>
 
@@ -7664,7 +7661,7 @@ in) and a solution file. The DocOnce code looks like this:
     <div class="inner_cell">
       <div class="input_area">
         <div class="highlight" style="background: #f8f8f8">
-  <pre style="line-height: 125%;"><span style="color: #000080; font-weight: bold">===== Project: Determine the Distance to the Moon =====</span>
+  <pre style="line-height: 125%;"><span style="color: #000080; font-weight: bold">===== Exercise: Determine the Distance to the Moon =====</span>
 <span style="color: #008000">label{proj:moondist}</span>
 file=earth2moon.pdf
 solution=eart2moon_sol.do.txt
@@ -7685,11 +7682,29 @@ The running text of the project goes here....
   </div>
 </div>
 
-<p>DocOnce will recognize the exercise, problem, project, or example <em>title</em>,
+<p>DocOnce will recognize the exercise, example, problem or project  <em>title</em>,
 the optional <em>label</em>, the optional <em>name of the answer file</em> (<code>file=</code>), the
 optional name of the <em>solution</em> file (<code>solution=</code>),
-and the <em>running text</em>. In addition,
-one can add subexercise environments, starting with <code>!bsubex</code> and ending
+and the <em>running text</em>. The <code>file=</code> or <code>files=</code> command accepts a comma-separated list of filenames or file basenames.
+</p>
+
+<div class="row">
+  <div class="col-xs-10">
+    <table class="table table-striped table-hover table-condensed">
+<thead>
+<tr><td align="center"><b>            Commands           </b></td> <td align="center"><b>                        Behavior                        </b></td> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   === Exercise/Example/..: .. ===    </td> <td align="left">   Header with Exercise, Problem, Project, or Example title    </td> </tr>
+<tr><td align="left">   file=                              </td> <td align="left">   Answer file                                                 </td> </tr>
+<tr><td align="left">   files=                             </td> <td align="left">   Answer files, comma separated                               </td> </tr>
+<tr><td align="left">   solution=                          </td> <td align="left">   Solution file                                               </td> </tr>
+</tbody>
+    </table>
+  </div> <!-- col-xs-10 -->
+</div> <!-- cell row -->
+
+<p>In addition, one can add subexercise environments, starting with <code>!bsubex</code> and ending
 with <code>!esubex</code>, on the beginning of separate lines.
 Within the main exercise or
 a subexercise, three other environments are possible: (full) solution,
@@ -7699,10 +7714,21 @@ all must appear on the beginning of a separate line (just as
 <code>!bc</code> and <code>!ec</code>).
 </p>
 
-<p>The <code>file=</code> or <code>files=</code> command accepts a comma-separated list of filenames.
-Sometimes it is appropriate to skip the file extension and just give
-a filestem, as in <code>file=earth2moon</code>.
-</p>
+<div class="row">
+  <div class="col-xs-3">
+    <table class="table table-striped table-hover table-condensed">
+<thead>
+<tr><td align="center"><b>Begin-end directive</b></td> <td align="center"><b>  Behavior </b></td> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   !bsubex - !esubex      </td> <td align="left">   Subexercise    </td> </tr>
+<tr><td align="left">   !bans - !eans          </td> <td align="left">   Answer         </td> </tr>
+<tr><td align="left">   !bsol - !esol          </td> <td align="left">   Solution       </td> </tr>
+<tr><td align="left">   !bhint - !ehint        </td> <td align="left">   Hint           </td> </tr>
+</tbody>
+    </table>
+  </div> <!-- col-xs-3 -->
+</div> <!-- cell row -->
 <h3 id="solutions" class="anchor">Solutions </h3>
 
 <p>The solution environment that can be created with <code>!bsol</code> and <code>!esol</code> allows inline
@@ -7720,7 +7746,49 @@ The command line options <code>--answers_at_end</code> and <code>--solutions_at_
 write all answers and solutions to exercises to a separate section in the end of the document, respectively. These can be combinee with <code>--without_answers</code> and <code>--without_solutions</code> to remove answers and solutions from the main text.
 </p>
 
+<div class="row">
+  <div class="col-xs-6">
+    <table class="table table-striped table-hover table-condensed">
+<thead>
+<tr><td align="center"><b>   Command option   </b></td> <td align="center"><b>              Behavior              </b></td> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   --without\_answers      </td> <td align="left">   Turn off output of answers              </td> </tr>
+<tr><td align="left">   --without\_solutions    </td> <td align="left">   Turn off output of solutions            </td> </tr>
+<tr><td align="left">   --answers\_at\_end      </td> <td align="left">   Answers in the end of the document      </td> </tr>
+<tr><td align="left">   --solutions\_at\_end    </td> <td align="left">   Solutions in the end of the document    </td> </tr>
+</tbody>
+    </table>
+  </div> <!-- col-xs-6 -->
+</div> <!-- cell row -->
+
 <p>The commands <code>!anshide</code> and <code>!solhide</code> can be used to hide from the main text answers and solutions, respectively, until the <code>!ansoff</code> and <code>!soloff</code> commands are encountered. Similarly, the <code>!ansdocend</code> and <code>!soldocend</code> commands move answers and solutions to the end of the book. </p>
+
+<div class="row">
+  <div class="col-xs-5">
+    <table class="table table-striped table-hover table-condensed">
+<thead>
+<tr><td align="center"><b> Command  </b></td> <td align="center"><b>             Behavior             </b></td> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   !anshide      </td> <td align="left">   Hide answers until !solhide           </td> </tr>
+<tr><td align="left">   !solhide      </td> <td align="left">   Hide solutions until !solhide         </td> </tr>
+<tr><td align="left">   !ansoff       </td> <td align="left">   Restore answers' visibility           </td> </tr>
+<tr><td align="left">   !soloff       </td> <td align="left">   Restore solutions visibility          </td> </tr>
+<tr><td align="left">   !ansdocend    </td> <td align="left">   Answers in the end of the document    </td> </tr>
+<tr><td align="left">   !soldocend    </td> <td align="left">   Answers in the end of the document    </td> </tr>
+</tbody>
+    </table>
+  </div> <!-- col-xs-5 -->
+</div> <!-- cell row -->
+
+<div class="alert alert-block alert-danger alert-text-normal"><b>Avoid !split inside exercises</b>
+<p><code>!split</code> and new (sub)sections mark the end of an exercise. 
+Therefore you should not place a <code>!split</code> inside an answer, solution, subexercise or 
+DocOnce might throw an error.
+</p>
+</div>
+
 
 <div class="alert alert-block alert-danger alert-text-normal"><b>Avoid headings in solutions</b>
 <p>Headings in solutions in exercises will
@@ -8501,6 +8569,7 @@ mathematics and computer code.
 
 <p>Use the most appropriate tools to answer the various subexercises.</p>
 
+<!-- --- begin subexercise --- -->
 <p>
 <b>a)</b>
 What is 1+1?
@@ -8549,6 +8618,9 @@ What is 1+1?
 
 <!-- --- end answer of exercise --- -->
 
+<!-- --- end subexercise --- -->
+
+<!-- --- begin subexercise --- -->
 <p>
 <b>b)</b>
 What is the integral of \( e^{-ax}\sin(wx) \)?
@@ -8633,6 +8705,9 @@ w<span style="color: #666666">*</span>cos(w<span style="color: #666666">*</span>
 
 <!-- --- end solution of exercise --- -->
 
+<!-- --- end subexercise --- -->
+
+<!-- --- begin subexercise --- -->
 <p>
 <b>c)</b>
 Compute \( \int_{-\infty}^1 e^{-x^4}dx \).
@@ -8687,6 +8762,9 @@ gamma(<span style="color: #666666">1/4</span>)<span style="color: #666666">/4</s
 
 <!-- --- end solution of exercise --- -->
 
+<!-- --- end subexercise --- -->
+
+<!-- --- begin subexercise --- -->
 <p>
 <b>d)</b>
 </p>
@@ -8806,6 +8884,8 @@ e^{-\frac{(t-\mu)^2}{2\sigma}}dt.$$
 <!-- end quiz -->
 
 
+<!-- --- end subexercise --- -->
+
 <p>Filenames: <code>integrals.py</code>, <code>integrals.pdf</code>.</p>
 
 <!-- Closing remarks for this Exercise -->
@@ -8841,8 +8921,8 @@ directly after a section/paragraph heading or a table.
       <div class="input_area">
         <div class="highlight" style="background: #f8f8f8">
   <pre style="line-height: 125%;">!bc dat
-% Could be a comment line in some file
-% And some data
+% Comment line in some file
+% Some data:
 1.003 1.025
 2.204 1.730
 3.001 1.198
@@ -8871,8 +8951,8 @@ directly after a section/paragraph heading or a table.
     <div class="inner_cell">
       <div class="input_area">
         <div class="highlight" style="background: #f8f8f8">
-  <pre style="line-height: 125%;">% Could be a comment line in some file
-% And some data
+  <pre style="line-height: 125%;">% Comment line in some file
+% Some data:
 1.003 1.025
 2.204 1.730
 3.001 1.198
@@ -8901,66 +8981,225 @@ below or equal to 67 characters.
 
 <h3 id="typesetting-styles" class="anchor">Typesetting Styles </h3>
 
-<p>There may be an argument after the <code>!bc</code> tag to specify a certain
-environment (in LaTeX, HTML, or Sphinx) for
-typesetting the verbatim code. For instance, <code>!bc dat</code> corresponds to
-the data file environment and <code>!bc cod</code> is typically used for a code
-snippet. There are some predefined environments explained below. If
-there is no argument specifying the environment, one assumes some
-plain verbatim typesetting (usually just the most plain verbatim
-style in LaTeX or HTML, or <code>python</code> in Sphinx,
-or if <code>ptex2tex</code> is used, the environment
-corresponds to <code>ccq</code> which is defined in the config file <code>.ptex2tex.cfg</code>).
-</p>
+<p>The <code>!bc</code> tag takes arguments with the following syntax: </p>
 
-<p>By default, <code>pro</code> is used for complete programs, <code>cod</code> is for a code
-snippet. The syntax <code>Xcod</code> and <code>Xpro</code> imply a program or snippet in
-computer language <code>X</code>, where <code>X</code> can be <code>f</code> for Fortran, <code>c</code> for C,
-<code>cpp</code> for C++, <code>sh</code> for Unix shells, <code>pl</code> for Perl, <code>m</code> for Matlab,
-<code>cy</code> for Cython, <code>r</code> for Ruby, <code>js</code> for JavaScript, <code>latex</code> for LaTeX,
-<code>html</code> for HTML, and <code>py</code> for Python.  With no <code>X</code> prefix, <code>cod</code> and
-<code>pro</code> implies Python code. The argument <code>sys</code> after <code>!bc</code> means a
-verbatim environment suitable for operating system commands (and
-output).  As mentioned, <code>dat</code> is for a data file or print out,
-<code>pyshell</code> is for plain interactive Python shell sessions, <code>ipy</code>
-for interactive IPython sessions, and <code>pysc</code> turns on interactive
-Python code in executable HTML windows (using a SageMathCell server)
-while being equivalent to <code>pycod</code> in other formats.
-</p>
 
-<p>Notebooks and other executable code snippets in HTML may need some
-initializing code before a snippet works, and if such code is
-not intended for being shown in the text, one can use the <code>Xhid</code>
-argument to <code>!bc</code>, where <code>hid</code> indicates a hidden snippet. It becomes
-executable in live code environments but is otherwise not shown.
-</p>
+<!-- code=doconce (!bc do) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">!bc LANG[cod|pro][postfix]
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p>The first argument <code>LANG</code> can be one of the predefined environments explained in the table below or a custom one defined in the config file <code>.ptex2tex.cfg</code>. </p>
+
+<p>The second argument is optional can be  either <code>cod</code> or <code>pro</code>. By default, <code>pro</code> is used for complete programs, <code>cod</code> is for a code snippet. </p>
+
+<div class="row">
+  <div class="col-xs-6">
+    <table class="table table-striped table-hover table-condensed">
+<thead>
+<tr><td align="center"><b>  LANG </b></td> <td align="center"><b>                     Language                     </b></td> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   py         </td> <td align="left">   python code                                           </td> </tr>
+<tr><td align="left">   sys        </td> <td align="left">   OS commands                                           </td> </tr>
+<tr><td align="left">   dat        </td> <td align="left">   data file/print out                                   </td> </tr>
+<tr><td align="left">   sh         </td> <td align="left">   Unix shell                                            </td> </tr>
+<tr><td align="left">   c          </td> <td align="left">   C                                                     </td> </tr>
+<tr><td align="left">   cpp        </td> <td align="left">   C++                                                   </td> </tr>
+<tr><td align="left">   pl         </td> <td align="left">   Perl                                                  </td> </tr>
+<tr><td align="left">   m          </td> <td align="left">   Matlab                                                </td> </tr>
+<tr><td align="left">   f          </td> <td align="left">   fortran                                               </td> </tr>
+<tr><td align="left">   js         </td> <td align="left">   Javascript                                            </td> </tr>
+<tr><td align="left">   latex      </td> <td align="left">   LaTeX                                                 </td> </tr>
+<tr><td align="left">   html       </td> <td align="left">   HTML                                                  </td> </tr>
+<tr><td align="left">   cy         </td> <td align="left">   Cython                                                </td> </tr>
+<tr><td align="left">   rb         </td> <td align="left">   Ruby                                                  </td> </tr>
+<tr><td align="left">   pyshell    </td> <td align="left">   interactive Python shell                              </td> </tr>
+<tr><td align="left">   ipy        </td> <td align="left">   interactive IPython session                           </td> </tr>
+<tr><td align="left">   pysc       </td> <td align="left">   interactive Python SageMathCell in the html format    </td> </tr>
+</tbody>
+    </table>
+  </div> <!-- col-xs-6 -->
+</div> <!-- cell row -->
+
+<p>The third <code>posfix</code> argument modifies the code block visibility or code execution when using the <code>--execute</code> option (see the next paragraphs).</p>
+
+<div class="row">
+  <div class="col-xs-5">
+    <table class="table table-striped table-hover table-condensed">
+<thead>
+<tr><td align="center"><b>Postfix</b></td> <td align="center"><b>         Behavior        </b></td> <td align="center"><b>  Example   </b></td> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   -t         </td> <td align="left">   Display as text              </td> <td align="left">   !bc py-t        </td> </tr>
+<tr><td align="left">   out        </td> <td align="left">   Code output                  </td> <td align="left">   !bc pyout       </td> </tr>
+<tr><td align="left">   hid        </td> <td align="left">   Hide code                    </td> <td align="left">   !bc pycodhid    </td> </tr>
+<tr><td align="left">   -e         </td> <td align="left">   Hide code (also in ipynb)    </td> <td align="left">   !bc pycod-t     </td> </tr>
+<tr><td align="left">   -h         </td> <td align="left">   Toggle visibility in html    </td> <td align="left">   !bc pycod-h     </td> </tr>
+</tbody>
+    </table>
+  </div> <!-- col-xs-5 -->
+</div> <!-- cell row -->
 
 <p>All these definitions of the arguments after <code>!bc</code> can be redefined
 in command-line arguments for the <code>--latex_code_style=</code> option,
 the <code>.ptex2tex.cfg</code> configuration file for <code>ptex2tex</code>, and in
-the <code>sphinx code-blocks</code> comments for Sphinx, see below.
+the <code>sphinx code-blocks</code> comments for Sphinx (see below).
 </p>
-
-<p>idx {<code>-t</code> code envir postfix}</p>
 <h3 id="executable-and-non-executable-code" class="anchor">Executable and Non-Executable Code </h3>
 
-<p>The <code>ipynb</code> and <code>matlabnb</code> formats create notebooks where computer
-code can be executed. Sometimes one wants to show code that is <em>not</em>
-to be executed, but just shown as a text block. Any code environment
-with a postfix <code>-t</code> indicates that the code is not to be executed, only
-displayed. For example, <code>!bc pycod-t</code> is a Python snippet not intended
-for execution. All other formats than the notebook formats ignore the
-<code>-t</code> postfix.
+<p>The <code>ipynb</code> and <code>matlabnb</code> formats and <code>doconce jupyterbook</code> create notebooks where computer code can be executed by the end user. The <code>--execute</code> option allows the compiler to execute all code during compilation, for example: </p>
+
+
+<!-- code=doconce (!bc do) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">doconce format ipynb mydoc.do.txt --execute
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p>The postfix arguments override the effect of <code>--execute</code> at the code block level. 
+The <code>-t</code> postfix shows code rendered as text, i.e. code that is only meant to be displayed. 
+Thereafter, the <code>out</code> postfix can be used to display code output as text. This combination is useful, for example, to display as text a code snippet followed by an error:
 </p>
 
-<p>idx {<code>-h</code> code envir postfix}</p>
-<h3 id="hiding-code-blocks-in-html" class="anchor">Hiding code blocks in HTML </h3>
 
-<p>Code blocks in HTML can be visible or not by clicking on an associated
-button <b>Show/hide code</b>. The behavior is triggered by a postfix <code>-h</code> to
-the code environment, e.g., <code>!bc pycod-h</code> or <code>!bc pro-h</code>.
-The <code>-h</code> postfix has no impact on other output formats.
+<!-- code=doconce (!bc do) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">!bc pycod-t
+10 / 0
+!ec
+!bc pycod-out
+ZeroDivisionError: division by zero
+!ec
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p>All formats other than ipynb, matlabnb formats ignore the <code>-t</code> postfix.</p>
+<h3 id="hiding-code-blocks" class="anchor">Hiding code blocks </h3>
+
+<p>Notebooks and other executable code snippets in HTML or ipynb may need some
+initializing code before a snippet works. 
+The <code>hid</code>, <code>-e</code>, and <code>-h</code> postfixes can be used to hide such code, but still execute it using the <code>--execute</code> option in live code environments. 
 </p>
+
+<p>The <code>-h</code> postfix hides a code block in all formats except ipynb: </p>
+
+
+<!-- code=doconce (!bc do) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">!bc pyhid
+import sys, os
+!ec
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p>This behavior is usually not desired in e.g. the ipynb format, as it might cause the code to fail. The <code>-e</code> postfix is a stronger version of <code>-h</code> and it hides code for all formats. This can be used, for example, to execute system operations that do not need to be visible to the end user.</p>
+
+<p>The <code>-h</code> postfix is used only in the html format. 
+This postfix shows a Show/hide code button below the code block, 
+allowing a user to toggle the code visibility. 
+This can be used, for example, to initially hide the answer to an exercise:
+</p>
+
+
+<!-- code=doconce (!bc do) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;">!bsubex
+Test 1: Write a for-statement in Python to print out each element in a list `l`.
+!esubex
+
+!bans
+Click to see the answer:
+
+!bc pycod-h
+for el in l:
+  print(el)
+!ec
+
+!eans
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <h3 id="customizing-code-environments-types-for-sphinx" class="anchor">Customizing Code Environments Types for Sphinx </h3>
 
 <p>The argument after <code>!bc</code> can in case of Sphinx output be mapped to
@@ -9185,9 +9424,9 @@ copied into a verbatim block, typset in a <code>!bc Xpro</code> environment, whe
 becomes <code>!bc fpro</code> and will typically lead to some Fortran-style
 formatting).  The
 second line has a <code>fromto:</code> directive, which implies copying code
-between two lines in the code, typset within a !<code>bc Xcod</code>
-environment (again, <code>X</code> is the filename extension, implying the
-type of file). Note that the <code>pro</code> and <code>cod</code> arguments are only used for LaTeX
+between two lines in the code, typset within a !<code>bc LANGcod</code>
+environment (again, <code>LANG</code> is the programming language). 
+Note that the <code>pro</code> and <code>cod</code> arguments are only used for LaTeX
 and Sphinx output, all other formats will have the code typeset within
 a plain <code>!bc</code> environment.) Two regular expressions, separated by the
 <code>@</code> sign, define the &quot;from&quot; and &quot;to&quot; lines.  The &quot;from&quot; line is
@@ -15830,7 +16069,7 @@ import sys
 
 <p>Some code blocks may just be there for explanation and are not
 meant to be executed. These can be marked by <code>!bc pycod-t</code> (or
-<code>!bc Xcod-t</code> for any supported programming language <code>X</code>):
+<code>!bc LANGcod-t</code> for any supported programming language <code>LANG</code>):
 </p>
 
 

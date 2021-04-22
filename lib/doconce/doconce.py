@@ -2324,6 +2324,12 @@ def typeset_tables(filestr, format):
     # doconce csv2table, which reads a .csv file and outputs
     # a doconce formatted table
 
+    # Replace environments starting with | (instead of !) by ! in tables
+    # (for illustration of doconce syntax inside !bc/!ec directives).
+    if '|b' in filestr or '|e' in filestr:
+        for envir in globals.doconce_envirs:
+            filestr = filestr.replace('|b' + envir, '!b' + envir)
+            filestr = filestr.replace('|e' + envir, '!e' + envir)
     horizontal_rule_pattern = r'^\|[\-lrcX]+\|'
     lines = filestr.splitlines()
     # Fix: add blank line if document ends with a table (otherwise we
@@ -4352,8 +4358,8 @@ def file2file(in_filename, format, basename):
         html_output = option('html_output=', '')
         if html_output:
             if '/' in html_output:
-                errwarn('*** error: --html_output=%s cannot specify another directory\n    %s' %
-                        (html_output, os.path.dirname(html_output)))
+                errwarn('*** error: --html_output=%s cannot specify another directory\n')
+                errwarn('    %s' % (html_output, os.path.dirname(html_output)))
                 _abort()
             basename = html_output
             if basename.endswith('.html'):
@@ -5484,8 +5490,8 @@ def doconce2format(filestr, format):
         filestr = filestr.replace('label\{', 'label{')
         filestr = filestr.replace('ref\{', 'ref{')
 
-    # Next step: replace environments starting with | (instead of !)
-    # by ! (for illustration of doconce syntax inside !bc/!ec directives).
+    # Next step: replace environments starting with | (instead of !) by !
+    # (for illustration of doconce syntax inside !bc/!ec directives).
     # Enough to consider |bc, |ec, |bt, and |et since all other environments
     # are processed when code and tex blocks are removed from the document.
     if '|b' in filestr or '|e' in filestr:
