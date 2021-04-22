@@ -188,7 +188,7 @@
 <li><a class="reference internal" href="#blocks-of-verbatim-computer-code">Blocks of Verbatim Computer Code</a><ul>
 <li><a class="reference internal" href="#typesetting-styles">Typesetting Styles</a></li>
 <li><a class="reference internal" href="#executable-and-non-executable-code">Executable and Non-Executable Code</a></li>
-<li><a class="reference internal" href="#hiding-code-blocks-in-html">Hiding code blocks in HTML</a></li>
+<li><a class="reference internal" href="#hiding-code-blocks">Hiding code blocks</a></li>
 <li><a class="reference internal" href="#customizing-code-environments-types-for-sphinx">Customizing Code Environments Types for Sphinx</a></li>
 <li><a class="reference internal" href="#examples">Examples</a></li>
 <li><a class="reference internal" href="#copying-code-from-source-files">Copying Code from Source Files</a></li>
@@ -457,7 +457,7 @@
 <dd class="field-odd"><p>Hans Petter Langtangen, Kristian Gregorius Hustad</p>
 </dd>
 <dt class="field-even">Date</dt>
-<dd class="field-even"><p>Apr 14, 2021</p>
+<dd class="field-even"><p>Apr 22, 2021</p>
 </dd>
 </dl>
 <div class="admonition warning">
@@ -4093,7 +4093,7 @@ by a colon and a title of the exercise, problem, or project.</p>
 <p>The next line(s) may contain a label and specification of the
 name of the result file(s) (if the answer to the exercise is to be handed
 in) and a solution file. The DocOnce code looks like this:</p>
-<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="gh">===== Project: Determine the Distance to the Moon =====</span>
+<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="gh">===== Exercise: Determine the Distance to the Moon =====</span>
 <span class="nb">label{proj:moondist}</span>
 file=earth2moon.pdf
 solution=eart2moon_sol.do.txt
@@ -4101,11 +4101,36 @@ solution=eart2moon_sol.do.txt
 The running text of the project goes here....
 </pre></div>
 </div>
-<p>DocOnce will recognize the exercise, problem, project, or example <em>title</em>,
+<p>DocOnce will recognize the exercise, example, problem or project  <em>title</em>,
 the optional <em>label</em>, the optional <em>name of the answer file</em> (<code class="docutils literal notranslate"><span class="pre">file=</span></code>), the
 optional name of the <em>solution</em> file (<code class="docutils literal notranslate"><span class="pre">solution=</span></code>),
-and the <em>running text</em>. In addition,
-one can add subexercise environments, starting with <code class="docutils literal notranslate"><span class="pre">!bsubex</span></code> and ending
+and the <em>running text</em>. The <code class="docutils literal notranslate"><span class="pre">file=</span></code> or <code class="docutils literal notranslate"><span class="pre">files=</span></code> command accepts a comma-separated list of filenames or file basenames.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 64%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Commands</p></th>
+<th class="head"><p>Behavior</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>=== Exercise/Example/..: .. ===</p></td>
+<td><p>Header with Exercise, Problem, Project, or Example title</p></td>
+</tr>
+<tr class="row-odd"><td><p>file=</p></td>
+<td><p>Answer file</p></td>
+</tr>
+<tr class="row-even"><td><p>files=</p></td>
+<td><p>Answer files, comma separated</p></td>
+</tr>
+<tr class="row-odd"><td><p>solution=</p></td>
+<td><p>Solution file</p></td>
+</tr>
+</tbody>
+</table>
+<p>In addition, one can add subexercise environments, starting with <code class="docutils literal notranslate"><span class="pre">!bsubex</span></code> and ending
 with <code class="docutils literal notranslate"><span class="pre">!esubex</span></code>, on the beginning of separate lines.
 Within the main exercise or
 a subexercise, three other environments are possible: (full) solution,
@@ -4113,9 +4138,31 @@ a subexercise, three other environments are possible: (full) solution,
 directives <code class="docutils literal notranslate"><span class="pre">!bans</span></code>, <code class="docutils literal notranslate"><span class="pre">!eans</span></code>, <code class="docutils literal notranslate"><span class="pre">!bsol</span></code>, <code class="docutils literal notranslate"><span class="pre">!esol</span></code>, <code class="docutils literal notranslate"><span class="pre">!bhint</span></code>, <code class="docutils literal notranslate"><span class="pre">!ehint</span></code>, which
 all must appear on the beginning of a separate line (just as
 <code class="docutils literal notranslate"><span class="pre">!bc</span></code> and <code class="docutils literal notranslate"><span class="pre">!ec</span></code>).</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">file=</span></code> or <code class="docutils literal notranslate"><span class="pre">files=</span></code> command accepts a comma-separated list of filenames.
-Sometimes it is appropriate to skip the file extension and just give
-a filestem, as in <code class="docutils literal notranslate"><span class="pre">file=earth2moon</span></code>.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 63%" />
+<col style="width: 37%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Begin-end directive</p></th>
+<th class="head"><p>Behavior</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>!bsubex - !esubex</p></td>
+<td><p>Subexercise</p></td>
+</tr>
+<tr class="row-odd"><td><p>!bans - !eans</p></td>
+<td><p>Answer</p></td>
+</tr>
+<tr class="row-even"><td><p>!bsol - !esol</p></td>
+<td><p>Solution</p></td>
+</tr>
+<tr class="row-odd"><td><p>!bhint - !ehint</p></td>
+<td><p>Hint</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="solutions">
 <h4>Solutions<a class="headerlink" href="#solutions" title="Permalink to this headline">¶</a></h4>
@@ -4130,7 +4177,69 @@ turn off output of answers and solutions, respectively, except for
 examples.
 The command line options <code class="docutils literal notranslate"><span class="pre">--answers_at_end</span></code> and <code class="docutils literal notranslate"><span class="pre">--solutions_at_end</span></code>
 write all answers and solutions to exercises to a separate section in the end of the document, respectively. These can be combinee with <code class="docutils literal notranslate"><span class="pre">--without_answers</span></code> and <code class="docutils literal notranslate"><span class="pre">--without_solutions</span></code> to remove answers and solutions from the main text.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 64%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Command option</p></th>
+<th class="head"><p>Behavior</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>--without_answers</p></td>
+<td><p>Turn off output of answers</p></td>
+</tr>
+<tr class="row-odd"><td><p>--without_solutions</p></td>
+<td><p>Turn off output of solutions</p></td>
+</tr>
+<tr class="row-even"><td><p>--answers_at_end</p></td>
+<td><p>Answers in the end of the document</p></td>
+</tr>
+<tr class="row-odd"><td><p>--solutions_at_end</p></td>
+<td><p>Solutions in the end of the document</p></td>
+</tr>
+</tbody>
+</table>
 <p>The commands <code class="docutils literal notranslate"><span class="pre">!anshide</span></code> and <code class="docutils literal notranslate"><span class="pre">!solhide</span></code> can be used to hide from the main text answers and solutions, respectively, until the <code class="docutils literal notranslate"><span class="pre">!ansoff</span></code> and <code class="docutils literal notranslate"><span class="pre">!soloff</span></code> commands are encountered. Similarly, the <code class="docutils literal notranslate"><span class="pre">!ansdocend</span></code> and <code class="docutils literal notranslate"><span class="pre">!soldocend</span></code> commands move answers and solutions to the end of the book.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 77%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Behavior</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>!anshide</p></td>
+<td><p>Hide answers until !solhide</p></td>
+</tr>
+<tr class="row-odd"><td><p>!solhide</p></td>
+<td><p>Hide solutions until !solhide</p></td>
+</tr>
+<tr class="row-even"><td><p>!ansoff</p></td>
+<td><p>Restore answers' visibility</p></td>
+</tr>
+<tr class="row-odd"><td><p>!soloff</p></td>
+<td><p>Restore solutions visibility</p></td>
+</tr>
+<tr class="row-even"><td><p>!ansdocend</p></td>
+<td><p>Answers in the end of the document</p></td>
+</tr>
+<tr class="row-odd"><td><p>!soldocend</p></td>
+<td><p>Answers in the end of the document</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition-avoid-split-inside-exercises admonition">
+<p class="admonition-title">Avoid !split inside exercises</p>
+<p><code class="docutils literal notranslate"><span class="pre">!split</span></code> and new (sub)sections mark the end of an exercise.
+Therefore you should not place a <code class="docutils literal notranslate"><span class="pre">!split</span></code> inside an answer, solution, subexercise or
+DocOnce might throw an error.</p>
+</div>
 <div class="admonition-avoid-headings-in-solutions admonition">
 <p class="admonition-title">Avoid headings in solutions</p>
 <p>Headings in solutions in exercises will
@@ -4733,8 +4842,8 @@ ASCII-type formats is desired). For example, a code block cannot come
 directly after a section/paragraph heading or a table.</p>
 <p>Here is a plain code block:</p>
 <div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="k">!bc</span> dat
-% Could be a comment line in some file
-% And some data
+% Comment line in some file
+% Some data:
 1.003 1.025
 2.204 1.730
 3.001 1.198
@@ -4742,8 +4851,8 @@ directly after a section/paragraph heading or a table.</p>
 </pre></div>
 </div>
 <p>which gets rendered as</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>% Could be a comment line in some file
-% And some data
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>% Comment line in some file
+% Some data:
 1.003 1.025
 2.204 1.730
 3.001 1.198
@@ -4757,57 +4866,167 @@ below or equal to 67 characters.</p>
 </div>
 <div class="section" id="typesetting-styles">
 <h4>Typesetting Styles<a class="headerlink" href="#typesetting-styles" title="Permalink to this headline">¶</a></h4>
-<p>There may be an argument after the <code class="docutils literal notranslate"><span class="pre">!bc</span></code> tag to specify a certain
-environment (in LaTeX, HTML, or Sphinx) for
-typesetting the verbatim code. For instance, <code class="docutils literal notranslate"><span class="pre">!bc</span> <span class="pre">dat</span></code> corresponds to
-the data file environment and <code class="docutils literal notranslate"><span class="pre">!bc</span> <span class="pre">cod</span></code> is typically used for a code
-snippet. There are some predefined environments explained below. If
-there is no argument specifying the environment, one assumes some
-plain verbatim typesetting (usually just the most plain verbatim
-style in LaTeX or HTML, or <code class="docutils literal notranslate"><span class="pre">python</span></code> in Sphinx,
-or if <code class="docutils literal notranslate"><span class="pre">ptex2tex</span></code> is used, the environment
-corresponds to <code class="docutils literal notranslate"><span class="pre">ccq</span></code> which is defined in the config file <code class="docutils literal notranslate"><span class="pre">.ptex2tex.cfg</span></code>).</p>
-<p>By default, <code class="docutils literal notranslate"><span class="pre">pro</span></code> is used for complete programs, <code class="docutils literal notranslate"><span class="pre">cod</span></code> is for a code
-snippet. The syntax <code class="docutils literal notranslate"><span class="pre">Xcod</span></code> and <code class="docutils literal notranslate"><span class="pre">Xpro</span></code> imply a program or snippet in
-computer language <code class="docutils literal notranslate"><span class="pre">X</span></code>, where <code class="docutils literal notranslate"><span class="pre">X</span></code> can be <code class="docutils literal notranslate"><span class="pre">f</span></code> for Fortran, <code class="docutils literal notranslate"><span class="pre">c</span></code> for C,
-<code class="docutils literal notranslate"><span class="pre">cpp</span></code> for C++, <code class="docutils literal notranslate"><span class="pre">sh</span></code> for Unix shells, <code class="docutils literal notranslate"><span class="pre">pl</span></code> for Perl, <code class="docutils literal notranslate"><span class="pre">m</span></code> for Matlab,
-<code class="docutils literal notranslate"><span class="pre">cy</span></code> for Cython, <code class="docutils literal notranslate"><span class="pre">r</span></code> for Ruby, <code class="docutils literal notranslate"><span class="pre">js</span></code> for JavaScript, <code class="docutils literal notranslate"><span class="pre">latex</span></code> for LaTeX,
-<code class="docutils literal notranslate"><span class="pre">html</span></code> for HTML, and <code class="docutils literal notranslate"><span class="pre">py</span></code> for Python.  With no <code class="docutils literal notranslate"><span class="pre">X</span></code> prefix, <code class="docutils literal notranslate"><span class="pre">cod</span></code> and
-<code class="docutils literal notranslate"><span class="pre">pro</span></code> implies Python code. The argument <code class="docutils literal notranslate"><span class="pre">sys</span></code> after <code class="docutils literal notranslate"><span class="pre">!bc</span></code> means a
-verbatim environment suitable for operating system commands (and
-output).  As mentioned, <code class="docutils literal notranslate"><span class="pre">dat</span></code> is for a data file or print out,
-<code class="docutils literal notranslate"><span class="pre">pyshell</span></code> is for plain interactive Python shell sessions, <code class="docutils literal notranslate"><span class="pre">ipy</span></code>
-for interactive IPython sessions, and <code class="docutils literal notranslate"><span class="pre">pysc</span></code> turns on interactive
-Python code in executable HTML windows (using a SageMathCell server)
-while being equivalent to <code class="docutils literal notranslate"><span class="pre">pycod</span></code> in other formats.</p>
-<p>Notebooks and other executable code snippets in HTML may need some
-initializing code before a snippet works, and if such code is
-not intended for being shown in the text, one can use the <code class="docutils literal notranslate"><span class="pre">Xhid</span></code>
-argument to <code class="docutils literal notranslate"><span class="pre">!bc</span></code>, where <code class="docutils literal notranslate"><span class="pre">hid</span></code> indicates a hidden snippet. It becomes
-executable in live code environments but is otherwise not shown.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">!bc</span></code> tag takes arguments with the following syntax:</p>
+<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="k">!bc</span> LANG[cod|pro][postfix]
+</pre></div>
+</div>
+<p>The first argument <code class="docutils literal notranslate"><span class="pre">LANG</span></code> can be one of the predefined environments explained in the table below or a custom one defined in the config file <code class="docutils literal notranslate"><span class="pre">.ptex2tex.cfg</span></code>.</p>
+<p>The second argument is optional can be  either <code class="docutils literal notranslate"><span class="pre">cod</span></code> or <code class="docutils literal notranslate"><span class="pre">pro</span></code>. By default, <code class="docutils literal notranslate"><span class="pre">pro</span></code> is used for complete programs, <code class="docutils literal notranslate"><span class="pre">cod</span></code> is for a code snippet.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 88%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>LANG</p></th>
+<th class="head"><p>Language</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>py</p></td>
+<td><p>python code</p></td>
+</tr>
+<tr class="row-odd"><td><p>sys</p></td>
+<td><p>OS commands</p></td>
+</tr>
+<tr class="row-even"><td><p>dat</p></td>
+<td><p>data file/print out</p></td>
+</tr>
+<tr class="row-odd"><td><p>sh</p></td>
+<td><p>Unix shell</p></td>
+</tr>
+<tr class="row-even"><td><p>c</p></td>
+<td><p>C</p></td>
+</tr>
+<tr class="row-odd"><td><p>cpp</p></td>
+<td><p>C++</p></td>
+</tr>
+<tr class="row-even"><td><p>pl</p></td>
+<td><p>Perl</p></td>
+</tr>
+<tr class="row-odd"><td><p>m</p></td>
+<td><p>Matlab</p></td>
+</tr>
+<tr class="row-even"><td><p>f</p></td>
+<td><p>fortran</p></td>
+</tr>
+<tr class="row-odd"><td><p>js</p></td>
+<td><p>Javascript</p></td>
+</tr>
+<tr class="row-even"><td><p>latex</p></td>
+<td><p>LaTeX</p></td>
+</tr>
+<tr class="row-odd"><td><p>html</p></td>
+<td><p>HTML</p></td>
+</tr>
+<tr class="row-even"><td><p>cy</p></td>
+<td><p>Cython</p></td>
+</tr>
+<tr class="row-odd"><td><p>rb</p></td>
+<td><p>Ruby</p></td>
+</tr>
+<tr class="row-even"><td><p>pyshell</p></td>
+<td><p>interactive Python shell</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipy</p></td>
+<td><p>interactive IPython session</p></td>
+</tr>
+<tr class="row-even"><td><p>pysc</p></td>
+<td><p>interactive Python SageMathCell in the html format</p></td>
+</tr>
+</tbody>
+</table>
+<p>The third <code class="docutils literal notranslate"><span class="pre">posfix</span></code> argument modifies the code block visibility or code execution when using the <code class="docutils literal notranslate"><span class="pre">--execute</span></code> option (see the next paragraphs).</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 57%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Postfix</p></th>
+<th class="head"><p>Behavior</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>-t</p></td>
+<td><p>Display as text</p></td>
+<td><p>!bc py-t</p></td>
+</tr>
+<tr class="row-odd"><td><p>out</p></td>
+<td><p>Code output</p></td>
+<td><p>!bc pyout</p></td>
+</tr>
+<tr class="row-even"><td><p>hid</p></td>
+<td><p>Hide code</p></td>
+<td><p>!bc pycodhid</p></td>
+</tr>
+<tr class="row-odd"><td><p>-e</p></td>
+<td><p>Hide code (also in ipynb)</p></td>
+<td><p>!bc pycod-t</p></td>
+</tr>
+<tr class="row-even"><td><p>-h</p></td>
+<td><p>Toggle visibility in html</p></td>
+<td><p>!bc pycod-h</p></td>
+</tr>
+</tbody>
+</table>
 <p id="index-198">All these definitions of the arguments after <code class="docutils literal notranslate"><span class="pre">!bc</span></code> can be redefined
 in command-line arguments for the <code class="docutils literal notranslate"><span class="pre">--latex_code_style=</span></code> option,
 the <code class="docutils literal notranslate"><span class="pre">.ptex2tex.cfg</span></code> configuration file for <code class="docutils literal notranslate"><span class="pre">ptex2tex</span></code>, and in
-the <code class="docutils literal notranslate"><span class="pre">sphinx</span> <span class="pre">code-blocks</span></code> comments for Sphinx, see below.</p>
-<p>idx {<code class="docutils literal notranslate"><span class="pre">-t</span></code> code envir postfix}</p>
+the <code class="docutils literal notranslate"><span class="pre">sphinx</span> <span class="pre">code-blocks</span></code> comments for Sphinx (see below).</p>
 </div>
 <div class="section" id="executable-and-non-executable-code">
 <h4>Executable and Non-Executable Code<a class="headerlink" href="#executable-and-non-executable-code" title="Permalink to this headline">¶</a></h4>
-<p>The <code class="docutils literal notranslate"><span class="pre">ipynb</span></code> and <code class="docutils literal notranslate"><span class="pre">matlabnb</span></code> formats create notebooks where computer
-code can be executed. Sometimes one wants to show code that is <em>not</em>
-to be executed, but just shown as a text block. Any code environment
-with a postfix <code class="docutils literal notranslate"><span class="pre">-t</span></code> indicates that the code is not to be executed, only
-displayed. For example, <code class="docutils literal notranslate"><span class="pre">!bc</span> <span class="pre">pycod-t</span></code> is a Python snippet not intended
-for execution. All other formats than the notebook formats ignore the
-<code class="docutils literal notranslate"><span class="pre">-t</span></code> postfix.</p>
-<p>idx {<code class="docutils literal notranslate"><span class="pre">-h</span></code> code envir postfix}</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ipynb</span></code> and <code class="docutils literal notranslate"><span class="pre">matlabnb</span></code> formats and <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">jupyterbook</span></code> create notebooks where computer code can be executed by the end user. The <code class="docutils literal notranslate"><span class="pre">--execute</span></code> option allows the compiler to execute all code during compilation, for example:</p>
+<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span>doconce format ipynb mydoc.do.txt --execute
+</pre></div>
 </div>
-<div class="section" id="hiding-code-blocks-in-html">
-<h4>Hiding code blocks in HTML<a class="headerlink" href="#hiding-code-blocks-in-html" title="Permalink to this headline">¶</a></h4>
-<p>Code blocks in HTML can be visible or not by clicking on an associated
-button <strong>Show/hide code</strong>. The behavior is triggered by a postfix <code class="docutils literal notranslate"><span class="pre">-h</span></code> to
-the code environment, e.g., <code class="docutils literal notranslate"><span class="pre">!bc</span> <span class="pre">pycod-h</span></code> or <code class="docutils literal notranslate"><span class="pre">!bc</span> <span class="pre">pro-h</span></code>.
-The <code class="docutils literal notranslate"><span class="pre">-h</span></code> postfix has no impact on other output formats.</p>
+<p>The postfix arguments override the effect of <code class="docutils literal notranslate"><span class="pre">--execute</span></code> at the code block level.
+The <code class="docutils literal notranslate"><span class="pre">-t</span></code> postfix shows code rendered as text, i.e. code that is only meant to be displayed.
+Thereafter, the <code class="docutils literal notranslate"><span class="pre">out</span></code> postfix can be used to display code output as text. This combination is useful, for example, to display as text a code snippet followed by an error:</p>
+<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="k">!bc</span> pycod-t
+10 / 0
+<span class="k">!ec</span>
+<span class="k">!bc</span> pycod-out
+ZeroDivisionError: division by zero
+<span class="k">!ec</span>
+</pre></div>
+</div>
+<p>All formats other than ipynb, matlabnb formats ignore the <code class="docutils literal notranslate"><span class="pre">-t</span></code> postfix.</p>
+</div>
+<div class="section" id="hiding-code-blocks">
+<h4>Hiding code blocks<a class="headerlink" href="#hiding-code-blocks" title="Permalink to this headline">¶</a></h4>
+<p>Notebooks and other executable code snippets in HTML or ipynb may need some
+initializing code before a snippet works.
+The <code class="docutils literal notranslate"><span class="pre">hid</span></code>, <code class="docutils literal notranslate"><span class="pre">-e</span></code>, and <code class="docutils literal notranslate"><span class="pre">-h</span></code> postfixes can be used to hide such code, but still execute it using the <code class="docutils literal notranslate"><span class="pre">--execute</span></code> option in live code environments.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">-h</span></code> postfix hides a code block in all formats except ipynb:</p>
+<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="k">!bc</span> pyhid
+import sys, os
+<span class="k">!ec</span>
+</pre></div>
+</div>
+<p>This behavior is usually not desired in e.g. the ipynb format, as it might cause the code to fail. The <code class="docutils literal notranslate"><span class="pre">-e</span></code> postfix is a stronger version of <code class="docutils literal notranslate"><span class="pre">-h</span></code> and it hides code for all formats. This can be used, for example, to execute system operations that do not need to be visible to the end user.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">-h</span></code> postfix is used only in the html format.
+This postfix shows a Show/hide code button below the code block,
+allowing a user to toggle the code visibility.
+This can be used, for example, to initially hide the answer to an exercise:</p>
+<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="k">!bsubex</span>
+Test 1: Write a for-statement in Python to print out each element in a list `l`.
+<span class="k">!esubex</span>
+
+<span class="k">!bans</span>
+Click to see the answer:
+
+<span class="k">!bc</span> pycod-h
+for el in l:
+  print(el)
+<span class="k">!ec</span>
+
+<span class="k">!eans</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="customizing-code-environments-types-for-sphinx">
 <span id="index-199"></span><h4>Customizing Code Environments Types for Sphinx<a class="headerlink" href="#customizing-code-environments-types-for-sphinx" title="Permalink to this headline">¶</a></h4>
@@ -4894,9 +5113,9 @@ copied into a verbatim block, typset in a <code class="docutils literal notransl
 becomes <code class="docutils literal notranslate"><span class="pre">!bc</span> <span class="pre">fpro</span></code> and will typically lead to some Fortran-style
 formatting).  The
 second line has a <code class="docutils literal notranslate"><span class="pre">fromto:</span></code> directive, which implies copying code
-between two lines in the code, typset within a !``bc Xcod``
-environment (again, <code class="docutils literal notranslate"><span class="pre">X</span></code> is the filename extension, implying the
-type of file). Note that the <code class="docutils literal notranslate"><span class="pre">pro</span></code> and <code class="docutils literal notranslate"><span class="pre">cod</span></code> arguments are only used for LaTeX
+between two lines in the code, typset within a !``bc LANGcod``
+environment (again, <code class="docutils literal notranslate"><span class="pre">LANG</span></code> is the programming language).
+Note that the <code class="docutils literal notranslate"><span class="pre">pro</span></code> and <code class="docutils literal notranslate"><span class="pre">cod</span></code> arguments are only used for LaTeX
 and Sphinx output, all other formats will have the code typeset within
 a plain <code class="docutils literal notranslate"><span class="pre">!bc</span></code> environment.) Two regular expressions, separated by the
 <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> sign, define the &quot;from&quot; and &quot;to&quot; lines.  The &quot;from&quot; line is
@@ -8471,7 +8690,7 @@ import sys
 <h3>Displaying code as plain text instead of executable cells<a class="headerlink" href="#displaying-code-as-plain-text-instead-of-executable-cells" title="Permalink to this headline">¶</a></h3>
 <p>Some code blocks may just be there for explanation and are not
 meant to be executed. These can be marked by <code class="docutils literal notranslate"><span class="pre">!bc</span> <span class="pre">pycod-t</span></code> (or
-<code class="docutils literal notranslate"><span class="pre">!bc</span> <span class="pre">Xcod-t</span></code> for any supported programming language <code class="docutils literal notranslate"><span class="pre">X</span></code>):</p>
+<code class="docutils literal notranslate"><span class="pre">!bc</span> <span class="pre">LANGcod-t</span></code> for any supported programming language <code class="docutils literal notranslate"><span class="pre">LANG</span></code>):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>!bc pycod-t
 if isinstance(myvar, float):
     raise TypeError(&#39;myvar must be array, not %s&#39; % type(myvar))

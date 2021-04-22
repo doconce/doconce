@@ -58,7 +58,7 @@ def run_clean():
 
 def run_make(append=True):
     print('\n\nRunning make.sh...............................\nin', os.getcwd())
-    failure, output = subprocess.getstatusoutput('bash -x make.sh')
+    failure, output = subprocess.getstatusoutput('bash make.sh')
     system_output.append(output)
     if failure:
         where = os.getcwd()

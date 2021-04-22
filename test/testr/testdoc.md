@@ -821,12 +821,16 @@ and then, with the command-line option `--examples_as_exercises` be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
+<!-- --- begin subexercise --- -->
 *a)*
 State some problem.
 
 *Solution.*
 The answer to this subproblem can be written here.
 
+<!-- --- end subexercise --- -->
+
+<!-- --- begin subexercise --- -->
 *b)*
 State some other problem.
 
@@ -839,6 +843,8 @@ Maybe even another hint?
 *Solution.*
 The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
+
+<!-- --- end subexercise --- -->
 
 <!-- --- end exercise --- -->
 
@@ -1001,6 +1007,7 @@ between there we have [Exercise 10: Make references to projects and problems](#e
 
 <!-- Torture tests -->
 
+<!-- --- begin subexercise --- -->
 *a)*
 Make a program that simulates flipping a coin $N$ times.
 Print out "tail" or "head" for each flip and
@@ -1043,6 +1050,9 @@ print('Flipping a coin %d times gave %d heads' % (N, heads))
 
 <!-- --- end solution of exercise --- -->
 
+<!-- --- end subexercise --- -->
+
+<!-- --- begin subexercise --- -->
 *b)*
 Vectorize the code in a) using boolean indexing.
 
@@ -1050,6 +1060,9 @@ Vectorized code can be written in many ways.
 Sometimes the code is less intuitive, sometimes not.
 At least there is not much to find in the section [Section 1](#sec1).
 
+<!-- --- end subexercise --- -->
+
+<!-- --- begin subexercise --- -->
 *c)*
 Vectorize the code in a) using `numpy.sum`.
 
@@ -1068,6 +1081,8 @@ after the last subexercise. Test a list too:
 
 1. Mark 1.
 2. Mark 2.
+
+<!-- --- end subexercise --- -->
 
 Filenames: `flip_coin.py`, `flip_coin.pdf`.
 
@@ -1167,6 +1182,7 @@ The goal of this project is to draw $N$ circles with random
 center and radius. Plot each circle using the `circle` function
 above.
 
+<!-- --- begin subexercise --- -->
 *a)*
 Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
 
@@ -1188,12 +1204,20 @@ Here goes the short answer to part a).
 Here goes a full solution to part a).
 <!-- --- end solution of exercise --- -->
 
+<!-- --- end subexercise --- -->
+
+<!-- --- begin subexercise --- -->
 *b)*
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
 Filename: `norm`.
 
+<!-- --- end subexercise --- -->
+
+<!-- --- begin subexercise --- -->
 *c)*
 Let $R$ and $(x_0,y_0)$ be normally distributed.
+
+<!-- --- end subexercise --- -->
 
 Filename: `circles`.
 
@@ -1230,6 +1254,7 @@ End of solution is here.
 
 <!-- --- end solution of exercise --- -->
 
+<!-- --- begin subexercise --- -->
 *a)*
 Subexercises are numbered a), b), etc.
 
@@ -1271,6 +1296,9 @@ Short answer to subexercise a).
 With math in answer: $a=b$.
 <!-- --- end answer of exercise --- -->
 
+<!-- --- end subexercise --- -->
+
+<!-- --- begin subexercise --- -->
 *b)*
 Here goes the text for subexercise b).
 
@@ -1301,6 +1329,9 @@ Test list in exercise:
 
 1. item1
 2. item2
+
+<!-- --- end subexercise --- -->
+
 <!-- Closing remarks for this Exercise -->
 
 #### Remarks
@@ -1380,11 +1411,14 @@ for $x$ or $y$, not a function $y(x)$.
 <!-- This example needs the --examples_as_exercises option, otherwise -->
 <!-- it is just typeset as it is written. -->
 
+<!-- --- begin subexercise --- -->
 *a)*
 What is the capital of Norway?
 
 *Answer.*
 Oslo.
+
+<!-- --- end subexercise --- -->
 
 <!-- --- end exercise --- -->
 

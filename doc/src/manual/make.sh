@@ -24,7 +24,7 @@ function system {
 # The following packages must be installed for this script to run:
 # doconce, docutils, preprocess, sphinx, publish
 
-sh -x ./clean.sh
+sh ./clean.sh
 echo; echo # Make space in output after deleting many files...
 
 # First make the publish database
@@ -44,6 +44,36 @@ publish import refs3.bib <<EOF
 1
 2
 EOF
+
+
+# doconce latex:
+system doconce format latex manual.do.txt --no_mako --latex_font=helvetica --no_ampersand_quote --cite_doconce --no_abort # produces manual.p.tex
+doconce ptex2tex manual.p.tex envir=ans:nt #produced manual.tex
+# Since we have native latex table and --no_ampersand_quote, we need to
+# manually fix the quote examples elsewhere. 
+# NB! escape underscores and similar symbols with \_
+doconce subst '([^`])Guns & Roses([^`])' '\g<1>Guns {\&} Roses\g<2>' manual.tex
+doconce subst '([^`])Texas A & M([^`])' '\g<2>Texas A {\&} M\g<2>' manual.tex
+# Must fix one \eqref{} to (ref{})
+doconce replace '\eqref{my:special:eq}' '(ref{my:special:eq})' manual.tex
+doconce replace '\eqref{eq1}' '(ref{eq1})' manual.tex
+# Using latex results in errors due to the size of figures,
+# so use pdfltex
+#latex -shell-escape manual
+#latex -shell-escape manual
+#bibtex manual
+#makeindex manual
+#latex -shell-escape manual
+#latex -shell-escape manual
+#dvipdf manual.dvi
+pdflatex -shell-escape manual.tex
+pdflatex -shell-escape manual.tex
+makeindex manual
+bibtex manual
+pdflatex -shell-escape manual.tex
+pdflatex -shell-escape manual.tex
+pdflatex -shell-escape manual.tex
+cp manual.pdf manual_latex.pdf
 
 # doconce html format:
 system doconce format html manual.do.txt --no_mako --html_style=bootswatch_readable --allow_refs_to_external_docs --html_code_style=inherit --cite_doconce --no_abort
@@ -89,34 +119,6 @@ system doconce format plain manual.do.txt --skip_inline_comments --cite_doconce 
 system doconce format pandoc manual.do.txt --no_mako --strict_markdown_output --github_md --cite_doconce  --no_abort
 system doconce format epytext manual.do.txt --cite_doconce --no_mako --no_abort
 
-#HERE
-# doconce latex:
-system doconce format latex manual.do.txt --no_mako --latex_font=helvetica --no_ampersand_quote --cite_doconce  --no_abort # produces ptex2tex: manual.p.tex
-doconce ptex2tex manual envir=ans:nt
-# Since we have native latex table and --no_ampersand_quote, we need to
-# manually fix the quote examples elsewhere
-doconce subst '([^`])Guns & Roses([^`])' '\g<1>Guns {\&} Roses\g<2>' manual.tex
-doconce subst '([^`])Texas A & M([^`])' '\g<2>Texas A {\&} M\g<2>' manual.tex
-# Must fix one \eqref{} to (ref{})
-doconce replace '\eqref{my:special:eq}' '(ref{my:special:eq})' manual.tex
-doconce replace '\eqref{eq1}' '(ref{eq1})' manual.tex
-# Using latex results in errors due to the size of figures,
-# so use pdfltex
-#latex -shell-escape manual
-#latex -shell-escape manual
-#bibtex manual
-#makeindex manual
-#latex -shell-escape manual
-#latex -shell-escape manual
-#dvipdf manual.dvi
-pdflatex -shell-escape manual.tex
-pdflatex -shell-escape manual.tex
-makeindex manual
-bibtex manual
-pdflatex -shell-escape manual.tex
-pdflatex -shell-escape manual.tex
-pdflatex -shell-escape manual.tex
-cp manual.pdf manual_latex.pdf
 
 # doconce pdflatex:
 system doconce format pdflatex manual.do.txt --no_mako --latex_font=helvetica --no_ampersand_quote --cite_doconce --no_abort

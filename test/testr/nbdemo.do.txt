@@ -1,3 +1,5 @@
+# HTML file automatically generated from DocOnce source (https://github.com/doconce/doconce/)
+# doconce format html nbdemo.do.txt
 TITLE: Example on interactive live documents versus traditional static documents
 _hpl_
 

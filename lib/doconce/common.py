@@ -51,23 +51,23 @@ def end_comment_tag(tag, comment_pattern='# %s'):
 # Defined here once so different modules can utilize the same syntax.
 envir_delimiter_lines = {
     'sol':
-    begin_end_comment_tags('solution of exercise'),
+        begin_end_comment_tags('solution of exercise'),
     'ans':
-    begin_end_comment_tags('answer of exercise'),
+        begin_end_comment_tags('answer of exercise'),
     'hint':
-    begin_end_comment_tags('hint in exercise'),
+        begin_end_comment_tags('hint in exercise'),
     'exercise':
-    begin_end_comment_tags('exercise'),
+        begin_end_comment_tags('exercise'),
     'subex':
-    begin_end_comment_tags('subexercise'),
+        begin_end_comment_tags('subexercise'),
     'ans_at_end':
-    begin_end_comment_tags('answer of exercise at end'),
+        begin_end_comment_tags('answer of exercise at end'),
     'sol_at_end':
-    begin_end_comment_tags('solution of exercise at end'),
+        begin_end_comment_tags('solution of exercise at end'),
     'ans_docend':
-    begin_end_comment_tags('answer of exercises at document end'),
+        begin_end_comment_tags('answer of exercises at document end'),
     'sol_docend':
-    begin_end_comment_tags('solution of exercises at document end')
+        begin_end_comment_tags('solution of exercises at document end')
 }
 
 _counter_for_html_movie_player = 0
@@ -988,11 +988,11 @@ def doconce_exercise_output(
     if has_answers_solutions:
         sol += '\n\n# ' + envir_delimiter_lines['exercise'][0] + ' answers and solutions\n'
         if latex_style == 'Springer_sv':
-            sol += r"""
-\begin{sol}{%s}
-\textbf{%s}\\
-
-""" % (exer['label'], exer['title'])
+            sol += ('\n'
+                    r'\begin{sol}{%s}'
+                    '\n'
+                    r'\textbf{%s}\\'
+                    '\n') % (exer['label'], exer['title'])
         else:
             sol += exer['heading'] + ' '
 
@@ -1153,13 +1153,12 @@ def doconce_exercise_output(
 
     # Write subexercises
     if exer['subex']:
-        s += '\n'
-        sol += '\n'
         import string
         for i, subex in enumerate(exer['subex']):
             letter = string.ascii_lowercase[i]
             if subex['text']:
-                s += '\n__%s)__\n' % letter
+                s += '\n#' + envir_delimiter_lines['subex'][0] + '\n'
+                s += '__%s)__\n' % letter
                 s += subex['text'] + '\n'
 
             for i, hint in enumerate(subex['hints']):
@@ -1190,6 +1189,7 @@ def doconce_exercise_output(
                 if exer['type'] != 'Example':
                     sol += '\n# ' + envir_delimiter_lines['ans_docend'][0] + '\n'
                 # Write subex letter and 'Answer.' in bold on the same line
+                sol += '\n#' + envir_delimiter_lines['subex'][0] + '\n'
                 sol += '__%s) ' % letter
                 sol += answer_header[2:] + '\n' + subex['ans_docend'] + '\n'
                 if exer['type'] != 'Example':
@@ -1208,6 +1208,7 @@ def doconce_exercise_output(
                         exer['title'] + '\n')
                     sol += '\nCode:\n'
                 # Write subex letter and 'Solution.' in bold on the same line
+                sol += '\n#' + envir_delimiter_lines['subex'][0] + '\n'
                 sol += '__%s) ' % letter
                 sol += solution_header[2:] + '\n' + subex['sol_docend'] + '\n'
                 if solution_style == 'admon':
@@ -1272,6 +1273,9 @@ def doconce_exercise_output(
 
             if 'aftertext' in subex:
                 s += subex['aftertext']
+            # Write a comment on the end of the subex
+            s += '\n#' + envir_delimiter_lines['subex'][1] + '\n'
+            sol += '\n#' + envir_delimiter_lines['subex'][1] + '\n'
 
 
     if exer['file']:

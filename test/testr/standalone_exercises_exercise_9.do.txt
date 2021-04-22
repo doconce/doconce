@@ -6,9 +6,11 @@ DATE: Due Jan 32, 2100
 # This example needs the --examples_as_exercises option, otherwise
 # it is just typeset as it is written.
 
-
+#--- begin subexercise ---
 __a)__
 What is the capital of Norway?
 
 __Answer.__
 Oslo.
+
+#--- end subexercise ---

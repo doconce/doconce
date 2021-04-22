@@ -1358,7 +1358,7 @@ The notebook will feature the `import sys` statement in a cell prior to the
 
 Some code blocks may just be there for explanation and are not
 meant to be executed. These can be marked by `!bc pycod-t` (or
-`!bc Xcod-t` for any supported programming language `X`):
+`!bc LANGcod-t` for any supported programming language `LANG`):
 
 !bc
 |bc pycod-t

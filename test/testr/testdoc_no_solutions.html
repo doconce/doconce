@@ -1936,6 +1936,7 @@ typeset as exercises. This is useful if one has solution
 environments as part of the example.
 </p>
 
+<!-- --- begin subexercise --- -->
 <p>
 <b>a)</b>
 State some problem.
@@ -1946,6 +1947,9 @@ State some problem.
 The answer to this subproblem can be written here.
 </p>
 
+<!-- --- end subexercise --- -->
+
+<!-- --- begin subexercise --- -->
 <p>
 <b>b)</b>
 State some other problem.
@@ -1966,6 +1970,8 @@ Maybe even another hint?
 The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
 </p>
+
+<!-- --- end subexercise --- -->
 
 <!-- --- end exercise --- -->
 <h2 id="user-defined-environments">User-defined environments </h2>
@@ -2146,6 +2152,7 @@ between there we have <a href="#exer:some:formula">Exercise 10: Make references 
 
 <!-- Torture tests -->
 
+<!-- --- begin subexercise --- -->
 <p>
 <b>a)</b>
 Make a program that simulates flipping a coin \( N \) times.
@@ -2176,6 +2183,9 @@ Draw an integer among \( \{1,2\} \) with
  -->
 <!-- removed !bsol ... !esol environment (because of the command-line option --without_solutions)
  -->
+<!-- --- end subexercise --- -->
+
+<!-- --- begin subexercise --- -->
 <p>
 <b>b)</b>
 Vectorize the code in a) using boolean indexing.
@@ -2186,6 +2196,9 @@ Sometimes the code is less intuitive, sometimes not.
 At least there is not much to find in the section <a href="#sec1">Section 1</a>.
 </p>
 
+<!-- --- end subexercise --- -->
+
+<!-- --- begin subexercise --- -->
 <p>
 <b>c)</b>
 Vectorize the code in a) using <code>numpy.sum</code>.
@@ -2206,6 +2219,8 @@ after the last subexercise. Test a list too:
 <li> Mark 1.</li>
 <li> Mark 2.</li>
 </ol>
+<!-- --- end subexercise --- -->
+
 <p>Filenames: <code>flip_coin.py</code>, <code>flip_coin.pdf</code>.</p>
 
 <!-- Closing remarks for this Problem -->
@@ -2325,6 +2340,7 @@ center and radius. Plot each circle using the <code>circle</code> function
 above.
 </p>
 
+<!-- --- begin subexercise --- -->
 <p>
 <b>a)</b>
 Let \( R \) be normally distributed and \( (x_0,y_0) \) uniformly distributed.
@@ -2344,16 +2360,24 @@ Use the <code>numpy.random</code> module to draw the
  -->
 <!-- removed !bsol ... !esol environment (because of the command-line option --without_solutions)
  -->
+<!-- --- end subexercise --- -->
+
+<!-- --- begin subexercise --- -->
 <p>
 <b>b)</b>
 Let \( R \) be uniformly distributed and \( (x_0,y_0) \) normally distributed.
 Filename: <code>norm</code>.
 </p>
 
+<!-- --- end subexercise --- -->
+
+<!-- --- begin subexercise --- -->
 <p>
 <b>c)</b>
 Let \( R \) and \( (x_0,y_0) \) be normally distributed.
 </p>
+
+<!-- --- end subexercise --- -->
 
 <p>Filename: <code>circles</code>.</p>
 
@@ -2373,6 +2397,7 @@ and give some perspectives.
 
 <!-- removed !bsol ... !esol environment (because of the command-line option --without_solutions)
  -->
+<!-- --- begin subexercise --- -->
 <p>
 <b>a)</b>
 Subexercises are numbered a), b), etc.
@@ -2436,6 +2461,9 @@ Second hint to subexercise a).
 
 <!-- removed !bans ... !eans environment (because of the command-line option --without_answers)
  -->
+<!-- --- end subexercise --- -->
+
+<!-- --- begin subexercise --- -->
 <p>
 <b>b)</b>
 Here goes the text for subexercise b).
@@ -2467,9 +2495,11 @@ closing remarks to have text after subexercises.
 
 <ol>
 <li> item1</li>
-<li> item2
-<!-- Closing remarks for this Exercise --></li>
+<li> item2</li>
 </ol>
+<!-- --- end subexercise --- -->
+
+<!-- Closing remarks for this Exercise -->
 <h3 id="remarks">Remarks </h3>
 
 <p>Some final closing remarks, e.g., summarizing the main findings
@@ -2586,6 +2616,7 @@ for \( x \) or \( y \), not a function \( y(x) \).
 <!-- This example needs the --examples_as_exercises option, otherwise -->
 <!-- it is just typeset as it is written. -->
 
+<!-- --- begin subexercise --- -->
 <p>
 <b>a)</b>
 What is the capital of Norway?
@@ -2595,6 +2626,8 @@ What is the capital of Norway?
 <b>Answer.</b>
 Oslo.
 </p>
+
+<!-- --- end subexercise --- -->
 
 <!-- --- end exercise --- -->
 <h1 id="here-goes-another-section">Here goes another section </h1>
@@ -2637,16 +2670,19 @@ Filename: <code>selc_composed.pdf</code>.
 <!-- --- begin exercise --- answers and solutions -->
 <h2 id="example-1-examples-can-be-typeset-as-exercises">Example 1: Examples can be typeset as exercises </h2>
 <!-- Solution to <a href="#Example">Example 1: Examples can be typeset as exercises</a> -->
-
 <p>
 <b>a) Solution.</b>
 The answer to this subproblem can be written here.
 </p>
+
+<!-- --- end subexercise --- -->
 <p>
 <b>b) Solution.</b>
 The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
 </p>
+
+<!-- --- end subexercise --- -->
 
 <!-- --- end exercise --- solution -->
 
@@ -2696,10 +2732,16 @@ heads <span style="color: #666666">=</span> <span style="color: #666666">0</span
 
 <!-- --- end solution of exercise at end --- -->
 
+<!-- --- end subexercise --- -->
+
+<!-- --- end subexercise --- -->
+
 <p>
 <b>c) Answer.</b>
 <code>np.sum(np.where(r &lt;= 0.5, 1, 0))</code> or <code>np.sum(r &lt;= 0.5)</code>.
 </p>
+
+<!-- --- end subexercise --- -->
 
 <!-- --- end exercise --- solution -->
 
@@ -2718,6 +2760,12 @@ Here goes the short answer to part a).
 Here goes a full solution to part a).
 </p>
 <!-- --- end solution of exercise at end --- -->
+
+<!-- --- end subexercise --- -->
+
+<!-- --- end subexercise --- -->
+
+<!-- --- end subexercise --- -->
 
 <!-- --- end exercise --- solution -->
 
@@ -2765,6 +2813,8 @@ Short answer to subexercise a).
 With math in answer: \( a=b \).
 </p>
 
+<!-- --- end subexercise --- -->
+
 <!-- --- begin solution of exercise at end --- -->
 <p>
 <b>b) Solution.</b>
@@ -2772,10 +2822,14 @@ Here goes the solution of this subexercise.
 </p>
 <!-- --- end solution of exercise at end --- -->
 
+<!-- --- end subexercise --- -->
+
 <!-- --- end exercise --- solution -->
 
 <!-- --- begin exercise --- answers and solutions -->
 <h2 id="example-9-just-an-example">Example 9: Just an example </h2>
+
+<!-- --- end subexercise --- -->
 
 <!-- --- end exercise --- solution -->
 <h1 id="references">References </h1>
