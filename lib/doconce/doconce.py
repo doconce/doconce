@@ -1572,8 +1572,10 @@ def exercises(filestr, format, code_blocks, tex_blocks):
 
     # m_* variables: various match objects from regex searches
 
-    for line_no in range(len(lines)):
-        line = lines[line_no].lstrip()
+    # Loop through text and create newlines, solutions, all_exer.
+    # Exercises are processed with: EXERCISE[format](exer)
+    for i in range(len(lines)):
+        line = lines[i].lstrip()
         #errwarn('LINE %d:' % line_no, line)
         #pprint.pprint(exer)
         m_chapter = re.search(chapter_pattern, line)
@@ -1751,55 +1753,55 @@ def exercises(filestr, format, code_blocks, tex_blocks):
             # Store ordinary text lines
             if inside_subex and not instruction_line:
                 if inside_answer:
-                    subex['answer'].append(lines[line_no])
+                    subex['answer'].append(lines[i])
                 elif inside_ans_docend:
-                    subex['ans_docend'].append(lines[line_no])
+                    subex['ans_docend'].append(lines[i])
                     has_ans_docend = True
                 elif inside_sol_docend:
-                    subex['sol_docend'].append(lines[line_no])
+                    subex['sol_docend'].append(lines[i])
                     has_sol_docend = True
                 elif inside_solution:
-                    subex['solution'].append(lines[line_no])
+                    subex['solution'].append(lines[i])
                 elif inside_hint:
-                    subex['hints'][-1].append(lines[line_no])
+                    subex['hints'][-1].append(lines[i])
                 else:
                     # ordinary text line
-                    subex['text'].append(lines[line_no])
+                    subex['text'].append(lines[i])
             elif not inside_subex and not instruction_line:
                 if inside_answer:
-                    exer['answer'].append(lines[line_no])
+                    exer['answer'].append(lines[i])
                 elif inside_ans_docend:
-                    exer['ans_docend'].append(lines[line_no])
+                    exer['ans_docend'].append(lines[i])
                     has_ans_docend = True
                 elif inside_sol_docend:
-                    exer['sol_docend'].append(lines[line_no])
+                    exer['sol_docend'].append(lines[i])
                     has_sol_docend = True
                 elif inside_solution:
-                    exer['solution'].append(lines[line_no])
+                    exer['solution'].append(lines[i])
                 elif inside_hint:
-                    exer['hints'][-1].append(lines[line_no])
+                    exer['hints'][-1].append(lines[i])
                 elif inside_closing_remarks:
-                    exer['closing_remarks'].append(lines[line_no])
+                    exer['closing_remarks'].append(lines[i])
                 else:
                     # ordinary text line
                     if subex:
                         #if lines[line_no].strip() != '':
-                        subex['aftertext'].append(lines[line_no])
+                        subex['aftertext'].append(lines[i])
                     else:
-                        exer['text'].append(lines[line_no])
+                        exer['text'].append(lines[i])
         else:  # outside exercise
-            newlines.append(lines[line_no])
+            newlines.append(lines[i])
 
         # End of exercise? Either 1) new (sub)section with at least ===,
         # 2) !split, or 3) end of file
-        if line_no == len(lines) - 1:  # last line?
+        if i == len(lines) - 1:  # last line?
             exer_end = True
         elif inside_exer:
-            if lines[line_no+1].startswith('!split'):
+            if lines[i+1].startswith('!split'):
                 exer_end = True
-            elif lines[line_no+1].startswith('====='):
+            elif lines[i+1].startswith('====='):
                 exer_end = True
-            elif option('sections_down') and lines[line_no+1].startswith('==='):
+            elif option('sections_down') and lines[i+1].startswith('==='):
                 exer_end = True
 
         # End of exercise: format strings in exer structure
@@ -2833,7 +2835,7 @@ def typeset_lists(filestr, format, debug_info=[]):
                     elif callable(comment_action):
                         new_comment = comment_action(line[1:].strip())
 
-                    # Exercises has comment lines that make end of lists,
+                    # Exercises have comment lines that make end of lists,
                     # let these be treated as ordinary new, nonindented
                     # lines, same for special comments in quiz
                     if not re.search(special_comment, line):
@@ -5439,7 +5441,6 @@ def doconce2format(filestr, format):
     # (this is the place to do package-specific fixes too!)
     filestr = CODE[format](filestr, code_blocks, code_block_types, tex_blocks, format)
     filestr += '\n'
-
     report_progress('insertion of verbatim and latex blocks')
     debugpr('The file after inserting intro/outro and tex/code blocks, and fixing last format-specific issues:', filestr)
 

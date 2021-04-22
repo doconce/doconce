@@ -10,7 +10,7 @@ Intro to this exercise. Questions are in subexercises below.
 
 
 
-
+#--- begin subexercise ---
 __a)__
 Subexercises are numbered a), b), etc.
 
@@ -43,6 +43,9 @@ Test list in hint:
 
 
 
+#--- end subexercise ---
+
+#--- begin subexercise ---
 __b)__
 Here goes the text for subexercise b).
 
@@ -72,6 +75,8 @@ Test list in exercise:
  o item1
  o item2
 
+
+#--- end subexercise ---
 
 # Closing remarks for this Exercise
 

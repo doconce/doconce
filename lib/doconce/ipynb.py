@@ -4,7 +4,7 @@ from builtins import range
 import re, sys, shutil, os
 from .common import default_movie, plain_exercise, table_analysis, indent_lines, \
     bibliography, fix_ref_section_chapter, cite_with_multiple_args2multiple_cites, \
-    _CODE_BLOCK, _MATH_BLOCK, DEFAULT_ARGLIST
+    _CODE_BLOCK, _MATH_BLOCK, DEFAULT_ARGLIST, envir_delimiter_lines
 from .doconce import INLINE_TAGS_SUBST, INLINE_TAGS
 from .latex import fix_latex_command_regex
 from .html import html_movie, html_table
@@ -281,6 +281,10 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     if newcommands:
         filestr = newcommands + filestr
     """
+    # Prepend the doconce command
+    intro = ('HTML file automatically generated from DocOnce source (https://github.com/doconce/doconce/)\n'
+             'doconce format html %s %s') % (globals.filename, ' '.join(sys.argv[1:]))
+    filestr = INLINE_TAGS_SUBST[format]['comment'] % intro + '\n' + filestr
     # Fix pandoc citations to normal internal links: [[key]](#key)
     filestr = re.sub(r'\[@(.+?)\]', r'[[\g<1>]](#\g<1>)', filestr)
 
@@ -298,6 +302,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
                      flags=re.DOTALL|re.MULTILINE)
     #filestr = re.sub('^<!-- !split -->\n', '', filestr, flags=re.MULTILINE)
 
+    # NB: some of the following environments might have already been processed
     envirs = globals.doconce_envirs[8:-2]
     for envir in envirs:
         pattern = r'^!b%s(.*?)\n(.+?)\s*^!e%s' % (envir, envir)
@@ -501,38 +506,44 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     elif os.path.isfile(ipynb_tarfile):
         os.remove(ipynb_tarfile)
 
-
     # Parse document into markdown text, code blocks, and tex blocks.
     # Store in nested list notebook_blocks.
+    # Also remove some commented markers
     notebook_blocks = [[]]
-    authors = ''
+    marker_subex_begin = INLINE_TAGS_SUBST[format]['comment'] % envir_delimiter_lines['subex'][0]
+    markers2rm = []
+    markers2rm.append(INLINE_TAGS_SUBST[format]['comment'] % envir_delimiter_lines['subex'][1])
+    markers2rm.append(INLINE_TAGS_SUBST[format]['comment'] % envir_delimiter_lines['exercise'][0])
+    markers2rm.append(INLINE_TAGS_SUBST[format]['comment'] % envir_delimiter_lines['exercise'][1])
     for line in filestr.splitlines():
-        if line.startswith('authors = [new_author(name='):  # old author method
-            authors = line[10:]
+        if line == '':
+            notebook_blocks[-1].append('\n')
+        elif line in marker_subex_begin:
+            # Each subex in its own cell
+            notebook_blocks.append([])
+        elif line in markers2rm:
+            # Remove the markers for begin/end of exercises and subexercises
+            notebook_blocks[-1].append('\n')
         elif _CODE_BLOCK in line:
             code_block_tp = line.split()[-1]
             if code_block_tp in ('pyhid',) or not code_block_tp.endswith('hid'):
-                notebook_blocks[-1] = '\n'.join(notebook_blocks[-1]).strip()
-                notebook_blocks.append(line)
-            # else: hidden block to be dropped (may include more languages
-            # with time in the above tuple)
+                notebook_blocks.append([line])
+                notebook_blocks.append([])
         elif _MATH_BLOCK in line:
-            notebook_blocks[-1] = '\n'.join(notebook_blocks[-1]).strip()
-            notebook_blocks.append(line)
-        elif 0 and line.startswith('# '):
-            if not isinstance(notebook_blocks[-1], list):
-                notebook_blocks.append([])
-            notebook_blocks[-1] = '\n'.join(notebook_blocks[-1]).strip()
+            notebook_blocks.append([line])
+            notebook_blocks.append([])
         elif '!split' in line:
-            if not isinstance(notebook_blocks[-1], list):
-                notebook_blocks.append([])
+            # !split starts a new exercise (therefore it cannot be placed between subex, sol, ans, etc)
+            notebook_blocks.append([])
+        elif envir_delimiter_lines['subex'][0] in line:
             notebook_blocks[-1] = '\n'.join(notebook_blocks[-1]).strip()
+            notebook_blocks.append([])
         else:
-            if not isinstance(notebook_blocks[-1], list):
-                notebook_blocks.append([])
             notebook_blocks[-1].append(line)
-    if isinstance(notebook_blocks[-1], list):
-        notebook_blocks[-1] = '\n'.join(notebook_blocks[-1]).strip()
+    # Join text in each element of notebook_blocks removing multiple newlines
+    for i, block in enumerate(notebook_blocks):
+        block = '\n'.join(block).strip()
+        notebook_blocks[i] = re.sub(r'\n\n+','\n\n', block)
     # Remove empty blocks
     notebook_blocks = [b for b in notebook_blocks if b != '']
 

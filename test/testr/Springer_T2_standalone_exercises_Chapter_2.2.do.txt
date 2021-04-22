@@ -6,12 +6,15 @@ DATE: Due Jan 32, 2100
 
 
 
-
+#--- begin subexercise ---
 __a)__
 Compute $1\cdot 3$.
 
 
 
+#--- end subexercise ---
+
+#--- begin subexercise ---
 __b)__
 Compute $2\cdot 3$.
 
@@ -21,3 +24,7 @@ Use a Python shell.
 
 
 
+
+
+
+#--- end subexercise ---

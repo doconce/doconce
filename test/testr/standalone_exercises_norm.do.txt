@@ -47,7 +47,7 @@ The goal of this project is to draw $N$ circles with random
 center and radius. Plot each circle using the `circle` function
 above.
 
-
+#--- begin subexercise ---
 __a)__
 Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
 
@@ -61,13 +61,21 @@ $x_0$, $y_0$, and $R$ quantities.
 
 
 
+#--- end subexercise ---
+
+#--- begin subexercise ---
 __b)__
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
 
 
+#--- end subexercise ---
+
+#--- begin subexercise ---
 __c)__
 Let $R$ and $(x_0,y_0)$ be normally distributed.
 
+
+#--- end subexercise ---
 
 
 

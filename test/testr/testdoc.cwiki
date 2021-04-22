@@ -892,12 +892,16 @@ and then, with the command-line option {{{--examples_as_exercises}}} be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
+<wiki:comment> --- begin subexercise --- </wiki:comment>
 //a)//
 State some problem.
 
 //Solution.//
 The answer to this subproblem can be written here.
 
+<wiki:comment> --- end subexercise --- </wiki:comment>
+
+<wiki:comment> --- begin subexercise --- </wiki:comment>
 //b)//
 State some other problem.
 
@@ -910,6 +914,8 @@ Maybe even another hint?
 //Solution.//
 The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
+
+<wiki:comment> --- end subexercise --- </wiki:comment>
 
 <wiki:comment> --- end exercise --- </wiki:comment>
 
@@ -1045,6 +1051,7 @@ between there we have [#Exercise_10:_Make_references_to_projects_and_problems].
 
 <wiki:comment> Torture tests </wiki:comment>
 
+<wiki:comment> --- begin subexercise --- </wiki:comment>
 //a)//
 Make a program that simulates flipping a coin {{{N}}} times.
 Print out "tail" or "head" for each flip and
@@ -1085,6 +1092,9 @@ print('Flipping a coin %d times gave %d heads' % (N, heads))
 }}}
 <wiki:comment> --- end solution of exercise --- </wiki:comment>
 
+<wiki:comment> --- end subexercise --- </wiki:comment>
+
+<wiki:comment> --- begin subexercise --- </wiki:comment>
 //b)//
 Vectorize the code in a) using boolean indexing.
 
@@ -1092,6 +1102,9 @@ Vectorized code can be written in many ways.
 Sometimes the code is less intuitive, sometimes not.
 At least there is not much to find in the section [#Section_1].
 
+<wiki:comment> --- end subexercise --- </wiki:comment>
+
+<wiki:comment> --- begin subexercise --- </wiki:comment>
 //c)//
 Vectorize the code in a) using {{{numpy.sum}}}.
 
@@ -1113,6 +1126,8 @@ after the last subexercise. Test a list too:
 
 # Mark 2.
 
+
+<wiki:comment> --- end subexercise --- </wiki:comment>
 
 Filenames: {{{flip_coin.py}}}, {{{flip_coin.pdf}}}.
 
@@ -1212,6 +1227,7 @@ The goal of this project is to draw {{{N}}} circles with random
 center and radius. Plot each circle using the {{{circle}}} function
 above.
 
+<wiki:comment> --- begin subexercise --- </wiki:comment>
 //a)//
 Let {{{R}}} be normally distributed and {{{(x_0,y_0)}}} uniformly distributed.
 
@@ -1233,12 +1249,20 @@ Here goes the short answer to part a).
 Here goes a full solution to part a).
 <wiki:comment> --- end solution of exercise --- </wiki:comment>
 
+<wiki:comment> --- end subexercise --- </wiki:comment>
+
+<wiki:comment> --- begin subexercise --- </wiki:comment>
 //b)//
 Let {{{R}}} be uniformly distributed and {{{(x_0,y_0)}}} normally distributed.
 Filename: {{{norm}}}.
 
+<wiki:comment> --- end subexercise --- </wiki:comment>
+
+<wiki:comment> --- begin subexercise --- </wiki:comment>
 //c)//
 Let {{{R}}} and {{{(x_0,y_0)}}} be normally distributed.
+
+<wiki:comment> --- end subexercise --- </wiki:comment>
 
 Filename: {{{circles}}}.
 
@@ -1272,6 +1296,7 @@ End of solution is here.
 
 <wiki:comment> --- end solution of exercise --- </wiki:comment>
 
+<wiki:comment> --- begin subexercise --- </wiki:comment>
 //a)//
 Subexercises are numbered a), b), etc.
 
@@ -1315,6 +1340,9 @@ Short answer to subexercise a).
 With math in answer: {{{a=b}}}.
 <wiki:comment> --- end answer of exercise --- </wiki:comment>
 
+<wiki:comment> --- end subexercise --- </wiki:comment>
+
+<wiki:comment> --- begin subexercise --- </wiki:comment>
 //b)//
 Here goes the text for subexercise b).
 
@@ -1347,8 +1375,11 @@ Test list in exercise:
 # item1
 
 # item2
-<wiki:comment> Closing remarks for this Exercise </wiki:comment>
 
+
+<wiki:comment> --- end subexercise --- </wiki:comment>
+
+<wiki:comment> Closing remarks for this Exercise </wiki:comment>
 
 === Remarks ===
 
@@ -1423,11 +1454,14 @@ for {{{x}}} or {{{y}}}, not a function {{{y(x)}}}.
 <wiki:comment> This example needs the --examples_as_exercises option, otherwise </wiki:comment>
 <wiki:comment> it is just typeset as it is written. </wiki:comment>
 
+<wiki:comment> --- begin subexercise --- </wiki:comment>
 //a)//
 What is the capital of Norway?
 
 //Answer.//
 Oslo.
+
+<wiki:comment> --- end subexercise --- </wiki:comment>
 
 <wiki:comment> --- end exercise --- </wiki:comment>
 

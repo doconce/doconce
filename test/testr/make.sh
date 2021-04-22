@@ -1,10 +1,13 @@
 #!/bin/bash -x
 #set -x
 #export PS4='+ l.${LINENO}: ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
+bold=$(tput bold)
+red=$(tput setaf 1)
+normal=$(tput sgr0)
 function system {
   "$@"
   if [ $? -ne 0 ]; then
-    echo -e "\nmake.sh: unsuccessful command $@"
+    echo -e "\nmake.sh: unsuccessful command ${bold}${red}$@${normal}"
     echo "abort!"
     exit 1
   fi

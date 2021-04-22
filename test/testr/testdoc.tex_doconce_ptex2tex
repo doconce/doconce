@@ -1732,12 +1732,16 @@ and then, with the command--line option \Verb!--examples_as_exercises! be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
+% --- begin subexercise ---
 \subex{a)}
 State some problem.
 
 \paragraph{Solution.}
 The answer to this subproblem can be written here.
 
+% --- end subexercise ---
+
+% --- begin subexercise ---
 \subex{b)}
 State some other problem.
 
@@ -1750,6 +1754,8 @@ Maybe even another hint?
 \paragraph{Solution.}
 The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
+
+% --- end subexercise ---
 
 \end{doconceexercise}
 % --- end exercise ---
@@ -1979,6 +1985,7 @@ between there we have Exercise~\vref{exer:some:formula}.
 
 % Torture tests
 
+% --- begin subexercise ---
 \subex{a)}
 Make a program that simulates flipping a coin $N$ times.
 Print out ``tail'' or ``head'' for each flip and
@@ -2030,6 +2037,9 @@ print('Flipping a coin %d times gave %d heads' % (N, heads))
 
 % --- end solution of exercise ---
 
+% --- end subexercise ---
+
+% --- begin subexercise ---
 \subex{b)}
 Vectorize the code in a) using boolean indexing.
 
@@ -2037,6 +2047,9 @@ Vectorized code can be written in many ways.
 Sometimes the code is less intuitive, sometimes not.
 At least there is not much to find in Section~\vref{sec1}.
 
+% --- end subexercise ---
+
+% --- begin subexercise ---
 \subex{c)}
 Vectorize the code in a) using \texttt{numpy.sum}.
 
@@ -2059,6 +2072,8 @@ after the last subexercise. Test a list too:
 \end{enumerate}
 
 \noindent
+% --- end subexercise ---
+
 \noindent Filenames: \Verb!flip_coin.py!, \Verb!flip_coin.pdf!.
 
 % Closing remarks for this Problem
@@ -2184,6 +2199,7 @@ The goal of this project is to draw $N$ circles with random
 center and radius. Plot each circle using the \texttt{circle} function
 above.
 
+% --- begin subexercise ---
 \subex{a)}
 Let $R$ be normally distributed and $(x_0,y_0)$ uniformly distributed.
 
@@ -2205,12 +2221,20 @@ Here goes the short answer to part a).
 Here goes a full solution to part a).
 % --- end solution of exercise ---
 
+% --- end subexercise ---
+
+% --- begin subexercise ---
 \subex{b)}
 Let $R$ be uniformly distributed and $(x_0,y_0)$ normally distributed.
 \noindent Filename: \texttt{norm}.
 
+% --- end subexercise ---
+
+% --- begin subexercise ---
 \subex{c)}
 Let $R$ and $(x_0,y_0)$ be normally distributed.
+
+% --- end subexercise ---
 
 \noindent Filename: \texttt{circles}.
 
@@ -2251,6 +2275,7 @@ End of solution is here.
 
 % --- end solution of exercise ---
 
+% --- begin subexercise ---
 \subex{a)}
 Subexercises are numbered a), b), etc.
 
@@ -2298,6 +2323,9 @@ Short answer to subexercise a).
 With math in answer: $a=b$.
 % --- end answer of exercise ---
 
+% --- end subexercise ---
+
+% --- begin subexercise ---
 \subex{b)}
 Here goes the text for subexercise b).
 
@@ -2328,10 +2356,13 @@ Test list in exercise:
 \item item1
 
 \item item2
-% Closing remarks for this Exercise
 \end{enumerate}
 
 \noindent
+% --- end subexercise ---
+
+% Closing remarks for this Exercise
+
 \paragraph{Remarks.}
 Some final closing remarks, e.g., summarizing the main findings
 and their implications in other problems can be made. These
@@ -2467,11 +2498,14 @@ special techniques.
 % This example needs the --examples_as_exercises option, otherwise
 % it is just typeset as it is written.
 
+% --- begin subexercise ---
 \subex{a)}
 What is the capital of Norway?
 
 \paragraph{Answer.}
 Oslo.
+
+% --- end subexercise ---
 
 \end{doconceexercise}
 % --- end exercise ---

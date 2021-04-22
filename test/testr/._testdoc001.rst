@@ -918,11 +918,17 @@ and then, with the command-line option ``--examples_as_exercises`` be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
+.. --- begin subexercise ---
+
 **a)**
 State some problem.
 
 **Solution.**
 The answer to this subproblem can be written here.
+
+.. --- end subexercise ---
+
+.. --- begin subexercise ---
 
 **b)**
 State some other problem.
@@ -936,6 +942,8 @@ Maybe even another hint?
 **Solution.**
 The answer to this other subproblem goes here,
 maybe over multiple doconce input lines.
+
+.. --- end subexercise ---
 
 .. --- end exercise ---
 
