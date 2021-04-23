@@ -51,12 +51,12 @@ system doconce format latex manual.do.txt --no_mako --latex_font=helvetica --no_
 doconce ptex2tex manual.p.tex envir=ans:nt #produced manual.tex
 # Since we have native latex table and --no_ampersand_quote, we need to
 # manually fix the quote examples elsewhere. 
-# NB! escape underscores and similar symbols with \_
 doconce subst '([^`])Guns & Roses([^`])' '\g<1>Guns {\&} Roses\g<2>' manual.tex
 doconce subst '([^`])Texas A & M([^`])' '\g<2>Texas A {\&} M\g<2>' manual.tex
 # Must fix one \eqref{} to (ref{})
 doconce replace '\eqref{my:special:eq}' '(ref{my:special:eq})' manual.tex
 doconce replace '\eqref{eq1}' '(ref{eq1})' manual.tex
+# NB! escape underscores and similar symbols with `_`
 # Using latex results in errors due to the size of figures,
 # so use pdfltex
 #latex -shell-escape manual

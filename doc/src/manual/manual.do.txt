@@ -2687,10 +2687,10 @@ write all answers and solutions to exercises to a separate section in the end of
 |---------------------------------------------------------------|
 | Command option        | Behavior                              |
 |--l-------------------------------------l----------------------|
-| --without\_answers    | Turn off output of answers            |
-| --without\_solutions  | Turn off output of solutions          |
-| --answers\_at\_end    | Answers in the end of the document    |
-| --solutions\_at\_end  | Solutions in the end of the document  |
+| `--without_answers`   | Turn off output of answers            |
+| `--without_solutions` | Turn off output of solutions          |
+| `--answers_at_end`    | Answers in the end of the document    |
+| `--solutions_at_end`  | Solutions in the end of the document  |
 |---------------------------------------------------------------|
 
 
