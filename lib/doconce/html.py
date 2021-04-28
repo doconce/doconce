@@ -2003,10 +2003,10 @@ def html_table(table):
         s = ('\n'
              '<div class="row">\n'
              '  <div class="col-xs-%d">\n'
-             '    <table class="table table-striped table-hover table-condensed">\n'
+             '    <table class="dotable table-striped table-hover table-condensed">\n'
              ) % span
     else:
-        s = '<table class="table" border="1">\n'
+        s = '<table class="dotable" border="1">\n'
     for i, row in enumerate(table['rows']):
         if row == ['horizontal rule']:
             continue

@@ -577,7 +577,7 @@ end
 % 
 % Let us take this table from the manual:
 % 
-% <table class="table" border="1">
+% <table class="dotable" border="1">
 % <thead>
 % <tr><th align="center">time</th> <th align="center">velocity</th> <th align="center">acceleration</th> </tr>
 % </thead>
@@ -601,7 +601,7 @@ end
 % Here is yet another table to test that we can handle more than
 % one table:
 % 
-% <table class="table" border="1">
+% <table class="dotable" border="1">
 % <thead>
 % <tr><th align="left">time</th> <th align="left">velocity</th> <th align="left">acceleration</th> </tr>
 % </thead>
@@ -615,7 +615,7 @@ end
 % accordingly), verbatim heading and entry, and no space around the pipe
 % symbol:
 % 
-% <table class="table" border="1">
+% <table class="dotable" border="1">
 % <thead>
 % <tr><th align="center">$i$</th> <th align="center">$h_i$ </th> <th align="center">$\bar T_i$</th> <th align="center">|L_i|</th> </tr>
 % </thead>
@@ -633,7 +633,7 @@ end
 % and rows starting with ||-| because of a negative number,
 % and ||| right before and after verbatim word (with no space):
 % 
-% <table class="table" border="1">
+% <table class="dotable" border="1">
 % <thead>
 % <tr><th align="center">exact</th> <th align="center">|v_1|</th> <th align="center">$a_i$ + |v_2|</th> <th align="center">|verb_3_|</th> </tr>
 % </thead>
@@ -650,7 +650,7 @@ end
 % 
 % Here is a table with X alignment:
 % 
-% <table class="table" border="1">
+% <table class="dotable" border="1">
 % <thead>
 % <tr><th align="center"> Type</th> <th align="center">                                                                                                           Description                                                                                                            </th> </tr>
 % </thead>
@@ -665,7 +665,7 @@ end
 % % Mako code to expand URLs in the table
 % % (These types of tables did not work before Jan 2014)
 % 
-% <table class="table" border="1">
+% <table class="dotable" border="1">
 % <tr></tr>
 % <tbody>
 % <tr><td align="center">   $\mathcal{L}=0$            </td> <td align="center">   080 <../doc/src/manual/mov/wave_frames/frame_0080.png>    </td> <td align="center">   085 <../doc/src/manual/mov/wave_frames/frame_0085.png>    </td> </tr>
@@ -849,7 +849,7 @@ end
 % $$1 + 1 = 2$$
 % or in tabular form:
 % 
-% <table class="table" border="1">
+% <table class="dotable" border="1">
 % <thead>
 % <tr><th align="center">Problem</th> <th align="center">Result</th> </tr>
 % </thead>
