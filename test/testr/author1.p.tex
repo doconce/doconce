@@ -1,7 +1,7 @@
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%% doconce format html author1.do.txt 
+%% doconce format latex author1.do.txt 
 %%
 % #ifdef PTEX2TEX_EXPLANATION
 %%
@@ -201,10 +201,10 @@ the \texttt{xr} feature in {\LaTeX}.
 The syntax of generalized references reads
 
 
-\bccq
+\bdat
 ref[internal][cite][external]
 
-\eccq
+\edat
 
 If all standard \texttt{ref} references (with curly braces)
 in the text \texttt{internal} are references
@@ -234,7 +234,7 @@ in a document:
 
 
 
-\bccq
+\bdat
 As explained in
 ref[Section ref{subsec:ex}][in "Langtangen, 2012":
 "https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex"
@@ -244,17 +244,17 @@ the document "A Document for Testing DocOnce":
 "https://hplgit.github.io/doconce/test/demo_testdoc.html"
 cite{testdoc:12}], DocOnce documents may include tables.
 
-\eccq
+\edat
 
 With \texttt{latex} or \texttt{pdflatex} as output, this translates to
 
 
 
-\bccq
+\bdat
 As explained in
 Section ref{subsec:ex}, DocOnce documents may include tables.
 
-\eccq
+\edat
 
 if the label \Verb!{subsec:ex}! appears in the present DocOnce source, and
 otherwise
@@ -263,13 +263,13 @@ otherwise
 
 
 
-\bccq
+\bdat
 As explained in
 Section ref{subsec:ex} in "Langtangen, 2012":
 "https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex"
 cite{testdoc:12}, DocOnce documents may include tables.
 
-\eccq
+\edat
 
 In a format different from \texttt{latex} and \texttt{pdflatex}, the effective DocOnce
 text becomes
@@ -280,7 +280,7 @@ text becomes
 
 
 
-\bccq
+\bdat
 As explained in
 a "section":
 "https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex" in
@@ -288,7 +288,7 @@ the document "A Document for Testing DocOnce":
 "https://hplgit.github.io/doconce/test/demo_testdoc.html"
 cite{testdoc:12}, DocOnce documents may include tables.
 
-\eccq
+\edat
 
 The rendered text in the current format \texttt{latex} becomes
 
@@ -312,7 +312,7 @@ if the reference is internal in the DocOnce source, applies the
 
 
 
-\bccq
+\bdat
 As explained in
 refch[Chapter ref{ch:testdoc}]["Langtangen, 2012":
 "https://hplgit.github.io/doconce/test/demo_testdoc.html"
@@ -321,7 +321,7 @@ cite{testdoc:12}][the document
 "https://hplgit.github.io/doconce/test/demo_testdoc.html"
 cite{testdoc:12}], DocOnce documents may include tables.
 
-\eccq
+\edat
 
 The output now if \texttt{ch:testdoc} is not a label in the document,
 becomes in the \texttt{latex} and \texttt{pdflatex} case
@@ -331,13 +331,13 @@ becomes in the \texttt{latex} and \texttt{pdflatex} case
 
 
 
-\bccq
+\bdat
 As explained in
 "Langtangen, 2012":
 "https://hplgit.github.io/doconce/test/demo_testdoc.html"
 cite{testdoc:12}, DocOnce documents may include tables.
 
-\eccq
+\edat
 
 That is, the internal reference \texttt{Chapter ...} is omitted since
 it is not meaningful to refer to an external document as "Chapter".
@@ -360,11 +360,11 @@ And here is another example with internal references only:
 
 
 
-\bccq
+\bdat
 Generalized references are described in ref[Section ref{genrefs}][dummy1][
 dummy2].
 
-\eccq
+\edat
 
 The text is rendered to
 

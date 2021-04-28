@@ -1,7 +1,7 @@
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%% doconce format html Springer_T2_book.do.txt CHAPTER=chapter BOOK=book APPENDIX=appendix -DPRIMER_BOOK ALG=code --latex_code_style=lst --encoding=utf-8 --device=paper --exercise_numbering=chapter --latex_admon_color=1,1,1 --latex_admon=mdfbox --latex_style=Springer_T4 --latex_title_layout=titlepage --latex_list_of_exercises=loe --latex_table_format=center --latex_admon_title_no_period --exercises_in_zip --exercises_in_zip_filename=chapter --allow_refs_to_external_docs
+%% doconce format latex Springer_T2_book.do.txt CHAPTER=chapter BOOK=book APPENDIX=appendix -DPRIMER_BOOK ALG=code --latex_code_style=lst --encoding=utf-8 --device=paper --exercise_numbering=chapter --latex_admon_color=1,1,1 --latex_admon=mdfbox --latex_style=Springer_T4 --latex_title_layout=titlepage --latex_list_of_exercises=loe --latex_table_format=center --latex_admon_title_no_period --exercises_in_zip --exercises_in_zip_filename=chapter --allow_refs_to_external_docs
 
 % #define PREAMBLE
 
@@ -532,7 +532,7 @@ demonstrates how to create these three types of lists:
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 >>> def f(x):
 ...     return x**3       # sample function
 ...
@@ -558,7 +558,7 @@ element can be an object of any type, e.g.,
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 mylist = [2, 6.0, 'tmp.ps', [0,1]]
 
 \end{lstlisting}
@@ -642,7 +642,7 @@ The statement
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 import numpy as np
 
 \end{lstlisting}
@@ -654,7 +654,7 @@ and ease the transition to and from that language, one can do
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 from numpy import *
 
 \end{lstlisting}
@@ -670,7 +670,7 @@ So, $f(x)=\sinh(x-1)\sin(w t)$ would be coded as
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 from numpy import sinh, sin
 
 def f(x):
@@ -691,7 +691,7 @@ from \texttt{numpy}:
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 a = np.array(r)
 
 \end{lstlisting}
@@ -700,7 +700,7 @@ To create a new array of length \texttt{n}, filled with zeros, we write
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 a = np.zeros(n)
 
 \end{lstlisting}
@@ -712,7 +712,7 @@ A similar function,
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 a = np.zeros_like(c)
 
 \end{lstlisting}
@@ -728,7 +728,7 @@ distributed values in an interval $[p,q]$. The \texttt{numpy} function
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 a = np.linspace(p, q, n)
 
 \end{lstlisting}
@@ -801,7 +801,7 @@ often be necessary to add a newline character,
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 outfile.write(s + '\n')
 
 \end{lstlisting}
@@ -822,7 +822,7 @@ to be opened for writing:
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 # write to new file, or overwrite file:
 outfile = open(filename, 'w')
 
@@ -904,7 +904,7 @@ and loop from 1 to this length:
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 ncolumns = len(data[0])
 outfile.write('          ')
 for i in range(1, ncolumns+1):
@@ -933,7 +933,7 @@ To add the row headings, we need a counter over the row numbers:
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 row_counter = 1
 for row in data:
     outfile.write('row %2d' % row_counter)
@@ -953,7 +953,7 @@ We could, alternatively, iterate over the indices in the list:
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 for i in range(len(data)):
     outfile.write('row %2d' % (i+1))
     for j in range(len(data[i])):
@@ -1004,7 +1004,7 @@ closed. The statement
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 s = raw_input('Give s:')
 
 \end{lstlisting}
@@ -1014,7 +1014,7 @@ is equivalent to
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 print('Give s: '),
 s = sys.stdin.readline()
 
@@ -1026,7 +1026,7 @@ Similarly,
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 s = eval(raw_input('Give s:'))
 
 \end{lstlisting}
@@ -1036,7 +1036,7 @@ is equivalent to
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 print('Give s: '),
 s = eval(sys.stdin.readline())
 
@@ -1046,7 +1046,7 @@ For output to the terminal window, the statement
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 print(s)
 
 \end{lstlisting}
@@ -1055,7 +1055,7 @@ is equivalent to
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 sys.stdout.write(s + '\n')
 
 \end{lstlisting}
@@ -1073,7 +1073,7 @@ A sample function may take the form
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 def x2f(infile, outfile, f):
     for line in infile:
         x = float(line)
@@ -1107,7 +1107,7 @@ A typical application of \texttt{sys.stderr} is to report errors:
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 if x < 0:
     sys.stderr.write('Illegal value of x'); sys.exit(1)
 
@@ -1226,7 +1226,7 @@ Python shell as calculator:
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 >>> 1 + 1
 
 
@@ -1275,7 +1275,7 @@ Use a Python shell.
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 >>> 2*3
 
 

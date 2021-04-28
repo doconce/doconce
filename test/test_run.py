@@ -37,6 +37,24 @@ def create_file_with_text(text='', fname=None):
     return fname
 
 
+### function in common.py
+def test_get_code_block_args():
+    from doconce.common import get_code_block_args
+    from doconce.globals import envir2pygments as pr
+    LANG, codetype, postfix = get_code_block_args('')
+    assert (LANG, codetype, postfix, pr.get(LANG, '')) == ('', '', '', '')
+    LANG, codetype, postfix = get_code_block_args('!bc py-h')
+    assert (LANG, codetype, postfix, pr.get(LANG, '')) == ('py', '', '-h', 'python')
+    LANG, codetype, postfix = get_code_block_args('!bc pycod-h   \n')
+    assert (LANG, codetype, postfix, pr.get(LANG, '')) == ('py', 'cod', '-h', 'python')
+    LANG, codetype, postfix = get_code_block_args('!bc mprohid')
+    assert (LANG, codetype, postfix, pr.get(LANG, '')) == ('m', 'pro', 'hid', 'matlab')
+    LANG, codetype, postfix = get_code_block_args('!bc pro')
+    assert (LANG, codetype, postfix, pr.get(LANG, '')) == ('', 'pro', '', '')
+    LANG, codetype, postfix = get_code_block_args('!bc r-t')
+    assert (LANG, codetype, postfix, pr.get(LANG, '')) == ('r', '', '-t', 'r')
+    LANG, codetype, postfix = get_code_block_args('!bc rbpro')
+    assert (LANG, codetype, postfix, pr.get(LANG, '')) == ('rb', 'pro', '', 'ruby')
 
 ### functions in misc.py
 def test_find_file_with_extensions(tdir):

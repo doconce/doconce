@@ -1,19 +1,20 @@
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%% doconce format html testdoc.do.txt --examples_as_exercises --latex_code_style=default:lst-blue1[style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]@fcod:vrb-gray@sys:vrb[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt] --latex_code_lststyles=mylststyles --latex_packages=varioref
+%% doconce format latex testdoc.do.txt --device=paper --examples_as_exercises --latex_double_hyphen --latex_index_in_margin --latex_no_program_footnotelink --latex_title_layout=titlepage --latex_papersize=a4 --latex_colored_table_rows=blue --latex_fancy_header --latex_section_headings=blue --latex_labels_in_margin --latex_double_spacing --latex_todonotes --latex_list_of_exercises=loe --latex_font=palatino --latex_packages=varioref --latex_link_color=blue!90 --draft
+%%
 
-% #define PREAMBLE
 
-% #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
 
 \documentclass[%
-oneside,                 % oneside: electronic viewing, twoside: printing
-final,                   % draft: marks overfull hboxes, figures with paths
+twoside,                 % oneside: electronic viewing, twoside: printing
+draft,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
 
 \listfiles               %  print all files needed to compile this document
+
+\usepackage[a4paper]{geometry}
 
 \usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
@@ -22,7 +23,7 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \usepackage[pdftex]{graphicx}
 \usepackage{sidecap}
 
-% user-provided packages: --latex_packages=varioref
+% user--provided packages: --latex_packages=varioref
 \usepackage{varioref}
 
 % 'on page ...' reference with \vref{} and varioref package
@@ -36,161 +37,17 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \newcommand{\replace}[2]{{\color{red}\text{\st{#1} #2}}}
 \newcommand{\remove}[1]{{\color{red}\st{#1}}}
 
-% Packages for typesetting blocks of computer code
-\usepackage{fancyvrb,framed,moreverb}
-
-% Define colors
-\definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
-\definecolor{tucorange}{rgb}{1.0,0.64,0}
-\definecolor{darkorange}{rgb}{.71,0.21,0.01}
-\definecolor{darkgreen}{rgb}{.12,.54,.11}
-\definecolor{myteal}{rgb}{.26, .44, .56}
-\definecolor{gray}{gray}{0.45}
-\definecolor{mediumgray}{gray}{.8}
-\definecolor{lightgray}{gray}{.95}
-\definecolor{brown}{rgb}{0.54,0.27,0.07}
-\definecolor{purple}{rgb}{0.5,0.0,0.5}
-\definecolor{darkgray}{gray}{0.25}
-\definecolor{darkblue}{rgb}{0,0.08,0.45}
-\definecolor{darkblue2}{rgb}{0,0,0.8}
-\definecolor{lightred}{rgb}{1.0,0.39,0.28}
-\definecolor{lightgreen}{rgb}{0.48,0.99,0.0}
-\definecolor{lightblue}{rgb}{0.53,0.81,0.92}
-\definecolor{lightblue2}{rgb}{0.3,0.3,1.0}
-\definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
-\definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
-
-\colorlet{comment_green}{green!50!black}
-\colorlet{string_red}{red!60!black}
-\colorlet{keyword_pink}{magenta!70!black}
-\colorlet{indendifier_green}{green!70!white}
-
-% Backgrounds for code
-\definecolor{cbg_gray}{rgb}{.95, .95, .95}
-\definecolor{bar_gray}{rgb}{.92, .92, .92}
-
-\definecolor{cbg_yellowgray}{rgb}{.95, .95, .85}
-\definecolor{bar_yellowgray}{rgb}{.95, .95, .65}
-
-\colorlet{cbg_yellow2}{yellow!10}
-\colorlet{bar_yellow2}{yellow!20}
-
-\definecolor{cbg_yellow1}{rgb}{.98, .98, 0.8}
-\definecolor{bar_yellow1}{rgb}{.98, .98, 0.4}
-
-\definecolor{cbg_red1}{rgb}{1, 0.85, 0.85}
-\definecolor{bar_red1}{rgb}{1, 0.75, 0.85}
-
-\definecolor{cbg_blue1}{rgb}{0.87843, 0.95686, 1.0}
-\definecolor{bar_blue1}{rgb}{0.7,     0.95686, 1}
-
-%\setlength{\fboxsep}{2mm}  % adjust cod_vpad/pro_vpad background box
-
-%% Background for code blocks (parameter is color name)
-
-%% pro/cod_vpad: gives some vertical padding before and after the text
-%% (but has more simplistic code than _cod/pro_tight+cod/pro).
-%% pro/cod_vpad can be used to enclose Verbatim or lst begin/end for code.
-%% pro/cod calls _pro/cod_tight and has very little vertical padding,
-%% used to enclose Verbatim and other begin/end for code.
-%% (pro/cod is what the ptex2tex program could produce with the
-%% Blue/BlueBar definitions in .ptex2tex.cfg.)
-
-\newenvironment{cod_vpad}[1]{
-   \def\FrameCommand{\colorbox{#1}}
-   \MakeFramed{\FrameRestore}}
-   {\endMakeFramed}
-
-\newenvironment{_cod_tight}[1]{
-   \def\FrameCommand{\colorbox{#1}}
-   \FrameRule0.6pt\MakeFramed {\FrameRestore}\vskip3mm}
-   {\vskip0mm\endMakeFramed}
-
-\newenvironment{cod}[1]{
-\bgroup\rmfamily
-\fboxsep=0mm\relax
-\begin{_cod_tight}{#1}
-\list{}{\parsep=-2mm\parskip=0mm\topsep=0pt\leftmargin=2mm
-\rightmargin=2\leftmargin\leftmargin=4pt\relax}
-\item\relax}
-{\endlist\end{_cod_tight}\egroup}
-
-%% Background for complete program blocks (parameter 1 is color name
-%% for background, parameter 2 is color for left bar)
-\newenvironment{pro_vpad}[2]{
-   \def\FrameCommand{\color{#2}\vrule width 1mm\normalcolor\colorbox{#1}}
-   \MakeFramed{\FrameRestore}}
-   {\endMakeFramed}
-
-\newenvironment{_pro_tight}[2]{
-   \def\FrameCommand{\color{#2}\vrule width 1mm\normalcolor\colorbox{#1}}
-   \FrameRule0.6pt\MakeFramed {\advance\hsize-2mm\FrameRestore}\vskip3mm}
-   {\vskip0mm\endMakeFramed}
-
-\newenvironment{pro}[2]{
-\bgroup\rmfamily
-\fboxsep=0mm\relax
-\begin{_pro_tight}{#1}{#2}
-\list{}{\parsep=-2mm\parskip=0mm\topsep=0pt\leftmargin=2mm
-\rightmargin=2\leftmargin\leftmargin=4pt\relax}
-\item\relax}
-{\endlist\end{_pro_tight}\egroup}
-
-\usepackage{listingsutf8}
-
-% Common lstlisting parameters
-
-\usepackage{calc}
-\newlength{\lstboxwidth}  % width of lst box
-\newlength{\framethickness}
-\setlength{\framethickness}{0.5mm}
-% for frame=trbl and a framerule that has significant size, set
-% xleftmargin=5mm and xrightmargin=5mm.
-
-\lstset{
-  basicstyle=\small \ttfamily,
-  breaklines=false,          % break/wrap lines
-  breakatwhitespace=true,    % let linebreaks happen at whitespace
-  breakindent=40pt,
-  tab=,
-  tabsize=4,                 % tab means 4 spaces
-  %belowskip=\smallskipamount,  % space between code and text below
-  xleftmargin=2mm,           % indentation of code frame
-  xrightmargin=0mm,
-  framexleftmargin=2mm,      % add frame space to the left of the code box
-  %numbers=left,             % put line numbers on the left
-  %stepnumber=2,             % stepnumber=1 numbers each line, =n every n lines
-  framerule=\framethickness, % thickness of frame
-  aboveskip=2ex,             % vertical space above code frame
-  showstringspaces=false,    % show spaces in strings with an underscore
-  showspaces=false,          % show spaces with an underscore
-  showtabs=false,
-  keepspaces=true,
-  columns=fullflexible,      % tighter character kerning, like verb
-  escapeinside={(*@}{@*)},   % (*@ \pause @*) in slides and math in code blocks
-  extendedchars=\true,       % allows non-ascii chars, does not work with utf-8
-}
-
-% Internally defined styles for lstlisting
-
-\lstdefinestyle{simple}{
-commentstyle={},
-}
-
-% user-defined lst styles in file "mylststyles":
-\lstdefinestyle{myspeciallststyle}{
-keywordstyle=\color{blue}\bfseries,
-commentstyle=\color{myteal},
-stringstyle=\color{darkgreen},
-identifierstyle=\color{darkorange},
-}
-
-% end of custom lstdefinestyles
+\usepackage{fancyvrb} % packages needed for verbatim environments
+\usepackage{fancyvrb}
 
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
+% Set palatino as the default font family:
+\usepackage[sc]{mathpazo}    % Palatino fonts
+\linespread{1.05}            % Palatino needs extra line spread to look nice
 
 \usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
 
@@ -198,7 +55,7 @@ identifierstyle=\color{darkorange},
 \newcounter{doconcequizcounter}
 
 % Hyperlinks in PDF:
-\definecolor{linkcolor}{rgb}{0,0,0.4}
+\colorlet{linkcolor}{blue!90}
 \usepackage{hyperref}
 \hypersetup{
     breaklinks=true,
@@ -234,9 +91,33 @@ identifierstyle=\color{darkorange},
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
-% newcommands for typesetting inline (doconce) comments
-\newcommand{\shortinlinecomment}[3]{{\color{red}{\bf #1}: #2}}
-\newcommand{\longinlinecomment}[3]{{\color{red}{\bf #1}: #2}}
+% enable inline (doconce) comments to be typeset with the todonotes package
+\usepackage{ifthen,xkeyval,tikz,calc,graphicx}
+\usepackage[shadow]{todonotes}
+\newcommand{\shortinlinecomment}[3]{%
+\todo[size=\normalsize,fancyline,color=orange!40,caption={#3}]{%
+ \begin{spacing}{0.75}{\bf #1}: #2\end{spacing}}}
+\newcommand{\longinlinecomment}[3]{%
+\todo[inline,color=orange!40,caption={#3}]{{\bf #1}: #2}}
+
+% Display labels for sections, equations, and citations in the margin
+\usepackage{showlabels}
+\showlabels{cite}
+
+\onehalfspacing    % from setspace package
+%\doublespacing
+
+% --- fancyhdr package for fancy headers ---
+\usepackage{fancyhdr}
+\fancyhf{} % sets both header and footer to nothing
+\renewcommand{\headrulewidth}{1pt}
+% section name to the left (L) and page number to the right (R)
+% on even (E) pages, the other way around on odd pages
+% (switch twoside to onside in documentclass to just have odd pages)
+\fancyhead[LE,RO]{\rightmark} % section
+\fancyhead[RE,LO]{\thepage}
+\pagestyle{fancy}
+
 
 \usepackage[framemethod=TikZ]{mdframed}
 
@@ -250,9 +131,9 @@ identifierstyle=\color{darkorange},
   skipbelow=15pt,
   outerlinewidth=0,
   backgroundcolor=mdfbox_notice_background,
-  linecolor=black,
+  linecolor=seccolor,
   linewidth=2pt,       % frame thickness
-  frametitlebackgroundcolor=mdfbox_notice_background,
+  frametitlebackgroundcolor=seccolor!20,
   frametitlerule=true,
   frametitlefont=\normalfont\bfseries,
   shadow=false,        % frame shadow?
@@ -278,9 +159,9 @@ identifierstyle=\color{darkorange},
   skipbelow=15pt,
   outerlinewidth=0,
   backgroundcolor=mdfbox_summary_background,
-  linecolor=black,
+  linecolor=seccolor,
   linewidth=2pt,       % frame thickness
-  frametitlebackgroundcolor=mdfbox_summary_background,
+  frametitlebackgroundcolor=seccolor!20,
   frametitlerule=true,
   frametitlefont=\normalfont\bfseries,
   shadow=false,        % frame shadow?
@@ -306,9 +187,9 @@ identifierstyle=\color{darkorange},
   skipbelow=15pt,
   outerlinewidth=0,
   backgroundcolor=mdfbox_warning_background,
-  linecolor=black,
+  linecolor=seccolor,
   linewidth=2pt,       % frame thickness
-  frametitlebackgroundcolor=mdfbox_warning_background,
+  frametitlebackgroundcolor=seccolor!20,
   frametitlerule=true,
   frametitlefont=\normalfont\bfseries,
   shadow=false,        % frame shadow?
@@ -334,9 +215,9 @@ identifierstyle=\color{darkorange},
   skipbelow=15pt,
   outerlinewidth=0,
   backgroundcolor=mdfbox_question_background,
-  linecolor=black,
+  linecolor=seccolor,
   linewidth=2pt,       % frame thickness
-  frametitlebackgroundcolor=mdfbox_question_background,
+  frametitlebackgroundcolor=seccolor!20,
   frametitlerule=true,
   frametitlefont=\normalfont\bfseries,
   shadow=false,        % frame shadow?
@@ -362,9 +243,9 @@ identifierstyle=\color{darkorange},
   skipbelow=15pt,
   outerlinewidth=0,
   backgroundcolor=mdfbox_block_background,
-  linecolor=black,
+  linecolor=seccolor,
   linewidth=2pt,       % frame thickness
-  frametitlebackgroundcolor=mdfbox_block_background,
+  frametitlebackgroundcolor=seccolor!20,
   frametitlerule=true,
   frametitlefont=\normalfont\bfseries,
   shadow=false,        % frame shadow?
@@ -388,7 +269,38 @@ identifierstyle=\color{darkorange},
 \clubpenalty = 10000
 \widowpenalty = 10000
 
-\usepackage{calc}
+% https://www.ctex.org/documents/packages/layout/titlesec.pdf
+\usepackage{titlesec}  % needed for colored section headings
+%\usepackage[compact]{titlesec}  % reduce the spacing around section headings
+
+% --- section/subsection headings with blue color ---
+\definecolor{seccolor}{cmyk}{.9,.5,0,.35}  % siamltexmm.sty section color
+\titleformat{name=\section}
+{\color{seccolor}\normalfont\Large\bfseries}
+{\color{seccolor}\thesection}{1em}{}
+\titleformat{name=\subsection}
+{\color{seccolor}\normalfont\large\bfseries}
+{\color{seccolor}\thesubsection}{1em}{}
+\titleformat{name=\paragraph}[runin]
+{\color{seccolor}\normalfont\normalsize\bfseries}
+{}{}{\indent}
+
+% let the header have a thick gray hrule with section and page in blue above
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headrule}{{\color{gray!50}%
+\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}}
+% replace \rightmark and \thepage by bfseries everwyhere to get bold headings
+\fancyhead[LE,RO]{{\color{seccolor}\nouppercase{\rightmark}}} %section
+\fancyhead[RE,LO]{{\color{seccolor}\thepage}}
+
+
+% --- color every two table rows ---
+\let\oldtabular\tabular
+\let\endoldtabular\endtabular
+\definecolor{appleblue}{rgb}{0.93,0.95,1.0}  % Apple blue
+\renewenvironment{tabular}{\rowcolors{2}{white}{appleblue}%
+\oldtabular}{\endoldtabular}
+
 
 \newenvironment{doconceexercise}{}{}
 \newcounter{doconceexercisecounter}
@@ -421,6 +333,7 @@ identifierstyle=\color{darkorange},
 \usepackage{amsthm,tcolorbox}
 \theoremstyle{definition}
 \newtheorem{example}{Example}[section]
+\newtheorem{theorem}{Theorem}[section]
 
 
 
@@ -436,7 +349,6 @@ identifierstyle=\color{darkorange},
 \begin{document}
 
 % matching end for #ifdef PREAMBLE
-% #endif
 
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
 
@@ -450,73 +362,68 @@ identifierstyle=\color{darkorange},
 % ----------------- title -------------------------
 
 \thispagestyle{empty}
-
+\hbox{\ \ }
+\vfill
 \begin{center}
-{\LARGE\bf
+{\huge{\bfseries{
 \begin{spacing}{1.25}
-A Document for Testing DocOnce
+{\color{seccolor}\rule{\linewidth}{0.5mm}} \\[0.4cm]
+{\color{seccolor}A Document for Testing DocOnce}
+\\[0.4cm] {\color{seccolor}\rule{\linewidth}{0.5mm}} \\[1.5cm]
 \end{spacing}
-}
-\end{center}
+}}}
 
 % ----------------- author(s) -------------------------
 
-\begin{center}
-{\bf Hans Petter Langtangen${}^{1, 2}$ (\texttt{hpl@simula.no})} \\ [0mm]
-\end{center}
+\vspace{0.5cm}
 
+{\Large\textsf{Hans Petter Langtangen${}^{1, 2}$ (\texttt{hpl@simula.no})}}\\ [3mm]
 
-\begin{center}
-{\bf Kaare Dump${}^{3}$} \\ [0mm]
-\end{center}
+{\Large\textsf{Kaare Dump${}^{3}$}}\\ [3mm]
 
+{\Large\textsf{A. Dummy Author${}^{}$}}\\ [3mm]
 
-\begin{center}
-{\bf A. Dummy Author${}^{}$} \\ [0mm]
-\end{center}
+{\Large\textsf{I. S. Overworked and Outburned${}^{4, 5, 6, 7}$}}\\ [3mm]
 
+{\Large\textsf{J. Doe${}^{}$ (\texttt{j\_doe@cyberspace.com})}}\\ [3mm]
 
-\begin{center}
-{\bf I. S. Overworked and Outburned${}^{4, 5, 6, 7}$} \\ [0mm]
-\end{center}
+\ \\ [2mm]
 
-
-\begin{center}
-{\bf J. Doe${}^{}$ (\texttt{j\_doe@cyberspace.com})} \\ [0mm]
-\end{center}
-
-\begin{center}
-% List of all institutions:
-\centerline{{\small ${}^1$Center for Biomedical Computing, Simula Research Laboratory}}
-\centerline{{\small ${}^2$Department of Informatics, University of Oslo}}
-\centerline{{\small ${}^3$Segfault, Cyberspace}}
-\centerline{{\small ${}^4$Inst1}}
-\centerline{{\small ${}^5$Inst2, Somewhere}}
-\centerline{{\small ${}^6$Third Inst, Elsewhere}}
-\centerline{{\small ${}^7$Fourth Inst}}
-\end{center}
-    
+{\large\textsf{${}^1$Center for Biomedical Computing, Simula Research Laboratory} \\ [1.5mm]}
+{\large\textsf{${}^2$Department of Informatics, University of Oslo} \\ [1.5mm]}
+{\large\textsf{${}^3$Segfault, Cyberspace} \\ [1.5mm]}
+{\large\textsf{${}^4$Inst1} \\ [1.5mm]}
+{\large\textsf{${}^5$Inst2, Somewhere} \\ [1.5mm]}
+{\large\textsf{${}^6$Third Inst, Elsewhere} \\ [1.5mm]}
+{\large\textsf{${}^7$Fourth Inst} \\ [1.5mm]}
 % ----------------- end author(s) -------------------------
 
 % --- begin date ---
-\begin{center}
-Jan 32, 2100
+\ \\ [10mm]
+{\large\textsf{Jan 32, 2100}}
 \end{center}
 % --- end date ---
-
-\vspace{1cm}
-
+\vfill
+\clearpage
 
 \tableofcontents
+\listofexercises
 
-\vspace{1cm} % after toc
+
+\listoftodos[List of inline comments]
+
+\clearpage % after toc
 
 % !split
 
 The format of this document is
 plain, homemade \textsc{pdf}{\LaTeX} (from DocOnce).
 
-\begin{abstract}
+% --- begin abstract ---
+\ \\ [13mm]
+\begin{center}
+\begin{minipage}{0.9\linewidth}
+\small
 This is a document with many test constructions for doconce syntax.
 It was used heavily for the development and kept for testing
 numerous constructions, also special and less common cases.
@@ -526,7 +433,9 @@ is part of the abstract.
 
 % Cannot demonstrate chapter headings since abstract and chapter
 % are mutually exclusive in {\LaTeX}
-\end{abstract}
+\end{minipage}
+\end{center}
+% --- end abstract ---
 
 \section{Section 1}
 \label{sec1}
@@ -594,7 +503,7 @@ Even Equation (\ref{my:eq1}) without the tilde.
 \subsection{Subsection 1}
 \label{subsec1}
 
-\index{somefunc@{\rm\texttt{somefunc}} function}
+\index{somefunc@{\rm\texttt{somefunc}} function}\marginpar{\footnotesize {\rm\texttt{somefunc}} function}
 
 % Refer to section/appendix etc. at the beginning of the line
 % and other special fix situations for HTML.
@@ -610,7 +519,7 @@ Appendices~\vref{app1} and~\vref{app2} are also nice elements.
 Section~\vref{subsec1} is fine.
 Section~\vref{subsubsec:ex} too.
 
-% sphinx code-blocks: pycod=python cod=fortran cppcod=c++ sys=console
+% sphinx code--blocks: pycod=python cod=fortran cppcod=c++ sys=console
 
 \paragraph{Computer code.}
 Let's do some copying from files too. First from subroutine up to the very end,
@@ -629,7 +538,7 @@ Let's do some copying from files too. First from subroutine up to the very end,
 
 
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
       subroutine test()
       integer i
       real*8 r
@@ -645,8 +554,6 @@ C     END1
       return
 
 \end{Verbatim}
-\end{cod}
-\noindent
 
 and then just the subroutine,
 
@@ -659,7 +566,7 @@ and then just the subroutine,
 
 
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 
       subroutine test()
       integer i
@@ -671,8 +578,6 @@ and then just the subroutine,
       return
 
 \end{Verbatim}
-\end{cod}
-\noindent
 
 and finally the complete file with a plain text verbatim environment
 (\texttt{envir=ccq}):
@@ -692,7 +597,7 @@ and finally the complete file with a plain text verbatim environment
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 C     a comment
 
       subroutine test()
@@ -709,8 +614,7 @@ C     END1
       call test()
       return
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 
 Testing other code environments. First Python:
@@ -720,26 +624,24 @@ Testing other code environments. First Python:
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 !bc pycod
 def f(x):
     return x+1
 !ec
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 which gets rendered as
 
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 def f(x):
     return x+1
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 
 Test paragraph and subsubsection headings before
@@ -750,24 +652,22 @@ before code.
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 import sys
 sys.path.insert(0, os.pardir)
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 
 \paragraph{Subsubsection heading before code.}
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 def h(z):
     return z+1
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 
 Now a complete program to be shown via Python Online Tutorial:
@@ -784,7 +684,7 @@ Now a complete program to be shown via Python Online Tutorial:
 
 
 
-\begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 class Line:
     def __init__(self, a, b):
         self.a, self.b = a, b
@@ -797,11 +697,7 @@ line = Line(2, 1)
 y = line(x=3)
 print(y)
 
-\end{lstlisting}\end{pro}
-\noindent
-
-\noindent
-(\href{{https://pythontutor.com/visualize.html\#code=class+Line\%3A\%0A++++def+__init__\%28self\%2C+a\%2C+b\%29\%3A\%0A++++++++self.a\%2C+self.b+\%3D+a\%2C+b\%0A\%0A++++def+__call__\%28self\%2C+x\%29\%3A\%0A++++++++a\%2C+b+\%3D+self.a\%2C+self.b\%0A++++++++return+a\%2Ax+\%2B+b\%0A\%0Aline+\%3D+Line\%282\%2C+1\%29\%0Ay+\%3D+line\%28x\%3D3\%29\%0Aprint\%28y\%29&mode=display&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&py=2&curInstr=0}}{Visualize execution}) 
+\end{Verbatim}
 
 
 Some more Python code (actually specified as a sage cell, but
@@ -820,7 +716,7 @@ such cells are not supported by this format).
 
 
 
-\begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 a = 2
 b = 3
 print('a+b:', a + b)
@@ -834,8 +730,7 @@ plot(x, y)
 xlabel('x'); ylabel('y')
 show()
 
-\end{lstlisting}\end{pro}
-\noindent
+\end{Verbatim}
 
 
 Then Cython (with -h option so it is hidden in html/sphinx):
@@ -843,12 +738,11 @@ Then Cython (with -h option so it is hidden in html/sphinx):
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 cpdef f(double x):
     return x + 1
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 
 Standard Python shell sessions:
@@ -862,7 +756,7 @@ Standard Python shell sessions:
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 >>> from numpy import linspace, sin
 >>> # Some comment
 >>> x = linspace(0, 2, 11)
@@ -872,8 +766,7 @@ Standard Python shell sessions:
 >>> import matplotlib.pyplot as plt
 >>> plt.plot(x, y)
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 
 Similar IPython sessions:
@@ -894,7 +787,7 @@ Similar IPython sessions:
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 In [1]: from numpy import linspace, sin
 In [2]: # Some comment
 In [3]: x = linspace(0, 2, 11)
@@ -911,8 +804,7 @@ multiple-
 line
 output
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 
 Here is the interactive session again, but with \texttt{pyshell-t}.
@@ -926,7 +818,7 @@ Here is the interactive session again, but with \texttt{pyshell-t}.
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 >>> from numpy import linspace, sin
 >>> # Some comment
 >>> x = linspace(0, 2, 11)
@@ -936,8 +828,7 @@ Here is the interactive session again, but with \texttt{pyshell-t}.
 >>> import matplotlib.pyplot as plt
 >>> plt.plot(x, y)
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 
 % This one tests a + sign before a code environment
@@ -950,7 +841,7 @@ C++:
 
 
 
-\begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=C++,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 #include <iostream>
 
 int main()
@@ -959,8 +850,7 @@ int main()
    return 0
 }
 
-\end{lstlisting}\end{pro}
-\noindent
+\end{Verbatim}
 
 % The next should get correctly typset in sphinx (cod is fcod)
 % It also tests emoji before code
@@ -975,7 +865,7 @@ And a little bit of Fortran: \raisebox{-\height+\ht\strutbox}{\includegraphics[h
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 !bc cod
       subroutine midpt(x, length, a, b)
       real*8 a, b, x
@@ -985,8 +875,7 @@ And a little bit of Fortran: \raisebox{-\height+\ht\strutbox}{\includegraphics[h
       end
 !ec
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 which then is typeset as
 
@@ -997,7 +886,7 @@ which then is typeset as
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
       subroutine midpt(x, length, a, b)
       real*8 a, b, x
       x = (a + b)/2
@@ -1005,8 +894,7 @@ which then is typeset as
       return
       end
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 
 HTML:
@@ -1017,15 +905,14 @@ HTML:
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=HTML,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 <table>
 <tr><td>Column 1</td><td>Column 2</td></tr>
 <tr><td>0.67526 </td><td>0.92871 </td></tr>
 <!-- comment -->
 </table>
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 
 But inline HTML code is also important, like text that starts with
@@ -1040,15 +927,14 @@ Matlab with comments requires special typesetting:
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Matlab,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 % Comment on the beginning of the line can be escaped by %%
 if a > b
   % Indented comment needs this trick
   c = a + b
 end
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 
 And here is a system call:
@@ -1059,7 +945,7 @@ And here is a system call:
 
 
 
-\begin{Verbatim}[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 Terminal> mkdir test
 Terminal> cd test
 Terminal> myprog -f
@@ -1079,7 +965,7 @@ Any valid pygments lexer/language name can appear to, e.g.,
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 !bc restructuredtext
 =======
 Heading
@@ -1088,8 +974,7 @@ Heading
 Some text.
 !ec
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 results in
 
@@ -1099,15 +984,14 @@ results in
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 =======
 Heading
 =======
 
 Some text.
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 
 % Here goes hidden code.
@@ -1169,7 +1053,7 @@ Finally, \Verb?!bc do? supports highlighting of DocOnce source:
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 ======= DocOnce test file =======
 
 ===== Computer code =====
@@ -1206,8 +1090,7 @@ DocOnce files can have chapters, sections, subsections, and subsubsections.
 
 __Paragraph heading.__ Paragraphs may have headings.
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 
 It is time to test \texttt{verbatim inline font} especially with \texttt{a newline inside the text} and an exclamation mark at the end: \texttt{BEGIN}! For
@@ -1231,7 +1114,7 @@ the previous blocks with line breaks.
 
 
 
-\begin{Verbatim}[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 Terminal> python -c 'print("Testing\noutput\nfrom\nPython.")'
 Testing
 output
@@ -1250,9 +1133,9 @@ They are used in different flavors, now in
 
  \item even with math $\nabla^2u$\footnote{Math footnotes can be dangerous since it interferes with an exponent.}
 
- \item and code \texttt{h[i] += 1}\footnote{One-line footnote.} (\emph{must} have space between inline code and footnote!)
+ \item and code \texttt{h[i] += 1}\footnote{One--line footnote.} (\emph{must} have space between inline code and footnote!)
 
- \item and \href{{https://google.com}}{links}\footnote{\href{{google.com}}{\nolinkurl{google.com}} is perhaps the most famous web site today.}
+ \item and \href{{https://google.com}}{links}\footnote{\texttt{https://google.com}}\footnote{\href{{google.com}}{\nolinkurl{google.com}\footnote{\texttt{google.com}}} is perhaps the most famous web site today.}
 \end{itemize}
 
 \noindent
@@ -1263,21 +1146,21 @@ Here is some more text before a new definition of a footnote that was
 used above.
 
 
-\begin{notice_mdfboxadmon}[Non-breaking space character.]
-This paragraph aims to test \href{{https://en.wikipedia.org/wiki/Non-breaking_space}}{non-breaking space character}, and a typical
+\begin{notice_mdfboxadmon}[Non--breaking space character.]
+This paragraph aims to test \href{{https://en.wikipedia.org/wiki/Non--breaking_space}}{non--breaking space character}\footnote{\texttt{https://en.wikipedia.org/wiki/Non--breaking\_space}}, and a typical
 example where this is needed is in physical units: 7.4~km is traveled
-in~$7.4/5.5\approx 1.345$~s.  Also check that a~\href{{https://google.com}}{link}~is
+in~$7.4/5.5\approx 1.345$~s.  Also check that a~\href{{https://google.com}}{link}\footnote{\texttt{https://google.com}}~is
 not broken across lines (drag the browser window to test this).
 (On the other hand, the tilde is used in
 computer code, e.g., as in \texttt{[~x for x in y]} or in \texttt{y=~x}, and should
 of course remain a tilde in those contexts.)
-\end{notice_mdfboxadmon} % title: Non-breaking space character.
+\end{notice_mdfboxadmon} % title: Non--breaking space character.
 
 
 
 \subsection{Subsection 2: Testing figures}
 \label{subsec:ex}
-\index{figures}
+\index{figures}\marginpar{\footnotesize figures}
 
 Test of figures. In particular we refer to Figure~\vref{fig:impact} in which
 there is a flow.
@@ -1299,11 +1182,11 @@ Figures without captions are allowed and will be inlined.
 
 \vspace{6mm}
 
-\index{movies}
+\index{movies}\marginpar{\footnotesize movies}
 
-% Test multi-line caption in figure with sidecap=True
+% Test multi--line caption in figure with sidecap=True
 
-Here is figure~\vref{myfig} with a long (illegal) multi-line caption
+Here is figure~\vref{myfig} with a long (illegal) multi--line caption
 containing inline verbatim text:
 
 \begin{SCfigure}
@@ -1341,12 +1224,11 @@ involving $\theta$:
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 def f(theta):
     return theta**2
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 
 \paragraph{More on $\theta$.}
@@ -1375,7 +1257,7 @@ Or with align with label and numbers:
 \end{align}
 
 % Must test more complicated align and matrix compositions
-% where DocOnce inserts auto-numbered labels etc.
+% where DocOnce inserts auto--numbered labels etc.
 
 First one numbered (automatically):
 
@@ -1473,15 +1355,15 @@ Now we refer to (\ref{mymatrix:eq1})-(\ref{mymatrix:eq2}).
 
 Here is an attempt to create a theorem environment via Mako
 (for counting theorems) and comment lines to help replacing lines in
-the \texttt{.tex} by proper begin-end {\LaTeX} environments for theorems.
+the \texttt{.tex} by proper begin--end {\LaTeX} environments for theorems.
 Should look nice in most formats!
 
-% begin theorem
+\begin{theorem}
 \label{theorem:fundamental1}
 
-\paragraph{Theorem 5.}
+
 Let $a=1$ and $b=2$. Then $c=3$.
-% end theorem
+\end{theorem}
 
 % begin proof
 \paragraph{Proof.}
@@ -1495,16 +1377,16 @@ achievement.
 \subsection{Tables}
 \label{subsec:table}
 
-\index{test index with verbatim text@test index with {\rm\texttt{verbatim text}} which is possible}
-\index{test two@test {\rm\texttt{two}} (separate) {\rm\texttt{verbatim expressions}} which is also possible}
-\index{index with!subindex}
-\index{\textbf{boldface word} in index}
-\index{index with \textbf{boldface word}}
-\index{index with!\textbf{boldface word} in subentry}
-\index{double \textbf{boldface word}! \textbf{boldface word} in subentry too}
+\index{test index with verbatim text@test index with {\rm\texttt{verbatim text}} which is possible}\marginpar{\footnotesize test index with {\rm\texttt{verbatim text}} which is possible}
+\index{test two@test {\rm\texttt{two}} (separate) {\rm\texttt{verbatim expressions}} which is also possible}\marginpar{\footnotesize test {\rm\texttt{two}} (separate) {\rm\texttt{verbatim expressions}} which is also possible}
+\index{index with!subindex}\marginpar{\footnotesize index with!subindex}
+\index{\textbf{boldface word} in index}\marginpar{\footnotesize \textbf{boldface word} in index}
+\index{index with \textbf{boldface word}}\marginpar{\footnotesize index with \textbf{boldface word}}
+\index{index with!\textbf{boldface word} in subentry}\marginpar{\footnotesize index with!\textbf{boldface word} in subentry}
+\index{double \textbf{boldface word}! \textbf{boldface word} in subentry too}\marginpar{\footnotesize double \textbf{boldface word}! \textbf{boldface word} in subentry too}
 
 % index with comma could fool sphinx
-\index{index, with comma, and one more}
+\index{index, with comma, and one more}\marginpar{\footnotesize index, with comma, and one more}
 
 Let us take this table from the manual:
 
@@ -1542,7 +1424,7 @@ The DocOnce source code reads
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 
   |--------------------------------|
   |time  | velocity | acceleration |
@@ -1553,8 +1435,7 @@ The DocOnce source code reads
   |--------------------------------|
 
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 
 Here is yet another table to test that we can handle more than
@@ -1755,19 +1636,18 @@ A sole \Verb!&! must also work.
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 # Just to check that ampersand works in code blocks:
 c = a & b
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 
 \paragraph{Quotes.}
 Let us also add a test of quotes such as ``double quotes, with numbers
-like 3.14 and newline/comma and hyphen (as in double-quote)''; written
-in the standard LaTeX-style that gives correct {\LaTeX} formatting and
-ordinary double quotes for all non-LaTeX formats.  Here is another
+like 3.14 and newline/comma and hyphen (as in double--quote)''; written
+in the standard LaTeX--style that gives correct {\LaTeX} formatting and
+ordinary double quotes for all non--LaTeX formats.  Here is another
 sentence that ``caused'' a bug in the past because double backtick
 quotes could imply verbatim text up to a verbatim word starting with
 period, like \texttt{.txt}.
@@ -1780,7 +1660,7 @@ and ``with comma'', ``hyphen''-wise, and ``period''.
 
 Here is an example: \cite{Langtangen_Pedersen_2002} discussed propagation of
 large destructive water waves, \cite{Langtangen_et_al_2002} gave
-an overview of numerical methods for solving the Navier--Stokes equations,
+an overview of numerical methods for solving the Navier---Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
 random vibrations was investigated in \cite{Langtangen_1994a}.
 The book chapter \cite{Mardal_et_al_2003a} contains information on
@@ -1809,11 +1689,12 @@ the old ME-IN323 book \cite{Langtangen:91} and the
 \refstepcounter{doconceexercisecounter}
 
 \exercisesection{Example \thedoconceexercisecounter: Examples can be typeset as exercises}
-                             
+                \addcontentsline{loe}{doconceexercise}{Example \thedoconceexercisecounter: Examples can be typeset as exercises}
+                
 \label{Example}
 
 Examples can start with a subsection heading starting with \texttt{Example:}
-and then, with the command-line option \Verb!--examples_as_exercises! be
+and then, with the command--line option \Verb!--examples_as_exercises! be
 typeset as exercises. This is useful if one has solution
 environments as part of the example.
 
@@ -1845,7 +1726,7 @@ maybe over multiple doconce input lines.
 \end{doconceexercise}
 % --- end exercise ---
 
-\subsection{User-defined environments}
+\subsection{User--defined environments}
 
 Example~\vref{ex:test:1p1} demonstrates how to write a test function.
 That is, a special test function for a function \texttt{add} appears in
@@ -1868,7 +1749,7 @@ implementation of a Python function for addition.
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 def add(a, b):
     return a + b
 
@@ -1878,8 +1759,7 @@ def test_add():
     computed = add(a, b)
     assert expected == computed
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 \end{example}
 
@@ -1922,23 +1802,23 @@ This environment is used to highlight something:
 \subsection{URLs}
 \label{subsubsec:ex}
 
-Testing of URLs: hpl's home page \href{{https://folk.uio.no/hpl}}{hpl}, or
+Testing of URLs: hpl's home page \href{{https://folk.uio.no/hpl}}{hpl}\footnote{\texttt{https://folk.uio.no/hpl}}, or
 the entire URL if desired, \href{{https://folk.uio.no/hpl}}{\nolinkurl{https://folk.uio.no/hpl}}.  Here is a
-plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}}, or
-\href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}} or \href{{testdoc.do.txt}}{a link with
-newline}. Can test spaces with the link with word
-too: \href{{https://folk.uio.no/hpl}}{hpl} or \href{{https://folk.uio.no/hpl}}{hpl}. Also \texttt{file:///} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}}{link to a
-file} is
+plain file link \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}}, or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}}, or
+\href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}} or \href{{testdoc.do.txt}}{\nolinkurl{testdoc.do.txt}\footnote{\texttt{testdoc.do.txt}}} or \href{{testdoc.do.txt}}{a link with
+newline}\footnote{\texttt{testdoc.do.txt}}. Can test spaces with the link with word
+too: \href{{https://folk.uio.no/hpl}}{hpl}\footnote{\texttt{https://folk.uio.no/hpl}} or \href{{https://folk.uio.no/hpl}}{hpl}\footnote{\texttt{https://folk.uio.no/hpl}}. Also \texttt{file:///} works: \href{{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}}{link to a
+file}\footnote{\texttt{file:///home/hpl/vc/doconce/doc/demos/manual/manual.html}} is
 fine to have. Moreover, ``loose'' URLs work, i.e., no quotes, just
 the plain URL as in \href{{https://folk.uio.no/hpl}}{\nolinkurl{https://folk.uio.no/hpl}}, if followed by space, comma,
-colon, semi-colon, question mark, exclamation mark, but not a period
+colon, semi--colon, question mark, exclamation mark, but not a period
 (which gets confused with the periods inside the URL).
 
-Mail addresses can also be used: \href{{mailto:hpl@simula.no}}{\nolinkurl{hpl@simula.no}}, or just a \href{{mailto:hpl@simula.no}}{mail link}, or a raw \href{{mailto:hpl@simula.no}}{\nolinkurl{mailto:hpl@simula.no}}.
+Mail addresses can also be used: \href{{mailto:hpl@simula.no}}{\nolinkurl{hpl@simula.no}\footnote{\texttt{mailto:hpl@simula.no}}}, or just a \href{{mailto:hpl@simula.no}}{mail link}\footnote{\texttt{mailto:hpl@simula.no}}, or a raw \href{{mailto:hpl@simula.no}}{\nolinkurl{mailto:hpl@simula.no}\footnote{\texttt{mailto:hpl@simula.no}}}.
 
 Here are some tough tests of URLs, especially for the \texttt{latex} format:
-\href{{https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{Newton-Cotes} formulas
-and a \href{{https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}}{good book}. Need to test
+\href{{https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{Newton-Cotes}\footnote{\texttt{https://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes\_formulas}} formulas
+and a \href{{https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-642-23098-1}}{good book}\footnote{\texttt{https://www.springer.com/mathematics/computational+science+\%26+engineering/book/978-3-642-23098-1}}. Need to test
 Newton-Cotes with percentage in URL too:
 \href{{https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas}}{\nolinkurl{https://en.wikipedia.org/wiki/Newton\%E2\%80\%93Cotes_formulas}}
 and \href{{https://en.wikipedia.org/wiki/Newton-Cotes#Open_Newton.E2.80.93Cotes_formulae}}{\nolinkurl{https://en.wikipedia.org/wiki/Newton-Cotes\#Open_Newton.E2.80.93Cotes_formulae}} which has a shebang.
@@ -1959,13 +1839,13 @@ and \href{{https://tinyurl.com/pwyasaa/formulas.ball2.py}}{\nolinkurl{ball2.py}}
 
 More tough tests: repeated URLs whose footnotes when using the
 \texttt{--device=paper} option must be correct. We have
-\href{{https://google.com}}{google}, \href{{https://google.com}}{google}, and
-\href{{https://google.com}}{google}, which should result in exactly three
+\href{{https://google.com}}{google}\footnote{\texttt{https://google.com}}, \href{{https://google.com}}{google}\footnote{\texttt{https://google.com}}, and
+\href{{https://google.com}}{google}\footnote{\texttt{https://google.com}}, which should result in exactly three
 footnotes.
 
 \subsection{Test of Some {\LaTeX} Fixes}
 
-Let's check abbr.~of some common kind, e.g.~the well-known i.e.
+Let's check abbr.~of some common kind, e.g.~the well--known i.e.
 expression as an example, and 1 vs.~2 which is also often used.
 Dr.~Tang and Prof.~Monsen, or maybe also prof.~Ting,
 will go to the Dept.~of Science to test how Mr.~Hansen is doing together
@@ -1980,7 +1860,7 @@ Percentage must be fixed: 7\%,  87.65\% and
 
 \section{{\LaTeX} Mathematics}
 
-Here is an equation without label using backslash-bracket environment:
+Here is an equation without label using backslash--bracket environment:
 \[ a = b + c \]
 
 or with number and label, as in (\ref{my:eq1}), using the equation environment:
@@ -1991,7 +1871,7 @@ or with number and label, as in (\ref{my:eq1}), using the equation environment:
 
 We can refer to this equation by (\ref{my:eq1}).
 
-Here is a system without equation numbers, using the align-asterisk environment:
+Here is a system without equation numbers, using the align--asterisk environment:
 
 \begin{align*}
 \pmb{a} &= \pmb{q}\times\pmb{n} \\ 
@@ -2006,7 +1886,7 @@ b &= \nabla^2 u + \nabla^4 x \label{eq2}
 \end{align}
 
 We can refer to (\ref{eq1})-(\ref{eq2}). They are a bit simpler than
-the Navier--Stokes equations. And test {\LaTeX} hyphen in \texttt{CG-2}.
+the Navier---Stokes equations. And test {\LaTeX} hyphen in \texttt{CG-2}.
 Also test $a_{i-j}$ as well as $kx-wt$.
 
 Testing \texttt{alignat} environment:
@@ -2016,7 +1896,7 @@ a &= q + 4 + 5+ 6\qquad & \mbox{for } q\geq 0 \label{eq1a} \\
 b &= \nabla^2 u + \nabla^4 x & x\in\Omega \label{eq2a}
 \end{alignat}
 
-Many of the next environments will fail in non-latex formats.
+Many of the next environments will fail in non--latex formats.
 Testing multiline:
 
 \begin{multline}
@@ -2064,7 +1944,8 @@ between there we have Exercise~\vref{exer:some:formula}.
 \refstepcounter{doconceexercisecounter}
 
 \exercisesection{Problem \thedoconceexercisecounter: Flip a Coin}
-                             
+                \addcontentsline{loe}{doconceexercise}{Problem \thedoconceexercisecounter: Flip a Coin}
+                
 \label{demo:ex:1}
 % keywords = random numbers; Monte Carlo simulation; ipynb
 
@@ -2108,7 +1989,7 @@ head, otherwise tail. Repeat this $N$ number of times.
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 import sys, random
 N = int(sys.argv[1])
 heads = 0
@@ -2118,8 +1999,7 @@ for i in range(N):
         heads += 1
 print('Flipping a coin %d times gave %d heads' % (N, heads))
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 % --- end solution of exercise ---
 
@@ -2182,7 +2062,8 @@ exercises.
 \refstepcounter{doconceexercisecounter}
 
 \exercisesection{Exercise \thedoconceexercisecounter: Test of plain text exercise}
-                             
+                \addcontentsline{loe}{doconceexercise}{Exercise \thedoconceexercisecounter: Test of plain text exercise}
+                
 \label{my:exer1}
 
 Very short exercise. What is the capital
@@ -2197,7 +2078,8 @@ of Norway?
 \refstepcounter{doconceexercisecounter}
 
 \exercisesection{Project \thedoconceexercisecounter: Compute a Probability}
-                             
+                \addcontentsline{loe}{doconceexercise}{Project \thedoconceexercisecounter: Compute a Probability}
+                
 \label{demo:ex:2}
 
 % Minimalistic exercise
@@ -2233,7 +2115,8 @@ compute the probability as $M/N$.
 \refstepcounter{doconceexercisecounter}
 
 \exercisesection{Project \thedoconceexercisecounter: Explore Distributions of Random Circles}
-                             
+                \addcontentsline{loe}{doconceexercise}{Project \thedoconceexercisecounter: Explore Distributions of Random Circles}
+                
 \label{proj:circle1}
 % keywords = ipynb
 
@@ -2261,7 +2144,7 @@ The formula can be used to generate \texttt{n} points on a circle:
 
 
 
-\begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 import numpy as np
 
 def circle(R, x0, y0, n=501):
@@ -2272,8 +2155,7 @@ def circle(R, x0, y0, n=501):
 
 x, y = circle(2.0, 0, 0)
 
-\end{lstlisting}\end{pro}
-\noindent
+\end{Verbatim}
 
 
 % Often in an exercise we have some comments about the solution
@@ -2336,7 +2218,8 @@ and give some perspectives.
 \refstepcounter{doconceexercisecounter}
 
 \exercisesection{Exercise \thedoconceexercisecounter: Determine some Distance}
-                             
+                \addcontentsline{loe}{doconceexercise}{Exercise \thedoconceexercisecounter: Determine some Distance}
+                
 \label{exer:dist}
 
 Intro to this exercise. Questions are in subexercises below.
@@ -2349,11 +2232,10 @@ With some math $a=b$ in this solution:
 And code \texttt{a=b} in this solution:
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 a = b  # code in solution
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 End of solution is here.
 
@@ -2375,12 +2257,11 @@ And with code (in plain verbatim) returning $x+1$ in hint:
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 def func(x):
     return x + 1  # with code in hint
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 
 % --- end hint in exercise ---
@@ -2460,6 +2341,8 @@ remarks will appear at the end of the typeset exercise.
 \begin{doconceexercise}
 
 \exercisesection{Some exercise without the "Exercise:" prefix}
+\addcontentsline{loe}{doconceexercise}{Some exercise without the "Exercise:" prefix}
+
 
 % Another minimalistic exercise
 
@@ -2472,11 +2355,10 @@ And a test that the code \texttt{lambda x: x+2} is correctly placed here:
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 lambda x: x+2
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 
 % Have some comments at the end of the exercise to see that
@@ -2489,7 +2371,8 @@ lambda x: x+2
 \refstepcounter{doconceexercisecounter}
 
 \exercisesection{Exercise \thedoconceexercisecounter: Solution of differential equation}
-                             
+                \addcontentsline{loe}{doconceexercise}{Exercise \thedoconceexercisecounter: Solution of differential equation}
+                
 \label{sec:this:exer:de}
 
 
@@ -2515,13 +2398,12 @@ $y=e^{-y}$
 $y=e^{y}$
 
 \textbf{C}. 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
 from math import exp
 def f(x):
     return exp(x)
 
-\end{lstlisting}\end{cod}
-\noindent
+\end{Verbatim}
 
 \textbf{D}. 
 The solution cannot be found because there is a derivative in the equation.
@@ -2576,7 +2458,8 @@ special techniques.
 \refstepcounter{doconceexercisecounter}
 
 \exercisesection{Example \thedoconceexercisecounter: Just an example}
-                             
+                \addcontentsline{loe}{doconceexercise}{Example \thedoconceexercisecounter: Just an example}
+                
 
 % This example needs the --examples_as_exercises option, otherwise
 % it is just typeset as it is written.
@@ -2604,7 +2487,8 @@ With some text, before we continue with exercises.
 \refstepcounter{doconceexercisecounter}
 
 \exercisesection{Exercise \thedoconceexercisecounter: Make references to projects and problems}
-                             
+                \addcontentsline{loe}{doconceexercise}{Exercise \thedoconceexercisecounter: Make references to projects and problems}
+                
 \label{exer:some:formula}
 
 % Test comments not at the end only
@@ -2631,7 +2515,8 @@ hint, etc.):
 \refstepcounter{doconceexercisecounter}
 
 \exercisesection{Project \thedoconceexercisecounter: References to Project~\vref{demo:ex:2} in a heading works for pdflatex}
-                             
+                \addcontentsline{loe}{doconceexercise}{Project \thedoconceexercisecounter: References to Project~\vref{demo:ex:2} in a heading works for pdflatex}
+                
 \label{exer:you}
 
 Refer to the previous exercise as Exercise~\vref{exer:some:formula},
@@ -2750,7 +2635,7 @@ with programs or technical reports it is essential
 to have changes documented and to
 ensure that every computer and person involved in the project
 have the latest updates of the files.
-Greg Wilson' excellent \href{{https://software-carpentry.org/2010/07/script-for-introduction-to-version-control/}}{Script for Introduction to Version Control} provides a more detailed motivation why you will benefit greatly
+Greg Wilson' excellent \href{{https://software--carpentry.org/2010/07/script--for-introduction-to--version-control/}}{Script for Introduction to Version Control}\footnote{\texttt{https://software--carpentry.org/2010/07/script--for-introduction-to--version-control/}} provides a more detailed motivation why you will benefit greatly
 from using version control systems.
 
 
@@ -2775,7 +2660,7 @@ cloud" and updated through communication with that site. I strongly
 recommend you to use such sites for all serious programming and
 scientific writing work - and all other important files.
 
-The simplest services for hosting project files are \href{{https://dropbox.com}}{Dropbox} and \href{{https://drive.google.com}}{Google Drive}.
+The simplest services for hosting project files are \href{{https://dropbox.com}}{Dropbox}\footnote{\texttt{https://dropbox.com}} and \href{{https://drive.google.com}}{Google Drive}\footnote{\texttt{https://drive.google.com}}.
 It is very easy to get started with these systems, and they allow you
 to share files among laptops and mobile units with as many users as
 you want. The systems offer a kind of version control in that the
@@ -2791,7 +2676,7 @@ incompatible. Then one needs more sophisticated tools than Dropbox or
 Google Drive: project hosting services with true version control
 systems.  The following text aims at providing you with the minimum
 information to started with such systems. Numerous other tutorials
-contain more comprehensive material and in-depth explanations of the
+contain more comprehensive material and in--depth explanations of the
 concepts and tools.
 
 The idea with project hosting services is that you have the files
@@ -2809,7 +2694,7 @@ started with Bitbucket, GitHub, and Googlecode. Launchpad works very
 similarly to the latter three. All the project hosting services have
 excellent introductions available at their web sites, but the recipes
 below are much shorter and aim at getting you started as quickly as
-possible by concentrating on the most important need-to-know steps.
+possible by concentrating on the most important need-to--know steps.
 The Git tutorials we refer to later in this document contain more
 detailed information and constitute of course very valuable readings
 when you use version control systems every day. The point now is
@@ -2868,7 +2753,7 @@ or in quotes:
 \end{quote}
 
 
-The ndash should also be tested -- as in the Hanson--Nilson equations
+The ndash should also be tested -- as in the Hanson---Nilson equations
 on page 277--278.
 
 And finally, what about admons, quotes, and boxes? They are tested
@@ -2877,9 +2762,7 @@ in a separate document: \texttt{admon.do.txt}.
 
 % ------------------- end of main content ---------------
 
-% #ifdef PREAMBLE
 \cleardoublepage\phantomsection  % trick to get correct link to Index
 \printindex
 
 \end{document}
-% #endif

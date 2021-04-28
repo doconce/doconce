@@ -27,24 +27,10 @@ box_shadow = 'box-shadow: 8px 8px 5px #888888;'
 
 global _file_collection_filename
 
-# Mapping from envir (+cod/pro if present) to pygment style
-envir2pygments = dict(
-    bash='bash',
-    pyshell='python',
-    py='python', cy='cython', f='fortran',
-    c='c', cpp='c++', cu='cuda', cuda='cuda', sh='bash', rst='rst', swig='c++',
-    m='matlab', pl='perl',
-    latex='latex', tex='latex',
-    html='html',
-    xml='xml', rb='ruby',  # sys='console',
-    sys='text',
-    #sys='bash',
-    js='js', java='java',
-    dat='text', txt='text', csv='text',
-    cc='text', ccq='text',
-    ipy='ipy',
-    pyopt='python', pysc='python',
-    do='doconce')
+# Mapping from LANG envir in Typesetting Styles to programming language
+# Typesetting Styles: !bc LANG[cod|pro][postfix]
+envir2pygments = globals.envir2pygments
+envir2pygments.update({'sys': 'text', 'cc': 'text', 'ccq': 'text'})
 
 # From https://service.real.com/help/library/guides/realone/ProductionGuide/HTML/htmfiles/colors.htm:
 color_table = [
@@ -1616,7 +1602,7 @@ def format_code_html(code_block, code_block_type, code_style, postfix='', execut
     """Process the block to output the formatted code. Also
     output booleans to trigger execution and rendering of the block
 
-    The output `show` is one of ['html','pre','hide','text','output'].
+    The output `show` is one of ['format','pre','hide','text','output','html'].
     The output `code_style` is a style e.g. from `--pygments_html_style`.
     The output `execute` is a boolean indicating whether
     the code should be executed.
@@ -1624,34 +1610,30 @@ def format_code_html(code_block, code_block_type, code_style, postfix='', execut
     :param str code_block_type: block type e.g. 'pycod-e'
     :param code_style: any style from e.g. pygments
     :return: formatted_code, comment, execute, show
-    :rtype: str, str, bool, str
+    :rtype: Tuple[str, str, bool, str]
     """
     formatted_code = ''
     comment = ''
     if show == 'hide':
         return formatted_code, comment, execute, show
-
+    LANG, codetype, postfix = code_block_type
     # Format code based on `show` and its code type
-    if code_block_type.startswith('pyoptpro'):
+    if LANG == 'pyopt' and codetype == 'pro':
         formatted_code = online_python_tutor(code_block, return_tp='iframe')
         execute = False
-    elif code_block_type.startswith('pyscpro'):
+    elif LANG == 'pysc' and codetype == 'pro':
         # Wrap Sage Cell code around the code
         # https://github.com/sagemath/sagecell/blob/master/doc/embedding.rst
         formatted_code = html_sagecell % code_block
         execute = False
     elif code_style is not 'off':
         # Syntax highlighting with pygments
-        # Get the code block type_ e.g. 'py'
-        type_ = code_block_type
-        if code_block_type[-3:] in ['cod', 'pro']:
-            type_ = code_block_type[:-3]
         # Get the code block's language
         language_ = 'text'
-        if type_ in envir2pygments:
-            language_ = envir2pygments[type_]
-        elif type_ in get_legal_pygments_lexers():
-            language_ = type_
+        if LANG in envir2pygments:
+            language_ = envir2pygments[LANG]
+        elif LANG in get_legal_pygments_lexers():
+            language_ = LANG
         # Typeset code with pygments
         lexer = get_lexer_by_name(language_)
         linenos = option('pygments_html_linenos')
@@ -1659,10 +1641,7 @@ def format_code_html(code_block, code_block_type, code_style, postfix='', execut
                                   noclasses=True,
                                   style=code_style)
         formatted_code = highlight(code_block, lexer, formatter)
-
-        if code_block_type == 'ccq':
-            formatted_code = '<blockquote>\n%s</blockquote>' % formatted_code
-        elif postfix == '-h':
+        if postfix == '-h':
             # Embed some jquery JavaScript for a show/hide button
             hash = str(uuid.uuid4())[:4]
             formatted_code = html_toggle_btn % vars()
@@ -1678,9 +1657,7 @@ def format_code_html(code_block, code_block_type, code_style, postfix='', execut
         formatted_code = re.sub(r'<span></span>', r'', formatted_code)
 
         # Write a comment before the rendering with a description of the rendering
-        comment = '\n<!-- code=%s ' % language_
-        if code_block_type != '':
-            comment += '(!bc %s) ' % (code_block_type)
+        comment = '\n<!-- code=%s (!bc %s%s%s) ' % (language_, LANG, codetype, postfix)
         comment += 'typeset with pygments style "%s%s" -->\n' % (code_style, postfix)
     else:
         # Substitute & first, otherwise & in &quot; becomes &amp;quot;

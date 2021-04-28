@@ -1,7 +1,7 @@
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%% doconce format html admon.do.txt --latex_admon=grayicon --latex_admon_color=gray!20 --latex_code_style=lst --cite_doconce
+%% doconce format latex admon.do.txt --latex_admon=grayicon --latex_admon_color=gray!20 --latex_code_style=lst --cite_doconce
 
 % #define PREAMBLE
 
@@ -362,7 +362,7 @@ Need some code outside admons for color and font comparisons:
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 def some_code(x):
     return sin(x)*exp(1-x)
 
@@ -456,7 +456,7 @@ Let's begin a new paragraph and show a box with code only:
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 def some_code(x):
     return sin(x)*exp(1-x)
 
@@ -505,7 +505,7 @@ Also some code:
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 def f(x):
     return x
 
@@ -515,7 +515,7 @@ And a complete program
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 print("Hello, World!")
 
 \end{lstlisting}
@@ -620,7 +620,7 @@ Because here the thing is to do
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 import urllib
 
 def grab(url, filename):
@@ -672,7 +672,7 @@ code is task that this "Going deeper" environment targets.
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 def Dudt(u):
     r = diff(u, t) + u*grad(u)
     return r
@@ -724,7 +724,7 @@ Longer computer code requires vertical space:
 
 
 
-\begin{lstlisting}[language=Python,style=simple,xleftmargin=2mm]
+\begin{lstlisting}[language=python,style=simple,xleftmargin=2mm]
 class Diff:
     def __init__(self, f, h=1E-5):
         self.f = f

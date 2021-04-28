@@ -1,7 +1,7 @@
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%% doconce format html testdoc.do.txt --examples_as_exercises --latex_code_style=default:lst-blue1[style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]@fcod:vrb-gray@sys:vrb[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt] --latex_code_lststyles=mylststyles --latex_packages=varioref
+%% doconce format latex testdoc.do.txt --examples_as_exercises --latex_code_style=default:lst-blue1[style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]@fcod:vrb-gray@sys:vrb[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt] --latex_code_lststyles=mylststyles --latex_packages=varioref
 
 % #define PREAMBLE
 
@@ -784,7 +784,7 @@ Now a complete program to be shown via Python Online Tutorial:
 
 
 
-\begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 class Line:
     def __init__(self, a, b):
         self.a, self.b = a, b
@@ -820,7 +820,7 @@ such cells are not supported by this format).
 
 
 
-\begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 a = 2
 b = 3
 print('a+b:', a + b)
@@ -862,7 +862,7 @@ Standard Python shell sessions:
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{cod}{cbg_blue1}\begin{lstlisting}[language=python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 >>> from numpy import linspace, sin
 >>> # Some comment
 >>> x = linspace(0, 2, 11)
@@ -894,7 +894,7 @@ Similar IPython sessions:
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{cod}{cbg_blue1}\begin{lstlisting}[language=python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 In [1]: from numpy import linspace, sin
 In [2]: # Some comment
 In [3]: x = linspace(0, 2, 11)
@@ -950,7 +950,7 @@ C++:
 
 
 
-\begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=C++,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 #include <iostream>
 
 int main()
@@ -959,7 +959,7 @@ int main()
    return 0
 }
 
-\end{lstlisting}\end{pro}
+\end{lstlisting}\end{cod}
 \noindent
 
 % The next should get correctly typset in sphinx (cod is fcod)
@@ -1017,7 +1017,7 @@ HTML:
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=HTML,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{cod}{cbg_blue1}\begin{lstlisting}[language=html,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 <table>
 <tr><td>Column 1</td><td>Column 2</td></tr>
 <tr><td>0.67526 </td><td>0.92871 </td></tr>
@@ -1040,7 +1040,7 @@ Matlab with comments requires special typesetting:
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Matlab,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{cod}{cbg_blue1}\begin{lstlisting}[language=matlab,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 % Comment on the beginning of the line can be escaped by %%
 if a > b
   % Indented comment needs this trick
@@ -1059,14 +1059,15 @@ And here is a system call:
 
 
 
-\begin{Verbatim}[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt]
+\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 Terminal> mkdir test
 Terminal> cd test
 Terminal> myprog -f
 output1
 output2
 
-\end{Verbatim}
+\end{lstlisting}\end{cod}
+\noindent
 
 
 Any valid pygments lexer/language name can appear to, e.g.,
@@ -1868,7 +1869,7 @@ implementation of a Python function for addition.
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{cod}{cbg_blue1}\begin{lstlisting}[language=python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 def add(a, b):
     return a + b
 
@@ -2108,7 +2109,7 @@ head, otherwise tail. Repeat this $N$ number of times.
 
 
 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{cod}{cbg_blue1}\begin{lstlisting}[language=python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 import sys, random
 N = int(sys.argv[1])
 heads = 0
@@ -2261,7 +2262,7 @@ The formula can be used to generate \texttt{n} points on a circle:
 
 
 
-\begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{pro}{cbg_blue1}{bar_blue1}\begin{lstlisting}[language=python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 import numpy as np
 
 def circle(R, x0, y0, n=501):
@@ -2515,7 +2516,7 @@ $y=e^{-y}$
 $y=e^{y}$
 
 \textbf{C}. 
-\begin{cod}{cbg_blue1}\begin{lstlisting}[language=Python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
+\begin{cod}{cbg_blue1}\begin{lstlisting}[language=python,style=myspeciallststyle,numbers=left,numberstyle=\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]
 from math import exp
 def f(x):
     return exp(x)

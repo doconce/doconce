@@ -464,7 +464,7 @@ based on HTML and vice versa.
 \begin{frame}[plain,fragile]
 \frametitle{DocOnce: title, authors, date, toc}
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{text}
 TITLE: Some Title
 AUTHOR: name1 at institution1, with more info & institution2
 AUTHOR: name2 email:name2@web.com at institution
@@ -473,7 +473,7 @@ DATE: today
 # A table of contents is optional:
 TOC: on
 
-\end{Verbatim}
+\end{minted}
 
 
 \begin{block}{Notice}
@@ -484,22 +484,22 @@ Title and authors must have all information \emph{on a single line}!
 \begin{frame}[plain,fragile]
 \frametitle{DocOnce: abstract}
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{text}
 __Abstract.__
 Here goes the abstract...
 
-\end{Verbatim}
+\end{minted}
 
 
 Or:
 
 
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{text}
 __Summary.__
 Here goes the summary...
 
-\end{Verbatim}
+\end{minted}
 \end{frame}
 
 \begin{frame}[plain,fragile]
@@ -516,7 +516,7 @@ Headings are surrounded by \texttt{=} signs:
 
 
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{text}
 ======= This is an H1/chapter heading =======
 
 ===== This is an H2/section heading =====
@@ -527,13 +527,13 @@ Headings are surrounded by \texttt{=} signs:
 
 __This is a paragraph heading.__
 
-\end{Verbatim}
+\end{minted}
 \end{frame}
 
 \begin{frame}[plain,fragile]
 \frametitle{DocOnce: markup and lists}
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{text}
  * Bullet list items start with `*`
    and may span several lines
  * *Emphasized words* are possible
@@ -543,7 +543,7 @@ __This is a paragraph heading.__
    o and sublists with enumerated items starting with `o`
    o items are just indented as you would do in email
 
-\end{Verbatim}
+\end{minted}
 
 
 This gets rendered as
@@ -611,23 +611,23 @@ Figure with HTML and {\LaTeX} info, and caption, \emph{all on one line}:
 
 
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{text}
 FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
 
 # This figure will be 300 pixels wide in HTML and span 1.2 times
 # the linewidth in LaTeX.
 
-\end{Verbatim}
+\end{minted}
 
 
 Movies are also supported:
 
 
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{text}
 MOVIE: [https://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
 
-\end{Verbatim}
+\end{minted}
 
 and rendered as
 
@@ -647,10 +647,10 @@ Inline math as in {\LaTeX}:
 
 
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{text}
 ...where $a=\int_{\Omega}fdx$ is an integral.
 
-\end{Verbatim}
+\end{minted}
 
 gets rendered as ...where $a=\int_{\Omega}fdx$ is an integral.
 
@@ -666,7 +666,7 @@ the rest is plain {\LaTeX}:
 
 
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{text}
 !bt
 \begin{align}
 \frac{\partial u}{\partial t} &= \nabla^2 u,
@@ -676,7 +676,7 @@ label{b:eq}
 \end{align}
 !et
 
-\end{Verbatim}
+\end{minted}
 
 which is rendered as
 
@@ -708,7 +708,7 @@ Code is enclosed in \Verb?!bc? and \Verb?!ec? tags:
 
 
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{text}
 !bc pycod
 def solver(I, a, T, dt, theta):
     """Solve u'=-a*u, u(0)=I, for t in (0,T] with steps of dt."""
@@ -724,7 +724,7 @@ def solver(I, a, T, dt, theta):
     return u, t
 !ec
 
-\end{Verbatim}
+\end{minted}
 
 This gets rendered as
 
@@ -850,7 +850,7 @@ and \emph{examples}:
 
 
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{text}
 ===== Problem: Flip a Coin =====
 label{demo:ex:1}
 
@@ -883,7 +883,7 @@ Make another program that computes the probability
 of getting at least three heads out of 5 throws.
 !esubex
 
-\end{Verbatim}
+\end{minted}
 
 
 Solutions/answers can easily be left out of the document.
@@ -892,7 +892,7 @@ Solutions/answers can easily be left out of the document.
 \begin{frame}[plain,fragile]
 \frametitle{DocOnce: example on slide code}
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{text}
 !split
 ===== Headline =====
 
@@ -916,7 +916,7 @@ And maybe a final comment?
 !split
 ===== Next slide... =====
 
-\end{Verbatim}
+\end{minted}
 \end{frame}
 
 \begin{frame}[plain,fragile]
@@ -956,7 +956,7 @@ a figure to the right (two cells, numbered 00 and 01).
 
 
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=2mm]{text}
 !split
 ===== Headline =====
 
@@ -985,7 +985,7 @@ FIGURE: [testfigs/broken_pen_and_paper, width=400, frac=0.8]
 !split
 ===== Next slide... =====
 
-\end{Verbatim}
+\end{minted}
 \end{frame}
 
 \end{document}
