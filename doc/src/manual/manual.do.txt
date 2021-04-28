@@ -2687,10 +2687,10 @@ write all answers and solutions to exercises to a separate section in the end of
 |---------------------------------------------------------------|
 | Command option        | Behavior                              |
 |--l-------------------------------------l----------------------|
-| --without\_answers    | Turn off output of answers            |
-| --without\_solutions  | Turn off output of solutions          |
-| --answers\_at\_end    | Answers in the end of the document    |
-| --solutions\_at\_end  | Solutions in the end of the document  |
+| `--without_answers`   | Turn off output of answers            |
+| `--without_solutions` | Turn off output of solutions          |
+| `--answers_at_end`    | Answers in the end of the document    |
+| `--solutions_at_end`  | Solutions in the end of the document  |
 |---------------------------------------------------------------|
 
 
@@ -3473,29 +3473,30 @@ The `!bc` tag takes arguments with the following syntax:
 
 The first argument `LANG` can be one of the predefined environments explained in the table below or a custom one defined in the config file `.ptex2tex.cfg`. 
 
-The second argument is optional can be  either `cod` or `pro`. By default, `pro` is used for complete programs, `cod` is for a code snippet. 
+The second argument is optional and can be either `cod` or `pro`. By default, `pro` is used for complete programs, `cod` is for a code snippet. 
 
-|---------------------------------------|
-| LANG    | Language                    |
-|----l------------l---------------------|
-|  py     | python code                 |
-|  sys    | OS commands                 |
-|  dat    | data file/print out         |
-|  sh     | Unix shell                  |
-|  c      | C                           |
-|  cpp    | C++                         |
-|  pl     | Perl                        |
-|  m      | Matlab                      |
-|  f      | fortran                     |
-|  js     | Javascript                  |
-|  latex  | LaTeX                       |
-|  html   | HTML                        |
-|  cy     | Cython                      |
-|  rb     | Ruby                        |
-|  pyshell| interactive Python shell    |
-|  ipy    | interactive IPython session |
-|  pysc   | interactive Python SageMathCell in the html format |
-|---------------------------------------------------------|
+|---------------------------------------------|
+| LANG          | Language                    |
+|---l---------------l-------------------------|
+|  py           | python code                 |
+|  sys          | OS commands                 |
+|  dat          | data file/print out         |
+|  bash, sh     | Unix shell (Bash)           |
+|  c            | C                           |
+|  cpp          | C++                         |
+|  pl           | Perl                        |
+|  m            | Matlab                      |
+|  f            | fortran                     |
+|  js           | Javascript                  |
+|  latex, tex   | LaTeX                       |
+|  html         | HTML                        |
+|  cy           | Cython                      |
+|  rb           | Ruby                        |
+|  r            | R                           |
+|  pyshell      | interactive Python shell    |
+|  ipy          | interactive IPython session |
+|  pysc         | interactive Python SageMathCell in the html format |
+|---------------------------------------------|
 
 The third `posfix` argument modifies the code block visibility or code execution when using the `--execute` option (see the next paragraphs).
 

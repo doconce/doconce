@@ -712,6 +712,27 @@ def remove_code_and_tex(filestr, format):
     return filestr, code_blocks, code_block_types, tex_blocks
 
 
+def get_code_block_args(line, pattern_code_block=globals.pattern_code_block):
+    """Parse a line starting a code block environment.
+
+    The syntax for a code block is: !bc LANG[cod|pro][postfix].
+    Parse a line and return LANG, codetype, postfix. Return
+    the optional paramenters as empty string if they are not
+    used or the line is not a code block. This function uses
+    pattern_code_block from globals.py
+    :param str line: line of DocOnce code
+    :return: (LANG, codetype, postfix)
+    :rtype Tuple[str, str, str]
+    """
+    LANG, codetype, postfix = '', '', ''
+    m = re.search(pattern_code_block, line)
+    if m:
+        LANG = m.group('language')
+        codetype = m.group('type') or ''
+        postfix = m.group('postfix') or ''
+    return LANG, codetype, postfix
+
+
 def process_code_envir_postfix(environment):
     """Extract any code envir postfix to code environments
         ('hid','-h','-e','-t','out')

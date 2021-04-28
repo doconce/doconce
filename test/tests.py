@@ -233,11 +233,12 @@ def run():
 
     print("Check the generated test.v file with e.g.: ")
     print("meld test.r test.v")
+    print("meld testr testv")
     print("To remove untracked files run: ")
     print("git clean -f -d ..")
     print("To remove the temporary files run: ")
     print("rm -rf 0*md 0*ipynb tmp_* *~ ")
-    print("find . -mindepth 1 -maxdepth 1 -name '.*' -not -name '.ptex2tex.cfg' -not -name '.dict4spell.txt' -delete")
+    print("find . -mindepth 1 -maxdepth 1 -name '.*' -not -name '.ptex2tex.cfg' -not -name '.dict4spell.txt' -not -name 'test.v' -delete")
 
 if __name__ == "__main__":
     run()

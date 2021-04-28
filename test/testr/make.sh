@@ -3,11 +3,11 @@
 #export PS4='+ l.${LINENO}: ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 bold=$(tput bold)
 red=$(tput setaf 1)
-normal=$(tput sgr0)
+reset=$(tput sgr0)
 function system {
   "$@"
   if [ $? -ne 0 ]; then
-    echo -e "\nmake.sh: unsuccessful command ${bold}${red}$@${normal}"
+    echo -e "\nmake.sh: unsuccessful command ${bold}${red}$@${reset}"
     echo "abort!"
     exit 1
   fi
@@ -80,12 +80,14 @@ system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=s
 
 system doconce format latex testdoc.do.txt --examples_as_exercises SOMEVAR=True --skip_inline_comments --latex_packages=varioref
 
+# pdflatex: testdoc.tex_direct
 # Test lst with external and internal styles
 system doconce format pdflatex testdoc.do.txt --examples_as_exercises "--latex_code_style=default:lst-blue1[style=myspeciallststyle,numbers=left,numberstyle=\\tiny,stepnumber=3,numbersep=15pt,xleftmargin=1mm]@fcod:vrb-gray@sys:vrb[frame=lines,label=\\fbox{{\\tiny Terminal}},framesep=2.5mm,framerule=0.7pt]" --latex_code_lststyles=mylststyles --latex_packages=varioref
 
 # Issue #9: removed "style=redblue"
 cp testdoc.tex testdoc.tex_direct
 
+# pdflatex: testdoc_bigex
 system doconce format pdflatex testdoc.do.txt --device=paper --examples_as_exercises --latex_double_hyphen --latex_index_in_margin --latex_no_program_footnotelink --latex_title_layout=titlepage --latex_papersize=a4 --latex_colored_table_rows=blue --latex_fancy_header --latex_section_headings=blue --latex_labels_in_margin --latex_double_spacing --latex_todonotes --latex_list_of_exercises=loe --latex_font=palatino --latex_packages=varioref '--latex_link_color=blue!90' --draft
 # --latex_paper=a4 triggers summary environment to be smaller paragraph
 # within the text (fine for proposals or articles).
@@ -104,14 +106,7 @@ doconce replace '% end theorem' '\end{theorem}' testdoc.p.tex
 # because of --latex-double-hyphen:
 doconce replace Newton--Cotes Newton-Cotes testdoc.p.tex
 doconce replace --examples_as__exercises --examples_as_exercises testdoc.p.tex
-
-# Does not work in python 3
-PYTHON_VERSION=$(python -V 2>&1 | grep -Po '(?<=Python )(.+)')
-parsedVersion=$(echo "${PYTHON_VERSION//./}")
-if [ "$parsedVersion" -lt "300" ]
-then
-	system ptex2tex -DMINTED testdoc
-fi
+doconce ptex2tex testdoc.p.tex #testdoc.tex
 
 # test that pdflatex works
 rm -f *.aux
@@ -290,22 +285,21 @@ doconce format html execute.do.txt  --examples_as_exercises --execute
 
 # Test math
 rm -f *.aux
-name=math_test
-doconce format pdflatex $name --no_abort
-doconce ptex2tex $name
-pdflatex $name
-system doconce format html $name --html_raw_github_url=raw.github --no_abort
-cp $name.html ${name}_html.html
-doconce format sphinx $name --no_abort
-doconce sphinx_dir dirname=sphinx-rootdir-math $name
+doconce format pdflatex math_test --no_abort
+doconce ptex2tex math_test
+pdflatex math_test
+system doconce format html math_test --html_raw_github_url=raw.github --no_abort
+cp math_test.html math_test_html.html
+doconce format sphinx math_test --no_abort
+doconce sphinx_dir dirname=sphinx-rootdir-math math_test
 cp automake_sphinx.py automake_sphinx_math_test.py
 python automake_sphinx.py
-doconce format pandoc $name --no_abort
+doconce format pandoc math_test --no_abort
 # Do not use pandoc directly because it does not support MathJax sufficiently well
-doconce md2html $name.md --no_abort
-cp $name.html ${name}_pandoc.html
-doconce format pandoc $name --no_abort
-doconce md2latex $name
+doconce md2html math_test.md --no_abort
+cp math_test.html math_test_pandoc.html
+doconce format pandoc math_test --no_abort
+doconce md2latex math_test
 
 # Test all types of copyright syntax
 python test_copyright.py  # results in test_copyright.out
@@ -419,33 +413,32 @@ system doconce format pandoc github_md.do.txt --github_md
 doconce format html markdown_input.do.txt --markdown --md2do_output=mdinput2do.do.txt --html_raw_github_url=raw.github
 
 # Test movie handling
-name=movies
-system doconce format html $name --html_output=movies_3choices --html_raw_github_url=raw.github
+system doconce format html movies --html_output=movies_3choices --html_raw_github_url=raw.github
 cp movies_3choices.html movie_demo
-system doconce format html $name --no_mp4_webm_ogg_alternatives --html_raw_github_url=raw.github
+system doconce format html movies --no_mp4_webm_ogg_alternatives --html_raw_github_url=raw.github
 cp movies.html movie_demo
 
-rm -f $name.aux
-system doconce format pdflatex $name --latex_movie=media9
-system doconce ptex2tex $name
-system pdflatex $name
-pdflatex $name
-cp $name.pdf movie_demo/${name}_media9.pdf
-cp $name.tex ${name}_media9.tex
+rm -f movies.aux
+system doconce format pdflatex movies --latex_movie=media9
+system doconce ptex2tex movies
+system pdflatex movies
+pdflatex movies
+cp movies.pdf movie_demo/movies_media9.pdf
+cp movies.tex movies_media9.tex
 
-system doconce format pdflatex $name --latex_movie=media9 --latex_external_movie_viewer
-system doconce ptex2tex $name
-system pdflatex $name
-cp $name.pdf movie_demo/${name}_media9_extviewer.pdf
+system doconce format pdflatex movies --latex_movie=media9 --latex_external_movie_viewer
+system doconce ptex2tex movies
+system pdflatex movies
+cp movies.pdf movie_demo/movies_media9_extviewer.pdf
 
 # multimedia (beamer \movie command) does not work well
-#rm $name.aux
+#rm movies.aux
 
-rm -f $name.aux
-system doconce format pdflatex $name
-system doconce ptex2tex $name
-system pdflatex $name
-cp $name.pdf movie_demo
+rm -f movies.aux
+system doconce format pdflatex movies
+system doconce ptex2tex movies
+system pdflatex movies
+cp movies.pdf movie_demo
 
 system doconce format plain movies
 
@@ -519,7 +512,6 @@ system doconce csv2table testtable.csv > testtable.do.txt
 # Test doconce ref_external command
 sh -x genref.sh
 
-# TODO: fix this
 # Test error detection (note: the sequence of the error tests is
 # crucial: an error must occur, then corrected before the next
 # one will occur!)
@@ -558,6 +550,8 @@ doconce format pdflatex tmp2 --device=paper
 # Remedy: drop paper and rewrite, just run electronic
 doconce format pdflatex tmp2
 #doconce replace '# Comment before math is ok' '' tmp2.do.txt
+# Remove some files
+rm -rf 0*md 0*ipynb *~ 
 echo ""
 echo "When we reach this point in the script,"
 echo "it is clearly a successful run of all tests!"

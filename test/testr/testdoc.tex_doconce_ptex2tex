@@ -18,6 +18,8 @@
 
 \bhtmlcod (!bc html) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{html}
 
+\bdat (!bc dat) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{text}
+
 \bipy (!bc ipy) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{ipy}
 
 \brestructuredtext (!bc restructuredtext) -> \begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{restructuredtext}
@@ -33,7 +35,7 @@ output in testdoc.tex
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%% doconce format html testdoc.do.txt --device=paper --examples_as_exercises --latex_double_hyphen --latex_index_in_margin --latex_no_program_footnotelink --latex_title_layout=titlepage --latex_papersize=a4 --latex_colored_table_rows=blue --latex_fancy_header --latex_section_headings=blue --latex_labels_in_margin --latex_double_spacing --latex_todonotes --latex_list_of_exercises=loe --latex_font=palatino --latex_packages=varioref --latex_link_color=blue!90 --draft
+%% doconce format latex testdoc.do.txt --device=paper --examples_as_exercises --latex_double_hyphen --latex_index_in_margin --latex_no_program_footnotelink --latex_title_layout=titlepage --latex_papersize=a4 --latex_colored_table_rows=blue --latex_fancy_header --latex_section_headings=blue --latex_labels_in_margin --latex_double_spacing --latex_todonotes --latex_list_of_exercises=loe --latex_font=palatino --latex_packages=varioref --latex_link_color=blue!90 --draft
 %%
 
 
@@ -1258,11 +1260,11 @@ involving $\theta$:
 
 
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{text}
 def f(theta):
     return theta**2
 
-\end{Verbatim}
+\end{minted}
 
 
 \paragraph{More on $\theta$.}
@@ -1670,11 +1672,11 @@ A sole \Verb!&! must also work.
 
 
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{text}
 # Just to check that ampersand works in code blocks:
 c = a & b
 
-\end{Verbatim}
+\end{minted}
 
 
 \paragraph{Quotes.}
@@ -2266,10 +2268,10 @@ With some math $a=b$ in this solution:
 And code \texttt{a=b} in this solution:
 
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{text}
 a = b  # code in solution
 
-\end{Verbatim}
+\end{minted}
 
 End of solution is here.
 
@@ -2291,11 +2293,11 @@ And with code (in plain verbatim) returning $x+1$ in hint:
 
 
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{text}
 def func(x):
     return x + 1  # with code in hint
 
-\end{Verbatim}
+\end{minted}
 
 
 % --- end hint in exercise ---
@@ -2389,10 +2391,10 @@ And a test that the code \texttt{lambda x: x+2} is correctly placed here:
 
 
 
-\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+\begin{minted}[fontsize=\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=7mm]{text}
 lambda x: x+2
 
-\end{Verbatim}
+\end{minted}
 
 
 % Have some comments at the end of the exercise to see that

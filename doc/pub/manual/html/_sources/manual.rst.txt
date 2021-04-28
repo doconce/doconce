@@ -20,7 +20,7 @@ DocOnce Manual
 %%%%%%%%%%%%%%
 
 :Authors: Hans Petter Langtangen, Kristian Gregorius Hustad
-:Date: Apr 22, 2021
+:Date: Apr 23, 2021
 
 .. lines beginning with # are doconce comment lines
 
@@ -4737,14 +4737,14 @@ examples.
 The command line options ``--answers_at_end`` and ``--solutions_at_end``
 write all answers and solutions to exercises to a separate section in the end of the document, respectively. These can be combinee with ``--without_answers`` and ``--without_solutions`` to remove answers and solutions from the main text.
 
-====================  ====================================  
-   Command option                   Behavior                
-====================  ====================================  
---without\_answers    Turn off output of answers            
---without\_solutions  Turn off output of solutions          
---answers\_at\_end    Answers in the end of the document    
---solutions\_at\_end  Solutions in the end of the document  
-====================  ====================================  
+=======================  ====================================  
+     Command option                    Behavior                
+=======================  ====================================  
+``--without_answers``    Turn off output of answers            
+``--without_solutions``  Turn off output of solutions          
+``--answers_at_end``     Answers in the end of the document    
+``--solutions_at_end``   Solutions in the end of the document  
+=======================  ====================================  
 
 The commands ``!anshide`` and ``!solhide`` can be used to hide from the main text answers and solutions, respectively, until the ``!ansoff`` and ``!soloff`` commands are encountered. Similarly, the ``!ansdocend`` and ``!soldocend`` commands move answers and solutions to the end of the book. 
 

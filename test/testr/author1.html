@@ -180,17 +180,16 @@ the <code>xr</code> feature in LaTeX.
 
 <p>The syntax of generalized references reads</p>
 
-<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<!-- code=text (!bc dat) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="inner_cell">
       <div class="input_area">
-        <blockquote>
-<div class="highlight" style="background: #f8f8f8">
+        <div class="highlight" style="background: #f8f8f8">
   <pre style="line-height: 125%;">ref[internal][cite][external]
 </pre>
 </div>
-</blockquote>      </div>
+      </div>
     </div>
   </div>
   <div class="output_wrapper">
@@ -226,13 +225,12 @@ text will be the output.
 in a document:
 </p>
 
-<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<!-- code=text (!bc dat) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="inner_cell">
       <div class="input_area">
-        <blockquote>
-<div class="highlight" style="background: #f8f8f8">
+        <div class="highlight" style="background: #f8f8f8">
   <pre style="line-height: 125%;">As explained in
 ref[Section ref{subsec:ex}][in &quot;Langtangen, 2012&quot;:
 &quot;https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex&quot;
@@ -243,7 +241,7 @@ the document &quot;A Document for Testing DocOnce&quot;:
 cite{testdoc:12}], DocOnce documents may include tables.
 </pre>
 </div>
-</blockquote>      </div>
+      </div>
     </div>
   </div>
   <div class="output_wrapper">
@@ -258,18 +256,17 @@ cite{testdoc:12}], DocOnce documents may include tables.
 
 <p>With <code>latex</code> or <code>pdflatex</code> as output, this translates to</p>
 
-<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<!-- code=text (!bc dat) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="inner_cell">
       <div class="input_area">
-        <blockquote>
-<div class="highlight" style="background: #f8f8f8">
+        <div class="highlight" style="background: #f8f8f8">
   <pre style="line-height: 125%;">As explained in
 Section ref{subsec:ex}, DocOnce documents may include tables.
 </pre>
 </div>
-</blockquote>      </div>
+      </div>
     </div>
   </div>
   <div class="output_wrapper">
@@ -286,20 +283,19 @@ Section ref{subsec:ex}, DocOnce documents may include tables.
 otherwise
 </p>
 
-<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<!-- code=text (!bc dat) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="inner_cell">
       <div class="input_area">
-        <blockquote>
-<div class="highlight" style="background: #f8f8f8">
+        <div class="highlight" style="background: #f8f8f8">
   <pre style="line-height: 125%;">As explained in
 Section ref{subsec:ex} in &quot;Langtangen, 2012&quot;:
 &quot;https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex&quot;
 cite{testdoc:12}, DocOnce documents may include tables.
 </pre>
 </div>
-</blockquote>      </div>
+      </div>
     </div>
   </div>
   <div class="output_wrapper">
@@ -316,13 +312,12 @@ cite{testdoc:12}, DocOnce documents may include tables.
 text becomes
 </p>
 
-<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<!-- code=text (!bc dat) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="inner_cell">
       <div class="input_area">
-        <blockquote>
-<div class="highlight" style="background: #f8f8f8">
+        <div class="highlight" style="background: #f8f8f8">
   <pre style="line-height: 125%;">As explained in
 a &quot;section&quot;:
 &quot;https://hplgit.github.io/doconce/test/demo_testdoc.html#subsec:ex&quot; in
@@ -331,7 +326,7 @@ the document &quot;A Document for Testing DocOnce&quot;:
 cite{testdoc:12}, DocOnce documents may include tables.
 </pre>
 </div>
-</blockquote>      </div>
+      </div>
     </div>
   </div>
   <div class="output_wrapper">
@@ -361,13 +356,12 @@ if the reference is internal in the DocOnce source, applies the
 </p>
 
 
-<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<!-- code=text (!bc dat) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="inner_cell">
       <div class="input_area">
-        <blockquote>
-<div class="highlight" style="background: #f8f8f8">
+        <div class="highlight" style="background: #f8f8f8">
   <pre style="line-height: 125%;">As explained in
 refch[Chapter ref{ch:testdoc}][&quot;Langtangen, 2012&quot;:
 &quot;https://hplgit.github.io/doconce/test/demo_testdoc.html&quot;
@@ -377,7 +371,7 @@ cite{testdoc:12}][the document
 cite{testdoc:12}], DocOnce documents may include tables.
 </pre>
 </div>
-</blockquote>      </div>
+      </div>
     </div>
   </div>
   <div class="output_wrapper">
@@ -395,20 +389,19 @@ becomes in the <code>latex</code> and <code>pdflatex</code> case
 </p>
 
 
-<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<!-- code=text (!bc dat) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="inner_cell">
       <div class="input_area">
-        <blockquote>
-<div class="highlight" style="background: #f8f8f8">
+        <div class="highlight" style="background: #f8f8f8">
   <pre style="line-height: 125%;">As explained in
 &quot;Langtangen, 2012&quot;:
 &quot;https://hplgit.github.io/doconce/test/demo_testdoc.html&quot;
 cite{testdoc:12}, DocOnce documents may include tables.
 </pre>
 </div>
-</blockquote>      </div>
+      </div>
     </div>
   </div>
   <div class="output_wrapper">
@@ -443,18 +436,17 @@ have links to local files, so a complete URL on the form
 <p>And here is another example with internal references only:</p>
 
 
-<!-- code=text (!bc ccq) typeset with pygments style "default" -->
+<!-- code=text (!bc dat) typeset with pygments style "default" -->
 <div class="cell border-box-sizing code_cell rendered">
   <div class="input">
     <div class="inner_cell">
       <div class="input_area">
-        <blockquote>
-<div class="highlight" style="background: #f8f8f8">
+        <div class="highlight" style="background: #f8f8f8">
   <pre style="line-height: 125%;">Generalized references are described in ref[Section ref{genrefs}][dummy1][
 dummy2].
 </pre>
 </div>
-</blockquote>      </div>
+      </div>
     </div>
   </div>
   <div class="output_wrapper">

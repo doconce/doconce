@@ -22,22 +22,33 @@ doconce_envirs = ['c', 't',                # verbatim and tex blocks
             'quiz', 'u-',
             ]
 
-## Typesetting Styles: !bc X[cod|pro][postfix]
-# Languages X
-languages = ['cod','pro', #TODO: keep?
-             'f', 'c', 'cpp', 'sh', 'pl', 'm', 'cy', 'rb', 'js',
-             'latex', 'html', 'py', 'sys', 'dat', 'pyshell', 'ipy', 'pysc',
-             'pyopt', 'csv', 'txt', 'xml', 'do'] #TODO: not mentioned in manual
+# Mapping from LANG envir in Typesetting Styles to programming language
+# Typesetting Styles: !bc LANG[cod|pro][postfix]
+# NB get_legal_pygments_lexers in common.py
+envir2pygments = dict(
+        bash='bash', sh='bash',
+        pyshell='python', py='python', cy='cython', f='fortran',
+        c='c', cpp='c++', rst='rst', swig='c++',
+        cu='cuda', cuda='cuda',
+        m='matlab', pl='perl',
+        latex='latex', tex='latex', html='html',
+        xml='xml', rb='ruby', sys='console',
+        js='js', java='java',
+        dat='text', txt='text', csv='text',
+        ipy='ipy', do='doconce',
+        r='r', php='php',
+        pyopt='python', pysc='python',
+    )
+## Typesetting Styles: !bc LANG[cod|pro][postfix]
+LANG = list(envir2pygments.keys())
 # Additional envirs in the .ptex2tex.cfg file as of June 2012.
 # Recall that the longest names must come first to be substituted first e.g. bccod before bcc
-languages += ['rst', 'cppans', 'pyans', 'fans', 'bashans', 'swigans', 'uflans', 'sni',
-              'dsni', 'slin', 'rpy', 'plin', 'ver', 'warn',
-              'rule', 'summ', 'ccq', 'cc', 'ccl', 'restructuredtext',
-              '[\w]*?'] #any, non greedy. This is because there are more
 # Postfixes allowed on code blocks e.g. `pycod-e` and regex to catch them
 postfix_code_block = ['hid', '-h', '-e', '-t', 'out']
+# Code block regex pattern
+# '[\w]*?' (any word, non greedy) takes care of additional envirs in the .ptex2tex.cfg file
 pattern_code_block = r'^!bc\s' + \
-          '(?:(?P<language>' + '|'.join(languages) + ')?)' + \
+          '(?:(?P<language>' + '|'.join(LANG + ['[\w]*?']) + ')?)' + \
           '(?P<type>' + '|'.join(['', 'cod', 'pro']) + ')' + \
           '(?:(?P<postfix>' + '|'.join(postfix_code_block) + ')?)' + \
           '\s*$'

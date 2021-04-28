@@ -1,7 +1,7 @@
 %%
 %% Automatically generated file from DocOnce source
 %% (https://github.com/doconce/doconce/)
-%% doconce format html slides2.do.txt --latex_title_layout=beamer -DBEAMER --no_abort
+%% doconce format latex slides2.do.txt --latex_title_layout=beamer -DBEAMER --no_abort
 %%
 % #ifdef PTEX2TEX_EXPLANATION
 %%
@@ -630,7 +630,7 @@ based on HTML and vice versa.
 
 
 
-\bccq
+\bdat
 TITLE: Some Title
 AUTHOR: name1 at institution1, with more info & institution2
 AUTHOR: name2 email:name2@web.com at institution
@@ -639,7 +639,7 @@ DATE: today
 # A table of contents is optional:
 TOC: on
 
-\eccq
+\edat
 
 
 \begin{block}{Notice}
@@ -652,22 +652,22 @@ Title and authors must have all information \emph{on a single line}!
 
 
 
-\bccq
+\bdat
 __Abstract.__
 Here goes the abstract...
 
-\eccq
+\edat
 
 
 Or:
 
 
 
-\bccq
+\bdat
 __Summary.__
 Here goes the summary...
 
-\eccq
+\edat
 
 
 % !split
@@ -684,7 +684,7 @@ Headings are surrounded by \texttt{=} signs:
 
 
 
-\bccq
+\bdat
 ======= This is an H1/chapter heading =======
 
 ===== This is an H2/section heading =====
@@ -695,7 +695,7 @@ Headings are surrounded by \texttt{=} signs:
 
 __This is a paragraph heading.__
 
-\eccq
+\edat
 
 
 % !split
@@ -710,7 +710,7 @@ __This is a paragraph heading.__
 
 
 
-\bccq
+\bdat
  * Bullet list items start with `*`
    and may span several lines
  * *Emphasized words* are possible
@@ -720,7 +720,7 @@ __This is a paragraph heading.__
    o and sublists with enumerated items starting with `o`
    o items are just indented as you would do in email
 
-\eccq
+\edat
 
 
 This gets rendered as
@@ -807,23 +807,23 @@ Figure with HTML and {\LaTeX} info, and caption, \emph{all on one line}:
 
 
 
-\bccq
+\bdat
 FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
 
 # This figure will be 300 pixels wide in HTML and span 1.2 times
 # the linewidth in LaTeX.
 
-\eccq
+\edat
 
 
 Movies are also supported:
 
 
 
-\bccq
+\bdat
 MOVIE: [https://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
 
-\eccq
+\edat
 
 and rendered as
 
@@ -843,10 +843,10 @@ Inline math as in {\LaTeX}:
 
 
 
-\bccq
+\bdat
 ...where $a=\int_{\Omega}fdx$ is an integral.
 
-\eccq
+\edat
 
 gets rendered as ...where $a=\int_{\Omega}fdx$ is an integral.
 
@@ -862,7 +862,7 @@ the rest is plain {\LaTeX}:
 
 
 
-\bccq
+\bdat
 !bt
 \begin{align}
 \frac{\partial u}{\partial t} &= \nabla^2 u,
@@ -872,7 +872,7 @@ label{b:eq}
 \end{align}
 !et
 
-\eccq
+\edat
 
 which is rendered as
 
@@ -903,7 +903,7 @@ Code is enclosed in \Verb?!bc? and \Verb?!ec? tags:
 
 
 
-\bccq
+\bdat
 !bc pycod
 def solver(I, a, T, dt, theta):
     """Solve u'=-a*u, u(0)=I, for t in (0,T] with steps of dt."""
@@ -919,7 +919,7 @@ def solver(I, a, T, dt, theta):
     return u, t
 !ec
 
-\eccq
+\edat
 
 This gets rendered as
 
@@ -1043,7 +1043,7 @@ and \emph{examples}:
 
 
 
-\bccq
+\bdat
 ===== Problem: Flip a Coin =====
 label{demo:ex:1}
 
@@ -1076,7 +1076,7 @@ Make another program that computes the probability
 of getting at least three heads out of 5 throws.
 !esubex
 
-\eccq
+\edat
 
 
 Solutions/answers can easily be left out of the document.
@@ -1107,7 +1107,7 @@ Solutions/answers can easily be left out of the document.
 
 
 
-\bccq
+\bdat
 !split
 ===== Headline =====
 
@@ -1131,7 +1131,7 @@ And maybe a final comment?
 !split
 ===== Next slide... =====
 
-\eccq
+\edat
 
 
 % !split
@@ -1171,7 +1171,7 @@ a figure to the right (two cells, numbered 00 and 01).
 
 
 
-\bccq
+\bdat
 !split
 ===== Headline =====
 
@@ -1200,7 +1200,7 @@ FIGURE: [testfigs/broken_pen_and_paper, width=400, frac=0.8]
 !split
 ===== Next slide... =====
 
-\eccq
+\edat
 
 
 

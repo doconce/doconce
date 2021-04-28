@@ -964,7 +964,7 @@ def format_code_latex(code_block, code_block_type, code_style, postfix='', execu
     :param str code_block_type: block type e.g. 'pycod-e'
     :param code_style: any style from e.g. `--latex_code_style`
     :return: formatted_code, comment, execute, show
-    :rtype: str, str, bool, str
+    :rtype: Tuple[str, str, bool, str]
     """
     formatted_code = ''
     comment = ''
@@ -2842,7 +2842,7 @@ def define(FILENAME_EXTENSION,
                       '\n'
                       '%% Automatically generated file from DocOnce source\n'
                       '%% (https://github.com/doconce/doconce/)\n'
-                      '%% doconce format html {} {}\n').format(globals.filename, ' '.join(sys.argv[1:]))
+                      '%% doconce format latex {} {}\n').format(globals.filename, ' '.join(sys.argv[1:]))
     if latex_code_style is None:
         # We rely on the ptex2tex step
         INTRO['latex'] += (r'%%'

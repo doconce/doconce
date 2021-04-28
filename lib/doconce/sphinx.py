@@ -6,7 +6,7 @@ from builtins import range
 # can reuse most of rst module:
 from .rst import *
 from .common import align2equations, online_python_tutor, \
-     get_legal_pygments_lexers, has_custom_pygments_lexer, process_code_envir_postfix
+     get_legal_pygments_lexers, has_custom_pygments_lexer, get_code_block_args
 from .misc import option, errwarn, _abort
 # used in sphinx_dir
 import time, shutil, glob, re
@@ -221,7 +221,7 @@ def sphinx_code(filestr, code_blocks, code_block_types,
         sys='text',
         rst='rst',
         css='css', csspro='css', csscod='css',
-        dat='text', csv='text', txt='text',
+        dat='text', txt='text', csv='text',
         cc='text', ccq='text',  # not possible with extra indent for ccq
         ipy='ipy',
         xmlcod='xml', xmlpro='xml', xml='xml',
@@ -448,7 +448,7 @@ def sphinx_code(filestr, code_blocks, code_block_types,
                                  flags=re.MULTILINE|re.DOTALL)
         else:
             show_hide = False
-            postfix = process_code_envir_postfix(key)
+            LANG, codetype, postfix = get_code_block_args('!bc ' + key)
             if len(postfix):
                 key_orig = key
                 key = key[:-len(postfix)]

@@ -13,7 +13,8 @@ except ImportError:
     from Queue import Empty # Py 2
 import re, base64, uuid
 from .misc import errwarn, _abort, option
-from .common import safe_join, process_code_envir_postfix
+from .globals import envir2pygments
+from .common import safe_join, get_code_block_args
 class JupyterKernelClient:
     def __init__(self):
         self.manager = KernelManager(kernel_name='python3')
@@ -189,28 +190,11 @@ def process_code_blocks(filestr, code_style, format):
 
     for i in range(len(lines)):
         if lines[i].startswith('!bc'):
-            words = lines[i].split()
-            if len(words) == 1:
-                current_code_envir = 'ccq'
-            else:
-                current_code_envir = words[1]
-            if current_code_envir is None:
-                # Should not happen since a !bc is encountered first and
-                # current_code_envir is then set above
-                # There should have been checks for this in doconce.py
-                errwarn('*** error: mismatch between !bc and !ec')
-                errwarn('\n'.join(lines[i - 3:i + 4]))
-                _abort()
+            LANG, codetype, postfix = get_code_block_args(lines[i])
+            current_code_envir = LANG + codetype + postfix or 'dat'
+            prog = envir2pygments.get(LANG, '')
             lines[i] = ""
         elif lines[i].startswith('!ec'):
-            if current_code_envir is None:
-                # No envir set by previous !bc?
-                errwarn('*** error: mismatch between !bc and !ec')
-                errwarn('    found !ec without a preceding !bc at line')
-                errwarn('\n'.join(lines[i - 8:i - 1]))
-                errwarn('error line >>>', lines[i])
-                errwarn('\n'.join(lines[i + 1:i + 8]))
-                _abort()
             # See if code has to be shown and executed, then format it
             lines[i] = ''
             formatted_code, comment, execute, show = format_code(current_code,
@@ -222,14 +206,15 @@ def process_code_blocks(filestr, code_style, format):
             # Execute and/or show the code and its output
             formatted_output = ''
             if execute:
-                formatted_output, execution_count_ = execute_code_block(
-                    current_code=current_code,
-                    current_code_envir=current_code_envir,
-                    kernel_client=kernel_client,
-                    format=format,
-                    code_style=code_style,
-                    caption=caption,
-                    label=label)
+                if envir2pygments.get(LANG, '') == 'python':
+                    formatted_output, execution_count_ = execute_code_block(
+                        current_code=current_code,
+                        current_code_envir=current_code_envir,
+                        kernel_client=kernel_client,
+                        format=format,
+                        code_style=code_style,
+                        caption=caption,
+                        label=label)
             if show is not 'hide':
                 if show is not 'output':
                     execution_count += 1
@@ -342,29 +327,31 @@ def format_code(code_block, code_block_type, code_style, format):
     :param str code_block_type: block type e.g. 'pycod-e'
     :param str code_style: optional typesetting of code blocks
     :param str format: output format, one of ['html', 'latex', 'pdflatex']
-    :return:
+    :return: formatted_code, comment, execute, show (see the invoked function)
+    :rtype: Tuple[str, str, bool, str]
     """
-    postfix = process_code_envir_postfix(code_block_type)
-    execute, show = get_execute_show(postfix)
-    if len(postfix):
-        code_block_type = code_block_type[:-len(postfix)]
-    if format in ['latex','pdflatex']:
+    LANG, codetype, postfix = get_code_block_args('!bc ' + code_block_type)
+    execute, show = get_execute_show((LANG, codetype, postfix))
+    if format in ['latex', 'pdflatex']:
         from .latex import format_code_latex
-        return format_code_latex(code_block, code_block_type, code_style, postfix, execute, show)
+        return format_code_latex(code_block, (LANG, codetype, postfix), code_style, postfix, execute, show)
     elif format in ['html']:
         from .html import format_code_html
-        return format_code_html(code_block, code_block_type, code_style, postfix, execute, show)
+        return format_code_html(code_block, (LANG, codetype, postfix), code_style, postfix, execute, show)
 
 
-def get_execute_show(postfix):
+def get_execute_show(envir):
     """Return whether the code should be executed and showed
 
     Based on the postfix (e.g. '-e') on a code environment (e.g. 'pycod-e'),
-    return whether the code should be executed and shown
-    :param str postfix: postfix (e.g. '-e') to code environment (e.g. 'pycod-e')
+    return whether the code should be executed and shown.
+    The output `show` is one of ['format','pre','hide','text','output','html'].
+    :param tuple[str, str, str] envir: code blocks arguments e.g. ('py','cod','-h')
     :return: execute, show
     :rtype: bool, str
     """
+    (LANG, codetype, postfix) = envir
+    prog = envir2pygments.get(LANG, '')
     execute = True
     show = 'format'
     if postfix == '-h':     # Show/Hide button (in html)
@@ -378,10 +365,12 @@ def get_execute_show(postfix):
     elif postfix == 'out':  # Output cell
         execute = True      # execute_code_block will render this as code output
         show = 'output'
-        return execute, show
     elif postfix == '-t':   # Code as text
         execute = False
         show = 'text'
+    # Only execute python
+    if prog not in ['python']:
+        execute = False
     return execute, show
 
 
@@ -434,7 +423,7 @@ def html_code_envir(envir, envir_spec):
     Return html tags that can be used to wrap formatted code
 
     This method was created to enhance modularization of code. See latex_code_envir in latex.py
-    :param str envir: code environment e.g. "pycod"
+    :param tuple[str, str, str] envir: code blocks arguments e.g. ('py','cod','-h')
     :param str envir_spec: optional typesetting of code blocks
     :return: tuple of html tags, e.g. ('<pre>','</pre>')
     :rtype: [str, str]
@@ -453,17 +442,19 @@ def latex_code_envir(envir, envir_spec):
 
     Given any code environments and any typesetting of code blocks, return a latex environment
     that can be used to wrap the formatted code
-    :param envir: code environment e.g. "pycod"
+    :param tuple[str, str, str] envir: code blocks arguments e.g. ('py','cod','-h')
     :param envir_spec: optional typesetting of code blocks
     :return: tuple of latex environments, e.g. ('\\bpycod', '\\epycod')
     :rtype: [str, str]
     """
     if envir_spec is None:
-        return '\\b' + envir, '\\e' + envir
-    elif envir.endswith("out") and option("ignore_output"):
+        return '\\b' + envir[0] + envir[1], '\\e' + envir[0] + envir[1]
+    elif envir[2].endswith("out") and option("ignore_output"):
         return '',''
-    elif envir.endswith("-e"):
+    elif envir[2].endswith("-e"):
         return '',''
+    # Untested old code in the case --latex_code_style is used
+    envir = ''.join(envir)
 
     leftmargin = option('latex_code_leftmargin=', '2')
     bg_vpad = '_vpad' if option('latex_code_bg_vpad') else ''
@@ -506,37 +497,10 @@ def latex_code_envir(envir, envir_spec):
     elif envir.endswith('cod'):
         envir_tp = 'cod'
         envir = envir[:-3]
-
-    # Mappings from DocOnce code environments to Pygments and lstlisting names
-    envir2lst = dict(
-        pyshell='Python',
-        py='Python', cy='Python', f='Fortran',
-        c='C', cpp='C++', bash='bash', sh='bash', rst='text',
-        m='Matlab', pl='Perl', swig='C++',
-        latex='TeX', html='HTML', js='Java',
-        java='Java',
-        xml='XML', rb='Ruby', sys='bash',
-        dat='text', txt='text', csv='text',
-        ipy='Python', do='text',
-        # pyopt and pysc are treated explicitly
-        r='r', php='php',
-    )
-
-    envir2pygments = dict(
-        pyshell='python',
-        py='python', cy='cython', f='fortran',
-        c='c', cpp='c++', cu='cuda', cuda='cuda', sh='bash', rst='rst', swig='c++',
-        bash='bash',
-        m='matlab', pl='perl',
-        latex='latex',
-        html='html',
-        xml='xml', rb='ruby', sys='console',
-        js='js', java='java',
-        dat='text', txt='text', csv='text',
-        ipy='ipy', do='doconce',
-        # pyopt and pysc are treated explicitly
-        r='r', php='php'
-    )
+    # Mappings from DocOnce code environments to lstlisting names
+    # Capitalization does not seem to matter, so I modify envir2pygments
+    envir2lst = envir2pygments
+    envir2lst.update({'rst': 'text', 'latex': 'TeX', 'js': 'Java', 'sys': 'bash', 'ipy': 'python', 'do': 'text'})
 
     if envir in ('ipy', 'do'):
         # Find substitutes for ipy and doconce if these lexers

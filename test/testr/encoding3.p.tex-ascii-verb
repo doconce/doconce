@@ -7,10 +7,10 @@ for {\LaTeX}. The remedy for HTML is to read the file with UTF-8 encoding.
 
 
 
-\bccq
+\bdat
 a = 1  # Value suggested by Åsmund Ødegård.
 
-\eccq
+\edat
 
 
 
