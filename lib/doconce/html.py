@@ -25,7 +25,8 @@ from pygments.styles import get_all_styles
 
 box_shadow = 'box-shadow: 8px 8px 5px #888888;'
 
-global _file_collection_filename
+# Filename generator to store a list of dependencies for html output
+_file_collection_filename = '.%s_html_file_collection'
 
 # Mapping from LANG envir in Typesetting Styles to programming language
 # Typesetting Styles: !bc LANG[cod|pro][postfix]
@@ -61,14 +62,18 @@ movie2html = {
 }
 
 
-def add_to_file_collection(filename, doconce_docname=None, mode='a'):
-    """
-    Add filename to the collection of needed files for a DocOnce-based
-    HTML document to work.
+def add_to_file_collection(filename, basename=None, mode='a'):
+    """Add `filename` to a the collection of files needed to make the HTML output work
 
-    The first time the function is called, `doconce_docname` != None
-    and this name is used to set the filename of the file collection.
-    Later, `doconce_docname` is not given (otherwise previous info is erased).
+    The HTML output from DocOnce might include file dependencies. This function
+    creates a basename file with a list dependencies (`filename`)
+    :param str filename: filename to add to `basename`
+    :param str basename: file basename continaing the collection of required fiiles.
+    Default is `.<globals.dofile_basename>_html_file_collection`
+    :param str mode: mode for the `open` command, default 'a' (append). If 'r',
+    `basename` is only read out
+    :return: files in the `basename` file, filename `filename_dep` with list of dependencies
+    :rtype: Tuple[List[str], str]
     """
     if isinstance(filename, basestring):
         filenames = [filename]
@@ -76,35 +81,26 @@ def add_to_file_collection(filename, doconce_docname=None, mode='a'):
         filenames = filename
     else:
         raise TypeError('filename=%s is %s, not supported' % (filename, type(filename)))
-
-    # bin/doconce functions that add info to the file collection
-    # must provide the right doconce_docname and mode='a' in order
-    # to write correctly to an already existing file.
-    global _file_collection_filename
-    if isinstance(doconce_docname, basestring) and doconce_docname != '':
-        if doconce_docname.endswith('.do.txt'):
-            doconce_docname = doconce_docname[:-7]
-        if doconce_docname.endswith('.html'):
-            doconce_docname = doconce_docname[:-5]
-        _file_collection_filename = '.' + doconce_docname + \
-                                    '_html_file_collection'
-    if mode == 'a':
-        try:
-            f = open(_file_collection_filename, 'r')
-        except (IOError, NameError):
-            # sphinx, rst makes use of html functions that call
-            # add_to_file_collection, and in those cases the
-            # _file_collection_filename variable is not defined
-            return
+    if not basename:
+        basename = globals.dofile_basename
+    filename_dep = _file_collection_filename % basename
+    # Read out the file content to a list of files
+    if os.path.exists(filename_dep):
+        f = open(filename_dep, 'r')
         files = [name.strip() for name in f.read().split()]
         f.close()
     else:
         files = []
-    f = open(_file_collection_filename, mode)
-    for name in filenames:
-        if not name in files:  # already registered?
+    if mode in ['a', 'w']:
+        f = open(filename_dep, mode)
+        for name in filenames:
+            # in append 'a' mode skip already registered files
+            if mode == 'a' and name in files:
+                continue
             f.write(name + '\n')
-    f.close()
+            files.append(name)
+        f.close()
+    return files, filename_dep
 
 
 # HTML code
@@ -2930,6 +2926,10 @@ def define(FILENAME_EXTENSION,
     EXERCISE['html'] = html_exercise
     TOC['html'] = html_toc
     QUIZ['html'] = html_quiz
+
+    # Delete the file containing a list of file requirements for html output
+    if os.path.exists(_file_collection_filename % globals.dofile_basename):
+        os.remove(_file_collection_filename % globals.dofile_basename)
 
     # Embedded style sheets and links to styles
     css_links = ''

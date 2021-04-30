@@ -60,20 +60,42 @@ def test_get_code_block_args():
 def test_find_file_with_extensions(tdir):
     from doconce.misc import find_file_with_extensions
     with cd_context(tdir):
+        # Create `./a.do.txt` and `temp/sub.html`
         fname = 'a.do.txt'
         fname = create_file_with_text(text='', fname=fname)
+        subdir = 'temp'
+        os.mkdir(subdir)
+        fnamesub = 'sub.html'
+        _ = create_file_with_text(text='', fname=os.path.join(subdir, fnamesub))
+        # Test in current directory
         dirname, basename, ext, filename = find_file_with_extensions(fname, allowed_extensions=['.do.txt'])
         assert (dirname, basename, ext, filename) == ('','a','.do.txt',fname)
+        dirname, basename, ext, filename = find_file_with_extensions(fname, allowed_extensions=['do.txt'])
+        assert (dirname, basename, ext, filename) == ('', 'a', '.do.txt', fname)
         dirname, basename, ext, filename = find_file_with_extensions(fname, allowed_extensions=['.txt','.do.txt'])
         assert (dirname, basename, ext, filename) == ('', 'a.do', '.txt', fname)
         dirname, basename, ext, filename = find_file_with_extensions(fname, allowed_extensions=[''])
-        assert (dirname, basename, ext, filename) == ('', 'a.do.txt', '', fname)
+        assert (dirname, basename, ext, filename) == ('', fname, '', fname)
         # ./ is stripped
         dirname, basename, ext, filename = find_file_with_extensions('./'+fname, allowed_extensions=['.do.txt'])
         assert (dirname, basename, ext, filename) == ('', 'a', '.do.txt', fname)
         # file not found
         dirname, basename, ext, filename = find_file_with_extensions(fname, allowed_extensions=['.do'])
         assert (dirname, basename, ext, filename) == (None, None, None, None)
+        # Test in subdirectory
+        dirname, basename, ext, filename = find_file_with_extensions(os.path.join(subdir, fnamesub),
+                                                                     allowed_extensions=['.html', ''])
+        assert (dirname, basename, ext, filename) == (subdir, 'sub', '.html', fnamesub)
+        dirname, basename, ext, filename = find_file_with_extensions(os.path.join(subdir, fnamesub),
+                                                                     allowed_extensions=['', '.html'])
+        assert (dirname, basename, ext, filename) == (subdir, 'sub.html', '', fnamesub)
+        # Test in parent directory
+        os.chdir(subdir)
+        dirname, basename, ext, filename = find_file_with_extensions(os.path.join('../', fname),
+                                                                     allowed_extensions=['.do.txt'])
+        assert (dirname, basename, ext, filename) == ('..', 'a', '.do.txt', fname)
+        dirname, basename, ext, filename = find_file_with_extensions(os.path.join('../', fname))
+        assert (dirname, basename, ext, filename) == ('..', fname, '', fname)
 
 def test_folder_checker(tdir, monkeypatch):
     #tdir_rel = os.path.relpath(tdir, start=os.getcwd())
@@ -165,6 +187,16 @@ def test_string2href():
 
 
 ### functions in doconce.py
+def test_get_output_filename(monkeypatch):
+    from doconce.doconce import get_output_filename
+    load_modules('the global FILENAME_EXTENSION is needed', modules=['html','latex'])
+    monkeypatch.setattr("sys.argv", ['doconce_format', 'latex', 'myfile', '--output=ale'])
+    assert get_output_filename('latex') == 'ale.p.tex'
+    monkeypatch.setattr("sys.argv", ['doconce_format', 'html', 'myfile', '--output=../ale'])
+    assert get_output_filename('html') == '../ale.html'
+    monkeypatch.setattr("sys.argv", ['doconce_format', 'html', 'myfile', '--output=../ale.html'])
+    assert get_output_filename('html') == '../ale.html'
+
 def test_syntax_check():
     from doconce.doconce import syntax_check
     # Check that it fails with sys.exit(1) in _abort

@@ -71,6 +71,7 @@ def jupyterbook():
     if not filename:
         errwarn('*** error: file %s does not exist' % globals.filename)
         _abort()
+    globals.dirname = dirname
     if dirname:
         # cd into the DocOnce file's directory, then fix dest and dest_toc
         os.chdir(dirname)
@@ -82,7 +83,7 @@ def jupyterbook():
         dest_toc = os.path.relpath(dest_toc or '.', start=dirname) + '/'
         if dest_toc.startswith('./'):
             dest_toc = dest_toc[2:]
-        dirname = ''
+        #dirname = ''
     globals.filename = filename
     globals.dofile_basename = basename
 
@@ -263,7 +264,7 @@ def jupyterbook():
     all_texts_formatted = resolve_links_destinations(all_texts_formatted, all_basenames)
     # Fix the path of FIGUREs and MOVIEs.
     # NB: at the time of writing (03-2021) movies are not supported by Jupyter Book
-    all_texts_formatted = [fix_media_src(t, dirname, dest) for t in all_texts_formatted]
+    all_texts_formatted = [fix_media_src(t, '', dest) for t in all_texts_formatted]
     # Write chapters and sections to file
     for i in range(len(all_texts_formatted)):
         write_file(all_texts_formatted[i], dest + all_fnames[i], _encoding=globals.encoding)
