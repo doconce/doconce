@@ -2095,7 +2095,7 @@ def generate_beamer_slides(header, parts, footer, basename, filename):
                     body = '\\pause\n' + body
                 elif startswith_list:
                     # Pop up each list item
-                    body = re.sub(r'^( *\\item)', r'\pause\n\g<1>', body,
+                    body = re.sub(r'^( *\\item)', r'\\pause\n\g<1>', body,
                                   flags=re.MULTILINE)
                 else:
                     # Just pause before what's coming

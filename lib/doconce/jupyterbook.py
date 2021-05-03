@@ -1,4 +1,5 @@
-import os, sys, shutil, re, glob, math
+import os, sys, shutil, glob, math
+import regex as re
 from doconce import globals
 from .doconce import read_file, write_file, doconce2format, handle_index_and_bib, preprocess
 from .misc import option, help_print_options, check_command_line_options, system, _abort, \

@@ -3,7 +3,7 @@ from publish import config
 _format_venue = config.formatting._format_venue
 from publish.common import short_author
 from publish.config.defaults import thesistype_strings
-import re
+import regex as re
 
 #------------------------------------------------------------------------------
 # DocOnce formatting
@@ -228,7 +228,7 @@ def doconce_format_misc(paper):
 
 def _doconce_format_note(note):
     # Make sure \url is handled correctly, LaTeX needs URLs this way
-    pattern = r'\\url\{(.+?)\}'
+    pattern = r'[\\]{0,2}url\{(.+?)\}'
     m = re.search(pattern, note)
     if m:
         note = re.sub(pattern, 'URL: "\g<1>"', note)
@@ -238,8 +238,7 @@ def _doconce_url(paper, values):
     venue = None
     if "howpublished" in paper:
         venue = paper["howpublished"]
-        if venue.startswith('\\url{') and venue.endswith('}'):
-            venue = venue[5:-1]
+        venue = _strip_url(venue, keyword='url')
         if venue.startswith('http'):
             venue = _doconce_format_url(venue)
         values.append(venue)
@@ -318,10 +317,8 @@ def _doconce_format_arxiv(arxiv):
 
 def _doconce_format_url(url):
     "Format URL"
-    if url.startswith('\\url{'):
-        url = url[5:-1]
-    if url.startswith('\\emph{'):
-        url = url[6:-1]
+    url = _strip_url(url, keyword='url')
+    url = _strip_url(url, keyword='emph')
     return 'URL: "%s"' % (url)
 
 def _doconce_join(values):
@@ -571,16 +568,33 @@ def _rst_format_note(note):
         note = re.sub(pattern, 'URL: "\g<1>"', note)
     return note
 
+def _strip_url(text, keyword):
+    """Process url{..} or emph{..} syntax
+
+    In Python 3.7+ a single backslash in \<character> is problematic for re.sub.
+    Therefore, any text like 'url{..}' or 'emph{..}' preceded by a single backslash
+    should be avoided, but was still occurring in the bibliography in older versions
+    of DocOnce. This function removes \<keyword>>{..} and keyword{..} alike
+    :param str text: text
+    :param str keyword: typically 'url' or 'emph'
+    :return:
+    """
+    if text.startswith('\\url{') and text.endswith('}'):
+        text = text[5:-1]
+    elif text.startswith('url{') and text.endswith('}'):
+        text = text[4:-1]
+    return text
+
 def _rst_url(paper, values):
     venue = None
     if "howpublished" in paper:
         venue = paper["howpublished"]
-        if venue.startswith('\\url{') and venue.endswith('}'):
-            venue = venue[5:-1]
+        venue = _strip_url(venue, keyword='url')
         if venue.startswith('http'):
             venue = _rst_format_url(venue)
         values.append(venue)
     if "url" in paper:
+        paper['url'] = _strip_url(paper['url'], keyword='url')
         if "note" in paper:
             if (paper["url"] not in paper["note"]) and \
                (paper["url"] not in paper["howpublished"]):

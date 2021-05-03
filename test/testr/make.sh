@@ -93,7 +93,7 @@ system doconce format pdflatex testdoc.do.txt --device=paper --examples_as_exerc
 # doconce replace does not work well with system bash func above without quotes
 doconce replace 'vspace{1cm} % after toc' 'clearpage % after toc' testdoc_bigex.p.tex
 # can drop usepackage{theorem} since we have user-defined envir with amsthm
-doconce subst '(newtheorem{example}.*)' '\g<1>\n\\newtheorem{theorem}{Theorem}[section]' testdoc_bigex.p.tex
+doconce subst '(newtheorem\{example\}.*)' '\g<1>\n\\newtheorem{theorem}{Theorem}[section]' testdoc_bigex.p.tex
 doconce subst '\\paragraph\{Theorem \d+\.\}' '' testdoc_bigex.p.tex
 doconce replace '% begin theorem' '\begin{theorem}' testdoc_bigex.p.tex
 doconce replace '% end theorem' '\end{theorem}' testdoc_bigex.p.tex
@@ -104,7 +104,7 @@ doconce ptex2tex testdoc_bigex.p.tex #testdoc.tex
 
 # test that pdflatex works
 rm -f *.aux
-system pdflatex -shell-escape testdoc_bigex
+system pdflatex -shell-escape testdoc_bigex.tex
 pdflatex -shell-escape testdoc_bigex
 makeindex testdoc_bigex
 bibtex testdoc_bigex
@@ -120,7 +120,7 @@ echo "----------- end of doconce ptex2tex output ----------------" >> testdoc.te
 cat testdoc.tex >> testdoc.tex_doconce_ptex2tex
 # Test that latex can treat this file
 rm -f *.aux
-system pdflatex -shell-escape testdoc
+system pdflatex -shell-escape testdoc.tex
 
 # Test stand-alone exercises
 system doconce format plain testdoc --exercises_in_zip --examples_as_exercises
@@ -133,9 +133,9 @@ system doconce format html testdoc --code_prefix=$PWD --output=testdoc_code_pref
 system doconce format plain testdoc.do.txt --examples_as_exercises -DSOMEVAR=1 --tables2csv
 system doconce format st testdoc.do.txt --examples_as_exercises
 
-system doconce format sphinx testdoc --examples_as_exercises --html_links_in_new_window
-cp testdoc.rst testdoc.sphinx.rst
-system doconce split_rst testdoc
+system doconce format sphinx testdoc --examples_as_exercises --html_links_in_new_window --output=testdoc.sphinx
+cp testdoc.sphinx.rst testdoc.rst 
+system doconce split_rst testdoc.rst
 # Problem reproducible after: `git clean -fd && rm -rf sphinx-testdoc`
 #Hack: because doconce sphinx_dir ony works the second time (after an error), trigger that error by creating a bogus conf.py in ./
 touch conf.py 
@@ -202,15 +202,15 @@ cp slides1.html slides1_remark.html
 # The toughest test of slides1 is with minted code envir
 rm -f *.aux
 system doconce format pdflatex slides1 --latex_title_layout=beamer --latex_code_style=pyg --cite_doconce
-system doconce slides_beamer slides1 --beamer_slide_theme=blue_shadow --handout
-system pdflatex -shell-escape slides1
+system doconce slides_beamer slides1.tex --beamer_slide_theme=blue_shadow --handout
+system pdflatex -shell-escape slides1.tex
 cp slides1.tex slides1_handout.tex
 cp slides1.pdf slides1_handout.pdf
 
 # Ordinary beamer slides (not handout)
 system doconce format pdflatex slides1 --latex_title_layout=beamer "--latex_code_style=default:lst[style=yellow2_fb]"
-system doconce slides_beamer slides1 --beamer_slide_theme=blue_shadow
-system pdflatex -shell-escape slides1
+system doconce slides_beamer slides1.tex --beamer_slide_theme=blue_shadow
+system pdflatex -shell-escape slides1.tex
 
 doconce format html slides2 --pygments_html_style=emacs --html_raw_github_url=raw.github --no_abort
 system doconce slides_html slides2 reveal --html_slide_theme=beigesmall
@@ -219,7 +219,7 @@ cp slides2.html slides2_reveal.html
 rm -f *.aux
 system doconce format pdflatex slides2 --latex_title_layout=beamer -DBEAMER --no_abort
 system doconce ptex2tex slides2 envir=minted
-system doconce slides_beamer slides2
+system doconce slides_beamer slides2.tex
 
 system doconce format html slides3 --pygments_html_style=emacs SLIDE_TYPE=reveal SLIDE_THEME=beigesmall --html_raw_github_url=raw.github
 system doconce slides_html slides3 reveal --html_slide_type=beigesmall
@@ -231,7 +231,7 @@ system doconce slides_html slides3-solarized3 doconce --nav_button=bigblue,botto
 rm -f *.aux
 system doconce format pdflatex slides3 SLIDE_TYPE=beamer SLIDE_THEME=red_plain --latex_title_layout=beamer
 system doconce ptex2tex slides3 envir=minted
-system doconce slides_beamer slides3 --beamer_slide_theme=red_plain
+system doconce slides_beamer slides3.tex --beamer_slide_theme=red_plain
 
 system doconce format html slides1 --pygments_html_style=emacs --html_raw_github_url=raw.github
 system doconce slides_html slides1 all
@@ -308,30 +308,30 @@ cp sphinx-rootdir/conf.py tailored_conf.py
 # LaTeX admon styles
 admon_tps="colors1 mdfbox paragraph-footnotesize graybox2 yellowicon grayicon colors2"
 for admon_tp in $admon_tps; do
-color=
-opts=
-if [ $admon_tp = 'mdfbox' ]; then
-   color="--latex_admon_color=warning:darkgreen!40!white;notice:darkgray!20!white;summary:tucorange!20!white;question:red!50!white;block:darkgreen!40!white"
-   opts=--no_abort
-elif [ $admon_tp = 'grayicon' ]; then
-   color="--latex_admon_color=gray!20"
-elif [ $admon_tp = 'graybox2' ]; then
-   opts=--no_abort
-fi
-system doconce format pdflatex admon --latex_admon=$admon_tp $color $opts --latex_code_style=lst --cite_doconce
-cp admon.tex admon_${admon_tp}.tex
-# Make a substitution to fix a problem with `pdflatex admon_colors1`
-doconce subst '\\\\paragraph{Hint.}\\n' '\paragraph{Hint.}' admon_${admon_tp}.tex
+  color=
+  opts=
+  if [ $admon_tp = 'mdfbox' ]; then
+     color="--latex_admon_color=warning:darkgreen!40!white;notice:darkgray!20!white;summary:tucorange!20!white;question:red!50!white;block:darkgreen!40!white"
+     opts=--no_abort
+  elif [ $admon_tp = 'grayicon' ]; then
+     color="--latex_admon_color=gray!20"
+  elif [ $admon_tp = 'graybox2' ]; then
+     opts=--no_abort
+  fi
+  system doconce format pdflatex admon --latex_admon=$admon_tp $color $opts --latex_code_style=lst --cite_doconce
+  cp admon.tex admon_${admon_tp}.tex
+  # Make a substitution to fix a problem with `pdflatex admon_colors1`
+  doconce subst '\\\\paragraph{Hint.}\\n' '\paragraph{Hint.}' admon_${admon_tp}.tex
 
-system pdflatex admon_${admon_tp}
-echo "admon=$admon_tp"
-if [ -d latex_figs ]; then
-    echo "latex_figs:"
-    /bin/ls latex_figs
-else
-    echo "no latex_figs directory for this admon type"
-fi
-rm -rf latex_figs
+  system pdflatex admon_${admon_tp}.tex
+  echo "admon=$admon_tp"
+  if [ -d latex_figs ]; then
+      echo "latex_figs:"
+      /bin/ls latex_figs
+  else
+      echo "no latex_figs directory for this admon type"
+  fi
+  rm -rf latex_figs
 done
 
 # Test different code envirs inside admons
@@ -413,14 +413,14 @@ cp movies.html movie_demo
 rm -f movies.aux
 system doconce format pdflatex movies --latex_movie=media9
 system doconce ptex2tex movies
-system pdflatex movies
+system pdflatex movies.tex
 pdflatex movies
 cp movies.pdf movie_demo/movies_media9.pdf
 cp movies.tex movies_media9.tex
 
 system doconce format pdflatex movies --latex_movie=media9 --latex_external_movie_viewer
 system doconce ptex2tex movies
-system pdflatex movies
+system pdflatex movies.tex
 cp movies.pdf movie_demo/movies_media9_extviewer.pdf
 
 # multimedia (beamer \movie command) does not work well
@@ -429,7 +429,7 @@ cp movies.pdf movie_demo/movies_media9_extviewer.pdf
 rm -f movies.aux
 system doconce format pdflatex movies
 system doconce ptex2tex movies
-system pdflatex movies
+system pdflatex movies.tex
 cp movies.pdf movie_demo
 
 system doconce format plain movies

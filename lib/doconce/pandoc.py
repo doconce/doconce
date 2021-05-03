@@ -12,7 +12,8 @@ from past.builtins import basestring
 # solution seems to be manual editing, which is doable for small
 # documents and issues.)
 
-import re, sys, functools, string
+import sys, functools, string
+import regex as re
 from .common import default_movie, plain_exercise, table_analysis, DEFAULT_ARGLIST, \
      insert_code_blocks, insert_tex_blocks, bibliography, indent_lines, fix_ref_section_chapter
 from .html import html_movie, html_table

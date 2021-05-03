@@ -3,7 +3,8 @@ from __future__ import print_function
 from __future__ import absolute_import
 from builtins import range
 from past.builtins import basestring
-import shutil, re, sys, os
+import shutil, sys, os
+import regex as re
 from .misc import debugpr
 from .latex import fix_latex_command_regex as fix
 

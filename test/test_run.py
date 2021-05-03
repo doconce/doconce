@@ -8,7 +8,7 @@ import contextlib
 import tempfile
 import os
 import sys
-import re
+import regex as re
 import subprocess
 import shutil
 from doconce.doconce import load_modules

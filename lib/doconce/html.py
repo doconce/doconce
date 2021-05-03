@@ -5,8 +5,9 @@ from builtins import str
 from builtins import range
 from past.builtins import basestring
 from builtins import object
-import re, os, glob, sys, glob, base64, uuid
-from .common import table_analysis, plain_exercise, insert_code_blocks, \
+import os, glob, sys, glob, base64, uuid
+import regex as re
+from .common import     table_analysis, plain_exercise, insert_code_blocks, \
     insert_tex_blocks, indent_lines, online_python_tutor, bibliography, _linked_files, \
     safe_join, is_file_or_url, envir_delimiter_lines, doconce_exercise_output, \
      get_legal_pygments_lexers, has_custom_pygments_lexer, emoji_url, \

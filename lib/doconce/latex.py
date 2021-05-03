@@ -11,7 +11,8 @@ from builtins import str
 from builtins import range
 from builtins import bytes
 from past.utils import old_div
-import os, subprocess, re, sys, glob, shutil, subprocess, base64, uuid
+import os, subprocess, sys, glob, shutil, subprocess, base64, uuid
+import regex as re
 from pygments.lexers import get_lexer_by_name
 from .common import plain_exercise, table_analysis, INLINE_TAGS, \
     _CODE_BLOCK, _MATH_BLOCK, doconce_exercise_output, indent_lines, \

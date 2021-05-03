@@ -9,7 +9,8 @@ standard_library.install_aliases()
 from builtins import zip
 
 
-import re, os, subprocess, sys
+import os, subprocess, sys
+import regex as re
 from .common import default_movie, plain_exercise, \
     insert_code_blocks, insert_tex_blocks, fix_ref_section_chapter
 from .plaintext import plain_quiz

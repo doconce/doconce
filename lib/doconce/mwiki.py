@@ -35,7 +35,8 @@ from future import standard_library
 standard_library.install_aliases()
 from builtins import range
 
-import re, os, subprocess, sys, subprocess
+import os, subprocess, sys, subprocess
+import regex as re
 from .common import default_movie, plain_exercise, insert_code_blocks, insert_tex_blocks
 from .plaintext import plain_quiz
 from .misc import _abort, errwarn

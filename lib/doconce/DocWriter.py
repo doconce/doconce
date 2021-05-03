@@ -19,7 +19,8 @@ from past.builtins import basestring
 from builtins import object
 
 from io import StringIO
-import re, os, glob, subprocess
+import os, glob, subprocess
+import regex as re
 
 class _BaseWriter(object):
     """

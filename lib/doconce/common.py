@@ -9,7 +9,8 @@ from future import standard_library
 standard_library.install_aliases()
 from builtins import str
 from builtins import range
-import re, sys, os, shutil, subprocess#, xml.etree.ElementTree
+import sys, os, shutil, subprocess#, xml.etree.ElementTree
+import regex as re
 import requests
 import urllib.request, urllib.parse, urllib.error #TODO: substitute urllib with requests library
 from .misc import option, errwarn, _abort

@@ -93,7 +93,7 @@ for rstfile in glob.glob(os.path.join(source_dir, '*.rst')) + glob.glob(os.path.
     f = open(rstfile, 'r')
     text = text_orig = f.read()
     f.close()
-    import re
+    import regex as re
     figfiles = [name.strip() for name in
                 re.findall('.. figure:: (.+)', text)]
     local_figfiles = [name for name in figfiles if not os.sep in name]
