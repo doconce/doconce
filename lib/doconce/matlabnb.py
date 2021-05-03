@@ -17,7 +17,8 @@ from __future__ import absolute_import
 from builtins import str
 from builtins import range
 from past.builtins import basestring
-import re, sys
+import sys
+import regex as re
 from .common import default_movie, plain_exercise, bibliography, \
     cite_with_multiple_args2multiple_cites, insert_code_blocks, \
     insert_tex_blocks, fix_ref_section_chapter
@@ -47,8 +48,8 @@ def matlabnb_code(filestr, code_blocks, code_block_types,
             envir = m.group(1)
             if envir not in ('equation', 'equation*'):
                 errwarn('*** warning: \\begin{%s}-\\end{%s} does not work in Matlab notebooks' % (envir, envir))
-            tex_blocks[i] = re.sub(r'\\begin{%s}\s+' % envir, '', tex_blocks[i])
-            tex_blocks[i] = re.sub(r'\\end{%s}\s+' % envir, '', tex_blocks[i])
+            tex_blocks[i] = re.sub(r'\\begin\{%s\}\s+' % envir, '', tex_blocks[i])
+            tex_blocks[i] = re.sub(r'\\end\{%s\}\s+' % envir, '', tex_blocks[i])
         tex_blocks[i] = re.sub(r'\\\[', '', tex_blocks[i])
         tex_blocks[i] = re.sub(r'\\\]', '', tex_blocks[i])
         tex_blocks[i] = re.sub(r'label\{(.+?)\}', '', tex_blocks[i])

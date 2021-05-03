@@ -11,7 +11,8 @@ try:
     from queue import Empty  # Py 3
 except ImportError:
     from Queue import Empty # Py 2
-import re, base64, uuid
+import base64, uuid
+import regex as re
 from .misc import errwarn, _abort, option
 from .globals import envir2pygments
 from .common import safe_join, get_code_block_args

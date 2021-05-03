@@ -130,6 +130,7 @@ def run():
     # test multiple authors, figure, movie, math, encodings, etc:
     print('...running ./make.sh in test')  # works only under Unix...
     os.remove('test.v')
+    os.remove('papers.pub')
     run_clean()
     run_make()
 

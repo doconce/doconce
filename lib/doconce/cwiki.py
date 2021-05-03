@@ -6,7 +6,8 @@ from __future__ import absolute_import
 from builtins import zip
 # Simple edit of gwiki.py
 
-import re, os, sys, subprocess
+import os, sys, subprocess
+import regex as re
 from .common import default_movie, plain_exercise, insert_code_blocks, insert_tex_blocks
 from .plaintext import plain_quiz
 from .misc import _abort, errwarn

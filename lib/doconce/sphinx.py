@@ -1565,7 +1565,7 @@ def sphinx_dir():
              "    f = open(rstfile, 'r')\n"
              "    text = text_orig = f.read()\n"
              "    f.close()\n"
-             "    import re\n"
+             "    import regex as re\n"
              "    figfiles = [name.strip() for name in\n"
              "                re.findall('.. figure:: (.+)', text)]\n"
              "    local_figfiles = [name for name in figfiles if not os.sep in name]\n\n"

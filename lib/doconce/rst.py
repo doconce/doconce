@@ -3,7 +3,8 @@ from builtins import zip
 from builtins import str
 from builtins import range
 from past.builtins import basestring
-import re, os, sys
+import os, sys
+import regex as re
 from .common import insert_code_blocks, insert_tex_blocks, \
     indent_lines, table_analysis, plain_exercise, bibliography, \
     cite_with_multiple_args2multiple_cites, fix_ref_section_chapter

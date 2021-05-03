@@ -1730,7 +1730,7 @@ References
    Springer,
    2003,
    Edited book,
-   `\urlhttp://some.where.org <\urlhttp://some.where.org>`_.
+   `http://some.where.org <http://some.where.org>`_.
 
 .. [Ref05]
    **H. P. Langtangen**. The FEMDEQS Program System,

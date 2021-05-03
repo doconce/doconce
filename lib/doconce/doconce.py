@@ -10,7 +10,8 @@ from builtins import range
 from past.builtins import basestring, unicode
 from doconce import globals
 
-import re, os, sys, shutil, subprocess, pprint, time, glob, codecs, csv
+import os, sys, shutil, subprocess, pprint, time, glob, codecs, csv
+import regex as re
 try:
     from collections import OrderedDict   # v2.7 and v3.1
 except ImportError:

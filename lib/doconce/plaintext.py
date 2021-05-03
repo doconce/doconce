@@ -2,7 +2,8 @@ from __future__ import absolute_import
 from builtins import str
 from builtins import range
 from past.builtins import basestring
-import re, sys
+import sys
+import regex as re
 from .common import default_movie, plain_exercise, bibliography, \
      cite_with_multiple_args2multiple_cites, fix_ref_section_chapter
 from .misc import option
