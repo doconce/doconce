@@ -47,36 +47,33 @@ system doconce jupyterbook testdoc --show_titles --sep=section --sep_section=sub
 
 system doconce jupyterbook testdoc --show_titles --sep=section --sep_section=subsection --dest=$PWD --dest_toc=$PWD --examples_as_exercises --allow_refs_to_external_docs
 
-system doconce format html testdoc --wordpress  --examples_as_exercises --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80 --figure_prefix="https://raw.github.com/hplgit/doconce/master/test/" --movie_prefix="https://raw.github.com/hplgit/doconce/master/test/" --html_links_in_new_window --cite_doconce --html_raw_github_url=raw.github
-
-cp testdoc.html testdoc_wordpress.html
+system doconce format html testdoc --wordpress  --examples_as_exercises --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80 --figure_prefix="https://raw.github.com/hplgit/doconce/master/test/" --movie_prefix="https://raw.github.com/hplgit/doconce/master/test/" --html_links_in_new_window --cite_doconce --html_raw_github_url=raw.github --output=testdoc_wordpress
 
 system doconce format html testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR --html_exercise_icon=default --solutions_at_end --html_share=https://cyber.space.com/specials,twitter,print,google+,facebook,linkedin --html_raw_github_url=raw.github
-system doconce format html testdoc --without_answers --without_solutions --examples_as_exercises --html_exercise_icon=default --answers_at_end --solutions_at_end --html_share=https://cyber.space.com/specials,twitter,print,google+,facebook,linkedin --html_raw_github_url=raw.github
+system doconce format html testdoc --without_answers --without_solutions --examples_as_exercises --html_exercise_icon=default --answers_at_end --solutions_at_end --html_share=https://cyber.space.com/specials,twitter,print,google+,facebook,linkedin --html_raw_github_url=raw.github --output=testdoc_no_solutions
 
-system doconce split_html testdoc.html --method=space10
-cp testdoc.html testdoc_no_solutions.html
+system doconce split_html testdoc_no_solutions.html --method=space10
 
 system doconce format html testdoc --examples_as_exercises  # just produce the mako file
 doconce extract_exercises tmp_mako__testdoc.do.txt --exercise_numbering=section --filter=ipynb
 
-system doconce format latex testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR --sections_down --number_all_equations --latex_packages=varioref --cite_doconce
-cp testdoc.p.tex testdoc_no_solutions.p.tex
+system doconce format latex testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR --sections_down --number_all_equations --latex_packages=varioref --cite_doconce --output=testdoc_no_solutions
 
 cp ../bundled/html_styles/style_vagrant/template_vagrant.html .
-system doconce format html testdoc.do.txt --examples_as_exercises --html_style=bootstrap --html_template=template_vagrant.html --html_toc_indent=0 --toc_depth=2 --html_raw_github_url=raw.github
-cp testdoc.html testdoc_vagrant.html
+system doconce format html testdoc.do.txt --examples_as_exercises --html_style=bootstrap --html_template=template_vagrant.html --html_toc_indent=0 --toc_depth=2 --html_raw_github_url=raw.github --output=testdoc_vagrant
+
 # Test that a split of testdoc_vagrant.html becomes correct
 doconce split_html testdoc_vagrant.html --method=split
 
 system doconce apply_inline_edits testdoc.do.txt
 system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg --html_raw_github_url=raw.github
+mv .testdoc_html_file_collection .testdoc1_html_file_collection
 
 system doconce remove_exercise_answers testdoc.html
 system doconce html_colorbullets testdoc.html
 system doconce split_html testdoc.html --nav_button=gray2,bottom --font_size=slides
 
-system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_output=demo_testdoc --html_raw_github_url=raw.github
+system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --output=demo_testdoc --html_raw_github_url=raw.github
 
 system doconce format latex testdoc.do.txt --examples_as_exercises SOMEVAR=True --skip_inline_comments --latex_packages=varioref
 
@@ -88,38 +85,35 @@ system doconce format pdflatex testdoc.do.txt --examples_as_exercises "--latex_c
 cp testdoc.tex testdoc.tex_direct
 
 # pdflatex: testdoc_bigex
-system doconce format pdflatex testdoc.do.txt --device=paper --examples_as_exercises --latex_double_hyphen --latex_index_in_margin --latex_no_program_footnotelink --latex_title_layout=titlepage --latex_papersize=a4 --latex_colored_table_rows=blue --latex_fancy_header --latex_section_headings=blue --latex_labels_in_margin --latex_double_spacing --latex_todonotes --latex_list_of_exercises=loe --latex_font=palatino --latex_packages=varioref '--latex_link_color=blue!90' --draft
+system doconce format pdflatex testdoc.do.txt --device=paper --examples_as_exercises --latex_double_hyphen --latex_index_in_margin --latex_no_program_footnotelink --latex_title_layout=titlepage --latex_papersize=a4 --latex_colored_table_rows=blue --latex_fancy_header --latex_section_headings=blue --latex_labels_in_margin --latex_double_spacing --latex_todonotes --latex_list_of_exercises=loe --latex_font=palatino --latex_packages=varioref '--latex_link_color=blue!90' --draft --output=testdoc_bigex
 # --latex_paper=a4 triggers summary environment to be smaller paragraph
 # within the text (fine for proposals or articles).
-
 # Drop the table exercise toc since we want to test loe above
-#system doconce latex_exercise_toc testdoc
-
+#system doconce latex_exercise_toc testdoc_bigex
 # doconce replace does not work well with system bash func above without quotes
-doconce replace 'vspace{1cm} % after toc' 'clearpage % after toc' testdoc.p.tex
+doconce replace 'vspace{1cm} % after toc' 'clearpage % after toc' testdoc_bigex.p.tex
 # can drop usepackage{theorem} since we have user-defined envir with amsthm
-doconce subst '(newtheorem{example}.*)' '\g<1>\n\\newtheorem{theorem}{Theorem}[section]' testdoc.p.tex
-
-doconce subst '\\paragraph\{Theorem \d+\.\}' '' testdoc.p.tex
-doconce replace '% begin theorem' '\begin{theorem}' testdoc.p.tex
-doconce replace '% end theorem' '\end{theorem}' testdoc.p.tex
+doconce subst '(newtheorem{example}.*)' '\g<1>\n\\newtheorem{theorem}{Theorem}[section]' testdoc_bigex.p.tex
+doconce subst '\\paragraph\{Theorem \d+\.\}' '' testdoc_bigex.p.tex
+doconce replace '% begin theorem' '\begin{theorem}' testdoc_bigex.p.tex
+doconce replace '% end theorem' '\end{theorem}' testdoc_bigex.p.tex
 # because of --latex-double-hyphen:
-doconce replace Newton--Cotes Newton-Cotes testdoc.p.tex
-doconce replace --examples_as__exercises --examples_as_exercises testdoc.p.tex
-doconce ptex2tex testdoc.p.tex #testdoc.tex
+doconce replace Newton--Cotes Newton-Cotes testdoc_bigex.p.tex
+doconce replace --examples_as__exercises --examples_as_exercises testdoc_bigex.p.tex
+doconce ptex2tex testdoc_bigex.p.tex #testdoc.tex
 
 # test that pdflatex works
 rm -f *.aux
-system pdflatex -shell-escape testdoc
-pdflatex -shell-escape testdoc
-makeindex testdoc
-bibtex testdoc
-pdflatex -shell-escape testdoc
-pdflatex -shell-escape testdoc
-pdflatex -shell-escape testdoc
+system pdflatex -shell-escape testdoc_bigex
+pdflatex -shell-escape testdoc_bigex
+makeindex testdoc_bigex
+bibtex testdoc_bigex
+pdflatex -shell-escape testdoc_bigex
+pdflatex -shell-escape testdoc_bigex
+pdflatex -shell-escape testdoc_bigex
 
-cp testdoc.tex testdoc_bigex.tex
-cp testdoc.pdf testdoc_bigex.pdf
+cp testdoc_bigex.tex testdoc.tex
+cp testdoc_bigex.p.tex testdoc.p.tex
 
 system doconce ptex2tex testdoc "sys=\begin{Verbatim}[frame=lines]@\end{Verbatim}" pypro=ans:nt envir=minted > testdoc.tex_doconce_ptex2tex
 echo "----------- end of doconce ptex2tex output ----------------" >> testdoc.tex_doconce_ptex2tex
@@ -134,7 +128,7 @@ rm -rf standalone_exercises
 unzip testdoc_exercises.zip
 
 # Test prefix
-system doconce format html testdoc --code_prefix=$PWD --html_output=testdoc_code_prefix --examples_as_exercises
+system doconce format html testdoc --code_prefix=$PWD --output=testdoc_code_prefix --examples_as_exercises
 
 system doconce format plain testdoc.do.txt --examples_as_exercises -DSOMEVAR=1 --tables2csv
 system doconce format st testdoc.do.txt --examples_as_exercises
@@ -189,8 +183,7 @@ system doconce format pandoc testdoc.do.txt --examples_as_exercises
 # slides3: equal to slides/demo.do.txt
 
 system doconce format html slides1 --pygments_html_style=perldoc --keep_pygments_html_bg --html_raw_github_url=raw.github
-cp slides1.html slides1_1st.html  # before running slides_html
-
+cp slides1.html slides1_1st.html
 system doconce slides_html slides1 reveal --html_slide_themee=simple
 
 cp slides1.html slides1_reveal.html
@@ -232,14 +225,13 @@ system doconce format html slides3 --pygments_html_style=emacs SLIDE_TYPE=reveal
 system doconce slides_html slides3 reveal --html_slide_type=beigesmall
 cp slides3.html slides3_reveal.html
 
-system doconce format html slides3 --html_style=solarized3 SLIDE_TYPE=doconce SLIDE_THEME=solarized3 --html_output=slides3-solarized3 --html_raw_github_url=raw.github
+system doconce format html slides3 --html_style=solarized3 SLIDE_TYPE=doconce SLIDE_THEME=solarized3 --output=slides3-solarized3 --html_raw_github_url=raw.github
 system doconce slides_html slides3-solarized3 doconce --nav_button=bigblue,bottom --font_size=slides
 
 rm -f *.aux
-theme=red_plain
-system doconce format pdflatex slides3 SLIDE_TYPE=beamer SLIDE_THEME=$theme --latex_title_layout=beamer
+system doconce format pdflatex slides3 SLIDE_TYPE=beamer SLIDE_THEME=red_plain --latex_title_layout=beamer
 system doconce ptex2tex slides3 envir=minted
-system doconce slides_beamer slides3 --beamer_slide_theme=$theme
+system doconce slides_beamer slides3 --beamer_slide_theme=red_plain
 
 system doconce format html slides1 --pygments_html_style=emacs --html_raw_github_url=raw.github
 system doconce slides_html slides1 all
@@ -413,7 +405,7 @@ system doconce format pandoc github_md.do.txt --github_md
 doconce format html markdown_input.do.txt --markdown --md2do_output=mdinput2do.do.txt --html_raw_github_url=raw.github
 
 # Test movie handling
-system doconce format html movies --html_output=movies_3choices --html_raw_github_url=raw.github
+system doconce format html movies --output=movies_3choices --html_raw_github_url=raw.github
 cp movies_3choices.html movie_demo
 system doconce format html movies --no_mp4_webm_ogg_alternatives --html_raw_github_url=raw.github
 cp movies.html movie_demo

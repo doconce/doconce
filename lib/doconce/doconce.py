@@ -4334,7 +4334,7 @@ def subst_class_func_mod(filestr, format):
     return filestr
 
 
-def file2file(in_filename, format, basename):
+def file2file(in_filename, format):
     """Read, transform, and write a doconce file
 
     Perform the transformation of a doconce file, stored in in_filename,
@@ -4343,10 +4343,8 @@ def file2file(in_filename, format, basename):
 
     :param str in_filename: path to DocOnce file
     :param str format: supported format (html, latex, etc.)
-    :param str basename: basename for the output file
-    :return: out_filename, session object
-    :rtype: Tuple[Union[str, int], Optional[Any]]
-
+    :return: session object
+    :rtype: Optional[Any]
     """
     if in_filename.startswith('__'):
         errwarn('Translating preprocessed doconce text in ' + in_filename +
@@ -4354,31 +4352,52 @@ def file2file(in_filename, format, basename):
     else:
         errwarn('Translating doconce text in ' + in_filename + ' to ' + format)
 
-    if format == 'html':
-        html_output = option('html_output=', '')
-        if html_output:
-            if '/' in html_output:
-                errwarn('*** error: --html_output=%s cannot specify another directory\n')
-                errwarn('    %s' % (html_output, os.path.dirname(html_output)))
-                _abort()
-            basename = html_output
-            if basename.endswith('.html'):
-                basename = basename[:-len('.html')]
-        # Initialize the doc's file collection
-        html.add_to_file_collection(basename + '.html',
-                                    basename, mode='w')
-
+    # Read the input file
     filestr = read_file(in_filename, _encoding = globals.encoding)
 
+    # Format the document
     if in_filename.endswith('.py') or in_filename.endswith('.py.do.txt'):
         filestr = doconce2format4docstrings(filestr, format)
         bg_session = None
     else:
         filestr, bg_session = doconce2format(filestr, format)
 
-    out_filename = basename + FILENAME_EXTENSION[format]
-    write_file(filestr, out_filename, _encoding = globals.encoding)
-    return out_filename, bg_session
+    # Get the output filename and write output to disk
+    globals.fileout = get_output_filename(format)
+    write_file(filestr, globals.fileout, _encoding = globals.encoding)
+
+    # Write a list of file requirements for html output
+    if format in ['html']:
+        list_html_dep, _ = html.add_to_file_collection(globals.fileout, globals.dofile_basename, mode='r')
+        if len(list_html_dep):
+            _, filename_dep = html.add_to_file_collection(globals.fileout, globals.dofile_basename, mode='a')
+            errwarn("A list of dependencies for HTML output is in %s" % filename_dep)
+
+    return bg_session
+
+
+def get_output_filename(format):
+    """Get the output filename
+
+    Return the output filename based on the format pecification
+    and `--output` option
+    :param str format: output format
+    :return: fileout
+    :rtype: str
+    """
+    # File output.
+    fileout = option('output=', '')
+    # Keep the old --html_output option
+    if option('html_output=', ''):
+        errwarn('*** warning: --html_output is obsolete. Use the --output option\n')
+        fileout = option('html_output=', '')
+        if not fileout.endswith(FILENAME_EXTENSION[format]):
+            fileout += FILENAME_EXTENSION[format]
+    if not fileout:
+        fileout = globals.dofile_basename
+    if not fileout.endswith(FILENAME_EXTENSION[format]):
+        fileout += FILENAME_EXTENSION[format]
+    return fileout
 
 
 def read_file(in_filename, _encoding = None):
@@ -5052,6 +5071,7 @@ def format_driver():
     if dirname:
         os.chdir(dirname)
         errwarn('*** doconce format now works in directory %s' % dirname)
+    globals.dirname = dirname
     globals.filename = filename
     globals.dofile_basename = basename
 
@@ -5059,12 +5079,12 @@ def format_driver():
     preprocessor_options = [arg for arg in sys.argv[1:]
                             if not arg.startswith('--')]
     filename_preprocessed = preprocess(globals.filename, format, preprocessor_options)
-    out_filename, bg_session = file2file(filename_preprocessed, format, basename)
-
+    # Read, transform, and write a doconce file
+    bg_session = file2file(filename_preprocessed, format)
+    # Clean up
     if filename_preprocessed.startswith('__') and not option('debug'):
-        os.remove(filename_preprocessed)  # clean up
-    #errwarn('----- successful run: %s filtered to %s\n' % (globals.filename, out_filename))
-    errwarn('output in ' + os.path.join(dirname, out_filename))
+        os.remove(filename_preprocessed)
+    errwarn('output in ' + os.path.join(dirname, globals.fileout))
     return bg_session
 
 
@@ -5161,7 +5181,6 @@ def doconce2format(filestr, format):
 
     # Load all modules
     load_modules(filestr, modules=globals.supported_format_names)
-
     # -----------------------------------------------------------------
 
     # Translate from Markdown syntax if that is requested

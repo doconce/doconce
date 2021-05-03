@@ -7164,14 +7164,16 @@ def find_file_with_extensions(filename_in, allowed_extensions=['']):
 
     Given an input filename (e.g. './book' or 'mybook/book.do.txt') and a
     list of allowed extensions (e.g. ['.do.txt']), return the file's
-    relative directory ('' or 'mybook', but never '.' or './), basename
-    ('book'), extension ('do.txt'), and complete filename ('book.do.txt')
-    dirname, basename, and filename. './' is stripped of all output.
-    Use `allowed_extensions=''` for checking exact matches, but the
-    extension is ''. Return a tuple of None if the file was not found.
+        * relative directory `dirname` ('' or 'mybook', but never '.' or './);
+        * basename `basename` ('book');
+        * extension `ext` ('.do.txt');
+        * complete filename `filename` ('book.do.txt').
+    Relative directories such as './', '../' are stripped of all output.
+    Use `allowed_extensions=''` for checking exact matches, but this causes
+    the extension to be ''. Return a tuple of None if the file was not found.
     :param str filename_in: Filename or its basename.
     :param list(str) allowed_extensions: list of legal extensions
-    :return: tuple of dirname, basename, extension, and filename
+    :return: tuple of dirname, basename, ext, and filename
     :rtype: (str, str, str, str)
     """
     # Get the directory name. Make it a relative path
@@ -7189,6 +7191,8 @@ def find_file_with_extensions(filename_in, allowed_extensions=['']):
     # If it works, check if the file exists
     for ext_i in allowed_extensions:
         if ext_i != '':
+            if not ext_i.startswith('.'):
+                ext_i = '.' + ext_i
             tmp = filename_in.split(ext_i)
             if len(tmp) == 2 and tmp[-1] == '':
                 dir_basename = tmp[0]
@@ -7214,8 +7218,7 @@ def find_file_with_extensions(filename_in, allowed_extensions=['']):
     if basename and basename.startswith('./'):
         basename = basename[2:]
     if filename_out and filename_out.startswith('./'):
-        filename_out = filename_out[2:
-                       ]
+        filename_out = filename_out[2:]
     return dirname, basename, ext, filename_out
 
 
