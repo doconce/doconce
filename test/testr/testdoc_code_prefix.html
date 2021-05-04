@@ -201,20 +201,20 @@ $(function () {
                '`my_file_v1` and `my_file_v2`',
                2,
                None,
-               'a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2'),
-              ('_Just bold_', 2, None, '_just-bold_'),
+               'a-test-of-verbatim-words-in-heading-with-subscript-a-i-my-file-v1-and-my-file-v2'),
+              ('_Just bold_', 2, None, 'just-bold'),
               ('*Just emphasize*', 2, None, 'just-emphasize'),
               ('`Just verbatim`', 2, None, 'just-verbatim'),
-              ('_Bold_ beginning', 2, None, '_bold_-beginning'),
+              ('_Bold_ beginning', 2, None, 'bold-beginning'),
               ('*Emphasize* beginning', 2, None, 'emphasize-beginning'),
               ('`Verbatim` beginning', 2, None, 'verbatim-beginning'),
-              ('Maybe _bold end_', 2, None, 'maybe-_bold-end_'),
+              ('Maybe _bold end_', 2, None, 'maybe-bold-end'),
               ('Maybe *emphasize end*', 2, None, 'maybe-emphasize-end'),
               ('Maybe `verbatim end`', 2, None, 'maybe-verbatim-end'),
               ('The middle has _bold_ word',
                2,
                None,
-               'the-middle-has-_bold_-word'),
+               'the-middle-has-bold-word'),
               ('The middle has *emphasize* word',
                2,
                None,
@@ -388,17 +388,17 @@ MathJax.Hub.Config({
 <p><span class="tab"> <a href="#decay:sec:theta"> The \( \theta \) parameter (not \( \nabla \)?) </a></p>
 <p><span class="tab"> <a href="#custom-environments"> Custom Environments </a></p>
 <p><span class="tab"> <a href="#subsec:table"> Tables </a></p>
-<p><span class="tab"> <a href="#a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a></p>
-<p><span class="tab"> <a href="#_just-bold_"> <b>Just bold</b> </a></p>
+<p><span class="tab"> <a href="#a-test-of-verbatim-words-in-heading-with-subscript-a-i-my-file-v1-and-my-file-v2"> A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </a></p>
+<p><span class="tab"> <a href="#just-bold"> <b>Just bold</b> </a></p>
 <p><span class="tab"> <a href="#just-emphasize"> <em>Just emphasize</em> </a></p>
 <p><span class="tab"> <a href="#just-verbatim"> <code>Just verbatim</code> </a></p>
-<p><span class="tab"> <a href="#_bold_-beginning"> <b>Bold</b> beginning </a></p>
+<p><span class="tab"> <a href="#bold-beginning"> <b>Bold</b> beginning </a></p>
 <p><span class="tab"> <a href="#emphasize-beginning"> <em>Emphasize</em> beginning </a></p>
 <p><span class="tab"> <a href="#verbatim-beginning"> <code>Verbatim</code> beginning </a></p>
-<p><span class="tab"> <a href="#maybe-_bold-end_"> Maybe <b>bold end</b> </a></p>
+<p><span class="tab"> <a href="#maybe-bold-end"> Maybe <b>bold end</b> </a></p>
 <p><span class="tab"> <a href="#maybe-emphasize-end"> Maybe <em>emphasize end</em> </a></p>
 <p><span class="tab"> <a href="#maybe-verbatim-end"> Maybe <code>verbatim end</code> </a></p>
-<p><span class="tab"> <a href="#the-middle-has-<b>bold</b>-word"> The middle has <b>bold</b> word </a></p>
+<p><span class="tab"> <a href="#the-middle-has-bold-word"> The middle has <b>bold</b> word </a></p>
 <p><span class="tab"> <a href="#the-middle-has-emphasize-word"> The middle has <em>emphasize</em> word </a></p>
 <p><span class="tab"> <a href="#the-middle-has-verbatim-word"> The middle has <code>verbatim</code> word </a></p>
 <p><span class="tab"> <a href="#bibliography-test"> Bibliography test </a></p>
@@ -1730,7 +1730,7 @@ and URLs.
 <tr><td align="center">   \( \nabla\cdot\boldsymbol{u} =0  \)    </td> <td align="center">   <a href="../doc/src/manual/mov/wave_frames/frame_0100.png"><img src="../doc/src/manual/mov/wave_frames/frame_0100.png" width="300"></a>    </td> <td align="center">   <a href="../doc/src/manual/mov/wave_frames/frame_0105.png"><img src="../doc/src/manual/mov/wave_frames/frame_0105.png" width="300"></a>    </td> </tr>
 </tbody>
 </table>
-<h2 id="a-test-of-verbatim-words-in-heading-with-subscript-a_i-my_file_v1-and-my_file_v2">A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </h2>
+<h2 id="a-test-of-verbatim-words-in-heading-with-subscript-a-i-my-file-v1-and-my-file-v2">A test of verbatim words in heading with subscript \( a_i \): <code>my_file_v1</code> and <code>my_file_v2</code> </h2>
 
 <p>
 <b>Paragraph with verbatim and math: <code>my_file_v1.py</code> and <code>my_file_v2.py</code> define some math \( a_{i-1} \).</b>
@@ -1739,7 +1739,7 @@ some plain text on a new line.
 </p>
 
 <!-- Test various types of headlines -->
-<h2 id="_just-bold_"><b>Just bold</b> </h2>
+<h2 id="just-bold"><b>Just bold</b> </h2>
 
 <p>Some text.</p>
 <h2 id="just-emphasize"><em>Just emphasize</em> </h2>
@@ -1748,7 +1748,7 @@ some plain text on a new line.
 <h2 id="just-verbatim"><code>Just verbatim</code> </h2>
 
 <p>Some text.</p>
-<h2 id="_bold_-beginning"><b>Bold</b> beginning </h2>
+<h2 id="bold-beginning"><b>Bold</b> beginning </h2>
 
 <p>Some text.</p>
 <h2 id="emphasize-beginning"><em>Emphasize</em> beginning </h2>
@@ -1757,7 +1757,7 @@ some plain text on a new line.
 <h2 id="verbatim-beginning"><code>Verbatim</code> beginning </h2>
 
 <p>Some text.</p>
-<h2 id="maybe-_bold-end_">Maybe <b>bold end</b> </h2>
+<h2 id="maybe-bold-end">Maybe <b>bold end</b> </h2>
 
 <p>Some text.</p>
 <h2 id="maybe-emphasize-end">Maybe <em>emphasize end</em> </h2>
@@ -1766,7 +1766,7 @@ some plain text on a new line.
 <h2 id="maybe-verbatim-end">Maybe <code>verbatim end</code> </h2>
 
 <p>Some text.</p>
-<h2 id="the-middle-has-<b>bold</b>-word">The middle has <b>bold</b> word </h2>
+<h2 id="the-middle-has-bold-word">The middle has <b>bold</b> word </h2>
 
 <p>Some text.</p>
 <h2 id="the-middle-has-emphasize-word">The middle has <em>emphasize</em> word </h2>

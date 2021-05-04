@@ -55,7 +55,7 @@ system doconce format html testdoc --without_answers --without_solutions --examp
 system doconce split_html testdoc_no_solutions.html --method=space10
 
 system doconce format html testdoc --examples_as_exercises  # just produce the mako file
-doconce extract_exercises tmp_mako__testdoc.do.txt --exercise_numbering=section --filter=ipynb
+system doconce extract_exercises tmp_mako__testdoc.do.txt --exercise_numbering=section --filter=ipynb
 
 system doconce format latex testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR --sections_down --number_all_equations --latex_packages=varioref --cite_doconce --output=testdoc_no_solutions
 
@@ -63,7 +63,7 @@ cp ../bundled/html_styles/style_vagrant/template_vagrant.html .
 system doconce format html testdoc.do.txt --examples_as_exercises --html_style=bootstrap --html_template=template_vagrant.html --html_toc_indent=0 --toc_depth=2 --html_raw_github_url=raw.github --output=testdoc_vagrant
 
 # Test that a split of testdoc_vagrant.html becomes correct
-doconce split_html testdoc_vagrant.html --method=split
+system doconce split_html testdoc_vagrant.html --method=split #creates ._testdoc_vagrant00[0-2].html
 
 system doconce apply_inline_edits testdoc.do.txt
 system doconce format html testdoc.do.txt --pygments_html_linenos --html_style=solarized --pygments_html_style=emacs --examples_as_exercises --html_exercise_icon=exercise1.svg --html_raw_github_url=raw.github
@@ -100,7 +100,7 @@ doconce replace '% end theorem' '\end{theorem}' testdoc_bigex.p.tex
 # because of --latex-double-hyphen:
 doconce replace Newton--Cotes Newton-Cotes testdoc_bigex.p.tex
 doconce replace --examples_as__exercises --examples_as_exercises testdoc_bigex.p.tex
-doconce ptex2tex testdoc_bigex.p.tex #testdoc.tex
+system doconce ptex2tex testdoc_bigex.p.tex #testdoc.tex
 
 # test that pdflatex works
 rm -f *.aux
@@ -212,7 +212,7 @@ system doconce format pdflatex slides1 --latex_title_layout=beamer "--latex_code
 system doconce slides_beamer slides1.tex --beamer_slide_theme=blue_shadow
 system pdflatex -shell-escape slides1.tex
 
-doconce format html slides2 --pygments_html_style=emacs --html_raw_github_url=raw.github --no_abort
+system doconce format html slides2 --pygments_html_style=emacs --html_raw_github_url=raw.github --no_abort
 system doconce slides_html slides2 reveal --html_slide_theme=beigesmall
 cp slides2.html slides2_reveal.html
 
@@ -264,34 +264,34 @@ cp author2.tex author2_elsevier.tex
 # Test notebook conversions
 cp ../doc/src/ipynb/example.do.txt nbdemo.do.txt
 doconce replace 'fig/oscillator_general' '../doc/src/ipynb/fig/oscillator_general' nbdemo.do.txt
-doconce format ipynb nbdemo
-doconce ipynb2doconce nbdemo.ipynb
+system doconce format ipynb nbdemo
+system doconce ipynb2doconce nbdemo.ipynb
 
 # Test notebook execution
-doconce format ipynb execute.do.txt --examples_as_exercises
-doconce format ipynb execute.do.txt --examples_as_exercises --execute 
-doconce format latex execute.do.txt --examples_as_exercises
-doconce format latex execute.do.txt --examples_as_exercises --execute 
-doconce format html execute.do.txt  --examples_as_exercises
-doconce format html execute.do.txt  --examples_as_exercises --execute 
+system doconce format ipynb execute.do.txt --examples_as_exercises
+system doconce format ipynb execute.do.txt --examples_as_exercises --execute 
+system doconce format latex execute.do.txt --examples_as_exercises
+system doconce format latex execute.do.txt --examples_as_exercises --execute 
+system doconce format html execute.do.txt  --examples_as_exercises
+system doconce format html execute.do.txt  --examples_as_exercises --execute 
 
 # Test math
 rm -f *.aux
-doconce format pdflatex math_test --no_abort
-doconce ptex2tex math_test
+system doconce format pdflatex math_test --no_abort
+system doconce ptex2tex math_test
 pdflatex math_test
 system doconce format html math_test --html_raw_github_url=raw.github --no_abort
 cp math_test.html math_test_html.html
-doconce format sphinx math_test --no_abort
-doconce sphinx_dir dirname=sphinx-rootdir-math math_test
+system doconce format sphinx math_test --no_abort
+system doconce sphinx_dir dirname=sphinx-rootdir-math math_test
 cp automake_sphinx.py automake_sphinx_math_test.py
 python automake_sphinx.py
-doconce format pandoc math_test --no_abort
+system doconce format pandoc math_test --no_abort
 # Do not use pandoc directly because it does not support MathJax sufficiently well
-doconce md2html math_test.md --no_abort
+system doconce md2html math_test.md --no_abort
 cp math_test.html math_test_pandoc.html
-doconce format pandoc math_test --no_abort
-doconce md2latex math_test
+system doconce format pandoc math_test --no_abort
+system doconce md2latex math_test
 
 # Test all types of copyright syntax
 python test_copyright.py  # results in test_copyright.out
@@ -335,8 +335,8 @@ for admon_tp in $admon_tps; do
 done
 
 # Test different code envirs inside admons
-doconce format pdflatex admon --latex_admon=mdfbox --latex_admon_color=1,1,1 --latex_admon_envir_map=2 --cite_doconce --no_abort
-doconce ptex2tex admon pycod2=minted pypro2=minted pycod=Verbatim pypro=Verbatim
+system doconce format pdflatex admon --latex_admon=mdfbox --latex_admon_color=1,1,1 --latex_admon_envir_map=2 --cite_doconce --no_abort
+system doconce ptex2tex admon pycod2=minted pypro2=minted pycod=Verbatim pypro=Verbatim
 cp admon.tex admon_double_envirs.tex
 rm -rf latex_figs
 
@@ -364,7 +364,7 @@ cp admon.html admon_vagrant.html
 
 system doconce format html admon --html_style=bootstrap --pygments_html_style=default --html_admon=bootstrap_alert --cite_doconce "--html_bootstrap_navbar_links=Google|https://google.com;DocOnce formats|https://hplgit.github.io/teamods/writing_reports/index.html" --html_raw_github_url=raw.github
 cp admon.html admon_bootstrap_alert.html
-doconce split_html admon_bootstrap_alert.html --pagination --nav_button=top+bottom
+system doconce split_html admon_bootstrap_alert.html --pagination --nav_button=top+bottom
 
 system doconce format html admon --html_style=bootswatch --pygments_html_style=default --html_admon=bootstrap_panel --cite_doconce --html_raw_github_url=raw.github
 cp admon.html admon_bootswatch_panel.html
@@ -396,13 +396,13 @@ fi
 
 # Test Bootstrap HTML styles
 system doconce format html test_boots --html_style=bootswatch_journal --pygments_html_style=default --html_admon=bootstrap_panel --html_code_style=inherit --html_raw_github_url=raw.github
-doconce split_html test_boots.html
+system doconce split_html test_boots.html
 
 # Test GitHub-extended Markdown
 system doconce format pandoc github_md.do.txt --github_md
 
 # Test Markdown input
-doconce format html markdown_input.do.txt --markdown --md2do_output=mdinput2do.do.txt --html_raw_github_url=raw.github
+system doconce format html markdown_input.do.txt --markdown --md2do_output=mdinput2do.do.txt --html_raw_github_url=raw.github
 
 # Test movie handling
 system doconce format html movies --output=movies_3choices --html_raw_github_url=raw.github
@@ -435,8 +435,9 @@ cp movies.pdf movie_demo
 system doconce format plain movies
 
 # Test locale support for html and pdflatex
-doconce format html locale --html_style=bootstrap_FlatUI --language=Norwegian --encoding=utf-8
-doconce format pdflatex locale --latex_code_style=vrb --language=Norwegian --encoding=utf-8
+cp ../doc/src/locale/locale.do.txt .
+system doconce format html locale --html_style=bootstrap_FlatUI --language=Norwegian --encoding=utf-8
+system doconce format pdflatex locale --latex_code_style=vrb --language=Norwegian --encoding=utf-8
 # locale does not exist
 #pdflatex locale
 #makeindex locale
@@ -453,7 +454,7 @@ doconce subst -m '^.*? (AM|PM) - ' '' automake_sphinx.log
 # in latex, media9 is unreliable
 
 # Test encoding: guess and change
-doconce format html encoding1   --no_header_footer --html_raw_github_url=raw.github
+system doconce format html encoding1   --no_header_footer --html_raw_github_url=raw.github
 system doconce guess_encoding encoding1.do.txt > tmp_encodings.txt
 cp encoding1.do.txt tmp1.do.txt
 system doconce change_encoding utf-8 latin1 tmp1.do.txt
@@ -463,31 +464,31 @@ system doconce guess_encoding tmp1.do.txt >> tmp_encodings.txt
 system doconce guess_encoding encoding2.do.txt >> tmp_encodings.txt
 cp encoding1.do.txt tmp2.do.txt
 system doconce change_encoding utf-8 latin1 tmp2.do.txt
-doconce guess_encoding tmp2.do.txt >> tmp_encodings.txt
+system doconce guess_encoding tmp2.do.txt >> tmp_encodings.txt
 
 # Handle encoding problems (and test debug output too)
 # Plain ASCII with Norwegian chars printed as is (and utf8 package mode)
-doconce format latex encoding3 --debug --no_header_footer
+system doconce format latex encoding3 --debug --no_header_footer
 cp encoding3.p.tex encoding3.p.tex-ascii
 # Plain ASCII text with Norwegian chars coded as &#...;
-doconce format html encoding3 --pygments_html_style=off --debug --no_header_footer --html_raw_github_url=raw.github
+system doconce format html encoding3 --pygments_html_style=off --debug --no_header_footer --html_raw_github_url=raw.github
 cp encoding3.html encoding3.html-ascii
 cat _doconce_debugging.log >> encoding3.html-ascii
 
 # Plain ASCII with verbatim blocks with Norwegian chars
-doconce format latex encoding3 -DPREPROCESS --no_header_footer  # preprocess handles utf-8
+system doconce format latex encoding3 -DPREPROCESS --no_header_footer  # preprocess handles utf-8
 cp encoding3.p.tex encoding3.p.tex-ascii-verb
-doconce format html encoding3 -DPREPROCESS --no_header_footer  --html_raw_github_url=raw.github # html fails with utf-8 in !bc
+system doconce format html encoding3 -DPREPROCESS --no_header_footer  --html_raw_github_url=raw.github # html fails with utf-8 in !bc
 # Unicode with Norwegian chars in plain text and verbatim blocks
-doconce format html encoding3 -DPREPROCESS  --encoding=utf-8  --pygments_html_style=none --debug --no_header_footer --html_raw_github_url=raw.github # Keeps Norwegian chars since output is in utf-8
+system doconce format html encoding3 -DPREPROCESS  --encoding=utf-8  --pygments_html_style=none --debug --no_header_footer --html_raw_github_url=raw.github # Keeps Norwegian chars since output is in utf-8
 cp encoding3.html encoding3.html-ascii-verb
 cat _doconce_debugging.log >> encoding3.html-ascii-verb
 
-doconce format latex encoding3 -DMAKO --no_header_footer  # mako fails due to Norwegian chars
+system doconce format latex encoding3 -DMAKO --no_header_footer  # mako fails due to Norwegian chars
 # Unicode with Norwegian chars in plain text and verbatim blocks
-doconce format latex encoding3 -DMAKO --encoding=utf-8 --no_header_footer  # utf-8 and unicode
+system doconce format latex encoding3 -DMAKO --encoding=utf-8 --no_header_footer  # utf-8 and unicode
 cp encoding3.p.tex encoding3.p.tex-utf8
-doconce format html encoding3 -DMAKO --encoding=utf-8 --pygments_html_style=off --debug --no_header_footer --html_raw_github_url=raw.github
+system doconce format html encoding3 -DMAKO --encoding=utf-8 --pygments_html_style=off --debug --no_header_footer --html_raw_github_url=raw.github
 cp encoding3.html encoding3.html-utf8
 cat _doconce_debugging.log >> encoding3.html-utf8
 
@@ -503,7 +504,6 @@ system doconce csv2table testtable.csv > testtable.do.txt
 
 # Test doconce ref_external command
 sh -x genref.sh
-
 # Test error detection (note: the sequence of the error tests is
 # crucial: an error must occur, then corrected before the next
 # one will occur!)
@@ -540,7 +540,7 @@ doconce subst -s -m '^!bhint.+?!ehint' ''  tmp2.do.txt
 doconce format sphinx tmp2
 doconce format pdflatex tmp2 --device=paper
 # Remedy: drop paper and rewrite, just run electronic
-doconce format pdflatex tmp2
+system doconce format pdflatex tmp2
 #doconce replace '# Comment before math is ok' '' tmp2.do.txt
 # Remove some files
 rm -rf 0*md 0*ipynb *~ 

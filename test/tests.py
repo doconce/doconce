@@ -10,8 +10,7 @@ the tests works. This script puts all results in a file test.v, which
 is to be compared to the reference data in test.r.
 """
 
-import subprocess, os, sys, shutil, re, doconce.common, time
-
+import subprocess, os, sys, shutil, re, doconce.common, time, pytest
 # recommendation: remove installation and reinstall (to test setup.py)
 
 # Check that we have Internet
@@ -55,6 +54,12 @@ def run_clean():
     failure = os.system('sh clean.sh > /dev/null')
     if failure:
         raise OSError('Could not run clean.sh successfully')
+
+def run_pytests():
+    print('\n\nRunning pytests.............................')
+    pytestout = pytest.main(["-q", "pytests.py"])
+    if pytestout.value !=0:
+        raise OSError('%d pytests failed. Try running\npytest --pdb pytests.py' % pytestout.TESTS_FAILED.value)
 
 def run_make(append=True):
     print('\n\nRunning make.sh...............................\nin', os.getcwd())
@@ -127,12 +132,14 @@ def run():
     log = open(logfilename, 'w')
     log.close()  # just touch the file
 
+    for f in ['test.v', 'papers.pub']:
+        if os.path.isfile(f):
+            os.remove(f)
     # test multiple authors, figure, movie, math, encodings, etc:
     print('...running ./make.sh in test')  # works only under Unix...
-    os.remove('test.v')
-    os.remove('papers.pub')
     run_clean()
     run_make()
+    run_pytests()
 
     open(logfilename, 'a').close()
     files = '.do.txt', '.html', '.p.tex', '_bigex.tex', '.tex_doconce_ptex2tex', '.tex_direct', '.rst', '.sphinx.rst', '.gwiki', '.mwiki', '.cwiki', '.st', '.epytext', '.txt', '.md', '.ipynb', '.m', '.tmp'
