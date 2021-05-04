@@ -3483,7 +3483,7 @@ def string2href(title=''):
     :return: href
     :rtype: str
     """
-    href = re.sub('\W+', '-', title.lower())
+    href = re.sub('[\W_]+', '-', title.lower())
     href = latin2html(href)
     return href.strip('-')
 

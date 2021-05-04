@@ -3,7 +3,7 @@ This directory contains the primary doconce tests.
 There are three types of tests:
 
  * regression suite in tests.py 
- * unit tests in test_run.py
+ * unit tests in pytests.py
  * unit tests in test_mintest.py
 
 
@@ -13,9 +13,9 @@ regression tests where text is generated in many files
 test.v file) that can be compared with reference ones 
 (in the testr directory or in the test.r file).
 
-The unit tests in test_run.py (work in progress!) can be run with
+The unit tests in pytests.py (work in progress!) can be run with
 
-  pytest -v test_run.py
+  pytest -v pytests.py
 
 The unit tests are in test_mintest.py (very minimalistic tests,
 mainly to check that the installation of DocOnce itself is okay). Run
