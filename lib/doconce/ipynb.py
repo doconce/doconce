@@ -519,6 +519,10 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     for line in filestr.splitlines():
         if line == '':
             notebook_blocks[-1].append('\n')
+        elif line.startswith('#'):
+            # Each chapter, sub/sub/section in its own cell
+            notebook_blocks.append([])
+            notebook_blocks[-1].append(line)
         elif line in marker_subex_begin:
             # Each subex in its own cell
             notebook_blocks.append([])
