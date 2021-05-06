@@ -9,11 +9,11 @@ import json
 from .ipynb import img2ipynb
 from .html import movie2html
 
-docstring_jupyterbook = """Usage: doconce jupyterbook filename [options] 
-Create files for Jupyter Book version: 0.8
-Example: doconce jupyterbook filename.do.txt --sep=chapter --sep_section=subsection --show_titles
-Try 'doconce jupyterbook --help' for more information.
-"""
+docstring_jupyterbook = ('Usage:\n'
+                         'doconce jupyterbook filename [options]\n'
+                         'Create directories and files for Jupyter Book version: 0.8\n'
+                         'Example: doconce jupyterbook filename.do.txt --sep=chapter --sep_section=subsection --show_titles\n'
+                         "Try 'doconce jupyterbook --help' for more information.")
 
 _registered_cmdline_opts_jupyterbook = [
     ('-h', 'Show this help page'),
@@ -363,7 +363,7 @@ def read_title_file(titles_opt, chapters, sec_list):
     """
     chapter_titles = []
     sec_title_list = [[]] * len(chapters)
-    if titles_opt is not 'auto':
+    if titles_opt != 'auto':
         chapter_titles = [''] * len(chapters)
         input_titles = read_to_list(titles_opt)
         for c in range(len(chapters)):
