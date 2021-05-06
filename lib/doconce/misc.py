@@ -69,8 +69,8 @@ def help_format():
                '\n'
                'Generate files in a certain output format from an input DocOnce file with .txt.do suffix\n\n'
                'Formats supported:\n'))
-        print('\033%s\033[0m\n\n'
-               'Help Options:' % globals.supported_format_names)
+        print('\033[1m%s\033[0m\n\n' % ' '.join(globals.supported_format_names))
+        print('Help Options:')
         help_options = [('--help', 'Show help options'),
                 ('CMD --help', 'Print the options for a doconce command `CMD`'),
                 ('CMD --<cmd-option> --help', 'Print a specific command-line option <cmd-option> for doconce')]
