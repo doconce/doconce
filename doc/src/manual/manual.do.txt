@@ -3539,7 +3539,7 @@ ZeroDivisionError: division by zero
 |ec
 !ec
 
-All formats other than ipynb, matlabnb formats ignore the `-t` postfix.
+All formats other than ipynb, matlabnb, html and pdflatex formats ignore the `-t` postfix.
 
 === Hiding code blocks ===
 
