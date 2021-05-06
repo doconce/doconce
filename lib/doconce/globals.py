@@ -461,9 +461,89 @@ def lookup_locale_dict(key, fallback_to_english=True):
     else:
         raise ValueError("'%s' is not in locale_dict for %s" % (key, locale_dict['language']))
 
+doconce_commands = "help, format, find, subst, replace, remove, spellcheck, apply_inline_edits, capitalize, " \
+                   "change_encoding, clean, combine_images, csv2table, diff, expand_commands, expand_mako, extract_exercises, " \
+           "find_nonascii_chars, fix_bibtex4publish, gitdiff, grab, grep, guess_encoding, gwiki_figsubst, html2doconce, " \
+           "html_colorbullets, jupyterbook, include_map, insertdocstr, ipynb2doconce, latex2doconce, latex_dislikes, " \
+           "latex_exercise_toc, latex_footer, latex_header, latex_problems, latin2html, lightclean, linkchecker, " \
+           "list_fig_src_files, list_labels, makefile, md2html, md2latex, old2new_format, ptex2tex, pygmentize, " \
+           "ref_external, remove_exercise_answers, remove_inline_comments, replace_from_file, slides_beamer, " \
+           "slides_html, slides_markdown, sphinx_dir, sphinxfix_localURLs, split_html, split_rst, teamod".split(", ")
+
+_registered_commands = [
+    ('format', 'Transform doconce file to another format'),
+    ('jupyterbook', 'Create directories and files for Jupyter Book'),
+    ('ptex2tex', 'Transform ptex2tex files (.p.tex) to ordinary latex file and manage the code environments'),
+    ('slides_html', 'Create HTML slides from a (doconce) html file'),
+    ('slides_beamer', 'Create LaTeX Beamer slides from a (doconce) latex/pdflatex file'),
+    ('slides_markdown', 'Create Remark slides from Markdown'),
+    ('split_html', 'Split an html file into parts according to !split commands'),
+    ('clean', 'Remove all files that the doconce can regenerate'),
+    ('spellcheck', 'Run spellcheck on a set of files'),
+    ('grab', 'Grab selected text from a file'),
+    ('grep', 'List all figure, movie or included code files'),
+    ('find', 'Search for a (regular) expression in all .do.txt files in the current directory tree '
+             '(useful when removing compilation errors)'),
+    ('subst', 'Substitute a phrase by another using regular expressions'),
+    ('diff', 'Find differences between two files'),
+    ('gitdiff', 'Find differences between the last two Git versions of several files'),
+    ('replace', 'Replace a phrase by another literally (exact text substitution)'),
+    ('remove', 'Remove selected text from a file'),
+    ('replace_from_file', 'Replace using from and to phrases from file'),
+    ('extract_exercises', 'Extract all exercises (projects and problems too)'),
+    ('remove_exercise_answers', 'Remove answers from exercises'),
+    ('apply_inline_edits', 'Apply all edits specified through inline comments'),
+    ('remove_inline_comments', 'Remove all inline comments in a doconce file'),
+    ('capitalize', 'Change headings from "This is a Heading" to "This is a heading"'),
+    ('guess_encoding', 'Guess the encoding in a text'),
+    ('change_encoding', 'Change encoding'),
+    ('combine_images', 'Combine several images into one'),
+    ('expand_commands', 'Expand short cut commands to full form in files'),
+    ('expand_mako', 'Replace all mako function calls by the `results of the calls'),
+    ('find_nonascii_chars', 'Find non-ascii characters in a file'),
+    ('fix_bibtex4publish', 'Fix common problems in bibtex files for publish import'),
+    ('csv2table', 'Convert csv file to doconce table format'),
+    ('html2doconce', 'Apply transformations to an html file to help translate the document into DocOnce format'),
+    ('ipynb2doconce', 'Translate an IPython/Jupyter notebook to doconce'),
+    ('md2html', 'Make HTML file via pandoc from Markdown (.md) file'),
+    ('md2latex', 'Make LaTeX file via pandoc from Markdown (.md) file'),
+    ('latex2doconce', 'Translate a latex document to doconce (requires usually manual fixing)'),
+    ('latex_dislikes', 'Check if there are problems with translating latex to doconce'),
+    ('include_map', 'Print an overview of how various files are included in the root doc'),
+    ('sphinx_dir', 'Create a directory for the sphinx format (requires sphinx version >= 1.1)'),
+    ('split_rst', 'Split a sphinx/rst file into parts according to !split commands'),
+    ('insertdocstr', 'Walk through a directory tree and insert doconce files as docstrings in *.p.py files'),
+    ('lightclean', 'Remove all redundant files (keep source .do.txt and results: .pdf, .html, sphinx- dirs, '
+                   '.mwiki, .ipynb, etc.)'),
+    ('gwiki_figsubst', 'Replace figures path with URL'),
+    ('html_colorbullets', 'Replace bullets in lists by colored bullets'),
+    ('latex_problems', 'Report problems from a LaTeX .log file'),
+    ('list_fig_src_files', 'List all figure files, movie files, and source code files needed'),
+    ('list_labels', 'List all labels in a document (for purposes of cleaning them up)'),
+    ('ref_external', 'Generate script for substituting generalized references'),
+    ('linkchecker', 'Check all links in HTML files'),
+    ('pygmentize', 'Typeset a doconce document with pygments (for pretty print of doconce itself)'),
+    ('makefile', 'Generate a make.py script for translating a doconce file to various formats'),
+    ('sphinxfix_local_URLs', 'Edit URLs to local files and place them in _static'),
+    ('latin2html', 'Replace latex-1 (non-ascii) characters by html codes'),
+    ('latex_header', 'Print the header (preamble) for latex file'),
+    ('latex_footer', 'Print the footer for latex files'),
+    ('latex_exercise_toc', 'Insert a table of exercises in a latex file myfile.p.tex'),
+    ('teamod', 'Create a boilerplate directory for a teaching module.')]
+
+doconce_commands = list(map(lambda t: t[0], _registered_commands))
+
+old = "help, format, find, subst, replace, remove, spellcheck, apply_inline_edits, capitalize, change_encoding, " \
+           "clean, combine_images, csv2table, diff, expand_commands, expand_mako, extract_exercises, " \
+           "find_nonascii_chars, fix_bibtex4publish, gitdiff, grab, grep, guess_encoding, gwiki_figsubst, html2doconce, " \
+           "html_colorbullets, jupyterbook, include_map, insertdocstr, ipynb2doconce, latex2doconce, latex_dislikes, " \
+           "latex_exercise_toc, latex_footer, latex_header, latex_problems, latin2html, lightclean, linkchecker, " \
+           "list_fig_src_files, list_labels, makefile, md2html, md2latex, old2new_format, ptex2tex, pygmentize, " \
+           "ref_external, remove_exercise_answers, remove_inline_comments, replace_from_file, slides_beamer, " \
+           "slides_html, slides_markdown, sphinx_dir, sphinxfix_localURLs, split_html, split_rst, teamod".split(", ")
+
 _registered_command_line_options = [
     ('--help', 'Print all command-line options for doconce'),
-    ('--<cmd-option> --help', 'Print a specific command-line option <cmd-option> for doconce'),
     ('--output=', 'Output filename or file basename for `doconce format` commands.'),
     ('--debug', 'Write a debugging file _doconce_debugging.log with lots of intermediate results'),
     ('--no_abort', 'Do not abort the execution if syntax errors are found.'),

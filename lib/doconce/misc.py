@@ -11,6 +11,7 @@ from past.builtins import basestring
 from past.utils import old_div
 import os, sys, shutil, glob, time, subprocess, codecs
 import regex as re
+from doconce import __version__ as version
 from doconce import globals
 from functools import reduce
 # ---- Import a pygments syntax highlighter for DocOnce ----
@@ -22,6 +23,8 @@ from pygments.token import Punctuation, Text, Comment, Keyword, \
 from pygments.formatters import HtmlFormatter
 from pygments import highlight
 from pygments.styles import get_all_styles
+from doconce import __file__ as doconce_dir
+doconce_dir = os.path.dirname(doconce_dir)
 
 html_images = 'html_images.zip'
 latexstyle_files = 'latex_styles.zip'
@@ -34,24 +37,54 @@ _config_path = os.path.join(os.path.expanduser('~'), '.config', 'doconce', 'defa
 _legal_command_line_options = \
       [opt for opt, help in globals._registered_command_line_options]
 
+
+def help_doconce():
+    # Command-line interface description language: http://docopt.org/
+    print(('DocOnce version %s (from %s)' % (version, os.path.dirname(doconce_dir))))
+    print('Usage:\n'
+          '\033[1mdoconce <command> [<argument>] <file>[.do.txt] [options]\033[0m\n\n')
+    # Print all commands
+    print('Commands: \n\033[1m%s\033[0m' % (' '.join(globals.doconce_commands)))
+    # Print all commands with their description
+    print(('\nCommands description:'))
+    template = "\033[1m{0:35}\033[0m \033[94m{1:10}\033[0m"
+    # Narrow down help when calling doconce <command> --help
+    if sys.argv[1] in globals.doconce_commands:
+        ind = globals.doconce_commands.index(sys.argv[1])
+        command, help = globals._registered_commands[ind]
+        print(template.format(command, help))
+    else:
+        for command, help in globals._registered_commands:
+            print(template.format(command, help))
+
+
 def help_format():
+    # Command-line interface description language: http://docopt.org/
     command_line_options = globals._registered_command_line_options
     template = "\033[1m{0:35}\033[0m \033[94m{1:10}\033[0m"
     # Narrow down help when calling doconce format --<cmd-option> --help
     if sys.argv[2] == '--help':
-        print(r"""
-        doconce format X doconcefile
-
-        where X can be any of the formats: html, latex, pdflatex, rst, sphinx, plain, gwiki, mwiki, cwiki, pandoc, epytext.
-        """)
+        print(('Usage:\n'
+               '\033[1mdoconce format <format> <file>[.do.txt] [options]\033[0m\n'
+               '\n'
+               'Generate files in a certain output format from an input DocOnce file with .txt.do suffix\n\n'
+               'Formats supported:\n'))
+        print('\033%s\033[0m\n\n'
+               'Help Options:' % globals.supported_format_names)
+        help_options = [('--help', 'Show help options'),
+                ('CMD --help', 'Print the options for a doconce command `CMD`'),
+                ('CMD --<cmd-option> --help', 'Print a specific command-line option <cmd-option> for doconce')]
+        for opt, help in help_options:
+            print(template.format(opt, help))
+        print(('\nOptions:'))
     else:
         opts = list(map(lambda t: t[0].rstrip('='), command_line_options))
         if sys.argv[2] in opts:
             ind = opts.index(sys.argv[2])
             command_line_options = [command_line_options[ind]]
-    help_print_options(command_line_options)
+    help_print_options(command_line_options, template)
 
-def help_print_options(cmdline_opts, template = "\033[1m{0:35}\033[0m \033[94m{1:10}\033[0m"):
+def help_print_options(cmdline_opts, template="\033[1m{0:35}\033[0m \033[94m{1:10}\033[0m"):
     """Print help
 
     Print formatted command options
@@ -63,6 +96,7 @@ def help_print_options(cmdline_opts, template = "\033[1m{0:35}\033[0m \033[94m{1
         if opt.endswith('='):
             opt += '...'
         print(template.format(opt, help))
+
 
 def mkdir_p(dir_path):
     if not os.path.exists(dir_path):
@@ -342,13 +376,16 @@ def load_preprocessed_doconce_file(filename, dirpath=''):
 
 # -------------- functions used by the doconce program -------------
 
+def _usage_remove_inline_comments():
+    print('Usage:\n'
+          'doconce remove_inline_comments <file.do.txt>')
+
 def remove_inline_comments():
     try:
         filename = sys.argv[1]
     except IndexError:
-        print('Usage: doconce remove_inline_comments myfile.do.txt')
-        _abort()
-
+        _usage_remove_inline_comments()
+        sys.exit(0)
     if not os.path.isfile(filename):
         print('*** error: file %s does not exist!' % filename)
         sys.exit(1)
@@ -368,8 +405,9 @@ def apply_inline_edits():
     try:
         filename = sys.argv[1]
     except IndexError:
-        print('Usage: doconce apply_inline_edits myfile.do.txt')
-        _abort()
+        print('Usage:\n'
+              'doconce apply_inline_edits myfile.do.txt')
+        sys.exit(0)
 
     if not os.path.isfile(filename):
         print('*** error: file %s does not exist!' % filename)
@@ -396,14 +434,23 @@ def apply_inline_edits():
     f.close()
     print('inline edits applied in ' + filename)
 
+
+def _usage_latin2html():
+    print('Usage:\n'
+          'doconce latin2html <file.html>\n\n'
+          'Replace latex-1 (non-ascii) characters by html codes')
+
+
 def latin2html():
     """
     Substitute latin characters by their equivalent HTML encoding
-    in an HTML file. See doconce.html.latin2html for more
+    in an HTML file. See latin2html in html.py for more
     documentation.
     """
-    from .doconce.html import latin2html
-    import os, shutil, sys
+    if len(sys.argv) < 2:
+        _usage_latin2html()
+        sys.exit(0)
+    from .html import latin2html
     for filename in sys.argv[1:]:
         if not os.path.isfile(filename):
             print('*** error: file %s does not exist!' % filename)
@@ -422,9 +469,12 @@ def latin2html():
         except Exception as e:
             print(e.__class__.__name__ + ' : ' + str(e))
 
+
 # replace is taken from scitools
 def _usage_find_nonascii_chars():
-    print('Usage: doconce find_nonascii_chars file1 file2 ...')
+    print('Usage:\n'
+          'doconce find_nonascii_chars <file1> <file2> ...')
+
 
 def find_nonascii_chars():
     if len(sys.argv) <= 1:
@@ -446,15 +496,20 @@ def find_nonascii_chars():
                 print(text[i-40:i], '--> %s <--' % c, text[i:i+40])
 
 
+def _usage_gwiki_figsubst():
+    print('Usage:\n'
+          'doconce <wikifile.gwiki> <URL-stem>\n\n'
+          'Replace figures path with URL'
+          'Example:\n'
+          'doconce myfile.gwiki https://code.google.com/p/myproject/trunk/doc/somedir')
+
 
 def gwiki_figsubst():
-    try:
-        gwikifile = sys.argv[1]
-        URLstem = sys.argv[2]
-    except IndexError:
-        print('Usage: %s wikifile URL-stem' % sys.argv[0])
-        print('Ex:    %s somefile.gwiki https://code.google.com/p/myproject/trunk/doc/somedir' % sys.argv[0])
-        _abort()
+    if len(sys.argv) < 3:
+        _usage_gwiki_figsubst()
+        sys.exit(0)
+    gwikifile = sys.argv[1]
+    URLstem = sys.argv[2]
 
     if not os.path.isfile(gwikifile):
         print('*** error: file %s does not exist!' % gwikifile)
@@ -480,14 +535,16 @@ def gwiki_figsubst():
         print('Something strange: %d fig references and %g comments... Bug.' % (n, n2))
 
 
-
 # subst is taken from scitools
 def _usage_subst():
-    print('Usage: doconce subst [-s -m -x --restore] pattern replacement file1 file2 file3 ...')
-    print('--restore brings back the backup files')
-    print('-s is the re.DOTALL or re.S modifier')
-    print('-m is the re.MULTILINE or re.M modifier')
-    print('-x is the re.VERBOSE or re.X modifier')
+    print('Usage:\n'
+          'doconce subst [-s -m -x --restore] <pattern> <replacement> <file1> <file2> <file3> ...\n'
+          'Options:\n'
+          '--restore brings back the backup files\n'
+          '-s is the re.DOTALL or re.S modifier\n'
+          '-m is the re.MULTILINE or re.M modifier\n'
+          '-x is the re.VERBOSE or re.X modifier')
+
 
 def _scitools_subst(patterns, replacements, filenames,
                     pattern_matching_modifiers=0):
@@ -547,6 +604,7 @@ def _scitools_subst(patterns, replacements, filenames,
 
     return ', '.join(messages) if messages else 'no substitutions'
 
+
 def wildcard_notation(files):
     """
     On Unix, a command-line argument like *.py is expanded
@@ -561,6 +619,7 @@ def wildcard_notation(files):
         filelist = [glob.glob(arg) for arg in files]
         files = reduce(operator.add, filelist)  # flatten
     return files
+
 
 def subst():
     if len(sys.argv) < 3:
@@ -601,9 +660,12 @@ def subst():
                             wildcard_notation(args[2:]), pmm)
         print(s)  # print info about substitutions
 
+
 # replace is taken from scitools
 def _usage_replace():
-    print('Usage: doconce replace from-text to-text file1 file2 ...')
+    print('Usage:\n'
+          'doconce replace from-text to-text <file1> <file2> ...')
+
 
 def replace():
     if len(sys.argv) < 4:
@@ -629,12 +691,15 @@ def replace():
             f.write(text)
             f.close()
 
-def _usage_replace_from_file():
-    print(r"""Usage: doconce replace_from_file file-with-from-to file1 file2 ...
 
-The file must contain two columns with the from and to parts for each substitution. Comment lines starting with # are allowed.
-The output from doconce list_labels has a form suitable for being extended with a second column with new labels and run with this command to clean up label names.
-""")
+def _usage_replace_from_file():
+    print("Usage:\n"
+          "doconce replace_from_file <from-to-file> <file-old> <file-new> ...\n\n"
+          "<from-to-file> is a file containg two columns with the from and to parts for each substitution. "
+          "Comment lines starting with # are allowed.\n"
+          "The output from doconce list_labels has a form suitable for being extended with a second column "
+          "with new labels and run with this command to clean up label names.")
+
 
 def replace_from_file():
     """
@@ -682,12 +747,13 @@ def replace_from_file():
             f.write(text)
             f.close()
 
-def _usage_find():
-    print(r"""Usage: doconce find expression
 
-Searches for all .do.txt files in subdirectories and writes out filename, line number and line containing expression
-expression is interpreted as a regular expression (the command is similar to a Unix find & grep)
-""")
+def _usage_find():
+    print('Usage:\n'
+          'doconce find <expression>\n\n'
+          'Searches for all .do.txt files in subdirectories and writes out filename, line number and line containing expression\n'
+          '<expression> is interpreted as a regular expression (the command is similar to a Unix find & grep)\n')
+
 
 def find():
     if len(sys.argv) < 2:
@@ -710,12 +776,14 @@ def find():
 
 
 def _usage_include_map():
-    print('Usage: doconce include_map mydoc.do.txt')
-    print('List all recursive includes in mydoc.do.txt')
+    print('Usage:\n'
+          'doconce include_map <file>[.do.txt]\n'
+          'List all recursive includes in a DocOnce <file>')
+
 
 def include_map():
     if len(sys.argv) < 2:
-        _usage_find()
+        _usage_include_map()
         sys.exit(0)
     filename = sys.argv[1]
     # Could have preprocess variables for include at the rest of the
@@ -740,10 +808,10 @@ def include_map():
     find_include(filename)
 
 
-
 def _usage_expand_mako():
-    print('Usage: doconce expand_mako mako_code_file.txt funcname mydoc.do.txt')
-    print('(Replaces mako calls to functions by the function bodies)')
+    print('Usage:\n'
+          'doconce expand_mako <mako_code_file.txt> <funcname> <file>[.do.txt]\n\n'
+          'Replaces mako calls to functions by the function bodies')
 
 # This replacement function for re.sub must be global since expand_mako,
 # where it is used, has an exec statement
@@ -752,7 +820,6 @@ def expand_mako():
     if len(sys.argv) < 4:
         _usage_expand_mako()
         sys.exit(0)
-
     mako_filename = sys.argv[1]
     funcname = sys.argv[2]
     filenames = wildcard_notation(sys.argv[3:])
@@ -818,9 +885,12 @@ def expand_mako():
             f.write(text)
             f.close()
 
+
 def _usage_linkchecker():
-    print('Usage: doconce linkchecker file1.html|file1.do.txt|tmp_mako__file1.do.txt ...')
-    print('Check if URLs or links to local files in DocOnce or HTML files are valid.')
+    print('Usage:\n'
+          'doconce linkchecker (<file1.html> | <file1.do.txt> | <tmp_mako__file1.do.txt>) ...\n\n'
+          'Check if URLs or links to local files in DocOnce or HTML files are valid.')
+
 
 def linkchecker():
     if len(sys.argv) <= 1:
@@ -906,39 +976,31 @@ def _dofix_localURLs(filename, exclude_adr):
 
 
 def _usage_sphinxfix_localURLs():
-    print(r"""
-Usage: doconce sphinxfix_localURLs file1.rst file2.rst ... -not adr1 adr2 ...
+    print('Usage:\n'
+          'doconce sphinxfix_localURLs <file1.rst> <file2.rst> ... -not adr1 adr2 ...\n\n'
+          'Each link to a local file, e.g., "link": "src/dir1/myfile.txt", is replaced by a link \n'
+          'to the file placed in _static: "link": "_static/myfile.txt". The file myfile.txt is copied\n'
+          'from src/dir1 to _static. The user must later copy all _static/* files to the _static \n'
+          'subdirectory in the sphinx directory. Note that local links to files in _static are not modified.\n'
+          '\n'
+          'The modification of links is not always wanted. The -not adr1 adr2 makes it possible to exclude\n'
+          'modification of a set of addresses adr1, adr2, ...\n'
+          '\n'
+          'Example:\n'
+          'doconce sphinxfix_localURLs <file1.rst> <file2.rst> -not src/dir1/mymod1.py src/dir2/index.html\n\n'
+          'The old files are available as <file1.rst>.old~~, file2.rst.old~~ etc.\n\n'
+          'Note that local links to HTML files which are linked to other local HTML documents (say a Sphinx\n'
+          'document) demand all relevant files to be copied to _static. In such cases it is best to physically\n'
+          'place the HTML documents in _static and let the DocOnce document link directly to _static.\n'
+          '\n'
+          'In general, it is better to link to _static from the DocOnce document rather than relying on the \n'
+          'fixes in this script...\n')
 
-Each link to a local file, e.g., "link": "src/dir1/myfile.txt",
-is replaced by a link to the file placed in _static:
-"link": "_static/myfile.txt". The file myfile.txt is copied
-from src/dir1 to _static. The user must later copy all _static/*
-files to the _static subdirectory in the sphinx directory.
-Note that local links to files in _static are not modified.
-
-The modification of links is not always wanted. The -not adr1 adr2 makes
-it possible to exclude modification of a set of addresses adr1, adr2, ...
-
-Example: doconce sphinxfix_localURLs file1.rst file2.rst \
-         -not src/dir1/mymod1.py src/dir2/index.html
-
-The old files are available as file1.rst.old~~, file2.rst.old~~ etc.
-
-Note that local links to HTML files which are linked to other local HTML
-documents (say a Sphinx document) demand all relevant files to be
-copied to _static. In such cases it is best to physically place
-the HTML documents in _static and let the DocOnce document link
-directly to _static.
-
-In general, it is better to link to _static from the DocOnce document
-rather than relying on the fixes in this script...
-""")
 
 def sphinxfix_localURLs():
     if len(sys.argv) < 2:
         _usage_sphinxfix_localURLs()
         sys.exit(0)
-
     # Find addresses to exclude
     idx = -1  # index in sys.argv for the -not option
     for i, arg in enumerate(sys.argv[1:]):
@@ -947,7 +1009,6 @@ def sphinxfix_localURLs():
     exclude_adr = sys.argv[idx+1:] if idx > 0 else []
     if idx > 0:
        del sys.argv[idx:]
-
     for filename in sys.argv[1:]:
         if os.path.dirname(filename) != '':
             print('doconce sphinxfix_localURLs must be run from the same directory as %s is located in' % filename)
@@ -957,14 +1018,16 @@ def sphinxfix_localURLs():
 
 
 def _usage_latex_exercise_toc():
-    print('Usage: doconce latex_exercise_toc myfile.do.txt ["List of exercises"]')
-    print(r"""
-Can insert
-# Short: My own short title
-in the text of an exercise and this defines a short version of the title of the exercise to be used in the toc table.
-This is convenient when the automatic truncation of (long) titles fails (happens if truncated in the middle of mathematical $...$
-constructions). Any short title is appearing in the table exactly how it is written, so this is also a method to avoid truncating a title.
-""")
+    print('Usage:\n'
+          'doconce latex_exercise_toc <file>[.do.txt] ["List of exercises"]\n\n'
+          'The following line can be inserted in the text of an exercise:\n'
+          '# Short: My own short title\n'
+          'This defines a short version of the title of the exercise to be used in the toc table.\n'
+          'This is convenient when the automatic truncation of (long) titles fails (it happens if \n'
+          'truncated in the middle of mathematical $...$ constructions). Any short title is\n'
+          'appearing in the table exactly how it is written, so this is also a method to avoid\n'
+          'truncating a title.')
+
 
 def latex_exercise_toc():
     if len(sys.argv) < 2:
@@ -1071,15 +1134,15 @@ def latex_exercise_toc():
 
 
 def _usage_combine_images():
-    print(r"""\
-Usage: doconce combine_images [pdf|png] [-4] image1 image2 ... output_file
-Applies montage if not PDF or EPS images, else
-pdftk, pdfnup and pdfcrop.
-Images are combined with two each row, by default, but doconce combine_images -3 ... gives 3 images in each row.
-The first command-line argument can be a file extension and the filenames can then be given without extension:
+    print('Usage:\n'
+          'doconce combine_images (pdf | png) [-4] <image1> <image2> ... <output_file>\n\n'
+          'Applies montage if not PDF or EPS images, else pdftk, pdfnup and pdfcrop.\n'
+          'Images are combined with two each row, by default, but doconce combine_images -3 ... gives 3 '
+          'images in each row. The first command-line argument can be a file extension and the '
+          'filenames can then be given without extension:\n\n'
+          'Example:\n'          
+          'doconce combine_images pdf -2 u1 u2 u12')
 
-doconce combine_images pdf -2 u1 u2 u12
-""")
 
 def combine_images():
 
@@ -1150,22 +1213,27 @@ def combine_images():
 
 
 def _usage_expand_commands():
-    print('Usage: doconce expand_commands file1 file2 ...')
-    print((r"""A file .expand_commands may define _replace and _regex_subst lists for str.replace and re.sub """  
-          r"""substitutions (respectively) to be applied to file1 file2 ...
+    print('Usage:\n'
+          'doconce expand_commands <file1> <file2> ...\n\n'
+          'A file .expand_commands may define _replace and _regex_subst lists for str.replace and re.sub \n'
+          'substitutions (respectively) to be applied to <file1> <file2> ...\n\n'
+          'By default we use some common LaTeX math abbreviations:\n'
+          '_replace = [\n'
+          r"(r'\bals', r'\begin{align*}'),  # must appear before \bal"
+          '\n'
+          r"(r'\eals', r'\end{align*}'),"
+          '\n'
+          r"(r'\bal', r'\begin{align}'),"
+          '\n'
+          r"(r'\eal', r'\end{align}'),"
+          '\n'
+          r"(r'\beq', r'\begin{equation}'),"
+          '\n'
+          r"(r'\eeq', r'\end{equation}'),"
+          '\n'
+          ']\n\n'
+          '_regex_subst = []\n')
 
-By default we use some common LaTeX math abbreviations:
-_replace = [
-(r'\bals', r'\begin{align*}'),  # must appear before \bal
-(r'\eals', r'\end{align*}'),
-(r'\bal', r'\begin{align}'),
-(r'\eal', r'\end{align}'),
-(r'\beq', r'\begin{equation}'),
-(r'\eeq', r'\end{equation}'),
-]
-
-_regex_subst = []
-"""))
 
 def expand_commands():
     if len(sys.argv) < 2:
@@ -1276,39 +1344,42 @@ def copy_latex_packages(packages):
     if os.path.isfile(datafile):
         os.remove(datafile)
 
+
 def _usage_ptex2tex():
-    print((r"""\
-Usage: doconce ptex2tex [file | file.p.tex] [-Dvar1=val1 ...] \
-       [cod=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote} \
-        pypro=Verbatim fcod=minted ccod=ans cpppro=anslistings:nt]'
+    print((
+        'Usage:\n'
+        'doconce ptex2tex <file>[.p.tex] [-Dvar1=val1 ...] \\\n'
+        r"'[cod=\begin{quote}\begin{verbatim}@\end{verbatim}\end{quote} pypro=Verbatim fcod=minted ccod=ans "
+        r"cpppro=anslistings:nt]'"
+        '\n\n'
+        'doconce ptex2tex <file>[.p.tex] -Dvar1=val1 ... envir=ans:nt\n\n'
+        r'doconce ptex2tex <file>[.p.tex] \\'
+        '\n'
+        r"'sys=\begin{Verbatim}[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt]"
+        r"@\end{Verbatim}' \\"
+        '\n'
+        r"envir=minted --minted_leftmargin=2"
+        '\n  (recall quotes in arguments with backslash),\n\n'
+        'doconce ptex2tex <file>[.p.tex] envir=Verbatim\n'
+        '\n'
+        'Verbatim (from fancyvrb) is the default value for envir and is used for all environments, with some options '
+        'added (base linestretch 0.85 and font size 9pt).\n'
+        '\n'
+        'Note that specifications of how "!bc environment" is to be typeset in latex is done by environment=begin@end, '
+        'where begin is the latex begin command, end is the latex end command, and the two must be separated by the '
+        r'at sign (@). Writing just environment=package implies the latex commands \begin{package} and \end{package}.'
+        '\n\n'
+        'Choosing environment=minted gives the minted environment with the specified language inserted. Similarly, '
+        'environment=ans, environment=ans:nt, environment=anslistings, or environment=anslistings:nt imply the '
+        'anslistings package with the right environment'
+        r'(\begin{c++:nt} for instance for !bc cppcod or !bc cpppro, environment=ans:nt - :nt means no title over '
+        r'the code box).'
+        '\n\n'
+        'If environment is simply the string "envir", the value applies to all registered environments. Specifying '
+        'e.g. sys=... and then envir=ans, will substitute the sys environment by the specified syntax and all other '
+        'environments will apply the latex construct from anslistings.sty.'
+    ))
 
-or
-       doconce ptex2tex file -Dvar1=val1 ... envir=ans:nt
-
-or
-       doconce ptex2tex file "sys=\begin{Verbatim}[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt]@\end{Verbatim}" envir=minted --minted_leftmargin=2
-
-(recall quotes in arguments with backslash), or
-
-       doconce ptex2tex file envir=Verbatim
-
-Here the Verbatim (from fancyvrb) is used for all environments, with
-some options added (base linestretch 0.85 and font size 9pt).
-
-The last command is equivalent to the default
-
-   doconce ptex2tex
-
-
-Note that specifications of how "!bc environment" is to be typeset in latex is done by environment=begin@end, """  
-          """where begin is the latex begin command, end is the latex end command, and the two must be separated by """  
-          """the at sign (@). Writing just environment=package implies the latex commands \begin{package} and \end{package}.
-
-Choosing environment=minted gives the minted environment with the specified language inserted. Similarly, environment=ans, environment=ans:nt, environment=anslistings, or environment=anslistings:nt imply the anslistings package with the right environment
-(\begin{c++:nt} for instance for !bc cppcod or !bc cpppro, environment=ans:nt - :nt means no title over the code box).
-
-If environment is simply the string "envir", the value applies to all registered environments. Specifying (e.g.) sys=... and then envir=ans, will substitute the sys environment by the specified syntax and all other environments will apply the latex construct from anslistings.sty.
-"""))
 
 def ptex2tex():
     if len(sys.argv) <= 1:
@@ -1613,6 +1684,7 @@ Terminal> cd pygments; python setup.py install
     f.close()
     print('output in ' + output_filename)
 
+
 def replace_code_command(filestr):
     """Replace \code{...} by \Verb!...! or \textttt{...}."""
 
@@ -1679,8 +1751,11 @@ def replace_code_command(filestr):
                      r'\\texttt{\g<1>}', filestr)
     return filestr
 
+
 def _usage_grab():
-    print('Usage: doconce grab --from[-] from-text [--to[-] to-text] file')
+    print('Usage:\n'
+          'doconce grab --from[-] from-text [--to[-] to-text] <file>  > <output-file>')
+
 
 def grab():
     """
@@ -1743,6 +1818,7 @@ def grab():
         sys.exit(1)
     print(''.join(lines).rstrip())
 
+
 def remove_text(filestr, from_text, from_included, to_text, to_included):
     """
     Remove a portion of text from the string filestr.
@@ -1772,8 +1848,11 @@ def remove_text(filestr, from_text, from_included, to_text, to_included):
 
     return '\n'.join(lines).rstrip() + '\n', from_found, to_found
 
+
 def _usage_remove():
-    print('Usage: doconce remove --from[-] from-text [--to[-] to-text] file')
+    print('Usage:\n'
+          'doconce remove --from[-] from-text [--to[-] to-text] <file> > <output-file>')
+
 
 def remove():
     """
@@ -1828,8 +1907,11 @@ def remove():
     f.write(filestr)
     f.close()
 
+
 def _usage_remove_exercise_answers():
-    print('Usage: doconce remove_exercise_answers file_in_some_format')
+    print('Usage:\n'
+          'doconce remove_exercise_answers file_in_some_format')
+
 
 def remove_exercise_answers():
     if len(sys.argv) < 2:
@@ -1861,8 +1943,10 @@ def remove_exercise_answers():
 def clean():
     return _clean(light=False)
 
+
 def lightclean():
     return _clean(light=True)
+
 
 def _clean(light):
     """
@@ -1946,8 +2030,11 @@ def _clean(light):
             if os.path.isdir(f):
                 shutil.rmtree(f)
 
+
 def _usage_guess_encoding():
-    print('Usage: doconce guess_encoding filename')
+    print('Usage:\n'
+          'doconce guess_encoding filename')
+
 
 def _encoding_guesser(filename, verbose=False):
     """Try to guess the encoding of a file."""
@@ -1971,6 +2058,7 @@ def _encoding_guesser(filename, verbose=False):
             break
     return encoding
 
+
 def guess_encoding():
     if len(sys.argv) != 2:
         _usage_guess_encoding()
@@ -1978,9 +2066,13 @@ def guess_encoding():
     filename = sys.argv[1]
     print(_encoding_guesser(filename, verbose=False))
 
+
 def _usage_change_encoding():
-    print('Usage: doconce change_encoding from-encoding to-encoding file1 file2 ...')
-    print('Example: doconce change_encoding utf-8 latin1 myfile.do.txt')
+    print('Usage:\n'
+          'doconce change_encoding from-encoding to-encoding <file1> <file2> ...\n\n'
+          'Example:\n'
+          'doconce change_encoding utf-8 latin1 myfile.do.txt')
+
 
 def _change_encoding_unix(filename, from_enc, to_enc):
     backupfile = filename + '.old~~'
@@ -2000,6 +2092,7 @@ def _change_encoding_unix(filename, from_enc, to_enc):
         shutil.copy(backupfile, filename)
         os.remove(backupfile)
 
+
 def _change_encoding_python(filename, from_enc, to_enc):
     f = codecs.open(filename, 'r', from_enc)
     text = f.read()
@@ -2007,6 +2100,7 @@ def _change_encoding_python(filename, from_enc, to_enc):
     f = codecs.open(filename, 'w', to_enc)
     f.write(text)
     f.close()
+
 
 def change_encoding():
     if len(sys.argv) < 4:
@@ -2025,6 +2119,7 @@ def change_encoding():
 def html_imagefile(imagename):
     filename = os.path.join(html_images[:-4], imagename + '.png')
     return filename
+
 
 def copy_datafiles(datafile):
     """
@@ -2054,7 +2149,9 @@ def copy_datafiles(datafile):
 
 
 def _usage_html_colorbullets():
-    print('Usage: doconce html_colorbullets mydoc.html')
+    print('Usage:\n'
+          'doconce html_colorbullets <file>[.html]')
+
 
 def html_colorbullets():
     # A much better implementation, avoiding tables, is given
@@ -2103,48 +2200,44 @@ def html_colorbullets():
             f.write(line + '\n')
         f.close()
 
+
 def _usage_split_html():
-    print(r"""
-Usage: doconce split_html mydoc.html --method=... --nav_button=name --pagination --reference="acknowledgment/author" --font_size=slides --copyright=everypage|titlepage
+    print('Usage:\n'
+          'doconce split_html <file>[.html] --method=... --nav_button=name --pagination \\\n'
+          '--reference="acknowledgment/author" --font_size=slides --copyright=everypage|titlepage\n'
+          '\n'
+          'Options:\n'
+          '--method=(split | space8 | hrule | colorline) specifies pagebreak, physical split with a new page \n'
+          '(--method=split) or just N blank lines (--method=spaceN) or a horizontal rule (--method=hrule) with\n'
+          'blank lines above and below, or a colored line (--method=colorline). Default is --method=split.\n'
+          '\n'
+          '--nav_button=name sets the type of navigation button (next, previous): text, gray1 (default), gray2, \n'
+          'bigblue, blue, green. See (https://raw.github.com/hplgit/doconce/master/doc/src/manual/fig/nav_buttons.png\n'
+          'for examples on these types (from left to right). A value like -nav_button=gray2,top gives buttons only at \n'
+          'the top of the page, gray2,top+bottom gives buttons at the top and bottom (default), while gray2,bottom \n'
+          'gives buttons only at the bottom.\n'
+          'If the "doconce format html" command used bootstrap styles (with --html_style=bootstrap*|bootswatch*), \n'
+          'set just --nav_button=top or bottom (default) or top+bottom.\n'
+          '\n'
+          '--pagination means that one can click on pages at the button if a bootstrap theme is used in the document.\n'
+          '\n'
+          '--font_size= is used to increase the font size for slides.\n'
+          '--font_size=slides gives 140% font size in the body text.\n'
+          '--font_size=180 gives 180% font size in the body text.\n'
+          '\n'
+          '--reference=... is used to insert a reference for acknowledging where the source of the text is published, \n'
+          'typically the reference of a book if the document is the HTML version of a chapter in the book. The \n'
+          'reference appears at the top of every page in small font.\n'
+          '\n'
+          'Example:\n'
+          '--reference="This text is taken from Appendix H.2 in the book <em>A Primer on Scientific Programming \n'
+          'with Python</em> by H. P. Langtangen, 4th edition, Springer, 2014."\n'
+          '\n'
+          '--copyright=everypage gives a copyright notice in the footer of every page (if {copyright...} is specified\n'
+          'as part of AUTHOR commands). With --copyright=titlepage (default), the copyright only appears on the title\n'
+          'page only.'
+          )
 
---method=split|space8|hrule|colorline specifies pagebreak
-physical split with a new page (--method=split) or
-just N blank lines (--method=spaceN) or a horizontal
-rule (--method=hrule) with blank lines above and below, or
-a colored line (--method=colorline).
-Default is --method=split.
-
---nav_button=name sets the type of navigation button (next, previous):
-text, gray1 (default), gray2, bigblue, blue, green.
-See (https://raw.github.com/hplgit/doconce/master/doc/src/manual/fig/nav_buttons.png
-for examples on these types (from left to right).
-A value like -nav_button=gray2,top gives buttons only at the top of the page,
-gray2,top+bottom gives buttons at the top and bottom (default), while
-gray2,bottom gives buttons only at the bottom.
-If the "doconce format html" command used bootstrap styles (with
---html_style=bootstrap*|bootswatch*), set just --nav_button=top or
-bottom (default) or top+bottom.
-
---pagination means that one can click on pages at the button
-if a bootstrap theme is used in the document.
-
---font_size= is used to increase the font size for slides.
---font_size=slides gives 140% font size in the body text.
---font_size=180 gives 180% font size in the body text.
-
---reference=... is used to insert a reference for acknowledging where
-the source of the text is published, typically the reference of a
-book if the document is the HTML version of a chapter in the book.
-The reference appears at the top of every page in small font.
-
-Example:
---reference="This text is taken from Appendix H.2 in the book <em>A Primer on Scientific Programming with Python</em> by H. P. Langtangen, 4th edition, Springer, 2014."
-
---copyright=everypage gives a copyright notice in the footer of
-every page (if {copyright...} is specified as part of AUTHOR commands).
-With --copyright=titlepage (default), the copyright only appears on
-the title page only.
-""")
 
 def split_html():
     """
@@ -2341,6 +2434,7 @@ def tablify(parts, format="html"):
                 parts[i] = part
     return parts
 
+
 def _format_comments(format='html'):
     if format == 'html':
         return '<!--', '-->'
@@ -2350,6 +2444,7 @@ def _format_comments(format='html'):
         return '..', ''
     else:
         return None, None
+
 
 def get_header_parts_footer(filename, format='html'):
     """Split files in different file formats
@@ -2870,7 +2965,9 @@ h2 {font-size: 180%%;}
 
 
 def _usage_split_rst0():
-    print('Usage: doconce split_rst complete_file.rst')
+    print('Usage:\n'
+          'doconce split_rst complete_file.rst')
+
 
 def split_rst0():
     """
@@ -2945,14 +3042,15 @@ def split_rst0():
         f.close()
     print(' '.join(parts))
 
+
 def _usage_split_rst():
-    print('Usage: doconce split_rst mydoc')
-    print(r"""Example:
-doconce sphinx_dir author="Kaare Dump" title="Short title" dirname=mydir mydoc
-doconce format sphinx mydoc
-doconce split_rst mydoc
-python automake_sphinx.py
-""")
+    print('Usage:\n'
+          'doconce split_rst <file>[.rst]\n\n'
+          'Example:\n'
+          'doconce format sphinx mydoc.do.txt\n'
+          'doconce sphinx_dir author="Kaare Dump" title="Short title" dirname=mydir mydoc.rst\n'
+          'doconce split_rst mydoc.rst\n'
+          'python automake_sphinx.py\n')
 
 
 def split_rst():
@@ -3069,8 +3167,11 @@ def doconce_rst_split(parts, basename, filename):
         f.close()
     return generated_files
 
+
 def _usage_list_labels():
-    print('Usage: doconce list_labels doconcefile.do.txt')
+    print('Usage:\n'
+          'doconce list_labels doconcefile.do.txt')
+
 
 def list_labels():
     """
@@ -3123,77 +3224,72 @@ def list_labels():
 
 
 def _usage_teamod():
-    print('Usage: doconce teamod name')
+    print('Usage:\n'
+          'doconce teamod <dirname> [<basename>]\n\n'
+          'Create a boilerplate directory <dirname> for a teaching module. \n'
+          'The filenames created are named after <basename>')
+
 
 def teamod():
     if len(sys.argv) < 2:
         _usage_teamod()
         sys.exit(0)
-
-    name = sys.argv[1]
-    if os.path.isdir(name):
-        os.rename(name, name + '.old~~')
-        print('directory %s exists, renamed to %s.old~~' % (name, name))
-    os.mkdir(name)
-    os.chdir(name)
+    dirname = sys.argv[1]
+    name = 'teamod'
+    if len(sys.argv) > 2:
+        name = sys.argv[2]
+    if os.path.isdir(dirname):
+        os.rename(dirname, dirname + '.old~~')
+        print('directory %s exists, renamed to %s.old~~' % (dirname, dirname))
+    os.mkdir(dirname)
+    os.chdir(dirname)
     os.mkdir('fig-%s' % name)
     os.mkdir('src-%s' % name)
     os.mkdir('slides-%s' % name)
     f = open('main_%s.do.txt' % name, 'w')
-    f.write(r"""# Main file for teaching module "%s"
-
-TITLE: Here Goes The Title ...
-AUTHOR: name1 email:..@.. at institution1, institution2, ...
-AUTHOR: name2 at institution3
-DATE: today
-
-# #include "%s.do.txt"
-""" % name)
+    f.write('# Main file for teaching module "%s"\n\n'
+            'TITLE: Here Goes The Title ...\n'
+            'AUTHOR: name1 email:..@.. at institution1, institution2, ...\n'
+            'AUTHOR: name2 at institution3\n'
+            'DATE: today\n\n'
+            '# #include "%s.do.txt"\n' % (name, name))
     f.close()
     f = open('%s.do.txt' % name, 'w')
-    f.write(r"""# Teaching module: %s
-======= Section =======
-
-===== Subsection =====
-idx{example}
-label{mysubsec}
-
-__Paragraph.__ Running text...
-
-Some mathematics:
-
-!bt
-\begin{align}
-a &= b,  label{eq1}\\
-a &= b,  label{eq2}
-\end{align}
-!et
-or
-
-!bt
-\[ a = b, \quad c=d \]
-!et
-
-Some code:
-!bc pycod
-def f(x):
-    return x + 1
-!ec
-
-A list with
-
- * item1
- * item2
-   * subitem2
- * item3
-   continued on a second line
-
-""")
+    f.write('# Teaching module: %s\n'
+            '======= Section =======\n\n'
+            '===== Subsection =====\n'
+            'idx{example}\n'
+            'label{mysubsec}\n\n'
+            '__Paragraph.__ Running text...\n\n'
+            'Some mathematics:\n\n'
+            '!bt\n'
+            r'\begin{align}\n'
+            'a &= b,  label{eq1}\\\n'
+            'a &= b,  label{eq2}\n'
+            '\end{align}\n'
+            '!et\n'
+            'or\n\n'
+            '!bt\n'
+            '\[ a = b, \quad c=d \]\n'
+            '!et\n\n'
+            'Some code:\n'
+            '!bc pycod\n'
+            'def f(x):\n'
+            'return x + 1\n'
+            '!ec\n\n'
+            'A list with\n\n'
+            '* item1\n'
+            '* item2\n'
+            '* subitem2\n'
+            '* item3\n'
+            'continued on a second line\n\n\n')
     f.close()
 
 
 def _usage_assemble():
-    print('Usage: doconce assemble master.do.txt')
+    print('Usage:\n'
+          'doconce assemble master.do.txt')
+
 
 def assemble():
     # See 2DO and teamod.do.txt
@@ -3215,8 +3311,11 @@ def assemble():
 
     # Run analyzer...
 
+
 def _usage_analyzer():
-    print('Usage: doconce analyzer complete_file.do.txt')
+    print('Usage:\n'
+          'doconce analyzer complete_file.do.txt')
+
 
 def analyzer():
     """
@@ -3303,18 +3402,25 @@ def analyzer():
                 for figure_dir in figure_dirs]
 
 
+def _usage_old2new_format():
+    """Phased out"""
+    print('Usage:\n'
+          'doconce <file1.do.txt> <file2.do.txt> ...\n\n'
+          'Make substitutions to convert ')
 
 
 def old2new_format():
+    """Phased out"""
     if len(sys.argv) == 1:
-        print('Usage: %s file1.do.txt file2.do.txt ...' % sys.argv[0])
-        sys.exit(1)
-
+        _usage_old2new_format()
+        sys.exit(0)
     for filename in sys.argv[1:]:
         print('Converting', filename)
         _old2new(filename)
 
+
 def _old2new(filename):
+    """Phased out"""
     """
     Read file with name filename and make substitutions of
     ___headings___ to === headings ===, etc.
@@ -3350,9 +3456,11 @@ def _old2new(filename):
     f.writelines(lines)
     f.close()
 
+
 def latex_header():
     from .doconce.doconce import INTRO
     print(INTRO['latex'])
+
 
 def latex_footer():
     from .doconce.doconce import OUTRO
@@ -3566,6 +3674,7 @@ def _grep_common_typos(text, filename, common_typos):
     if found:
         sys.exit(1)
 
+
 def _strip_environments(text, environments, verbose=0):
     """Remove environments in the ``environments`` list from the text."""
     # Note: this stripping does not work well for !bc and !bt envirs,
@@ -3593,6 +3702,7 @@ def _strip_environments(text, environments, verbose=0):
             print('\n==================')
     return text
 
+
 def _do_regex_replacements(text, replacements, verbose=0):
     """Substitute according to the `replacement` list."""
     for item in replacements:
@@ -3607,6 +3717,7 @@ def _do_regex_replacements(text, replacements, verbose=0):
             print('regex substitution: %s -> %s\nnew text:' % (from_, to_))
             print(text)
     return text
+
 
 def _do_fixes_4MSWord(text):
     t = text  # short cut
@@ -3882,96 +3993,86 @@ def _spellcheck_all(filenames, **kwargs):
     else:
         sys.exit(0)
 
+
 def _usage_spellcheck():
-    print(r"""
-doconce spellcheck file1.do.txt file2.do.txt ...  # use .dict4spell.txt
-doconce spellcheck -d .mydict.txt file1.do.txt file2.do.txt ...
-
-Spellcheck of files via ispell (but problematic parts are removed from the
-files first).
-
-Output:
-
-misspellings.txt~: dictionary of potentially new accepted words, based on all
-the current misspellings.
-
-new_dictionary.txt~: suggested new dictionary, consisting of the old and
-all new misspellings (if they can be accepted).
-
-tmp_stripped_file1.do.txt: the original files are stripped off for
-various constructs that cause trouble in spelling and the stripped
-text is found in files with a filename prefix tmp_stripped_ (this file
-can be checked for spelling and grammar mistakes in MS Word, for
-instance, but a better method might be to translate the entire
-DocOnce document to HTML and import that HTML code into Word.)
-
-Usage
------
-
-For a new project, do the points below for initializating a new accepted
-personal dictionary for this project. Thereafter, the process is
-automated: misspellings.txt~ should be empty if there are no new misspellings.
-tmp_misspelled*~ are made for each file tested with the file's misspelled
-words.
-
-For each file:
-
-  * Run spellcheck.py without a dictionary or with a previous dictionary:
-    doconce spellcheck file or doconce spellcheck -d .mydict.txt file
-    (default dictionary file is .dict4spell.txt)
-  * Check misspelled.txt~ for misspelled words. Change wrong words.
-  * Rerun. If all words in misspelled.txt are acceptable,
-    copy new_dictionary.txt to .dict4spell.txt (or another name)
-  * Optional: import tmp_stripped_text.txt into MS Word for grammar check.
-  * Remove tmp_* and *~ files
-
-The next time one can run::
-
-  spellcheck.py file*                   # use .dict4spell.txt
-  spellcheck.py -d .mydict.txt file*
-
-misspellings.txt~ should ideally be empty if there are no (new)
-spelling errors. One can check that the file is empty or check
-the $? variable on Unix since this prorgram exits with 1
-when spelling errors are found in any of the tested files::
-
-  # Run spellcheck
-  doconce spellcheck *.do.txt
-  if [ $? -ne 0 ]; then exit; fi
-
-
-How to correct misspellings
----------------------------
-
-Some misspellings can be hard to find if the word is strange
-(like "emp", for instance). Then invoke ``tmp_stripped_text.txt``,
-which is the stripped version of the text file being spellchecked.
-All references, labels, code segments, etc., are removed in this
-stripped file. Run ispell on the file::
-
-  ispell -l -p.dict4spell.txt tmp_stripped_text.txt
-
-Now, ispell will prompt you for the misspellings and show the context.
-A common error in latex is to forget a ``\ref`` or ``\label`` in front
-of a label so that the label gets spellchecked.  This may give rise to
-strange words flagged as misspelled.
-
-How to control what is stripped
--------------------------------
-
-The spellcheck function loads a file .strip, if present, with
-possibly three lists that defines what is being stripped away
-in ``tmp_stripped_*`` files:
-
-  * ``environments``, holding begin-end pairs of environments that
-    should be entirely removed from the text.
-  * ``replacements``, holding (from, to) pairs or (from, to, regex-flags)
-    triplets for substituting text.
-  * ``common_typos``, holding typical wrong spellings of words.
-
-execfile is applied to .strip to execute the definition of the lists.
-
-""")
+    print('Usage:\n'
+          'doconce spellcheck <file1>[.do.txt] <file2>[.do.txt] ...  # use .dict4spell.txt\n'
+          'doconce spellcheck -d .mydict.txt <file1>.do.txt <file2>.do.txt ...\n'
+          '\n'
+          'Spellcheck of files via ispell (but problematic parts are removed from the\n'
+          'files first).\n'
+          '\n'
+          'Output:\n'
+          '\n'
+          'misspellings.txt~: dictionary of potentially new accepted words, based on all\n'
+          'the current misspellings.\n'
+          '\n'
+          'new_dictionary.txt~: suggested new dictionary, consisting of the old and all new misspellings\n'
+          '(if they can be accepted).\n'
+          '\n'
+          'tmp_stripped_file1.do.txt: the original files are stripped off for various constructs that cause trouble\n'
+          'in spelling and the stripped text is found in files with a filename prefix tmp_stripped_ (this file can \n'
+          'be checked for spelling and grammar mistakes in MS Word, for instance, but a better method might be to \n'
+          'translate the entire DocOnce document to HTML and import that HTML code into Word.)\n'
+          '\n'
+          'Usage\n'
+          '-----\n'
+          '\n'
+          'For a new project, do the points below for initializating a new accepted personal dictionary for \n'
+          'this project. Thereafter, the process is automated: misspellings.txt~ should be empty if there are \n'
+          'no new misspellings.\n'
+          "tmp_misspelled*~ are made for each file tested with the file's misspelled words.\n"
+          '\n'
+          'For each file:\n'
+          '\n'
+          '* Run spellcheck.py without a dictionary or with a previous dictionary:\n'
+          '  doconce spellcheck <file> or doconce spellcheck -d .mydict.txt <file>\n'
+          '  (default dictionary file is .dict4spell.txt)\n'
+          '* Check misspelled.txt~ for misspelled words. Change wrong words.\n'
+          '* Rerun. If all words in misspelled.txt are acceptable, copy new_dictionary.txt to .dict4spell.txt \n'
+          '(or another name)\n'
+          '* Optional: import tmp_stripped_text.txt into MS Word for grammar check.\n'
+          '* Remove tmp_* and *~ files\n'
+          '\n'
+          'The next time one can run::\n'
+          '\n'
+          'spellcheck.py <file>*                   # use .dict4spell.txt\n'
+          'spellcheck.py -d .mydict.txt <file>*\n'
+          '\n'
+          'misspellings.txt~ should ideally be empty if there are no (new) spelling errors. One can check \n'
+          'that the file is empty or check the $? variable on Unix since this prorgram exits with 1 when spelling\n'
+          'errors are found in any of the tested files::\n'
+          '\n'
+          '# Run spellcheck\n'
+          'doconce spellcheck *.do.txt\n'
+          'if [ $? -ne 0 ]; then exit; fi\n'
+          '\n'
+          '\n'
+          'How to correct misspellings\n'
+          '---------------------------\n'
+          '\n'
+          'Some misspellings can be hard to find if the word is strange (like "emp", for instance). Then invoke \n'
+          '``tmp_stripped_text.txt``, which is the stripped version of the text file being  spellchecked. All \n'
+          'references, labels, code segments, etc., are removed in this stripped file. \n'
+          'Run ispell on the file:\n'
+          '\n'
+          'ispell -l -p.dict4spell.txt tmp_stripped_text.txt\n'
+          '\n'
+          'ispell will prompt you for the misspellings and show the context. A common error in latex is to \n'
+          r"forget a ``\ref`` or ``\label`` in front of a label so that the label gets spellchecked. "
+          '\nThis may give rise to strange words flagged as misspelled.\n'
+          '\n'
+          'How to control what is stripped\n'
+          '-------------------------------\n'
+          '\n'
+          'The spellcheck function loads a file .strip, if present, with possibly three lists that defines\n'
+          'what is being stripped away in ``tmp_stripped_*`` files:\n'
+          '\n'
+          '* ``environments``, holding begin-end pairs of environments that should be entirely removed from the text.\n'
+          '* ``replacements``, holding (from, to) pairs or (from, to, regex-flags) triplets for substituting text.\n'
+          '* ``common_typos``, holding typical wrong spellings of words.\n'
+          '\n'
+          'execfile is applied to .strip to execute the definition of the lists.\n')
 
 
 def spellcheck():
@@ -4024,10 +4125,13 @@ def spellcheck():
     _spellcheck_all(filenames, language=language, spellchecker=spellchecker, newdict='misspellings.txt~', remove_multiplicity=False,
                     dictionaries=dictionary, verbose=verbose)
 
+
 def _usage_ref_external():
-    print('doconce ref_external dofile [pubfile --skip_chapter]')
-    print('Must give pubfile if no BIBFILE in dofile.do.txt')
-    print('--skip_chapter avoids substitution of Chapter ref{} -> refch[Chapter ...][][].')
+    print('Usage:\n'
+          'doconce ref_external <file>[.do.txt] [pubfile --skip_chapter]\n\n'
+          'Must give pubfile if no BIBFILE in <file>[.do.txt]\n'
+          '--skip_chapter avoids substitution of Chapter ref{} -> refch[Chapter ...][][].')
+
 
 def ref_external():
     """
@@ -4300,14 +4404,15 @@ def ref_external():
             f.write("' $files\n\n")
     f.close()
 
+
 def _usage_latex_problems():
-    print('doconce latex_problems mydoc.log [overfull-hbox-limit --texcode]')
-    print(r"""
-Interpret the .log file and write out latex problems related to
-undefined references, multiply defined labels, and overfull hboxes.
-The lower limit for overfull hboxes can be specified as an integer.
---texcode causes the problematic lines in overfull hboxes to be printed.
-""")
+    print('Usage:\n'
+          'doconce latex_problems <file>[.log] [overfull-hbox-limit --texcode]\n\n'
+          'Interpret the .log file and write out latex problems related to\n'
+          'undefined references, multiply defined labels, and overfull hboxes.\n'
+          'The lower limit for overfull hboxes can be specified as an integer.\n'
+          '--texcode causes the problematic lines in overfull hboxes to be printed.\n')
+
 
 def latex_problems():
     if len(sys.argv) < 2:
@@ -4387,7 +4492,9 @@ def latex_problems():
 
 
 def _usage_grep():
-    print('doconce grep FIGURE|MOVIE|CODE doconce-file')
+    print('Usage:\n'
+          'doconce grep (FIGURE | MOVIE | CODE) <file>[.do.txt]')
+
 
 def grep():
     if len(sys.argv) < 3:
@@ -4421,10 +4528,13 @@ def grep():
     filenames = list(set(filenames))  # remove multiple filenames
     print(' '.join(filenames))
 
+
 def _usage_capitalize():
-    print('doconce capitalize [-d file_with_cap_words] doconce-file')
-    print('list of capitalized words can also be in .dict4cap.txt')
-    print('(typically, Python, Unix, etc. must be capitalized)')
+    print('Usage:\n'
+          'doconce capitalize [-d file_with_cap_words] <file>[.do.txt]\n'
+          'list of capitalized words can also be in .dict4cap.txt\n'
+          '(typically, Python, Unix, etc. must be capitalized)')
+
 
 def capitalize():
     if len(sys.argv) >= 2 and sys.argv[1] == '-d':
@@ -4530,6 +4640,7 @@ def capitalize():
             print(new)
             print()
 
+
 def _capitalize(filestr, cap_words, cap_words_fix):
     pattern1 = r'^\s*(={3,9})(.+?)(={3,9})'  # sections
     pattern2 = r'^__(.+?[.:?;!])__'       # paragraphs
@@ -4605,10 +4716,11 @@ def _capitalize(filestr, cap_words, cap_words_fix):
 
 
 def _usage_md2html():
-    print('Usage: doconce md2html doconce-file')
-    print('Make HTML from pandoc-exteded Markdown')
-    print('(.html file from .md pandoc file)')
-    print('The purpose is to fix the HTML code with full MathJax support.')
+    print('Usage:\n'
+          'doconce md2html <file>[.do.txt]\n\n'
+          'Make HTML from pandoc-exteded Markdown (.html file from .md pandoc file)\n'
+          'The purpose is to fix the HTML code with full MathJax support.')
+
 
 def md2html():
     """
@@ -4670,10 +4782,11 @@ MathJax.Hub.Config({
 
 
 def _usage_md2latex():
-    print('Usage: doconce md2latex doconce-file')
-    print('Make LaTeX from pandoc-exteded Markdown')
-    print('(.tex file from .md file).')
-    print('The purpose is to fix the LaTeX code so it compiles.')
+    print('Usage:\n'
+          'doconce md2latex <file>[.do.txt]\n\n'
+          'Make LaTeX from pandoc-exteded Markdown (.tex file from .md file).\n'
+          'The purpose is to fix the LaTeX code so it compiles.')
+
 
 def md2latex():
     """
@@ -4748,14 +4861,16 @@ def insertdocstr():
     raw plain text appears in the final basename.py file (this is suitable
     for Pydoc, for instance).
 
-    Usage: doconce insertdocstr format root [preprocessor options]
+    Usage:
+    doconce insertdocstr format root [preprocessor options]
     """
 
     try:
         format = sys.argv[1]
         root = sys.argv[2]
     except:
-        print('Usage: doconce insertdocstr format root [preprocessor options]')
+        print('Usage:\n'
+              'doconce insertdocstr format root [preprocessor options]')
         sys.exit(1)
 
     global doconce_program
@@ -4797,6 +4912,7 @@ def _preprocess_all_files(rootdir, options=''):
 
     os.path.walk(rootdir, _treat_a_dir, None)
 
+
 def _run_doconce(filename_doconce, format):
     """
     Run doconce format filename_doconce.
@@ -4823,6 +4939,7 @@ def _run_doconce(filename_doconce, format):
     os.rename(out_filename, new_filename)
     print('(renamed %s to %s for possible inclusion in doc strings)\n' % (out_filename, new_filename))
 
+
 def _walker_doconce(arg, dir, files):
     format = arg
     # we move to the dir:
@@ -4832,6 +4949,7 @@ def _walker_doconce(arg, dir, files):
         if f[-7:] == '.do.txt':
             _run_doconce(f, format)
     os.chdir(origdir)
+
 
 def _run_preprocess4includes(filename_dotp_py, options=''):
     pyfile = filename_dotp_py[:-5] + '.py'
@@ -4843,6 +4961,7 @@ def _run_preprocess4includes(filename_dotp_py, options=''):
     except subprocess.CalledProcessError as e:
         raise OSError('Could not run\n%s\nin %s\n%s\n\n\n' % \
               (cmd, os.getcwd(), e.output))
+
 
 def _walker_include(arg, dir, files):
     options = arg
@@ -4877,6 +4996,7 @@ def which(program):
 # subst_* below must be global because local functions in _latex2doconce
 # disable the use of the important exec(f.read()) statement.
 
+
 def subst_author_latex2doconce(m):
     author_str = m.group('subst')
     authors = author_str.split(r'\and')
@@ -4896,12 +5016,14 @@ def subst_author_latex2doconce(m):
             authors[i] += ' at ' + institutions[i]
     return '\n'.join(authors)
 
+
 def subst_minted_latex2doconce(m):
     lang = m.group(1)
     if lang in minted2bc:
         return '!bc ' + minted2bc[lang]
     else:
         return '!bc'
+
 
 def subst_paragraph_latex2doconce(m):
     title = m.group(1)
@@ -4913,12 +5035,14 @@ def subst_paragraph_latex2doconce(m):
 global footnote_counter
 footnote_counter = 0
 
+
 def subst_footnote_latex2doconce(m):
     text = m.group(1)
     global footnote_counter
     footnote_counter += 1
     return '[^footnote%d][^footnote%d]: %s' % \
            (footnote_counter, footnote_counter, text)
+
 
 def _latex2doconce(filestr):
     """Run latex to doconce transformations on filestr."""
@@ -5525,6 +5649,7 @@ def _latex2doconce(filestr):
 
     return filestr
 
+
 def latex2doconce():
     """
     Apply transformations to a latex file to help translate the
@@ -5551,26 +5676,31 @@ be lost in the translation - in seldom cases.)
     print(filestr)  # final output
 
 
+def _usage_html2doconce():
+    print('Usage:\n'
+          'doconce html2doconce <file.do.txt>\n\n'
+          'Apply transformations to an html file to help translate the document into DocOnce format.')
+
+
 def html2doconce():
     """
     Apply transformations to an html file to help translate the
     document into DocOnce format.
     """
-    print(r"""# #ifdef HTML2DOCONCE
-This is the result of the doconce htmldoconce program.
-The translation from HTML is just a helper. The text must
-be carefully examined! (Be prepared that some text might also
-be lost in the translation - in seldom cases.)
-""")
-
+    if len(sys.argv) < 2:
+        _usage_html2doconce()
+        sys.exit(0)
+    print('# #ifdef HTML2DOCONCE\n'
+          'This is the result of the doconce htmldoconce program.\n'
+          'The translation from HTML is just a helper. The text must\n'
+          'be carefully examined! (Be prepared that some text might also\n'
+          'be lost in the translation - in seldom cases.)\n\n')
     filename = sys.argv[1]
     f = open(filename, 'r')
     filestr = f.read()
     f.close()
     filestr = _html2doconce(filestr)
-
     print('# #endif')   # end of intro with warnings etc.
-
     print(filestr)  # final output to stdout
 
 
@@ -5619,6 +5749,13 @@ def _html2doconce(filestr):
 
     return filestr
 
+
+def _usage_latex_dislikes():
+    print('Usage:\n'
+          'doconce latex_dislikes <file>\n\n'
+          'check if there are problems with translating latex to doconce')
+
+
 def latex_dislikes():
     """
     Report constructions in latex that will not translate to doconce
@@ -5636,6 +5773,9 @@ def latex_dislikes():
         are defined.
       * Do not use `description` lists.
     """
+    if len(sys.argv) < 2:
+        _usage_latex_dislikes()
+        sys.exit(0)
     filename = sys.argv[1]
     f = open(filename, 'r')
     filestr = f.read()
@@ -5689,13 +5829,12 @@ def latex_dislikes():
                 if envir in begin_likes:
                     pass # fine!
                 elif envir in begin_ok:
-                    print(r"""
-Found \\begin{%s}, which can be handled, but it is
-recommended to avoid this construction.""" % envir)
+                    print('\n'
+                          r"Found \\begin{%s}, which can be handled, but it is recommended to avoid "
+                          r"this construction." % envir)
                 else:
-                    print(r"""
-Found \\begin{%s}, which will not carry over to DocOnce
-and other formats.""" % envir)
+                    print('\n'
+                          r"Found \\begin{%s}, which will not carry over to DocOnce and other formats." % envir)
                     # Could have message here (begin_messages) that
                     # guide rewrites, e.g., lstlisting etc.
                 print(line + '\n')
@@ -5705,9 +5844,12 @@ and other formats.""" % envir)
                 print(message)
                 print(line + '\n')
 
+
 def _usage_ipynb2doconce():
-    print('doconce ipynb2doconce notebook.ipynb [--cell_delimiter]')
-    print('translate IPython/Jupyter notebooks to doconce')
+    print('Usage:\n'
+          'doconce ipynb2doconce notebook.ipynb [--cell_delimiter]\n\n'
+          'Translate IPython/Jupyter notebooks to doconce')
+
 
 def ipynb2doconce():
     if len(sys.argv) < 2:
@@ -6027,8 +6169,11 @@ class DocOnceLexer(RegexLexer):
     def analyse_text(text):
         True
 
+
 def _usage_pygmentize():
-    print('Usage: doconce pygmentize doconce-file [pygments style]')
+    print('Usage:\n'
+          'doconce pygmentize <file>[.do.txt] [pygments-style]')
+
 
 def pygmentize():
     """
@@ -6056,22 +6201,22 @@ def pygmentize():
     f = open(filename + '.html', 'w');  f.write(text);  f.close()
     print('pygmentized doconce code written to %s.html' % filename)
 
+
 def _usage_makefile():
-    print('Usage:   doconce makefile doconce-file [html pdflatex latex sphinx gwiki pandoc ipynb deck reveal beamer ...]')
-    print(r"""Example: doconce makefile mydoc.do.txt html sphinx'
+    print('Usage:\n'
+          'doconce makefile <file>[.do.txt] [html pdflatex latex sphinx gwiki pandoc ipynb deck reveal beamer ...]\n\n'
+          'Example:\n'
+          'doconce makefile <file>[.do.txt] html sphinx\n\n'
+          'A script make.py is generated with the basic steps for running a\n'
+          'spellcheck on .do.txt files followed by commands for producing\n'
+          'output in various formats (in the sequence specified on the command\n'
+          'line). If no formats are specified, html, pdflatex, and sphinx are\n'
+          'produced.\n'
+          'make.py is a template: edit to set the desired options for compiling\n'
+          'to the various formats.\n'
+          'make.py autogenerates a unix shell script with all commands: you may\n'
+          'use this shell script instead of make.py.\n')
 
-A script make.py is generated with the basic steps for running a
-spellcheck on .do.txt files followed by commands for producing
-output in various formats (in the sequence specified on the command
-line). If no formats are specified, html, pdflatex, and sphinx are
-produced.
-
-make.py is a template: edit to set the desired options for compiling
-to the various formats.
-
-make.py autogenerates a unix shell script with all commands: you may
-use this shell script instead of make.py.
-""")
 
 def makefile():
     """Generate a generic (Python) makefile for compiling doconce files."""
@@ -6560,15 +6705,14 @@ if __name__ == '__main__':
 
 
 def _usage_fix_bibtex4publish():
-    print('Usage: doconce fix_bibtex4publish fil1e.bib file2.bib ...')
-    print(r"""
-Fix a bibtex file so that the values are enclosed by braces (only)
-and publish can import the data.
-""")
+    print('Usage:\n'
+          'doconce fix_bibtex4publish <fil1e.bib> <file2.bib> ...\n\n'
+          'Fix a bibtex file so that the values are enclosed by braces (only) and publish can import the data.')
+
 
 def fix_bibtex4publish():
     """Edit BibTeX files so that publish can import them."""
-    if len(sys.argv) < 1:
+    if len(sys.argv) < 2:
         _usage_fix_bibtex4publish()
         sys.exit(0)
 
@@ -6650,8 +6794,11 @@ def fix_bibtex4publish():
         f.writelines(lines)
         f.close()
 
+
 def _usage_list_fig_src_files():
-    print('Usage: doconce list_fig_src_files *.do.txt')
+    print('Usage:\n'
+          'doconce list_fig_src_files *.do.txt')
+
 
 def list_fig_src_files():
     """
@@ -6684,7 +6831,9 @@ def list_fig_src_files():
 
 
 def _usage_csv2table():
-    print('Usage: doconce csv2table somefile.csv [--headings=clr --columns=rrl --delimiter=;] > outfile')
+    print('Usage:\n'
+          'doconce csv2table <file.csv> [--headings=clr --columns=rrl --delimiter=;] > <outfile>')
+
 
 def csv2table():
     """Convert a csv file to a DocOnce table."""
@@ -6773,6 +6922,7 @@ _diff_programs = {
     'tkdiff.tcl': ('https://sourceforge.net/projects/tkdiff/', 'not in Debian')
     }
 
+
 def _missing_diff_program(program_name):
     print(program_name, 'is not installed.')
     print('see', _diff_programs[program_name][0])
@@ -6781,11 +6931,13 @@ def _missing_diff_program(program_name):
               _diff_programs[program_name][1])
     sys.exit(1)
 
+
 def _usage_diff():
-    print('Usage: doconce diff oldfile newfile [diffprog]')
-    print('diffprogram may be difflib (default),')
-    print('pdiff, diff, diffuse, kdiff3, xxdiff, meld, latexdiff')
-    print('Output in diff.*')
+    print('Usage:\n'
+          'doconce diff oldfile newfile [<diffprog>]\n\n'
+          '<diffprog> may be difflib (default), pdiff, diff, diffuse, kdiff3, xxdiff, meld, latexdiff\n'
+          'Output in diff.*')
+
 
 def diff():
     """Find differences between two files."""
@@ -6815,6 +6967,7 @@ def diff():
 
     else:
         diff_files(file1, file2, diffprog)
+
 
 def pydiff(files1, files2, n=3, prefix_diff_files='tmp_diff_'):
     """
@@ -6873,6 +7026,7 @@ def pydiff(files1, files2, n=3, prefix_diff_files='tmp_diff_'):
             os.remove(filename_plain)
             os.remove(filename_html)
     return diff_files  # empty if no differences
+
 
 def check_diff(diff_file):
     size = os.path.getsize(diff_file)
@@ -6954,8 +7108,11 @@ def diff_files(files1, files2, program='diff'):
             print(program, 'not supported')
             _abort()
 
+
 def _usage_gitdiff():
-    print('Usage: doconce gitdiff file1 file2 file3')
+    print('Usage:\n'
+          'doconce gitdiff <file1> <file2> <file3>')
+
 
 def gitdiff():
     """Make diff of newest and previous version of files (under Git)."""
@@ -6984,16 +7141,16 @@ def gitdiff():
             print('doconce diff', old_filename, filename)
             #pydiff(filenames, old_files)
 
-def _usage_extract_exercises():
-    print('Usage: doconce extract_exercises tmp_mako__mydoc.do.txt "--filter=keyword 1;keyword 2; some key word" --exercise_numbering=chapter --examples_as_exercises')
-    print(r"""
-Extract exercises to a separate document. Inherit numbering from parent
-document.
 
-Must use tmp_mako__*.do.txt as file to have includes in place.
-Note: extracting exercises may create a need for
-generalized references to the original document (ref[][][]).
-""")
+def _usage_extract_exercises():
+    print('Usage:\n'
+          'doconce extract_exercises tmp_mako__<file>[.do.txt] "--filter=keyword 1;keyword 2; some key word" \\\n'
+          '--exercise_numbering=chapter --examples_as_exercises\n\n'
+          'Extract exercises to a separate document. Inherit numbering from parent document.\n'
+          'Must use tmp_mako__*.do.txt as file to have includes in place.\n'
+          'Note:\n'
+          'extracting exercises may create a need for generalized references to the original document (ref[][][]).\n')
+
 
 def extract_exercises():
     if len(sys.argv) < 2:
