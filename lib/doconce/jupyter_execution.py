@@ -228,6 +228,9 @@ def process_code_blocks(filestr, code_style, format):
                 # Code will be formatted later
                 current_code += lines[i] + "\n"
                 lines[i] = ""
+        ind=safe_join(lines[:i + 1], delimiter='\n').find('!bc latex')
+        if ind>0:
+            print(ind, lines[i-3:i+1])
 
     if option("execute"):
         stop(kernel_client)
