@@ -794,7 +794,7 @@ def latex_code(filestr, code_blocks, code_block_types,
     # Add pgf package if we have pgf or tikz files
     if re.search(r'input\{.+\.pgf\}', filestr):
         filestr = re.sub(r'usepackage(.*?){graphicx}',
-                         'usepackage\g<1>{graphicx}\n\\usepackage{pgf}',
+                         r'usepackage\g<1>{graphicx}\n\\usepackage{pgf}',
                          filestr)
     if re.search(r'input\{.+\.tikz\}', filestr):
         tikz_libs_str = ''

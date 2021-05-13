@@ -3493,6 +3493,7 @@ The second argument is optional and can be either `cod` or `pro`. By default, `p
 |  cy           | Cython                      |
 |  rb           | Ruby                        |
 |  r            | R                           |
+|  jl           | julia                       |
 |  pyshell      | interactive Python shell    |
 |  ipy          | interactive IPython session |
 |  pysc         | interactive Python SageMathCell in the html format |
@@ -3520,11 +3521,14 @@ the `sphinx code-blocks` comments for Sphinx (see below).
 
 === Executable and Non-Executable Code ===
 
-The `ipynb` and `matlabnb` formats and `doconce jupyterbook` create notebooks where computer code can be executed by the end user. The `--execute` option allows the compiler to execute all code during compilation, for example: 
+The `ipynb` and `matlabnb` formats and `doconce jupyterbook` create notebooks where computer code can be executed by the end user. The `--execute` option allows the compiler to execute code during compilation, for example: 
 
 !bc do
 doconce format ipynb mydoc.do.txt --execute
 !ec
+
+Execution of code blocks are supported in the following programming languages: Python 3, Bash, Julia, R. 
+For these programming languages, DocOnce tries to identify and use any available "Jupyter kernel": "https://github.com/jupyter/jupyter/wiki/Jupyter-kernels". In this way different code blocks can share the same scope. If jupyter kernel is not installed, DocOnce executes each code block individually.
 
 The postfix arguments override the effect of `--execute` at the code block level. 
 The `-t` postfix shows code rendered as text, i.e. code that is only meant to be displayed. 

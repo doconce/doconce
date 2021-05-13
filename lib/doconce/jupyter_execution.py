@@ -3,8 +3,8 @@ from __future__ import division
 from __future__ import unicode_literals
 
 import os
-
-from jupyter_client import KernelManager
+import subprocess
+from jupyter_client import KernelManager, kernelspec
 from nbformat.v4 import output_from_msg
 from . import misc
 try:
@@ -14,121 +14,187 @@ except ImportError:
 import base64, uuid
 import regex as re
 from .misc import errwarn, _abort, option
-from .globals import envir2pygments
+from .globals import envir2syntax, syntax_executable
 from .common import safe_join, get_code_block_args
+
+
 class JupyterKernelClient:
-    def __init__(self):
-        self.manager = KernelManager(kernel_name='python3')
+    """Create and start a Jupyter kernel in a programming language.
+
+    Use the jupyter-client API to create and start a jupyter kernel, which can be used to run code.
+    The input programming language is searched between the list of installed Jupyter kernels.
+    .. seealso::
+        - jupyter-client: https://jupyter-client.readthedocs.io/en/latest/index.html
+        - Jupyter kernels: https://github.com/jupyter/jupyter/wiki/Jupyter-kernels
+    .. note::
+        - Install the IJulia Jupyter kernel with `using Pkg; Pkg.add("IJulia");Pkg.build("IJulia")` in julia
+        - Uninstall IJulia: `Pkg.rm("IJulia")` in julia, then `jupyter kernelspec uninstall mykernel`
+        - Install the bash kernel: https://github.com/takluyver/bash_kernel
+        - Install the IR kerneld for R: https://irkernel.github.io/installation/
+        after upgrading to R 3.4+: https://github.com/duckmayr/install-update-r-on-linux
+    """
+    def __init__(self, syntax):
+        """Initialize the class by creating and starting a Jupyter kernel
+
+        :param str syntax: programming language of the Jupyter kernel
+        """
+        kernel_name = self.__find_kernel_name(syntax)
+        self.kernel_name = kernel_name
+        self.manager = KernelManager(kernel_name=kernel_name)
+        if not self.kernel_name:
+            return
         self.kernel = self.manager.start_kernel()
         self.client = self.manager.client()
         self.client.start_channels()
 
-def stop(kernel_client):
-    kernel_client.client.stop_channels()
-    kernel_client.manager.shutdown_kernel()
+    def is_alive(self):
+        """Check if the kernel process is running
 
+        :return: True or False
+        :rtype: bool
+        """
+        return self.manager.is_alive()
 
-def run_cell(kernel_client, source, timeout=120):
-    if misc.option('verbose-execute'):
-        print("Executing cell:\n{}\nExecution in\n{}\n".format(source, os.getcwd()))
+    def __find_kernel_name(self, syntax):
+        """Internal function to searched a Jupyter kernel between the list of
+        Jupyter kernels installed.
 
-    # Adapted from nbconvert.ExecutePreprocessor
-    # Copyright (c) IPython Development Team.
-    # Distributed under the terms of the Modified BSD License.
-    msg_id = kernel_client.client.execute(source)
-    # wait for finish, with timeout
-    while True:
-        try:
-            msg = kernel_client.client.shell_channel.get_msg(timeout=timeout)
-        except Empty:
-            print("Timeout waiting for execute reply", timeout)
-            print("Tried to run the following source:\n{}".format(source))
-            try:
-                exception = TimeoutError
-            except NameError:
-                exception = RuntimeError
-            raise exception("Cell execution timed out")
-
-        if msg['parent_header'].get('msg_id') == msg_id:
-            if misc.option('verbose-execute'):
-                print("Wrong message id")
-            break
+        :param str syntax: programming language of the Jupyter kernel
+        :return: kernel name
+        :rtype: str or None
+        """
+        # Get Kernel specifications
+        # Kernel names look like: ['python3', 'ir', 'julia-1.6', 'bash']
+        # Kernel languages look like: ['python', 'R', 'julia', 'bash']
+        # Kernel display names look like: ['Python 3', 'R', 'Julia 1.6.1', 'Bash']
+        kernelspecmanager = kernelspec.KernelSpecManager()
+        kernel_specs = kernelspecmanager.get_all_specs()
+        kernel_name = [spec for spec in kernel_specs]
+        languages = [kernel_specs[spec]['spec']['language'].lower() for spec in kernel_specs]
+        display_names = [kernel_specs[spec]['spec']['display_name'] for spec in kernel_specs]
+        if syntax in languages:
+            return kernel_name[languages.index(syntax)]
         else:
-            if misc.option('verbose-execute'):
-                print("Not our reply")
-            continue
+            errwarn('*** No Jupyter kernels found for %s. The kernels available are:' % syntax)
+            errwarn('    %s' % ','.join(kernel_name))
+            errwarn('    To install Jupyter kernels see https://github.com/jupyter/jupyter/wiki/Jupyter-kernels')
+            return ''
 
-    outs = []
-    execution_count = None
+    def run_cell(self, source, timeout=120):
+        """Execute code in kernel
 
-    while True:
-        try:
-            # We've already waited for execute_reply, so all output
-            # should already be waiting. However, on slow networks, like
-            # in certain CI systems, waiting < 1 second might miss messages.
-            # So long as the kernel sends a status:idle message when it
-            # finishes, we won't actually have to wait this long, anyway.
-            msg = kernel_client.client.iopub_channel.get_msg(timeout=5)
-        except Empty:
-            if misc.option('verbose-execute'):
-                print("Timeout waiting for IOPub output")
-            break
-        if msg['parent_header'].get('msg_id') != msg_id:
-            if misc.option('verbose-execute'):
-                print("Not output from our execution")
-            continue
-
+        :param str source: code to run
+        :param int timeout: timeout
+        :return: execution output, execution count
+        :rtype: Tuple[List[str], int]
+        """
+        outs = []
+        execution_count = None
+        if 'client' not in self.__dir__():
+            outs, execution_count
         if misc.option('verbose-execute'):
-            print(msg)
+            print("Executing cell:\n{}\nExecution in\n{}\n".format(source, os.getcwd()))
 
-        msg_type = msg['msg_type']
-        content = msg['content']
+        # Adapted from nbconvert.ExecutePreprocessor
+        # Copyright (c) IPython Development Team.
+        # Distributed under the terms of the Modified BSD License.
+        msg_id = self.client.execute(source)
+        # wait for finish, with timeout
+        while True:
+            try:
+                msg = self.client.shell_channel.get_msg(timeout=timeout)
+            except Empty:
+                print("Timeout waiting for execute reply", timeout)
+                print("Tried to run the following source:\n{}".format(source))
+                try:
+                    exception = TimeoutError
+                except NameError:
+                    exception = RuntimeError
+                raise exception("Cell execution timed out")
 
-        # set the prompt number for the input and the output
-        if 'execution_count' in content:
-            execution_count = content['execution_count']
-            # cell['execution_count'] = content['execution_count']
-
-        if msg_type == 'status':
-            if content['execution_state'] == 'idle':
+            if msg['parent_header'].get('msg_id') == msg_id:
                 if misc.option('verbose-execute'):
-                    print("State is idle")
+                    print("Wrong message id")
                 break
             else:
                 if misc.option('verbose-execute'):
-                    print("Other status")
+                    print("Not our reply")
                 continue
-        elif msg_type == 'execute_input':
-            continue
-        elif msg_type == 'clear_output':
-            outs[:] = []
-            if misc.option('verbose-execute'):
-                print("Request to clear output")
-            continue
-        elif msg_type.startswith('comm'):
-            if misc.option('verbose-execute'):
-                print("Output start with 'comm'")
-            continue
 
-        display_id = None
-        if msg_type in {'execute_result', 'display_data', 'update_display_data'}:
-            display_id = msg['content'].get('transient', {}).get('display_id', None)
-            if msg_type == 'update_display_data':
+        while True:
+            try:
+                # We've already waited for execute_reply, so all output
+                # should already be waiting. However, on slow networks, like
+                # in certain CI systems, waiting < 1 second might miss messages.
+                # So long as the kernel sends a status:idle message when it
+                # finishes, we won't actually have to wait this long, anyway.
+                msg = self.client.iopub_channel.get_msg(timeout=5)
+            except Empty:
                 if misc.option('verbose-execute'):
-                    print("Update_display_data doesn't get recorded")
+                    print("Timeout waiting for IOPub output")
+                break
+            if msg['parent_header'].get('msg_id') != msg_id:
+                if misc.option('verbose-execute'):
+                    print("Not output from our execution")
                 continue
 
-        try:
-            out = output_from_msg(msg)
-        except ValueError:
-            print("unhandled iopub msg: " + msg_type)
+            if misc.option('verbose-execute'):
+                print(msg)
 
-        outs.append(out)
+            msg_type = msg['msg_type']
+            content = msg['content']
 
-        if misc.option('verbose-execute'):
-            print("Cell execution result:\n{}\n".format(out))
+            # set the prompt number for the input and the output
+            if 'execution_count' in content:
+                execution_count = content['execution_count']
+                # cell['execution_count'] = content['execution_count']
 
-    return outs, execution_count
+            if msg_type == 'status':
+                if content['execution_state'] == 'idle':
+                    if misc.option('verbose-execute'):
+                        print("State is idle")
+                    break
+                else:
+                    if misc.option('verbose-execute'):
+                        print("Other status")
+                    continue
+            elif msg_type == 'execute_input':
+                continue
+            elif msg_type == 'clear_output':
+                outs[:] = []
+                if misc.option('verbose-execute'):
+                    print("Request to clear output")
+                continue
+            elif msg_type.startswith('comm'):
+                if misc.option('verbose-execute'):
+                    print("Output start with 'comm'")
+                continue
+
+            display_id = None
+            if msg_type in {'execute_result', 'display_data', 'update_display_data'}:
+                display_id = msg['content'].get('transient', {}).get('display_id', None)
+                if msg_type == 'update_display_data':
+                    if misc.option('verbose-execute'):
+                        print("Update_display_data doesn't get recorded")
+                    continue
+
+            try:
+                out = output_from_msg(msg)
+            except ValueError:
+                print("unhandled iopub msg: " + msg_type)
+
+            outs.append(out)
+
+            if misc.option('verbose-execute'):
+                print("Cell execution result:\n{}\n".format(out))
+
+        return outs, execution_count
+
+    def stop(self):
+        """Shutdown the kernel."""
+        if 'client' in self.__dir__():
+            self.client.stop_channels()
+            self.manager.shutdown_kernel()
 
 
 # Helper functions to format code blocks, currently to the html, latex, and pdflatex formats
@@ -163,6 +229,63 @@ latex_caption = "   \\captionof{{figure}}{{{caption}}}\n"
 latex_label = "   \\label{{{label}}}\n"
 
 
+def start_kernel(syntax, kernel_client):
+    """Start a Jupyter kernel for a specified programming language
+
+    Given a programming language `syntax`, start a Jupyter kernel, if not already started.
+    The Jupyter kernels are started using the JupyterKernelClient class and inserted
+    in the input kernels dictionary in `kernels`
+    :param str syntax: the kernel's programming language
+    :param Dict[str -> JupyterKernelClient] kernel_client: dictionary of kernel names to
+    instances of (JupyterKernelClient)
+    :param Dict[str -> JupyterKernelClient] kernels: dictionary of JupyterKernelClient instances
+    """
+    if option("execute"):
+        if syntax in kernel_client:
+            # Already started
+            pass
+        else:
+            kernel_client[syntax] = JupyterKernelClient(syntax=syntax)
+            if syntax == 'python':
+                outputs, count = kernel_client[syntax].run_cell(
+                    "%matplotlib inline\n" +
+                    "from IPython.display import set_matplotlib_formats\n" +
+                    "set_matplotlib_formats('pdf', 'png')"
+                )
+
+
+def execute_subprocess(code, syntax, code_style='', format=None):
+    """WORK IN PROGRESS. Execute code using Python's subprocess
+
+    Execute code using Python's subprocess and return a formatted output
+    :param str code: code to execute
+    :param str syntax: programming language of the code
+    :param str code_style: optional typesetting of code blocks
+    :param str format: output formatting, one of ['html', 'latex', 'pdflatex']
+    :return: formatted_output or ''
+    :rtype: str
+    """
+    formatted_output = ''
+    execution_count = 0
+    basename = 'tmp_code'
+    syntax2suffix = dict(zip(envir2syntax.values(), envir2syntax.keys()))
+    syntax2run = {'bash': 'bash', 'r': 'Rscript', 'julia': 'julia', 'java': 'javac'}
+    if syntax in ['python', 'bash', 'julia', 'r']:  # add 'console'?
+        # Save to <file>.<envir>
+        filename_code = basename + '.' + syntax2suffix[syntax]
+        f = open(filename_code, 'w')
+        f.write(code)
+        f.close()
+        # Execute the file
+        result = subprocess.run(syntax2run[syntax] + ' ' + filename_code, stdout=subprocess.PIPE, shell=True)
+        result.stdout = result.stdout.decode("utf-8")
+        begin, end = formatted_code_envir("bash", code_style, format)
+        formatted_output = "\n{}\n{}{}".format(begin, result.stdout, end)
+    else:
+        print(formatted_output)
+    return formatted_output, execution_count
+
+
 def process_code_blocks(filestr, code_style, format):
     """Process a filestr with code blocks
 
@@ -177,27 +300,18 @@ def process_code_blocks(filestr, code_style, format):
     lines = filestr.splitlines()
     current_code_envir = None
     current_code = ""
-    kernel_client = None
-    if option("execute"):
-        kernel_client = JupyterKernelClient()
-        # This enables PDF output as well as PNG for figures.
-        # We only use the PDF when available, but PNG should be added as fallback.
-        outputs, count = run_cell(
-            kernel_client,
-            "%matplotlib inline\n" +
-            "from IPython.display import set_matplotlib_formats\n" +
-            "set_matplotlib_formats('pdf', 'png')"
-        )
-
+    kernel_client = {}
     for i in range(len(lines)):
         if lines[i].startswith('!bc'):
             LANG, codetype, postfix = get_code_block_args(lines[i])
             current_code_envir = LANG + codetype + postfix or 'dat'
-            prog = envir2pygments.get(LANG, '')
+            prog = envir2syntax.get(LANG, '')
             lines[i] = ""
         elif lines[i].startswith('!ec'):
             # See if code has to be shown and executed, then format it
             lines[i] = ''
+            # Determine if the code should be executed, shown, and format it
+            # The globals.py > syntax_executable var lists all supported languages
             formatted_code, comment, execute, show = format_code(current_code,
                                                                  current_code_envir,
                                                                  code_style,
@@ -207,17 +321,29 @@ def process_code_blocks(filestr, code_style, format):
             # Execute and/or show the code and its output
             formatted_output = ''
             if execute:
-                if envir2pygments.get(LANG, '') == 'python':
-                    formatted_output, execution_count_ = execute_code_block(
-                        current_code=current_code,
-                        current_code_envir=current_code_envir,
-                        kernel_client=kernel_client,
-                        format=format,
-                        code_style=code_style,
-                        caption=caption,
-                        label=label)
-            if show is not 'hide':
-                if show is not 'output':
+                # Note: the following if-statement is not necessary;
+                # get_execute_show returns execute=False for syntax not in syntax_executable
+                if envir2syntax.get(LANG, '') in syntax_executable:
+                    if prog not in kernel_client:
+                        start_kernel(prog, kernel_client)
+                    if kernel_client[prog].is_alive():
+                        formatted_output, execution_count_ = execute_code_block(
+                            current_code=current_code,
+                            current_code_envir=current_code_envir,
+                            kernel_client=kernel_client[prog],
+                            format=format,
+                            code_style=code_style,
+                            caption=caption,
+                            label=label)
+                    else:
+                        # This is not used yet because syntax_executable is used in format_code to set execute to False
+                        formatted_output, execution_count = execute_subprocess(code=current_code,
+                                           syntax=envir2syntax.get(LANG, ''),
+                                           code_style=code_style,
+                                           format=format)
+            # Format a code cell and its output
+            if show != 'hide':
+                if show != 'output':
                     execution_count += 1
                 formatted_code = format_cell(formatted_code, formatted_output, execution_count, show, format)
                 lines[i] = comment + formatted_code
@@ -228,12 +354,11 @@ def process_code_blocks(filestr, code_style, format):
                 # Code will be formatted later
                 current_code += lines[i] + "\n"
                 lines[i] = ""
-        ind=safe_join(lines[:i + 1], delimiter='\n').find('!bc latex')
-        if ind>0:
-            print(ind, lines[i-3:i+1])
 
-    if option("execute"):
-        stop(kernel_client)
+    # Stop all Jupyter kernels
+    #if option("execute"):
+    for kernel in kernel_client.values():
+        kernel.stop()
 
     # Remove empty lines for the html format
     if format in ['html']:
@@ -258,12 +383,15 @@ def execute_code_block(current_code, current_code_envir, kernel_client, format, 
     """
     text_out = ''
     execution_count = 0
+    # Execute the code
     if kernel_client is None:
         return text_out, execution_count
-    if current_code_envir.endswith('out'):      # Output cell
+    elif current_code_envir.endswith('out'):      # Output cell
+        # Skip executing the code
         outputs = [{'text': current_code}]
     else:
-        outputs, execution_count = run_cell(kernel_client, current_code)
+        outputs, execution_count = kernel_client.run_cell(current_code)
+    # Process the output from execution
     if current_code_envir.endswith("hid"):      # Hide cell output
         # Skip writing the output, except for ipynb
         if format != 'ipynb':
@@ -355,7 +483,7 @@ def get_execute_show(envir):
     :rtype: bool, str
     """
     (LANG, codetype, postfix) = envir
-    prog = envir2pygments.get(LANG, '')
+    prog = envir2syntax.get(LANG, '')
     execute = True
     show = 'format'
     if postfix == '-h':     # Show/Hide button (in html)
@@ -373,7 +501,9 @@ def get_execute_show(envir):
         execute = False
         show = 'text'
     # Only execute python
-    if prog not in ['python']:
+    if not option('execute'):
+        execute = False
+    elif prog not in syntax_executable:
         execute = False
     return execute, show
 
@@ -502,8 +632,8 @@ def latex_code_envir(envir, envir_spec):
         envir_tp = 'cod'
         envir = envir[:-3]
     # Mappings from DocOnce code environments to lstlisting names
-    # Capitalization does not seem to matter, so I modify envir2pygments
-    envir2lst = envir2pygments
+    # Capitalization does not seem to matter, so I modify envir2syntax
+    envir2lst = envir2syntax
     envir2lst.update({'rst': 'text', 'latex': 'TeX', 'js': 'Java', 'sys': 'bash', 'ipy': 'python', 'do': 'text'})
 
     if envir in ('ipy', 'do'):
@@ -515,14 +645,14 @@ def latex_code_envir(envir, envir_spec):
         try:
             get_lexer_by_name('ipy')
         except:
-            envir2pygments['ipy'] = 'python'
+            envir2syntax['ipy'] = 'python'
         try:
             get_lexer_by_name('doconce')
         except:
-            envir2pygments['do'] = 'text'
+            envir2syntax['do'] = 'text'
 
     if package == 'pyg':
-        begin = '\\begin{minted}[%s]{%s}' % (pyg_style, envir2pygments.get(envir, 'text'))
+        begin = '\\begin{minted}[%s]{%s}' % (pyg_style, envir2syntax.get(envir, 'text'))
         end = '\\end{minted}'
     elif package == 'lst':
         if envir2lst.get(envir, 'text') == 'text':

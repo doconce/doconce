@@ -206,7 +206,7 @@ def sphinx_code(filestr, code_blocks, code_block_types,
     # inside code (or TeX) blocks.
 
     # default mappings of !bc environments and pygments languages:
-    envir2pygments = dict(
+    envir2syntax = dict(
         cod='python', pro='python',
         pycod='python', cycod='cython',
         pypro='python', cypro='cython',
@@ -242,7 +242,7 @@ def sphinx_code(filestr, code_blocks, code_block_types,
         # turn specifications into a dictionary:
         for definition in defs_line.split():
             key, value = definition.split('=')
-            envir2pygments[key] = value
+            envir2syntax[key] = value
 
     # First indent all code blocks
 
@@ -358,24 +358,24 @@ def sphinx_code(filestr, code_blocks, code_block_types,
     # Check if we have custom pygments lexers
     if 'ipy' in code_block_types:
         if not has_custom_pygments_lexer('ipy'):
-            envir2pygments['ipy'] = 'python'
+            envir2syntax['ipy'] = 'python'
     if 'do' in code_block_types:
         if not has_custom_pygments_lexer('doconce'):
-            envir2pygments['do'] = 'text'
+            envir2syntax['do'] = 'text'
 
     # Make correct code-block:: language constructions
     legal_pygments_languages = get_legal_pygments_lexers()
     for key in set(code_block_types):
-        if key in envir2pygments:
-            if not envir2pygments[key] in legal_pygments_languages:
+        if key in envir2syntax:
+            if not envir2syntax[key] in legal_pygments_languages:
                 errwarn(('*** warning: %s is not a legal Pygments language (lexer)\n'
                          'found in line:\n'
                          '  %s\n\n'
-                         '    The \'text\' lexer will be used instead.\n') % (envir2pygments[key], defs_line))
-                envir2pygments[key] = 'text'
+                         '    The \'text\' lexer will be used instead.\n') % (envir2syntax[key], defs_line))
+                envir2syntax[key] = 'text'
 
         #filestr = re.sub(code_block_regex % key,
-        #                 '\n.. code-block:: %s\n\n' % envir2pygments[key], filestr,
+        #                 '\n.. code-block:: %s\n\n' % envir2syntax[key], filestr,
         #                 flags=re.MULTILINE)
 
         # Check that we have code installed to handle pyscpro
@@ -455,8 +455,8 @@ def sphinx_code(filestr, code_blocks, code_block_types,
                 if postfix == '-h':
                     show_hide = True
             # Use the standard sphinx code-block directive
-            if key in envir2pygments:
-                pygments_language = envir2pygments[key]
+            if key in envir2syntax:
+                pygments_language = envir2syntax[key]
             elif key in legal_pygments_languages:
                 pygments_language = key
             else:
