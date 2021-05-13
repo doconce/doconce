@@ -1407,7 +1407,7 @@ def ptex2tex():
               'rbcod', 'rb', 'xmlpro', 'xmlcod', 'xml', 'latexpro', 'latexcod', 'latex']
     # envirs is not longer used - we just read what the user has in the file
 
-    # Accept all envirs in envir2pygments, plus all
+    # Accept all envirs in envir2syntax, plus all
     # registered lexers in pygments
     from .common import get_legal_pygments_lexers
     ptex2tex_begin_pattern = r'^\\b([a-z0-9+_]+)$'
@@ -1439,7 +1439,7 @@ def ptex2tex():
                 # Fix value=minted and value=ans*:
                 # they need the language explicitly
                 if value == 'minted':
-                    envir2pygments = dict(
+                    envir2syntax = dict(
                         do='doconce',
                         pyshell='python',
                         py='python', cy='cython', f='fortran',
@@ -1461,42 +1461,42 @@ def ptex2tex():
                     try:
                         get_lexer_by_name('ipy')
                     except:
-                        envir2pygments['ipy'] = 'python'
+                        envir2syntax['ipy'] = 'python'
                     try:
                         get_lexer_by_name('doconce')
                     except:
-                        envir2pygments['do'] = 'text'
+                        envir2syntax['do'] = 'text'
 
                     legal_lexers = get_legal_pygments_lexers()
                     for user_envir in user_envirs:
-                        if user_envir in envir2pygments:
+                        if user_envir in envir2syntax:
                             pass
                         elif user_envir in legal_lexers:
-                            envir2pygments[user_envir] = user_envir
+                            envir2syntax[user_envir] = user_envir
 
                     if envir == 'envir':
                         leftmargin = '7' # mm
                         for arg in sys.argv[1:]:
                             if arg.startswith('--minted_leftmargin='):
                                 leftmargin = arg.split('=')[1]
-                        for lang in envir2pygments:
+                        for lang in envir2syntax:
                             # mathescape can be used with minted and lstlisting
                             # see https://tex.stackexchange.com/questions/149710/how-to-write-math-symbols-in-a-verbatim, minted can only have math in comments within the code
                             # but mathescape make problems with bash and $#
                             # (can perhaps be fixed with escapechar=... but
                             # I haven't found out)
                             if lang != 'sh':
-                                begin = '\\' + 'begin{minted}[fontsize=\\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=%smm]{' % leftmargin + envir2pygments[lang] + '}'
+                                begin = '\\' + 'begin{minted}[fontsize=\\fontsize{9pt}{9pt},linenos=false,mathescape,baselinestretch=1.0,fontfamily=tt,xleftmargin=%smm]{' % leftmargin + envir2syntax[lang] + '}'
                             else:
-                                begin = '\\' + 'begin{minted}[fontsize=\\fontsize{9pt}{9pt},linenos=false,baselinestretch=1.0,fontfamily=tt,xleftmargin=%smm]{' % leftmargin + envir2pygments[lang] + '}'
+                                begin = '\\' + 'begin{minted}[fontsize=\\fontsize{9pt}{9pt},linenos=false,baselinestretch=1.0,fontfamily=tt,xleftmargin=%smm]{' % leftmargin + envir2syntax[lang] + '}'
                             end = '\\' + 'end{minted}'
                             envir_user_spec.append((lang, begin, end))
                     else:
-                        for lang in envir2pygments:
+                        for lang in envir2syntax:
                             if envir.startswith(lang + 'cod') or \
                                envir.startswith(lang + 'pro'):
                                 begin = '\\' + 'begin{' + value + '}{' \
-                                        + envir2pygments[lang] + '}'
+                                        + envir2syntax[lang] + '}'
                                 end = '\\' + 'end{' + value + '}'
                                 envir_user_spec.append((envir, begin, end))
                 elif value.startswith('ans'):

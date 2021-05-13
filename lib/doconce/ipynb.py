@@ -637,7 +637,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     execution_count = 1
     kernel_client = None    # Placeholder for a JupyterKernelClient instance
     if option("execute"):
-        kernel_client = jupyter_execution.JupyterKernelClient()
+        kernel_client = jupyter_execution.JupyterKernelClient(syntax='python')
     editable_md = True      # Metadata for md text
     if option('ipynb_non_editable_text'):
         editable_md = False
@@ -753,7 +753,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
                '}')
     '''
     if option("execute"):
-        jupyter_execution.stop(kernel_client)
+        kernel_client.stop()
 
     return filestr
 
@@ -780,7 +780,7 @@ def process_ipynb_code_block(kernel_client, block, block_tp, cells, execution_co
         if block_tp != 'cell_execute_hidden':
             cells.append(cell)
         if option("execute"):
-            outputs, execution_count_out = jupyter_execution.run_cell(kernel_client, blockline)
+            outputs, execution_count_out = kernel_client.run_cell(blockline)
             cell.outputs = outputs
             if execution_count_out:
                 cell["execution_count"] = execution_count_out

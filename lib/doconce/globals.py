@@ -27,7 +27,7 @@ doconce_envirs = ['c', 't',                # verbatim and tex blocks
 # Mapping from LANG envir in Typesetting Styles to programming language
 # Typesetting Styles: !bc LANG[cod|pro][postfix]
 # NB get_legal_pygments_lexers in common.py
-envir2pygments = dict(
+envir2syntax = dict(
         bash='bash', sh='bash',
         pyshell='python', py='python', cy='cython', f='fortran',
         c='c', cpp='c++', rst='rst', swig='c++',
@@ -40,9 +40,13 @@ envir2pygments = dict(
         ipy='ipy', do='doconce',
         r='r', php='php',
         pyopt='python', pysc='python',
+        jl='julia'
     )
+# Programming languages for which `--execute` is supported using Jupyter kernels
+syntax_executable = ['python', 'bash', 'r', 'julia']
+
 ## Typesetting Styles: !bc LANG[cod|pro][postfix]
-LANG = list(envir2pygments.keys())
+LANG = list(envir2syntax.keys())
 # Additional envirs in the .ptex2tex.cfg file as of June 2012.
 # Recall that the longest names must come first to be substituted first e.g. bccod before bcc
 # Postfixes allowed on code blocks e.g. `pycod-e` and regex to catch them

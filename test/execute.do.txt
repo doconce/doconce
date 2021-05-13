@@ -6,18 +6,121 @@ Convert this document to `ipynb`, `latex` or `html` with e.g.:
 doconce format ipynb execute.do.txt --execute
 !ec
 
+======= Code blocks in different languages =======
+===== Python =====
+
+Python code
+
+!bc py
+for i in [1,2,3]:
+  print(i)
+!ec
+
+!bc py
+print(i)
+!ec
+
+===== Bash =====
+Bash code 
+
+!bc sh
+if [ 1 -eq 1 ] ; then echo 1; fi
+var_bash=10
+!ec
+
+!bc sh
+echo $var_bash
+!ec
+
+===== Julia =====
+
+Julia code
+
+!bc jl
+var_julia = 11
+print(var_julia)
+!ec
+
+!bc jl
+for n = 2:4
+  var_julia = var_julia + n
+end
+print(var_julia)
+!ec
+
+===== R =====
+
+R code
+
+!bc r
+x <- 1:3
+print(x)
+#pdf("plot.pdf")
+plot(x)
+#dev.off()
+!ec
+
+===== Other languages =====
+
+Then Cython (with -h option so it is hidden in html/sphinx):
+
+!bc cycod-h
+cpdef f(double x):
+    return x + 1
+!ec
+
+
+Java code
+!bc java
+for (int i = 0; i < 5; i++) {
+  System.out.println(i);
+}
+!ec
+
+Javascript code
+!bc js
+for (var x in [0,1,2]) {console.log(x)}
+!ec
+
+matlab code
+!bc 
+for i = 1:2:10
+  disp(A(i))
+end
+!ec
+
+html code
+!bc html
+<a href='test'></a>
+!ec
+  
+C code
+!bc c
+#include <stdio.h>
+
+int main() {
+  int i;
+
+  for (i = 1; i < 11; ++i)
+  {
+    printf("%d ", i);
+  }
+  return 0;
+}
+!ec
+
+
+======= Code block environments =======
+
+Hidden execution cells (`pyhid`, `pycod-e`) can be used to perform operations (e.g. imports, variable initializations) without showing any cell.  
+The `pyhid` environment executes and hides the cell in formats other than .ipynb:
+
+
+
 This is a normal python block using the `pycod` environment
 !bc pycod
 print('pycod')
 !ec
-
-This is a normal bash block using the `sh` environment
-!bc sh
-if [ 1 -eq 0 ] ; then echo 1; fi
-!ec
-
-Hidden execution cells (`pyhid`, `pycod-e`) can be used to perform operations (e.g. imports, variable initializations) without showing any cell.  
-The `pyhid` environment executes and hides the cell in formats other than .ipynb:
 
 !bc pyhid
 # This cell appears in ipynb but not in other formats

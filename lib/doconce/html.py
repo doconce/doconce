@@ -31,8 +31,8 @@ _file_collection_filename = '.%s_html_file_collection'
 
 # Mapping from LANG envir in Typesetting Styles to programming language
 # Typesetting Styles: !bc LANG[cod|pro][postfix]
-envir2pygments = globals.envir2pygments
-envir2pygments.update({'sys': 'text', 'cc': 'text', 'ccq': 'text'})
+envir2syntax = globals.envir2syntax
+envir2syntax.update({'sys': 'text', 'cc': 'text', 'ccq': 'text'})
 
 # From https://service.real.com/help/library/guides/realone/ProductionGuide/HTML/htmfiles/colors.htm:
 color_table = [
@@ -1094,10 +1094,6 @@ def html_code(filestr, code_blocks, code_block_types,
 
     filestr = insert_code_blocks(filestr, code_blocks, format, complete_doc=True, remove_hid=False)
 
-    # ... more code in latex
-    #l.966
-    #latex_code_style = interpret_latex_code_style()
-
     code_style = pygm_style
     filestr = jupyter_execution.process_code_blocks(filestr, code_style, format)
 
@@ -1623,12 +1619,12 @@ def format_code_html(code_block, code_block_type, code_style, postfix='', execut
         # https://github.com/sagemath/sagecell/blob/master/doc/embedding.rst
         formatted_code = html_sagecell % code_block
         execute = False
-    elif code_style is not 'off':
+    elif code_style != 'off':
         # Syntax highlighting with pygments
         # Get the code block's language
         language_ = 'text'
-        if LANG in envir2pygments:
-            language_ = envir2pygments[LANG]
+        if LANG in envir2syntax:
+            language_ = envir2syntax[LANG]
         elif LANG in get_legal_pygments_lexers():
             language_ = LANG
         # Typeset code with pygments
@@ -3516,10 +3512,10 @@ def get_pygments_style(code_block_types):
     if pygm is not None:
         if 'ipy' in code_block_types:
             if not has_custom_pygments_lexer('ipy'):
-                envir2pygments['ipy'] = 'python'
+                envir2syntax['ipy'] = 'python'
         if 'do' in code_block_types:
             if not has_custom_pygments_lexer('doconce'):
-                envir2pygments['do'] = 'text'
+                envir2syntax['do'] = 'text'
         if pygm_style is None:
             # Set sensible default values
             if option('html_style=', '').startswith('solarized'):

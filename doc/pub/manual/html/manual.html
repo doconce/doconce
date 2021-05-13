@@ -457,7 +457,7 @@
 <dd class="field-odd"><p>Hans Petter Langtangen, Kristian Gregorius Hustad</p>
 </dd>
 <dt class="field-even">Date</dt>
-<dd class="field-even"><p>Apr 23, 2021</p>
+<dd class="field-even"><p>May 13, 2021</p>
 </dd>
 </dl>
 <div class="admonition warning">
@@ -4871,11 +4871,11 @@ below or equal to 67 characters.</p>
 </pre></div>
 </div>
 <p>The first argument <code class="docutils literal notranslate"><span class="pre">LANG</span></code> can be one of the predefined environments explained in the table below or a custom one defined in the config file <code class="docutils literal notranslate"><span class="pre">.ptex2tex.cfg</span></code>.</p>
-<p>The second argument is optional can be  either <code class="docutils literal notranslate"><span class="pre">cod</span></code> or <code class="docutils literal notranslate"><span class="pre">pro</span></code>. By default, <code class="docutils literal notranslate"><span class="pre">pro</span></code> is used for complete programs, <code class="docutils literal notranslate"><span class="pre">cod</span></code> is for a code snippet.</p>
+<p>The second argument is optional and can be either <code class="docutils literal notranslate"><span class="pre">cod</span></code> or <code class="docutils literal notranslate"><span class="pre">pro</span></code>. By default, <code class="docutils literal notranslate"><span class="pre">pro</span></code> is used for complete programs, <code class="docutils literal notranslate"><span class="pre">cod</span></code> is for a code snippet.</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 12%" />
-<col style="width: 88%" />
+<col style="width: 17%" />
+<col style="width: 83%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>LANG</p></th>
@@ -4892,8 +4892,8 @@ below or equal to 67 characters.</p>
 <tr class="row-even"><td><p>dat</p></td>
 <td><p>data file/print out</p></td>
 </tr>
-<tr class="row-odd"><td><p>sh</p></td>
-<td><p>Unix shell</p></td>
+<tr class="row-odd"><td><p>bash, sh</p></td>
+<td><p>Unix shell (Bash)</p></td>
 </tr>
 <tr class="row-even"><td><p>c</p></td>
 <td><p>C</p></td>
@@ -4913,7 +4913,7 @@ below or equal to 67 characters.</p>
 <tr class="row-odd"><td><p>js</p></td>
 <td><p>Javascript</p></td>
 </tr>
-<tr class="row-even"><td><p>latex</p></td>
+<tr class="row-even"><td><p>latex, tex</p></td>
 <td><p>LaTeX</p></td>
 </tr>
 <tr class="row-odd"><td><p>html</p></td>
@@ -4924,6 +4924,12 @@ below or equal to 67 characters.</p>
 </tr>
 <tr class="row-odd"><td><p>rb</p></td>
 <td><p>Ruby</p></td>
+</tr>
+<tr class="row-even"><td><p>r</p></td>
+<td><p>R</p></td>
+</tr>
+<tr class="row-odd"><td><p>jl</p></td>
+<td><p>julia</p></td>
 </tr>
 <tr class="row-even"><td><p>pyshell</p></td>
 <td><p>interactive Python shell</p></td>
@@ -4979,10 +4985,12 @@ the <code class="docutils literal notranslate"><span class="pre">sphinx</span> <
 </div>
 <div class="section" id="executable-and-non-executable-code">
 <h4>Executable and Non-Executable Code<a class="headerlink" href="#executable-and-non-executable-code" title="Permalink to this headline">¶</a></h4>
-<p>The <code class="docutils literal notranslate"><span class="pre">ipynb</span></code> and <code class="docutils literal notranslate"><span class="pre">matlabnb</span></code> formats and <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">jupyterbook</span></code> create notebooks where computer code can be executed by the end user. The <code class="docutils literal notranslate"><span class="pre">--execute</span></code> option allows the compiler to execute all code during compilation, for example:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ipynb</span></code> and <code class="docutils literal notranslate"><span class="pre">matlabnb</span></code> formats and <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">jupyterbook</span></code> create notebooks where computer code can be executed by the end user. The <code class="docutils literal notranslate"><span class="pre">--execute</span></code> option allows the compiler to execute code during compilation, for example:</p>
 <div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span>doconce format ipynb mydoc.do.txt --execute
 </pre></div>
 </div>
+<p>Execution of code blocks are supported in the following programming languages: Python 3, Bash, Julia, R.
+For these programming languages, DocOnce tries to identify and use any available <a class="reference external" href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels">Jupyter kernel</a>. In this way different code blocks can share the same scope. If jupyter kernel is not installed, DocOnce executes each code block individually.</p>
 <p>The postfix arguments override the effect of <code class="docutils literal notranslate"><span class="pre">--execute</span></code> at the code block level.
 The <code class="docutils literal notranslate"><span class="pre">-t</span></code> postfix shows code rendered as text, i.e. code that is only meant to be displayed.
 Thereafter, the <code class="docutils literal notranslate"><span class="pre">out</span></code> postfix can be used to display code output as text. This combination is useful, for example, to display as text a code snippet followed by an error:</p>
@@ -4994,7 +5002,7 @@ ZeroDivisionError: division by zero
 <span class="k">!ec</span>
 </pre></div>
 </div>
-<p>All formats other than ipynb, matlabnb formats ignore the <code class="docutils literal notranslate"><span class="pre">-t</span></code> postfix.</p>
+<p>All formats other than ipynb, matlabnb, html and pdflatex formats ignore the <code class="docutils literal notranslate"><span class="pre">-t</span></code> postfix.</p>
 </div>
 <div class="section" id="hiding-code-blocks">
 <h4>Hiding code blocks<a class="headerlink" href="#hiding-code-blocks" title="Permalink to this headline">¶</a></h4>
@@ -9251,17 +9259,28 @@ the <code class="docutils literal notranslate"><span class="pre">doconce</span> 
 These are printed out by <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">format</span> <span class="pre">--help</span></code>. The output is listed
 here for convenience.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Terminal&gt; doconce format --help
+Usage:
+doconce format &lt;format&gt; &lt;file&gt;[.do.txt] [options]
 
-        doconce format X doconcefile
+Generate files in a certain output format from an input DocOnce file with .txt.do suffix
 
-        where X can be any of the formats: html, latex, pdflatex, rst, sphinx, plain, gwiki, mwiki, cwiki, pandoc, epytext.
+Formats supported:
 
+html latex pdflatex rst sphinx st epytext plain gwiki mwiki cwiki pandoc ipynb matlabnb
+
+
+Help Options:
+--help                              Show help options
+CMD --help                          Print the options for a doconce command `CMD`
+CMD --&lt;cmd-option&gt; --help           Print a specific command-line option &lt;cmd-option&gt; for doconce
+
+Options:
 --help                              Print all command-line options for doconce
---&lt;cmd-option&gt; --help               Print a specific command-line option &lt;cmd-option&gt; for doconce
+--output=...                        Output filename or file basename for `doconce format` commands.
 --debug                             Write a debugging file _doconce_debugging.log with lots of intermediate results
 --no_abort                          Do not abort the execution if syntax errors are found.
 --verbose=...                       Write progress of intermediate steps if they take longer than X seconds. 0: X=15 (default); 1: X=5; 2: X=0
---language=...                      Native language to be used: English (default), Norwegian, German, Basque, Arabic
+--language=...                      Native language to be used: English (default), Norwegian, German, French, Basque, Arabic, Italian
 --preprocess_include_subst          Turns on variable substitutions in # #include paths when running Preprocess: preprocess -i -DMYDIR=rn1 will lead to the string &quot;MYDIR&quot; being replaced by the value &quot;rn1&quot; in # #include &quot;...&quot; statements.
 --syntax_check=...                  Values: on/off. Turns on/off fix of illegal constructions and the syntax check (may be time consuming for large books).
 --skip_inline_comments              Remove all inline comments of the form [ID: comment].
@@ -9294,7 +9313,7 @@ here for convenience.</p>
 --pygments_html_style=...           Specify the minted/pygments style to be used for typesetting code in HTML. Default: default (other values: monokai, manni, rrt, perldoc, borland, colorful, murphy, trac, tango, fruity, autumn, emacs, vim, pastie, friendly, native, see pygmentize -L styles). none, no, off: turn off pygments to typeset computer code in HTML, use plain &lt;pre&gt; tags. highlight.js: use highlight.js syntax highlighting, not pygments.
 --pygments_html_linenos             Turn on line numbers in pygmentized computer code in HTML. (In LaTeX line numbers can be added via doconce subst or doconce replace such that the verbatim environments get the linenos=true parameter.)
 --xhtml                             Use BeautifulSoap to try to produce XHTML output. It inserts end tags (e.g. &lt;/p&gt;) and guesses where to do it.
---html_output=...                   Alternative basename of files associated with the HTML format.
+--html_output=...                   Obsolete: use --output.
 --html_style=...                    Name of theme for HTML style: plain, blueish, blueish2, bloodish, tactile-black, tactile-red, rossant solarized, solarized2_light, solarized2_dark, bootstrap, bootswatch, bootstrap_X (with  X=bloodish, blue, bluegray, brown, cbc, FlatUI, red), bootswatch_X (with X=cerulean, cosmo, flatly, journal, lumen, readable, simplex, spacelab, united, yeti (dark:) amelia, cyborg, darkly, slate, spruce, superhero (demos at bootswatch.com))
 --html_template=...                 Specify an HTML template with header/footer in which the doconce document is embedded. (Often preferred to run with --no_title)
 --no_title                          Comment out TITLE, AUTHOR, DATE. Often used with HTML templates.
@@ -9324,7 +9343,7 @@ here for convenience.</p>
 --html_quiz_button_text=...         Text on buttons for collapsing/expanding answers and explanations in quizzes (with bootstrap styles). Default: Empty (just pencil glyphion).
 --html_bootstrap_navbar=...         Turns the Bootstrap navigation bar on/off. Default: on.
 --html_bootstrap_jumbotron=...      Turns the Bootstrap jumbotron intro on/off and governs the size of the document title. Default: on. Other values: h2, off (h2 gives h2 heading instead of h1, off gives no jumbotron).
---html_bootstrap_navbar_links=...   Allows custom links in the navigation bar. Format: link|url;link|url;link|url . Example: &quot;--html_bootstrap_navbar_links=Google|https://google.com;hpl|https://folk.uio.no/hpl&quot;
+--html_bootstrap_navbar_links=...   Allows custom links in the navigation bar. Format: link|url;link|url;link|url. Example: &quot;--html_bootstrap_navbar_links=Google|https://google.com;hpl|https://folk.uio.no/hpl&quot;
 --html_figure_caption=...           Placement of figure caption: top (default) or bottom. (sidecap=True is another option, this can be set for individual figures, while --html_figure_caption controls the general caption placement of all figures.
 --html_figure_hrule=...             Set horizontal rule(s) above and/or below a figure. top: rule at top (default); none, off: no rules; bottom: rule at bottom; top+bottom: rule at top and bottom
 --html_copyright=...                Controls where to put copyright statements. everypage: in the footer of every page; titlepages or titlepage: in the footer of the titlepage only (default).
@@ -9401,14 +9420,14 @@ here for convenience.</p>
   yellowicon: box yellow icons and a default light yellow background;
   paragraph:  plain paragraph with boldface heading.
   Note: the colors in mdfbox and other boxes can customized.
---latex_admon_color=...             The color to be used as background in admonitions. A single value applies to all admons: either rgb tuple (--latex_admon_color=0.1,0.1,0.4) or saturated color (&#39;--latex_admon_color=yellow!5&#39; - note the quotes needed for bash).
+--latex_admon_color=...             The color to be used as background in admonitions. A single value applies to all admons: either rgb tuple (--latex_admon_color=0.1,0.1,0.4) or saturated color(&#39;--latex_admon_color=yellow!5&#39; - note the quotes needed for bash).
   Multiple values can be assigned, one for each admon (all admons must be specified): &#39;--latex_admon_color=warning:darkgreen!40!white;notice:darkgray!20!white;summary:tucorange!20!white;question:red!50!white;block:darkgreen!40!white&#39;   If --latex_admon=mdfbox, the specification above with color1!X!color2 will automatically trigger 2*X as the background color of the frametitle.
   There are predefined multiple values, e.g., --latex_admon_color=colors1 gives red warnings, blue notice, orange questions, green summaries and yellow blocks, automatically adjusted with darker frametitles.
   If --latex_admon=mdfbox, the background of the title and the color of the border of box can also be customized by direct editing. For example, a dark blue border and light blue title background is obtained by editing the .tex file as
   doconce replace &#39;linecolor=black,&#39; &#39;linecolor=darkblue,&#39; mydoc.tex
   doconce subst &#39;frametitlebackgroundcolor=.*?,&#39; &#39;frametitlebackgroundcolor=blue!5,&#39; mydoc.tex
   Actually, this particular (and common) edit is automatically done by the option --latex_admon_color=bluestyle
-  --latex_admon_color=yellowstyle (the latter has color yellow!5 instead and yellow!20 for the border)
+--latex_admon_color=yellowstyle (the latter has color yellow!5 instead and yellow!20 for the border)
 --latex_admon_title_no_period       By default, a period is added to title admons that do not have a period, question mark, or similar. This option prevents adding a period such that the title acts like a heading.
 --latex_admon_envir_map=...         Mapping of code envirs to new envir names inside admons, e.g., to get a different code typesetting inside admons. This is useful if admons have a special color and the color background of code blocks does not fit will with the color background inside admons. Then it is natural to use a different verbatim code style inside admons. If specifying a number, say 2, as in --latex_admon_envir_map=2, an envir like pycod gets the number appended: pycod2. One can then in --latex_code_style= or in doconce ptex2tex or ptex2tex specify the typesetting of pycod2 environments. Otherwise the specification must be a mapping for each envir that should be changed inside the admons: --latex_admon_envir_map=pycod-pycod_yellow,fpro-fpro2 (from-to,from-to,... syntax).
 --latex_subex_header_postfix=...    Default: ). Gives headers a), b), etc. Can be set to period, colon, etc.
@@ -9433,7 +9452,7 @@ here for convenience.</p>
 --without_hints                     Leave out hints from exercises.
 --exercise_solution=...             Typesetting of solutions: paragraph, admon, or quote.
 --wordpress                         Make HTML output for wordpress.com pages.
---tables2csv                        Write each table to a CSV file table_X.csv, where X is the table number (autonumbered in according to appearance in the DocOnce source file).
+--tables2csv                        Write each table to a CSV file table_X.csv, where X is the table number (autonumbered according to appearance in the DocOnce source file).
 --sections_up                       Upgrade all sections: sections to chapters, subsections to sections, etc.
 --sections_down                     Downgrade all sections: chapters to sections, sections to subsections, etc.
 --os_prompt=...                     Terminal prompt in output from running OS commands (the @@@OSCMD instruction). None or empty: no prompt, just the command; nocmd: no command, just the output. Default is &quot;Terminal&gt;&quot;.

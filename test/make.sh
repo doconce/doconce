@@ -41,12 +41,22 @@ EOF
 
 system doconce spellcheck -d .dict4spell.txt _testdoc.do.txt
 
+# jupyterbook
 system doconce jupyterbook testdoc --show_titles --sep=section --dest=$PWD --dest_toc=$PWD --examples_as_exercises --allow_refs_to_external_docs
 
 system doconce jupyterbook testdoc --show_titles --sep=section --sep_section=subsection --titles=README --examples_as_exercises --allow_refs_to_external_docs 
 
 system doconce jupyterbook testdoc --show_titles --sep=section --sep_section=subsection --dest=$PWD --dest_toc=$PWD --examples_as_exercises --allow_refs_to_external_docs
 
+# --execute
+system doconce format html execute.do.txt --execute
+
+system doconce format ipynb execute.do.txt --execute
+
+system doconce format latex execute.do.txt --execute
+doconce ptex2tex execute.p.tex
+
+# html
 system doconce format html testdoc --wordpress  --examples_as_exercises --html_exercise_icon=question_blue_on_white1.png --html_exercise_icon_width=80 --figure_prefix="https://raw.github.com/hplgit/doconce/master/test/" --movie_prefix="https://raw.github.com/hplgit/doconce/master/test/" --html_links_in_new_window --cite_doconce --html_raw_github_url=raw.github --output=testdoc_wordpress
 
 system doconce format html testdoc --without_answers --without_solutions --examples_as_exercises -DSOMEVAR --html_exercise_icon=default --solutions_at_end --html_share=https://cyber.space.com/specials,twitter,print,google+,facebook,linkedin --html_raw_github_url=raw.github

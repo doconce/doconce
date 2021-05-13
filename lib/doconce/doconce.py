@@ -5574,7 +5574,7 @@ def doconce2format(filestr, format):
     cmd2option = dict(sol_at_end = 'solutions_at_end', ans_at_end = 'answers_at_end')
     for envir in 'ans_at_end', 'sol_at_end':
         option_name = cmd2option[envir]
-        if not option(option_name) and format is not 'ipynb': #TODO: 'ipynb' part was used to avoid errors. is it necessary?
+        if not option(option_name) and format != 'ipynb': #TODO: 'ipynb' part was used to avoid errors. is it necessary?
             filestr = process_envir(filestr, envir, format, action='remove',
                     reason='(because the command-line option --%s was not used)' % option_name)
     debugpr('The file after potential removal of solutions, answers, hints, etc.:', filestr)
