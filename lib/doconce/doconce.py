@@ -1082,8 +1082,7 @@ def syntax_check(filestr, format):
     if format == "sphinx":
         # Check that local URLs are in _static directory
         links = []
-        for link_tp in 'linkURL2', 'linkURL3', 'linkURL2v', 'linkURL3v', \
-                'plainURL':
+        for link_tp in 'linkURL2', 'linkURL3', 'linkURL2v', 'linkURL3v', 'plainURL':
             links.extend(re.findall(INLINE_TAGS[link_tp], filestr))
         links = list(set([link[1] for link in links]))
         links2local = []

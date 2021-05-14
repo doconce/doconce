@@ -7,6 +7,7 @@ from past.builtins import basestring
 from builtins import object
 import os, glob, sys, glob, base64, uuid
 import regex as re
+import shlex
 from .common import     table_analysis, plain_exercise, insert_code_blocks, \
     insert_tex_blocks, indent_lines, online_python_tutor, bibliography, _linked_files, \
     safe_join, is_file_or_url, envir_delimiter_lines, doconce_exercise_output, \
@@ -181,123 +182,121 @@ css_style = (
             css_toc + \
             '</style>\n'
 
-admon_styles_text = """\
-.alert-text-small   { font-size: 80%%;  }
-.alert-text-large   { font-size: 130%%; }
-.alert-text-normal  { font-size: 90%%;  }
-"""
+admon_styles_text = ('.alert-text-small   { font-size: 80%%;  }\n'
+                     '.alert-text-large   { font-size: 130%%; }\n'
+                     '.alert-text-normal  { font-size: 90%%;  }\n')
 
-admon_styles1 = admon_styles_text + """\
-.notice, .summary, .warning, .question, .block {
-  border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;
-  background-repeat: no-repeat; background-position: 10px center;
-}
-.notice   { color: #00529B; background-color: %(background_notice)s;
-            background-image: url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_notice)s); }
-.summary  { color: #4F8A10; background-color: %(background_summary)s;
-            background-image:url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_summary)s); }
-.warning  { color: #9F6000; background-color: %(background_warning)s;
-            background-image: url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_warning)s); }
-.question { color: #4F8A10; background-color: %(background_question)s;
-            background-image:url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_question)s); }
-.block    { color: #00529B; background-color: %(background_notice)s; }
-"""
+admon_styles1 = admon_styles_text + \
+                ('.notice, .summary, .warning, .question, .block {\n'
+                 'border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px;\n'
+                 'background-repeat: no-repeat; background-position: 10px center;\n'
+                 '}\n'
+                 '.notice   { color: #00529B; background-color: %(background_notice)s;\n'
+                 'background-image: url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_notice)s); }\n'
+                 '.summary  { color: #4F8A10; background-color: %(background_summary)s;\n'
+                 'background-image:url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_summary)s); }\n'
+                 '.warning  { color: #9F6000; background-color: %(background_warning)s;\n'
+                 'background-image: url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_warning)s); }\n'
+                 '.question { color: #4F8A10; background-color: %(background_question)s;\n'
+                 'background-image:url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_question)s); }\n'
+                 '.block    { color: #00529B; background-color: %(background_notice)s; }\n')
 
-admon_styles2 = admon_styles_text + """\
-.alert {
-  padding:8px 35px 8px 14px; margin-bottom:18px;
-  text-shadow:0 1px 0 rgba(255,255,255,0.5);
-  border:1px solid %(boundary)s;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  color: %(color)s;
-  background-color: %(background)s;
-  background-position: 10px 5px;
-  background-repeat: no-repeat;
-  background-size: 38px;
-  padding-left: 55px;
-  width: 75%%;
- }
-.alert-block {padding-top:14px; padding-bottom:14px}
-.alert-block > p, .alert-block > ul {margin-bottom:1em}
-.alert li {margin-top: 1em}
-.alert-block p+p {margin-top:5px}
-.alert-notice { background-image: url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_notice)s); }
-.alert-summary  { background-image:url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_summary)s); }
-.alert-warning { background-image: url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_warning)s); }
-.alert-question {background-image:url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_question)s); }
-"""
+admon_styles2 = admon_styles_text + (
+    '.alert {\n'
+    '  padding:8px 35px 8px 14px; margin-bottom:18px;\n'
+    '  text-shadow:0 1px 0 rgba(255,255,255,0.5);\n'
+    '  border:1px solid %(boundary)s;\n'
+    '  border-radius: 4px;\n'
+    '  -webkit-border-radius: 4px;\n'
+    '  -moz-border-radius: 4px;\n'
+    '  color: %(color)s;\n'
+    '  background-color: %(background)s;\n'
+    '  background-position: 10px 5px;\n'
+    '  background-repeat: no-repeat;\n'
+    '  background-size: 38px;\n'
+    '  padding-left: 55px;\n'
+    '  width: 75%%;\n'
+    ' }\n'
+    '.alert-block {padding-top:14px; padding-bottom:14px}\n'
+    '.alert-block > p, .alert-block > ul {margin-bottom:1em}\n'
+    '.alert li {margin-top: 1em}\n'
+    '.alert-block p+p {margin-top:5px}\n'
+    '.alert-notice { background-image: url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/'
+    '%(icon_notice)s); }\n'
+    '.alert-summary  { background-image:url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/'
+    '%(icon_summary)s); }\n'
+    '.alert-warning { background-image: url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/'
+    '%(icon_warning)s); }\n'
+    '.alert-question {background-image:url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/'
+    '%(icon_question)s); }\n')
+
 # alt: background-image: url(data:image/png;base64,iVBORw0KGgoAAAAN...);
 
-css_solarized = """\
-/* solarized style */
-body {
-  margin:5;
-  padding:0;
-  border:0; /* Remove the border around the viewport in old versions of IE */
-  width:100%;
-  background: #fdf6e3;
-  min-width:600px;	/* Minimum width of layout - remove if not required */
-  font-family: Verdana, Helvetica, Arial, sans-serif;
-  font-size: 1.0em;
-  line-height: 1.3em;
-  color: #657b83;
-}
-a { color: #859900; text-decoration: underline; }
-a:hover, a:active { outline:none }
-a, a:active, a:visited { color: #859900; }
-a:hover { color: #268bd2; }
-h1, h2, h3 { margin:.8em 0 .2em 0; padding:0; line-height: 125%; }
-h2 { font-variant: small-caps; }
-tt, code { font-family: monospace, sans-serif; box-shadow: none; }
-hr { border: 0; width: 80%; border-bottom: 1px solid #aaa; }
-p { text-indent: 0px; }
-p.caption { width: 80%; font-style: normal; text-align: left; }
-hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa; }
-"""
+css_solarized = ('/* solarized style */\n'
+                 'body {\n'
+                 '  margin:5;\n'
+                 '  padding:0;\n'
+                 '  border:0; /* Remove the border around the viewport in old versions of IE */\n'
+                 '  width:100%;\n'
+                 '  background: #fdf6e3;\n'
+                 '  min-width:600px;	/* Minimum width of layout - remove if not required */\n'
+                 '  font-family: Verdana, Helvetica, Arial, sans-serif;\n'
+                 '  font-size: 1.0em;\n'
+                 '  line-height: 1.3em;\n'
+                 '  color: #657b83;\n'
+                 '}\n'
+                 'a { color: #859900; text-decoration: underline; }\n'
+                 'a:hover, a:active { outline:none }\n'
+                 'a, a:active, a:visited { color: #859900; }\n'
+                 'a:hover { color: #268bd2; }\n'
+                 'h1, h2, h3 { margin:.8em 0 .2em 0; padding:0; line-height: 125%; }\n'
+                 'h2 { font-variant: small-caps; }\n'
+                 'tt, code { font-family: monospace, sans-serif; box-shadow: none; }\n'
+                 'hr { border: 0; width: 80%; border-bottom: 1px solid #aaa; }\n'
+                 'p { text-indent: 0px; }\n'
+                 'p.caption { width: 80%; font-style: normal; text-align: left; }\n'
+                 'hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa; }\n')
 
-css_solarized_dark = """\
-    /* solarized dark style */
-body {
-  background-color: #002b36;
-  color: #839496;
-  font-family: Menlo;
-}
-code { background-color: #073642; color: #93a1a1; box-shadow: none; }
-a { color: #859900; text-decoration: underline; }
-a:hover, a:active { outline:none }
-a, a:active, a:visited { color: #b58900; }
-a:hover { color: #2aa198; }
-"""
+css_solarized_dark = ('/* solarized dark style */\n'
+                      'body {\n'
+                      '  background-color: #002b36;\n'
+                      '  color: #839496;\n'
+                      '  font-family: Menlo;\n'
+                      '}\n'
+                      'code { background-color: #073642; color: #93a1a1; box-shadow: none; }\n'
+                      'a { color: #859900; text-decoration: underline; }\n'
+                      'a:hover, a:active { outline:none }\n'
+                      'a, a:active, a:visited { color: #b58900; }\n'
+                      'a:hover { color: #2aa198; }\n')
 
 def css_link_solarized_highlight(style='light'):
-    return """
-<link href="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_styles/style_solarized_box/css/solarized_%(style)s_code.css" rel="stylesheet" type="text/css" title="%(style)s"/>
-<script src="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_styles/style_solarized_box/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-""" % vars()
+    return ('\n'
+            '<link href="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_styles/style_solarized_box/css/'
+            'solarized_%(style)s_code.css" rel="stylesheet" type="text/css" title="%(style)s"/>\n'
+            '<script src="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_styles/style_solarized_box/'
+            'js/highlight.pack.js"></script>\n'
+            '<script>hljs.initHighlightingOnLoad();</script>\n') % vars()
 
-css_link_solarized_thomasf_light = '<link href="https://thomasf.github.io/solarized-css/solarized-light.min.css" rel="stylesheet">'
-css_link_solarized_thomasf_dark = '<link href="https://thomasf.github.io/solarized-css/solarized-dark.min.css" rel="stylesheet">'
-css_solarized_thomasf_gray = """\
-h1, h2, h3, h4 { color:#839496; font-weight: bold; } /* gray */
-code { padding: 0px; background-color: inherit; }
-pre {
-  border: 0pt solid #93a1a1;
-  box-shadow: none;
-}
-"""
-css_solarized_thomasf_green = """\
-h1 {color: #b58900;}  /* yellow */
-/* h1 {color: #cb4b16;}  orange */
-/* h1 {color: #d33682;}  magenta, the original choice of thomasf */
-code { padding: 0px; background-color: inherit; }
-pre {
-  border: 0pt solid #93a1a1;
-  box-shadow: none;
-}
-"""  # h2, h3 are green
+css_link_solarized_thomasf_light = \
+    '<link href="https://thomasf.github.io/solarized-css/solarized-light.min.css" rel="stylesheet">'
+css_link_solarized_thomasf_dark = \
+    '<link href="https://thomasf.github.io/solarized-css/solarized-dark.min.css" rel="stylesheet">'
+css_solarized_thomasf_gray = (
+    'h1, h2, h3, h4 { color:#839496; font-weight: bold; } /* gray */\n'
+    'code { padding: 0px; background-color: inherit; }\n'
+    'pre {\n'
+    '  border: 0pt solid #93a1a1;\n'
+    '  box-shadow: none;\n'
+    '}\n')
+
+css_solarized_thomasf_green = ('h1 {color: #b58900;}  /* yellow */\n'
+                               '/* h1 {color: #cb4b16;}  orange */\n'
+                               '/* h1 {color: #d33682;}  magenta, the original choice of thomasf */\n'
+                               'code { padding: 0px; background-color: inherit; }\n'
+                               'pre {\n'
+                               '  border: 0pt solid #93a1a1;\n'
+                               '  box-shadow: none;\n'
+                               '}\n')  # h2, h3 are green
 
 # css for jupyter blocks
 css_jupyter_blocks = (
@@ -428,232 +427,233 @@ css_bloodish = "/* bloodish style */\n" + \
                css_jupyter_blocks
 
 # Tactile theme from GitHub web page generator
-css_tactile = """
-/* Builds on
-   https://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-   Many changes for DocOnce by Hans Petter Langtangen.
-*/
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-
-body { line-height: 1; }
-ol, ul { list-style: none; }
-blockquote, q {	quotes: none; }
-blockquote:before, blockquote:after,
-q:before, q:after { content: ''; content: none; }
-table {	border-collapse: collapse; border-spacing: 0; }
-
-body {
-  font-size: 1em;
-  line-height: 1.5;
-  background: #e7e7e7 url(RAW_GITHUB_URL/doconce/num-methods-for-PDEs/master/doc/web/images/body-bg.png) 0 0 repeat;
-  font-family: 'Helvetica Neue', Helvetica, Arial, serif;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-  color: #6d6d6d;
-  width: 620px;
-  margin: 0 auto;
-}
-
-pre, code {
-  font-family: "Monospace";
-  margin-bottom: 30px;
-  font-size: 14px;
-}
-
-code {
-  border: solid 2px #ddd;
-  padding: 0 3px;
-}
-
-pre {
-  padding: 20px;
-  color: #222;
-  text-shadow: none;
-  overflow: auto;
-  border: solid 4px #ddd;
-}
-
-a { color: #d5000d; }
-a:hover { color: #c5000c; }
-ul, ol, dl { margin-bottom: 20px; }
-
-hr {
-  height: 1px;
-  line-height: 1px;
-  margin-top: 1em;
-  padding-bottom: 1em;
-  border: none;
-}
-
-b, strong { font-weight: bold; }
-em { font-style: italic; }
-table { width: 100%%; border: 1px solid #ebebeb; }
-th { font-weight: 500; }
-td { border: 4px solid #ddd; text-align: center; font-weight: 300; }
-
-/* red color: #d5000d; /*black color: #303030; gray is default */
-
-h1 {
-  font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 8px;
-  %s
-}
-
-h2 {
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 8px;
-  %s
-}
-
-h3 { font-size: 18px; }
-p { font-weight: 300; margin-bottom: 20px; margin-top: 12px; }
-a { text-decoration: none; }
-p a { font-weight: 400; }
-
-blockquote {
-  font-size: 1.6em;
-  border-left: 10px solid #e9e9e9;
-  margin-bottom: 20px;
-  padding: 0 0 0 30px;
-}
-
-ul li {
-  list-style: disc inside;
-  padding-left: 20px;
-}
-
-ol li {
-  list-style: decimal inside;
-  padding-left: 3px;
-}
-
-dl dt {
-  color: #303030;
-}
-
-footer {
-  background: transparent url('../images/hr.png') 0 0 no-repeat;
-  margin-top: 40px;
-  padding-top: 20px;
-  padding-bottom: 30px;
-  font-size: 13px;
-  color: #aaa;
-}
-
-footer a {
-  color: #666;
-}
-footer a:hover {
-  color: #444;
-}
-
-
-/* #Media Queries
-================================================== */
-
-/* Smaller than standard 960 (devices and browsers) */
-@media only screen and (max-width: 959px) {}
-
-/* Tablet Portrait size to standard 960 (devices and browsers) */
-@media only screen and (min-width: 768px) and (max-width: 959px) {}
-
-/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
-@media only screen and (min-width: 480px) and (max-width: 767px) {}
-
-/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
-@media only screen and (max-width: 479px) {}
-""" + css_jupyter_blocks
+css_tactile = ('\n'
+               '/* Builds on\n'
+               '   https://meyerweb.com/eric/tools/css/reset/\n'
+               '   v2.0 | 20110126\n'
+               '   License: none (public domain)\n'
+               '   Many changes for DocOnce by Hans Petter Langtangen.\n'
+               '*/\n'
+               'html, body, div, span, applet, object, iframe,\n'
+               'h1, h2, h3, h4, h5, h6, p, blockquote, pre,\n'
+               'a, abbr, acronym, address, big, cite, code,\n'
+               'del, dfn, em, img, ins, kbd, q, s, samp,\n'
+               'small, strike, strong, sub, sup, tt, var,\n'
+               'b, u, i, center,\n'
+               'dl, dt, dd, ol, ul, li,\n'
+               'fieldset, form, label, legend,\n'
+               'table, caption, tbody, tfoot, thead, tr, th, td,\n'
+               'article, aside, canvas, details, embed,\n'
+               'figure, figcaption, footer, header, hgroup,\n'
+               'menu, nav, output, ruby, section, summary,\n'
+               'time, mark, audio, video {\n'
+               '	margin: 0;\n'
+               '	padding: 0;\n'
+               '	border: 0;\n'
+               '	font-size: 100%%;\n'
+               '	font: inherit;\n'
+               '	vertical-align: baseline;\n'
+               '}\n'
+               '/* HTML5 display-role reset for older browsers */\n'
+               'article, aside, details, figcaption, figure,\n'
+               'footer, header, hgroup, menu, nav, section {\n'
+               '	display: block;\n'
+               '}\n'
+               '\n'
+               'body { line-height: 1; }\n'
+               'ol, ul { list-style: none; }\n'
+               'blockquote, q {	quotes: none; }\n'
+               'blockquote:before, blockquote:after,\n'
+               'q:before, q:after { content: ''; content: none; }\n'
+               'table {	border-collapse: collapse; border-spacing: 0; }\n'
+               '\n'
+               'body {\n'
+               '  font-size: 1em;\n'
+               '  line-height: 1.5;\n'
+               '  background: #e7e7e7 url(RAW_GITHUB_URL/doconce/num-methods-for-PDEs'
+               '/master/doc/web/images/body-bg.png) 0 0 repeat;\n'
+               "  font-family: 'Helvetica Neue', Helvetica, Arial, serif;\n"
+               '  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);\n'
+               '  color: #6d6d6d;\n'
+               '  width: 620px;\n'
+               '  margin: 0 auto;\n'
+               '}\n'
+               '\n'
+               'pre, code {\n'
+               '  font-family: "Monospace";\n'
+               '  margin-bottom: 30px;\n'
+               '  font-size: 14px;\n'
+               '}\n'
+               '\n'
+               'code {\n'
+               '  border: solid 2px #ddd;\n'
+               '  padding: 0 3px;\n'
+               '}\n'
+               '\n'
+               'pre {\n'
+               '  padding: 20px;\n'
+               '  color: #222;\n'
+               '  text-shadow: none;\n'
+               '  overflow: auto;\n'
+               '  border: solid 4px #ddd;\n'
+               '}\n'
+               '\n'
+               'a { color: #d5000d; }\n'
+               'a:hover { color: #c5000c; }\n'
+               'ul, ol, dl { margin-bottom: 20px; }\n'
+               '\n'
+               'hr {\n'
+               '  height: 1px;\n'
+               '  line-height: 1px;\n'
+               '  margin-top: 1em;\n'
+               '  padding-bottom: 1em;\n'
+               '  border: none;\n'
+               '}\n'
+               '\n'
+               'b, strong { font-weight: bold; }\n'
+               'em { font-style: italic; }\n'
+               'table { width: 100%%; border: 1px solid #ebebeb; }\n'
+               'th { font-weight: 500; }\n'
+               'td { border: 4px solid #ddd; text-align: center; font-weight: 300; }\n'
+               '\n'
+               '/* red color: #d5000d; /*black color: #303030; gray is default */\n'
+               '\n'
+               'h1 {\n'
+               '  font-size: 32px;\n'
+               '  font-weight: bold;\n'
+               '  margin-bottom: 8px;\n'
+               '  %s\n'
+               '}\n'
+               '\n'
+               'h2 {\n'
+               '  font-size: 22px;\n'
+               '  font-weight: bold;\n'
+               '  margin-bottom: 8px;\n'
+               '  %s\n'
+               '}\n'
+               '\n'
+               'h3 { font-size: 18px; }\n'
+               'p { font-weight: 300; margin-bottom: 20px; margin-top: 12px; }\n'
+               'a { text-decoration: none; }\n'
+               'p a { font-weight: 400; }\n'
+               '\n'
+               'blockquote {\n'
+               '  font-size: 1.6em;\n'
+               '  border-left: 10px solid #e9e9e9;\n'
+               '  margin-bottom: 20px;\n'
+               '  padding: 0 0 0 30px;\n'
+               '}\n'
+               '\n'
+               'ul li {\n'
+               '  list-style: disc inside;\n'
+               '  padding-left: 20px;\n'
+               '}\n'
+               '\n'
+               'ol li {\n'
+               '  list-style: decimal inside;\n'
+               '  padding-left: 3px;\n'
+               '}\n'
+               '\n'
+               'dl dt {\n'
+               '  color: #303030;\n'
+               '}\n'
+               '\n'
+               'footer {\n'
+               "  background: transparent url('../images/hr.png') 0 0 no-repeat;\n"
+               '  margin-top: 40px;\n'
+               '  padding-top: 20px;\n'
+               '  padding-bottom: 30px;\n'
+               '  font-size: 13px;\n'
+               '  color: #aaa;\n'
+               '}\n'
+               '\n'
+               'footer a {\n'
+               '  color: #666;\n'
+               '}\n'
+               'footer a:hover {\n'
+               '  color: #444;\n'
+               '}\n'
+               '\n'
+               '\n'
+               '/* #Media Queries\n'
+               '================================================== */\n'
+               '\n'
+               '/* Smaller than standard 960 (devices and browsers) */\n'
+               '@media only screen and (max-width: 959px) {}\n'
+               '\n'
+               '/* Tablet Portrait size to standard 960 (devices and browsers) */\n'
+               '@media only screen and (min-width: 768px) and (max-width: 959px) {}\n'
+               '\n'
+               '/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */\n'
+               '@media only screen and (min-width: 480px) and (max-width: 767px) {}\n'
+               '\n'
+               '/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */\n'
+               '@media only screen and (max-width: 479px) {}\n'
+               ) + css_jupyter_blocks
 
 # too small margin bottom: h1 { font-size: 1.8em; color: #1e36ce; margin-bottom: 3px; }
 
-css_rossant = """
-/* Style from https://cyrille.rossant.net/theme/css/styles.css */
-
-html, button, input, select, textarea {
-    font-family: "Source Sans Pro", sans-serif;
-    font-size: 18px;
-    font-weight: 300;
-    color: #000;
-}
-
-a { color: #0088cc; text-decoration: none; }
-
-a:hover { color: #005580; }
-
-code {
-    /*font-size: .9em;*/
-    font-family: 'Ubuntu Mono';
-    padding: 0 .1em;
-}
-
-.highlight pre {
-    font-family: 'Ubuntu Mono';
-    font-size: .9em;
-    padding: .5em;
-    word-wrap: normal;
-    overflow: auto;
-    white-space: pre;
-}
-
-blockquote {
-    color: #777;
-    border-left: .5em solid #eee;
-    padding: 0 0 0 .75em;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 300;
-}
-
-h1 {
-    font-size: 2.25em;
-    margin: 0 0 .1em -.025em;
-    padding: 0 0 .25em 0;
-    border-bottom: 1px solid #aaa;
-}
-
-
-h2 {
-    color: #555;
-    font-size: 1.75em;
-    margin: 1.75em 0 .5em 0;
-    padding: 0 0 .25em 0;
-    border-bottom: 1px solid #ddd;
-}
-
-h3 {
-    margin: 1.25em 0 .75em 0;
-    font-size: 1.35em;
-    color: #777;
-}
-""" + css_jupyter_blocks
+css_rossant = ('\n'
+               '/* Style from https://cyrille.rossant.net/theme/css/styles.css */\n'
+               '\n'
+               'html, button, input, select, textarea {\n'
+               '    font-family: "Source Sans Pro", sans-serif;\n'
+               '    font-size: 18px;\n'
+               '    font-weight: 300;\n'
+               '    color: #000;\n'
+               '}\n'
+               '\n'
+               'a { color: #0088cc; text-decoration: none; }\n'
+               '\n'
+               'a:hover { color: #005580; }\n'
+               '\n'
+               'code {\n'
+               '    /*font-size: .9em;*/\n'
+               "    font-family: 'Ubuntu Mono';\n"
+               '    padding: 0 .1em;\n'
+               '}\n'
+               '\n'
+               '.highlight pre {\n'
+               "    font-family: 'Ubuntu Mono';\n"
+               '    font-size: .9em;\n'
+               '    padding: .5em;\n'
+               '    word-wrap: normal;\n'
+               '    overflow: auto;\n'
+               '    white-space: pre;\n'
+               '}\n'
+               '\n'
+               'blockquote {\n'
+               '    color: #777;\n'
+               '    border-left: .5em solid #eee;\n'
+               '    padding: 0 0 0 .75em;\n'
+               '}\n'
+               '\n'
+               'h1, h2, h3, h4, h5, h6 {\n'
+               '    font-weight: 300;\n'
+               '}\n'
+               '\n'
+               'h1 {\n'
+               '    font-size: 2.25em;\n'
+               '    margin: 0 0 .1em -.025em;\n'
+               '    padding: 0 0 .25em 0;\n'
+               '    border-bottom: 1px solid #aaa;\n'
+               '}\n'
+               '\n'
+               '\n'
+               'h2 {\n'
+               '    color: #555;\n'
+               '    font-size: 1.75em;\n'
+               '    margin: 1.75em 0 .5em 0;\n'
+               '    padding: 0 0 .25em 0;\n'
+               '    border-bottom: 1px solid #ddd;\n'
+               '}\n'
+               '\n'
+               'h3 {\n'
+               '    margin: 1.25em 0 .75em 0;\n'
+               '    font-size: 1.35em;\n'
+               '    color: #777;\n'
+               '}\n'
+               ) + css_jupyter_blocks
 
 
 def share(code_type,
@@ -665,72 +665,66 @@ def share(code_type,
     s = ''
     if method == 'simplesharebuttons.com':
         if code_type == 'css':
-            s += """
-<style type="text/css">
+            s +=('\n'
+                 '<style type="text/css">\n'
+                 '\n'
+                 '#share-buttons img {\n'
+                 'width: 35px;\n'
+                 'padding: 5px;\n'
+                 'border: 0;\n'
+                 'box-shadow: 0;\n'
+                 'display: inline;\n'
+                 '}\n'
+                 '\n'
+                 '</style>\n')
 
-#share-buttons img {
-width: 35px;
-padding: 5px;
-border: 0;
-box-shadow: 0;
-display: inline;
-}
-
-</style>
-"""
         elif code_type == 'buttons':
-            s += """
-<!-- Got these buttons from simplesharebuttons.com -->
-<center>
-<div id="share-buttons">
-"""
+            s += ('\n'
+                  '<!-- Got these buttons from simplesharebuttons.com -->\n'
+                  '<center>\n'
+                  '<div id="share-buttons">\n')
+
             if 'email' in buttons:
-                s += """
-    <!-- Email -->
-    <a href="mailto:?Subject=Interesting link&amp;Body=I%%20saw%%20this%%20and%%20thought%%20of%%20you!%%20 %(url)s">
-        <img src="https://simplesharebuttons.com/images/somacro/email.png" alt="Email" />
-    </a>
-""" % namespace
+                s += ('\n'
+                      '    <!-- Email -->\n'
+                      '    <a href="mailto:?Subject=Interesting link&amp;Body=I%%20saw%%20this%%20and%%20thought%%20of%%20you!%%20 %(url)s">\n'
+                      '        <img src="https://simplesharebuttons.com/images/somacro/email.png" alt="Email" />\n'
+                      '    </a>\n') % namespace
             if 'facebook' in buttons:
-                s += """
-    <!-- Facebook -->
-    <a href="https://www.facebook.com/sharer.php?u=%(url)s" target="_blank">
-        <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
-    </a>
-""" % namespace
+                s += ('\n'
+                      '    <!-- Facebook -->\n'
+                      '    <a href="https://www.facebook.com/sharer.php?u=%(url)s" target="_blank">\n'
+                      '        <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />\n'
+                      '    </a>\n') % namespace
             if 'google+' in buttons:
-                s += """
-    <!-- Google+ -->
-    <a href="https://plus.google.com/share?url=%(url)s" target="_blank">
-        <img src="https://simplesharebuttons.com/images/somacro/google.png" alt="Google" />
-    </a>
-""" % namespace
+                s +=('\n'
+                     '    <!-- Google+ -->\n'
+                     '    <a href="https://plus.google.com/share?url=%(url)s" target="_blank">\n'
+                     '        <img src="https://simplesharebuttons.com/images/somacro/google.png" alt="Google" />\n'
+                     '    </a>\n') % namespace
 
             if 'linkedin' in buttons:
-                s += """
-    <!-- LinkedIn -->
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%(url)s" target="_blank">
-        <img src="https://simplesharebuttons.com/images/somacro/linkedin.png" alt="LinkedIn" />
-    </a>
-""" % namespace
+                s += ('\n'
+                      '    <!-- LinkedIn -->\n'
+                      '    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%(url)s" target="_blank">\n'
+                      '        <img src="https://simplesharebuttons.com/images/somacro/linkedin.png" alt="LinkedIn" />\n'
+                      '    </a>\n') % namespace
 
             if 'twitter' in buttons:
-                s += """
-    <!-- Twitter -->
-    <a href="https://twitter.com/share?url=%(url)s&amp;name=Interesting link&amp;hashtags=interesting" target="_blank">
-        <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
-    </a>
-""" % namespace
+                s += ('\n'
+                      '    <!-- Twitter -->\n'
+                      '    <a href="https://twitter.com/share?url=%(url)s&amp;name=Interesting link&amp;hashtags=interesting" target="_blank">\n'
+                      '        <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />\n'
+                      '    </a>\n') % namespace
 
             if 'print' in buttons:
-                s += """
-<!-- Print -->
-    <a href="javascript:;" onclick="window.print()">
-        <img src="https://simplesharebuttons.com/images/somacro/print.png" alt="Print" />
-    </a>
-
-</div>
-""" % namespace
+                s += ('\n'
+                      '<!-- Print -->\n'
+                      '    <a href="javascript:;" onclick="window.print()">\n'
+                      '        <img src="https://simplesharebuttons.com/images/somacro/print.png" alt="Print" />\n'
+                      '    </a>\n'
+                      '\n'
+                      '</div>\n') % namespace
         s += '</center>\n'
     return s
 
@@ -1767,40 +1761,40 @@ def interpret_bokeh_plot(text):
     """Find script and div tags in a Bokeh HTML file."""
     # Structure of the file
     """
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Damped vibrations</title>
-
-        <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.css" type="text/css" />
-        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.js"></script>
-        <script type="text/javascript">
-            Bokeh.set_log_level("info");
-        </script>
-
-        <script type="text/javascript">
-            Bokeh.$(function() {
-                var modelid = "af0bc57e-f573-4a7f-be80-504fab00b254";
-                var modeltype = "PlotContext";
-                var elementid = "4a9dd7a1-f20c-4fe5-9917-13d172ef031a";
-                Bokeh.logger.info("Realizing plot:")
-                Bokeh.logger.info(" - modeltype: PlotContext");
-                Bokeh.logger.info(" - modelid: af0bc57e-f573-4a7f-be80-504fab00b254");
-                Bokeh.logger.info(" - elementid: 4a9dd7a1-f20c-4fe5-9917-13d172ef031a");
-                var all_models = ...
-
-                Bokeh.load_models(all_models);
-                var model = Bokeh.Collections(modeltype).get(modelid);
-                var view = new model.default_view({model: model, el: '#4a9dd7a1-f20c-4fe5-9917-13d172ef031a'});
-                Bokeh.index[modelid] = view
-            });
-        </script>
-    </head>
-    <body>
-        <div class="plotdiv" id="4a9dd7a1-f20c-4fe5-9917-13d172ef031a"></div>
-    </body>
-</html>
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <title>Damped vibrations</title>
+    
+            <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.css" type="text/css" />
+            <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.js"></script>
+            <script type="text/javascript">
+                Bokeh.set_log_level("info");
+            </script>
+    
+            <script type="text/javascript">
+                Bokeh.$(function() {
+                    var modelid = "af0bc57e-f573-4a7f-be80-504fab00b254";
+                    var modeltype = "PlotContext";
+                    var elementid = "4a9dd7a1-f20c-4fe5-9917-13d172ef031a";
+                    Bokeh.logger.info("Realizing plot:")
+                    Bokeh.logger.info(" - modeltype: PlotContext");
+                    Bokeh.logger.info(" - modelid: af0bc57e-f573-4a7f-be80-504fab00b254");
+                    Bokeh.logger.info(" - elementid: 4a9dd7a1-f20c-4fe5-9917-13d172ef031a");
+                    var all_models = ...
+    
+                    Bokeh.load_models(all_models);
+                    var model = Bokeh.Collections(modeltype).get(modelid);
+                    var view = new model.default_view({model: model, el: '#4a9dd7a1-f20c-4fe5-9917-13d172ef031a'});
+                    Bokeh.index[modelid] = view
+                });
+            </script>
+        </head>
+        <body>
+            <div class="plotdiv" id="4a9dd7a1-f20c-4fe5-9917-13d172ef031a"></div>
+        </body>
+    </html>
     """
     # Extract the script and all div tags
     scripts = re.findall(r'<script type="text/javascript">.+?</script>', text, flags=re.DOTALL)
@@ -1813,7 +1807,7 @@ def interpret_bokeh_plot(text):
 
 
 def html_figure(m):
-    caption = m.group('caption').strip()
+    caption = m.group('caption').strip().strip('"').strip("'")
     filename = m.group('filename').strip()
     opts = m.group('options').strip()
 
@@ -1833,7 +1827,8 @@ def html_figure(m):
     # Process any inline figure opts
     sidecaption = 0
     if opts:
-        info = [s.split('=') for s in opts.split()]
+        info = shlex.split(opts)
+        info = [s.strip(',').split('=') for s in info]
         if option('html_responsive_figure_width'):
             styleset = []
             styleset.append("width: 100%")
@@ -1841,7 +1836,7 @@ def html_figure(m):
                 if opt == "width":
                     styleset.append("max-width: %s" % value)
             info.append(["style", "'" + "; ".join(styleset) + "'"])
-        opts = ' '.join(['%s=%s' % (opt, value)
+        opts = ' '.join(['%s="%s"' % (opt, value)
                          for opt, value in info
                          if opt not in ['frac', 'sidecap']])
         for opt, value in info:
@@ -2443,11 +2438,10 @@ def html_index_bib(filestr, index, citations, pubfile, pubdata):
                     errwarn('    with key ' + label)
                     _abort()
 
-        bibtext = """
-<!-- begin bibliography -->
-%s
-<!-- end bibliography -->
-""" % bibtext
+        bibtext = ('\n'
+                   '<!-- begin bibliography -->\n'
+                   '%s\n'
+                   '<!-- end bibliography -->\n') % bibtext
 
         filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr, flags=re.MULTILINE)
 
@@ -2641,13 +2635,12 @@ def html_box(block, format, text_size='normal'):
     """Add a HTML box with text, code, equations inside. Can have shadow."""
     # box_shadow is a global variable set in the top of the file
     shadow = ' ' + box_shadow if option('html_box_shadow') else ''
-    return """
-<!-- begin box -->
-<div style="width: 95%%; padding: 10px; border: 1px solid #000; border-radius: 4px;%s">
-%s
-</div>
-<!-- end box -->
-""" % (shadow, block)
+    return ('\n'
+            '<!-- begin box -->\n'
+            '<div style="width: 95%%; padding: 10px; border: 1px solid #000; border-radius: 4px;%s">\n'
+            '%s\n'
+            '</div>\n'
+            '<!-- end box -->\n') % (shadow, block)
 
 
 def html_quote(block, format, text_size='normal'):
@@ -2680,134 +2673,135 @@ for _admon in globals.admons:
     # Below we could use
     # <img src="data:image/png;base64,iVBORw0KGgoAAAANSUh..."/>
     # for embedding images in the html code rather than just including them
-    _text = '''
-def html_%(_admon)s(block, format, title='%(_Admon)s', text_size='normal'):
-    # No title?
-    if title.lower().strip() == 'none':
-        title = ''
-    # Blocks without explicit title should have empty title
-    if title == 'Block':  # block admon has no default title
-        title = ''
-
-    # Make pygments background equal to admon background for colored admons?
-    keep_pygm_bg = option('keep_pygments_html_bg')
-    pygments_pattern = r'"background: .+?">'
-
-    # html_admon_style is global variable
-    if option('html_style=', '')[:5].startswith('boots'):
-        # Bootstrap/Bootswatch html style
-
-        if html_admon_style == 'bootstrap_panel':
-            alert_map = {'warning': 'warning', 'notice': 'primary',
-                         'summary': 'danger', 'question': 'success',
-                         'block': 'default'}
-            text = '<div class="panel panel-%%s">' %% alert_map['%(_admon)s']
-            if '%(_admon)s' != 'block':  # heading?
-                text += """
-  <div class="panel-heading">
-  <h3 class="panel-title">%%s</h3>
-  </div>""" %% title
-            text += """
-<div class="panel-body">
-<!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-%%s
-</div>
-</div>
-""" %% block
-        else: # bootstrap_alert
-            alert_map = {'warning': 'danger', 'notice': 'success',
-                         'summary': 'warning', 'question': 'info',
-                         'block': 'success'}
-
-            if not keep_pygm_bg:
-                # 2DO: fix background color!
-                block = re.sub(pygments_pattern, r'"background: %%s">' %%
-                               admon_css_vars[html_admon_style]['background'], block)
-            text = """<div class="alert alert-block alert-%%s alert-text-%%s"><b>%%s</b>
-%%s
-</div>
-""" %% (alert_map['%(_admon)s'], text_size, title, block)
-        return text
-
-    elif html_admon_style == 'colors':
-        if not keep_pygm_bg:
-            block = re.sub(pygments_pattern, r'"background: %%s">' %%
-                           admon_css_vars['colors']['background_%(_admon)s'], block)
-        janko = """<div class="%(_admon)s alert-text-%%s"><b>%%s</b>
-%%s
-</div>
-""" %% (text_size, title, block)
-        return janko
-
-    elif html_admon_style in ('gray', 'yellow', 'apricot', 'solarized_light', 'solarized_dark'):
-        if not keep_pygm_bg:
-            block = re.sub(pygments_pattern, r'"background: %%s">' %%
-                           admon_css_vars[html_admon_style]['background'], block)
-        # Strip off <p> at the end of block to reduce space below the text
-        block = re.sub('(<p>\s*)+$', '', block)
-        # Need a <p> after the title to ensure some space before the text
-        alert = """<div class="alert alert-block alert-%(_admon)s alert-text-%%s">
-<b>%%s</b>
-<p>
-%%s
-</div>
-""" %% (text_size, title, block)
-        return alert
-
-    elif html_admon_style == 'lyx':
-        block = '<div class="alert-text-%%s">%%s</div>' %% (text_size, block)
-        if '%(_admon)s' != 'block':
-            lyx = """
-<table width="95%%%%" border="0">
-<tr>
-<td width="25" align="center" valign="top">
-<img src="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/lyx_%(_admon)s.png" hspace="5" alt="%(_admon)s"></td>
-<th align="left" valign="middle"><b>%%s</b></th>
-</tr>
-<tr><td>&nbsp;</td> <td align="left" valign="top"><p>
-%%s
-</p></td></tr>
-</table>
-""" %% (title, block)
-        else:
-            lyx = """
-<table width="95%%%%" border="0">
-<tr><th align="left" valign="middle"><b>%%s</b></th>
-</tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td> <td align="left" valign="top"><p>
-%%s
-</p></td></tr>
-</table>
-""" %% (title, block)
-        return lyx
-
-    elif html_admon_style.startswith('paragraph'):
-        # Plain paragraph
-        if '-' in html_admon_style:
-            font_size = html_admon_style.split('-')[1]
-            if font_size in ('small', 'large'):
-                text_size = font_size
-            else:
-                if int(font_size) < 100:
-                    text_size = 'small'
-                else:
-                    text_size = 'large'
-
-        paragraph = """
-
-<!-- admonition: %(_admon)s, typeset as paragraph -->
-<div class="alert-text-%%s"><b>%%s</b>
-%%s
-</div>
-""" %% (text_size, title, block)
-        return paragraph
-    else:
-        errwarn('*** error: illegal --html_admon=%%s' %% html_admon_style)
-        errwarn('    legal values are colors, gray, yellow, apricot, lyx,')
-        errwarn('    paragraph, paragraph-80, paragraph-120; and')
-        errwarn('    bootstrap_alert or bootstrap_panel for --html_style=bootstrap*|bootswatch*')
-        _abort()
-''' % vars()
+    _text = ('\n'
+             "def html_%(_admon)s(block, format, title='%(_Admon)s', text_size='normal'):\n"
+             '    # No title?\n'
+             "    if title.lower().strip() == 'none':\n"
+             "        title = ''\n"
+             '    # Blocks without explicit title should have empty title\n'
+             "    if title == 'Block':  # block admon has no default title\n"
+             "        title = ''\n"
+             '\n'
+             '    # Make pygments background equal to admon background for colored admons?\n'
+             "    keep_pygm_bg = option('keep_pygments_html_bg')\n"
+             '    pygments_pattern = r\'"background: .+?">\'\n'
+             '\n'
+             '    # html_admon_style is global variable\n'
+             "    if option('html_style=', '')[:5].startswith('boots'):\n"
+             '        # Bootstrap/Bootswatch html style\n'
+             '\n'
+             "        if html_admon_style == 'bootstrap_panel':\n"
+             "            alert_map = {'warning': 'warning', 'notice': 'primary',\n"
+             "                         'summary': 'danger', 'question': 'success',\n"
+             "                         'block': 'default'}\n"
+             '            text = \'<div class="panel panel-%%s">\' %% alert_map[\'%(_admon)s\']\n'
+             "            if '%(_admon)s' != 'block':  # heading?\n"
+             '                text += """\n'
+             '  <div class="panel-heading">\n'
+             '  <h3 class="panel-title">%%s</h3>\n'
+             '  </div>""" %% title\n'
+             '            text += """\n'
+             '<div class="panel-body">\n'
+             '<!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->\n'
+             '%%s\n'
+             '</div>\n'
+             '</div>\n'
+             '""" %% block\n'
+             '        else: # bootstrap_alert\n'
+             "            alert_map = {'warning': 'danger', 'notice': 'success',\n"
+             "                         'summary': 'warning', 'question': 'info',\n"
+             "                         'block': 'success'}\n"
+             '\n'
+             '            if not keep_pygm_bg:\n'
+             '                # 2DO: fix background color!\n'
+             '                block = re.sub(pygments_pattern, r\'"background: %%s">\' %%\n'
+             "                               admon_css_vars[html_admon_style]['background'], block)\n"
+             '            text = """<div class="alert alert-block alert-%%s alert-text-%%s"><b>%%s</b>\n'
+             '%%s\n'
+             '</div>\n'
+             '""" %% (alert_map[\'%(_admon)s\'], text_size, title, block)\n'
+             '        return text\n'
+             '\n'
+             '    elif html_admon_style == \'colors\':\n'
+             '        if not keep_pygm_bg:\n'
+             '            block = re.sub(pygments_pattern, r\'"background: %%s">\' %%\n'
+             '                           admon_css_vars[\'colors\'][\'background_%(_admon)s\'], block)\n'
+             '        janko = """<div class="%(_admon)s alert-text-%%s"><b>%%s</b>\n'
+             '%%s\n'
+             '</div>\n'
+             '""" %% (text_size, title, block)\n'
+             '        return janko\n'
+             '\n'
+             "    elif html_admon_style in ('gray', 'yellow', 'apricot', 'solarized_light', 'solarized_dark'):\n"
+             '        if not keep_pygm_bg:\n'
+             '            block = re.sub(pygments_pattern, r\'"background: %%s">\' %%\n'
+             '                           admon_css_vars[html_admon_style][\'background\'], block)\n'
+             '        # Strip off <p> at the end of block to reduce space below the text\n'
+             "        block = re.sub(\'(<p>\s*)+$\', '', block)\n"
+             '        # Need a <p> after the title to ensure some space before the text\n'
+             '        alert = """<div class="alert alert-block alert-%(_admon)s alert-text-%%s">\n'
+             '<b>%%s</b>\n'
+             '<p>\n'
+             '%%s\n'
+             '</div>\n'
+             '""" %% (text_size, title, block)\n'
+             '        return alert\n'
+             '\n'
+             "    elif html_admon_style == 'lyx':\n"
+             '        block = \'<div class="alert-text-%%s">%%s</div>\' %% (text_size, block)\n'
+             "        if '%(_admon)s' != 'block':\n"
+             '            lyx = """\n'
+             '<table width="95%%%%" border="0">\n'
+             '<tr>\n'
+             '<td width="25" align="center" valign="top">\n'
+             '<img src="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/lyx_%(_admon)s.png" hspace="5" '
+             'alt="%(_admon)s"></td>\n'
+             '<th align="left" valign="middle"><b>%%s</b></th>\n'
+             '</tr>\n'
+             '<tr><td>&nbsp;</td> <td align="left" valign="top"><p>\n'
+             '%%s\n'
+             '</p></td></tr>\n'
+             '</table>\n'
+             '""" %% (title, block)\n'
+             '        else:\n'
+             '            lyx = """\n'
+             '<table width="95%%%%" border="0">\n'
+             '<tr><th align="left" valign="middle"><b>%%s</b></th>\n'
+             '</tr>\n'
+             '<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td> <td align="left" valign="top"><p>\n'
+             '%%s\n'
+             '</p></td></tr>\n'
+             '</table>\n'
+             '""" %% (title, block)\n'
+             '        return lyx\n'
+             '\n'
+             "    elif html_admon_style.startswith('paragraph'):\n"
+             '        # Plain paragraph\n'
+             "        if '-' in html_admon_style:\n"
+             "            font_size = html_admon_style.split('-')[1]\n"
+             "            if font_size in ('small', 'large'):\n"
+             '                text_size = font_size\n'
+             '            else:\n'
+             '                if int(font_size) < 100:\n'
+             "                    text_size = 'small'\n"
+             '                else:\n'
+             "                    text_size = 'large'\n"
+             '\n'
+             '        paragraph = """\n'
+             '\n'
+             '<!-- admonition: %(_admon)s, typeset as paragraph -->\n'
+             '<div class="alert-text-%%s"><b>%%s</b>\n'
+             '%%s\n'
+             '</div>\n'
+             '""" %% (text_size, title, block)\n'
+             '        return paragraph\n'
+             '    else:\n'
+             "        errwarn('*** error: illegal --html_admon=%%s' %% html_admon_style)\n"
+             "        errwarn('    legal values are colors, gray, yellow, apricot, lyx,')\n"
+             "        errwarn('    paragraph, paragraph-80, paragraph-120; and')\n"
+             "        errwarn('    bootstrap_alert or bootstrap_panel for --html_style=bootstrap*|bootswatch*')\n"
+             '        _abort()\n'
+             '\n') % vars()
     exec(_text)
 
 
@@ -3189,52 +3183,46 @@ def define(FILENAME_EXTENSION,
                 height = 64
         if html_style.startswith('bootstrap'):
             height = 50
-        style_changes += """
-/* Add scrollbar to dropdown menus in bootstrap navigation bar */
-.dropdown-menu {
-   height: auto;
-   max-height: 400px;
-   overflow-x: hidden;
-}
-
-/* Adds an invisible element before each target to offset for the navigation
-   bar */
-.anchor::before {
-  content:"";
-  display:block;
-  height:%spx;      /* fixed header height for style %s */
-  margin:-%spx 0 0; /* negative fixed header height */
-}
-""" % (height, html_style, height)
+        style_changes += (
+                             '/* Add scrollbar to dropdown menus in bootstrap navigation bar */\n'
+                             '.dropdown-menu {\n'
+                             '   height: auto;\n'
+                             '   max-height: 400px;\n'
+                             '   overflow-x: hidden;\n'
+                             '}\n'
+                             '\n'
+                             '/* Adds an invisible element before each target to offset for the navigation\n'
+                             '   bar */\n'
+                             '.anchor::before {\n'
+                             '  content:"";\n'
+                             '  display:block;\n'
+                             '  height:%spx;      /* fixed header height for style %s */\n'
+                             '  margin:-%spx 0 0; /* negative fixed header height */\n'
+                             '}\n') % (height, html_style, height)
         if '!bquiz' in filestr:
-        # Style for buttons for collapsing paragraphs
-            style_changes += """
-/*
-in.collapse+a.btn.showdetails:before { content:'Hide details'; }
-.collapse+a.btn.showdetails:before { content:'Show details'; }
-*/
-"""
+            # Style for buttons for collapsing paragraphs
+            style_changes += ('\n'
+                              '/*\n'
+                              "in.collapse+a.btn.showdetails:before { content:'Hide details'; }\n"
+                              ".collapse+a.btn.showdetails:before { content:'Show details'; }\n"
+                              '*/\n')
     body_style = option('html_body_style=', None)
     if body_style is not None:
-        style_changes += """
-body { %s; }
-""" % body_style
+        style_changes += ('\n'
+                          'body { %s; }\n') % body_style
     if style_changes:
-        style += """
-<style type="text/css">
-%s</style>
-""" % style_changes
+        style += ('\n'
+                  '<style type="text/css">\n'
+                  '%s</style>\n') % style_changes
 
     # Add sharing buttons
     url = option('html_share=', None)
     if url is not None:
         style += share(code_type='css')
 
-    meta_tags = """\
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-"""
+    meta_tags = ('<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />\n'
+                 '<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />\n'
+                 '<meta name="viewport" content="width=device-width, initial-scale=1.0" />\n')
     bootstrap_title_bar = ''
     title = ''
     m = re.search(r'^TITLE: *(.+)$', filestr, flags=re.MULTILINE)
@@ -3262,42 +3250,46 @@ body { %s; }
                         link, url = custom_link.split('|')
                         link = link.strip()
                         url = url.strip()
-                        code_custom_links += """
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" href="%s">%s</a>
-  </div>
-""" % (url, link)
+                        code_custom_links += \
+                            ('\n'
+                             '  <div class="navbar-header">\n'
+                             '    <button type="button" class="navbar-toggle" data-toggle="collapse" '
+                             'data-target=".navbar-responsive-collapse">\n'
+                             '      <span class="icon-bar"></span>\n'
+                             '      <span class="icon-bar"></span>\n'
+                             '      <span class="icon-bar"></span>\n'
+                             '    </button>\n'
+                             '    <a class="navbar-brand" href="%s">%s</a>\n'
+                             '  </div>\n') % (url, link)
 
-                bootstrap_title_bar = """
-<!-- Bootstrap navigation bar -->
-<div class="navbar navbar-default navbar-fixed-top">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" href="%s">%s</a>
-  </div>
-%s
-  <div class="navbar-collapse collapse navbar-responsive-collapse">
-    <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">***CONTENTS_PULL_DOWN_MENU*** <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-***TABLE_OF_CONTENTS***
-        </ul>
-      </li>
-    </ul>
-  </div>
-</div>
-</div> <!-- end of navigation bar -->
-""" % (outfilename, title, code_custom_links)
+                bootstrap_title_bar = \
+                    ('\n'
+                     '<!-- Bootstrap navigation bar -->\n'
+                     '<div class="navbar navbar-default navbar-fixed-top">\n'
+                     '  <div class="navbar-header">\n'
+                     '    <button type="button" class="navbar-toggle" data-toggle="collapse" '
+                     'data-target=".navbar-responsive-collapse">\n'
+                     '      <span class="icon-bar"></span>\n'
+                     '      <span class="icon-bar"></span>\n'
+                     '      <span class="icon-bar"></span>\n'
+                     '    </button>\n'
+                     '    <a class="navbar-brand" href="%s">%s</a>\n'
+                     '  </div>\n'
+                     '%s\n'
+                     '  <div class="navbar-collapse collapse navbar-responsive-collapse">\n'
+                     '    <ul class="nav navbar-nav navbar-right">\n'
+                     '      <li class="dropdown">\n'
+                     '        <a href="#" class="dropdown-toggle" data-toggle="dropdown">***CONTENTS_PULL_DOWN_MENU*** '
+                     '<b class="caret"></b></a>\n'
+                     '        <ul class="dropdown-menu">\n'
+                     '***TABLE_OF_CONTENTS***\n'
+                     '        </ul>\n'
+                     '      </li>\n'
+                     '    </ul>\n'
+                     '  </div>\n'
+                     '</div>\n'
+                     '</div> <!-- end of navigation bar -->\n') % \
+                    (outfilename, title, code_custom_links)
 
 
     keywords = re.findall(r'idx\{([^\{\}]*(?:\{[^\}]*\})?[^\}]*)\}', filestr)
@@ -3318,11 +3310,12 @@ body { %s; }
 
     scripts = ''
     if option('pygments_html_style=', 'default') == 'highlight.js':
-        scripts += """
-<!-- use highlight.js and styles for code -->
-<script src="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_styles/style_solarized_box/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-"""
+        scripts += ('\n'
+                    '<!-- use highlight.js and styles for code -->\n'
+                    '<script src="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_styles'
+                    '/style_solarized_box/js/highlight.pack.js"></script>\n'
+                    '<script>hljs.initHighlightingOnLoad();</script>\n'
+)
 
     if '!bc pyscpro' in filestr or 'envir=pyscpro' in filestr:
         # Embed Sage Cell server
@@ -3362,44 +3355,43 @@ body { %s; }
     OUTRO['html'] = ''
     if html_style.startswith('boots'):
         INTRO['html'] += bootstrap_title_bar
-        INTRO['html'] += """
-<div class="container">
+        INTRO['html'] += ('\n'
+                          '<div class="container">\n'
+                          "\n"
+                          '<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->\n')
 
-<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
-"""
-        OUTRO['html'] += """
-</div>  <!-- end container -->
-<!-- include javascript, jQuery *first* -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        OUTRO['html'] += ('\n'
+                          '</div>  <!-- end container -->\n'
+                          '<!-- include javascript, jQuery *first* -->\n'
+                          '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>\n'
+                          '<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>\n'
+                          '\n'
+                          '<!-- Bootstrap footer\n'
+                          '<footer>\n'
+                          '<a href="https://..."><img width="250" align=right src="https://..."></a>\n'
+                          '</footer>\n'
+                          '-->\n')
 
-<!-- Bootstrap footer
-<footer>
-<a href="https://..."><img width="250" align=right src="https://..."></a>
-</footer>
--->
-"""
     # Need for jquery library? !bc pypro-h (show/hide button for code)
     m = re.search(r'^!bc +([a-z0-9]+)-h', filestr, flags=re.MULTILINE)
     if m and 'ajax.googleapis.com/ajax/libs/jquery' not in OUTRO['html']:
-        OUTRO['html'] += """
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
-"""
+        OUTRO['html'] += ('\n'
+                          '<script type="text/javascript" '
+                          'src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>\n')
+
 
     from .common import has_copyright
     copyright_, symbol = has_copyright(filestr)
     if copyright_:
-        OUTRO['html'] += """
-
-<center style="font-size:80%">
-<!-- copyright --> {} Copyright COPYRIGHT_HOLDERS
-</center>
-""".format("&copy;" if symbol else "")
-    OUTRO['html'] += """
-
-</body>
-</html>
-    """
+        OUTRO['html'] += ('\n'
+                          '\n'
+                          '<center style="font-size:80%">\n'
+                          '<!-- copyright --> {} Copyright COPYRIGHT_HOLDERS\n'
+                          '</center>\n').format("&copy;" if symbol else "")
+    OUTRO['html'] += ('\n'
+                      '\n'
+                      '</body>\n'
+                      '</html>\n')
 
 def latin2html(text):
     """

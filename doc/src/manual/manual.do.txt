@@ -391,23 +391,34 @@ idx{keywords!FIGURE}
 idx{figures!FIGURE keyword}
 === Basic syntax ===
 
-Figures are recognized by the special line syntax
+Figures are recognized by the special line syntax:
 
 !bc do
-FIGURE:[filename, width=600 frac=0.8] caption
-
+FIGURE:[filename[, options][, frac=NUM]] [caption]
 !ec
+
+where `filename` is the figure's filename or URL, 
+`options` are options for the `<img>` HTML tag separated by comma or space, 
+`frac=NUM` specifies the image width with respect to the text width, 
+and `caption` is a text caption. 
+
 The filename can be without extension, and DocOnce will search for an
 appropriate file with the right extension. If the extension is wrong,
 say `.pdf` when requesting an HTML format, DocOnce tries to find another
 file, and if not, the given file is converted to a proper format
 (using ImageMagick's `convert` utility).
 
+Typical `options` can be `height`, `width` for output in the formats `html`, `rst`, `sphinx`:
+
+!bc do
+FIGURE:[filename, width=600, alt="alternate text for the image", frac=0.8] Figure caption
+!ec
+
+
 !bwarning
 Note the comma
-between the filename and the figure size specifications and
-that there should be no space around the = sign. This syntax must
-be strictly followed.
+between the filename and options and
+that there should be no space around the = sign. 
 
 Note also that, like for `TITLE:` and `AUTHOR:` lines, all information
 related to a figure line *must be written on the same line*. Introducing
@@ -415,12 +426,6 @@ newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as `FIGURE:` will be
 included in the formatted caption).
 !ewarning
-
-The `height`, `width`, and `frac` keywords can be included
-if desired and may have effect for some formats: the height and width
-are used for output in the formats `html`, `rst`, `sphinx`, while
-the frac specification is used for `latex` and `pdflatex` to specify
-the width of the image as a fraction of the text width.
 
 idx{figures!placement}
 === Figure Placement ===
