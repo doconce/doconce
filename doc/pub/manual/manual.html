@@ -923,7 +923,7 @@ $$
 </center>
 <br>
 <center>
-<h4>May 13, 2021</h4>
+<h4>May 14, 2021</h4>
 </center> <!-- date -->
 <br>
 
@@ -1008,7 +1008,7 @@ expressions).
 <p>DocOnce has been used as writing platform for several books:</p>
 
 <br /><br /><center>
-<p><img src="fig/doconce_books.jpg" align="bottom" width=600></p>
+<p><img src="fig/doconce_books.jpg" align="bottom" width="600"></p>
 </center>
 <br /><br/>
 
@@ -1820,7 +1820,7 @@ is used - all other formats just leave the heading as it is written.
 <!-- !ec up to the caption line -->
 <h3 id="basic-syntax" class="anchor">Basic syntax </h3>
 
-<p>Figures are recognized by the special line syntax</p>
+<p>Figures are recognized by the special line syntax:</p>
 
 
 <!-- code=doconce (!bc do) typeset with pygments style "default" -->
@@ -1829,7 +1829,7 @@ is used - all other formats just leave the heading as it is written.
     <div class="inner_cell">
       <div class="input_area">
         <div class="highlight" style="background: #f8f8f8">
-  <pre style="line-height: 125%;"><span style="color: #008000">FIGURE:[filename, width=600 frac=0.8] caption</span>
+  <pre style="line-height: 125%;"><span style="color: #008000">FIGURE:[filename[, options][, frac=NUM]] [caption]</span>
 </pre>
 </div>
       </div>
@@ -1845,6 +1845,12 @@ is used - all other formats just leave the heading as it is written.
   </div>
 </div>
 
+<p>where <code>filename</code> is the figure's filename or URL, 
+<code>options</code> are options for the <code>&lt;img&gt;</code> HTML tag separated by comma or space, 
+<code>frac=NUM</code> specifies the image width with respect to the text width, 
+and <code>caption</code> is a text caption. 
+</p>
+
 <p>The filename can be without extension, and DocOnce will search for an
 appropriate file with the right extension. If the extension is wrong,
 say <code>.pdf</code> when requesting an HTML format, DocOnce tries to find another
@@ -1852,11 +1858,36 @@ file, and if not, the given file is converted to a proper format
 (using ImageMagick's <code>convert</code> utility).
 </p>
 
+<p>Typical <code>options</code> can be <code>height</code>, <code>width</code> for output in the formats <code>html</code>, <code>rst</code>, <code>sphinx</code>:</p>
+
+
+<!-- code=doconce (!bc do) typeset with pygments style "default" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #f8f8f8">
+  <pre style="line-height: 125%;"><span style="color: #008000">FIGURE:[filename, width=600, alt=&quot;alternate text for the image&quot;, frac=0.8] Figure caption</span>
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="alert alert-block alert-danger alert-text-normal"><b>Warning</b>
 <p>Note the comma
-between the filename and the figure size specifications and
-that there should be no space around the = sign. This syntax must
-be strictly followed.
+between the filename and options and
+that there should be no space around the = sign. 
 </p>
 
 <p>Note also that, like for <code>TITLE:</code> and <code>AUTHOR:</code> lines, all information
@@ -1867,13 +1898,6 @@ included in the formatted caption).
 </p>
 </div>
 
-
-<p>The <code>height</code>, <code>width</code>, and <code>frac</code> keywords can be included
-if desired and may have effect for some formats: the height and width
-are used for output in the formats <code>html</code>, <code>rst</code>, <code>sphinx</code>, while
-the frac specification is used for <code>latex</code> and <code>pdflatex</code> to specify
-the width of the image as a fraction of the text width.
-</p>
 <h3 id="figure-placement" class="anchor">Figure Placement </h3>
 
 <p>In web formats (<code>html</code>, <code>sphinx</code>, <code>ipynb</code>, <code>matlabnb</code>, wikis), the <code>FIGURE:</code> command is replaced by
@@ -2078,7 +2102,7 @@ inserting several lines with <code>&lt;linebreak&gt;</code>.
 <center>
 <p class="caption">Figure 1:  A wave.  <!-- caption label: fig:viz --> </p>
 </center>
-<p><img src="fig/wave1D.png" align="bottom" width=400></p>
+<p><img src="fig/wave1D.png" align="bottom" width="400"></p>
 </center>
 
 <h3 id="choosing-the-figure-format" class="anchor">Choosing the Figure Format </h3>
@@ -11169,7 +11193,7 @@ in particular the following one (with a caption),
 </p>
 
 <br /><br /><center>
-<p><img src="fig/userdef_code_envir.png" align="bottom" width=400></p>
+<p><img src="fig/userdef_code_envir.png" align="bottom" width="400"></p>
 </center>
 <br /><br/>
 
@@ -11992,7 +12016,7 @@ shown here, respectively (from left to right):
 </p>
 
 <br /><br /><center>
-<p><img src="fig/nav_buttons.png" align="bottom" width=300></p>
+<p><img src="fig/nav_buttons.png" align="bottom" width="300"></p>
 </center>
 <br /><br/>
 
@@ -18499,4 +18523,3 @@ syntax and not references for explaining parts of the text.
 </center>
 </body>
 </html>
-    

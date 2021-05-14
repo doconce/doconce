@@ -522,16 +522,15 @@ def default_movie(m):
     moviehtml = 'movie_player%d' % \
     _counter_for_html_movie_player + '.html'
     f = open(moviehtml, 'w')
-    f.write("""
-<html>
-<head>
-</head>
-<body>
-<title>Embedding media in HTML</title>
-%s
-</body>
-</html>
-""" % text)
+    f.write(('\n'
+             '<html>\n'
+             '<head>\n'
+             '</head>\n'
+             '<body>\n'
+             '<title>Embedding media in HTML</title>\n'
+             '%s\n'
+             '</body>\n'
+             '</html>\n') % text)
     errwarn('*** made link to new HTML file %s\n    with code to display the movie \n    %s' % (moviehtml, filename))
     text = '%s `%s`: load "`%s`": "%s" into a browser' % \
        (caption, filename, moviehtml, moviehtml)

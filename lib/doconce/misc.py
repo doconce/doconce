@@ -2547,17 +2547,17 @@ def doconce_split_html(header, parts, footer, basename, filename, slides=False):
                 # Bootstrap style
                 text += '\n<ul class="pager">\n'
                 if pn > 0:
-                    text += r"""
-  <li class="previous">
-    <a href="%s">&larr; Prev</a>
-  </li>
-""" % prev_part_filename
+                    text += (r'  <li class="previous">'
+                             '\n'
+                             r'    <a href="%s">&larr; Prev</a>'
+                             '\n'
+                             '  </li>\n') % prev_part_filename
                 if pn < len(parts)-1:
-                    text += r"""
-  <li class="next">
-    <a href="%s">Next &rarr;</a>
-  </li>
-""" % next_part_filename
+                    text += (r'  <li class="next">'
+                             '\n'
+                             r'    <a href="%s">Next &rarr;</a>'
+                             '\n'
+                             '  </li>\n') % next_part_filename
                 text += '</ul>\n'
             return text
     else:
@@ -2805,9 +2805,9 @@ def doconce_split_html(header, parts, footer, basename, filename, slides=False):
                 header_part_line_filename = html_imagefile(header_part_line)
             else:
                 header_part_line_filename = 'https://hplgit.github.io/doconce/bundled/html_images/%s.png' % header_part_line
-            lines.append(r"""
-<p><br><img src="%s"><p><br><p>
-""" % header_part_line_filename)
+            lines.append(('\n'
+                          r'<p><br><img src="%s"><p><br><p>\n') %
+                         header_part_line_filename)
 
         part_filename = _part_filename % (basename, pn) + '.html'
         prev_part_filename = _part_filename % (basename, pn-1) + '.html'
@@ -2824,7 +2824,8 @@ def doconce_split_html(header, parts, footer, basename, filename, slides=False):
                     if part[i].startswith('<!-- potential-jumbotron-button -->'):
                         part[i] = part[i].replace(
                               '<!-- potential-jumbotron-button -->',
-                              '\n\n<p><a href="%s" class="btn btn-primary btn-lg">Read &raquo;</a></p>\n\n' % next_part_filename)
+                              '\n\n<p><a href="%s" class="btn btn-primary btn-lg">Read &raquo;</a></p>\n\n' %
+                              next_part_filename)
                         break
             if 'top' in nav_button_pos:
                 lines += buttons.splitlines(True)
@@ -2839,23 +2840,22 @@ def doconce_split_html(header, parts, footer, basename, filename, slides=False):
                 lines.append('<table style="width: 100%"><tr><td>\n')
                 if pn > 0:
                     if nav_button == 'text':
-                        lines.append(r"""\
-<div style="text-align: left;"><a href="%s">&laquo; Previous</a></div>
-""" % (prev_part_filename))
+                        lines.append(r'<div style="text-align: left;"><a href="%s">&laquo; Previous</a></div>'
+                                     '\n' % (prev_part_filename))
                     else:
-                        lines.append(r"""\
-<div style="text-align: left;"><a href="%s"><img src="%s" border=0 alt="&laquo; Previous"></a></div>
-""" % (prev_part_filename, prev_button_filename))
+                        lines.append(r'<div style="text-align: left;"><a href="%s">'
+                                     r'<img src="%s" border=0 alt="&laquo; Previous"></a></div>' %
+                                     (prev_part_filename, prev_button_filename))
                 lines.append('</td><td>\n')
                 if pn < len(parts)-1:
                     if nav_button == 'text':
-                        lines.append(r"""\
-<div style="text-align: right;"><a href="%s">Next &raquo;</a></div>
-""" % (next_part_filename))
+                        lines.append(r'<div style="text-align: right;">'
+                                     r'<a href="%s">Next &raquo;</a></div>' %
+                                     (next_part_filename))
                     else:
-                        lines.append(r"""\
-<div style="text-align: right;"><a href="%s"><img src="%s" border=0 alt="Next &raquo;"></a></div>
-""" % (next_part_filename, next_button_filename))
+                        lines.append(r'<div style="text-align: right;">'
+                                     r'<a href="%s"><img src="%s" border=0 alt="Next &raquo;"></a></div>' %
+                                     (next_part_filename, next_button_filename))
                 lines.append('</td></tr></table>\n')
                 lines.append('<!-- end top navigation -->\n</p>\n\n')
                 lines.append('<p>\n')
@@ -2881,23 +2881,23 @@ def doconce_split_html(header, parts, footer, basename, filename, slides=False):
             lines.append('<table style="width: 100%"><tr><td>\n')
             if pn > 0:
                 if nav_button == 'text':
-                    lines.append(r"""\
-<div style="text-align: left;"><a href="%s">&laquo; Previous</a></div>
-""" % (prev_part_filename))
+                    lines.append((r'<div style="text-align: left;"><a href="%s">&laquo; Previous</a></div>'
+                                  r'\n') % (prev_part_filename))
                 else:
-                    lines.append(r"""\
-<div style="text-align: left;"><a href="%s"><img src="%s" border=0 alt="&laquo; Previous"></a></div>
-""" % (prev_part_filename, prev_button_filename))
+                    lines.append(
+                        (r'<div style="text-align: left;"><a href="%s"><img src="%s" border=0 '
+                         r'alt="&laquo; Previous"></a></div>'
+                         '\n') % (prev_part_filename, prev_button_filename))
             lines.append('</td><td>\n')
             if pn < len(parts)-1:
                 if nav_button == 'text':
-                    lines.append(r"""\
-<div style="text-align: right;"><a href="%s">Next &raquo;</a></div>
-""" % (next_part_filename))
+                    lines.append((r'<div style="text-align: right;"><a href="%s">Next &raquo;</a></div>'
+                                 '\n') % (next_part_filename))
                 else:
-                    lines.append(r"""\
-<div style="text-align: right;"><a href="%s"><img src="%s" border=0 alt="Next &raquo;"></a></div>
-""" % (next_part_filename, next_button_filename))
+                    lines.append(
+                        (r'<div style="text-align: right;"><a href="%s"><img src="%s" border=0 '
+                         r'alt="Next &raquo;"></a></div>'
+                         '\n') % (next_part_filename, next_button_filename))
             lines.append('</td></tr></table>\n')
             lines.append('<!-- end bottom navigation -->\n</p>\n\n')
             lines += footer
@@ -2947,11 +2947,10 @@ def doconce_split_html(header, parts, footer, basename, filename, slides=False):
             else:
                 font_size = 140
             part_text = part_text.replace(r'<style type="text/css">',
-                                          """<style type="text/css">
-body, td {font-size: %d%%;}
-h1 {font-size: 200%%;}
-h2 {font-size: 180%%;}
-""" % (font_size))
+                                          ('<style type="text/css">\n'
+                                           'body, td {font-size: %d%%;}\n'
+                                           'h1 {font-size: 200%%;}\n'
+                                           'h2 {font-size: 180%%;}\n') % (font_size))
 
         # Write part to ._*.html file
         f = open(part_filename, 'w')
@@ -3379,8 +3378,8 @@ def analyzer():
     include_files = re.findall(r"""[#%]\s+\#include\s*["']([A-Za-z0-9_-., ~]+?)["']""", alltext)
     include_files = [filename for dummy, filename in include_files]
 
-    figure = re.compile(r'^FIGURE:\s*\[(?P<filename>[^,\]]+),?(?P<options>[^\]]*)\]\s*?(?P<caption>.*)$', re.MULTILINE)
-    movie = re.compile(r'^MOVIE:\s*\[(?P<filename>[^,\]]+),?(?P<options>[^\]]*)\]\s*?(?P<caption>.*)$', re.MULTILINE)
+    figure = re.compile(INLINE_TAGS['figure'], re.MULTILINE)
+    movie = re.compile(INLINE_TAGS['movie'], re.MULTILINE)
     code = re.compile(r'^\s*@@@CODE\s+([^ ]+?) ')
 
     for filename in include_files:
@@ -3552,13 +3551,13 @@ _replacements = [
     (r'\[[A-Za-z]+:\s+[^\]]*?\]', ''),  # inline comment
     (r'''^\s*files? *= *[${}()"'A-Za-z_0-9.,*= ]+\s*$''', '', re.MULTILINE),
     (r'^\s*(kw|keywords) *= *([A-Za-z0-9\-._;, ]+)', '', re.MULTILINE),
-    (r"^@@@CODE.*$", "", re.MULTILINE),
-    (r"^@@@OSCMD.*$", "", re.MULTILINE),
-    (r"^\s*(FIGURE|MOVIE):\s*\[.+?\]",    "", re.MULTILINE),
-    (r"^\s*BIBFILE:.+$",    "", re.MULTILINE),
-    (r"^\s*TOC:\s+(on|off)", "", re.MULTILINE),
-    (r"\$[^{].*?\$", "", re.DOTALL),  # inline math
-    (r"\$\{[A-Za-z_].+?\}", "", re.DOTALL),   # mako substitutions (note that ${\cal O}..$ math is not allowed)
+    (r'^@@@CODE.*$', '', re.MULTILINE),
+    (r'^@@@OSCMD.*$', '', re.MULTILINE),
+    (r'^\s*(FIGURE|MOVIE):\s*\[.+?\]',    '', re.MULTILINE),
+    (r'^\s*BIBFILE:.+$',    '', re.MULTILINE),
+    (r'^\s*TOC:\s+(on|off)', '', re.MULTILINE),
+    (r'\$[^{].*?\$', '', re.DOTALL),  # inline math
+    (r'\$\{[A-Za-z_].+?\}', '', re.DOTALL),   # mako substitutions (note that ${\cal O}..$ math is not allowed)
     (r'\{copyright.+?\}', ''),
     ('!split', ''),
     (r'![be]slidecell', ''),
@@ -3585,30 +3584,30 @@ _replacements = [
     (r'^K: *', '', re.MULTILINE),
     (r'^L: *', '', re.MULTILINE),
     # Preprocess
-    (r"^#.*ifn?def.*$", "", re.MULTILINE),
-    (r"^#.*else.*$", "", re.MULTILINE),
-    (r"^#.*endif.*$", "", re.MULTILINE),
-    (r"^#include.*$", "", re.MULTILINE),
+    (r'^#.*ifn?def.*$', '', re.MULTILINE),
+    (r'^#.*else.*$', '', re.MULTILINE),
+    (r'^#.*endif.*$', '', re.MULTILINE),
+    (r'^#include.*$', '', re.MULTILINE),
     # Mako
     (r'^<%.+?^%>', '', re.MULTILINE|re.DOTALL),
-    (r"^% .*$", "", re.MULTILINE),
-    (r"^<%.*$", "", re.MULTILINE),
+    (r'^% .*$', '', re.MULTILINE),
+    (r'^<%.*$', '', re.MULTILINE),
     ]
 
 _latex_replacements = [
-    (r"%.*$", "", re.MULTILINE),  # comments
-    (r"\\.*section\{(.+)\}", "\g<1>"),
-    (r"^\\\[[^@]+\\\]",    ""),  # (@ is "unlikely" character)
-    (r"\\includegraphics.*?(\.pdf|\.png|\.eps|\.ps|\.jpg)", ""),
-    (r"\\(pageref|eqref|ref|label|url|emp)\{.*?\}", ""),
-    (r"\\(emph|texttt)\{(.*?)\}", "\g<2>"),
-    (r"\\footnote\{", " "),  # leaves an extra trailing } (ok)
-    #(r"\\[Vv]erb(.)(.+?)\1", "\g<2>"),
-    (r"\\[Vv]erb(.)(.+?)\1", ""),
-    (r"\\index\{.*?\}", ""),
-    (r"\$.+?\$", "", re.DOTALL),
-    (r"([A-Za-z])~", "\g<1> "),
-    (r"``(.+?)''", "\g<1>"),  # very important, otherwise doconce verb eats the text
+    (r'%.*$', '', re.MULTILINE),  # comments
+    (r'\\.*section\{(.+)\}', '\g<1>'),
+    (r'^\\\[[^@]+\\\]',    ''),  # (@ is "unlikely" character)
+    (r'\\includegraphics.*?(\.pdf|\.png|\.eps|\.ps|\.jpg)', ''),
+    (r'\\(pageref|eqref|ref|label|url|emp)\{.*?\}', ''),
+    (r'\\(emph|texttt)\{(.*?)\}', '\g<2>'),
+    (r'\\footnote\{', ' '),  # leaves an extra trailing } (ok)
+    #(r'\\[Vv]erb(.)(.+?)\1', '\g<2>'),
+    (r'\\[Vv]erb(.)(.+?)\1', ''),
+    (r'\\index\{.*?\}', ''),
+    (r'\$.+?\$', '', re.DOTALL),
+    (r'([A-Za-z])~', '\g<1> '),
+    (r'``(.+?)''', '\g<1>'),  # very important, otherwise doconce verb eats the text
     (r' \.', '.'),
     ('\n\\.', '.\n'),
     (r':\s*\.', '.'),
@@ -3616,13 +3615,13 @@ _latex_replacements = [
     ('\n\,', ',\n'),
     (',{2,}', ','),
     # ptex2tex
-    (r"^@@@DATA.*$",    "", re.MULTILINE),
-    (r"^@@@CMD.*$",    "", re.MULTILINE),
+    (r'^@@@DATA.*$',    '', re.MULTILINE),
+    (r'^@@@CMD.*$',    '', re.MULTILINE),
     # hpl's idx latex commands
-    (r"\\idx\{.*?\}", ""),
-    (r"\\idx(font|f|m|p|st|s|c|e|numpyr|numpy)\{.*?\}", ""),
-    (r"\\codett\{.*?\}", ""),
-    (r"\\code\{.*?\}", ""),
+    (r'\\idx\{.*?\}', ''),
+    (r'\\idx(font|f|m|p|st|s|c|e|numpyr|numpy)\{.*?\}', ''),
+    (r'\\codett\{.*?\}', ''),
+    (r'\\code\{.*?\}', ''),
     ]
 
 _common_typos = [
@@ -4513,11 +4512,11 @@ def grep():
         f.close()
 
         if file_tp == 'FIGURE':
-            pattern = r'^FIGURE:\s*\[(?P<filename>[^,\]]+),?(?P<options>[^\]]*)\]'
+            pattern = INLINE_TAGS['figure']
             filenames += [filename for filename, dummy in
                           re.findall(pattern, filestr, re.MULTILINE)]
         elif file_tp == 'MOVIE':
-            pattern = r'^MOVIE:\s*\[(?P<filename>[^,\]]+),?(?P<options>[^\]]*)\]'
+            pattern = pattern = INLINE_TAGS['movie']
             filenames += [filename for filename, dummy in
                           re.findall(pattern, filestr, re.MULTILINE)]
         elif file_tp == 'CODE':

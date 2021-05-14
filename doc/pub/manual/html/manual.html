@@ -457,7 +457,7 @@
 <dd class="field-odd"><p>Hans Petter Langtangen, Kristian Gregorius Hustad</p>
 </dd>
 <dt class="field-even">Date</dt>
-<dd class="field-even"><p>May 13, 2021</p>
+<dd class="field-even"><p>May 14, 2021</p>
 </dd>
 </dl>
 <div class="admonition warning">
@@ -820,32 +820,34 @@ is used - all other formats just leave the heading as it is written.</p>
 <h3>Figures<a class="headerlink" href="#figures-1" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="index-19"></span><span class="target" id="index-20"></span><div class="section" id="basic-syntax">
 <span id="index-21"></span><h4>Basic syntax<a class="headerlink" href="#basic-syntax" title="Permalink to this headline">¶</a></h4>
-<p>Figures are recognized by the special line syntax</p>
-<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="nb">FIGURE:[filename, width=600 frac=0.8] caption</span>
+<p>Figures are recognized by the special line syntax:</p>
+<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="nb">FIGURE:[filename[, options][, frac=NUM]] [caption]</span>
 </pre></div>
 </div>
+<p>where <code class="docutils literal notranslate"><span class="pre">filename</span></code> is the figure's filename or URL,
+<code class="docutils literal notranslate"><span class="pre">options</span></code> are options for the <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code> HTML tag separated by comma or space,
+<code class="docutils literal notranslate"><span class="pre">frac=NUM</span></code> specifies the image width with respect to the text width,
+and <code class="docutils literal notranslate"><span class="pre">caption</span></code> is a text caption.</p>
 <p>The filename can be without extension, and DocOnce will search for an
 appropriate file with the right extension. If the extension is wrong,
 say <code class="docutils literal notranslate"><span class="pre">.pdf</span></code> when requesting an HTML format, DocOnce tries to find another
 file, and if not, the given file is converted to a proper format
 (using ImageMagick's <code class="docutils literal notranslate"><span class="pre">convert</span></code> utility).</p>
+<p>Typical <code class="docutils literal notranslate"><span class="pre">options</span></code> can be <code class="docutils literal notranslate"><span class="pre">height</span></code>, <code class="docutils literal notranslate"><span class="pre">width</span></code> for output in the formats <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">rst</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>:</p>
+<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="nb">FIGURE:[filename, width=600, alt=&quot;alternate text for the image&quot;, frac=0.8] Figure caption</span>
+</pre></div>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Note the comma
-between the filename and the figure size specifications and
-that there should be no space around the = sign. This syntax must
-be strictly followed.</p>
+between the filename and options and
+that there should be no space around the = sign.</p>
 <p>Note also that, like for <code class="docutils literal notranslate"><span class="pre">TITLE:</span></code> and <code class="docutils literal notranslate"><span class="pre">AUTHOR:</span></code> lines, all information
 related to a figure line <em>must be written on the same line</em>. Introducing
 newlines in a long caption will destroy the formatting (only the
 part of the caption appearing on the same line as <code class="docutils literal notranslate"><span class="pre">FIGURE:</span></code> will be
 included in the formatted caption).</p>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">height</span></code>, <code class="docutils literal notranslate"><span class="pre">width</span></code>, and <code class="docutils literal notranslate"><span class="pre">frac</span></code> keywords can be included
-if desired and may have effect for some formats: the height and width
-are used for output in the formats <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">rst</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>, while
-the frac specification is used for <code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> to specify
-the width of the image as a fraction of the text width.</p>
 </div>
 <div class="section" id="figure-placement">
 <span id="index-22"></span><h4>Figure Placement<a class="headerlink" href="#figure-placement" title="Permalink to this headline">¶</a></h4>
