@@ -2,7 +2,7 @@ TITLE: Test slide features
 AUTHOR: Core Dump at Cyber Space Ltd
 DATE: Today
 
-FIGURE: [testfigs/doconce1b, width=400 frac=0.5]
+FIGURE: [testfigs/doconce1b, width=400, frac=0.5]
 
 !split
 TOC: on
@@ -11,16 +11,16 @@ TOC: on
 ===== Scientific writing for the future needs to address many new media =====
 
 !bslidecell 00 0.4
-FIGURE: [testfigs/ipad, width=400 frac=0.8]
+FIGURE: [testfigs/ipad, width=400, frac=0.8]
 
-FIGURE: [testfigs/iphones, width=100 frac=0.3]
+FIGURE: [testfigs/iphones, width=100, frac=0.3]
 
 #FIGURE: [testfigs/mbair, width=400]
 
 !eslidecell
 
 !bslidecell 01 0.6
-FIGURE: [testfigs/imac, width=350 frac=0.7]
+FIGURE: [testfigs/imac, width=350, frac=0.7]
 !eslidecell
 
 !split
@@ -32,11 +32,11 @@ FIGURE: [testfigs/oldbooks, width=800]
 ===== The classical report will survive =====
 
 !bslidecell 00
-FIGURE: [testfigs/latex_thesis, width=400 frac=1.2]
+FIGURE: [testfigs/latex_thesis, width=400, frac=1.2]
 !eslidecell
 
 !bslidecell 01
-FIGURE: [testfigs/latex_paper1, width=400 frac=1.2]
+FIGURE: [testfigs/latex_paper1, width=400, frac=1.2]
 !eslidecell
 
 !split
@@ -55,27 +55,27 @@ FIGURE: [testfigs/latex_paper1, width=400 frac=1.2]
 !epop
 
 !bslidecell 00 0.25
-FIGURE: [testfigs/LaTeX_logo.jpg, width=120 frac=0.3]
+FIGURE: [testfigs/LaTeX_logo.jpg, width=120, frac=0.3]
 !eslidecell
 
 !bslidecell 01 0.25
-FIGURE: [testfigs/MS_Word_logo.jpg, width=80 frac=0.2]
+FIGURE: [testfigs/MS_Word_logo.jpg, width=80, frac=0.2]
 !eslidecell
 
 !bslidecell 02 0.5
-FIGURE: [testfigs/sphinx_logo.png, width=200 frac=0.4]
+FIGURE: [testfigs/sphinx_logo.png, width=200, frac=0.4]
 !eslidecell
 
 !bslidecell 10 0.25
-FIGURE: [testfigs/markdown_logo.jpg, width=80 frac=0.2]
+FIGURE: [testfigs/markdown_logo.jpg, width=80, frac=0.2]
 !eslidecell
 
 !bslidecell 11 0.25
-FIGURE: [testfigs/MediaWiki_logo.jpg, width=80 frac=0.2]
+FIGURE: [testfigs/MediaWiki_logo.jpg, width=80, frac=0.2]
 !eslidecell
 
 !bslidecell 12 0.5
-FIGURE: [testfigs/IPython_logo.png, width=300 frac=0.6]
+FIGURE: [testfigs/IPython_logo.png, width=300, frac=0.6]
 !eslidecell
 
 
@@ -299,7 +299,7 @@ Figure with HTML and LaTeX info, and caption, *all on one line*:
 !enotice
 
 !bc
-FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
+FIGURE: [figdir/myfig, width=300, frac=1.2] My caption. label{fig1}
 
 # This figure will be 300 pixels wide in HTML and span 1.2 times
 # the linewidth in LaTeX.
@@ -308,7 +308,7 @@ FIGURE: [figdir/myfig, width=300 frac=1.2] My caption. label{fig1}
 Movies are also supported:
 
 !bc
-MOVIE: [https://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
+MOVIE: [https://www.youtube.com/embed/P8VcZzgdfSc, width=420, height=315]
 !ec
 and rendered as
 
@@ -530,7 +530,7 @@ Last page gets rendered to
  * Key point 1
  * Key point 2
 
-FIGURE: [testfigs/teacher1, width=100 frac=0.4]
+FIGURE: [testfigs/teacher1, width=100, frac=0.4]
 
 Key equation:
 

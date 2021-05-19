@@ -481,7 +481,7 @@ of course remain a tilde in those contexts.)
 Test of figures. In particular we refer to Figure fig:impact in which
 there is a flow.
 
-{{testfigs/wave1D.png| Visualization **of** a //wave//. (fig:impact)}}
+{{testfigs/wave1D.png|Visualization **of** a //wave//. (fig:impact)}}
 
 Figures without captions are allowed and will be inlined.
 
@@ -492,7 +492,7 @@ Figures without captions are allowed and will be inlined.
 Here is figure myfig with a long (illegal) multi-line caption
 containing inline verbatim text:
 
-{{testfigs/wave1D.png| A long caption spanning several lines and containing verbatim words like {{{my_file_v1}}} and {{{my_file_v2}}} as well as math with subscript as in {{{t_{i+1}}}}. (myfig) }}
+{{testfigs/wave1D.png|A long caption spanning several lines and containing verbatim words like {{{my_file_v1}}} and {{{my_file_v2}}} as well as math with subscript as in {{{t_{i+1}}}}. (myfig)}}
 
 <wiki:comment> Must be a blank line after MOVIE or FIGURE to detect this problem </wiki:comment>
 

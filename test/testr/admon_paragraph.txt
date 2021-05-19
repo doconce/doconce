@@ -304,7 +304,7 @@ Going deeper. ---------------------------------------------------------|
 |                                                                      |
 | And then we add a figure too.                                        |
 |                                                                      |
-| FIGURE: [testfigs/wave1D, width=400 frac=0.7]                        |
+| FIGURE: [testfigs/wave1D, width=400, frac=0.7]                       |
 |----------------------------------------------------------------------|
 
 

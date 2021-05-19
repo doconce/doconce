@@ -6,11 +6,11 @@ pdflatex doc
 cp doc.pdf doc_vrb.pdf
 
 doconce format pdflatex doc --latex_code_style=pyg
-pdflatex -shell-escape doc
+pdflatex -shell-escape -halt-on-error doc
 cp doc.pdf doc_pyg.pdf
 
 doconce format pdflatex doc --latex_code_style=pyg --minted_latex_style=perldoc
-pdflatex -shell-escape doc
+pdflatex -shell-escape -halt-on-error doc
 cp doc.pdf doc_pyg_perldoc.pdf
 
 doconce format pdflatex doc --latex_code_style=lst
@@ -45,7 +45,7 @@ cp doc.tex tmp_1_doc.tex  # save for inspection
 
 # With vertical padding of background: --latex_code_bg_vpad
 doconce format pdflatex doc "--latex_code_style=default:pyg-blue1@dat:lst[style=gray]@sys:vrb[frame=lines,label=\\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt,fontsize=\fontsize{9pt}{9pt}]" --latex_code_bg_vpad
-pdflatex -shell-escape doc
+pdflatex -shell-escape -halt-on-error doc
 cp doc.pdf doc_pyg_style_primer_vpad.pdf
 
 doconce format pdflatex doc "--latex_code_style=default:vrb-blue1@sys:vrb[frame=lines,label=\\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt,fontsize=\fontsize{9pt}{9pt}]"

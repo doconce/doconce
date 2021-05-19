@@ -5,6 +5,7 @@ from builtins import range
 from past.builtins import basestring
 import os, sys
 import regex as re
+import shlex
 from .common import insert_code_blocks, insert_tex_blocks, \
     indent_lines, table_analysis, plain_exercise, bibliography, \
     cite_with_multiple_args2multiple_cites, fix_ref_section_chapter
@@ -41,11 +42,21 @@ def rst_abstract(m):
 
 # replacement patterns for substitutions of inline tags
 def rst_figure(m):
+    """Format figures for the rst format
+
+    Return rst code to embed a figure in rst output. The syntax is
+    `FIGURE:[filename[, options][, sidecap=BOOL][, frac=NUM]] [caption]`.
+    Keywords: `sidecap` (default is False), `frac` (default is ),
+    :param _regex.Match m: regex match object
+    :return: rst code
+    :rtype: str
+    """
+    filename = m.group('filename').strip()
+    caption = m.group('caption').strip().strip('"').strip("'")
+    opts = m.group('options').strip()
+    info = dict()
+
     result = ''
-    # m is a MatchObject
-
-    caption = m.group('caption').strip()
-
     # Stubstitute DocOnce label by rst label in caption
     # (also, remove final period in caption since caption is used as hyperlink
     # text to figures).
@@ -67,21 +78,20 @@ def rst_figure(m):
         if caption and caption[-1] == '.':
             caption = caption[:-1]
 
-
-    filename = m.group('filename')
     link = filename if filename.startswith('http') else None
     if not link and not os.path.isfile(filename):
         raise IOError('no figure file %s' % filename)
 
     result += '\n.. figure:: ' + filename + '\n'  # utilize flexibility
-    opts = m.group('options')
     if opts:
         # opts: width=600 frac=0.5 align=center
         # opts: width=600, frac=0.5, align=center
-        info = [s.split('=') for s in opts.split()]
-        fig_info = ['   :%s: %s' % (option, value.replace(',', ''))
-                    for option, value in info
-                    if option not in ['frac', 'sidecap']]
+        info = shlex.split(opts)
+        info = dict(s.strip(',').split('=') for s in info)
+        # String of options
+        fig_info = ['   :%s: %s' % (opt, val.replace(',', ''))
+                    for opt, val in info.items()
+                    if opt not in ['frac', 'sidecap']]
         result += '\n'.join(fig_info)
     # remove final period in caption since caption is used as hyperlink
     # text to figures

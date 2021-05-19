@@ -15,7 +15,7 @@ FIGURE: [../doc/src/ipynb/fig/oscillator_general, width=600 frac=0.8] Oscillatin
 # begin figure
 label{ipynbex:physics:fig}
 
-<img src="../doc/src/ipynb/fig/oscillator_general.png" width=600><p style="font-size: 0.9em"><i>Figure 1: Oscillating system with spring and damper.</i></p>
+<img src="../doc/src/ipynb/fig/oscillator_general.png" width="600"><p style="font-size: 0.9em"><i>Figure 1: Oscillating system with spring and damper.</i></p>
 # end figure
 ===== Mathematics =====
 label{ipynbex:math}

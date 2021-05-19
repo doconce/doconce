@@ -37,7 +37,8 @@ from builtins import range
 
 import os, subprocess, sys, subprocess
 import regex as re
-from .common import default_movie, plain_exercise, insert_code_blocks, insert_tex_blocks
+import shlex
+from .common import default_movie, plain_exercise, insert_code_blocks, insert_tex_blocks, table_analysis
 from .plaintext import plain_quiz
 from .misc import _abort, errwarn
 from .globals import postfix_regex, code_block_regex
@@ -54,14 +55,12 @@ def align2equations(math_text):
     if not '{align' in math_text:
         return
     math_text = math_text.replace('&', '')
-    math_text = math_text.replace('\\\\', r"""
-</math>
-
-:<math>""")
+    math_text = math_text.replace('\\\\', ('\n</math>\n\n:<math>\n'))
     pattern = r'\\(begin|end)\{align\*?\}\s*'
     math_text = re.sub(pattern, '', math_text)
     # :<math> and </math> surroundings appear when !bt and !et are translated
     return math_text
+
 
 def equation2nothing(math_text):
     pattern = r'\\(begin|end)\{equation\*?\}\s*'
@@ -69,6 +68,7 @@ def equation2nothing(math_text):
     math_text = math_text.replace(r'\[', '')
     math_text = math_text.replace(r'\]', '')
     return math_text
+
 
 def remove_labels(math_text):
     pattern = 'label\{(.+?)\}\s*'
@@ -139,7 +139,20 @@ def mwiki_code(filestr, code_blocks, code_block_types,
 
 
 def mwiki_figure(m):
-    filename = m.group('filename')
+    """Format figures to the mwiki format
+
+    Return mwiki code to embed a figure in the .mwiki output. The syntax is
+    `FIGURE:[filename[, options][, sidecap=BOOL][, frac=NUM]] [caption]`.
+    Keywords: `sidecap` (default is False), `frac` (default is ),
+    :param _regex.Match m: regex match object
+    :return: mwiki code
+    :rtype: str
+    """
+    caption = m.group('caption').strip().strip('"').strip("'")
+    filename = m.group('filename').strip()
+    opts = m.group('options').strip()
+    info = dict()
+
     link = filename if filename.startswith('http') else None
     if not link and not os.path.isfile(filename):
         raise IOError('no figure file %s' % filename)
@@ -161,7 +174,6 @@ def mwiki_figure(m):
                 _abort()
             filename = root + '.png'
 
-    caption = m.group('caption').strip()
     if caption != '':
         caption = '|' + caption  # add | for non-empty caption
     else:
@@ -172,23 +184,23 @@ def mwiki_figure(m):
     caption = re.sub(r'label\{(.+?)\}', '(\g<1>)', caption)
 
     size = ''
-    opts = m.group('options').strip()
     if opts:
-        info = dict([s.split('=') for s in opts.split()])
+        info = shlex.split(opts)
+        info = dict(s.strip(',').split('=') for s in info)
         if 'width' in info and 'height' in info:
-            size = '|%sx%spx' % (info['width'], info['height'])
+            size = '|%sx%spx' % (info['width'].replace('px',''), info['height'].replace('px',''))
         elif 'width' in info:
-            size = '|%spx' % info['width']
+            size = '|%spx' % info['width'].replace('px','')
         elif 'height' in info:
-            size = '|x%spx' % info['height']
+            size = '|x%spx' % info['height'].replace('px','')
 
     if link:
         # We link to some image on the web
         filename = os.path.basename(filename)
         link = os.path.dirname(link)
-        result = r"""
-[[File:%s|frame%s|link=%s|alt=%s%s]]
-""" % (filename, size, link, filename, caption)
+        result = ('\n'
+                  r'[[File:%s|frame%s|link=%s|alt=%s%s]]'
+                  '\n\n') % (filename, size, link, filename, caption)
     else:
         # We try to link to a file at wikimedia.org.
         found_wikimedia = False
@@ -233,9 +245,9 @@ def mwiki_figure(m):
             if user:
                 found_wikimedia = True
                 errwarn(' ...found %s at wikimedia' % filename)
-                result = r"""
-    [[File:%s|frame%s|alt=%s%s]] <!-- user: %s, filename: %s, timestamp: %s -->
-    """ % (filename, size, filename, caption, user, orig_filename, timestamp)
+                result = ('\n'
+                          r'    [[File:%s|frame%s|alt=%s%s]] <!-- user: %s, filename: %s, timestamp: %s -->'
+                          '    \n') % (filename, size, filename, caption, user, orig_filename, timestamp)
         except IOError:
             errwarn(' ...no Internet connection...')
 
@@ -246,13 +258,11 @@ def mwiki_figure(m):
             errwarn(' ...for now we use local file %s' % filename)
             # This is fine if we use github wiki
 
-            result = r"""
-[[File:%s|frame%s|alt=%s%s]] <!-- not yet uploaded to common.wikimedia.org -->
-""" % (filename, size, filename, caption)
+            result = ('\n'
+                      r'[[File:%s|frame%s|alt=%s%s]] <!-- not yet uploaded to common.wikimedia.org -->'
+                      '\n\n') % (filename, size, filename, caption)
 
     return result
-
-from .common import table_analysis
 
 
 def mwiki_author(authors_and_institutions, auth2index,
@@ -283,8 +293,10 @@ def mwiki_author(authors_and_institutions, auth2index,
 
 from .gwiki import wiki_ref_and_label_common
 
+
 def mwiki_ref_and_label(section_label2title, format, filestr):
     return wiki_ref_and_label_common(section_label2title, format, filestr)
+
 
 def mwiki_admon(block, format, title='Warning', text_size='normal',
                 admon_type='warning'):
@@ -339,6 +351,7 @@ def mwiki_admon(block, format, title='Warning', text_size='normal',
     return s
 
 # mbox: notice
+
 
 def define(FILENAME_EXTENSION,
            BLANKLINE,

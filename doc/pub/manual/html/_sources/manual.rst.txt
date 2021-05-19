@@ -20,7 +20,7 @@ DocOnce Manual
 %%%%%%%%%%%%%%
 
 :Authors: Hans Petter Langtangen, Kristian Gregorius Hustad
-:Date: May 14, 2021
+:Date: May 19, 2021
 
 .. lines beginning with # are doconce comment lines
 
@@ -374,7 +374,7 @@ is 2015).
      AUTHOR: Joe Doe {copyright,2001-2010|CC BY}
      AUTHOR: Jane Doe Email:jd@kk.org {copyright,2001-2010|CC BY}
 
-Output becomes "Copyright 2001-2010, Joe Doe, Jane Doe. Released under CC Attribution 4.0 license". One can provide the option ``
+Output becomes ''Copyright 2001-2010, Joe Doe, Jane Doe. Released under CC Attribution 4.0 license''. One can provide the option ``
 
 | --CC_license="This work is released under the Creative Commons %s 4.0 license."``, and the output
 
@@ -551,12 +551,18 @@ Figures are recognized by the special line syntax:
 
 .. code-block:: doconce
 
-    FIGURE:[filename[, options][, frac=NUM]] [caption]
+    FIGURE: [filename[, options][, sidecap=BOOL][, frac=NUM]] [caption]
 
-where ``filename`` is the figure's filename or URL, 
-``options`` are options for the ``<img>`` HTML tag separated by comma or space, 
-``frac=NUM`` specifies the image width with respect to the text width, 
-and ``caption`` is a text caption. 
+where: 
+ * ``filename`` is the figure's filename or URL;
+
+ * ``options`` are options for the ``<img>`` HTML tag separated by comma or space;
+
+ * ``sidecap=BOOL`` places the caption on the side of the figure (default is False);
+
+ * ``frac=NUM`` specifies the image width with respect to the text width when ``sidecap`` is used;
+
+ * ``caption`` is a text caption. 
 
 The filename can be without extension, and DocOnce will search for an
 appropriate file with the right extension. If the extension is wrong,
@@ -569,6 +575,8 @@ Typical ``options`` can be ``height``, ``width`` for output in the formats ``htm
 .. code-block:: doconce
 
     FIGURE:[filename, width=600, alt="alternate text for the image", frac=0.8] Figure caption
+
+See also the ``--html_figure_hrule``, ``--html_figure_caption``, ``--html_responsive_figure_width`` options.
 
 
 .. warning::
@@ -843,14 +851,20 @@ Sidecaption in LaTeX and HTML
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The figure caption can be placed on the (right) side of figures by
-using the ``sidecap`` feature as a figure option, e.g.,
-``FIGURE: [myfig, width=500 frac=0.5 sidecap=True]``. The generated
-``latex`` and ``pdflatex`` output then uses the ``sidecap`` package and
-the ``SCfigure`` environment to typeset the figure. Remember to
-use a quite low ``frac`` value for figures with sidecaption (0.5
-for instance). A table is used for typesetting a figure with
-sidecaption in HTML, and a low ``width`` value is recommended.
+using the ``sidecap`` keyword as a figure option, e.g.
+
+.. code-block:: doconce
+
+    FIGURE: [myfig, width=500, sidecap=True, frac=0.5]
+
+The generated ``latex`` and ``pdflatex`` output then uses the ``sidecap`` package
+and the ``SCfigure`` environment to typeset the figure. 
+It is recommended to use a relatively low ``frac`` value for figures with 
+sidecaption (e.g. 0.5). 
+In HTML a table tag is used for typesetting a figure with ``sidecap``, 
+and a low ``width`` value is recommended. 
 The ``sidecap=True`` figure option has no impact on other formats.
+See also the ``--html_figure_hrule``, --html_figure_caption`, ``--html_responsive_figure_width``, ``--sphinx_figure_captions`` options.
 
 .. index::
    single: figures; Tikz
@@ -1114,21 +1128,34 @@ the form
 
 .. code-block:: doconce
 
-    MOVIE: [filename, height=xxx width=yyy] possible caption
+    MOVIE: [filename[, height=NUM][, width=NUM]] [caption]
+
+where:
+ * ``filename`` is the figure's filename or URL, or a filename generator to create an animation (see the the section :ref:`figures!animation`);
+
+ * ``height`` and ``width`` are optionl and specify the height and width of the movie (default are 640 and 365, respectively). Note that HTML by default assignes pixels as unit;
+
+ * ``caption`` is a text caption. 
 
 Note that there must be a blank line after every ``MOVIE:`` command.
-The width and height parameters are not required, but leaving them out
-may lead to movie sizes you do not want.
+
+See also  the ``--latex_movie``, ``--latex_movie_controls``, and ``--latex_external_movie_viewer`` options. 
+
+The following example embeds two movies, the first from a local file in .ogg format, the second online:
+
+.. code-block:: doconce
+
+    MOVIE: [mov/wave.ogg, width=600] A movie in Ogg format.
+    
+    MOVIE: [http://doconce.github.io/animate/doc/pub/mov-animate/demo.ogg, height=300] Ogg movie in cyberspace.
 
 .. index::
    single: movies; .ogg example
 
-Here is a movie in the Ogg format:
-
 .. raw:: html
         
         <div>
-        <video  loop controls width='600' height='365' preload='none'>
+        <video loop controls width='600' height='365' preload='none'>
             <source src='mov/wave.mp4'  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
             <source src='mov/wave.webm' type='video/webm; codecs="vp8, vorbis"'>
             <source src='mov/wave.ogg'  type='video/ogg;  codecs="theora, vorbis"'>
@@ -1139,29 +1166,17 @@ Here is a movie in the Ogg format:
         <!-- Issue warning if in a Safari browser -->
         <script language="javascript">
         if (!!(window.safari)) {
-          document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
+          document.write("<div style=\"width:95%%; padding:10px; border:1px solid #100; border-radius:4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
         </script>
         
-
-realized by the command
-
-.. code-block:: doconce
-
-    MOVIE: [mov/wave.ogg, width=600] A movie in Ogg format.
-
-A URL also works an an input to ``MOVIE: ``:
 
 .. index::
    single: movies; url example
 
-.. code-block:: doconce
-
-    MOVIE: [http://doconce.github.io/animate/doc/pub/mov-animate/demo.ogg] Ogg movie in cyberspace.
-
 .. raw:: html
         
         <div>
-        <video  loop controls width='640' height='365' preload='none'>
+        <video loop controls width='640' height='300' preload='none'>
         </video>
         </div>
         <p><em>Ogg movie in cyberspace.</em></p>
@@ -1169,7 +1184,7 @@ A URL also works an an input to ``MOVIE: ``:
         <!-- Issue warning if in a Safari browser -->
         <script language="javascript">
         if (!!(window.safari)) {
-          document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
+          document.write("<div style=\"width:95%%; padding:10px; border:1px solid #100; border-radius:4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
         </script>
         
 
@@ -1316,9 +1331,9 @@ A typical ``MOVIE`` command with a YouTube or Vimeo movie is then
 
 .. code-block:: doconce
 
-    MOVIE: [http://www.youtube.com/watch?v=sI2uCHH3qIM, width=420 height=315]
+    MOVIE: [http://www.youtube.com/watch?v=sI2uCHH3qIM, width=420, height=315]
     
-    MOVIE: [http://vimeo.com/55562330, width=500 height=278] CFD.
+    MOVIE: [http://vimeo.com/55562330, width=500, height=278] CFD.
 
 .. index:: animation
 
@@ -2793,7 +2808,7 @@ Here is an example:
        
        % endif
    
-   .. index:: makomovie function
+   .. index:: mako_movie_function
    
    If you encounter a large number of such if-else statements, it is
    advantageous to write a Mako function in Python:
@@ -5398,7 +5413,7 @@ appear as unfolded sections - one must click to open the text.
 
 .. --- begin exercise ---
 
-.. _doconce:manual:exercise:ex:
+.. _doconce:manual:exercise:ex2:
 
 Exercise 1: Compute integrals
 -----------------------------
@@ -7534,14 +7549,14 @@ the writing of parts of the document.
 
 
 
-.. _splitting documents:
+.. _splitting_documents:
 
 Splitting Documents into Smaller Pieces
 ---------------------------------------
 
-.. index:: splitting documents
+.. index:: splitting_documents
 
-.. index:: multi-page documents
+.. index:: multi-page_documents
 
 Long documents are conveniently split into smaller DocOnce files.
 However, there must be a master document including all the pieces,
@@ -7802,7 +7817,7 @@ Here is a typical title page:
     AUTHOR: Chan Siu Ming at Progress Ltd & Moon University
     DATE: today
     
-    FIGURE: [fig/logo, width=300 frac=0.3]
+    FIGURE: [fig/logo, width=300, frac=0.3]
 
 Parts Page
 ~~~~~~~~~~
@@ -7833,7 +7848,7 @@ which results in columns of equal widths).
     !eslidecell
     
     !bslidecell 01 0.6
-    FIGURE: [fig/method, width=600 frac=0.7]
+    FIGURE: [fig/method, width=600, frac=0.7]
     !eslidecell
 
 The ``# Short title: ...`` line can be used to define a short
@@ -7913,7 +7928,7 @@ Standard DocOnce elements and formatting work in slides too:
     \[ a = b \]
     !et
     
-    FIGURE: [fig/a_eq_b, width=500 frac=0.4]
+    FIGURE: [fig/a_eq_b, width=500, frac=0.4]
     
     MOVIE: [mov/animate_a_eq_b]
 
@@ -8211,7 +8226,7 @@ Mako Programming
 
 The `Mako <http://docs.makotemplates.org/>`__ templating engine is used
 as a preprocessor for DocOnce documents. However, `Preprocess <http://code.google.com/p/preprocess>`__
-runs prior to Mako and should be used to include other files via ``# #include "filename"`` (see the section :ref:`splitting documents`). Preprocess is
+runs prior to Mako and should be used to include other files via ``# #include "filename"`` (see the section :ref:`splitting_documents`). Preprocess is
 sufficient for if-else tests to steer which parts of the text are to be compiled.
 For more demanding tasks, use Mako, which resembles
 a real programming language.
@@ -11357,7 +11372,7 @@ here for convenience.
     --html_bootstrap_navbar=...         Turns the Bootstrap navigation bar on/off. Default: on.
     --html_bootstrap_jumbotron=...      Turns the Bootstrap jumbotron intro on/off and governs the size of the document title. Default: on. Other values: h2, off (h2 gives h2 heading instead of h1, off gives no jumbotron).
     --html_bootstrap_navbar_links=...   Allows custom links in the navigation bar. Format: link|url;link|url;link|url. Example: "--html_bootstrap_navbar_links=Google|https://google.com;hpl|https://folk.uio.no/hpl"
-    --html_figure_caption=...           Placement of figure caption: top (default) or bottom. (sidecap=True is another option, this can be set for individual figures, while --html_figure_caption controls the general caption placement of all figures.
+    --html_figure_caption=...           Placement of figure caption: top (default) or bottom. See also the `sidecap` keyword for individual figures.
     --html_figure_hrule=...             Set horizontal rule(s) above and/or below a figure. top: rule at top (default); none, off: no rules; bottom: rule at bottom; top+bottom: rule at top and bottom
     --html_copyright=...                Controls where to put copyright statements. everypage: in the footer of every page; titlepages or titlepage: in the footer of the titlepage only (default).
     --cite_doconce                      Adds a citation to the DocOnce web page if copyright statements are present.

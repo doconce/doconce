@@ -29,11 +29,11 @@ python automake_sphinx.py
 
 # LaTeX PDF
 system doconce format pdflatex $name --latex_code_style=pyg-blue1 $options
-pdflatex -shell-escape $name
+pdflatex -shell-escape -halt-on-error $name
 makeindex $name
 bibtex $name
-pdflatex -shell-escape $name
-pdflatex -shell-escape $name
+pdflatex -shell-escape -halt-on-error $name
+pdflatex -shell-escape -halt-on-error $name
 
 # Index page
 system doconce format html index --html_style=bootstrap $options

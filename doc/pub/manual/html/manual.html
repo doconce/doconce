@@ -329,7 +329,7 @@
 <li><a class="reference internal" href="#the-old-ptex2tex-step">The old <code class="docutils literal notranslate"><span class="pre">ptex2tex</span></code> step</a></li>
 <li><a class="reference internal" href="#latex-pdf-generate-latex-step-1">LaTeX-PDF: Generate LaTeX (Step 1)</a><ul>
 <li><a class="reference internal" href="#the-translation-command">The translation command</a></li>
-<li><a class="reference internal" href="#id46">Newcommands</a></li>
+<li><a class="reference internal" href="#id42">Newcommands</a></li>
 <li><a class="reference internal" href="#output-for-paper-vs-screen">Output for paper vs screen</a></li>
 <li><a class="reference internal" href="#command-line-options">Command-line options</a></li>
 <li><a class="reference internal" href="#syntax-highlighting">Syntax highlighting</a></li>
@@ -457,7 +457,7 @@
 <dd class="field-odd"><p>Hans Petter Langtangen, Kristian Gregorius Hustad</p>
 </dd>
 <dt class="field-even">Date</dt>
-<dd class="field-even"><p>May 14, 2021</p>
+<dd class="field-even"><p>May 19, 2021</p>
 </dd>
 </dl>
 <div class="admonition warning">
@@ -695,7 +695,7 @@ is 2015).</p>
 AUTHOR: Jane Doe Email:jd@kk.org {copyright,2001-2010|CC BY}
 </pre></div>
 </div>
-<p>Output becomes &quot;Copyright 2001-2010, Joe Doe, Jane Doe. Released under CC Attribution 4.0 license&quot;. One can provide the option ``</p>
+<p>Output becomes ''Copyright 2001-2010, Joe Doe, Jane Doe. Released under CC Attribution 4.0 license''. One can provide the option ``</p>
 <div class="line-block">
 <div class="line">--CC_license=&quot;This work is released under the Creative Commons %s 4.0 license.&quot;<a href="#id3"><span class="problematic" id="id4">``</span></a>, and the output</div>
 </div>
@@ -821,13 +821,19 @@ is used - all other formats just leave the heading as it is written.</p>
 <span class="target" id="index-19"></span><span class="target" id="index-20"></span><div class="section" id="basic-syntax">
 <span id="index-21"></span><h4>Basic syntax<a class="headerlink" href="#basic-syntax" title="Permalink to this headline">¶</a></h4>
 <p>Figures are recognized by the special line syntax:</p>
-<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="nb">FIGURE:[filename[, options][, frac=NUM]] [caption]</span>
+<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="nb">FIGURE: [filename[, options][, sidecap=BOOL][, frac=NUM]] [caption]</span>
 </pre></div>
 </div>
-<p>where <code class="docutils literal notranslate"><span class="pre">filename</span></code> is the figure's filename or URL,
-<code class="docutils literal notranslate"><span class="pre">options</span></code> are options for the <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code> HTML tag separated by comma or space,
-<code class="docutils literal notranslate"><span class="pre">frac=NUM</span></code> specifies the image width with respect to the text width,
-and <code class="docutils literal notranslate"><span class="pre">caption</span></code> is a text caption.</p>
+<dl class="simple">
+<dt>where:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">filename</span></code> is the figure's filename or URL;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">options</span></code> are options for the <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code> HTML tag separated by comma or space;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sidecap=BOOL</span></code> places the caption on the side of the figure (default is False);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frac=NUM</span></code> specifies the image width with respect to the text width when <code class="docutils literal notranslate"><span class="pre">sidecap</span></code> is used;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">caption</span></code> is a text caption.</p></li>
+</ul>
+</dd>
+</dl>
 <p>The filename can be without extension, and DocOnce will search for an
 appropriate file with the right extension. If the extension is wrong,
 say <code class="docutils literal notranslate"><span class="pre">.pdf</span></code> when requesting an HTML format, DocOnce tries to find another
@@ -837,6 +843,7 @@ file, and if not, the given file is converted to a proper format
 <div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="nb">FIGURE:[filename, width=600, alt=&quot;alternate text for the image&quot;, frac=0.8] Figure caption</span>
 </pre></div>
 </div>
+<p>See also the <code class="docutils literal notranslate"><span class="pre">--html_figure_hrule</span></code>, <code class="docutils literal notranslate"><span class="pre">--html_figure_caption</span></code>, <code class="docutils literal notranslate"><span class="pre">--html_responsive_figure_width</span></code> options.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Note the comma
@@ -932,9 +939,9 @@ is up to LaTeX do decide).</p>
 into the text. You can add vertical space in LaTeX and HTML by
 inserting several lines with <code class="docutils literal notranslate"><span class="pre">&lt;linebreak&gt;</span></code>.</p>
 </div>
-<div class="figure align-default" id="id49">
+<div class="figure align-default" id="id45">
 <span id="fig-viz"></span><a class="reference internal image-reference" href="_images/wave1D.png"><img alt="_images/wave1D.png" src="_images/wave1D.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text"><em>A wave</em></span><a class="headerlink" href="#id49" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><em>A wave</em></span><a class="headerlink" href="#id45" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="choosing-the-figure-format">
@@ -1035,14 +1042,18 @@ a new figure file <code class="docutils literal notranslate"><span class="pre">f
 <div class="section" id="sidecaption-in-latex-and-html">
 <span id="index-30"></span><h4>Sidecaption in LaTeX and HTML<a class="headerlink" href="#sidecaption-in-latex-and-html" title="Permalink to this headline">¶</a></h4>
 <p>The figure caption can be placed on the (right) side of figures by
-using the <code class="docutils literal notranslate"><span class="pre">sidecap</span></code> feature as a figure option, e.g.,
-<code class="docutils literal notranslate"><span class="pre">FIGURE:</span> <span class="pre">[myfig,</span> <span class="pre">width=500</span> <span class="pre">frac=0.5</span> <span class="pre">sidecap=True]</span></code>. The generated
-<code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> output then uses the <code class="docutils literal notranslate"><span class="pre">sidecap</span></code> package and
-the <code class="docutils literal notranslate"><span class="pre">SCfigure</span></code> environment to typeset the figure. Remember to
-use a quite low <code class="docutils literal notranslate"><span class="pre">frac</span></code> value for figures with sidecaption (0.5
-for instance). A table is used for typesetting a figure with
-sidecaption in HTML, and a low <code class="docutils literal notranslate"><span class="pre">width</span></code> value is recommended.
-The <code class="docutils literal notranslate"><span class="pre">sidecap=True</span></code> figure option has no impact on other formats.</p>
+using the <code class="docutils literal notranslate"><span class="pre">sidecap</span></code> keyword as a figure option, e.g.</p>
+<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="nb">FIGURE: [myfig, width=500, sidecap=True, frac=0.5]</span>
+</pre></div>
+</div>
+<p>The generated <code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> output then uses the <code class="docutils literal notranslate"><span class="pre">sidecap</span></code> package
+and the <code class="docutils literal notranslate"><span class="pre">SCfigure</span></code> environment to typeset the figure.
+It is recommended to use a relatively low <code class="docutils literal notranslate"><span class="pre">frac</span></code> value for figures with
+sidecaption (e.g. 0.5).
+In HTML a table tag is used for typesetting a figure with <code class="docutils literal notranslate"><span class="pre">sidecap</span></code>,
+and a low <code class="docutils literal notranslate"><span class="pre">width</span></code> value is recommended.
+The <code class="docutils literal notranslate"><span class="pre">sidecap=True</span></code> figure option has no impact on other formats.
+See also the <code class="docutils literal notranslate"><span class="pre">--html_figure_hrule</span></code>, --html_figure_caption`, <code class="docutils literal notranslate"><span class="pre">--html_responsive_figure_width</span></code>, <code class="docutils literal notranslate"><span class="pre">--sphinx_figure_captions</span></code> options.</p>
 </div>
 <div class="section" id="tikz-figures">
 <span id="index-31"></span><h4>TikZ Figures<a class="headerlink" href="#tikz-figures" title="Permalink to this headline">¶</a></h4>
@@ -1253,15 +1264,27 @@ in the box <em>Recommendations</em> below.</p>
 <h4>The Basic Command<a class="headerlink" href="#the-basic-command" title="Permalink to this headline">¶</a></h4>
 <p>As with <code class="docutils literal notranslate"><span class="pre">FIGURE</span></code>, the <code class="docutils literal notranslate"><span class="pre">MOVIE</span></code> command spans just <em>one line</em> and is of
 the form</p>
-<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="nb">MOVIE: [filename, height=xxx width=yyy] possible caption</span>
+<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="nb">MOVIE: [filename[, height=NUM][, width=NUM]] [caption]</span>
 </pre></div>
 </div>
-<p>Note that there must be a blank line after every <code class="docutils literal notranslate"><span class="pre">MOVIE:</span></code> command.
-The width and height parameters are not required, but leaving them out
-may lead to movie sizes you do not want.</p>
-<p id="index-39">Here is a movie in the Ogg format:</p>
+<dl class="simple">
+<dt>where:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">filename</span></code> is the figure's filename or URL, or a filename generator to create an animation (see the the section <span class="xref std std-ref">figures!animation</span>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">height</span></code> and <code class="docutils literal notranslate"><span class="pre">width</span></code> are optionl and specify the height and width of the movie (default are 640 and 365, respectively). Note that HTML by default assignes pixels as unit;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">caption</span></code> is a text caption.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Note that there must be a blank line after every <code class="docutils literal notranslate"><span class="pre">MOVIE:</span></code> command.</p>
+<p>See also  the <code class="docutils literal notranslate"><span class="pre">--latex_movie</span></code>, <code class="docutils literal notranslate"><span class="pre">--latex_movie_controls</span></code>, and <code class="docutils literal notranslate"><span class="pre">--latex_external_movie_viewer</span></code> options.</p>
+<p>The following example embeds two movies, the first from a local file in .ogg format, the second online:</p>
+<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="nb">MOVIE: [mov/wave.ogg, width=600] A movie in Ogg format.</span>
+
+<span class="nb">MOVIE: [http://doconce.github.io/animate/doc/pub/mov-animate/demo.ogg, height=300] Ogg movie in cyberspace.</span>
+</pre></div>
+</div>
 <div>
-<video  loop controls width='600' height='365' preload='none'>
+<video loop controls width='600' height='365' preload='none'>
     <source src="_static/mov/wave.mp4"  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
     <source src="_static/mov/wave.webm" type='video/webm; codecs="vp8, vorbis"'>
     <source src="_static/mov/wave.ogg"  type='video/ogg;  codecs="theora, vorbis"'>
@@ -1272,17 +1295,9 @@ may lead to movie sizes you do not want.</p>
 <!-- Issue warning if in a Safari browser -->
 <script language="javascript">
 if (!!(window.safari)) {
-  document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
-</script><p>realized by the command</p>
-<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="nb">MOVIE: [mov/wave.ogg, width=600] A movie in Ogg format.</span>
-</pre></div>
-</div>
-<p>A URL also works an an input to <a href="#id5"><span class="problematic" id="id6">``</span></a>MOVIE: <a href="#id7"><span class="problematic" id="id8">``</span></a>:</p>
-<div class="highlight-doconce notranslate" id="index-40"><div class="highlight"><pre><span></span><span class="nb">MOVIE: [http://doconce.github.io/animate/doc/pub/mov-animate/demo.ogg] Ogg movie in cyberspace.</span>
-</pre></div>
-</div>
-<div>
-<video  loop controls width='640' height='365' preload='none'>
+  document.write("<div style=\"width:95%%; padding:10px; border:1px solid #100; border-radius:4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
+</script><div>
+<video loop controls width='640' height='300' preload='none'>
 </video>
 </div>
 <p><em>Ogg movie in cyberspace.</em></p>
@@ -1290,7 +1305,7 @@ if (!!(window.safari)) {
 <!-- Issue warning if in a Safari browser -->
 <script language="javascript">
 if (!!(window.safari)) {
-  document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
+  document.write("<div style=\"width:95%%; padding:10px; border:1px solid #100; border-radius:4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
 </script><span class="target" id="index-41"></span><div class="admonition-important admonition" id="index-42">
 <p class="admonition-title">Important</p>
 <p>Movies will not work properly in <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> format unless they are located
@@ -1381,9 +1396,9 @@ of <em>embedded</em> YouTube and Vimeo movies. The recipe goes as follows:</p>
 <li><p>note the height and width of the embedded movie</p></li>
 </ol>
 <p>A typical <code class="docutils literal notranslate"><span class="pre">MOVIE</span></code> command with a YouTube or Vimeo movie is then</p>
-<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="nb">MOVIE: [http://www.youtube.com/watch?v=sI2uCHH3qIM, width=420 height=315]</span>
+<div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="nb">MOVIE: [http://www.youtube.com/watch?v=sI2uCHH3qIM, width=420, height=315]</span>
 
-<span class="nb">MOVIE: [http://vimeo.com/55562330, width=500 height=278] CFD.</span>
+<span class="nb">MOVIE: [http://vimeo.com/55562330, width=500, height=278] CFD.</span>
 </pre></div>
 </div>
 <span class="target" id="index-50"></span></div>
@@ -2769,7 +2784,7 @@ does not work well because a proper Flash player for embedding in
 the PDF file is not always available. The <code class="docutils literal notranslate"><span class="pre">movie15</span></code> package also leads
 to problems because Acrobat Reader depends on an external player to
 show the files, and the correct plugins to launch players with support
-for a given format are not trivial to install. Even the plain <a href="#id9"><span class="problematic" id="id10">`</span></a>h:ref:<a href="#id11"><span class="problematic" id="id12">`</span></a>run:file&quot;
+for a given format are not trivial to install. Even the plain <a href="#id5"><span class="problematic" id="id6">`</span></a>h:ref:<a href="#id7"><span class="problematic" id="id8">`</span></a>run:file&quot;
 command relies on an external player and not all formats will be
 supported on a given computer.</p>
 <p>To have really robust code, use filename generators and not movie files.</p>
@@ -2914,7 +2929,7 @@ the Mako equivalent <code class="docutils literal notranslate"><span class="pre"
 <div class="section" id="tables">
 <h3>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="index-67">
-<span id="id13"></span><h4>Basic Syntax<a class="headerlink" href="#index-67" title="Permalink to this headline">¶</a></h4>
+<span id="id9"></span><h4>Basic Syntax<a class="headerlink" href="#index-67" title="Permalink to this headline">¶</a></h4>
 <p>A table like</p>
 <table class="docutils align-default">
 <colgroup>
@@ -3139,7 +3154,7 @@ in lists may give strange behavior.</p>
 </div>
 </div>
 <div class="section" id="inline-tagging">
-<span id="id14"></span><h2>Inline Tagging<a class="headerlink" href="#inline-tagging" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h2>Inline Tagging<a class="headerlink" href="#inline-tagging" title="Permalink to this headline">¶</a></h2>
 <p id="index-87">DocOnce supports tags for <em>emphasized phrases</em>, <strong>boldface phrases</strong>,
 and <code class="docutils literal notranslate"><span class="pre">verbatim</span> <span class="pre">text</span></code> (also called type writer text, for inline code),
 plus LaTeX/TeX inline mathematics, such as <span class="math notranslate nohighlight">\(\nu = \sin(x)\)</span>.
@@ -3414,14 +3429,14 @@ case of spaces.
 </pre></div>
 </div>
 <p>The text above looks as follows.</p>
-<p>Footnotes are typeset according to the output format <a class="footnote-reference brackets" href="#typesetting" id="id16">1</a>.
+<p>Footnotes are typeset according to the output format <a class="footnote-reference brackets" href="#typesetting" id="id12">1</a>.
 The syntax is optional spaces, opening bracket, hat, a footnote name
-without spaces <a class="footnote-reference brackets" href="#remedy-for-name-with-spaces" id="id17">2</a>, and closing bracket. The
+without spaces <a class="footnote-reference brackets" href="#remedy-for-name-with-spaces" id="id13">2</a>, and closing bracket. The
 logical name of the footnote is not used in LaTeX, HTML,
 reStructuredText, or Sphinx, because these languages employ numbered
 footnotes. Other formats employ the logical name.</p>
 <dl class="footnote brackets">
-<dt class="label" id="typesetting"><span class="brackets"><a class="fn-backref" href="#id16">1</a></span></dt>
+<dt class="label" id="typesetting"><span class="brackets"><a class="fn-backref" href="#id12">1</a></span></dt>
 <dd><p>Typesetting of the footnote depends on the format.
 Plain text does nothing, LaTeX removes the definition and inserts the
 footnote as part of the LaTeX text.  reStructuredText and Sphinx
@@ -3434,7 +3449,7 @@ The definition is the footnote syntax (some optional space, bracket,
 hat, name, bracket) followed by colon and a text.
 A new paragraph marks the end of a footnote.</p>
 <dl class="footnote brackets">
-<dt class="label" id="remedy-for-name-with-spaces"><span class="brackets"><a class="fn-backref" href="#id17">2</a></span></dt>
+<dt class="label" id="remedy-for-name-with-spaces"><span class="brackets"><a class="fn-backref" href="#id13">2</a></span></dt>
 <dd><p>Just put in dashes or underscores in
 case of spaces.</p>
 </dd>
@@ -3550,7 +3565,7 @@ writing. Why is it so? I think the main reason is that a larger
 attention span is needed when working on a large computer program
 than when doing other intellectual tasks.</em></p>
 <div class="line-block">
-<div class="line">Donald Knuth <a class="reference internal" href="#ref1" id="id18"><span>[Ref1]</span></a> (p. 18), computer scientist, 1938-.</div>
+<div class="line">Donald Knuth <a class="reference internal" href="#ref1" id="id14"><span>[Ref1]</span></a> (p. 18), computer scientist, 1938-.</div>
 </div>
 </div></blockquote>
 <p>The <code class="docutils literal notranslate"><span class="pre">&lt;linebreak&gt;</span></code> is a newline in LaTeX if it has preceding text,
@@ -3632,7 +3647,7 @@ A first discovery was that 1+1 is 2.
 <p>The reference appears as follows in various output formats:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code>: &quot;we refer to Section 2.3&quot; with LaTeX code &lt;linebreak&gt; <a href="#id19"><span class="problematic" id="id20">`</span></a>we refer to Section :ref:<a href="#id21"><span class="problematic" id="id22">`</span></a>sec:theory&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">latex</span></code> and <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code>: &quot;we refer to Section 2.3&quot; with LaTeX code &lt;linebreak&gt; <a href="#id15"><span class="problematic" id="id16">`</span></a>we refer to Section :ref:<a href="#id17"><span class="problematic" id="id18">`</span></a>sec:theory&quot;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">html</span></code>: <code class="docutils literal notranslate"><span class="pre">we</span> <span class="pre">refer</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">section</span> <span class="pre">Basic</span> <span class="pre">Theory&quot;</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">HTML</span> <span class="pre">code</span> <span class="pre">&lt;linebreak&gt;</span> <span class="pre">``we</span> <span class="pre">refer</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">section</span> <span class="pre">&lt;a</span> <span class="pre">href=&quot;#sec:theory&quot;&gt;Basic</span> <span class="pre">Theory&lt;/a&gt;</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rst</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>: &quot;we refer to the section Basic Theory&quot;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">plain</span></code>: &quot;we refer to the section &quot;Basic Theory&quot;&quot;</p></li>
@@ -3915,7 +3930,7 @@ One can from cite{some_doc} derive the expression
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">ref_external</span></code> tool generates an <code class="docutils literal notranslate"><span class="pre">external</span></code> text
 in case of references to equations that says
-<a href="#id23"><span class="problematic" id="id24">``</span></a>reference to specific <strong>equations</strong> (label eqs:g1 and eqs:g4)
+<a href="#id19"><span class="problematic" id="id20">``</span></a>reference to specific <strong>equations</strong> (label eqs:g1 and eqs:g4)
 in external document &quot;name&quot;: &quot;link&quot; is not recommended&quot;.
 One can then search for this text and make a Mako if-else rewrite
 as shown above.</p>
@@ -3981,7 +3996,7 @@ cite{DocOnce:test}, DocOnce documents may include tables.
 <div><p>As explained in
 a <a class="reference external" href="http://doconce.github.io/doconce/test/demo_testdoc.html#subsec:ex">section</a> in
 the document <a class="reference external" href="http://doconce.github.io/doconce/test/demo_testdoc.html">A Document for Testing DocOnce</a>
-<a class="reference internal" href="#ref2" id="id25"><span>[Ref2]</span></a>, DocOnce documents may include tables.</p>
+<a class="reference internal" href="#ref2" id="id21"><span>[Ref2]</span></a>, DocOnce documents may include tables.</p>
 </div></blockquote>
 <p>A complete &quot;chapter&quot; reference may look like</p>
 <div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span>As explained in
@@ -4008,7 +4023,7 @@ The resulting rendered text in the current format becomes</p>
 <div><p>As explained in
 the document
 <a class="reference external" href="http://doconce.github.io/doconce/test/demo_testdoc.html">A Document for Testing DocOnce</a>
-<a class="reference internal" href="#ref2" id="id26"><span>[Ref2]</span></a>, DocOnce documents may include tables.</p>
+<a class="reference internal" href="#ref2" id="id22"><span>[Ref2]</span></a>, DocOnce documents may include tables.</p>
 </div></blockquote>
 <p>Note that LaTeX cannot
 have links to local files, so a complete URL in the form
@@ -4569,14 +4584,14 @@ extracts all exercises such that one can publish this document separately,
 with or without solutions and/or short answers.
 By &quot;exercise&quot; we mean all exercises, problems, and projects.</p>
 <p>The numbering of the exercises in the new document follows the numbering
-in the original document <a class="footnote-reference brackets" href="#exer-numbering" id="id27">3</a>, but you must use the
+in the original document <a class="footnote-reference brackets" href="#exer-numbering" id="id23">3</a>, but you must use the
 <code class="docutils literal notranslate"><span class="pre">--exercise_numbering=chapter</span></code> option if
 you want chapter-based numbering when extracting exercises from a book.</p>
 <p id="index-189">It is also possible to extract examples along with exercises: just add
 <code class="docutils literal notranslate"><span class="pre">--examples_as_exercises</span></code> (to extract the examples only, equip them with
 a unique keyword that you can use in the <code class="docutils literal notranslate"><span class="pre">--filter=</span></code> option).</p>
 <dl class="footnote brackets">
-<dt class="label" id="exer-numbering"><span class="brackets"><a class="fn-backref" href="#id27">3</a></span></dt>
+<dt class="label" id="exer-numbering"><span class="brackets"><a class="fn-backref" href="#id23">3</a></span></dt>
 <dd><p>If you want a new natural numbering of the extracted
 exercises only, you must go into the DocOnce source file with the
 extracted exercises and remove the comment line that contains the
@@ -4764,7 +4779,7 @@ mathematics and computer code.
 </div>
 </div>
 <div class="section" id="exercise-1-compute-integrals">
-<span id="doconce-manual-exercise-ex"></span><h3>Exercise 1: Compute integrals<a class="headerlink" href="#exercise-1-compute-integrals" title="Permalink to this headline">¶</a></h3>
+<span id="doconce-manual-exercise-ex2"></span><h3>Exercise 1: Compute integrals<a class="headerlink" href="#exercise-1-compute-integrals" title="Permalink to this headline">¶</a></h3>
 <p>Use the most appropriate tools to answer the various subexercises.</p>
 <p><strong>a)</strong>
 What is 1+1?</p>
@@ -5531,7 +5546,7 @@ followed when translating the text to <code class="docutils literal notranslate"
 <li><p>Spaces are not allowed in labels.</p></li>
 <li><p>There is just one <code class="docutils literal notranslate"><span class="pre">ref</span></code> command (no <code class="docutils literal notranslate"><span class="pre">\eqref</span></code> for equations) and references to equations must use parentheses. Never use the tilde `` `` (non-breaking space) character before references to figures, sections, etc., but tilde is allowed for references to equations.</p></li>
 <li><p>Never use <code class="docutils literal notranslate"><span class="pre">\pageref</span></code> as pages are not a concept in web documents (there is only a <code class="docutils literal notranslate"><span class="pre">ref</span></code> command in DocOnce and it refers to labels).</p></li>
-<li><p>Only figures and movies are floating elements in DocOnce, all other elements (code, tables, algorithms) must appear <em>inline</em> without numbers or labels for reference <a class="footnote-reference brackets" href="#exception" id="id28">4</a> (refer to inline elements by a section label). The reason is that floating elements are in general not used in web documents, but we made an exception with figures and movies.</p></li>
+<li><p>Only figures and movies are floating elements in DocOnce, all other elements (code, tables, algorithms) must appear <em>inline</em> without numbers or labels for reference <a class="footnote-reference brackets" href="#exception" id="id24">4</a> (refer to inline elements by a section label). The reason is that floating elements are in general not used in web documents, but we made an exception with figures and movies.</p></li>
 <li><p>Keep figure captions shorts as they are used as references in the Sphinx format. Avoid inline mathematics since Sphinx will strip it away in the figure reference. (Many writing styles encourage rich captions that explains everything about the figure; this work well only in the HTML and LaTeX formats.)</p></li>
 <li><p>You cannot use <code class="docutils literal notranslate"><span class="pre">subfigure</span></code> to combine several image files in one figure, but you can combine the files into one file using the <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">combine_images</span></code> tool. Refer to individual image files in the caption or text by (e.g.) &quot;left&quot; and &quot;right&quot;, or &quot;upper left&quot;, &quot;lower right&quot;, etc.</p></li>
 <li><p>Footnotes can be used as usual in LaTeX, but some HTML formats are not able to display mathematics or inline verbatim or other formatted code (emphasis, boldface, color) in footnotes - keep that in mind.</p></li>
@@ -5546,7 +5561,7 @@ followed when translating the text to <code class="docutils literal notranslate"
 </ul>
 </div></blockquote>
 <dl class="footnote brackets">
-<dt class="label" id="exception"><span class="brackets"><a class="fn-backref" href="#id28">4</a></span></dt>
+<dt class="label" id="exception"><span class="brackets"><a class="fn-backref" href="#id24">4</a></span></dt>
 <dd><p>There is an exception: by using <em>user-defined environments</em>
 within <code class="docutils literal notranslate"><span class="pre">!bu-name</span></code> and <code class="docutils literal notranslate"><span class="pre">!eu-name</span></code> directives, it is possible to
 label any type of text and refer to it. For example, one can have
@@ -5984,7 +5999,7 @@ LaTeX environment.</p>
 </pre></div>
 </div>
 <span class="target" id="index-241"></span><span class="target" id="index-242"></span><p id="index-243">We quickly encounter a problem when referring to a specific example.
-In LaTeX, we want to write <a href="#id29"><span class="problematic" id="id30">`</span></a>Example :ref:<a href="#id31"><span class="problematic" id="id32">`</span></a>label&quot;, using the label
+In LaTeX, we want to write <a href="#id25"><span class="problematic" id="id26">`</span></a>Example :ref:<a href="#id27"><span class="problematic" id="id28">`</span></a>label&quot;, using the label
 defined in the example heading. In other formats, this label is a
 section number, or usually the section (example) heading. Different
 wording is needed for different formats. This is easiest accomplished
@@ -6173,22 +6188,22 @@ the output format is <code class="docutils literal notranslate"><span class="pre
 </pre></div>
 </div>
 <p>to refer to a publication with bibliographic key <code class="docutils literal notranslate"><span class="pre">key</span></code>.
-Here is an example: <a class="reference internal" href="#ref3" id="id33"><span>[Ref3]</span></a> discussed propagation of
-large destructive water waves, <a class="reference internal" href="#ref4" id="id34"><span>[Ref4]</span></a> gave
+Here is an example: <a class="reference internal" href="#ref3" id="id29"><span>[Ref3]</span></a> discussed propagation of
+large destructive water waves, <a class="reference internal" href="#ref4" id="id30"><span>[Ref4]</span></a> gave
 an overview of numerical methods for solving the Navier-Stokes equations,
 while the use of Backward Kolmogorov equations for analyzing
-random vibrations was investigated in <a class="reference internal" href="#ref5" id="id35"><span>[Ref5]</span></a>.
-The book chapter <a class="reference internal" href="#ref6" id="id36"><span>[Ref6]</span></a> contains information on
+random vibrations was investigated in <a class="reference internal" href="#ref5" id="id31"><span>[Ref5]</span></a>.
+The book chapter <a class="reference internal" href="#ref6" id="id32"><span>[Ref6]</span></a> contains information on
 C++ software tools for programming multigrid methods. A real retro
-reference is <a class="reference internal" href="#ref7" id="id37"><span>[Ref7]</span></a> about a big FORTRAN package.
+reference is <a class="reference internal" href="#ref7" id="id33"><span>[Ref7]</span></a> about a big FORTRAN package.
 Multiple references are also possible, e.g., see
-<a class="reference internal" href="#ref3" id="id38"><span>[Ref3]</span></a> <a class="reference internal" href="#ref6" id="id39"><span>[Ref6]</span></a>.</p>
+<a class="reference internal" href="#ref3" id="id34"><span>[Ref3]</span></a> <a class="reference internal" href="#ref6" id="id35"><span>[Ref6]</span></a>.</p>
 <p>A LaTeX-style cite command with additional detailed reference is also possible,</p>
 <div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span>cite[details]{key}
 </pre></div>
 </div>
-<p>for example as in <a class="reference internal" href="#ref4" id="id40"><span>[Ref4]</span></a> (Section 2)
-or <a class="reference internal" href="#ref4" id="id41"><span>[Ref4]</span></a> (Equation (4.2)).</p>
+<p>for example as in <a class="reference internal" href="#ref4" id="id36"><span>[Ref4]</span></a> (Section 2)
+or <a class="reference internal" href="#ref4" id="id37"><span>[Ref4]</span></a> (Equation (4.2)).</p>
 <p>In LaTeX, the <code class="docutils literal notranslate"><span class="pre">cite</span></code> command is directly translated to the
 corresponding LaTeX version of the command with a backslash; in reST
 and Sphinx the citations becomes links, with the citation keys as
@@ -6205,7 +6220,7 @@ is done one a line containing <code class="docutils literal notranslate"><span c
 the database file another name and store it in another directory).
 The references will be inserted at the place where this command appears.
 Before the command you may want to have a headline with
-<a href="#id42"><span class="problematic" id="id43">``</span></a>References&quot;, &quot;Bibliography&quot;, or similar.
+<a href="#id38"><span class="problematic" id="id39">``</span></a>References&quot;, &quot;Bibliography&quot;, or similar.
 Here is an example:</p>
 <div class="highlight-doconce notranslate"><div class="highlight"><pre><span></span><span class="gh">======= References =======</span>
 
@@ -6528,7 +6543,7 @@ slide sets:</p>
 <span class="gh">AUTHOR:</span> Chan Siu Ming at Progress Ltd &amp; Moon University
 <span class="gh">DATE:</span> today
 
-<span class="nb">FIGURE: [fig/logo, width=300 frac=0.3]</span>
+<span class="nb">FIGURE: [fig/logo, width=300, frac=0.3]</span>
 </pre></div>
 </div>
 </div>
@@ -6555,7 +6570,7 @@ which results in columns of equal widths).</p>
 <span class="k">!eslidecell</span>
 
 <span class="k">!bslidecell</span> 01 0.6
-<span class="nb">FIGURE: [fig/method, width=600 frac=0.7]</span>
+<span class="nb">FIGURE: [fig/method, width=600, frac=0.7]</span>
 <span class="k">!eslidecell</span>
 </pre></div>
 </div>
@@ -6625,7 +6640,7 @@ contents inside the <code class="docutils literal notranslate"><span class="pre"
 \[ a = b \]
 <span class="k">!et</span>
 
-<span class="nb">FIGURE: [fig/a_eq_b, width=500 frac=0.4]</span>
+<span class="nb">FIGURE: [fig/a_eq_b, width=500, frac=0.4]</span>
 
 <span class="nb">MOVIE: [mov/animate_a_eq_b]</span>
 </pre></div>
@@ -7743,7 +7758,7 @@ dictionary in <code class="docutils literal notranslate"><span class="pre">.dict
 <blockquote>
 <div><ol class="arabic simple">
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">spellcheck</span> <span class="pre">-c</span> <span class="pre">ispell</span> <span class="pre">-d</span> <span class="pre">.dict4spell.txt</span> <span class="pre">*.do.txt</span></code></p></li>
-<li><p>Examine <a href="#id44"><span class="problematic" id="id45">``</span></a>misspellings.txt `` for misspellings and make corrections in the source files.</p></li>
+<li><p>Examine <a href="#id40"><span class="problematic" id="id41">``</span></a>misspellings.txt `` for misspellings and make corrections in the source files.</p></li>
 <li><p>Rerun <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">spellcheck</span></code> and repeat the procedure.</p></li>
 <li><p>When all words in <code class="docutils literal notranslate"><span class="pre">misspellings.txt</span> <span class="pre">|nbsp|</span> <span class="pre">``</span> <span class="pre">are</span> <span class="pre">acceptable,</span> <span class="pre">add</span> <span class="pre">these</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">current</span> <span class="pre">custom</span> <span class="pre">dictionary</span> <span class="pre">by</span> <span class="pre">``cp</span> <span class="pre">new_dictionary.txt~</span> <span class="pre">.dict4spell.txt</span></code>.</p></li>
 </ol>
@@ -8380,8 +8395,8 @@ the <code class="docutils literal notranslate"><span class="pre">--latex_code_st
 that has to be converted to a standard <code class="docutils literal notranslate"><span class="pre">mydoc.tex</span></code> LaTeX file via
 the programs <code class="docutils literal notranslate"><span class="pre">ptex2tex</span></code> or <code class="docutils literal notranslate"><span class="pre">doconce</span> <span class="pre">ptex2tex</span></code>.</p>
 </div>
-<div class="section" id="id46">
-<h4>Newcommands<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id42">
+<h4>Newcommands<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h4>
 <p>LaTeX-specific commands (&quot;newcommands&quot;) in math formulas and similar
 can be placed in files <code class="docutils literal notranslate"><span class="pre">newcommands.tex</span></code>, <code class="docutils literal notranslate"><span class="pre">newcommands_keep.tex</span></code>, or
 <code class="docutils literal notranslate"><span class="pre">newcommands_replace.tex</span></code> (see the section <a class="reference internal" href="#newcommands"><span class="std std-ref">Macros (Newcommands)</span></a>).
@@ -8411,7 +8426,7 @@ look for options starting with <code class="docutils literal notranslate"><span 
 <li><p><code class="docutils literal notranslate"><span class="pre">--latex_bibstyle=plain</span></code> (name of BibTeX style)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--latex_title_layout=titlepage,</span> <span class="pre">std,</span> <span class="pre">beamer,</span> <span class="pre">doconce_heading,</span> <span class="pre">Springer_collection</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--latex_style=std,</span> <span class="pre">Springer_sv,</span> <span class="pre">Springer_lncse,</span> <span class="pre">Springer_llncs,</span> <span class="pre">Springer_lnup,</span> <span class="pre">Springer_T2,</span> <span class="pre">Springer_T4,</span> <span class="pre">siamltex,</span> <span class="pre">siamltexmm,</span> <span class="pre">elsevier</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--latex_packages=package1,package2,package3</span></code> (list of extra packages to be included <a class="footnote-reference brackets" href="#varioref" id="id47">5</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--latex_packages=package1,package2,package3</span></code> (list of extra packages to be included <a class="footnote-reference brackets" href="#varioref" id="id43">5</a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--draft</span></code> (turns on draft mode in documentclass, otherwise final mode)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--latex_copyright=everypage,titlepages</span></code> (copyright on every page or on titlepage and chapter pages)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--latex_list_of_exercises=loe,toc,none</span></code> (LaTeX list of exercises, integrated into the table of contents, or no list)</p></li>
@@ -8458,7 +8473,7 @@ to be submitted to Elsevier journals (<code class="docutils literal notranslate"
 be used to set the journal name, and the style requires
 <code class="docutils literal notranslate"><span class="pre">elsarticle.cls</span></code> and <code class="docutils literal notranslate"><span class="pre">elsarticle-num.bst</span></code>).</p>
 <dl class="footnote brackets">
-<dt class="label" id="varioref"><span class="brackets"><a class="fn-backref" href="#id47">5</a></span></dt>
+<dt class="label" id="varioref"><span class="brackets"><a class="fn-backref" href="#id43">5</a></span></dt>
 <dd><p>Listing <code class="docutils literal notranslate"><span class="pre">varioref</span></code> in as package
 automatically leads to references with page numbers, if the element referred to
 is not on the same page. This is often very helpful, e.g., &quot;see
@@ -9346,7 +9361,7 @@ Options:
 --html_bootstrap_navbar=...         Turns the Bootstrap navigation bar on/off. Default: on.
 --html_bootstrap_jumbotron=...      Turns the Bootstrap jumbotron intro on/off and governs the size of the document title. Default: on. Other values: h2, off (h2 gives h2 heading instead of h1, off gives no jumbotron).
 --html_bootstrap_navbar_links=...   Allows custom links in the navigation bar. Format: link|url;link|url;link|url. Example: &quot;--html_bootstrap_navbar_links=Google|https://google.com;hpl|https://folk.uio.no/hpl&quot;
---html_figure_caption=...           Placement of figure caption: top (default) or bottom. (sidecap=True is another option, this can be set for individual figures, while --html_figure_caption controls the general caption placement of all figures.
+--html_figure_caption=...           Placement of figure caption: top (default) or bottom. See also the `sidecap` keyword for individual figures.
 --html_figure_hrule=...             Set horizontal rule(s) above and/or below a figure. top: rule at top (default); none, off: no rules; bottom: rule at bottom; top+bottom: rule at top and bottom
 --html_copyright=...                Controls where to put copyright statements. everypage: in the footer of every page; titlepages or titlepage: in the footer of the titlepage only (default).
 --cite_doconce                      Adds a citation to the DocOnce web page if copyright statements are present.
@@ -9906,46 +9921,46 @@ and Sphinx just typeset the list as a list with keywords.</p>
 syntax and not references for explaining parts of the text.</p>
 </div>
 <dl class="citation">
-<dt class="label" id="ref1"><span class="brackets"><a class="fn-backref" href="#id18">Ref1</a></span></dt>
+<dt class="label" id="ref1"><span class="brackets"><a class="fn-backref" href="#id14">Ref1</a></span></dt>
 <dd><p><strong>D. E. Knuth</strong>. Theory and Practice,
 <em>EATCS Bulletin</em>,
 27,
 pp. 14-21,
 1985.</p>
 </dd>
-<dt class="label" id="ref2"><span class="brackets">Ref2</span><span class="fn-backref">(<a href="#id25">1</a>,<a href="#id26">2</a>)</span></dt>
+<dt class="label" id="ref2"><span class="brackets">Ref2</span><span class="fn-backref">(<a href="#id21">1</a>,<a href="#id22">2</a>)</span></dt>
 <dd><p><strong>H. P. Langtangen</strong>. A Document for Testing DocOnce,
 <a class="reference external" href="http://hplgit.github.io/doconce/test/demo_testdoc.html">http://hplgit.github.io/doconce/test/demo_testdoc.html</a>.</p>
 </dd>
-<dt class="label" id="ref3"><span class="brackets">Ref3</span><span class="fn-backref">(<a href="#id33">1</a>,<a href="#id38">2</a>)</span></dt>
+<dt class="label" id="ref3"><span class="brackets">Ref3</span><span class="fn-backref">(<a href="#id29">1</a>,<a href="#id34">2</a>)</span></dt>
 <dd><p><strong>H. P. Langtangen and G. Pedersen</strong>. Propagation of Large Destructive Waves,
 <em>International Journal of Applied Mechanics and Engineering</em>,
 7(1),
 pp. 187-204,
 2002.</p>
 </dd>
-<dt class="label" id="ref4"><span class="brackets">Ref4</span><span class="fn-backref">(<a href="#id34">1</a>,<a href="#id40">2</a>,<a href="#id41">3</a>)</span></dt>
+<dt class="label" id="ref4"><span class="brackets">Ref4</span><span class="fn-backref">(<a href="#id30">1</a>,<a href="#id36">2</a>,<a href="#id37">3</a>)</span></dt>
 <dd><p><strong>H. P. Langtangen, K.-A. Mardal and R. Winther</strong>. Numerical Methods for Incompressible Viscous Flow,
 <em>Advances in Water Resources</em>,
 25,
 pp. 1125-1146,
 2002.</p>
 </dd>
-<dt class="label" id="ref5"><span class="brackets"><a class="fn-backref" href="#id35">Ref5</a></span></dt>
+<dt class="label" id="ref5"><span class="brackets"><a class="fn-backref" href="#id31">Ref5</a></span></dt>
 <dd><p><strong>H. P. Langtangen</strong>. Numerical Solution of First Passage Problems in Random Vibrations,
 <em>SIAM Journal of Scientific and Statistical Computing</em>,
 15,
 pp. 997-996,
 1994.</p>
 </dd>
-<dt class="label" id="ref6"><span class="brackets">Ref6</span><span class="fn-backref">(<a href="#id36">1</a>,<a href="#id39">2</a>)</span></dt>
+<dt class="label" id="ref6"><span class="brackets">Ref6</span><span class="fn-backref">(<a href="#id32">1</a>,<a href="#id35">2</a>)</span></dt>
 <dd><p><strong>K.-A. Mardal, G. W. Zumbusch and H. P. Langtangen</strong>. Software Tools for Multigrid Methods,
 Advanced Topics in Computational Partial Differential Equations -- Numerical Methods and Diffpack Programming,
 edited by <strong>H. P. Langtangen and A. Tveito</strong>,
 Springer,
 2003.</p>
 </dd>
-<dt class="label" id="ref7"><span class="brackets"><a class="fn-backref" href="#id37">Ref7</a></span></dt>
+<dt class="label" id="ref7"><span class="brackets"><a class="fn-backref" href="#id33">Ref7</a></span></dt>
 <dd><p><strong>H. P. Langtangen</strong>. The FEMDEQS Program System,
 <em>Department of Mathematics, University of Oslo</em>,
 1989.</p>

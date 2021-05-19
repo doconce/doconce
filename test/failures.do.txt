@@ -42,7 +42,7 @@ FIGURE: [testfigs/wave1D] label{myl1}
 Figure with no comma between filename and options, and wrong path must
 give error.
 
-FIGURE: [testfigs/wave1D width=800]
+FIGURE: [testfigs/wave1D, width=800]
 
 Figure with math only in the caption, which causes sphinx to use an
 empty figure name, is problematic.

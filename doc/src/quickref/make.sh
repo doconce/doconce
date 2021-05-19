@@ -40,8 +40,8 @@ system doconce format pdflatex quickref --no_preprocess --latex_font=helvetica -
 # manually fix the quote examples elsewhere
 doconce subst '([^`])Guns & Roses([^`])' '\g<1>Guns {\&} Roses\g<2>' quickref.tex
 doconce subst '([^`])Texas A & M([^`])' '\g<2>Texas A {\&} M\g<2>' quickref.tex
-system pdflatex -shell-escape quickref
-system pdflatex -shell-escape quickref
+system pdflatex -shell-escape -halt-on-error quickref
+system pdflatex -shell-escape -halt-on-error quickref
 
 # Sphinx
 system doconce format sphinx quickref --no_preprocess --no_abort

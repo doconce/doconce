@@ -683,9 +683,8 @@ _registered_command_line_options = [
                     'off gives no jumbotron).'),
     ('--html_bootstrap_navbar_links=', 'Allows custom links in the navigation bar. Format: link|url;link|url;link|url.'
                     ' Example: "--html_bootstrap_navbar_links=Google|https://google.com;hpl|https://folk.uio.no/hpl"'),
-    ('--html_figure_caption=', 'Placement of figure caption: top (default) or bottom. (sidecap=True is another '
-                    'option, this can be set for individual figures, while --html_figure_caption controls the general '
-                    'caption placement of all figures.'),
+    ('--html_figure_caption=', 'Placement of figure caption: top (default) or bottom. See also the `sidecap` keyword '
+                               'for individual figures.'),
     ('--html_figure_hrule=', 'Set horizontal rule(s) above and/or below a figure. top: rule at top (default); '
                     'none, off: no rules; bottom: rule at bottom; top+bottom: rule at top and bottom'),
     ('--html_copyright=', 'Controls where to put copyright statements. everypage: in the footer of every page; '

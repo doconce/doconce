@@ -28,8 +28,8 @@ system doconce sphinx_dir theme=cbc $name
 system python automake_sphinx.py
 
 system doconce format pdflatex $name --latex_code_style=pyg $options
-system pdflatex -shell-escape $name
-pdflatex -shell-escape $name
+system pdflatex -shell-escape -halt-on-error $name
+pdflatex -shell-escape -halt-on-error $name
 
 system doconce format html $name --html_output=${name}_html $options
 

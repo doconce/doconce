@@ -14,9 +14,9 @@ name=trouble
 doconce format html ${name} --pygments_html_style=default --no_preprocess --html_style=bootswatch_journal $opt
 
 doconce format pdflatex ${name} --latex_font=helvetica $opt --latex_code_style=pyg
-pdflatex -shell-escape ${name}.tex
+pdflatex -shell-escape -halt-on-error ${name}.tex
 # index??
-pdflatex -shell-escape ${name}.tex
+pdflatex -shell-escape -halt-on-error ${name}.tex
 
 # Sphinx
 doconce format sphinx ${name}  $opt

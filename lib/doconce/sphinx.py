@@ -2,6 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 from builtins import range
 # https://sphinx.pocoo.org/ext/math.html#
+import shlex
 
 # can reuse most of rst module:
 from .rst import *
@@ -12,19 +13,30 @@ from .misc import option, errwarn, _abort
 import time, shutil, glob, re
 from doconce.misc import system, load_preprocessed_doconce_file
 from .globals import postfix_regex, code_block_regex
+from .latex import fix_latex_command_regex as fix_latex
 
 # RunestoneInteractive book counters
 question_counter = 0
 video_counter = 0
-
 edit_markup_warning = False
 
-def sphinx_figure(m):
-    result = ''
-    # m is a MatchObject
 
-    filename = m.group('filename')
-    caption = m.group('caption').strip()
+def sphinx_figure(m):
+    """Format figures to the sphinx format
+
+    Return sphinx code to embed a figure in the sphinx .rst output. The syntax is
+    `FIGURE:[filename[, options][, sidecap=BOOL][, frac=NUM]] [caption]`.
+    Keywords: `sidecap` (default is False), `frac` (default is ),
+    :param _regex.Match m: regex match object
+    :return: sphinx code
+    :rtype: str
+    """
+    caption = m.group('caption').strip().strip('"').strip("'")
+    filename = m.group('filename').strip()
+    opts = m.group('options').strip()
+    info = dict()
+
+    result = ''
 
     # Stubstitute DocOnce label by rst label in caption
     # (also, remove final period in caption since caption is used as hyperlink
@@ -71,13 +83,21 @@ def sphinx_figure(m):
     #stem = os.path.splitext(filename)[0]
     #result += '\n.. figure:: ' + stem + '.*\n'  # utilize flexibility  # does not work yet
     result += '\n.. figure:: ' + filename + '\n'
-    opts = m.group('options')
+
+    # Process any inline figure opts
     if opts:
         # opts: width=600 frac=0.5 align=center
         # opts: width=600, frac=0.5, align=center
-        info = [s.split('=') for s in opts.split()]
+        info = shlex.split(opts)
+        info = dict(s.strip(',').split('=') for s in info)
+
+        # String of options
+        opts = ' '.join(['%s="%s"' % (opt, value)
+                         for opt, value in info.items()
+                         if opt not in ['frac', 'sidecap']])
+
         fig_info = ['   :%s: %s' % (opt, value.replace(',', ''))
-                    for opt, value in info
+                    for opt, value in info.items()
                     if opt not in ['frac', 'sidecap']]
         result += '\n'.join(fig_info)
     if caption:
@@ -86,6 +106,7 @@ def sphinx_figure(m):
         result += '\n\n'
     #errwarn('sphinx figure: caption=\n', caption, '\nresult:\n', result)
     return result
+
 
 def sphinx_movie(m):
     filename = m.group('filename')
@@ -190,14 +211,13 @@ def sphinx_quiz_runestone(quiz):
     text += '\n' + indent_lines(quiz['question'], 'sphinx', ' '*3) + '\n\n\n'
     return text
 
+
 def sphinx_quiz(quiz):
     if option('runestone'):
         return sphinx_quiz_runestone(quiz)
     else:
         return rst_quiz(quiz)
 
-
-from .latex import fix_latex_command_regex as fix_latex
 
 def sphinx_code(filestr, code_blocks, code_block_types,
                 tex_blocks, format):
@@ -554,6 +574,7 @@ def sphinx_code(filestr, code_blocks, code_block_types,
 
     return filestr
 
+
 def sphinx_ref_and_label(section_label2title, format, filestr):
     # Special fix early in the process:
     # Deal with !split - by default we place splits before
@@ -613,6 +634,7 @@ def sphinx_ref_and_label(section_label2title, format, filestr):
 
     return filestr
 
+
 def sphinx_index_bib(filestr, index, citations, pubfile, pubdata):
     # allow user to force the use of original bibliography keys instead of numbered labels
     numbering = not option('sphinx_preserve_bib_keys', False)
@@ -656,6 +678,7 @@ def sphinx_index_bib(filestr, index, citations, pubfile, pubdata):
             #    'idx{%s}' % word,
             #    '\n.. index::\n   pair: ' + word3 + '\n')
     return filestr
+
 
 def sphinx_inline_comment(m):
     # Explicit HTML typesetting does not work, we just use bold
@@ -912,6 +935,7 @@ def sphinx_code_orig(filestr, format):
 
     return filestr
 
+
 def sphinx_code_newmathlabels(filestr, format):
     # NOTE: THIS FUNCTION IS NOT USED!!!!!!
 
@@ -1058,6 +1082,7 @@ def _usage_sphinx_dir():
           "  python automake_sphinx.py\n"
           "\n"
           "Note that split_rst must be run prior to sphinx_dir!")
+
 
 def sphinx_dir():
     if len(sys.argv) < 2:
@@ -1779,6 +1804,7 @@ def sphinx_dir():
                 "  </style>\n\n") + text
         with open(filename + '.rst', 'w') as f:
             f.write(text)
+
 
 def make_conf_py(themes, theme, title, short_title, copyright_,
                  logo, favicon, intersphinx):

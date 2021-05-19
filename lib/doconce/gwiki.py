@@ -7,14 +7,13 @@ from __future__ import absolute_import
 from future import standard_library
 standard_library.install_aliases()
 from builtins import zip
-
-
 import os, subprocess, sys
 import regex as re
-from .common import default_movie, plain_exercise, \
+from .common import default_movie, plain_exercise, table_analysis, ref2equations, \
     insert_code_blocks, insert_tex_blocks, fix_ref_section_chapter
-from .plaintext import plain_quiz
+from .plaintext import plain_quiz, plain_index_bib
 from .misc import _abort, errwarn
+from .html import html_table
 
 
 def gwiki_code(filestr, code_blocks, code_block_types, tex_blocks, format):
@@ -30,7 +29,18 @@ def gwiki_code(filestr, code_blocks, code_block_types, tex_blocks, format):
 
 
 def gwiki_figure(m):
-    filename = m.group('filename')
+    """Format figures for the gwiki format
+
+    Return gwiki code to embed a figure in gwiki output. The syntax is
+    `FIGURE:[filename[, options][, sidecap=BOOL][, frac=NUM]] [caption]`.
+    Keywords: `sidecap` (default is False), `frac` (default is ),
+    :param _regex.Match m: regex match object
+    :return: gwiki code
+    :rtype: str
+    """
+    filename = m.group('filename').strip()
+    caption = m.group('caption').strip().strip('"').strip("'")
+
     link = filename if filename.startswith('http') else None
     if not link and not os.path.isfile(filename):
         raise IOError('no figure file %s' % filename)
@@ -50,35 +60,29 @@ def gwiki_figure(m):
                 errwarn('Convert %s to PNG format manually' % filename)
                 _abort()
             filename = root + '.png'
-    caption = m.group('caption')
     # keep label if it's there:
     caption = re.sub(r'label\{(.+?)\}', '(\g<1>)', caption)
 
-    errwarn("""
-NOTE: Place %s at some place on the web and edit the
-      .gwiki page, either manually (seach for 'Figure: ')
-      or use the doconce script:
-      doconce gwiki_figsubst.py mydoc.gwiki URL
-""" % filename)
+    errwarn(('\n'
+             'NOTE: Place %s at some place on the web and edit the\n'
+             "      .gwiki page, either manually (seach for 'Figure: ')\n"
+             '      or use the doconce script:\n'
+             '      doconce gwiki_figsubst.py mydoc.gwiki URL\n') % filename)
 
-    result = r"""
-
----------------------------------------------------------------
-
-Figure: %s
-
-(the URL of the image file %s must be inserted here)
-
-<wiki:comment>
-Put the figure file %s on the web (e.g., as part of the
-googlecode repository) and substitute the line above with the URL.
-</wiki:comment>
----------------------------------------------------------------
-
-""" % (caption, filename, filename)
+    result = ('\n\n'
+              '---------------------------------------------------------------\n'
+              '\n'
+              'Figure: %s\n'
+              '\n'
+              '(the URL of the image file %s must be inserted here)\n'
+              '\n'
+              '<wiki:comment>\n'
+              'Put the figure file %s on the web (e.g., as part of the\n'
+              'googlecode repository) and substitute the line above with the URL.\n'
+              '</wiki:comment>\n'
+              '---------------------------------------------------------------\n'
+              '\n\n') % (caption, filename, filename)
     return result
-
-from .common import table_analysis
 
 
 def gwiki_table(table):
@@ -162,8 +166,6 @@ def wiki_ref_and_label_common(section_label2title, format, filestr):
         title = section_label2title[label]
         filestr = filestr.replace('ref{%s}' % label,
                                   '[#%s]' % title.replace(' ', '_'))
-
-    from .common import ref2equations
     filestr = ref2equations(filestr)
 
     # replace remaining ref{x} as x
@@ -236,7 +238,6 @@ def define(FILENAME_EXTENSION,
         }
 
     CODE['gwiki'] = gwiki_code
-    from .html import html_table
     #TABLE['gwiki'] = html_table
     TABLE['gwiki'] = gwiki_table
 
@@ -266,7 +267,6 @@ def define(FILENAME_EXTENSION,
         'search': ('.png', '.gif', '.jpg', '.jpeg'),
         'convert': ('.png', '.gif', '.jpg')}
     CROSS_REFS['gwiki'] = gwiki_ref_and_label
-    from .plaintext import plain_index_bib
     EXERCISE['gwiki'] = plain_exercise
     INDEX_BIB['gwiki'] = plain_index_bib
     TOC['gwiki'] = lambda s, f: '<wiki: toc max_depth="2" />'

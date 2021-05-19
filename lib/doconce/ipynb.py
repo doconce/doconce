@@ -3,6 +3,7 @@ from builtins import str
 from builtins import range
 import sys, shutil, os
 import regex as re
+import shlex
 from .common import default_movie, plain_exercise, table_analysis, indent_lines, \
     bibliography, fix_ref_section_chapter, cite_with_multiple_args2multiple_cites, \
     _CODE_BLOCK, _MATH_BLOCK, DEFAULT_ARGLIST, envir_delimiter_lines
@@ -104,12 +105,32 @@ def ipynb_table(table):
     return text
 
 def ipynb_figure(m):
+    """Format figures for the ipynb format
+
+    Return json code to embed a figure in ipynb output. The syntax is
+    `FIGURE:[filename[, options][, sidecap=BOOL][, frac=NUM]] [caption]`.
+    Keywords: `sidecap` (default is False), `frac` (default is ),
+    Options: `--html_figure_hrule`, --html_figure_caption`, `--html_responsive_figure_width`
+    :param _regex.Match m: regex match object
+    :return: json code
+    :rtype: str
+    """
+    filename = m.group('filename').strip()
+    caption = m.group('caption').strip().strip('"').strip("'")
+    opts = m.group('options').strip()
+    info = dict()
+
+    # Process any inline figure opts
+    if opts:
+        info = shlex.split(opts)
+        info = dict(s.strip(',').split('=') for s in info)
+        # String of options
+        opts = ' '.join(['%s="%s"' % (opt, value)
+                         for opt, value in info.items()
+                         if opt not in ['frac', 'sidecap']])
+
     # m.group() must be called before m.group('name')
     text = '<!-- dom:%s -->\n<!-- begin figure -->\n' % m.group()
-
-    caption = m.group('caption').strip()
-    filename = m.group('filename')
-    opts = m.group('options').strip()
 
     # Get some global vars
     global figure_files
@@ -127,13 +148,6 @@ def ipynb_figure(m):
         figure_labels[label] = figure_number
     if label is not None:
         text += '<div id="%s"></div>\n' % label
-
-    # Process any inline figure opts
-    if opts:
-        info = [s.split('=') for s in opts.split()]
-        opts = ' ' .join(['%s=%s' % (opt, value)
-                          for opt, value in info
-                          if opt not in ['frac', 'sidecap']])
 
     display_method = option('ipynb_figure=', 'imgtag')
     if display_method == 'md':

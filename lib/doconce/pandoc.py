@@ -14,6 +14,7 @@ from past.builtins import basestring
 
 import sys, functools, string
 import regex as re
+import shlex
 from .common import default_movie, plain_exercise, table_analysis, DEFAULT_ARGLIST, \
      insert_code_blocks, insert_tex_blocks, bibliography, indent_lines, fix_ref_section_chapter
 from .html import html_movie, html_table
@@ -279,14 +280,27 @@ def pandoc_table(table):
     return s
 
 def pandoc_figure(m):
-    filename = m.group('filename')
-    caption = m.group('caption').strip()
-    opts = m.group('options').strip()
+    """Format figures to the pandoc format
 
+    Return pandoc code to embed a figure in the sphinx .md output. The syntax is
+    `FIGURE:[filename[, options][, sidecap=BOOL][, frac=NUM]] [caption]`.
+    Keywords: `sidecap` (default is False), `frac` (default is ),
+    :param _regex.Match m: regex match object
+    :return: pandoc code
+    :rtype: str
+    """
+    filename = m.group('filename').strip()
+    caption = m.group('caption').strip().strip('"').strip("'")
+    opts = m.group('options').strip()
+    info = dict()
+
+    # Process any inline figure opts
     if opts:
-        info = [s.split('=') for s in opts.split()]
-        opts = ' '.join(['%s=%s' % (opt, value)
-                         for opt, value in info
+        info = shlex.split(opts)
+        info = dict(s.strip(',').split('=') for s in info)
+        # String of options
+        opts = ' '.join(['%s="%s"' % (opt, value)
+                         for opt, value in info.items()
                          if opt not in ['frac', 'sidecap']])
 
     # Save raw html with width etc in a comment so we have that info

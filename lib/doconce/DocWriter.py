@@ -786,6 +786,8 @@ def html_movie(plotfiles, interval_ms=300, width=800, height=600,
     """
     # Alternative method:
     # https://stackoverflow.com/questions/9486961/animated-image-with-javascript
+    width = int(width)
+    height = int(height)
 
     # Start with expanding plotfiles if it is a filename generator
     if not isinstance(plotfiles, (tuple,list)):

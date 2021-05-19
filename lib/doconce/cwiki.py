@@ -27,7 +27,21 @@ def cwiki_code(filestr, code_blocks, code_block_types,
 
 
 def cwiki_figure(m):
-    filename = m.group('filename')
+    """Format figures to the cwiki format
+
+    Return cwiki code to embed a figure in the sphinx .cwiki output. The syntax is
+    `FIGURE:[filename[, options][, sidecap=BOOL][, frac=NUM]] [caption]`.
+    Keywords: `sidecap` (default is False), `frac` (default is ),
+    :param _regex.Match m: regex match object
+    :return: cwiki code
+    :rtype: str
+    """
+    filename = m.group('filename').strip()
+    caption = m.group('caption').strip().strip('"').strip("'")
+    # inline options not implemented?
+    #opts = m.group('options').strip()
+    #info = dict()
+
     link = filename if filename.startswith('http') else None
     if not link and not os.path.isfile(filename):
         raise IOError('no figure file %s' % filename)
@@ -49,7 +63,7 @@ def cwiki_figure(m):
                 errwarn('Convert %s to PNG format manually' % filename)
                 _abort()
             filename = root + '.png'
-    caption = m.group('caption')
+
     # keep label if it's there:
     caption = re.sub(r'label\{(.+?)\}', '(\g<1>)', caption)
 

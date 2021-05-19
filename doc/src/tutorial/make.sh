@@ -22,8 +22,8 @@ doconce replace XXX1 '(ref{myeq1})' tutorial.html
 # latex
 system doconce format latex tutorial --latex_font=helvetica --latex_code_style=pyg --no_mako --no_abort
 doconce replace XXX1 '(ref{myeq1})' tutorial.tex
-latex -shell-escape tutorial.tex
-latex -shell-escape tutorial.tex
+latex -shell-escape -halt-on-error tutorial.tex
+latex -shell-escape -halt-on-error tutorial.tex
 dvipdf tutorial.dvi
 
 # Sphinx
