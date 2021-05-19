@@ -234,12 +234,12 @@ admon_styles2 = admon_styles_text + (
 
 css_solarized = ('/* solarized style */\n'
                  'body {\n'
-                 '  margin:5;\n'
-                 '  padding:0;\n'
-                 '  border:0; /* Remove the border around the viewport in old versions of IE */\n'
-                 '  width:100%;\n'
+                 '  margin: 5;\n'
+                 '  padding: 0;\n'
+                 '  border: 0; /* Remove the border around the viewport in old versions of IE */\n'
+                 '  width: 100%;\n'
                  '  background: #fdf6e3;\n'
-                 '  min-width:600px;	/* Minimum width of layout - remove if not required */\n'
+                 '  min-width: 600px;	/* Minimum width of layout - remove if not required */\n'
                  '  font-family: Verdana, Helvetica, Arial, sans-serif;\n'
                  '  font-size: 1.0em;\n'
                  '  line-height: 1.3em;\n'
@@ -1807,9 +1807,20 @@ def interpret_bokeh_plot(text):
 
 
 def html_figure(m):
+    """Format figures for the html format
+
+    Return HTML code to embed a figure in .html output. The syntax is
+    `FIGURE:[filename[, options][, sidecap=BOOL][, frac=NUM]] [caption]`.
+    Keywords: `sidecap` (default is False), `frac` (default is ),
+    Options: `--html_figure_hrule`, --html_figure_caption`, `--html_responsive_figure_width`
+    :param _regex.Match m: regex match  object
+    :return: HTML code
+    :rtype: str
+    """
     caption = m.group('caption').strip().strip('"').strip("'")
     filename = m.group('filename').strip()
     opts = m.group('options').strip()
+    info = dict()
 
     # Extract figure label
     pattern = r'(label\{(.+?)\})'
@@ -1824,25 +1835,31 @@ def html_figure(m):
     # Place label in top of the figure such that links point to the
     # top regardless of whether the caption is at the top of bottom
 
+    sidecap = False
+
     # Process any inline figure opts
-    sidecaption = 0
     if opts:
         info = shlex.split(opts)
-        info = [s.strip(',').split('=') for s in info]
+        info = dict(s.strip(',').split('=') for s in info)
+        # responsive figure width option
         if option('html_responsive_figure_width'):
-            styleset = []
-            styleset.append("width: 100%")
-            for opt, value in info:
-                if opt == "width":
-                    styleset.append("max-width: %s" % value)
-            info.append(["style", "'" + "; ".join(styleset) + "'"])
+            styleset = "width:100%;"
+            if 'width' in info:
+                styleset = "max-width:%s;" % info['width']
+            info.update(style=styleset + info.get('style', ''))
+        # sidecap, frac keywords
+        frac = 1
+        for opt, val in info.items():
+            if opt == 'sidecap': #TODO docs?
+                sidecap = True if val=='True' else False
+            elif opt == 'frac':
+                frac = float(val)
+        # Set align='bottom' by default
+        info.update(align=info.get('align','bottom'))
+        # String of options
         opts = ' '.join(['%s="%s"' % (opt, value)
-                         for opt, value in info
+                         for opt, value in info.items()
                          if opt not in ['frac', 'sidecap']])
-        for opt, value in info:
-            if opt == 'sidecap':
-                sidecaption = 1
-                break
 
     # Bokeh plot?
     bokeh_plot = False
@@ -1853,6 +1870,7 @@ def html_figure(m):
         if 'Bokeh.set_log_level' in content:
             bokeh_plot = True
             script, divs = interpret_bokeh_plot(content)
+            image = '\n<!-- Bokeh plot -->\n%s\n%s' % (script, '\n'.join(divs))
         else:
             errwarn('*** error: figure file "%s" must be a Bokeh plot' % filename)
             _abort()
@@ -1860,11 +1878,11 @@ def html_figure(m):
     if not filename.startswith('http') and not bokeh_plot:
         add_to_file_collection(filename)
 
-    if bokeh_plot:
-        image = '\n<!-- Bokeh plot -->\n%s\n%s' %  (script, '\n'.join(divs))
-    else:
-        image = '<img src="%s" align="bottom" %s>' % (filename, opts)
+    # Write the <img> tag
+    if not bokeh_plot:
+        image = '<img src="%s" %s>' % (filename, opts) #TODO
 
+    # Wrap the <img> tag in html code
     if caption:
        # Caption above figure and an optional horizontal rules:
        hrules = option('html_figure_hrule=', 'top')
@@ -1873,9 +1891,8 @@ def html_figure(m):
            top_hr = '\n<hr class="figure">'
        if 'bottom' in hrules:
            bottom_hr = '\n<hr class="figure">'
-
        placement = option('html_figure_caption=', 'top')
-       if sidecaption == 0:
+       if sidecap == False:
            if placement == 'top':
                text = ("\n"
                     "<center> %s <!-- FIGURE -->%s\n"
@@ -1889,23 +1906,28 @@ def html_figure(m):
                     '<center><p class="caption"> %s </p></center>%s\n'
                     "</center>\n") % (label, top_hr, image, caption, bottom_hr)
        else:
-           # sidecaption is implemented as table
+           # sidecap is implemented as table
            text = ("\n"
-                "<center> %s <!-- FIGURE -->%s\n"
-                "<table><tr>\n"
-                "<td>%s</td>\n"
-                '<td><p class="caption"> %s </p></td>\n'
-                "</tr></table>%s\n"
-                "</center>\n"
-                ) % (label, top_hr, image, caption, bottom_hr)
-       return text
+                   "<center> %s <!-- FIGURE -->%s\n"
+                   "<table>\n"
+                   "<tr>\n"
+                   '<td style="width:%s;">%s</td>\n'
+                   '<td><p class="caption"> %s </p></td>\n'
+                   "</tr>\n"
+                   "</table>%s\n"
+                   "</center>\n"
+                   ) % (label, top_hr, str(int(frac*100)) + '%', image, caption, bottom_hr)
     else:
        # Just insert image file when no caption
        #s = '<center><p>%s</p></center>' % image # without <linebreak>
        # with two <linebreak>:
-       text = '<br /><br /><center>\n<p>%s</p>\n</center>\n<br /><br/>' % image
-       return text
+       text = ('<br/><br/>\n'
+               '<center>\n'
+               '<p>%s</p>\n'
+               '</center>\n'
+               '<br/><br/>') % image
 
+    return text
 
 
 def html_footnotes(filestr, format, pattern_def, pattern_footnote):
@@ -2047,24 +2069,31 @@ def html_table(table):
 
 
 def html_movie(m):
-    filename = m.group('filename')
-    options = m.group('options')
-    caption = m.group('caption').strip()
+    """Format movies for the html format
 
-    if not filename.startswith('http'):
-        add_to_file_collection(filename)
+    Return HTML code to embed a movie in HTML output. The syntax is
+    `MOVIE: [filename[, height=NUM][, width=NUM]] [caption]`.
+    Keywords: width (default is 640px), height (default is 365px)
+    Options: `--html_figure_hrule`, --html_figure_caption`, `--html_responsive_figure_width`
+    :param _regex.Match m: regex match
+    :return: HTML code
+    :rtype: str
+    """
+    filename = m.group('filename').strip()
+    caption = m.group('caption').strip().strip('"').strip("'")
+    opts = m.group('options').strip()
+    info = dict()
 
-    # Turn options to dictionary
-    if ',' in options:
-        options = options.split(',')
-    else:
-        options = options.split()
-    kwargs = {}
-    for opt in options:
-        if opt.startswith('width') or opt.startswith('WIDTH'):
-            kwargs['width'] = int(opt.split('=')[1])
-        if opt.startswith('height') or opt.startswith('HEIGHT'):
-            kwargs['height'] = int(opt.split('=')[1])
+    # Process any inline figure opts
+    if opts:
+        info = shlex.split(opts)
+        info = dict(s.strip(',').split('=') for s in info)
+        # String of options
+        opts = ' '.join(['%s="%s"' % (opt, value)
+                         for opt, value in info.items()
+                         if opt not in ['frac', 'sidecap']])
+
+    # Autoplay
     autoplay = option('html_video_autoplay=', 'False')
     if autoplay in ('on', 'off', 'True', 'true'):
         autoplay = True
@@ -2073,15 +2102,35 @@ def html_movie(m):
 
     if 'youtu.be' in filename:
         filename = filename.replace('youtu.be', 'youtube.com')
+    if 'youtube.com' in filename:
+        if not 'youtube.com/embed/' in filename:
+            filename = filename.replace('watch?v=', '')
+            filename = filename.replace('youtube.com/', 'youtube.com/embed/')
+            filename = filename.replace('https://youtube.com/', 'https://www.youtube.com/')
+    elif 'vimeo.com' in filename:
+        if not 'player.vimeo.com/video/' in filename:
+            if filename.startswith('http://'):
+                filename = 'https://' + filename[7:]
+            if not filename.startswith('https://') :
+                filename = 'https://' + filename
+            filename = filename.replace('https://vimeo.com', 'https://player.vimeo.com/video')
+
+    if not filename.startswith('http'):
+        add_to_file_collection(filename)
+
+    # Default width and height
+    width = info.get('width', 640)
+    height = info.get('height', 365)
 
     if '*' in filename or '->' in filename:
+        # Animation Based on Filename Generators
         # frame_*.png
         # frame_%04d.png:0->120
         # https://some.net/files/frame_%04d.png:0->120
         from . import DocWriter
         try:
             header, jscode, form, footer, frames = \
-                    DocWriter.html_movie(filename, **kwargs)
+                    DocWriter.html_movie(filename, **info)
         except ValueError as e:
             errwarn('*** error: %s' % str(e))
             _abort()
@@ -2090,39 +2139,15 @@ def html_movie(m):
             text += '\n<br><em>' + caption + '</em><br>\n\n'
         if not frames[0].startswith('http'):
             add_to_file_collection(frames)
-    elif 'youtube.com' in filename:
-        if not 'youtube.com/embed/' in filename:
-            filename = filename.replace('watch?v=', '')
-            filename = filename.replace('youtube.com/', 'youtube.com/embed/')
-            filename = filename.replace('https://youtube.com/', 'https://www.youtube.com/')
-        # Make html for a local YouTube frame
-        width = kwargs.get('width', 640)
-        height = kwargs.get('height', 365)
-        text = ('\n'
-                '<iframe width="%s" height="%s" src="%s" frameborder="0" allowfullscreen></iframe>\n') \
-               % (width, height, filename)
-        if caption:
-            text += """\n<p><em>%s</em></p>\n\n""" % caption
-    elif 'vimeo.com' in filename:
-        if not 'player.vimeo.com/video/' in filename:
-            if filename.startswith('http://'):
-                filename = 'https://' + filename[7:]
-            if not filename.startswith('https://') :
-                filename = 'https://' + filename
-            filename = filename.replace('https://vimeo.com', 'https://player.vimeo.com/video')
-        # Make html for a local Vimeo frame
-        width = kwargs.get('width', 640)
-        height = kwargs.get('height', 365)
+    elif 'youtube.com' in filename or 'vimeo.com' in filename:
+        # Make html for a local YouTube/Vimeo frame
         text = ('\n'
                 '<iframe width="%s" height="%s" src="%s" frameborder="0" allowfullscreen></iframe>\n'
                 ) % (width, height, filename)
         if caption:
-            text += """\n<em>%s</em>\n\n""" % caption
+            text += """\n<p><em>%s</em></p>\n\n""" % caption
     else:
         # Some movie file
-        width = kwargs.get('width', 640)
-        height = kwargs.get('height', 365)
-        #basename = os.path.basename(filename)
         stem, ext = os.path.splitext(filename)
         if ext == '':
             errwarn('*** error: never specify movie file without extension')
@@ -2130,11 +2155,11 @@ def html_movie(m):
 
         if ext in ('.mp4', '.ogg', '.webm'):
             # Use new HTML5 video tag
-            autoplay = 'autoplay' if autoplay else ''
+            autoplay = 'autoplay ' if autoplay else ''
             sources3 = option('no_mp4_webm_ogg_alternatives', True)
             text = ("\n"
                     "<div>\n"
-                    "<video %(autoplay)s loop controls width='%(width)s' height='%(height)s' preload='none'>") \
+                    "<video %(autoplay)sloop controls width='%(width)s' height='%(height)s' preload='none'>") \
                    % vars()
             movie_exists = False
             mp4_exists = False
@@ -2179,7 +2204,11 @@ def html_movie(m):
                          "<!-- Issue warning if in a Safari browser -->\n"
                          '<script language="javascript">\n'
                          "if (!!(window.safari)) {\n"
-                         '  document.write("<div style=\\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\\"><p><font color=\\"red\\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}\n'
+                         '  document.write('
+                         '"<div style=\\"width:95%%; padding:10px; border:1px solid #100; border-radius:4px;\\">'
+                         '<p><font color=\\"red\\">'
+                         'The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>"'
+                         ')}\n'
                          "</script>\n\n")
         elif ext in ('.mp3', '.m4a',):
             # Use HTML5 audio tag
@@ -2191,8 +2220,7 @@ def html_movie(m):
             autoplay = 'true' if autoplay else 'false'
             text = ('\n'
                     '<embed src="%s" %s autoplay="%s" loop="true"></embed>\n'
-                    '<p><em>%s</em></p>\n'
-                    ) % (filename, ' '.join(options), autoplay, caption)
+                    '<p><em>%s</em></p>\n') % (filename, opts, autoplay, caption)
     return text
 
 
@@ -2637,7 +2665,7 @@ def html_box(block, format, text_size='normal'):
     shadow = ' ' + box_shadow if option('html_box_shadow') else ''
     return ('\n'
             '<!-- begin box -->\n'
-            '<div style="width: 95%%; padding: 10px; border: 1px solid #000; border-radius: 4px;%s">\n'
+            '<div style="width:95%%; padding:10px; border:1px solid #000; border-radius:4px; %s">\n'
             '%s\n'
             '</div>\n'
             '<!-- end box -->\n') % (shadow, block)

@@ -1356,15 +1356,16 @@ there is a flow.
 <center>
 <p class="caption">Figure 1:  Visualization <b>of</b> a <em>wave</em>.  <!-- caption label: fig:impact --> </p>
 </center>
-<p><img src="testfigs/wave1D.png" align="bottom" width="200"></p>
+<p><img src="testfigs/wave1D.png" width="200" align="bottom"></p>
 </center>
 
 <p>Figures without captions are allowed and will be inlined.</p>
 
-<br /><br /><center>
-<p><img src="testfigs/wave1D.png" align="bottom" width="200"></p>
+<br/><br/>
+<center>
+<p><img src="testfigs/wave1D.png" width="200" align="bottom"></p>
 </center>
-<br /><br/>
+<br/><br/>
 
 <!-- Test multi-line caption in figure with sidecap=True -->
 
@@ -1374,33 +1375,38 @@ containing inline verbatim text:
 
 <center> <!-- figure label: --> <div id="myfig"></div> <!-- FIGURE -->
 <hr class="figure">
-<table><tr>
-<td><img src="testfigs/wave1D.png" align="bottom" width="500"></td>
+<table>
+<tr>
+<td style="width:100%;"><img src="testfigs/wave1D.png" width="500" align="bottom"></td>
 <td><p class="caption">Figure 2:  A long caption spanning several lines and containing verbatim words like <code>my_file_v1</code> and <code>my_file_v2</code> as well as math with subscript as in \( t_{i+1} \).  <!-- caption label: myfig --> </p></td>
-</tr></table>
+</tr>
+</table>
 </center>
 
 <!-- Must be a blank line after MOVIE or FIGURE to detect this problem -->
 
 <p>Test URL as figure name:</p>
 
-<br /><br /><center>
-<p><img src="https://raw.github.com/doconce/doconce/master/doc/src/blog/f_plot.png" align="bottom" width="500"></p>
+<br/><br/>
+<center>
+<p><img src="https://raw.github.com/doconce/doconce/master/doc/src/blog/f_plot.png" width="500" align="bottom"></p>
 </center>
-<br /><br/>
+<br/><br/>
 
 <p>Test SVG figure:</p>
 
-<br /><br /><center>
-<p><img src="https://openclipart.org/people/jpneok/junebug.svg" align="bottom" width="200"></p>
+<br/><br/>
+<center>
+<p><img src="https://openclipart.org/people/jpneok/junebug.svg" width="200" align="bottom"></p>
 </center>
-<br /><br/>
+<br/><br/>
 
 <!-- Test wikimedia type of files that otherwise reside in subdirs -->
 
 <p>HTML output may feature Bokeh plots:</p>
 
-<br /><br /><center>
+<br/><br/>
+<center>
 <p>
 <!-- Bokeh plot -->
 <script type="text/javascript">
@@ -1422,7 +1428,7 @@ containing inline verbatim text:
         </script>
 <div class="plotdiv" id="ffba6087-a45a-46eb-9368-11527f1f0a34"></div></p>
 </center>
-<br /><br/>
+<br/><br/>
 
 <p>
 <b>Remark.</b>

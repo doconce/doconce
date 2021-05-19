@@ -13,24 +13,24 @@ option `--no_mp4_webm_ogg_alternatives` makes the HTML
 code use exactly the specified movie file.
 # #endif
 
-MOVIE: [../doc/src/manual/mov/wave.webm, width=700 height=400] 1D wave in WebM.
+MOVIE: [../doc/src/manual/mov/wave.webm, width=700, height=400] 1D wave in WebM.
 
 Here is the same movie in Ogg format:
 
-MOVIE: [../doc/src/manual/mov/wave.ogg, width=700 height=400] 1D wave in Ogg.
+MOVIE: [../doc/src/manual/mov/wave.ogg, width=700, height=400] 1D wave in Ogg.
 
 Here is the same movie in MP4 format:
 
-MOVIE: [../doc/src/manual/mov/wave.mp4, width=700 height=400] 1D wave in MP4.
+MOVIE: [../doc/src/manual/mov/wave.mp4, width=700, height=400] 1D wave in MP4.
 
 Here is the same movie in Flash format:
 
-MOVIE: [../doc/src/manual/mov/wave.flv, width=700 height=400] 1D wave in Flash.
+MOVIE: [../doc/src/manual/mov/wave.flv, width=700, height=400] 1D wave in Flash.
 
 And here is a collection of images shown as an animation
 (`frame_*.png`):
 
-MOVIE: [../doc/src/manual/mov/wave_frames/frame_*.png, width=700 height=400] Animated collection of images.
+MOVIE: [../doc/src/manual/mov/wave_frames/frame_*.png, width=700, height=400] Animated collection of images.
 
 Here is the same collection, but with images in cyberspace, given as URLs:
 
@@ -43,12 +43,12 @@ MOVIE: [https://hplgit.github.io/animate/doc/pub/mov-animate/frames/frame_%04d.p
 The movie above in MPEG format, typeset in a box:
 
 !bbox
-MOVIE: [../doc/src/manual/mov/wave.mpeg, width=700 height=400] 1D wave in MPEG. label{mov:wave}
+MOVIE: [../doc/src/manual/mov/wave.mpeg, width=700, height=400] 1D wave in MPEG. label{mov:wave}
 !ebox
 
 Here is the same movie in AVI format:
 
-MOVIE: [../doc/src/manual/mov/wave.avi, width=700 height=400] 1D wave in AVI.
+MOVIE: [../doc/src/manual/mov/wave.avi, width=700, height=400] 1D wave in AVI.
 
 Here is the same movie, but with a URL to GitHub:
 
@@ -56,11 +56,11 @@ MOVIE: [https://hplgit.github.io/animate/doc/pub/mov-animate/demo.ogg]
 
 Here is a YouTube video:
 
-MOVIE: [https://www.youtube.com/watch?v=_O7iUiftbKU, width=420 height=315] YouTube movie.
+MOVIE: [https://www.youtube.com/watch?v=_O7iUiftbKU, width=420, height=315] YouTube movie.
 
 And a vimeo video:
 
-MOVIE: [https://vimeo.com/55562330, width=500 height=278] Vimeo movie.
+MOVIE: [https://vimeo.com/55562330, width=500, height=278] Vimeo movie.
 
 
 Finally, let us demonstrate referencing the movie ref{mov:wave}.

@@ -114,13 +114,13 @@ system doconce ptex2tex testdoc_bigex.p.tex #testdoc.tex
 
 # test that pdflatex works
 rm -f *.aux
-system pdflatex -shell-escape testdoc_bigex.tex
-pdflatex -shell-escape testdoc_bigex
-makeindex testdoc_bigex
-bibtex testdoc_bigex
-pdflatex -shell-escape testdoc_bigex
-pdflatex -shell-escape testdoc_bigex
-pdflatex -shell-escape testdoc_bigex
+system pdflatex -shell-escape -halt-on-error testdoc_bigex.tex
+pdflatex -shell-escape -halt-on-error testdoc_bigex.tex
+makeindex testdoc_bigex.tex
+bibtex testdoc_bigex.tex
+pdflatex -shell-escape -halt-on-error testdoc_bigex.tex
+pdflatex -shell-escape -halt-on-error testdoc_bigex.tex
+pdflatex -shell-escape -halt-on-error testdoc_bigex.tex
 
 cp testdoc_bigex.tex testdoc.tex
 cp testdoc_bigex.p.tex testdoc.p.tex
@@ -130,7 +130,7 @@ echo "----------- end of doconce ptex2tex output ----------------" >> testdoc.te
 cat testdoc.tex >> testdoc.tex_doconce_ptex2tex
 # Test that latex can treat this file
 rm -f *.aux
-system pdflatex -shell-escape testdoc.tex
+system pdflatex -shell-escape -halt-on-error testdoc.tex
 
 # Test stand-alone exercises
 system doconce format plain testdoc --exercises_in_zip --examples_as_exercises
@@ -213,14 +213,14 @@ cp slides1.html slides1_remark.html
 rm -f *.aux
 system doconce format pdflatex slides1 --latex_title_layout=beamer --latex_code_style=pyg --cite_doconce
 system doconce slides_beamer slides1.tex --beamer_slide_theme=blue_shadow --handout
-system pdflatex -shell-escape slides1.tex
+system pdflatex -shell-escape -halt-on-error slides1.tex
 cp slides1.tex slides1_handout.tex
 cp slides1.pdf slides1_handout.pdf
 
 # Ordinary beamer slides (not handout)
 system doconce format pdflatex slides1 --latex_title_layout=beamer "--latex_code_style=default:lst[style=yellow2_fb]"
 system doconce slides_beamer slides1.tex --beamer_slide_theme=blue_shadow
-system pdflatex -shell-escape slides1.tex
+system pdflatex -shell-escape -halt-on-error slides1.tex
 
 system doconce format html slides2 --pygments_html_style=emacs --html_raw_github_url=raw.github --no_abort
 system doconce slides_html slides2 reveal --html_slide_theme=beigesmall
@@ -513,7 +513,9 @@ system doconce format html mako_test4 --pygments_html_style=no  --no_header_foot
 system doconce csv2table testtable.csv > testtable.do.txt
 
 # Test doconce ref_external command
-sh -x genref.sh
+# Cannot find these scripts in repo anymore
+#sh -x genref.sh
+
 # Test error detection (note: the sequence of the error tests is
 # crucial: an error must occur, then corrected before the next
 # one will occur!)

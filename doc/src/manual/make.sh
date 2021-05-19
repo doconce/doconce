@@ -56,23 +56,24 @@ doconce subst '([^`])Texas A & M([^`])' '\g<2>Texas A {\&} M\g<2>' manual.tex
 # Must fix one \eqref{} to (ref{})
 doconce replace '\eqref{my:special:eq}' '(ref{my:special:eq})' manual.tex
 doconce replace '\eqref{eq1}' '(ref{eq1})' manual.tex
-# NB! escape underscores and similar symbols with `_`
+# NB! escape underscores and similar symbols with verbatim e.g. `--html_html_figure_caption`
+# NB! escape doconce examples using !bc with |bc
 # Using latex results in errors due to the size of figures,
 # so use pdfltex
-#latex -shell-escape manual
-#latex -shell-escape manual
+#latex -shell-escape -halt-on-error manual
+#latex -shell-escape -halt-on-error manual
 #bibtex manual
 #makeindex manual
-#latex -shell-escape manual
-#latex -shell-escape manual
+#latex -shell-escape -halt-on-error manual
+#latex -shell-escape -halt-on-error manual
 #dvipdf manual.dvi
-pdflatex -shell-escape manual.tex
-pdflatex -shell-escape manual.tex
+pdflatex -shell-escape -halt-on-error manual.tex
+pdflatex -shell-escape -halt-on-error manual.tex
 makeindex manual
 bibtex manual
-pdflatex -shell-escape manual.tex
-pdflatex -shell-escape manual.tex
-pdflatex -shell-escape manual.tex
+pdflatex -shell-escape -halt-on-error manual.tex
+pdflatex -shell-escape -halt-on-error manual.tex
+pdflatex -shell-escape -halt-on-error manual.tex
 cp manual.pdf manual_latex.pdf
 
 # doconce html format:
@@ -131,11 +132,11 @@ doconce subst '([^`])Texas A & M([^`])' '\g<2>Texas A {\&} M\g<2>' manual.tex
 # Must fix one \eqref{} to (ref{})
 doconce replace '\eqref{my:special:eq}' '(ref{my:special:eq})' manual.tex
 doconce replace '\eqref{eq1}' '(ref{eq1})' manual.tex
-pdflatex -shell-escape manual
+pdflatex -shell-escape -halt-on-error manual
 bibtex manual
 makeindex manual
-pdflatex -shell-escape manual
-pdflatex -shell-escape manual
+pdflatex -shell-escape -halt-on-error manual
+pdflatex -shell-escape -halt-on-error manual
 
 # Google Code wiki:
 system doconce format gwiki manual.do.txt --cite_doconce --no_mako --no_abort

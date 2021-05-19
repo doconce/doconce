@@ -13,6 +13,7 @@ from builtins import bytes
 from past.utils import old_div
 import os, subprocess, sys, glob, shutil, subprocess, base64, uuid
 import regex as re
+import shlex
 from pygments.lexers import get_lexer_by_name
 from .common import plain_exercise, table_analysis, INLINE_TAGS, \
     _CODE_BLOCK, _MATH_BLOCK, doconce_exercise_output, indent_lines, \
@@ -993,6 +994,16 @@ def format_cell_latex(formatted_code, formatted_output, execution_count, show):
 
 
 def latex_figure(m):
+    """Format figures for the latex format
+
+    Return latex code to embed a figure in the .p.tex output. The syntax is
+    `FIGURE:[filename[, options][, sidecap=BOOL][, frac=NUM]] [caption]`.
+    Keywords: `sidecap` (default is False), `frac` (default is 1),
+    Options: `--html_figure_hrule`, --html_figure_caption`, `--html_responsive_figure_width`
+    :param _regex.Match m: regex match object
+    :return: latex code
+    :rtype: str
+    """
     figure_method = 'includegraphics'  # alt: 'psfig'
     filename = m.group('filename')
     filename_stem, filename_ext = os.path.splitext(filename)
@@ -1025,21 +1036,23 @@ def latex_figure(m):
     # fraction is 0.9/linewidth by default, but can be adjusted with
     # the fraction keyword
     frac = 0.9
-    sidecaption = 0
+    sidecap = False
     opts = m.group('options')
-    if opts:
-        info = [s.split('=') for s in opts.split()]
-        for opt, value in info:
-            if ',' in value:
-                errwarn('*** error: no comma between figure options!')
-                errwarn('    %s' % opts)
-                _abort()
-            if opt == 'frac':
-                frac = float(value)
-        for opt, value in info:
-            if opt == 'sidecap':
-                sidecaption = 1
+    info = dict()
 
+    # Process any inline figure opts
+    if opts:
+        info = shlex.split(opts)
+        info = dict(s.strip(',').split('=') for s in info)
+        for opt, val in info.items():
+            if opt == 'sidecap':
+                sidecap = True if val=='True' else False
+            elif opt == 'frac':
+                frac = float(val)
+        # String of options
+        opts = ' '.join(['%s="%s"' % (opt, value)
+                         for opt, value in info.items()
+                         if opt not in ['frac', 'sidecap']])
     latex_style = option('latex_style=', 'std')
     tufte_frac_limit4marginfig = 0.7  # frac<=0.7: put figure in margin (tufte)
     tufte_fig_envir = 'figure'
@@ -1059,7 +1072,7 @@ def latex_figure(m):
                     includeline = r'\centerline{\includegraphics[width=%s\linewidth]{%s}}' % (frac, filename)
                     tufte_fig_envir = 'figure'  # text width
             else:
-                if sidecaption == 1:
+                if sidecap == True:
                     includeline = r'\includegraphics[width=%s\linewidth]{%s}' % (frac, filename)
                 else:
                     includeline = r'\centerline{\includegraphics[width=%s\linewidth]{%s}}' % (frac, filename)
@@ -1116,65 +1129,71 @@ def latex_figure(m):
         verbatim_text_new.append(new_words)
     for from_, to_ in zip(verbatim_text, verbatim_text_new):
         caption = caption.replace(from_, to_)
-    # if sidecaption == 1:
+    # if sidecap == True:
     #    includeline='\sidecaption[t] ' + includeline
     if caption and latex_style == 'tufte-book':
-        result = r"""
-\begin{%s}[!ht]  %% %s
-  %s
-  \caption{
-  %s
-  }
-\end{%s}
-%%\clearpage %% flush figures %s
-""" % (tufte_fig_envir, label, includeline, caption, tufte_fig_envir, label)
+        result = ('\n'
+                  r'\begin{%s}[!ht]  %% '
+                  '%s\n'
+                  '  %s\n'
+                  '  \caption{\n'
+                  '  %s\n'
+                  '  }\n'
+                  '\end{%s}\n'
+                  '%%\clearpage %% flush figures %s\n'
+                  '\n') % (tufte_fig_envir, label, includeline, caption, tufte_fig_envir, label)
 
-    elif caption and sidecaption == 0:
-        result = r"""
-\begin{figure}[!ht]  %% %s
-  %s
-  \caption{
-  %s
-  }
-\end{figure}
-%%\clearpage %% flush figures %s
-""" % (label, includeline, caption, label)
-    elif caption and sidecaption == 1:
+    elif caption and sidecap == False:
+        result = ('\n'
+                  r'\begin{figure}[!ht]  %% '
+                  '%s\n'
+                  '  %s\n'
+                  '  \caption{\n'
+                  '  %s\n'
+                  '  }\n'
+                  r'\end{figure}'
+                  '\n'
+                  '%%\clearpage %% flush figures %s\n'
+                  '\n') % (label, includeline, caption, label)
+    elif caption and sidecap == True:
         # Requires \usepackage{sidecap}
-        result = r"""
-\begin{SCfigure}
-  \centering
-  %s
-  \caption{
-  %s
-  }
-\end{SCfigure}
-%%\clearpage %% flush figures %s
-""" % (includeline, caption, label)
+        result = ('\n'
+                  r'\begin{SCfigure}'
+                  '\n'
+                  '  \centering\n'
+                  '  %s\n'
+                  '  \caption{\n'
+                  '  %s\n'
+                  '  }\n'
+                  r'\end{SCfigure}'
+                  '\n'
+                  '%%\clearpage %% flush figures %s\n'
+                  '\n') % (includeline, caption, label)
     else:
         # drop caption and place figure inline
-        result = r"""
-
-\vspace{6mm}
-
-\begin{center}  %% inline figure
-  %s
-\end{center}
-
-\vspace{6mm}
-
-""" % (includeline)
+        result = ('\n'
+                  '\n'
+                  r'\vspace{6mm}'
+                  '\n'
+                  '\n'
+                  r'\begin{center}  %% inline figure'
+                  '\n'
+                  '  %s\n'
+                  '\end{center}\n'
+                  '\n'
+                  r'\vspace{6mm}'
+                  '\n\n\n') % (includeline)
         # Use this instead (without centering):
-        result = r"""
-
-\vspace{6mm}
-
-%% inline figure
-%s
-
-\vspace{6mm}
-
-""" % (includeline)  # <linebreak> will be substituted later
+        result = ('\n'
+                  '\n'
+                  r'\vspace{6mm}'
+                  '\n'
+                  '\n'
+                  '%% inline figure\n'
+                  '%s\n'
+                  '\n'
+                  r'\vspace{6mm}'
+                  '\n\n\n') % (includeline)  # <linebreak> will be substituted later
     return result
 
 

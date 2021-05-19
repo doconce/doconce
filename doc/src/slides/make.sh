@@ -82,8 +82,8 @@ editfix ${name}.p.tex
 system doconce ptex2tex $name envir=minted
 system doconce slides_beamer $name --beamer_slide_theme=$beamertheme
 cp $name.tex ${name}-beamer.tex
-system pdflatex -shell-escape ${name}-beamer
-system pdflatex -shell-escape ${name}-beamer
+system pdflatex -shell-escape -halt-on-error ${name}-beamer
+system pdflatex -shell-escape -halt-on-error ${name}-beamer
 
 # LaTeX documents
 system doconce format pdflatex $name --minted_latex_style=trac
@@ -92,8 +92,8 @@ system doconce ptex2tex $name envir=minted
 doconce replace 'section{' 'section*{' $name.tex
 # Hack: suddenly \subex{} didn't work in this document
 doconce subst -m '^\\subex\{' '\paragraph{' $name.tex
-system pdflatex -shell-escape $name
-system pdflatex -shell-escape $name
+system pdflatex -shell-escape -halt-on-error $name
+system pdflatex -shell-escape -halt-on-error $name
 mv -f $name.pdf ${name}-minted.pdf
 cp $name.tex ${name}-minted.tex
 
@@ -200,8 +200,8 @@ system doconce format pdflatex demo SLIDE_TYPE="beamer" SLIDE_THEME="$theme" --l
 #system doconce ptex2tex demo envir=minted
 system doconce slides_beamer demo --beamer_slide_theme=$theme
 cp demo.tex demo_${theme}.tex
-system pdflatex -shell-escape demo_${theme}
-system pdflatex -shell-escape demo_${theme}
+system pdflatex -shell-escape -halt-on-error demo_${theme}
+system pdflatex -shell-escape -halt-on-error demo_${theme}
 done
 
 # Simple boxes around admons and blocks
@@ -212,16 +212,16 @@ system doconce slides_beamer demo --beamer_slide_theme=$theme --beamer_block_sty
 # Change the title background in mdframed boxes
 doconce subst 'frametitlebackgroundcolor=.+,' 'frametitlebackgroundcolor=red!20,' demo.tex
 cp demo.tex demo_${theme}_mdbox.tex
-system pdflatex -shell-escape demo_${theme}_mdbox
-system pdflatex -shell-escape demo_${theme}_mdbox
+system pdflatex -shell-escape -halt-on-error demo_${theme}_mdbox
+system pdflatex -shell-escape -halt-on-error demo_${theme}_mdbox
 
 # Beamer handouts
 theme=red_plain
 system doconce format pdflatex demo SLIDE_TYPE="beamer" SLIDE_THEME="$theme" --latex_title_layout=beamer --latex_admon_title_no_period --latex_code_style=pyg
 #system doconce ptex2tex demo envir=minted
 system doconce slides_beamer demo --beamer_slide_theme=$theme --handout  # note --handout!
-system pdflatex -shell-escape demo
-system pdflatex -shell-escape demo
+system pdflatex -shell-escape -halt-on-error demo
+system pdflatex -shell-escape -halt-on-error demo
 # Merge slides to 2x3 per page
 pdfnup --nup 2x3 --frame true --delta "1cm 1cm" --scale 0.9 --outfile demo.pdf demo.pdf
 cp demo.pdf demo_${theme}_handouts2x3.pdf
@@ -232,8 +232,8 @@ system system doconce format pdflatex demo SLIDE_TYPE="latex document" SLIDE_THE
 #system system doconce ptex2tex demo envir=minted
 # Must remove |\pause|! for ordinary latex document
 doconce subst '\|\\pause\|\n' '' demo.tex
-system pdflatex -shell-escape demo
-system pdflatex -shell-escape demo
+system pdflatex -shell-escape -halt-on-error demo
+system pdflatex -shell-escape -halt-on-error demo
 
 # IPython notebook
 system  doconce format ipynb demo --figure_prefix=https://raw.githubusercontent.com/hplgit/doconce/master/doc/pub/slides/demo/

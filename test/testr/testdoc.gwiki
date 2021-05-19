@@ -486,7 +486,7 @@ there is a flow.
 
 ---------------------------------------------------------------
 
-Figure:  Visualization *of* a *wave*. (fig:impact)
+Figure: Visualization *of* a *wave*. (fig:impact)
 
 (the URL of the image file testfigs/wave1D.png must be inserted here)
 
@@ -517,7 +517,7 @@ containing inline verbatim text:
 
 ---------------------------------------------------------------
 
-Figure:  A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in `t_{i+1}`. (myfig) 
+Figure: A long caption spanning several lines and containing verbatim words like `my_file_v1` and `my_file_v2` as well as math with subscript as in `t_{i+1}`. (myfig)
 
 (the URL of the image file testfigs/wave1D.png must be inserted here)
 

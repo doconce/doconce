@@ -16,12 +16,12 @@ doconce format html admon.do.txt --html_admon=apricot --html_style=solarized --c
 <style type="text/css">
 /* solarized style */
 body {
-  margin:5;
-  padding:0;
-  border:0; /* Remove the border around the viewport in old versions of IE */
-  width:100%;
+  margin: 5;
+  padding: 0;
+  border: 0; /* Remove the border around the viewport in old versions of IE */
+  width: 100%;
   background: #fdf6e3;
-  min-width:600px;	/* Minimum width of layout - remove if not required */
+  min-width: 600px;	/* Minimum width of layout - remove if not required */
   font-family: Verdana, Helvetica, Arial, sans-serif;
   font-size: 1.0em;
   line-height: 1.3em;
@@ -118,7 +118,7 @@ MathJax.Hub.Config({
 <!-- institution(s) -->
 <br>
 <center>
-<h4>May 14, 2021</h4>
+<h4>May 19, 2021</h4>
 </center> <!-- date -->
 <br>
 
@@ -208,7 +208,7 @@ The box is more aimed at framing a law or an equation.
 
 
 <!-- begin box -->
-<div style="width: 95%; padding: 10px; border: 1px solid #000; border-radius: 4px;">
+<div style="width:95%; padding:10px; border:1px solid #000; border-radius:4px; ">
 <p>A generic equation</p>
 
 $$ f(x) = 0 $$
@@ -230,7 +230,7 @@ box, it is not a new paragraph):
 
 
 <!-- begin box -->
-<div style="width: 95%; padding: 10px; border: 1px solid #000; border-radius: 4px;">
+<div style="width:95%; padding:10px; border:1px solid #000; border-radius:4px; ">
 $$
 \begin{equation} f(x) = \sin(x)e^{1-x}  \label{_auto1}
 \end{equation}
@@ -249,7 +249,7 @@ $$
 
 
 <!-- begin box -->
-<div style="width: 95%; padding: 10px; border: 1px solid #000; border-radius: 4px;">
+<div style="width:95%; padding:10px; border:1px solid #000; border-radius:4px; ">
 
 <!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
 <div class="cell border-box-sizing code_cell rendered">
@@ -614,10 +614,11 @@ Longer computer code requires vertical space:
 
 <p>And then we add a figure too.</p>
 
-<br /><br /><center>
-<p><img src="testfigs/wave1D.png" align="bottom" width="400"></p>
+<br/><br/>
+<center>
+<p><img src="testfigs/wave1D.png" width="400" align="bottom"></p>
 </center>
-<br /><br/>
+<br/><br/>
 </div>
 
 <h2 id="the-end">The end </h2>

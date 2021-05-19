@@ -58,17 +58,17 @@ Here are some DocOnce features:
 
 Inline figure:
 
-FIGURE: [testfigs/wave1D, width=300 frac=0.7]
+FIGURE: [testfigs/wave1D, width=300, frac=0.7]
 
 Figure ref{fig1} has a caption.
 
-FIGURE: [wave1D/wave1D, width=300 frac=0.7] Figure with caption. label{fig1}
+FIGURE: [wave1D/wave1D, width=300, frac=0.7] Figure with caption. label{fig1}
 
 Here is a YouTube movie:
 
-MOVIE: [https://www.youtube.com/embed/P8VcZzgdfSc, width=420 height=315]
+MOVIE: [https://www.youtube.com/embed/P8VcZzgdfSc, width=420, height=315]
 
-MOVIE: [../doc/src/manual/mov/wave.webm, width=700 height=400] Movie on the hard disk: 1D wave motion.
+MOVIE: [../doc/src/manual/mov/wave.webm, width=700, height=400] Movie on the hard disk: 1D wave motion.
 
 !split
 ======= Test of math, code, admons, quiz =======

@@ -390,11 +390,11 @@ FIGURE:[testfigs/wave1D, width=200]
 Here is figure ref{myfig} with a long (illegal) multi-line caption
 containing inline verbatim text:
 
-FIGURE: [testfigs/wave1D.png, width=500 sidecap=True] A long caption spanning several lines and containing verbatim words like 'my_file_v1' and 'my_file_v2' as well as math with subscript as in t_{i+1}. {myfig} 
+FIGURE: [testfigs/wave1D.png, width=500, sidecap=True] A long caption spanning several lines and containing verbatim words like 'my_file_v1' and 'my_file_v2' as well as math with subscript as in t_{i+1}. {myfig} 
 
 Test URL as figure name:
 
-FIGURE: [https://raw.github.com/doconce/doconce/master/doc/src/blog/f_plot.png, width=500 frac=0.8]
+FIGURE: [https://raw.github.com/doconce/doconce/master/doc/src/blog/f_plot.png, width=500, frac=0.8]
 
 *Remark.*
 Movies are tested in separate file 'movies.do.txt'.

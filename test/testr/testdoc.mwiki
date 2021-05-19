@@ -505,12 +505,11 @@ Test URL as figure name:
 
 <!-- Test wikimedia type of files that otherwise reside in subdirs -->
 
-    [[File:Df plot.png|frame|800px|alt=Df plot.png|This is a wikimedia figure file.]] <!-- user: Hplwp, filename: df_plot.png, timestamp: 2013-01-10T11:37:05Z -->
-
+    [[File:Df plot.png|frame|800px|alt=Df plot.png|This is a wikimedia figure file.]] <!-- user: Hplwp, filename: df_plot.png, timestamp: 2013-01-10T11:37:05Z -->    
 
 <!-- Non-uploaded file with no caption -->
 
-[[File:Df2s8765s plot.png|frame|200,px|alt=Df2s8765s plot.png|<span title=""></span>]] <!-- not yet uploaded to common.wikimedia.org -->
+[[File:Df2s8765s plot.png|frame|200px|alt=Df2s8765s plot.png|<span title=""></span>]] <!-- not yet uploaded to common.wikimedia.org -->
 
 ''Remark.''
 Movies are tested in separate file <code>movies.do.txt</code>.
