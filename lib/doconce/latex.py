@@ -25,8 +25,9 @@ from .misc import option, _abort, replace_code_command, copy_latex_packages, err
 from doconce import globals
 from . import jupyter_execution
 
+latex_quote, latex_warning, latex_question, latex_notice = None, None, None, None
+latex_summary, latex_block, latex_box = None, None, None
 additional_packages = ''  # comma-sep. list of packages for \usepackage{}
-
 include_numbering_of_exercises = True
 
 

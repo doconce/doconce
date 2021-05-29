@@ -25,6 +25,8 @@ from pygments.formatters import HtmlFormatter
 from pygments import highlight
 from pygments.styles import get_all_styles
 
+html_quote, html_warning, html_question, html_notice = None, None, None, None
+html_summary, html_block, html_box = None, None, None
 box_shadow = 'box-shadow: 8px 8px 5px #888888;'
 
 # Filename generator to store a list of dependencies for html output

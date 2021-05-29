@@ -16,6 +16,7 @@ import regex as re
 from .misc import errwarn, _abort, option
 from .globals import envir2syntax, syntax_executable
 from .common import safe_join, get_code_block_args
+from pygments.lexers import get_lexer_by_name
 
 
 class JupyterKernelClient:
