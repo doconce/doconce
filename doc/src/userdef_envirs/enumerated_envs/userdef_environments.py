@@ -46,7 +46,7 @@ def latex_env(env, text, titleline, counter, format):
     """LaTeX typesetting of theorem-style environment."""
     label, titleline = get_label(titleline)
     titleline = titleline.strip()
-    template = ur"""
+    template = u"""
 \begin{${env}}
 % if label:
 label{${label}}
@@ -65,7 +65,7 @@ def do_env(env, text, titleline, counter, format):
     titleline = titleline.strip()
     if titleline:
         titleline = ": "+titleline
-    template = ur"""
+    template = u"""
 ===== ${env.capitalize()} ${counter} ${titleline} =====
 % if label:
 label{${label}}
@@ -79,7 +79,7 @@ def html_env(env, text, titleline, counter, format):
     """HTML typesetting of theorem-style environment."""
     label, titleline = get_label(titleline)
     titleline = titleline.strip()
-    template = ur"""
+    template = u"""
 % if label:
 <!-- custom environment: label=${label}, number=${counter} -->
 % endif

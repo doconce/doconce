@@ -341,7 +341,7 @@ def get_package_data(pkg_data, data_file):
     # Get a file inside the zip package, e.g. the deck.js boilerplate
     text = zip_obj.read(data_file).decode('utf-8')
     if not text:
-        errwarn('*** error: could not retrieve the boilerplate from Deck.js %s ' % fname)
+        errwarn('*** error: could not retrieve the boilerplate from Deck.js %s ' % data_file)
         _abort()
     return text
 

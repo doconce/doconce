@@ -479,7 +479,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
                     name = m.group(2).strip()
                     if os.path.isfile(name):
                         src_paths.add(os.path.dirname(name))
-                        lines[j] = '%%run "%s"' % fullpath
+                        lines[j] = '%%run "%s"' % name
                 else:
                     found_unix_lines = True
             src_paths = list(src_paths)
@@ -829,12 +829,12 @@ def ipynb_index_bib(filestr, index, citations, pubfile, pubdata):
         os.chdir(this_dir)
 
         bibstyle = option('latex_bibstyle=', 'plain')
-        bibtext = fix_latex_command_regex(r(
+        bibtext = fix_latex_command_regex((
             "((*- extends 'latex_article.tplx' -*))"
             ''
             '((* block bibliography *))'
-            '\bibliographystyle{%s}'
-            '\bibliography{%s}'
+            r'\bibliographystyle{%s}'
+            r'\bibliography{%s}'
             '((* endblock bibliography *))'
         ) % (bibstyle, bibtexfile[:-4]), application='replacement')
         filestr = re.sub(r'^BIBFILE:.+$', bibtext, filestr,

@@ -24,8 +24,8 @@ from pygments.formatters import HtmlFormatter
 from pygments import highlight
 from pygments.styles import get_all_styles
 from doconce import __file__ as doconce_dir
-doconce_dir = os.path.dirname(doconce_dir)
 
+doconce_dir = os.path.dirname(doconce_dir)
 html_images = 'html_images.zip'
 latexstyle_files = 'latex_styles.zip'
 
@@ -3378,6 +3378,7 @@ def analyzer():
     include_files = re.findall(r"""[#%]\s+\#include\s*["']([A-Za-z0-9_-., ~]+?)["']""", alltext)
     include_files = [filename for dummy, filename in include_files]
 
+    from .common import INLINE_TAGS
     figure = re.compile(INLINE_TAGS['figure'], re.MULTILINE)
     movie = re.compile(INLINE_TAGS['movie'], re.MULTILINE)
     code = re.compile(r'^\s*@@@CODE\s+([^ ]+?) ')
@@ -4511,6 +4512,7 @@ def grep():
         filestr = f.read()
         f.close()
 
+        from .common import INLINE_TAGS
         if file_tp == 'FIGURE':
             pattern = INLINE_TAGS['figure']
             filenames += [filename for filename, dummy in
@@ -5016,14 +5018,6 @@ def subst_author_latex2doconce(m):
     return '\n'.join(authors)
 
 
-def subst_minted_latex2doconce(m):
-    lang = m.group(1)
-    if lang in minted2bc:
-        return '!bc ' + minted2bc[lang]
-    else:
-        return '!bc'
-
-
 def subst_paragraph_latex2doconce(m):
     title = m.group(1)
     ending = m.group(2)
@@ -5060,19 +5054,15 @@ def _latex2doconce(filestr):
         # str.replace replacements
         replace = []
         """
+        subst, replace = None, None
         f = open(fixfile)
         exec(f.read())
         f.close()
-        try:
+        if subst and replace:
             user_subst = subst
             user_replace = replace
-        except NameError as e:
-            print(fixfile, 'does not contain subst and replace lists')
-            print(e)
-            sys.exit(1)
-        except Exception as e:
-            print(fixfile, 'has errors')
-            print(e)
+        else:
+            print(fixfile, 'does not contain subst and replace lists or has errors')
             sys.exit(1)
 
     # cf. doconce.latex.fix_latex_command_regex to see how important
@@ -5255,6 +5245,12 @@ def _latex2doconce(filestr):
                      latex='latex', html='html', js='js',
                      xml='xml', ruby='rb')
     minted2bc['c++'] = 'cpp'
+    def subst_minted_latex2doconce(m):
+        lang = m.group(1)
+        if lang in minted2bc:
+            return '!bc ' + minted2bc[lang]
+        else:
+            return '!bc'
     filestr = re.sub(pattern, subst_minted_latex2doconce, filestr)
     filestr = filestr.replace('\\end{minted}', '!ec')
     pattern = r'\\begin\{Verbatim}\[?.*\]?{(.+?)\}'
@@ -5658,12 +5654,12 @@ def latex2doconce():
     by files combined to a single file, avoid footnotes, index inside
     paragraphs, do not start code blocks with indentation, ...
     """
-    print(r"""# #ifdef LATEX2DOCONCE
-This is the result of the doconce latex2doconce program.
-The translation from LaTeX is just a helper. The text must
-be carefully examined! (Be prepared that some text might also
-be lost in the translation - in seldom cases.)
-""")
+    print(('#ifdef LATEX2DOCONCE\n'
+           'This is the result of the doconce latex2doconce program.\n'
+           'The translation from LaTeX is just a helper. The text must\n'
+           'be carefully examined! (Be prepared that some text might also\n'
+           'be lost in the translation - in seldom cases.)\n'
+           ))
     filename = sys.argv[1]
     f = open(filename, 'r')
     filestr = f.read()
