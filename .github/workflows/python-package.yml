@@ -39,5 +39,4 @@ jobs:
         flake8 lib/doconce --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        cd test
-        pytest pytests.py
+        pytest test/pytests.py
