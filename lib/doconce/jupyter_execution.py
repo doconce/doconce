@@ -33,13 +33,14 @@ class JupyterKernelClient:
         - Install the bash kernel: https://github.com/takluyver/bash_kernel
         - Install the IR kerneld for R: https://irkernel.github.io/installation/
         after upgrading to R 3.4+: https://github.com/duckmayr/install-update-r-on-linux
+        - List the currently installed kernels: jupyter kernelspec list
     """
     def __init__(self, syntax):
         """Initialize the class by creating and starting a Jupyter kernel
 
         :param str syntax: programming language of the Jupyter kernel
         """
-        kernel_name = self.__find_kernel_name(syntax)
+        kernel_name = self.find_kernel_name(syntax)
         self.kernel_name = kernel_name
         self.manager = KernelManager(kernel_name=kernel_name)
         if not self.kernel_name:
@@ -56,7 +57,8 @@ class JupyterKernelClient:
         """
         return self.manager.is_alive()
 
-    def __find_kernel_name(self, syntax):
+    @staticmethod
+    def find_kernel_name(syntax):
         """Internal function to searched a Jupyter kernel between the list of
         Jupyter kernels installed.
 
@@ -235,7 +237,7 @@ def start_kernel(syntax, kernel_client):
 
     Given a programming language `syntax`, start a Jupyter kernel, if not already started.
     The Jupyter kernels are started using the JupyterKernelClient class and inserted
-    in the input kernels dictionary in `kernels`
+    in the input kernels `kernel_client` dictionary
     :param str syntax: the kernel's programming language
     :param Dict[str -> JupyterKernelClient] kernel_client: dictionary of kernel names to
     instances of (JupyterKernelClient)
