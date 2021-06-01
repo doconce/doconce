@@ -8,7 +8,9 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
+defaults:
+    run:
+      shell: bash
 jobs:
   build:
 
@@ -29,6 +31,10 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        python setup.py install
+        # Jupyter kernels
+        pip install bash_kernel
+        python -m bash_kernel.install
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
