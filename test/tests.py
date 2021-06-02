@@ -253,7 +253,7 @@ def run():
     print("To remove untracked files run: ")
     print("git clean -f -d ..")
     print("To remove the temporary files run: ")
-    print("rm -rf 0*md 0*ipynb tmp_* *~ ")
+    print("rm -rf 0*md 0*ipynb tmp_* *~ *.dlog")
     print("find . -mindepth 1 -maxdepth 1 -name '.*' -not -name '.ptex2tex.cfg' -not -name '.dict4spell.txt' -not -name 'test.v' -delete")
 
 if __name__ == "__main__":
