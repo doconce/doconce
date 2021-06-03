@@ -1,6 +1,0 @@
-\lstdefinestyle{myspeciallststyle}{
-keywordstyle=\color{blue}\bfseries,
-commentstyle=\color{myteal},
-stringstyle=\color{darkgreen},
-identifierstyle=\color{darkorange},
-}
