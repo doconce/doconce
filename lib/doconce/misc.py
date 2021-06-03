@@ -45,17 +45,18 @@ def help_doconce():
           '\033[1mdoconce <command> [<argument>] <file>[.do.txt] [options]\033[0m\n\n')
     # Print all commands
     print('Commands: \n\033[1m%s\033[0m' % (' '.join(globals.doconce_commands)))
-    # Print all commands with their description
-    print(('\nCommands description:'))
-    template = "\033[1m{0:35}\033[0m \033[94m{1:10}\033[0m"
-    # Narrow down help when calling doconce <command> --help
-    if sys.argv[1] in globals.doconce_commands:
-        ind = globals.doconce_commands.index(sys.argv[1])
-        command, help = globals._registered_commands[ind]
-        print(template.format(command, help))
-    else:
-        for command, help in globals._registered_commands:
+    if len(sys.argv) > 1:
+        # Print all commands with their description
+        print(('\nCommands description:'))
+        template = "\033[1m{0:35}\033[0m \033[94m{1:10}\033[0m"
+        # Narrow down help when calling doconce <command> --help
+        if sys.argv[1] in globals.doconce_commands:
+            ind = globals.doconce_commands.index(sys.argv[1])
+            command, help = globals._registered_commands[ind]
             print(template.format(command, help))
+        else:
+            for command, help in globals._registered_commands:
+                print(template.format(command, help))
 
 
 def help_format():
@@ -3458,12 +3459,14 @@ def _old2new(filename):
 
 
 def latex_header():
-    from .doconce.doconce import INTRO
+    from .doconce import load_modules, INTRO
+    load_modules('', ['latex'])
     print(INTRO['latex'])
 
 
 def latex_footer():
-    from .doconce.doconce import OUTRO
+    from .doconce import load_modules, OUTRO
+    load_modules('', ['latex'])
     print(OUTRO['latex'])
 
 
