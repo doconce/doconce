@@ -4262,7 +4262,7 @@ justified,
     # of the preamble for beamer slides in misc.slides_beamer
 
     # pdflatex needs calc package for emojis
-    if filestr[-1] != '\n':
+    if len(filestr) and filestr[-1] != '\n':
         filestr += '\n'  # Add newline
     if re.search(INLINE_TAGS['emoji'], filestr):
         if not ',calc' in INTRO['latex']:
