@@ -20,8 +20,10 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      with:
-        submodules: recursive
+    - name: Pull & update submodules recursively
+      run: |
+        git submodule update --init --recursive
+        git submodule update --recursive --remote
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
