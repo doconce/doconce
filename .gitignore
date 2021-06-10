@@ -1,11 +1,116 @@
-syntax: glob
-# compiled files:
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
 *.o
+
+# C extensions
 *.so
 *.a
-*.pyc
-# temporary files:
-build
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+#lib/
+#lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# eclipse files
+*.cproject
+*.project
+
+
+# DocOnce specific
+# temporary files
 *.bak
 *.swp
 *~
@@ -15,13 +120,14 @@ tmp*
 temp*
 .#*
 \#*
-# tex files:
+
+# tex files
 *.log
 *.dvi
 *.aux
 *.blg
 *.bbl
-*.egg
+
 *.idx
 *.ilg
 *.ind
@@ -31,26 +137,28 @@ temp*
 *.toc
 *.snm
 *.vrb
-# eclipse files:
-*.cproject
-*.project
-# misc:
+
+# misc
 .DS_Store
 .idea
-__pycache__
 _minted-*
-# doconce:
+
+# doconce
 *.dlog
 .*_html_file_collection
 .*.exerinfo
 .*.copyright
 sphinx-rootdir
-dist
-Trash
-private
-test
-venv*
-lib/DocOnce.egg-info/
+
 # dependencies:
 doc/src/manual/src/
 src/
+
+# development files
+Trash
+private
+lib/DocOnce.egg-info/
+
+# submodules
+test/
+doc/
