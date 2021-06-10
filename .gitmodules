@@ -1,3 +1,6 @@
 [submodule "test"]
 	path = test
 	url = https://github.com/doconce/doconce_tests.git
+[submodule "doc"]
+	path = doc
+	url = https://github.com/doconce/doconce_doc.git

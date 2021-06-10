@@ -1,5 +1,0 @@
-TITLE: Example on editing markup in DocOnce
-
- * "HTML": "editex.html"
- * "LaTeX/PDF": "editex.pdf"
- * "Sphinx": "html/editex.html" (not a recommended format)
