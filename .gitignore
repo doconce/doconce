@@ -157,6 +157,7 @@ src/
 # development files
 Trash
 private
+test/testr/testfigs
 lib/DocOnce.egg-info/
 
 # submodules
