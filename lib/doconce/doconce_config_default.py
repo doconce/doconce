@@ -63,7 +63,6 @@ html_box_shadow = False
 #html_share =
 #html_exercise_icon =
 #html_exercise_icon_width =
-#html_raw_github_url =
 html_DOCTYPE = False
 html_links_in_new_window = False
 #html_quiz_button_text =

@@ -3,17 +3,18 @@ import regex as re
 from doconce import globals
 from .doconce import read_file, write_file, doconce2format, handle_index_and_bib, preprocess
 from .misc import option, help_print_options, check_command_line_options, system, _abort, \
-    find_file_with_extensions, folder_checker, _rmdolog, errwarn, debugpr
+    find_file_with_extensions, folder_checker, doconce_version, _rmdolog, errwarn, debugpr
 from .common import INLINE_TAGS, remove_code_and_tex
 import json
 from .ipynb import img2ipynb
 from .html import movie2html
 
 docstring_jupyterbook = ('Usage:\n'
-                         'doconce jupyterbook filename [options]\n'
+                         '\033[1mdoconce jupyterbook <file>[.do.txt] [options]\033[0m\n'
                          'Create directories and files for Jupyter Book version: 0.8\n'
-                         'Example: doconce jupyterbook filename.do.txt --sep=chapter --sep_section=subsection --show_titles\n'
-                         "Try 'doconce jupyterbook --help' for more information.")
+                         '\n'
+                         'Example:\n'
+                         'doconce jupyterbook filename.do.txt --sep=chapter --sep_section=subsection --show_titles\n')
 
 _registered_cmdline_opts_jupyterbook = [
     ('-h', 'Show this help page'),
@@ -44,7 +45,9 @@ def jupyterbook():
     """
     # Print help
     if len(sys.argv) < 2:
+        doconce_version()
         print(docstring_jupyterbook)
+        print("Try 'doconce jupyterbook --help' for more information.")
         sys.exit(1)
     if option('help') or '-h' in sys.argv:
         print_help_jupyterbook()
@@ -530,8 +533,8 @@ def print_help_jupyterbook():
 
     Help function to print help and formatted command line options for doconce jupyterbook
     """
-    from .misc import help_format
     print(docstring_jupyterbook)
+    print('Options:')
     help_print_options(cmdline_opts=_registered_cmdline_opts_jupyterbook)
 
 

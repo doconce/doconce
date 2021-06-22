@@ -153,6 +153,7 @@ sphinx-rootdir
 # dependencies:
 doc/src/manual/src/
 src/
+doc/src/quiz/sphinx-rs
 
 # development files
 Trash

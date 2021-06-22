@@ -11,7 +11,7 @@ DocOnce is two things:
     email), but the text can be transformed to numerous other formats,
     including HTML, Wiki, LaTeX, PDF, reStructuredText (reST), Sphinx,
     Epytext, and also plain text (where non-obvious formatting/tags are
-    removed for clear reading in, e.g., emails). From reStructuredText
+    removed for clear reading in, e.g. emails). From reStructuredText
     you can go to XML, HTML, LaTeX, PDF, OpenOffice, and from the
     latter to RTF and MS Word.
     (An experimental translator to Pandoc is under development, and from

@@ -110,7 +110,7 @@ def _usage_slides_html():
           '  uio_footer, uio_symbol (for which the full path is automatically created)\n'
           '--nav_button=name sets the type of navigation button (next, previous):\n'
           '  text, gray1 (default), gray2, bigblue, blue, green.\n'
-          '  See https://raw.github.com/doconce/doconce/master/doc/src/manual/fig/nav_buttons.png\n'
+          '  See https://github.com/doconce/doconce_doc/blob/main/src/manual/fig/nav_buttons.png\n'
           '  for examples on these types (from left to right).\n'
           '  A value like gray2,top gives buttons only at the top of the page,\n'
           '  gray2,top+bottom gives buttons at the top and bottom (default), while\n'
@@ -1800,10 +1800,10 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
 
 def _usage_slides_beamer():
     print('Usage:\n'
-          'doconce slides_beamer mydoc --beamer_slide_navigation=off --beamer_slide_theme=\\\n'
-          '(red_plain | blue_plain | red_shadow | blue_shadow | dark | dark_gradient | vintage) \\\n'
-          '--beamer_block_style=mdbox [--handout]\n\n'
+          'doconce slides_beamer <file>[.do.txt]\n\n'
           'Options:\n'
+          '--beamer_slide_theme=<theme>: red_plain, blue_plain, red_shadow, blue_shadow, dark, '
+          'dark_gradient, vintage)'
           '--beamer_slide_navigation=on turns on navigation links in the header and footer.\n'
           '  The links are defined by sections (only), i.e., headings with 7 = in the source file.\n'
           '--beamer_block_style=X controls how beamer blocks are typeset. X=native gives the '

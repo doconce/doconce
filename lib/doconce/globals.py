@@ -528,7 +528,7 @@ _registered_commands = [
     ('linkchecker', 'Check all links in HTML files'),
     ('pygmentize', 'Typeset a doconce document with pygments (for pretty print of doconce itself)'),
     ('makefile', 'Generate a make.py script for translating a doconce file to various formats'),
-    ('sphinxfix_local_URLs', 'Edit URLs to local files and place them in _static'),
+    ('sphinxfix_localURLs', 'Edit URLs to local files and place them in _static'),
     ('latin2html', 'Replace latex-1 (non-ascii) characters by html codes'),
     ('latex_header', 'Print the header (preamble) for latex file'),
     ('latex_footer', 'Print the footer for latex files'),
@@ -660,17 +660,6 @@ _registered_command_line_options = [
                     'doconce repo) for being inserted to the right in exercises. default: turn on predefined '
                     'question icons according to the chosen style. none: no icons (this is the default value).'),
     ('--html_exercise_icon_width=', 'Width of the icon image in pixels (must be used with --html_exercise_icon).'),
-    ('--html_raw_github_url=', 'URLs to files hosted on the doconce github account. Internet Explorer (and perhaps '
-                    'other browsers) will not show raw.github.com files. Instead on should use rawgit.com. '
-                    'For development of HTML sites in Safari and Chrome and can use rawgit.com. \n'
-                    '  Values of --html_raw_github_url=: safe or cdn.rawgit: use this for ready-made sites '
-                    'with potentially some traffic. The URL becomes https://cdn.rawgit.com/doconce/doconce/...\n'
-                    '  test or rawgit: use this for test purposes and development with low traffic. The URL becomes '
-                    'https://rawgit.com/doconce/doconce/... \n'
-                    '  github or raw.github: the URL becomes '
-                    'https://raw.github.com and may fail to load properly. \n'
-                    '  githubusercontent or raw.githubusercontent: The URL becomes https://raw.githubusercontent.com '
-                    'and may fail to load properly.'),
     ('--html_DOCTYPE', 'Insert <!DOCTYPE HTML> in the top of the HTML file. This is required for Internet Explorer'
                     ' and Mozilla. However, some of the CSS files used by DocOnce may not load properly if they are '
                     'not well formed. That is why no doctype is default in the generated HTML files.'),
