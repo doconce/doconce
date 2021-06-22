@@ -37,32 +37,38 @@ _config_path = os.path.join(os.path.expanduser('~'), '.config', 'doconce', 'defa
 _legal_command_line_options = \
       [opt for opt, help in globals._registered_command_line_options]
 
+_template_docs = "\033[1m{0:35}\033[0m \033[94m{1:10}\033[0m"
+
+
+def doconce_version():
+    print(('DocOnce version %s (from %s)' % (version, os.path.dirname(doconce_dir))))
+
 
 def help_doconce():
     # Command-line interface description language: http://docopt.org/
-    print(('DocOnce version %s (from %s)' % (version, os.path.dirname(doconce_dir))))
+    doconce_version()
     print('Usage:\n'
           '\033[1mdoconce <command> [<argument>] <file>[.do.txt] [options]\033[0m\n\n')
-    # Print all commands
-    print('Commands: \n\033[1m%s\033[0m' % (' '.join(globals.doconce_commands)))
-    if len(sys.argv) > 1:
+    # Print help on command(s)
+    if len(sys.argv) < 2:
+        # Print all commands
+        print('Commands: \n\033[1m%s\033[0m' % (' '.join(globals.doconce_commands)))
+    else:
         # Print all commands with their description
-        print(('\nCommands description:'))
-        template = "\033[1m{0:35}\033[0m \033[94m{1:10}\033[0m"
+        print('Command description:')
         # Narrow down help when calling doconce <command> --help
         if sys.argv[1] in globals.doconce_commands:
             ind = globals.doconce_commands.index(sys.argv[1])
             command, help = globals._registered_commands[ind]
-            print(template.format(command, help))
+            print(_template_docs.format(command, help))
         else:
             for command, help in globals._registered_commands:
-                print(template.format(command, help))
+                print(_template_docs.format(command, help))
 
 
 def help_format():
     # Command-line interface description language: http://docopt.org/
     command_line_options = globals._registered_command_line_options
-    template = "\033[1m{0:35}\033[0m \033[94m{1:10}\033[0m"
     # Narrow down help when calling doconce format --<cmd-option> --help
     if sys.argv[2] == '--help':
         print(('Usage:\n'
@@ -76,27 +82,28 @@ def help_format():
                 ('CMD --help', 'Print the options for a doconce command `CMD`'),
                 ('CMD --<cmd-option> --help', 'Print a specific command-line option <cmd-option> for doconce')]
         for opt, help in help_options:
-            print(template.format(opt, help))
+            print(_template_docs.format(opt, help))
         print(('\nOptions:'))
     else:
         opts = list(map(lambda t: t[0].rstrip('='), command_line_options))
         if sys.argv[2] in opts:
             ind = opts.index(sys.argv[2])
             command_line_options = [command_line_options[ind]]
-    help_print_options(command_line_options, template)
+    help_print_options(command_line_options, _template_docs)
 
-def help_print_options(cmdline_opts, template="\033[1m{0:35}\033[0m \033[94m{1:10}\033[0m"):
+
+def help_print_options(cmdline_opts, _template_docs=_template_docs):
     """Print help
 
     Print formatted command options
 
     :param cmdline_opts: Command-line options
-    :param str template: Optional template for print
+    :param str _template_docs: Optional template for print, default _template_docs
     """
     for opt, help in cmdline_opts:
         if opt.endswith('='):
             opt += '...'
-        print(template.format(opt, help))
+        print(_template_docs.format(opt, help))
 
 
 def mkdir_p(dir_path):
