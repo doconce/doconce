@@ -5526,8 +5526,10 @@ def doconce2format(filestr, format):
         report_progress('handled second reformatting of quizzes')
 
     if format == 'html':
-        # Set value for URL to raw github (doconce) files
-        # (must be done at this late stage)
+        # Replace all RAW_GITHUB_URL substring in links from e.g. `html.py`
+        # Changed in 2021: rawgit.com is obsolete, cdn.rawgit.com moved to cdn.jsdelivr.net
+        # Remove the `--html_raw_github_url` option
+        '''
         rawgit = option('html_raw_github_url=', 'safe')
         if rawgit in ('safe', 'cdn.rawgit'):
             raw_github_url = 'https://cdn.rawgit.com'
@@ -5537,6 +5539,8 @@ def doconce2format(filestr, format):
             raw_github_url = 'https://raw.github.com'
         elif rawgit in ('githubusercontent', 'raw.githubusercontent'):
             raw_github_url = 'https://raw.githubusercontent.com'
+        '''
+        raw_github_url = 'https://raw.githubusercontent.com'
         filestr = filestr.replace('RAW_GITHUB_URL', raw_github_url)
         if option('html_DOCTYPE'):
             filestr = '<!DOCTYPE HTML>\n' + filestr
