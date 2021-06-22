@@ -66,7 +66,7 @@ As of March 2017, a few dependencies have yet to be added to the `conda-forge` c
 
 
 On Debian/Ubuntu it is fairly straightforward
-to get the packages you need. Basically, you can run a [Bash script](https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.sh) or an equivalent [Python script](https://raw.githubusercontent.com/doconce/doconce/master/doc/src/manual/install_doconce.py). Such a script installs
+to get the packages you need. Basically, you can run a [Bash script](https://github.com/doconce/doconce_doc/blob/main/src/manual/install_doconce.sh) or an equivalent [Python script](https://github.com/doconce/doconce_doc/blob/main/src/manual/install_doconce.py). Such a script installs
 a very comprehensive bundle of software. You can read the
 [Installation Guide](http://doconce.github.io/doconce/doc/pub/manual/html/manual.html#installation-of-doconce-and-its-dependencies) to get a more
 detailed description of what is needed of software for various purposes.

@@ -31,7 +31,7 @@ class JupyterKernelClient:
         - Install the IJulia Jupyter kernel with `using Pkg; Pkg.add("IJulia");Pkg.build("IJulia")` in julia
         - Uninstall IJulia: `Pkg.rm("IJulia")` in julia, then `jupyter kernelspec uninstall mykernel`
         - Install the bash kernel: https://github.com/takluyver/bash_kernel
-        - Install the IR kerneld for R: https://irkernel.github.io/installation/
+        - Install the IR kernel for R: https://irkernel.github.io/installation/
         after upgrading to R 3.4+: https://github.com/duckmayr/install-update-r-on-linux
         - List the currently installed kernels: jupyter kernelspec list
     """
@@ -387,7 +387,7 @@ def execute_code_block(current_code, current_code_envir, kernel_client, format, 
     text_out = ''
     execution_count = 0
     # Execute the code
-    if kernel_client is None:
+    if kernel_client is None or not kernel_client.is_alive():
         return text_out, execution_count
     elif current_code_envir.endswith('out'):      # Output cell
         # Skip executing the code

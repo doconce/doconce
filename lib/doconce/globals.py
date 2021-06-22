@@ -528,7 +528,7 @@ _registered_commands = [
     ('linkchecker', 'Check all links in HTML files'),
     ('pygmentize', 'Typeset a doconce document with pygments (for pretty print of doconce itself)'),
     ('makefile', 'Generate a make.py script for translating a doconce file to various formats'),
-    ('sphinxfix_local_URLs', 'Edit URLs to local files and place them in _static'),
+    ('sphinxfix_localURLs', 'Edit URLs to local files and place them in _static'),
     ('latin2html', 'Replace latex-1 (non-ascii) characters by html codes'),
     ('latex_header', 'Print the header (preamble) for latex file'),
     ('latex_footer', 'Print the footer for latex files'),

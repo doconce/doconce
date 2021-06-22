@@ -194,13 +194,13 @@ admon_styles1 = admon_styles_text + \
                  'background-repeat: no-repeat; background-position: 10px center;\n'
                  '}\n'
                  '.notice   { color: #00529B; background-color: %(background_notice)s;\n'
-                 'background-image: url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_notice)s); }\n'
+                 'background-image: url(RAW_GITHUB_URL/doconce/doconce/blob/main/bundled/html_images/%(icon_notice)s); }\n'
                  '.summary  { color: #4F8A10; background-color: %(background_summary)s;\n'
-                 'background-image:url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_summary)s); }\n'
+                 'background-image:url(RAW_GITHUB_URL/doconce/doconce/blob/main/bundled/html_images/%(icon_summary)s); }\n'
                  '.warning  { color: #9F6000; background-color: %(background_warning)s;\n'
-                 'background-image: url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_warning)s); }\n'
+                 'background-image: url(RAW_GITHUB_URL/doconce/doconce/blob/main/bundled/html_images/%(icon_warning)s); }\n'
                  '.question { color: #4F8A10; background-color: %(background_question)s;\n'
-                 'background-image:url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%(icon_question)s); }\n'
+                 'background-image:url(RAW_GITHUB_URL/doconce/doconce/blob/main/bundled/html_images/%(icon_question)s); }\n'
                  '.block    { color: #00529B; background-color: %(background_notice)s; }\n')
 
 admon_styles2 = admon_styles_text + (
@@ -223,13 +223,13 @@ admon_styles2 = admon_styles_text + (
     '.alert-block > p, .alert-block > ul {margin-bottom:1em}\n'
     '.alert li {margin-top: 1em}\n'
     '.alert-block p+p {margin-top:5px}\n'
-    '.alert-notice { background-image: url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/'
+    '.alert-notice { background-image: url(RAW_GITHUB_URL/doconce/doconce/blob/main/bundled/html_images/'
     '%(icon_notice)s); }\n'
-    '.alert-summary  { background-image:url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/'
+    '.alert-summary  { background-image:url(RAW_GITHUB_URL/doconce/doconce/blob/main/bundled/html_images/'
     '%(icon_summary)s); }\n'
-    '.alert-warning { background-image: url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/'
+    '.alert-warning { background-image: url(RAW_GITHUB_URL/doconce/doconce/blob/main/bundled/html_images/'
     '%(icon_warning)s); }\n'
-    '.alert-question {background-image:url(RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/'
+    '.alert-question {background-image:url(RAW_GITHUB_URL/doconce/doconce/blob/main/bundled/html_images/'
     '%(icon_question)s); }\n')
 
 # alt: background-image: url(data:image/png;base64,iVBORw0KGgoAAAAN...);
@@ -273,9 +273,9 @@ css_solarized_dark = ('/* solarized dark style */\n'
 
 def css_link_solarized_highlight(style='light'):
     return ('\n'
-            '<link href="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_styles/style_solarized_box/css/'
+            '<link href="RAW_GITHUB_URL/doconce/doconce/blob/main/bundled/html_styles/style_solarized_box/css/'
             'solarized_%(style)s_code.css" rel="stylesheet" type="text/css" title="%(style)s"/>\n'
-            '<script src="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_styles/style_solarized_box/'
+            '<script src="RAW_GITHUB_URL/doconce/doconce/blob/main/bundled/html_styles/style_solarized_box/'
             'js/highlight.pack.js"></script>\n'
             '<script>hljs.initHighlightingOnLoad();</script>\n') % vars()
 
@@ -1429,7 +1429,7 @@ def html_code(filestr, code_blocks, code_block_types,
             f = open(template, 'r'); template = f.read(); f.close()
         except IOError as e:
             errwarn('*** error: could not find template "%s"' % template)
-            errwarn(e)
+            errwarn(str(e))
             _abort()
 
         # Check that template does not have "main content" begin and
@@ -1578,7 +1578,7 @@ def html_code(filestr, code_blocks, code_block_types,
                 icon = 'question_blue_on_white2.png'
             else:
                 icon = 'exercise1.svg'
-        icon_path = 'RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/' + icon
+        icon_path = 'RAW_GITHUB_URL/doconce/doconce/blob/main/bundled/html_images/' + icon
         pattern = r'(<h3>(Exercise|Project|Problem) \d+:.+</h3>)'
         filestr = re.sub(pattern, '\g<1>\n\n<img src="%s" width=%s align="right">\n' % (icon_path, icon_width), filestr)
 
@@ -2650,7 +2650,7 @@ def html_quiz(quiz):
                     expl = 'Wrong!'
             # Use collapse functionality, see https://jsfiddle.net/8cYFj/
             visible_text = '&nbsp;<b>%s</b>\n%s' % (choice_prefix, choice[1])
-            collapsed_text = '<img src="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/%s.gif">\n%s' % ('correct' if choice[0] == 'right' else 'incorrect', expl)
+            collapsed_text = '<img src="RAW_GITHUB_URL/doconce/doconce/blob/main/bundled/html_images/%s.gif">\n%s' % ('correct' if choice[0] == 'right' else 'incorrect', expl)
             text += bootstrap_collapse(
                visible_text, collapsed_text,
                id, button_text, icon='pencil')
@@ -2784,7 +2784,7 @@ for _admon in globals.admons:
              '<table width="95%%%%" border="0">\n'
              '<tr>\n'
              '<td width="25" align="center" valign="top">\n'
-             '<img src="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_images/lyx_%(_admon)s.png" hspace="5" '
+             '<img src="RAW_GITHUB_URL/doconce/doconce/blob/main/bundled/html_images/lyx_%(_admon)s.png" hspace="5" '
              'alt="%(_admon)s"></td>\n'
              '<th align="left" valign="middle"><b>%%s</b></th>\n'
              '</tr>\n'
@@ -3149,7 +3149,7 @@ def define(FILENAME_EXTENSION,
             # Local DocOnce stored or modified bootstrap themes
             boots_style = html_style.split('_')[1]
             urls = ['https://netdna.bootstrapcdn.com/bootstrap/%s/css/bootstrap.min.css' % boots_version,
-                    'RAW_GITHUB_URL/doconce/doconce/master/bundled/html_styles/style_bootstrap/css/%s.css' % html_style]
+                    'RAW_GITHUB_URL/doconce/doconce/blob/main/bundled/html_styles/style_bootstrap/css/%s.css' % html_style]
         elif html_style.startswith('bootswatch'):
             default = 'cosmo'
             boots_style = default if 'bootswatch_' not in html_style else \
@@ -3342,7 +3342,7 @@ def define(FILENAME_EXTENSION,
     if option('pygments_html_style=', 'default') == 'highlight.js':
         scripts += ('\n'
                     '<!-- use highlight.js and styles for code -->\n'
-                    '<script src="RAW_GITHUB_URL/doconce/doconce/master/bundled/html_styles'
+                    '<script src="RAW_GITHUB_URL/doconce/doconce/blob/main/bundled/html_styles'
                     '/style_solarized_box/js/highlight.pack.js"></script>\n'
                     '<script>hljs.initHighlightingOnLoad();</script>\n'
 )
