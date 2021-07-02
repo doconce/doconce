@@ -121,7 +121,7 @@ Here are some of the most recent features and enhancements in DocOnce:
 
 Here are some books written in DocOnce:
 
-![](doconce_doc/src/manual/fig/doconce_books.jpg)
+![](https://raw.githubusercontent.com/doconce/doconce_doc/main/src/manual/fig/doconce_books.jpg)
 
 
 ### Contribute to DocOnce
