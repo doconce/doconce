@@ -119,10 +119,9 @@ Here are some of the most recent features and enhancements in DocOnce:
  * July 2020: Alessandro Marin at the [Centre for Computing in Science Education](http://www.mn.uio.no/ccse/english/) at the University of Oslo, assumes the role of developer and principal maintainer.
  * On 10 October 2016, Hans Petter Langtangen, creator of DocOnce, [passed away](https://www.simula.no/news/hans-petter-langtangen-1962-2016). Kristian Gregorius Hustad, supported by the [Centre for Computing in Science Education](http://www.mn.uio.no/ccse/english/) at the University of Oslo, will assume the role of principal maintainer.
 
-Here are some recent books written in DocOnce:
+Here are some books written in DocOnce:
 
-<!-- <img src="doc/src/manual/fig/doconce_books.jpg" width=600> -->
-![](doc/src/manual/fig/doconce_books.jpg)
+![](doconce_doc/src/manual/fig/doconce_books.jpg)
 
 
 ### Contribute to DocOnce
