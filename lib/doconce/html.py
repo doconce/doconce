@@ -14,7 +14,7 @@ from .common import     table_analysis, plain_exercise, insert_code_blocks, \
      get_legal_pygments_lexers, has_custom_pygments_lexer, emoji_url, \
      fix_ref_section_chapter, cite_with_multiple_args2multiple_cites, \
     INLINE_TAGS, INLINE_TAGS_SUBST
-from .misc import option, _abort
+from .misc import _doconce_header, _doconce_command, option, _abort
 from doconce import globals
 from .misc import errwarn, debugpr
 from . import jupyter_execution
@@ -3366,13 +3366,13 @@ def define(FILENAME_EXTENSION,
     if '!bu-' in filestr:
         scripts += "\n<!-- USER-DEFINED ENVIRONMENTS -->\n"
 
+    # Prepend the doconce header and command
+    INTRO['html'] = '<!--\n'
+    INTRO['html'] += _doconce_header + '\n'
+    INTRO['html'] += _doconce_command % ('html', globals.filename, ' '.join(sys.argv[1:])) + '\n'
+    INTRO['html'] += '-->\n'
     # Had to take DOCTYPE out from 1st line to load css files from github...
     # <!DOCTYPE html>
-    INTRO['html'] = ('<!--\n'
-                     'HTML file automatically generated from DocOnce source\n'
-                     '(https://github.com/doconce/doconce/)\n'
-                     'doconce format html %s %s\n'
-                     '-->\n') % (globals.filename, ' '.join(sys.argv[1:]))
     INTRO['html'] += ('<html>\n'
                      '<head>\n'
                      '%s\n'

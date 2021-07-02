@@ -12,7 +12,7 @@ from .latex import fix_latex_command_regex
 from .html import html_movie, html_table
 from .pandoc import pandoc_ref_and_label, pandoc_index_bib, pandoc_quote, \
      language2pandoc, pandoc_quiz
-from .misc import option, errwarn, _abort
+from .misc import _doconce_header, _doconce_command, option, errwarn, _abort
 from doconce import globals
 from . import jupyter_execution
 
@@ -296,10 +296,6 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     if newcommands:
         filestr = newcommands + filestr
     """
-    # Prepend the doconce command
-    intro = ('HTML file automatically generated from DocOnce source (https://github.com/doconce/doconce/)\n'
-             'doconce format html %s %s') % (globals.filename, ' '.join(sys.argv[1:]))
-    filestr = INLINE_TAGS_SUBST[format]['comment'] % intro + '\n' + filestr
     # Fix pandoc citations to normal internal links: [[key]](#key)
     filestr = re.sub(r'\[@(.+?)\]', r'[[\g<1>]](#\g<1>)', filestr)
 
@@ -645,6 +641,14 @@ def ipynb_code(filestr, code_blocks, code_block_types,
             if _MATH_BLOCK in notebook_blocks[i][1]:
                 notebook_blocks[i][1] = tex_blocks[n]
 
+    # Prepend the doconce header and command to the first text cell
+    intro = _doconce_header + '\n'
+    intro += _doconce_command % ('ipynb', globals.filename, ' '.join(sys.argv[1:]))
+    intro = INLINE_TAGS_SUBST[format]['comment'] % intro + '\n'
+    ind = next((i for i, type in enumerate(notebook_blocks) if type[0] == 'text'), -1)
+    if ind > -1:
+        notebook_blocks[ind][1] = intro + notebook_blocks[ind][1]
+
     global new_code_cell, new_markdown_cell, new_notebook, new_output
     cells = []              # ipynb cells
     mdstr = []              # plain md format of the notebook
@@ -694,6 +698,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
             execution_count, md_out = process_ipynb_code_block(kernel_client, block, block_tp, cells, execution_count)
             mdstr.extend(md_out)
 
+    # Create the notebook in string format
     nb = new_notebook(cells=cells)
     filestr = writes(nb, version=4)
 
