@@ -766,9 +766,7 @@ def define(FILENAME_EXTENSION,
     TABLE['sphinx'] = TABLE['rst']
     EXERCISE['sphinx'] = EXERCISE['rst']
     ENVIRS['sphinx'] = ENVIRS['rst']
-    INTRO['sphinx'] = INTRO['rst'].replace(
-        '.. Automatically generated reStructuredText',
-        '.. Automatically generated Sphinx-extended reStructuredText')
+    INTRO['sphinx'] = INTRO['rst'].replace('doconce format rst', 'doconce format sphinx')
 
     # make true copy of INLINE_TAGS_SUBST:
     INLINE_TAGS_SUBST['sphinx'] = {}

@@ -26,6 +26,8 @@ from pygments.styles import get_all_styles
 from doconce import __file__ as doconce_dir
 
 doconce_dir = os.path.dirname(doconce_dir)
+_doconce_header = 'File automatically generated using DocOnce (https://github.com/doconce/doconce/):'
+_doconce_command = 'doconce format %s %s %s'
 html_images = 'html_images.zip'
 latexstyle_files = 'latex_styles.zip'
 

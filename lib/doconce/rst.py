@@ -11,7 +11,7 @@ from .common import insert_code_blocks, insert_tex_blocks, \
     cite_with_multiple_args2multiple_cites, fix_ref_section_chapter
 from .html import html_movie, html_quiz
 from doconce import globals
-from .misc import option, errwarn, debugpr, _abort
+from .misc import _doconce_header, _doconce_command, option, errwarn, debugpr, _abort
 
 def rst_abstract(m):
     # r'\n*\g<type>.* \g<text>\n\g<rest>'
@@ -736,19 +736,17 @@ def define(FILENAME_EXTENSION,
     EXERCISE['rst'] = plain_exercise
     TOC['rst'] = lambda s, f: '.. contents:: %s\n   :depth: 2' % globals.locale_dict[globals.locale_dict['language']].get('toc', 'Table of contents')
     QUIZ['rst'] = rst_quiz
-    INTRO['rst'] = """\
-.. Automatically generated reStructuredText file from DocOnce source
-   (https://github.com/doconce/doconce/)
-
-"""
+    # Prepend the doconce header and command
+    INTRO['rst'] = '.. ' + _doconce_header + '\n'
+    INTRO['rst'] += '.. ' + _doconce_command % ('rst', globals.filename, ' '.join(sys.argv[1:])) + '\n'
+    INTRO['rst'] +='\n'
     # https://stackoverflow.com/questions/11830242/non-breaking-space
     from .common import INLINE_TAGS
     if re.search(INLINE_TAGS['non-breaking-space'], filestr):
-        nbsp = """
-.. |nbsp| unicode:: 0xA0
-   :trim:
-
-"""
+        nbsp = ('\n'
+                '.. |nbsp| unicode:: 0xA0\n'
+                '   :trim:\n'
+                '\n')
         if 'TITLE:' not in filestr:
             from . import common
             if globals.format in ('rst', 'sphinx'):

@@ -11,7 +11,7 @@ from past.builtins import basestring
 import os, sys, re
 from .misc import get_header_parts_footer, misc_option, remove_verbatim_blocks, \
     copy_latex_packages, copy_datafiles, tablify, get_header_parts_footer, doconce_split_html, \
-    errwarn, _abort
+    _doconce_header, _doconce_command, errwarn, _abort
 from .html import html_remove_whitespace, add_to_file_collection
 import pkgutil
 from io import BytesIO
@@ -1580,11 +1580,11 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
     slide_syntax[slide_tp]['head_lines'] = ''.join(head_lines)
     slide_syntax[slide_tp]['body_lines'] = ''.join(body_lines)
 
-    slides = ('<!--\n'
-              'HTML file automatically generated from DocOnce source\n'
-              '(https://github.com/doconce/doconce/)\n'
-              'doconce format html %s %s\n'
-              '-->\n') % (filename, ' '.join(sys.argv[1:]))
+    # Prepend the doconce header and command
+    slides = '<!--'
+    slides += _doconce_header + '\n'
+    slides += _doconce_command % ('html', filename, ' '.join(sys.argv[1:]))
+    slides += '-->\n'
     slides += ('<!DOCTYPE html>\n'
               '<html>\n'
               '<head>\n'
@@ -1845,10 +1845,10 @@ def generate_beamer_slides(header, parts, footer, basename, filename):
     block_style = misc_option('beamer_block_style=', 'native')
     parskip = 0 if theme.endswith('_plain') else 7
 
-    slides = r"""
-%% LaTeX Beamer file automatically generated from DocOnce
-%% https://github.com/doconce/doconce
-
+    slides = '\n'
+    slides += '%% ' + _doconce_header + '\n'
+    slides += '%% doconce slides_beamer' + filename + ' '.join(sys.argv[1:]) + '\n'
+    slides += r"""
 %%-------------------- begin beamer-specific preamble ----------------------
 
 \documentclass%(handout)s{beamer}

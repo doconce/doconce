@@ -1,7 +1,6 @@
 '''
 
-.. Automatically generated Sphinx-extended reStructuredText file from DocOnce source
-   (https://github.com/doconce/doconce/)
+.. Sphinx-extended reStructuredText file automatically generated using DocOnce (https://github.com/doconce/doconce/)
 
 .. This is a very stripped version of manual.do.txt and tutorial.do.txt.
 

@@ -21,7 +21,8 @@ from .common import plain_exercise, table_analysis, INLINE_TAGS, \
     insert_code_blocks, insert_tex_blocks, is_file_or_url, chapter_pattern, \
     has_custom_pygments_lexer, get_legal_pygments_lexers, \
     has_copyright, get_copyfile_info, default_movie
-from .misc import option, _abort, replace_code_command, copy_latex_packages, errwarn, debugpr
+from .misc import replace_code_command, copy_latex_packages, \
+    _doconce_header, _doconce_command, option, _abort, errwarn, debugpr
 from doconce import globals
 from . import jupyter_execution
 
@@ -2859,11 +2860,9 @@ def define(FILENAME_EXTENSION,
                       ' \\sep '.join(re.split(r', *', m.group('subst').replace('.', '')))
     # (remove final . if present in keywords list)
 
-    INTRO['latex'] = (r'%%'
-                      '\n'
-                      '%% Automatically generated file from DocOnce source\n'
-                      '%% (https://github.com/doconce/doconce/)\n'
-                      '%% doconce format latex {} {}\n').format(globals.filename, ' '.join(sys.argv[1:]))
+    INTRO['latex'] = '%%\n'
+    INTRO['latex'] += '%% ' + _doconce_header + '\n'
+    INTRO['latex'] += '%% ' + _doconce_command % ('latex', globals.filename, ' '.join(sys.argv[1:])) + '\n'
     if latex_code_style is None:
         # We rely on the ptex2tex step
         INTRO['latex'] += (r'%%'
