@@ -468,11 +468,11 @@ def lookup_locale_dict(key, fallback_to_english=True):
 doconce_commands = "help, format, find, subst, replace, remove, spellcheck, apply_inline_edits, capitalize, " \
                    "change_encoding, clean, combine_images, csv2table, diff, expand_commands, expand_mako, extract_exercises, " \
            "find_nonascii_chars, fix_bibtex4publish, gitdiff, grab, grep, guess_encoding, gwiki_figsubst, html2doconce, " \
-           "html_colorbullets, jupyterbook, include_map, insertdocstr, ipynb2doconce, latex2doconce, latex_dislikes, " \
-           "latex_exercise_toc, latex_footer, latex_header, latex_problems, latin2html, lightclean, linkchecker, " \
-           "list_fig_src_files, list_labels, makefile, md2html, md2latex, old2new_format, ptex2tex, pygmentize, " \
-           "ref_external, remove_exercise_answers, remove_inline_comments, replace_from_file, slides_beamer, " \
-           "slides_html, slides_markdown, sphinx_dir, sphinxfix_localURLs, split_html, split_rst, teamod".split(", ")
+       "html_colorbullets, jupyterbook, include_map, insertdocstr, ipynb2doconce, latex2doconce, latex_dislikes, " \
+       "latex_exercise_toc, latex_footer, latex_header, latex_problems, latin2html, lightclean, linkchecker, " \
+       "list_fig_src_files, list_labels, makefile, md2html, md2latex, old2new_format, ptex2tex, pygmentize, " \
+       "ref_external, remove_exercise_answers, remove_inline_comments, replace_from_file, slides_beamer, " \
+       "slides_html, slides_markdown, sphinx_dir, sphinxfix_localURLs, split_html, split_rst, teamod".split(", ")
 
 _registered_commands = [
     ('format', 'Transform doconce file to another format'),
@@ -540,11 +540,11 @@ doconce_commands = list(map(lambda t: t[0], _registered_commands))
 old = "help, format, find, subst, replace, remove, spellcheck, apply_inline_edits, capitalize, change_encoding, " \
            "clean, combine_images, csv2table, diff, expand_commands, expand_mako, extract_exercises, " \
            "find_nonascii_chars, fix_bibtex4publish, gitdiff, grab, grep, guess_encoding, gwiki_figsubst, html2doconce, " \
-           "html_colorbullets, jupyterbook, include_map, insertdocstr, ipynb2doconce, latex2doconce, latex_dislikes, " \
-           "latex_exercise_toc, latex_footer, latex_header, latex_problems, latin2html, lightclean, linkchecker, " \
-           "list_fig_src_files, list_labels, makefile, md2html, md2latex, old2new_format, ptex2tex, pygmentize, " \
-           "ref_external, remove_exercise_answers, remove_inline_comments, replace_from_file, slides_beamer, " \
-           "slides_html, slides_markdown, sphinx_dir, sphinxfix_localURLs, split_html, split_rst, teamod".split(", ")
+      "html_colorbullets, jupyterbook, include_map, insertdocstr, ipynb2doconce, latex2doconce, latex_dislikes, " \
+      "latex_exercise_toc, latex_footer, latex_header, latex_problems, latin2html, lightclean, linkchecker, " \
+      "list_fig_src_files, list_labels, makefile, md2html, md2latex, old2new_format, ptex2tex, pygmentize, " \
+      "ref_external, remove_exercise_answers, remove_inline_comments, replace_from_file, slides_beamer, " \
+      "slides_html, slides_markdown, sphinx_dir, sphinxfix_localURLs, split_html, split_rst, teamod".split(", ")
 
 _registered_command_line_options = [
     ('--help', 'Print all command-line options for doconce'),
@@ -578,7 +578,8 @@ _registered_command_line_options = [
     ('--IBPLOT', 'automagic translation of IBPLOT commands.'),
     ('--exercise_numbering=', 'absolute: exercises numbered as 1, 2, ... (default); chapter: exercises numbered '
                     'as 1.1, 1.2, ... , 3.1, 3.2, ..., B.1, B.2, etc. with a chapter or appendix prefix.'),
-    ('--exercises_in_zip', 'Place each exercises as an individual DocOnce file in a zip archive.'),
+    ('--exercises_in_zip', 'Place the answers+solutions and each exercise as an individual DocOnce file '
+                           'in a zip archive.'),
     ('--exercises_in_zip_filename=', 'Filenames of individual exercises in zip archive. logical: use the (first) '
                     'logical filename specified by file=... ; number:  use either absolute exercise number or '
                     'chapter.localnumber.'),

@@ -835,7 +835,7 @@ def add_labels_to_all_numbered_equations(tex_blocks):
 
 
 def insert_code_blocks(filestr, code_blocks, format, complete_doc=True, remove_hid=True):
-    """ Insert code blocks in file
+    """Insert code blocks in file
 
     Insert in the DocOnce file verbatim code blocks previously extracted by
     the `remove_code_and_tex` function and stored separately in lists.
@@ -959,17 +959,21 @@ def remove_hidden_code_blocks(filestr, format):
     return filestr
 
 
-def doconce_exercise_output(
-    exer,
-    solution_header = '__Solution.__',
-    answer_header = '__Answer.__',
-    hint_header = '__Hint.__',
-    include_numbering=True,
-    include_type=True,
-    ):
-    """
-    Write exercise in DocOnce format. This output can be
-    reused in most formats.
+def doconce_exercise_output(exer, solution_header = '__Solution.__', answer_header = '__Answer.__',
+                            hint_header = '__Hint.__', include_numbering=True, include_type=True):
+    """Write exercise in DocOnce format.
+
+    Write exercise in DocOnce format. This output can be reused in most formats.
+    Code and latex (math) blocks are replaced with the _CODE_BLOCK and _MATH_BLOCK identifiers
+    in all output. Use the insert_code_blocks function to insert code blocks.
+    :param dict exer: data structure for exercises
+    :param str solution_header: default '__Solution.__'
+    :param str answer_header: default '__Answer.__'
+    :param str hint_header: default '__Hint.__'
+    :param bool include_numbering: default True
+    :param bool include_type: default True
+    :return: exercise and answers/solutions formatted in doconce formats
+    :rtype: Tuple[str, str]
     """
     # Note: answers, solutions, and hints must be written out and not
     # removed here, because if they contain math or code blocks,

@@ -1503,11 +1503,21 @@ def insert_os_commands(filestr, format):
 
 
 def exercises(filestr, format, code_blocks, tex_blocks):
-    """ Exercise:
-    # ===== Exercise: title ===== (starts with at least 3 =, max 5)
-    # label{some:label} file=thisfile.py solution=somefile.do.txt
-    # __Hint 1.__ some paragraph...,
-    # __Hint 2.__ ...
+    """Process exercises.
+
+    Code and Code and latex (math) blocks are replaced with the _CODE_BLOCK and _MATH_BLOCK identifiers
+    in the output. Use the insert_code_blocks function to insert code blocks.
+    Format of an Exercise in DocOnce:
+        # ===== Exercise: title ===== (starts with at least 3 =, max 5)
+        # label{some:label} file=thisfile.py solution=somefile.do.txt
+        # __Hint 1.__ some paragraph...,
+        # __Hint 2.__ ...
+    :param str filestr: text string
+    :param str format: output format
+    :param list[str] code_blocks: code blocks
+    :param list[str] tex_blocks: latex (math) blocks
+    :return: filestr
+    :rtype: str
     """
     all_exer = []   # collection of all exercises
     exer = {}       # data for one exercise, to be appended to all_exer
@@ -1850,27 +1860,12 @@ def exercises(filestr, format, code_blocks, tex_blocks):
             exer_end = False
             exer = {}
 
-    try:
-        filestr = '\n'.join(newlines)
-        solutions = '\n'.join(solutions)
-    except UnicodeDecodeError:
-        print('****** DOES THIS OCCUR AT ALL??? ******')
-        filestr = '\n'.join([n for n in newlines if isinstance(n, basestring)])
-        solutions = '\n'.join([n for n in solutions if isinstance(n, basestring)])
+    filestr = '\n'.join(newlines)
+    solutions = '\n'.join(solutions)
 
     # Append solutions and answer to filestr (in the end of the doconce string)
     if option('solutions_at_end') or option('answers_at_end') or has_sol_docend or has_ans_docend:
-        # NB: variable name collides with chapter_pattern above
-        from .common import chapter_pattern
-        has_chapters = False
-        if re.search(chapter_pattern, filestr, flags=re.MULTILINE):
-            has_chapters = True
-        # Is writing to file a good idea? <<<!!CODE_BLOCK will not be
-        # substituted. Better to grab the solution chapter/section
-        # at the end of substitutions and write this to file!
-        solfilename = globals.dofile_basename + '_exersol.do.txt'
-        f = open(solfilename, 'w')
-        # Header for answer and/or solutions at end of book
+        # Create a header for answer and/or solutions at end of book
         header_at_end = '======= '
         header_flag = 0
         if has_ans_docend or option('answers_at_end'):
@@ -1879,29 +1874,22 @@ def exercises(filestr, format, code_blocks, tex_blocks):
             header_flag += 2
         header_at_end += ['','Answers', 'Solutions', 'Answers and Solutions'][header_flag]
         header_at_end += ' ======='
-        if has_chapters:
+        # NB: variable name collides with chapter_pattern above
+        from .common import chapter_pattern as common_chapter_pattern
+        if re.search(common_chapter_pattern, filestr, flags=re.MULTILINE):
             header_at_end = '==' + header_at_end + '=='
         header_at_end += '\nlabel{ch:answerssolutions}\n\n'
-        #Write to file
-        f.write(header_at_end)
-        f.write(solutions)
-        f.close()
-        #errwarn('solutions to exercises in', globals.dofile_basename)
         #Add solution/answers section
         pattern = '(^={5,7} +(References|Bibliography) +={5,7})'
-        sol_sec = header_at_end + solutions
         if re.search(pattern, filestr, flags=re.MULTILINE):
             filestr = re.sub(pattern,
-                             sol_sec + '\n\n\\g<1>',
+                             header_at_end + solutions + '\n\n\\g<1>',
                              filestr, flags=re.MULTILINE)
         else:
-            filestr += '\n\n\n' + sol_sec
+            filestr += '\n\n\n' + header_at_end + solutions
 
-    if option('exercises_in_zip'):
-        extract_individual_standalone_exercises(filestr, format, all_exer, code_blocks, tex_blocks)
-
+    # Replace code and math blocks by actual code in the data structure for exercises `all_exer`.
     if all_exer:
-        # Replace code and math blocks by actual code.
         # This must be done in the all_exer data structure,
         # if a pprint.pformat'ed string is used, quotes in
         # computer code and derivatives lead to errors
@@ -1977,6 +1965,10 @@ def exercises(filestr, format, code_blocks, tex_blocks):
     else:
         debugpr('No exercises found.')
 
+    # Stand-alone exercises and solutions+answers in zip file
+    if option('exercises_in_zip'):
+        extract_individual_standalone_exercises(filestr, solutions, format, all_exer, code_blocks, tex_blocks)
+
     # Syntax check: must be no more exercise-specific environments left
     envirs = ['ans', 'sol', 'subex', 'hint', 'remarks', 'ans_docend', 'sol_docend']
     for envir in envirs:
@@ -2007,13 +1999,20 @@ def exercises(filestr, format, code_blocks, tex_blocks):
     return filestr
 
 
-def process_envir(filestr, envir, format, action='remove', reason=''):
-    """
-    Find or replace an environment (envir) in filestr.
-    action='remove' means replace with a comment
-    'removed !b... ... !e... environment + reason. Return filestr.
-    action='grep' means return all matching environments between
-    the comment lines.
+def grep_envir(filestr, envir, format, action='remove', reason=''):
+    """Find or replace an environment in DocOnce code.
+
+    Find or replace an environment <envir> in <filestr>.
+    :param str filestr: text string
+    :param str envir: DocOnce environment to find or remove, one in 'sol', 'ans', 'hint', 'exercise', 'subex',
+        'ans_at_end', 'sol_at_end', 'ans_docend', 'sol_docend'
+    :param str format: output format
+    :param str action: 'remove' (default) or 'grep'. 'remove' replaces all matching environments with a comment
+        'removed !b... ... !e... <envir> + <reason>, 'grep' returns all matching environments between
+        the comment lines
+    :param str reason: string of text, default is empty string
+    :return: filestr
+    :rtype: str
     """
     comment_pattern = INLINE_TAGS_SUBST[format].get('comment', '# %s')
     if callable(comment_pattern):
@@ -2030,8 +2029,7 @@ def process_envir(filestr, envir, format, action='remove', reason=''):
             # need to traverse notebook dictionary to remove lines
             nb_dict = nbformat.reads(filestr, 4)
             start_i, start_j, end_i, end_j = None, None, None, None
-            start_found = False
-            end_found = False
+            start_found, end_found = False, False
             coors = []
             target_line = comment_pattern % envir_delimiter_lines[envir][0]
             for i, cell in enumerate(nb_dict['cells']):
@@ -2067,8 +2065,6 @@ def process_envir(filestr, envir, format, action='remove', reason=''):
                     if len(cell_lines) == 0:
                         nb_dict['cells'].pop(i)
                 filestr = nbformat.writes(nb_dict, 4)
-
-
         else:
             if callable(comment_pattern):
                 replacement = comment_pattern('removed !b%s ... !e%s environment ' % (envir, envir) + reason)
@@ -2082,34 +2078,46 @@ def process_envir(filestr, envir, format, action='remove', reason=''):
         raise ValueError(action)
 
 
-def extract_individual_standalone_exercises(
-    filestr, format, all_exer, code_blocks, tex_blocks):
-    text = filestr
+def extract_individual_standalone_exercises(filestr, solutions, format, all_exer, code_blocks, tex_blocks):
+    """Create a zip file with exercises
+
+    Create a zip file with answers+solutions and each exercise as an individual DocOnce file, and a
+    make.py file that can be used to compile to different formats
+    :param str filestr: text string
+    :param str solutions: solutions
+    :param str format: supported format (plain, html, latex, etc.)
+    :param dict all_exer: data structure for exercises
+    :param list[str] code_blocks: code blocks
+    :param list[str] tex_blocks: latex (math) blocks
+    """
     # Grab all exercises
-    exers = process_envir(text, 'exercise', 'plain', action='grep')
+    exers = grep_envir(filestr, 'exercise', 'plain', action='grep')
     if len(exers) != len(all_exer):
         errwarn('*** error: doconce bug, no of exercises in all_exer',)
         errwarn('differs from no of grabbed exercises')
         _abort()
 
     import zipfile
-    globals.filename = globals.dofile_basename + '_exercises.zip'
-    archive = zipfile.ZipFile(globals.filename, mode='w')
+    fname_zip = globals.dofile_basename + '_exercises.zip'
+    archive = zipfile.ZipFile(fname_zip, mode='w')
     exer_filename = option('exercises_in_zip_filename=', 'logical')
+    files_standalone = []
 
-    # Text for index file with list of exercise files
-    index_text = ("TITLE: List of stand-alone files with exercises\n\n"
-                  "# Edit FILE_EXTENSIONS to the type of documents that will\n"
-                  "# be listed in the this index\n"
-                  "<%\n"
-                  "FILE_EXTENSIONS = ['.tex', '.ipynb']\n"
-                  "#FILE_EXTENSIONS = ['.tex', '.ipynb', '.do.txt', '.html']\n"
-                  "%>\n\n")
-    chapter_prev = None
+    # Get AUTHOR and DATE. TITLE will be the excercise title
+    cdate = re.compile(r'^DATE:(.+)', re.MULTILINE)
+    cauthor = re.compile(r'^AUTHOR:(.+)', re.MULTILINE)
+    md = cdate.search(filestr)
+    ma = cauthor.search(filestr)
+    AUTHOR, DATE = '', ''
+    if md:
+        DATE = md.group(1)
+    if ma:
+        AUTHOR = ma.group(1)
 
-    for i, sa in enumerate(exers):
-        labels = re.findall(r'label\{(.+?)\}', sa)
-        refs = re.findall(r'ref\{(.+?)\}', sa)
+    # Loop on the exercises, write the stand-alone files, build the index file
+    for i, exer in enumerate(exers):
+        labels = re.findall(r'label\{(.+?)\}', exer)
+        refs = re.findall(r'ref\{(.+?)\}', exer)
         external_references = False
         for ref in refs:
             if ref not in labels:
@@ -2117,107 +2125,128 @@ def extract_individual_standalone_exercises(
                 break
 
         pattern = r'^Filenames?: `(.+?)`.*$'
-        m = re.search(pattern, sa, flags=re.MULTILINE)
+        m = re.search(pattern, exer, flags=re.MULTILINE)
         if m:
             logical_name = os.path.splitext(m.group(1).strip())[0]
         else:
             logical_name = None
-        sa = re.sub(pattern + '.*', '', sa, flags=re.MULTILINE)
+        exer = re.sub(pattern + '.*', '', exer, flags=re.MULTILINE)
 
         # Replace section by title, author, date, filename comment
-        replacement = r'TITLE: \g<1>\g<2>\nAUTHOR: Jane Doe Email:jane.doe@cyberspace.net\nDATE: Due Jan 32, 2150\n'
+        if AUTHOR and DATE:
+            TITLE = all_exer[i]['type'] + ' ' + str(all_exer[i]['no']) + ': ' + all_exer[i]['title']
+            replacement = 'TITLE: %s\n' % TITLE
+            replacement += 'AUTHOR: %s\n' % AUTHOR
+            replacement += 'DATE: %s\n' % DATE
+        else:
+            replacement = '===== '
+            replacement += all_exer[i]['type'] + ' ' + str(all_exer[i]['no']) + ': ' + all_exer[i]['title']
+            replacement += ' =====\n'
         if logical_name is not None:
             replacement += '\n# Logical name of exercise: %s\n' % logical_name
         if external_references:
             replacement += (
-                    "# This document contains references to a parent document (../%s).\n"
+                    "# This document might contain references to a parent document (../%s).\n"
                     "# These references will work for latex (using the xr package and\n"
                     "# a compiled parent document (with ../%s.aux file), but other formats\n"
-                    "# will have missing references.\n"
+                    "# might have missing references.\n"
                     "# Externaldocuments: ../%s\n" %
                     (globals.dofile_basename, globals.dofile_basename, globals.dofile_basename))
+        # Apply the replacement of the exercise header with title+author+date header
+        exer = re.sub(r'===== (.+?) =====', replacement, exer)
 
-        # At this stage {Exercise}: has the {} removed
-        sa = re.sub(
-            r'===== (Exercise|Problem|Project|Example):(.+?) =====',
-            replacement, sa)
-        # If we have {Exercise}, the exercise has just one subsec heading,
-        # apply the previous subst for this
-        sa = re.sub(r'===== (.+?) =====', replacement.replace(r'\g<2>', ''), sa)
         # Remove main label of exercise
-        sa = sa.replace('label{%s}' % all_exer[i]['label'], '')
-
-        sa = sa.strip() + '\n'
-
-        sa = insert_code_blocks(sa, code_blocks, format, complete_doc=False, remove_hid=True)
-        sa = insert_tex_blocks(sa, tex_blocks, format, complete_doc=False)
-
-        # Remove solutions after inserting all code/tex blocks
-        sa = process_envir(sa, 'sol', 'plain', action='remove')
-        sa = process_envir(sa, 'ans', 'plain', action='remove')
-        # Note: ans and sol will not be removed from Examples, but that
-        # is the correct behavior
-        sa = re.sub('^# removed .+environment.*$', '', sa, flags=re.MULTILINE)
+        exer = exer.replace('label{%s}' % all_exer[i]['label'], '')
+        exer = exer.strip() + '\n'
+        # Insert code and text blocks
+        exer = insert_code_blocks(exer, code_blocks, format, complete_doc=False, remove_hid=True)
+        exer = insert_tex_blocks(exer, tex_blocks, format, complete_doc=False)
+        # Remove solutions and answers from exercises
+        exer = grep_envir(exer, 'sol', 'plain', action='remove')
+        exer = grep_envir(exer, 'ans', 'plain', action='remove')
+        # Note by hpl: ans and sol will not be removed from Examples, but that is the correct behavior
+        exer = re.sub('^# removed .+environment.*$', '', exer, flags=re.MULTILINE)
         # Remove comments around various constructions
-        sa = re.sub('^# --- .+?\n', '', sa, flags=re.MULTILINE)
+        exer = re.sub('^# --- .+?\n', '', exer, flags=re.MULTILINE)
 
-        # Use all_exer to find data
+        # Use all_exer to find exercise numbering
         if option('exercise_numbering=', 'absolute') == 'chapter' and \
                all_exer[i]['chapter_type'] is not None:
             no = '%s_%s.%s' % \
                  (all_exer[i]['chapter_type'],
                   all_exer[i]['chapter_no'],
                   all_exer[i]['chapter_exercise'])
-
         else: # 'absolute'
              no = 'exercise_' + str(all_exer[i]['no'])
 
+        # Build filename for stand-alone exercises
         if exer_filename == 'logical' and logical_name is not None:
-            name = logical_name + '.do.txt'
-            path = os.path.join('standalone_exercises', name)
-            archive.writestr(path, sa)
+            fname = logical_name
         else: # 'number':
-            name = no + '.do.txt'
-            path = os.path.join('standalone_exercises', name)
-            archive.writestr(path, sa)
+            fname = no
+        fname = fname + '.do.txt'
 
-        if all_exer[i]['chapter_type'] is not None and \
-           all_exer[i]['chapter_title'] != chapter_prev:
-            index_text += '========= Chapter: %s =========\n\n' % all_exer[i]['chapter_title']
-            chapter_prev = all_exer[i]['chapter_title']
+        # Add stand-alone exercise to zip
+        path = os.path.join('standalone_exercises', fname)
+        archive.writestr(path, exer)
+        files_standalone.append(fname)
 
-        name = name.replace('.do.txt', '')
-        index_text += ("%% for EXT in FILE_EXTENSIONS:\n"
-                   "`%s${EXT}`\": \"%s${EXT}\n"
-                   "%% endfor\n"
-                   "<linebreak>\n\n" % (name, name))
-    name = 'index.do.txt'
-    path = os.path.join('standalone_exercises', name)
-    archive.writestr(path, index_text)
+    # Add solutions and answers to zip
+    if solutions:
+        solutions = insert_code_blocks(solutions, code_blocks, format, complete_doc=False, remove_hid=True)
+        solutions = insert_tex_blocks(solutions, tex_blocks, format, complete_doc=False)
+        # Remove comments around various constructions
+        solutions = re.sub('^# --- .+?\n', '', solutions, flags=re.MULTILINE)
+        solutions = re.sub('^#--- .+ ---\n', '', solutions, flags=re.MULTILINE)
+        path = os.path.join('standalone_exercises', 'solutions.do.txt')
+        archive.writestr(path, solutions)
+        files_standalone.append('solutions.do.txt')
 
+    # Add make.py to zip
     make_text = ("#!/usr/bin/env python\n"
                  "# Compile all stand-alone exercises to latex and ipynb\n"
-                 "# (Must first unzip archive)\n\n"
-                 "import glob, os\n\n"
-                 "dofiles = glob.glob('*.do.txt')\n"
-                 "dofiles.remove('index.do.txt')   # compile to html only\n\n"
+                 "\n"
+                 "import os, sys\n"
+                 "\n"
+                 "def os_system(cmd):\n"
+                 "    '''Run system command cmd using the simple os_system command.'''\n"
+                 "    print(cmd)\n"
+                 "    failure = os.system(cmd)\n"
+                 "    if failure:\n"
+                 "        print('Command failed:\\n'\n"
+                 "              '  %s\\n' % cmd)\n"
+                 "        sys.exit(1)\n"
+                 "\n"
+                 "dofiles = [{}]\n"
+                 "\n"                 
                  "for dofile in dofiles:\n"
-                 "    cmd = 'doconce format pdflatex %s --latex_code_style=vrb --figure_prefix=../ --movie_prefix=../' % dofile\n"
+                 "    # Compile to pdflatex\n"
+                 "    cmd = 'doconce format pdflatex %s --latex_code_style=vrb --figure_prefix=../ --movie_prefix=../ "
+                 "--allow_refs_to_external_docs --examples_as_exercises' % dofile\n"
                  "    os.system(cmd)\n"
-                 "    # Edit .tex file and remove doconce-specific things\n"
+                 "    # Edit .tex file and remove doconce-specific comments\n"
                  "    cmd = 'doconce subst \"%% #.+\" \"\" %s.tex' % dofile[:-7]  # preprocess\n"
                  "    os.system(cmd)\n"
-                 "    cmd = 'doconce subst \"%%.*\" \"\" %s.tex' % dofile[:-7]\n\n"
-                 "    cmd = 'doconce format ipynb %s --figure_prefix=../  --movie_prefix=../' % dofile\n"
-                 "    os.system(cmd)\n\n"
-                 "# Edit FILE_EXTENSIONS to adjust what kind of files that is listed in index.html\n"
-                 "cmd = 'doconce format html index --html_style=bootstrap'\n"
-                 "os.system(cmd)\n")
-    name = 'make.py'
-    path = os.path.join('standalone_exercises', name)
+                 "    cmd = 'doconce subst \"%%.*\" \"\" %s.tex' % dofile[:-7]\n"
+                 "    os.system(cmd)\n"
+                 "    # Compile to ipynb\n"
+                 "    cmd = 'doconce format ipynb %s --figure_prefix=../  --movie_prefix=../ "
+                 "--allow_refs_to_external_docs --examples_as_exercises' % dofile\n"
+                 "    os.system(cmd)\n"
+                 "    # Compile to html\n"
+                 "    cmd = 'doconce format html %s --figure_prefix=../  --movie_prefix=../ "
+                 "--allow_refs_to_external_docs --examples_as_exercises' % dofile\n"
+                 "    os.system(cmd)\n"
+                 "\n"
+                 "# Clean up\n"
+                 "cmd = 'rm *~ *.dlog'\n"
+                 "os.system(cmd)\n").format(
+        str(", ".join('"{}"'.format(i) for i in files_standalone)))
+
+    path = os.path.join('standalone_exercises', 'make.py')
     archive.writestr(path, make_text)
     archive.close()
-    errwarn('standalone exercises in ' + globals.filename)
+    errwarn('standalone exercises in ' + fname_zip)
 
 
 def parse_keyword(keyword, format):
@@ -2305,7 +2334,7 @@ def typeset_tables(filestr, format):
     row-column values. Horizontal rules become a row
     ['horizontal rule'] in the list.
     :param str filestr: text string
-    :param str format: supported format (html, latex, etc.)
+    :param str format: supported format (plain, html, latex, etc.)
     :return: processed filestr
     :rtype: str
     """
@@ -2483,7 +2512,7 @@ def text_lines(filestr):
 
     This function takes a semi-processed input file to be formatted as html,
     and it wraps plain text in <p></p> tags. 
-    :param str filestr: file string
+    :param str filestr: text string
     :return: processed filestr
     :rtype: str
     """
@@ -5147,8 +5176,8 @@ def doconce2format(filestr, format):
     Convert the string content of a file to different formats.
     Called by format_drive() > file2file()
 
-    :param str filestr:
-    :param format:
+    :param str filestr: text string
+    :param str format: output format
     :return: tuple with modified filestr, bokeh.client session
     :rtype: Tuple[Union[str, bytes, list], Optional[Any]]
     """
@@ -5450,7 +5479,7 @@ def doconce2format(filestr, format):
             filestr = filestr + OUTRO[format]
 
 
-    # Need to treat quizzes for ipynb before code and text blocks are inserted
+    # Need to treat quizzes for ipynb before code and tex blocks are inserted
     if num_quizzes and format == 'ipynb':
         filestr = typeset_quizzes2(filestr, format)
         debugpr('The file after second reformatting of quizzes:', filestr)
@@ -5569,7 +5598,7 @@ def doconce2format(filestr, format):
     for envir in 'sol', 'ans', 'hint':
         option_name = 'without_' + envir2option[envir]
         if option(option_name):
-            filestr = process_envir(
+            filestr = grep_envir(
                 filestr, envir, format, action='remove',
                 reason='(because of the command-line option --%s)\n' % option_name)
     # Remove exercise answers and solutions written by --answers_at_end and/or --solutions_at_end
@@ -5578,7 +5607,7 @@ def doconce2format(filestr, format):
     for envir in 'ans_at_end', 'sol_at_end':
         option_name = cmd2option[envir]
         if not option(option_name) and format != 'ipynb': #TODO: 'ipynb' part was used to avoid errors. is it necessary?
-            filestr = process_envir(filestr, envir, format, action='remove',
+            filestr = grep_envir(filestr, envir, format, action='remove',
                     reason='(because the command-line option --%s was not used)' % option_name)
     debugpr('The file after potential removal of solutions, answers, hints, etc.:', filestr)
     cpu = time.time() - _t0
