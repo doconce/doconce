@@ -6245,8 +6245,7 @@ def makefile():
         formats = ['pdflatex', 'html', 'sphinx', 'deck', 'reveal', 'beamer']
 
     make = open('make.py', 'w')
-    make.write('''\
-#!/usr/bin/env python
+    make.write('''#!/usr/bin/env python
 """
 Automatically generated file for compiling doconce documents.
 """
