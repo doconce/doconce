@@ -4195,7 +4195,7 @@ def inline_tag_subst(filestr, format):
                 if cr_text == 'Made with DocOnce':
                     date += '\n\nMade with DocOnce\n\n'
                 else:
-                    date += '\n\nCopyright ' + cr_text + '\n\n'
+                    date += '\n\n' + cr_text + '\n\n'
         try:
             filestr = filestr.replace(origstr, 'DATE: ' + date)
         except UnicodeDecodeError:
