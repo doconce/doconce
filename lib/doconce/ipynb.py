@@ -964,7 +964,7 @@ def define(FILENAME_EXTENSION,
         'linkURL3v': r'[`\g<link>`](\g<url>)',
         'plainURL':  r'<\g<url>>',
         'colortext': r'<font color="\g<color>">\g<text></font>',
-        'title':     r'<!-- dom:TITLE: \g<subst> -->\n# \g<subst>',
+        'title':     r'# \g<subst>',
         'author':    ipynb_author,
         'date':      '\nDate: _\g<subst>_\n',
         'chapter':       lambda m: '# '   + m.group('subst'),  # seldom used in notebooks
