@@ -17,7 +17,7 @@ from .misc import errwarn, _abort, option
 from .globals import envir2syntax, syntax_executable
 from .common import safe_join, get_code_block_args
 from pygments.lexers import get_lexer_by_name
-
+from html import escape
 
 class JupyterKernelClient:
     """Create and start a Jupyter kernel in a programming language.
@@ -407,7 +407,10 @@ def execute_code_block(current_code, current_code_envir, kernel_client, format, 
         begin, end = formatted_code_envir("pyout", code_style, format)
         for output in outputs:
             if "text" in output:
-                text_output = ansi_escape.sub("", output["text"])
+                text_output = output["text"]
+                if format in ['html']:
+                    text_output = escape(text_output)
+                text_output = ansi_escape.sub("", text_output)
                 text_out += "\n{}\n{}{}".format(begin, text_output, end)
             if "data" in output:
                 data = output["data"]
