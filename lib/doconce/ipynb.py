@@ -9,7 +9,7 @@ from .common import default_movie, plain_exercise, table_analysis, indent_lines,
     _CODE_BLOCK, _MATH_BLOCK, DEFAULT_ARGLIST, envir_delimiter_lines
 from .doconce import INLINE_TAGS_SUBST, INLINE_TAGS
 from .latex import fix_latex_command_regex
-from .html import html_movie, html_table
+from .html import html_movie, html_table, html_toc
 from .pandoc import pandoc_ref_and_label, pandoc_index_bib, pandoc_quote, \
      language2pandoc, pandoc_quiz
 from .misc import _doconce_header, _doconce_command, option, errwarn, _abort
@@ -1009,7 +1009,7 @@ def define(FILENAME_EXTENSION,
     else:
         INDEX_BIB['ipynb'] = pandoc_index_bib
     EXERCISE['ipynb'] = plain_exercise
-    TOC['ipynb'] = lambda s, f: ''
+    TOC['ipynb'] = html_toc
     FIGURE_EXT['ipynb'] = {
         'search': ('.png', '.gif', '.jpg', '.jpeg', '.tif', '.tiff'),
         'convert': ('.png', '.gif', '.jpg')}
