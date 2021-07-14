@@ -644,7 +644,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     # Prepend the doconce header and command to the first text cell
     intro = _doconce_header + '\n'
     intro += _doconce_command % ('ipynb', globals.filename, ' '.join(sys.argv[1:]))
-    intro = INLINE_TAGS_SUBST[format]['comment'] % intro + '\n'
+    intro = INLINE_TAGS_SUBST[format]['comment'] % intro + '\n\n'
     ind = next((i for i, type in enumerate(notebook_blocks) if type[0] == 'text'), -1)
     if ind > -1:
         notebook_blocks[ind][1] = intro + notebook_blocks[ind][1]

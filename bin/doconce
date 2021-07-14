@@ -10,7 +10,7 @@ from subprocess import getstatusoutput
 from doconce.sphinx import sphinx_dir
 from doconce.jupyterbook import jupyterbook
 from doconce.slides import slides_html, slides_beamer, slides_markdown
-from doconce.globals import doconce_commands, supported_format_names
+from doconce import globals
 from doconce.misc import (
     misc_option,
     insertdocstr,
@@ -127,14 +127,16 @@ def main():
     command = sys.argv[1]
     del sys.argv[1]
     # Process wrong commands
-    if command not in doconce_commands:
-        if command in supported_format_names:
+    if command not in globals.doconce_commands:
+        if command in globals.supported_format_names:
             print('command %sis not a legal command for doconce, did you meandoconce format %s %s?' %
                   (command, command, ' '.join(sys.argv[1:])))
         else:
-            print('command "%s" is not legal, must be among\n%s' % (command, ', '.join(doconce_commands)))
+            print('command "%s" is not legal, must be among\n%s' %
+                  (command, ', '.join(globals.doconce_commands)))
         sys.exit(0)
     # Execute the command
+    #globals.filename = sys.argv[1]
     retval = eval(command + '()')
     return retval
 

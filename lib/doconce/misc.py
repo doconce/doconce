@@ -58,8 +58,11 @@ def help_doconce():
     else:
         # Print all commands with their description
         print('Command description:')
-        # Narrow down help when calling doconce <command> --help
-        if sys.argv[1] in globals.doconce_commands:
+        # First check if '_usage_' + cmd exists.
+        # If not narrow down help when calling doconce <command> --help
+        if ('_usage_' + sys.argv[1]) in dir(sys.modules[__name__]):
+            exec('_usage_' + sys.argv[1] + '()')
+        elif sys.argv[1] in globals.doconce_commands:
             ind = globals.doconce_commands.index(sys.argv[1])
             command, help = globals._registered_commands[ind]
             print(_template_docs.format(command, help))
@@ -212,6 +215,7 @@ def option(name, default=None, option_list = _legal_command_line_options):
 
     return value
 
+
 def check_command_line_options(option_start, option_list=_legal_command_line_options):
     """Check command-line options
 
@@ -254,6 +258,7 @@ def misc_option(name, default=None):
         value = True
     return value
 
+
 def debugpr(heading='', text=''):
     """Add `heading` and `text` to the log/debug file.
 
@@ -271,12 +276,14 @@ def debugpr(heading='', text=''):
         globals._log.write(text + '\n')
         globals._log.close()
 
+
 def _rmdolog():
     """Remove the .dolog file
     """
     logfilename = globals.dofile_basename + '.dolog'
     if os.path.isfile(logfilename):
         os.remove(logfilename)
+
 
 def errwarn(msg, end='\n', style=''):
     """Function for reporting errors and warnings to screen and file.
@@ -301,6 +308,7 @@ def errwarn(msg, end='\n', style=''):
     if end == '\n':
         err.write('\n')
 
+
 def _abort():
     """Abort the program's execution
 
@@ -311,6 +319,7 @@ def _abort():
     else:
         print('Abort! (add --no_abort on the command line to avoid this abortion)')
         sys.exit(1)
+
 
 def system(cmd, abort_on_failure=True, verbose=False, failure_info=''):
     """Run OS commands.
@@ -333,6 +342,7 @@ def system(cmd, abort_on_failure=True, verbose=False, failure_info=''):
         if abort_on_failure:
             _abort()
     return failure
+
 
 def remove_verbatim_blocks(text, format):
     if format in ("latex", "pdflatex"):
@@ -383,6 +393,29 @@ def load_preprocessed_doconce_file(filename, dirpath=''):
         errwarn('    ' + orig_doconce)
         _abort()
     return dotext
+
+
+def get_output_filename(basename, ext):
+    """Get the output filename
+
+    Return the output filename based on the format specification and `--output` option.
+    The default filename is `basename` + '.' + `ext`
+    TODO: implement `--output` for all doconce commands. Merge/modularize `get_output_filename`
+    :param str basename: output file's basename
+    :param str ext: output file's extension
+    :return: fileout
+    :rtype: str
+    """
+    # File output.
+    fileout = option('output=', '')
+    # By default use basename from globals.filename
+    if not fileout:
+        fileout = basename
+    if not fileout.endswith(ext):
+        ext = ext[1:] if ext.startswith('.') else ext
+        fileout += '.' + ext
+    return fileout
+
 
 # -------------- functions used by the doconce program -------------
 
@@ -5864,11 +5897,11 @@ def ipynb2doconce():
         sys.exit(0)
 
     cell_delimiter = '--cell_delimiter' in sys.argv
-    filename = sys.argv[1]
-    if not os.path.isfile(filename):
-        print('*** error: no file "%s" found' % filename)
+    globals.filename = sys.argv[1]
+    if not os.path.isfile(globals.filename):
+        print('*** error: no file "%s" found' % globals.filename)
         sys.exit(1)
-    f = open(filename, 'r')
+    f = open(globals.filename, 'r')
     jsonstring = f.read()
     f.close()
     # Turn json string into a NotebookNode object
@@ -5888,11 +5921,15 @@ def ipynb2doconce():
 
     # checking if we have modern enough ipynb format
     if nb['nbformat'] < 4:
-        print(r"""*** error: ipynb file format is too old (at least v4 needed).
-Please, upgrade format of your ipynb-file using Jupyter (just open and save
-the file) and then try again.
-""")
+        print("*** error: ipynb file format is too old (at least v4 needed).\n"
+              "Please, upgrade format of your ipynb-file using Jupyter (just open and save\n"
+              "the file) and then try again.\n")
         _abort()
+    # Prepend the doconce header and command to the first text cell
+    ind = next((i for i, cell in enumerate(nb['cells']) if cell['cell_type'] == 'markdown'), -1)
+    intro = _doconce_header + '\n'
+    intro += _doconce_command % ('ipynb2doconce', globals.filename, ' '.join(sys.argv[1:]))
+    nb['cells'][ind]['source'] = '<!-- ' + intro + ' -->\n\n' + nb['cells'][ind]['source']
 
     dostr_list = []
     from .doconce import markdown2doconce
@@ -5930,16 +5967,17 @@ the file) and then try again.
     dostr = re.sub('^!e([ct])\n===', r'!e\g<1>\n\n===', dostr, flags=re.MULTILINE)
     # Too many blanks before !bt and !bc
     dostr = re.sub(r'\n\n\n+!b([ct])', r'\n\n!b\g<1>', dostr)
-    filename = filename.replace('.ipynb', '.do.txt')
+    globals.fileout = get_output_filename(globals.filename.replace('.ipynb', ''), 'do.txt')
+
     encoding = option("encoding=", default='')
     if encoding:
         import codecs
-        f = codecs.open(filename, 'w', encoding)
+        f = codecs.open(globals.fileout, 'w', encoding)
     else:
-        f = open(filename, 'w')
+        f = open(globals.fileout, 'w')
     f.write(dostr)
     f.close()
-    print('output in', filename)
+    print('output in', globals.fileout)
 
 
 class DocOnceLexer(RegexLexer):
@@ -7403,3 +7441,23 @@ def folder_checker(dirname):
     if not dirname.endswith('/'):
         return dirname + '/'
     return dirname
+
+
+def _usage_sphinx_dir():
+    from .sphinx import _usage_sphinx_dir
+    _usage_sphinx_dir()
+
+
+def _usage_slides_html():
+    from .slides import _usage_slides_html
+    _usage_slides_html()
+
+
+def _usage_slides_beamer():
+    from .slides import _usage_slides_beamer
+    _usage_slides_beamer()
+
+
+def _usage_slides_markdown():
+    from .slides import _usage_slides_markdown
+    _usage_slides_markdown()

@@ -234,25 +234,28 @@ def get_copyfile_info(filestr=None, copyright_filename=None, format=None):
     cr_text = ''
     if 'copyright' in cr_info:
         cr_text += 'Copyright: ' + cr_info['copyright']
+    license_ = ''
+    if cr_info.get('license', None) is not None:
+        license_ = cr_info['license']
     if 'year' in cr_info and 'holder' in cr_info:
         cr_text += str(cr_info['year'])
-        cr_text += ', ' + ', '.join(cr_info['holder']) + '. '
-    if cr_info.get('license', None) is not None:
-        cr_text += cr_info['license']
+        cr_text += ', ' + ', '.join(cr_info['holder'])
+        if license_:
+            cr_text += '. '
+    cr_text += license_
+    # cite doconce
     if cr_info.get('cite doconce', False):
         url = 'https://github.com/doconce/doconce'
-        if cr_text:
-            cr_text += '\n\n'
-        cr_text += 'Made with '
         if format in ('latex', 'pdflatex'):
-            cr_text += r'\href{%s}{DocOnce}' % url
+            if cr_text:
+                cr_text += '. '
+            cr_text += r'Made with \href{%s}{DocOnce}' % url
         elif format == 'html':
-            cr_text += r'<a href="%s">DocOnce</a>' % url
+            cr_text += '</p>\n<p>Made with <a href="%s">DocOnce</a>' % url
         elif format == 'sphinx':
-            cr_text += r'DocOnce'
+            cr_text += '\n\nMade with DocOnce'
         else:
-            cr_text += r'DocOnce'
-
+            cr_text += '\n\nMade with DocOnce'
     return cr_text
 
 
