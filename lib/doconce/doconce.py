@@ -95,6 +95,8 @@ def markdown2doconce(filestr, format=None, ipynb_mode=False):
     """Look for Markdown (and Extended Markdown) syntax in the file (filestr)
     and transform the text to valid DocOnce format.
 
+    TODO: issues with references to figures, which are formatted as normal links
+    but should be rendered with ref{label}.
     :param str filestr: file content
     :param str format: output format
     :param bool ipynb_mode: default is False
@@ -128,6 +130,7 @@ def markdown2doconce(filestr, format=None, ipynb_mode=False):
         if not inside_code:
             if re.search(r'^#{1,3} ', lines[i]):
                 # Potential heading
+                # Headings must be preceded by an empty line, otherwise they are multiline md comments
                 heading = False
                 if i > 0 and lines[i-1].strip() == '':
                     # Blank line before (after might be a label)
@@ -222,7 +225,7 @@ def markdown2doconce(filestr, format=None, ipynb_mode=False):
         # TOC
         (r"^\[TOC\]", r"TOC: on", re.MULTILINE),
         # doconce metadata comments in .ipynb files
-        (r'<!-- dom:TITLE: (.+?) -->\n# .+', r'TITLE: \g<1>'),
+        #(r'<!-- dom:TITLE: (.+?) -->\n# .+', r'TITLE: \g<1>'), #<!-- dom:TITLE: is obsolete, see below
         (r'<!-- dom:(.+?) --><div id=".+?"></div>', r'\g<1>'), # label
         (r'<!-- dom:(.+?) -->', r'\g<1>'), # idx, AUTHOR typically
         (r'Date: _(.+?)_', r'DATE: \g<1>'),
@@ -257,6 +260,11 @@ def markdown2doconce(filestr, format=None, ipynb_mode=False):
             filestr = re.sub(r[0], r[1], filestr)
         elif len(r) == 3:
             filestr = re.sub(r[0], r[1], filestr, flags=r[2])
+    # Use 'TITLE:' instead of the initial header, if any
+    if 'TITLE:' not in filestr:
+        filestr_nocomm = re.sub(r'# .*\n', '', filestr).strip(' \n')
+        if filestr_nocomm.startswith('======= '):
+            filestr = re.sub(r'^======= (.*) =======', r'TITLE: \g<1>', filestr, count=1, flags=re.M)
 
     # links that are written in Markdown as footnotes:
     links = {}
@@ -4408,10 +4416,10 @@ def file2file(in_filename, format):
 def get_output_filename(format):
     """Get the output filename
 
-    Return the output filename based on the format pecification
-    and `--output` option
+    Return the output filename based on the format specification and `--output` option.
+    The default filename is the basename of the DocOnce file given as input `globals.dofile_basename`
     :param str format: output format
-    :return: fileout
+    :return: fileout: default `globals.dofile_basename`
     :rtype: str
     """
     # File output.
@@ -4422,8 +4430,10 @@ def get_output_filename(format):
         fileout = option('html_output=', '')
         if not fileout.endswith(FILENAME_EXTENSION[format]):
             fileout += FILENAME_EXTENSION[format]
+    # By default use the basename from globals.dofile_basename
     if not fileout:
         fileout = globals.dofile_basename
+    # Make sure the output extension is included
     if not fileout.endswith(FILENAME_EXTENSION[format]):
         fileout += FILENAME_EXTENSION[format]
     return fileout

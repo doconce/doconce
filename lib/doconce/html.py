@@ -8,7 +8,7 @@ from builtins import object
 import os, glob, sys, glob, base64, uuid
 import regex as re
 import shlex
-from .common import     table_analysis, plain_exercise, insert_code_blocks, \
+from .common import table_analysis, plain_exercise, insert_code_blocks, get_copyfile_info, \
     insert_tex_blocks, indent_lines, online_python_tutor, bibliography, _linked_files, \
     safe_join, is_file_or_url, envir_delimiter_lines, doconce_exercise_output, \
      get_legal_pygments_lexers, has_custom_pygments_lexer, emoji_url, \
@@ -1297,7 +1297,6 @@ def html_code(filestr, code_blocks, code_block_types,
             filestr = latex + filestr
 
     # Copyright
-    from .common import get_copyfile_info
     cr_text = get_copyfile_info(filestr, format=format)
     if cr_text is not None:
         filestr = filestr.replace('Copyright COPYRIGHT_HOLDERS',
@@ -3416,7 +3415,7 @@ def define(FILENAME_EXTENSION,
         OUTRO['html'] += ('\n'
                           '\n'
                           '<center style="font-size:80%">\n'
-                          '<!-- copyright --> {} Copyright COPYRIGHT_HOLDERS\n'
+                          '<!-- copyright -->\n<p>{} Copyright COPYRIGHT_HOLDERS</p>\n'
                           '</center>\n').format("&copy;" if symbol else "")
     OUTRO['html'] += ('\n'
                       '\n'
@@ -3491,17 +3490,23 @@ def html2latin(html):
     return text
 
 
-def string2href(title=''):
+def string2href(title='', lower=True):
     """ Create strings that are safe to pass to href in anchors or other html tag properties
 
     Given a header with a title e.g. " Section 1: what's this å? ", create a string e.g.
     "section-1-what-s-this-&#229;" that can be safely passed to href in anchor links (<a href=.../>).
 
     :param str title: title of the heading
+    :param bool lower: convert to lowercase, default True but except for the `ipynb` format
     :return: href
     :rtype: str
     """
-    href = re.sub('[\W_]+', '-', title.lower())
+    # ipynb and html have slightly different formatting for links, see `html_toc`
+    if globals.format == 'ipynb':
+        lower = False
+    if lower:
+        title = title.lower()
+    href = re.sub('[\W_]+', '-', title)
     href = latin2html(href)
     return href.strip('-')
 

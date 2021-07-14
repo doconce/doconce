@@ -9,7 +9,7 @@ from .common import default_movie, plain_exercise, table_analysis, indent_lines,
     _CODE_BLOCK, _MATH_BLOCK, DEFAULT_ARGLIST, envir_delimiter_lines
 from .doconce import INLINE_TAGS_SUBST, INLINE_TAGS
 from .latex import fix_latex_command_regex
-from .html import html_movie, html_table
+from .html import html_movie, html_table, html_toc
 from .pandoc import pandoc_ref_and_label, pandoc_index_bib, pandoc_quote, \
      language2pandoc, pandoc_quiz
 from .misc import _doconce_header, _doconce_command, option, errwarn, _abort
@@ -644,7 +644,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     # Prepend the doconce header and command to the first text cell
     intro = _doconce_header + '\n'
     intro += _doconce_command % ('ipynb', globals.filename, ' '.join(sys.argv[1:]))
-    intro = INLINE_TAGS_SUBST[format]['comment'] % intro + '\n'
+    intro = INLINE_TAGS_SUBST[format]['comment'] % intro + '\n\n'
     ind = next((i for i, type in enumerate(notebook_blocks) if type[0] == 'text'), -1)
     if ind > -1:
         notebook_blocks[ind][1] = intro + notebook_blocks[ind][1]
@@ -1009,7 +1009,7 @@ def define(FILENAME_EXTENSION,
     else:
         INDEX_BIB['ipynb'] = pandoc_index_bib
     EXERCISE['ipynb'] = plain_exercise
-    TOC['ipynb'] = lambda s, f: ''
+    TOC['ipynb'] = html_toc
     FIGURE_EXT['ipynb'] = {
         'search': ('.png', '.gif', '.jpg', '.jpeg', '.tif', '.tiff'),
         'convert': ('.png', '.gif', '.jpg')}
