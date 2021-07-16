@@ -164,6 +164,8 @@ def ipynb_figure(m):
                                            opts=opts,
                                            caption=caption,
                                            figure_number=figure_number)
+        if not caption:
+            text = text.replace('Figure ' + str(figure_number) + ': ', 'Figure ' + str(figure_number))
     elif display_method == 'Image':
         # Image object
         # NOTE: This code will normally not work because it inserts a verbatim
@@ -881,6 +883,7 @@ def ipynb_index_bib_latex_plain(filestr, index, citations, pubfile, pubdata):
 
 
 def ipynb_ref_and_label(section_label2title, format, filestr):
+    # NB: figure numbering already done in `handle_figures` > `ipynb_figure`
     filestr = fix_ref_section_chapter(filestr, format)
 
     # Replace all references to sections. Pandoc needs a coding of
