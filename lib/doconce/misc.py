@@ -162,7 +162,6 @@ def option(name, default=None, option_list = _legal_command_line_options):
     the option ``--name`` is found or not.
     Abort if the option ``--name`` is not valid, ie not present in ``option_list``.
 
-
     :param str name: filename to be read
     :param any default: optional encoding string. Usually the encoding variable in globals.py
     :param list[str] option_list: optional list of command options. Default is _legal_command_line_options from globals._registered_command_line_options
@@ -7362,7 +7361,7 @@ def extract_exercises():
 
 def find_file_with_extensions(filename_in, allowed_extensions=['']):
     """Check the existence of a filename having given extensions.
-    Return relative directory, basename, extension, and complete filename,
+    Return relative directory, basename, extension, and complete filename.
 
     Given an input filename (e.g. './book' or 'mybook/book.do.txt') and a
     list of allowed extensions (e.g. ['.do.txt']), return the file's
@@ -7373,6 +7372,7 @@ def find_file_with_extensions(filename_in, allowed_extensions=['']):
     Relative directories such as './', '../' are stripped of all output.
     Use `allowed_extensions=''` for checking exact matches, but this causes
     the extension to be ''. Return a tuple of None if the file was not found.
+
     :param str filename_in: Filename or its basename.
     :param list(str) allowed_extensions: list of legal extensions
     :return: tuple of dirname, basename, ext, and filename

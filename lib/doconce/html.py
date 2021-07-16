@@ -28,6 +28,8 @@ from pygments.styles import get_all_styles
 html_quote, html_warning, html_question, html_notice = None, None, None, None
 html_summary, html_block, html_box = None, None, None
 box_shadow = 'box-shadow: 8px 8px 5px #888888;'
+caption_start = '<p class="caption">'
+caption_end = '</p>'
 
 # Filename generator to store a list of dependencies for html output
 _file_collection_filename = '.%s_html_file_collection'
@@ -1884,41 +1886,45 @@ def html_figure(m):
         image = '<img src="%s" %s>' % (filename, opts) #TODO
 
     # Wrap the <img> tag in html code
-    if caption:
-       # Caption above figure and an optional horizontal rules:
-       hrules = option('html_figure_hrule=', 'top')
-       top_hr = bottom_hr = ''
-       if 'top' in hrules:
-           top_hr = '\n<hr class="figure">'
-       if 'bottom' in hrules:
-           bottom_hr = '\n<hr class="figure">'
-       placement = option('html_figure_caption=', 'top')
-       if sidecap == False:
-           if placement == 'top':
-               text = ("\n"
-                    "<center> %s <!-- FIGURE -->%s\n"
-                    '<center>\n<p class="caption"> %s </p>\n</center>\n'
-                    "<p>%s</p>%s\n"
-                    "</center>\n") % (label, top_hr, caption, image, bottom_hr)
-           else:
-               text = ("\n"
-                    "<center> %s <!-- FIGURE -->%s\n"
-                    "<p>%s</p>\n"
-                    '<center><p class="caption"> %s </p></center>%s\n'
-                    "</center>\n") % (label, top_hr, image, caption, bottom_hr)
-       else:
-           # sidecap is implemented as table
+    # Caption above figure and an optional horizontal rules:
+    hrules = option('html_figure_hrule=', 'top')
+    top_hr = bottom_hr = ''
+    if 'top' in hrules:
+       top_hr = '\n<hr class="figure">'
+    if 'bottom' in hrules:
+       bottom_hr = '\n<hr class="figure">'
+    placement = option('html_figure_caption=', 'top')
+    if sidecap == False:
+       if placement == 'top':
            text = ("\n"
-                   "<center> %s <!-- FIGURE -->%s\n"
-                   "<table>\n"
-                   "<tr>\n"
-                   '<td style="width:%s;">%s</td>\n'
-                   '<td><p class="caption"> %s </p></td>\n'
-                   "</tr>\n"
-                   "</table>%s\n"
+                   "<center> %(label)s <!-- FIGURE -->%(top_hr)s\n"
+                   "<center>\n" +
+                   caption_start + " %(caption)s " + caption_end + "\n"
                    "</center>\n"
-                   ) % (label, top_hr, str(int(frac*100)) + '%', image, caption, bottom_hr)
+                   "<p>%(image)s</p>%(bottom_hr)s\n"
+                   "</center>\n") % vars()
+       else:
+           text = ("\n"
+                   "<center> %(label)s <!-- FIGURE -->%(top_hr)s\n"
+                   "<p>%(image)s</p>\n"
+                   "<center>" + caption_start + " %(caption)s " + caption_end + "\n"
+                   "</center>%(bottom_hr)s\n"
+                   "</center>\n") % vars()
     else:
+       # sidecap is implemented as table
+       width = str(int(frac*100)) + '%'
+       text = ("\n"
+               "<center> %(label)s <!-- FIGURE -->%(top_hr)s\n"
+               "<table>\n"
+               "<tr>\n"
+               '<td style="width:%(width)s;">%(image)s</td>\n'
+               "<td>" + caption_start + " %(caption)s </p>\n"
+               "</td>\n"
+               "</tr>\n"
+               "</table>%(bottom_hr)s\n"
+               "</center>\n") % vars()
+    # Old behavior: if no caption ..
+    '''
        # Just insert image file when no caption
        #s = '<center><p>%s</p></center>' % image # without <linebreak>
        # with two <linebreak>:
@@ -1927,7 +1933,7 @@ def html_figure(m):
                '<p>%s</p>\n'
                '</center>\n'
                '<br/><br/>') % image
-
+    '''
     return text
 
 
@@ -2326,7 +2332,6 @@ def html_ref_and_label(section_label2title, format, filestr):
     # references by the figure numbers
     # (note: figures are already handled!)
     #
-    caption_start = '<p class="caption">'
     caption_pattern = r'%s(.+?)</p>' % caption_start
     #label_pattern = r'%s.+?<a name="(.+?)">' % caption_start
     label_pattern = r'%s.+? <!-- caption label: (.+?) -->' % caption_start
@@ -2352,7 +2357,9 @@ def html_ref_and_label(section_label2title, format, filestr):
                 fig_no += 1
                 caption = m.group(1)
                 from_ = caption_start + caption
-                to_ = caption_start + 'Figure %d: ' % fig_no + caption
+                to_ = caption_start + 'Figure %d' % fig_no
+                if caption.strip():
+                    to_ += ': ' + caption.strip()
                 lines[i] = lines[i].replace(from_, to_)
 
             m = re.search(label_pattern, lines[i])

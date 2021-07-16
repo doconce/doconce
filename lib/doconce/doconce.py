@@ -3114,14 +3114,13 @@ def handle_figures(filestr, format):
     figfiles = [fname.strip()
              for fname, options, caption in c.findall(filestr)]
     figfiles = set(figfiles)   # remove multiple occurrences
-
     for figfile in figfiles:
         if figfile.startswith('http'):
             # latex, pdflatex must download the file,
             # html, sphinx and web-based formats can use the URL directly
             basepath, ext = os.path.splitext(figfile)
             # Avoid ext = '.05' etc from numbers in the filename
-            if not ext.lower() in ['.eps', '.pdf', '.png', '.jpg', 'jpeg',
+            if not ext.lower() in ['.eps', '.pdf', '.png', '.jpg', '.jpeg',
                                    '.gif', '.tif', '.tiff', '.svg']:
                 ext = ''
             if ext:
@@ -3146,39 +3145,32 @@ def handle_figures(filestr, format):
                             (figfile, ', '.join(search_extensions)))
                     _abort()
             continue
-        # else: check out local figure file on the disk
-        file_found = False
+        # check local figure file on the disk
         if not os.path.isfile(figfile):
-            basepath, ext = os.path.splitext(figfile)
-            # Avoid ext = '.05' etc from numbers in the filename
-            if not ext.lower() in ['.eps', '.pdf', '.png', '.jpg', 'jpeg',
-                                   '.gif', '.tif', '.tiff']:
-                ext = ''
-            if not ext:  # no extension?
-                # try to see if figfile + ext exists:
-                for ext in search_extensions:
-                    newname = figfile + ext
-                    if os.path.isfile(newname):
-                        errwarn('figure file %s:\n    can use %s for format %s' % (figfile, newname, format))
-                        filestr = re.sub(r'%s([,\]])' % figfile,
-                                         '%s\g<1>' % newname, filestr)
-                        figfile = newname
-                        file_found = True
-                        break
+            extensions_ = list(search_extensions)
+            extensions_ += [x for x in ['.eps', '.pdf', '.png', '.jpg', '.jpeg', '.gif', '.tif', '.tiff']
+                           if x not in extensions_]
+
+            dirname, basename, ext, filename = find_file_with_extensions(figfile, allowed_extensions=extensions_)
+            if basename:
+                newname = os.path.join(dirname, basename + ext)
+                errwarn('figure file %s:\n    can use %s for format %s' % (figfile, newname, format))
+                filestr = re.sub(r'%s([,\]])' % figfile,
+                                 '%s\g<1>' % newname, filestr)
+                figfile = newname
+            else:
                 # couldn't find figfile with an acceptable extension,
                 # try to see if other extensions exist and use the
                 # first one to convert to right format:
-                if not file_found:
-                    candidate_files = glob.glob(figfile + '.*')
-                    for newname in candidate_files:
-                        if os.path.isfile(newname):
-                            errwarn('found ' + newname)
-                            #dangerous: filestr = filestr.replace(figfile, newname)
-                            filestr = re.sub(r'%s([,\]])' % figfile,
-                                             '%s\g<1>' % newname, filestr)
-                            figfile = newname
-                            file_found = True
-                            break
+                candidate_files = glob.glob(figfile + '.*')
+                for newname in candidate_files:
+                    if os.path.isfile(newname):
+                        errwarn('found ' + newname)
+                        #dangerous: filestr = filestr.replace(figfile, newname)
+                        filestr = re.sub(r'%s([,\]])' % figfile,
+                                         '%s\g<1>' % newname, filestr)
+                        figfile = newname
+                        break
         if not os.path.isfile(figfile):
             #raise ValueError('file %s does not exist' % figfile)
             errwarn('*** error: figure file "%s" does not exist!' % figfile)
@@ -3384,7 +3376,7 @@ def handle_cross_referencing(filestr, format, tex_blocks):
         filestr = re.sub(ndash_pattern1, '\g<1> - \g<2>', filestr)
         filestr = re.sub(ndash_pattern2, '\g<1>-\g<2>', filestr)
 
-    # 5. Perform format-specific editing of ref{...} and label{...}
+    # 5. Perform format-specific editing of ref{...} and label{...}, figure numbering in some formats
     filestr = CROSS_REFS[format](section_label2title, format, filestr)
 
     return filestr
@@ -5417,7 +5409,7 @@ def doconce2format(filestr, format):
             filestr = typeset_section_numbering(filestr, format)
             debugpr('The file after numbering of chapters and sections:', filestr)
 
-    # Next step: deal with cross referencing e.g. label{} and ref{}, and TOC
+    # Next step: deal with cross referencing e.g. label{} and ref{}, figure numbering and TOC
     # (must occur before other format subst)
     filestr = handle_cross_referencing(filestr, format, tex_blocks)
     debugpr('The file after handling ref and label cross referencing:', filestr)
