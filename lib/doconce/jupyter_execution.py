@@ -17,7 +17,7 @@ from .misc import errwarn, _abort, option
 from .globals import envir2syntax, syntax_executable
 from .common import safe_join, get_code_block_args
 from pygments.lexers import get_lexer_by_name
-from html import escape
+from html import escape, unescape
 
 class JupyterKernelClient:
     """Create and start a Jupyter kernel in a programming language.
@@ -270,6 +270,7 @@ def execute_subprocess(code, syntax, code_style='', format=None):
     """
     formatted_output = ''
     execution_count = 0
+    error = ''
     basename = 'tmp_code'
     syntax2suffix = dict(zip(envir2syntax.values(), envir2syntax.keys()))
     syntax2run = {'bash': 'bash', 'r': 'Rscript', 'julia': 'julia', 'java': 'javac'}
@@ -286,7 +287,7 @@ def execute_subprocess(code, syntax, code_style='', format=None):
         formatted_output = "\n{}\n{}{}".format(begin, result.stdout, end)
     else:
         print(formatted_output)
-    return formatted_output, execution_count
+    return formatted_output, execution_count, error
 
 
 def process_code_blocks(filestr, code_style, format):
@@ -330,7 +331,7 @@ def process_code_blocks(filestr, code_style, format):
                     if prog not in kernel_client:
                         start_kernel(prog, kernel_client)
                     if kernel_client[prog].is_alive():
-                        formatted_output, execution_count_ = execute_code_block(
+                        formatted_output, execution_count_, error = execute_code_block(
                             current_code=current_code,
                             current_code_envir=current_code_envir,
                             kernel_client=kernel_client[prog],
@@ -340,10 +341,17 @@ def process_code_blocks(filestr, code_style, format):
                             label=label)
                     else:
                         # This is not used yet because syntax_executable is used in format_code to set execute to False
-                        formatted_output, execution_count = execute_subprocess(code=current_code,
+                        formatted_output, execution_count, error = execute_subprocess(code=current_code,
                                            syntax=envir2syntax.get(LANG, ''),
                                            code_style=code_style,
                                            format=format)
+                # Warn and abort on code errors
+                if error != '':
+                    errwarn('*** error: Error in code block:')
+                    errwarn('    %s' % error)
+                    errwarn('***')
+                    if misc.option('execute=') == 'abort':
+                        _abort()
             # Format a code cell and its output
             if show != 'hide':
                 if show != 'output':
@@ -381,11 +389,12 @@ def execute_code_block(current_code, current_code_envir, kernel_client, format, 
     :param JupyterKernelClient kernel_client: instance of JupyterKernelClient
     :param str format: output formatting, one of ['html', 'latex', 'pdflatex']
     :param str code_style: optional typesetting of code blocks
-    :return: text_out, execution_count
-    :rtype: str, int
+    :return: text_out, execution_count, error
+    :rtype: str, int, str
     """
     text_out = ''
     execution_count = 0
+    error = ''
     # Execute the code
     if kernel_client is None or not kernel_client.is_alive():
         return text_out, execution_count
@@ -406,6 +415,7 @@ def execute_code_block(current_code, current_code_envir, kernel_client, format, 
         ansi_escape = re.compile(r'\x1b[^m]*m')
         begin, end = formatted_code_envir("pyout", code_style, format)
         for output in outputs:
+            traceback = ''
             if "text" in output:
                 text_output = output["text"]
                 if format in ['html']:
@@ -449,10 +459,15 @@ def execute_code_block(current_code, current_code_envir, kernel_client, format, 
             elif "traceback" in output:
                 # TODO: convert ANSI escape chars to colors
                 traceback = "\n".join(output["traceback"])
+                # Escape characters
                 traceback = ansi_escape.sub("", traceback)
+                if format in ['html']:
+                    traceback = escape(traceback)
                 text_out += "\n{}\n{}{}".format(begin, traceback, end)
-
-    return text_out, execution_count
+            # Extract any code error
+            if 'output_type' in output and output['output_type'] == 'error':
+                error = unescape(traceback) or 'block #%d' % execution_count
+    return text_out, execution_count, error
 
 
 def format_code(code_block, code_block_type, code_style, format):

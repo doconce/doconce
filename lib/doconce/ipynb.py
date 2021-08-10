@@ -697,7 +697,13 @@ def ipynb_code(filestr, code_blocks, code_block_types,
                 mdstr.append(('codecell', block))
         elif block_tp.startswith('cell'):
             # Process cells with block type cell (py*), cell_execute_hidden (*-e), cell_hidden (*hid)
-            execution_count, md_out = process_ipynb_code_block(kernel_client, block, block_tp, cells, execution_count)
+            execution_count, md_out, error = process_ipynb_code_block(kernel_client, block, block_tp, cells, execution_count)
+            # Warn and abort on code errors
+            if error != '':
+                errwarn('*** error: Error in code block:')
+                errwarn('    %s' % error)
+                if option('execute=') == 'abort':
+                    _abort()
             mdstr.extend(md_out)
 
     # Create the notebook in string format
@@ -781,6 +787,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
 
 def process_ipynb_code_block(kernel_client, block, block_tp, cells, execution_count):
     md_out = []
+    error = ''
     editable = True
     collapsed = False
     if option('ipynb_non_editable_code'):
@@ -802,12 +809,22 @@ def process_ipynb_code_block(kernel_client, block, block_tp, cells, execution_co
             cells.append(cell)
         if option("execute"):
             outputs, execution_count_out = kernel_client.run_cell(blockline)
+            # Extract any code error
+            for output in outputs:
+                if output['output_type'] == 'error':
+                    traceback = ''
+                    ansi_escape = re.compile(r'\x1b[^m]*m')
+                    if "traceback" in output:
+                        traceback = "\n".join(output["traceback"])
+                        # Escape characters
+                        traceback = ansi_escape.sub("", traceback)
+                    error = traceback or 'block #%d' % execution_count
             cell.outputs = outputs
             if execution_count_out:
                 cell["execution_count"] = execution_count_out
         execution_count += 1
         md_out.append(('codecell', blockline))
-    return execution_count, md_out
+    return execution_count, md_out, error
 
 
 def ipynb_index_bib(filestr, index, citations, pubfile, pubdata):
