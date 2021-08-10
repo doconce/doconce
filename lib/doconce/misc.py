@@ -172,7 +172,9 @@ def option(name, default=None, option_list = _legal_command_line_options):
     # is dependent on command-line info (preprocessor options for instance)
     # that is not compatible with simple options( --name).
 
-    option_name = '--' + name
+    option_name = name
+    if not option_name.startswith('--'):
+        option_name = '--' + option_name
     if not option_name in option_list:
         errwarn('test for illegal option: ' + option_name)
         _abort()
@@ -218,15 +220,18 @@ def option(name, default=None, option_list = _legal_command_line_options):
 def check_command_line_options(option_start, option_list=_legal_command_line_options):
     """Check command-line options
 
-    Error handling: check if all command-line options starting with --
-    are legal. If not, show a message with the wrong option. This
-    function does not abort the program.
+    Error handling: check if all command-line options starting with '--' are legal.
+    If not, show a message with the wrong option. Also handle special options such
+    as `--execute`, `--execute=abort`. This function does not abort the program.
 
     :param int option_start: start index of options to check in sys.argv
     :return: True if all command-line options are legal, False otherwise
     :rtype: boolean
     """
-    #
+    # Fix options with optional values
+    if option('execute=') and not option('execute'):
+        sys.argv.append('--execute')
+    # Check that
     for arg_user in sys.argv[option_start:]:
         arg = arg_user
         if '=' in arg:
@@ -234,7 +239,7 @@ def check_command_line_options(option_start, option_list=_legal_command_line_opt
         if arg[:2] == '--':
             if not arg in option_list:
                 errwarn('*** warning: unrecognized command-line option')
-                print('    ' + arg_user)
+                errwarn('    ' + arg_user)
                 return False
     return True
 
@@ -678,15 +683,21 @@ def subst():
     pmm = 0  # pattern matching modifiers (re.compile flags)
     for opt, value in optlist:
         if opt in ('-s',):
-            if not pmm:  pmm = re.DOTALL
-            else:        pmm = pmm|re.DOTALL
-        if opt in ('-m',):
-            if not pmm:  pmm = re.MULTILINE
-            else:        pmm = pmm|re.MULTILINE
-        if opt in ('-x',):
-            if not pmm:  pmm = re.VERBOSE
-            else:        pmm = pmm|re.VERBOSE
-        if opt in ('--restore',):
+            if not pmm:
+                pmm = re.DOTALL
+            else:
+                pmm = pmm|re.DOTALL
+        elif opt in ('-m',):
+            if not pmm:
+                pmm = re.MULTILINE
+            else:
+                pmm = pmm|re.MULTILINE
+        elif opt in ('-x',):
+            if not pmm:
+                pmm = re.VERBOSE
+            else:
+                pmm = pmm|re.VERBOSE
+        elif opt in ('--restore',):
             restore = True
 
     if restore:

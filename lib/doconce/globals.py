@@ -897,6 +897,7 @@ _registered_command_line_options = [
                     'or emphasize in the caption, the font style will be normal for that caption.'),
     ('--oneline_paragraphs', 'Combine paragraphs to one line (does not work well).'),
     ('--execute', 'Automatically run code blocks and show output below the code block.'),
+    ('--execute=', 'continue (default), abort. Enable --execute and allow to abort execution on code errors.'),
     ('--verbose-execute', 'Print output from execute cells.'),
     ('--ignore_output', 'Ignore output cells. Useful when you want to use execute rather than predefined output cells.'),
     ('--html_responsive_figure_width', 'Use figure width as max-width, and set width to 100 percent so that figures '

@@ -5054,7 +5054,11 @@ def format_driver():
         help_format()
         sys.exit(1)
 
-    check_command_line_options(4)
+    # Fix options with optional values
+    if option('execute=') and not option('execute'):
+        sys.argv.append('--execute')
+    # Check that all options exist
+    check_command_line_options(3)
 
     try:
         format = sys.argv[1]
