@@ -619,6 +619,13 @@ def remove_code_and_tex(filestr, format):
     result = code.findall(filestr)
     code_blocks = [c for opt, c in result]
     code_block_types = [opt.strip() for opt, c in result]
+    # Substitute the old `hid` and `out` postfixes to `-hid` and `-out`
+    for i, t in enumerate(code_block_types):
+        if t.endswith('hid') or t.endswith('out'):
+            if t[-4] != '-':
+                filestr = filestr.replace('!bc ' + code_block_types[i],
+                                '!bc ' + t[:-3] + '-' + t[-3:])
+                code_block_types[i] = t[:-3] + '-' + t[-3:]
 
     tex = re.compile(r'^!bt *\n(.*?)^!et *\n', re.DOTALL|re.MULTILINE)
     tex_blocks = tex.findall(filestr)
@@ -722,26 +729,32 @@ def get_code_block_args(line, pattern_code_block=globals.pattern_code_block):
     """Parse a line starting a code block environment.
 
     The syntax for a code block is: !bc LANG[cod|pro][postfix].
-    Parse a line and return LANG, codetype, postfix. Return
-    the optional paramenters as empty string if they are not
+    Parse a line and return LANG, codetype, postfix, error handling portfix.
+    Return the optional paramenters as empty string if they are not
     used or the line is not a code block. This function uses
     pattern_code_block from globals.py
     :param str line: line of DocOnce code
-    :return: (LANG, codetype, postfix)
-    :rtype Tuple[str, str, str]
+    :return: LANG, codetype, postfix, postfix_err
+    :rtype Tuple[str, str, str, str]
     """
-    LANG, codetype, postfix = '', '', ''
+    LANG, codetype, postfix, postfix_err = '', '', '', ''
     m = re.search(pattern_code_block, line)
     if m:
         LANG = m.group('language')
         codetype = m.group('type') or ''
         postfix = m.group('postfix') or ''
-    return LANG, codetype, postfix
+        postfix_err = m.group('postfix_err') or ''
+        # Keep the old `out` and `hid` postfixes
+        if postfix == 'out':
+            postfix = '-out'
+        if postfix == 'hid':
+            postfix = '-hid'
+    return LANG, codetype, postfix, postfix_err
 
 
 def process_code_envir_postfix(environment):
     """Extract any code envir postfix to code environments
-        ('hid','-h','-e','-t','out')
+        ('-hid','-h','-e','-t','-out')
 
     :param str environment: code environment e.g. 'pycod-e'
     :return: postfix
@@ -753,7 +766,7 @@ def process_code_envir_postfix(environment):
         # Hide also in ipynb
         # Code as text
         postfix = environment[-2:]
-    elif environment[-3:] in ['hid', 'out']:
+    elif environment[-3:] in ['-hid', '-out']:
         # Hide the cell
         # Output cell
         postfix = environment[-3:]
@@ -956,10 +969,13 @@ def insert_tex_blocks(filestr, tex_blocks, format, complete_doc=True):
 
 def remove_hidden_code_blocks(filestr, format):
     """
-    Remove text enclosed in !bc *hid and !ec tags.
+    Remove text enclosed in !bc *-hid and !ec tags.
     Some formats need this for executable code blocks to work,
     but they should be invisible in the text.
     """
+    pattern = r'^!bc +[a-z]*-hid\n.+?!ec'
+    filestr = re.sub(pattern, '', filestr, flags=re.MULTILINE | re.DOTALL)
+    # Handle the old `hid` prefix
     pattern = r'^!bc +[a-z]*hid\n.+?!ec'
     filestr = re.sub(pattern, '', filestr, flags=re.MULTILINE|re.DOTALL)
     return filestr

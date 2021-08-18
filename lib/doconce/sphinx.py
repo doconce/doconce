@@ -14,6 +14,7 @@ import time, shutil, glob, re
 from doconce.misc import system, load_preprocessed_doconce_file
 from .globals import postfix_regex, code_block_regex
 from .latex import fix_latex_command_regex as fix_latex
+from .jupyter_execution import get_code_block_args
 
 # RunestoneInteractive book counters
 question_counter = 0
@@ -386,6 +387,7 @@ def sphinx_code(filestr, code_blocks, code_block_types,
     # Make correct code-block:: language constructions
     legal_pygments_languages = get_legal_pygments_lexers()
     for key in set(code_block_types):
+        LANG, codetype, postfix, postfix_err = get_code_block_args('!bc ' + key)
         if key in envir2syntax:
             if not envir2syntax[key] in legal_pygments_languages:
                 errwarn(('*** warning: %s is not a legal Pygments language (lexer)\n'
@@ -444,16 +446,16 @@ def sphinx_code(filestr, code_blocks, code_block_types,
             # any !bc with/without argument becomes a text block:
             filestr = re.sub(r'^!bc$', '\n.. code-block:: text\n\n', filestr,
                              flags=re.MULTILINE)
-        elif key.endswith('hid'):
-            if key in ('pyhid', 'jshid', 'htmlhid') and option('runestone'):
+        elif postfix in ['-hid']:
+            if LANG in ('py', 'js', 'html') and option('runestone'):
                 # Allow runestone books to run hidden code blocks
-                # (replace pyhid by pycod, then remove all !bc *hid)
+                # (replace py-hid by pycod, then remove all !bc *-hid)
                 for i in range(len(code_block_types)):
                     if code_block_types[i] == key:
-                        code_block_types[i] = key.replace('hid', 'cod')
+                        code_block_types[i] = key.replace('-hid', 'cod')
 
                 key2language = dict(py='python', js='javascript', html='html')
-                language = key2language[key.replace('hid', '')]
+                language = key2language[key.replace('-hid', '')]
                 include = ', '.join([i for i in range(1, activecode_counter)])
                 filestr = re.sub((code_block_regex % key,
                                   '.. activecode:: activecode_\n'
@@ -464,11 +466,10 @@ def sphinx_code(filestr, code_blocks, code_block_types,
             else:
                 # Remove hidden code block
                 pattern = r'^!bc\s+%s%s\n.+?^!ec' % (key, postfix_regex)
-                filestr = re.sub(pattern, '', filestr,
-                                 flags=re.MULTILINE|re.DOTALL)
+                filestr = re.sub(pattern, '', filestr, flags=re.MULTILINE|re.DOTALL)
         else:
             show_hide = False
-            LANG, codetype, postfix = get_code_block_args('!bc ' + key)
+            LANG, codetype, postfix, postfix_err = get_code_block_args('!bc ' + key)
             if len(postfix):
                 key_orig = key
                 key = key[:-len(postfix)]
@@ -528,7 +529,6 @@ def sphinx_code(filestr, code_blocks, code_block_types,
 
 
     # Final fixes
-
     filestr = fix_underlines_in_headings(filestr)
     # Ensure blank line before and after comments
     filestr = re.sub(r'([.:;?!])\n^\.\. ', r'\g<1>\n\n.. ',

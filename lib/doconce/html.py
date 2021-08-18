@@ -1596,17 +1596,18 @@ def format_code_html(code_block, code_block_type, code_style, postfix='', execut
     The output `code_style` is a style e.g. from `--pygments_html_style`.
     The output `execute` is a boolean indicating whether
     the code should be executed.
+    The output `postfix_err` is the error handling postfix.
     :param str code_block: code
     :param str code_block_type: block type e.g. 'pycod-e'
     :param code_style: any style from e.g. pygments
-    :return: formatted_code, comment, execute, show
-    :rtype: Tuple[str, str, bool, str]
+    :return: formatted_code, comment, execute, show, postfix_err
+    :rtype: Tuple[str, str, bool, str, str]
     """
     formatted_code = ''
     comment = ''
+    LANG, codetype, postfix, postfix_err = code_block_type
     if show == 'hide':
-        return formatted_code, comment, execute, show
-    LANG, codetype, postfix = code_block_type
+        return formatted_code, comment, execute, show, postfix_err
     # Format code based on `show` and its code type
     if LANG == 'pyopt' and codetype == 'pro':
         formatted_code = online_python_tutor(code_block, return_tp='iframe')
@@ -1657,7 +1658,7 @@ def format_code_html(code_block, code_block_type, code_style, postfix='', execut
         formatted_code = code_block.replace('"', '&quot;')
         execute = False
         show = 'pre'
-    return formatted_code, comment, execute, show
+    return formatted_code, comment, execute, show, postfix_err
 
 
 def format_cell_html(formatted_code, formatted_output, execution_count, show):

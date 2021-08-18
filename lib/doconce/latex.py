@@ -341,8 +341,10 @@ def latex_code(filestr, code_blocks, code_block_types,
         from_to = [
             # equation refs
             (r'(\(ref\{.+?\}\))-(\(ref\{.+?\}\))', r'\g<1>--\g<2>'),
-            # like Navier-Stokes, but not `Q-1`
-            (r'([^$`\\/{!][A-Za-z]{2,})-([^\\/{][A-Za-z]{2,}[^`$/}])', r'\g<1>--\g<2>'),
+            # like Navier-Stokes, but not `Q-1` nor postfixes e.g. `py-hid`
+            (r'([^$`\\/{!][A-Za-z]{2,})-' +
+             r'(?!' + '|'.join(globals.postfix_code_block + [globals.postfix_err]) + ')' +
+             r'([^\\/{][A-Za-z]{2,}[^`$/}])', r'\g<1>--\g<2>'),
             # single - at end of line
             (r' +-$', ' --'),
             # single - at beginning of line
@@ -499,7 +501,7 @@ def latex_code(filestr, code_blocks, code_block_types,
         has_custom_pygments_lexer('doconce')
     envirs += get_legal_pygments_lexers()
     for envir in code_block_types:
-        if envir and not envir.endswith('hid'):
+        if envir and not envir.endswith('-hid'):
             if envir not in envirs:
                 errwarn('Warning: found "!bc %s", but %s is not a standard predefined '
                         'code environment' % (envir, envir))
@@ -964,20 +966,22 @@ def format_code_latex(code_block, code_block_type, code_style, postfix='', execu
     The output `code_style` is a style e.g. from `--pygments_html_style`.
     The output `execute` is a boolean indicating whether
     the code should be executed.
+    The output `postfix_err` is the error handling postfix.
     :param str code_block: code
     :param str code_block_type: block type e.g. 'pycod-e'
     :param code_style: any style from e.g. `--latex_code_style`
-    :return: formatted_code, comment, execute, show
-    :rtype: Tuple[str, str, bool, str]
+    :return: formatted_code, comment, execute, show, postfix_err
+    :rtype: Tuple[str, str, bool, str, bool]
     """
     formatted_code = ''
     comment = ''
+    LANG, codetype, postfix, postfix_err = code_block_type
     if show == 'hide':
-        return formatted_code, comment, execute, show
+        return formatted_code, comment, execute, show, postfix_err
     # Format the code
     begin, end = jupyter_execution.formatted_code_envir(code_block_type, code_style, 'latex')
     formatted_code = begin + '\n' + code_block + '\n' + end
-    return formatted_code, comment, execute, show
+    return formatted_code, comment, execute, show, postfix_err
 
 
 def format_cell_latex(formatted_code, formatted_output, execution_count, show):

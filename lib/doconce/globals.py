@@ -50,16 +50,18 @@ LANG = list(envir2syntax.keys())
 # Additional envirs in the .ptex2tex.cfg file as of June 2012.
 # Recall that the longest names must come first to be substituted first e.g. bccod before bcc
 # Postfixes allowed on code blocks e.g. `pycod-e` and regex to catch them
-postfix_code_block = ['hid', '-h', '-e', '-t', 'out']
+postfix_code_block = ['-hid', '-h', '-e', '-t', '-out', 'hid', 'out']
+postfix_err = '-err'
 # Code block regex pattern
 # '[\w]*?' (any word, non greedy) takes care of additional envirs in the .ptex2tex.cfg file
 pattern_code_block = r'^!bc\s' + \
           '(?:(?P<language>' + '|'.join(LANG + ['[\w]*?']) + ')?)' + \
           '(?P<type>' + '|'.join(['', 'cod', 'pro']) + ')' + \
           '(?:(?P<postfix>' + '|'.join(postfix_code_block) + ')?)' + \
+          '(?:(?P<postfix_err>' + postfix_err + ')?)' + \
           '\s*$'
 # Code block regex pattern to be used with %s, see e.g. pandoc, sphinx, mwiki
-postfix_regex = '(?:' + '|'.join(postfix_code_block) + '|)'
+postfix_regex = '(?:' + '|'.join(postfix_code_block) + '|)' + '(?:' + postfix_err + ')?'
 code_block_regex = r'^!bc\s+%s' + postfix_regex + '\s*\n'
 
 main_content_char = '-'

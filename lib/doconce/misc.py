@@ -5959,7 +5959,7 @@ def ipynb2doconce():
             source = cell['source']
             # Remove % (matplotlib) directives from source
             source = re.sub('^%.+\n', '', source, flags=re.MULTILINE).strip()
-            s = '\n!bc py' + ('hid' if collapsed else 'cod') + '\n' + source + '\n!ec\n'
+            s = '\n!bc py' + ('-hid' if collapsed else 'cod') + '\n' + source + '\n!ec\n'
 
             # include LaTeX output if present
             for output in cell['outputs']:
