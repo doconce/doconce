@@ -307,8 +307,8 @@ def process_code_blocks(filestr, code_style, format):
     kernel_client = {}
     for i in range(len(lines)):
         if lines[i].startswith('!bc'):
-            LANG, codetype, postfix = get_code_block_args(lines[i])
-            current_code_envir = LANG + codetype + postfix or 'dat'
+            LANG, codetype, postfix, postfix_err = get_code_block_args(lines[i])
+            current_code_envir = LANG + codetype + postfix + postfix_err or 'dat'
             prog = envir2syntax.get(LANG, '')
             lines[i] = ""
         elif lines[i].startswith('!ec'):
@@ -316,7 +316,7 @@ def process_code_blocks(filestr, code_style, format):
             lines[i] = ''
             # Determine if the code should be executed, shown, and format it
             # The globals.py > syntax_executable var lists all supported languages
-            formatted_code, comment, execute, show = format_code(current_code,
+            formatted_code, comment, execute, show, postfix_err = format_code(current_code,
                                                                  current_code_envir,
                                                                  code_style,
                                                                  format)
@@ -333,7 +333,7 @@ def process_code_blocks(filestr, code_style, format):
                     if kernel_client[prog].is_alive():
                         formatted_output, execution_count_, error = execute_code_block(
                             current_code=current_code,
-                            current_code_envir=current_code_envir,
+                            current_code_envir=current_code_envir, # LANG + codetype + postfix + postfix_err
                             kernel_client=kernel_client[prog],
                             format=format,
                             code_style=code_style,
@@ -350,7 +350,7 @@ def process_code_blocks(filestr, code_style, format):
                     errwarn('*** error: Error in code block:')
                     errwarn('    %s' % error)
                     errwarn('***')
-                    if misc.option('execute=') == 'abort':
+                    if misc.option('execute=') == 'abort'and not postfix_err:
                         _abort()
             # Format a code cell and its output
             if show != 'hide':
@@ -379,13 +379,36 @@ def process_code_blocks(filestr, code_style, format):
     return filestr
 
 
+def check_errors_in_code_output(outputs):
+    """Check if an executed code block resulted in an error
+
+    :param List[str] outputs: execution output
+    :return: error
+    :rtype: str
+    """
+    error = ''
+    # Extract any code error
+    for output in outputs:
+        ## Extract any code error
+        if 'output_type' in output and output['output_type'] == 'error':
+            traceback = ''
+            ansi_escape = re.compile(r'\x1b[^m]*m')
+            if "traceback" in output:
+                traceback = "\n".join(output["traceback"])
+                # Escape characters
+                traceback = ansi_escape.sub("", traceback)
+            error = unescape(traceback) or 'block #%d' % execution_count
+            break
+    return error
+
+
 def execute_code_block(current_code, current_code_envir, kernel_client, format, code_style='', caption=None, label=None):
     """
     Execute a code block and return it formatted together with any code output
 
     Execute a code block in a jupyter kernel, process the code's output and return a formatted string
-    :param str current_code: line of
-    :param str current_code_envir:
+    :param str current_code: code block
+    :param str current_code_envir: LANG + codetype + postfix + postfix_err
     :param JupyterKernelClient kernel_client: instance of JupyterKernelClient
     :param str format: output formatting, one of ['html', 'latex', 'pdflatex']
     :param str code_style: optional typesetting of code blocks
@@ -394,21 +417,23 @@ def execute_code_block(current_code, current_code_envir, kernel_client, format, 
     """
     text_out = ''
     execution_count = 0
-    error = ''
+    LANG, codetype, postfix, postfix_err = get_code_block_args('!bc ' + current_code_envir)
     # Execute the code
     if kernel_client is None or not kernel_client.is_alive():
         return text_out, execution_count
-    elif current_code_envir.endswith('out'):      # Output cell
+    elif postfix == '-out':      # Output cell
         # Skip executing the code
         outputs = [{'text': current_code}]
     else:
         outputs, execution_count = kernel_client.run_cell(current_code)
+    # Extract any error in code
+    error = check_errors_in_code_output(outputs)
     # Process the output from execution
-    if current_code_envir.endswith("hid"):      # Hide cell output
+    if postfix == '-hid':      # Hide cell output
         # Skip writing the output, except for ipynb
         if format != 'ipynb':
             outputs = []
-    elif current_code_envir.endswith("-e"):     # Hide also in ipynb
+    elif postfix == '-e':     # Hide also in ipynb
         # Skip writing the output even in ipynb
         outputs = []
     if len(outputs) > 0:
@@ -464,9 +489,6 @@ def execute_code_block(current_code, current_code_envir, kernel_client, format, 
                 if format in ['html']:
                     traceback = escape(traceback)
                 text_out += "\n{}\n{}{}".format(begin, traceback, end)
-            # Extract any code error
-            if 'output_type' in output and output['output_type'] == 'error':
-                error = unescape(traceback) or 'block #%d' % execution_count
     return text_out, execution_count, error
 
 
@@ -483,21 +505,21 @@ def format_code(code_block, code_block_type, code_style, format):
     :return: formatted_code, comment, execute, show (see the invoked function)
     :rtype: Tuple[str, str, bool, str]
     """
-    LANG, codetype, postfix = get_code_block_args('!bc ' + code_block_type)
+    LANG, codetype, postfix, postfix_err = get_code_block_args('!bc ' + code_block_type)
     execute, show = get_execute_show((LANG, codetype, postfix))
     if format in ['latex', 'pdflatex']:
         from .latex import format_code_latex
-        return format_code_latex(code_block, (LANG, codetype, postfix), code_style, postfix, execute, show)
+        return format_code_latex(code_block, (LANG, codetype, postfix, postfix_err), code_style, postfix, execute, show)
     elif format in ['html']:
         from .html import format_code_html
-        return format_code_html(code_block, (LANG, codetype, postfix), code_style, postfix, execute, show)
+        return format_code_html(code_block, (LANG, codetype, postfix, postfix_err), code_style, postfix, execute, show)
 
 
 def get_execute_show(envir):
     """Return whether the code should be executed and showed
 
     Based on the postfix (e.g. '-e') on a code environment (e.g. 'pycod-e'),
-    return whether the code should be executed and shown.
+    return whether the code should be executed and shown in the output file.
     The output `show` is one of ['format','pre','hide','text','output','html'].
     :param tuple[str, str, str] envir: code blocks arguments e.g. ('py','cod','-h')
     :return: execute, show
@@ -509,13 +531,13 @@ def get_execute_show(envir):
     show = 'format'
     if postfix == '-h':     # Show/Hide button (in html)
         execute = False
-    elif postfix == 'hid':  # Hide the cell
+    elif postfix == '-hid': # Hide the cell
         execute = True
         show = 'hide'
     elif postfix == '-e':   # Hide also in ipynb
         execute = True
         show = 'hide'
-    elif postfix == 'out':  # Output cell
+    elif postfix == '-out': # Output cell
         execute = True      # execute_code_block will render this as code output
         show = 'output'
     elif postfix == '-t':   # Code as text
@@ -584,9 +606,9 @@ def html_code_envir(envir, envir_spec):
     :rtype: [str, str]
     """
     begin, end = '<pre>', '</pre>'
-    if envir_spec.endswith("out") and option("ignore_output"):
+    if envir_spec.endswith('-out') and option('ignore_output'):
         begin, end = '',''
-    elif envir_spec.endswith("-e"):
+    elif envir_spec.endswith('-e'):
         begin, end = '',''
     return begin, end
 
@@ -604,9 +626,9 @@ def latex_code_envir(envir, envir_spec):
     """
     if envir_spec is None:
         return '\\b' + envir[0] + envir[1], '\\e' + envir[0] + envir[1]
-    elif envir[2].endswith("out") and option("ignore_output"):
+    elif envir[2].endswith('-out') and option('ignore_output'):
         return '',''
-    elif envir[2].endswith("-e"):
+    elif envir[2].endswith('-e'):
         return '',''
     # Untested old code in the case --latex_code_style is used
     envir = ''.join(envir)

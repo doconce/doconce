@@ -14,7 +14,7 @@ from .pandoc import pandoc_ref_and_label, pandoc_index_bib, pandoc_quote, \
      language2pandoc, pandoc_quiz
 from .misc import _doconce_header, _doconce_command, option, errwarn, _abort
 from doconce import globals
-from . import jupyter_execution
+from .jupyter_execution import JupyterKernelClient, get_code_block_args, get_execute_show, check_errors_in_code_output
 
 try:
     from nbformat.v4 import new_code_cell, new_markdown_cell, new_notebook, new_output
@@ -403,7 +403,8 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     else:
         split_pyshell = True
 
-    ipynb_code_tp = [None]*len(code_blocks)
+    ipynb_code_type = [None]*len(code_blocks)
+    ipynb_code_postfix_err = [''] * len(code_blocks)
     for i in range(len(code_blocks)):
         # Check if continuation lines are in the code block, because
         # doconce.py inserts a blank after the backslash
@@ -418,17 +419,19 @@ def ipynb_code(filestr, code_blocks, code_block_types,
             code_blocks[i] = '%matplotlib inline\n\n' + code_blocks[i]
             mpl_inline = True
 
-        tp = code_block_types[i]
-        if tp.endswith('-t'):
+        code_block_type = code_block_types[i]
+        LANG, codetype, postfix, postfix_err = get_code_block_args('!bc ' + code_block_type)
+        ipynb_code_postfix_err[i] = postfix_err
+        if postfix == '-t':
             # Standard Markdown code with pandoc/github extension
-            language = tp[:-2]
+            language = code_block_type[:-2]
             language_spec = language2pandoc.get(language, '')
             #code_blocks[i] = '\n' + indent_lines(code_blocks[i], format) + '\n'
             code_blocks[i] = "```%s\n" % language_spec + \
                              indent_lines(code_blocks[i].strip(), format) + \
                              "```"
-            ipynb_code_tp[i] = 'markdown'
-        elif tp.startswith('pyshell') or tp.startswith('ipy'):
+            ipynb_code_type[i] = 'markdown'
+        elif LANG in ['pyshell', 'ipy']:
             lines = code_blocks[i].splitlines()
             last_cell_end = -1
             if split_pyshell:
@@ -448,7 +451,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
                             '\n'.join(lines[last_cell_end+1:j+1]))
                         last_cell_end = j
                 code_blocks[i] = new_code_blocks
-                ipynb_code_tp[i] = 'cell'
+                ipynb_code_type[i] = 'cell'
             else:
                 # Remove prompt and output lines; leave code executable in cell
                 for j in range(len(lines)):
@@ -463,8 +466,8 @@ def ipynb_code(filestr, code_blocks, code_block_types,
                 for j in range(lines.count('')):
                     lines.remove('')
                 code_blocks[i] = '\n'.join(lines)
-                ipynb_code_tp[i] = 'cell'
-        elif tp.startswith('sys'):
+                ipynb_code_type[i] = 'cell'
+        elif LANG == 'sys':
             # Do we find execution of python file? If so, copy the file
             # to separate subdir and make a run file command in a cell.
             # Otherwise, it is just a plain verbatim Markdown block.
@@ -484,24 +487,18 @@ def ipynb_code(filestr, code_blocks, code_block_types,
             if src_paths and not found_unix_lines:
                 # This is a sys block with run commands only
                 code_blocks[i] = '\n'.join(lines)
-                ipynb_code_tp[i] = 'cell'
+                ipynb_code_type[i] = 'cell'
             else:
                 # Standard Markdown code
                 code_blocks[i] = '\n'.join(lines)
                 code_blocks[i] = indent_lines(code_blocks[i], format)
-                ipynb_code_tp[i] = 'markdown'
-        elif tp.endswith("-e"):
-            ipynb_code_tp[i] = 'cell_execute_hidden'
-        elif tp.endswith('hid'):
-            ipynb_code_tp[i] = 'cell_hidden'
-        elif tp.endswith('out'):
-            ipynb_code_tp[i] = 'cell_output'
-        elif tp.startswith('py'):
-            ipynb_code_tp[i] = 'cell'
+                ipynb_code_type[i] = 'markdown'
+        elif LANG.startswith('py'):
+            ipynb_code_type[i] = 'cell'
         else:
             # Should support other languages as well, but not for now
             code_blocks[i] = indent_lines(code_blocks[i], format)
-            ipynb_code_tp[i] = 'markdown'
+            ipynb_code_type[i] = 'markdown'
 
     # figure_files and movie_files are global variables and contain
     # all figures and movies referred to
@@ -528,6 +525,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     markers2rm.append(INLINE_TAGS_SUBST[format]['comment'] % envir_delimiter_lines['subex'][1])
     markers2rm.append(INLINE_TAGS_SUBST[format]['comment'] % envir_delimiter_lines['exercise'][0])
     markers2rm.append(INLINE_TAGS_SUBST[format]['comment'] % envir_delimiter_lines['exercise'][1])
+    notebook_block_envir = code_block_types
     for line in filestr.splitlines():
         if line == '':
             notebook_blocks[-1].append('\n')
@@ -542,10 +540,17 @@ def ipynb_code(filestr, code_blocks, code_block_types,
             # Remove the markers for begin/end of exercises and subexercises
             notebook_blocks[-1].append('\n')
         elif _CODE_BLOCK in line:
-            code_block_tp = line.split()[-1]
-            if code_block_tp in ('pyhid',) or not code_block_tp.endswith('hid'):
+            # Do not write block with `-hid` postfix except `py-hid`, which is a collapsed block
+            LANG, codetype, postfix, postfix_err = get_code_block_args('!bc ' + line.split()[-1])
+            if not postfix == '-hid' or (LANG == 'py' and postfix == '-hid'):
                 notebook_blocks.append([line])
                 notebook_blocks.append([])
+            else:
+                # mark block type for removal
+                pattern = r'(\d+) +%s'
+                m = re.match(pattern % _CODE_BLOCK, line)
+                idx = int(m.group(1))
+                notebook_block_envir[idx] = 'remove'
         elif _MATH_BLOCK in line:
             notebook_blocks.append([line])
             notebook_blocks.append([])
@@ -566,18 +571,38 @@ def ipynb_code(filestr, code_blocks, code_block_types,
 
     # Add block type info
     pattern = r'(\d+) +%s'
+    notebook_block_types = [''] * len(notebook_blocks)
+    # Description of relevant variables
+    # notebook_blocks :         ['Some text', 'import sys', 'print(sys.version)', 'x <- 1:6']
+    # notebook_block_types :    ['text', 'code', 'code', 'code']
+    # notebook_block_envir :    ['py-hid', 'py-err']
     for i in range(len(notebook_blocks)):
         if re.match(pattern % _CODE_BLOCK, notebook_blocks[i]):
             m = re.match(pattern % _CODE_BLOCK, notebook_blocks[i])
             idx = int(m.group(1))
-            if ipynb_code_tp[idx].startswith('cell'):
-                notebook_blocks[i] = [ipynb_code_tp[idx], notebook_blocks[i]]
+            if ipynb_code_type[idx] == 'cell':
+                notebook_block_types[i] = ipynb_code_type[idx]
             else:
-                notebook_blocks[i] = ['text', notebook_blocks[i]]
+                notebook_block_types[i] = 'text'
+                # mark block type for removal
+                notebook_block_envir[idx] = 'remove'
         elif re.match(pattern % _MATH_BLOCK, notebook_blocks[i]):
-            notebook_blocks[i] = ['math', notebook_blocks[i]]
+            notebook_block_types[i] = 'math'
         else:
-            notebook_blocks[i] = ['text', notebook_blocks[i]]
+            notebook_block_types[i] = 'text'
+
+    # Remove some block environments: text (`-t` postfix) and unsupported/hidden formats (e.g. `f-hid`)
+    notebook_block_envir = list(filter(lambda env: env != 'remove', notebook_block_envir))
+
+    # Sanity check - issue 193
+    if len(notebook_blocks) != len(notebook_block_types):
+        errwarn('*** error: internal error')
+        errwarn('    each code block should have a type')
+        _abort()
+    elif len(notebook_block_envir) != len([t for t in notebook_block_types if t == 'cell']):
+        errwarn('*** error: internal error')
+        errwarn('    each code block should have a code environment')
+        _abort()
 
     # Go through tex_blocks and wrap math blocks in $$
     # (doconce.py runs align2equations so there are no align/align*
@@ -634,77 +659,93 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     # blocks is now a list of text chunks in markdown and math/code line
     # instructions. Insert code and tex blocks
     for i in range(len(notebook_blocks)):
-        if _CODE_BLOCK in notebook_blocks[i][1] or _MATH_BLOCK in notebook_blocks[i][1]:
-            words = notebook_blocks[i][1].split()
+        if _CODE_BLOCK in notebook_blocks[i] or _MATH_BLOCK in notebook_blocks[i]:
+            words = notebook_blocks[i].split()
             # start of notebook_blocks[i]: number block-indicator code-type
             n = int(words[0])
-            if _CODE_BLOCK in notebook_blocks[i][1]:
-                notebook_blocks[i][1] = code_blocks[n]  # can be list!
-            if _MATH_BLOCK in notebook_blocks[i][1]:
-                notebook_blocks[i][1] = tex_blocks[n]
+            if _CODE_BLOCK in notebook_blocks[i]:
+                notebook_blocks[i] = code_blocks[n]  # can be list!
+            if _MATH_BLOCK in notebook_blocks[i]:
+                notebook_blocks[i] = tex_blocks[n]
 
     # Prepend the doconce header and command to the first text cell
     intro = _doconce_header + '\n'
     intro += _doconce_command % ('ipynb', globals.filename, ' '.join(sys.argv[1:]))
     intro = INLINE_TAGS_SUBST[format]['comment'] % intro + '\n\n'
-    ind = next((i for i, type in enumerate(notebook_blocks) if type[0] == 'text'), -1)
+    ind = next((i for i, type in enumerate(notebook_block_types) if type == 'text'), -1)
     if ind > -1:
-        notebook_blocks[ind][1] = intro + notebook_blocks[ind][1]
+        notebook_blocks[ind] = intro + notebook_blocks[ind]
 
     global new_code_cell, new_markdown_cell, new_notebook, new_output
     cells = []              # ipynb cells
-    mdstr = []              # plain md format of the notebook
+    #mdstr = []             # plain md format of the notebook
     execution_count = 1
     kernel_client = None    # Placeholder for a JupyterKernelClient instance
     if option("execute"):
-        kernel_client = jupyter_execution.JupyterKernelClient(syntax='python')
+        kernel_client = JupyterKernelClient(syntax='python')
     editable_md = True      # Metadata for md text
     if option('ipynb_non_editable_text'):
         editable_md = False
 
-    for block_tp, block in notebook_blocks:
+    j = 0
+    for i, block in enumerate(notebook_blocks):
+        block_tp = notebook_block_types[i]
         if (block_tp == 'text' or block_tp == 'math') and block != '' and block != '<!--  -->':
             block = re.sub(r"caption\{(.*)\}", r"*Figure: \1*", block)
             cells.append(new_markdown_cell(source=block, metadata=dict(editable=editable_md)))
-            mdstr.append(('markdown', block))
-        elif block_tp == 'cell_output' and block != '' and not option("ignore_output"):
-            # Process cells with block type cell_output (*out)
-            block = block.rstrip()
-            outputs = [
-                new_output(
-                    output_type="execute_result",
-                    data={
-                        "text/plain": [
-                            block
-                          ]
-                    },
-                    execution_count=execution_count-1
-                )
-            ]
-            previous_cell = cells[-1]
-            if previous_cell.cell_type == "code":
-                previous_cell.outputs = outputs
+            #mdstr.append(('markdown', block))
+        elif block_tp == 'cell':
+            # TODO: now I need to handle -hid also in 'markdown' type. actually the logic on postfixes should be separated from LANG
+            LANG, codetype, postfix, postfix_err = get_code_block_args('!bc ' + notebook_block_envir[j])
+            j += 1
+            execute, show = get_execute_show((LANG, codetype, postfix))
+            current_code_envir = LANG + codetype + postfix + postfix_err or 'dat'
+            if show == 'output' and block != '' and not option('ignore_output'):
+                # Process cells with output block type (`-out` postfix)
+                block = block.rstrip()
+                outputs = [
+                    new_output(
+                        output_type="execute_result",
+                        data={
+                            "text/plain": [
+                                block
+                              ]
+                        },
+                        execution_count=execution_count-1
+                    )
+                ]
+                previous_cell = cells[-1]
+                if previous_cell.cell_type == "code":
+                    previous_cell.outputs = outputs
+                else:
+                    print("WARNING: DocOnce ipynb got code output,",
+                          "but previous was not code.")
+                    cell = new_code_cell(
+                        source="#",
+                        outputs=outputs,
+                        execution_count=execution_count,
+                        metadata=dict(collapsed=False)
+                    )
+                    cells.append(cell)
+                    #mdstr.append(('codecell', block))
             else:
-                print("WARNING: DocOnce ipynb got code output,",
-                      "but previous was not code.")
-                cell = new_code_cell(
-                    source="#",
-                    outputs=outputs,
-                    execution_count=execution_count,
-                    metadata=dict(collapsed=False)
-                )
-                cells.append(cell)
-                mdstr.append(('codecell', block))
-        elif block_tp.startswith('cell'):
-            # Process cells with block type cell (py*), cell_execute_hidden (*-e), cell_hidden (*hid)
-            execution_count, md_out, error = process_ipynb_code_block(kernel_client, block, block_tp, cells, execution_count)
-            # Warn and abort on code errors
-            if error != '':
-                errwarn('*** error: Error in code block:')
-                errwarn('    %s' % error)
-                if option('execute=') == 'abort':
-                    _abort()
-            mdstr.extend(md_out)
+                # Process cells with block type cell (py*), (*-e), (*-hid)
+                cells_output, execution_count, error = execute_code_block(block,
+                                                                  current_code_envir,
+                                                                  kernel_client,
+                                                                  execution_count)
+                # Warn and abort on code errors
+                if error != '':
+                    errwarn('*** error: Error in code block:')
+                    errwarn('    %s' % error)
+                    if option('execute=') == 'abort' and not postfix_err:
+                        _abort()
+                # Add the cell, except when the `-e` postfix is used. `-hid` is just a collapsed cell
+                if postfix != '-e':
+                    #mdstr.extend(md_out)
+                    for cell in cells_output:
+                        if cell:
+                            cells.append(cell)
 
     # Create the notebook in string format
     nb = new_notebook(cells=cells)
@@ -785,14 +826,29 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     return filestr
 
 
-def process_ipynb_code_block(kernel_client, block, block_tp, cells, execution_count):
-    md_out = []
+def execute_code_block(block, current_code_envir, kernel_client, execution_count):
+    """Execute a code block and return the ipynb output
+
+    Execute a code block in a jupyter kernel. Return the ipynb output for the ipynb format
+    together with the execution count and any code error
+    :param str block: code block
+    :param str current_code_envir: code environment LANG + codetype + postfix + postfix_err
+    :param JupyterKernelClient kernel_client: instance of JupyterKernelClient
+    :param int execution_count: execution count in the rendered cell
+    :return: notebook cells, execution_count, error
+    :rtype List[NotebookNode], int, str
+    """
+    #md_out = []
+    cell = None
+    cells = []
     error = ''
     editable = True
     collapsed = False
     if option('ipynb_non_editable_code'):
-        editable=False
-    if block_tp == 'cell_hidden':
+        editable = False
+    LANG, codetype, postfix, postfix_err = get_code_block_args('!bc ' + current_code_envir)
+    # The `-hid` postfix collapses the cell
+    if postfix == '-hid':
         collapsed = True
     # Start processing the block
     if not isinstance(block, list):
@@ -805,11 +861,10 @@ def process_ipynb_code_block(kernel_client, block, block_tp, cells, execution_co
             execution_count=execution_count,
             metadata=dict(editable=editable, collapsed=collapsed)
         )
-        if block_tp != 'cell_execute_hidden':
-            cells.append(cell)
         if option("execute"):
             outputs, execution_count_out = kernel_client.run_cell(blockline)
-            # Extract any code error
+            # Extract any error in code
+            error = check_errors_in_code_output(outputs)
             for output in outputs:
                 if output['output_type'] == 'error':
                     traceback = ''
@@ -819,12 +874,14 @@ def process_ipynb_code_block(kernel_client, block, block_tp, cells, execution_co
                         # Escape characters
                         traceback = ansi_escape.sub("", traceback)
                     error = traceback or 'block #%d' % execution_count
+                    break
             cell.outputs = outputs
             if execution_count_out:
                 cell["execution_count"] = execution_count_out
+        cells.append(cell)
         execution_count += 1
-        md_out.append(('codecell', blockline))
-    return execution_count, md_out, error
+        #md_out.append(('codecell', blockline))
+    return cells, execution_count, error #, md_out
 
 
 def ipynb_index_bib(filestr, index, citations, pubfile, pubdata):
