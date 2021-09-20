@@ -105,7 +105,7 @@ class JupyterKernelClient:
         # wait for finish, with timeout
         while True:
             try:
-                msg = self.client.shell_channel.get_msg(timeout=timeout)
+                msg = self.client.get_shell_msg(timeout=timeout)
             except Empty:
                 print("Timeout waiting for execute reply", timeout)
                 print("Tried to run the following source:\n{}".format(source))
@@ -131,7 +131,7 @@ class JupyterKernelClient:
                 # in certain CI systems, waiting < 1 second might miss messages.
                 # So long as the kernel sends a status:idle message when it
                 # finishes, we won't actually have to wait this long, anyway.
-                msg = self.client.iopub_channel.get_msg(timeout=5)
+                msg = self.client.get_iopub_msg()
             except Empty:
                 if misc.option('verbose-execute'):
                     print("Timeout waiting for IOPub output")
