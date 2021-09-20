@@ -32,7 +32,8 @@ setuptools.setup(
         'publish-doconce',
         'requests',
         'nbformat',
-        'jupyter_client'
+        'jupyter_client',
+        'regex'
         ],
     #data_files=[(os.path.join("share", "man", "man1"),[man_filename,]),],
     package_data = {'': ['sphinx_themes.zip', 'html_images.zip', 'reveal.js.zip', 'deck.js-latest.zip', 'csss.zip', 'latex_styles.zip']},
