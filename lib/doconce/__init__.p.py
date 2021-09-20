@@ -5,7 +5,7 @@
 '''
 from __future__ import absolute_import
 
-__version__ = '1.5.11'
+__version__ = '1.5.12'
 version = __version__
 __author__ = 'Hans Petter Langtangen', 'Alessandro Marin', 'Johannes H. Ring', 'Kristian Gregorius Hustad'
 author = __author__
