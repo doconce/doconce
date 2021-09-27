@@ -736,7 +736,10 @@ def ipynb_code(filestr, code_blocks, code_block_types,
                                                                   execution_count)
                 # Warn and abort on code errors
                 if error != '':
-                    errwarn('*** error: Error in code block:')
+                    if option('execute=') == 'abort':
+                        errwarn('*** error: Error in code block:')
+                    else:
+                        errwarn('*** Warning: found error in code block:')
                     errwarn('    %s' % error)
                     if option('execute=') == 'abort' and not postfix_err:
                         _abort()

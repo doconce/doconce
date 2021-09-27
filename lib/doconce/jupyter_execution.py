@@ -347,10 +347,13 @@ def process_code_blocks(filestr, code_style, format):
                                            format=format)
                 # Warn and abort on code errors
                 if error != '':
-                    errwarn('*** error: Error in code block:')
+                    if misc.option('execute=') == 'abort':
+                        errwarn('*** error: Error in code block:')
+                    else:
+                        errwarn('*** Warning: found error in code block:')
                     errwarn('    %s' % error)
                     errwarn('***')
-                    if misc.option('execute=') == 'abort'and not postfix_err:
+                    if misc.option('execute=') == 'abort' and not postfix_err:
                         _abort()
             # Format a code cell and its output
             if show != 'hide':
