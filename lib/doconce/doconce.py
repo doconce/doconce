@@ -2070,7 +2070,7 @@ def grep_envir(filestr, envir, format, action='remove', reason=''):
                     cell_lines = cell['source'].split('\n')
                     cell_lines.pop(j)
                     cell['source'] = '\n'.join(cell_lines)
-                    if len(cell_lines) == 0:
+                    if ''.join(cell_lines) == '':
                         nb_dict['cells'].pop(i)
                 filestr = nbformat.writes(nb_dict, 4)
         else:

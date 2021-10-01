@@ -382,7 +382,7 @@ def process_code_blocks(filestr, code_style, format):
     return filestr
 
 
-def check_errors_in_code_output(outputs):
+def check_errors_in_code_output(outputs, execution_count):
     """Check if an executed code block resulted in an error
 
     :param List[str] outputs: execution output
@@ -430,7 +430,7 @@ def execute_code_block(current_code, current_code_envir, kernel_client, format, 
     else:
         outputs, execution_count = kernel_client.run_cell(current_code)
     # Extract any error in code
-    error = check_errors_in_code_output(outputs)
+    error = check_errors_in_code_output(outputs, execution_count)
     # Process the output from execution
     if postfix == '-hid':      # Hide cell output
         # Skip writing the output, except for ipynb
