@@ -4,6 +4,7 @@ from builtins import range
 import sys, shutil, os
 import regex as re
 import shlex
+import hashlib
 from .common import default_movie, plain_exercise, table_analysis, indent_lines, \
     bibliography, fix_ref_section_chapter, cite_with_multiple_args2multiple_cites, \
     _CODE_BLOCK, _MATH_BLOCK, DEFAULT_ARGLIST, envir_delimiter_lines
@@ -84,7 +85,7 @@ def ipynb_author(authors_and_institutions, auth2index,
             s += ' at ' + ' & '.join(i)
         s += ' -->\n'
         # Add extra line between heading and first author
-        s+= '<!-- Author: -->  \n_%s_' % (author)  
+        s+= '<!-- Author: -->  \n_%s_' % (author)
         '''
         # Write the authors
         s += '_%s_' % (author)
@@ -749,6 +750,22 @@ def ipynb_code(filestr, code_blocks, code_block_types,
                     for cell in cells_output:
                         if cell:
                             cells.append(cell)
+    """
+    By default, each cell gets a random unique ID
+    (currently, `uuid.uuid4().hex[:8]` in nbformat/corpus/words.py)
+    To ensure cells do not change ID every time they are compiled,
+    replace this ID with a hash of the 'source' field.
+    If needed, add a running number to duplicates to ensure uniqueness.
+    """
+    hashed_ids = {} # dict of created hashes
+    for cell in cells:
+        hashed_id = hashlib.sha224(cell['source'].encode('utf-8')).hexdigest()[:8]
+        cell['id'] = hashed_id
+        if hashed_id in hashed_ids:
+            # append running number for each next one,
+            # use the current count for this hash to append _1, _2, ...
+            cell['id'] = hashed_id + "_" + str(hashed_ids[hashed_id])
+        hashed_ids[hashed_id] = hashed_ids.get(hashed_id, 0) + 1
 
     # Create the notebook in string format
     nb = new_notebook(cells=cells)
@@ -867,7 +884,7 @@ def execute_code_block(block, current_code_envir, kernel_client, execution_count
         if option("execute"):
             outputs, execution_count_out = kernel_client.run_cell(blockline)
             # Extract any error in code
-            error = check_errors_in_code_output(outputs)
+            error = check_errors_in_code_output(outputs, execution_count)
             for output in outputs:
                 if output['output_type'] == 'error':
                     traceback = ''
