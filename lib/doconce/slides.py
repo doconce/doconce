@@ -241,6 +241,9 @@ def slides_html():
         filestr = re.sub(r'<p>\n</section>', '</section>', filestr)
         filestr = re.sub(r'\s+</section>', '\n</section>', filestr)
 
+        # Remove figure captions
+        filestr = re.sub(r'<center>\n<p class=\"caption\">Figure .*</p>\n</center>', '', filestr)
+
         f = open(filename, 'w')
         f.write(filestr)
         f.close()
@@ -258,7 +261,7 @@ css_deck = ('\n'
             'body { overflow: auto; } /* vertical scrolling */\n'
             'hr { border: 0; width: 80%%; border-bottom: 1px solid #aaa}\n'
             'p.caption { width: 80%%; font-size: 60%%; font-style: italic; text-align: left; }\n'
-            'hr.figure { border: 0; width: 80%%; border-bottom: 1px solid #aaa}\n'
+            'hr.figure { border: 0; width: 80%%}\n'
             '.slide .alert-text-small   { font-size: 80%%;  }\n'
             '.slide .alert-text-large   { font-size: 130%%; }\n'
             '.slide .alert-text-normal  { font-size: 90%%;  }\n'
@@ -475,7 +478,7 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
                          '<style type="text/css">\n'
                          'hr { border: 0; width: 80%%; border-bottom: 1px solid #aaa}\n'
                          'p.caption { width: 80%%; font-size: 60%%; font-style: italic; text-align: left; }\n'
-                         'hr.figure { border: 0; width: 80%%; border-bottom: 1px solid #aaa}\n'
+                         'hr.figure { border: 0; width: 80%%}\n'
                          '.reveal .alert-text-small   { font-size: 80%%;  }\n'
                          '.reveal .alert-text-large   { font-size: 130%%; }\n'
                          '.reveal .alert-text-normal  { font-size: 90%%;  }\n'
