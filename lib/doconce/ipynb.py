@@ -867,7 +867,7 @@ def execute_code_block(block, current_code_envir, kernel_client, execution_count
         if option("execute"):
             outputs, execution_count_out = kernel_client.run_cell(blockline)
             # Extract any error in code
-            error = check_errors_in_code_output(outputs)
+            error = check_errors_in_code_output(outputs, execution_count)
             for output in outputs:
                 if output['output_type'] == 'error':
                     traceback = ''
