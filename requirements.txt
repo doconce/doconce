@@ -24,12 +24,12 @@ idna==2.10
 imagesize==1.2.0
 importlib-metadata==3.3.0
 ipykernel==5.4.2
-ipython==7.29.0
+ipython>=7.0.0
 ipython-genutils==0.2.0
 ipywidgets==7.5.1
 jedi==0.17.2
 Jinja2==2.11.2
-jsonschema==4.2.1
+jsonschema>=4.0.0
 jupyter==1.0.0
 jupyter-client==6.1.7
 jupyter-console==6.2.0
