@@ -12,6 +12,7 @@ defaults:
       shell: bash
 jobs:
   build:
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
