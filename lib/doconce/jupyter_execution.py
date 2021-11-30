@@ -132,7 +132,7 @@ class JupyterKernelClient:
                 # in certain CI systems, waiting < 1 second might miss messages.
                 # So long as the kernel sends a status:idle message when it
                 # finishes, we won't actually have to wait this long, anyway.
-                msg = self.client.get_iopub_msg()
+                msg = self.client.get_iopub_msg(timeout=5)
             except Empty:
                 if misc.option('verbose-execute'):
                     print("Timeout waiting for IOPub output")
