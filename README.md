@@ -79,7 +79,7 @@ For carrying out a comprehensive installation clone this repository
 on the local computer and run `pip install` in that directory:
 
 ```
-git clone git@github.com:doconce/doconce.git
+git clone --recurse-submodules git@github.com:doconce/doconce.git
 cd doconce
 pip install -r requirements.txt
 python setup.py install

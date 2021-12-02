@@ -743,6 +743,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
                     else:
                         errwarn('*** Warning: found error in code block:')
                     errwarn('    %s' % error)
+                    errwarn('***')
                     if option('execute=') == 'abort' and not postfix_err:
                         _abort()
                 # Add the cell, except when the `-e` postfix is used. `-hid` is just a collapsed cell
