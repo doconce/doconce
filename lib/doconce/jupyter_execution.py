@@ -31,6 +31,7 @@ class JupyterKernelClient:
         - Install the IJulia Jupyter kernel with `using Pkg; Pkg.add("IJulia");Pkg.build("IJulia")` in julia
         - Uninstall IJulia: `Pkg.rm("IJulia")` in julia, then `jupyter kernelspec uninstall mykernel`
         - Install the bash kernel: https://github.com/takluyver/bash_kernel
+        also make sure the bash_kernel package is installed: `pip install bash_kernel`
         - Install the IR kernel for R: https://irkernel.github.io/installation/
         after upgrading to R 3.4+: https://github.com/duckmayr/install-update-r-on-linux
         - List the currently installed kernels: jupyter kernelspec list
@@ -131,7 +132,7 @@ class JupyterKernelClient:
                 # in certain CI systems, waiting < 1 second might miss messages.
                 # So long as the kernel sends a status:idle message when it
                 # finishes, we won't actually have to wait this long, anyway.
-                msg = self.client.get_iopub_msg()
+                msg = self.client.get_iopub_msg(timeout=5)
             except Empty:
                 if misc.option('verbose-execute'):
                     print("Timeout waiting for IOPub output")

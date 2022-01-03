@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 from builtins import str
 from builtins import range
+import hashlib
 import sys, shutil, os
 import regex as re
 import shlex
@@ -696,7 +697,8 @@ def ipynb_code(filestr, code_blocks, code_block_types,
             cells.append(new_markdown_cell(source=block, metadata=dict(editable=editable_md)))
             #mdstr.append(('markdown', block))
         elif block_tp == 'cell':
-            # TODO: now I need to handle -hid also in 'markdown' type. actually the logic on postfixes should be separated from LANG
+            # TODO: now I need to handle -hid also in 'markdown' formats. The logic on postfixes should actually be
+            # separated from LANG
             LANG, codetype, postfix, postfix_err = get_code_block_args('!bc ' + notebook_block_envir[j])
             j += 1
             execute, show = get_execute_show((LANG, codetype, postfix))
@@ -742,6 +744,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
                     else:
                         errwarn('*** Warning: found error in code block:')
                     errwarn('    %s' % error)
+                    errwarn('***')
                     if option('execute=') == 'abort' and not postfix_err:
                         _abort()
                 # Add the cell, except when the `-e` postfix is used. `-hid` is just a collapsed cell
@@ -766,6 +769,13 @@ def ipynb_code(filestr, code_blocks, code_block_types,
             # use the current count for this hash to append _1, _2, ...
             cell['id'] = hashed_id + "_" + str(hashed_ids[hashed_id])
         hashed_ids[hashed_id] = hashed_ids.get(hashed_id, 0) + 1
+
+    # Replace the random id with a reproducible hash of the content (issue #213)
+    # nbformat 5.1.3 creates random cell ID with `uuid.uuid4().hex[:8]`
+    for i in range(len(cells)):
+        if 'id' in cell.keys():
+            cell_content = str(i) + cells[i]['source']
+            cells[i]['id'] = hashlib.sha224(cell_content.encode()).hexdigest()[:8]
 
     # Create the notebook in string format
     nb = new_notebook(cells=cells)
