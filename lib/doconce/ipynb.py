@@ -760,22 +760,21 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     replace this ID with a hash of the 'source' field.
     If needed, add a running number to duplicates to ensure uniqueness.
     """
-    hashed_ids = {} # dict of created hashes
-    for cell in cells:
-        hashed_id = hashlib.sha224(cell['source'].encode('utf-8')).hexdigest()[:8]
-        cell['id'] = hashed_id
-        if hashed_id in hashed_ids:
-            # append running number for each next one,
-            # use the current count for this hash to append _1, _2, ...
-            cell['id'] = hashed_id + "_" + str(hashed_ids[hashed_id])
-        hashed_ids[hashed_id] = hashed_ids.get(hashed_id, 0) + 1
-
     # Replace the random id with a reproducible hash of the content (issue #213)
     # nbformat 5.1.3 creates random cell ID with `uuid.uuid4().hex[:8]`
+    hashed_ids = {} # dict of created hashes
     for i in range(len(cells)):
         if 'id' in cell.keys():
-            cell_content = str(i) + cells[i]['source']
-            cells[i]['id'] = hashlib.sha224(cell_content.encode()).hexdigest()[:8]
+            cell_content = cells[i]['source']
+            hashed_id = hashlib.sha224(cell_content.encode()).hexdigest()[:8]
+            cells[i]['id'] = hashed_id
+            # check for dupliatce IDs
+            if hashed_id in hashed_ids:
+                # append running number for each next one,
+                # use the current count for this hash to append _1, _2, ...
+                cells[i]['id'] = hashed_id + "_" + str(hashed_ids[hashed_id])
+            # add to dict with existing IDs
+            hashed_ids[hashed_id] = hashed_ids.get(hashed_id, 0) + 1
 
     # Create the notebook in string format
     nb = new_notebook(cells=cells)
