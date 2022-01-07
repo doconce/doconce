@@ -764,7 +764,7 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     # nbformat 5.1.3 creates random cell ID with `uuid.uuid4().hex[:8]`
     hashed_ids = {} # dict of created hashes
     for i in range(len(cells)):
-        if 'id' in cell.keys():
+        if 'id' in cells[i].keys():
             cell_content = cells[i]['source']
             hashed_id = hashlib.sha224(cell_content.encode()).hexdigest()[:8]
             cells[i]['id'] = hashed_id
