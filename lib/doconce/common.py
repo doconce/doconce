@@ -1204,9 +1204,13 @@ def doconce_exercise_output(exer, solution_header = '__Solution.__', answer_head
         for i, subex in enumerate(exer['subex']):
             letter = string.ascii_lowercase[i]
             if subex['text']:
-                s += '\n#' + envir_delimiter_lines['subex'][0] + '\n'
-                s += '__%s)__\n' % letter
-                s += subex['text'] + '\n'
+                s += '\n#' + envir_delimiter_lines['subex'][0]
+            # Order the subexercise by letter
+            if len(exer['subex']) > 1:
+                s +=    '\n__%s)__\n' % letter
+                sol +=  '\n__%s)__\n' % letter
+            # Write the subexercise text
+            s += subex['text'] + '\n'
 
             for i, hint in enumerate(subex['hints']):
                 if len(subex['hints']) == 1 and i == 0:
@@ -1235,10 +1239,9 @@ def doconce_exercise_output(exer, solution_header = '__Solution.__', answer_head
                 # Similar to 'solution' above, but do not write solutions to main text
                 if exer['type'] != 'Example':
                     sol += '\n# ' + envir_delimiter_lines['ans_docend'][0] + '\n'
-                # Write subex letter and 'Answer.' in bold on the same line
+                # Write 'Answer.' in bold on the same line
                 sol += '\n#' + envir_delimiter_lines['subex'][0] + '\n'
-                sol += '__%s) ' % letter
-                sol += answer_header[2:] + '\n' + subex['ans_docend'] + '\n'
+                sol += answer_header + '\n' + subex['ans_docend'] + '\n'
                 if exer['type'] != 'Example':
                     sol += '# ' + envir_delimiter_lines['ans_docend'][1] + '\n'
 
@@ -1254,10 +1257,9 @@ def doconce_exercise_output(exer, solution_header = '__Solution.__', answer_head
                     errwarn('\nwarning: open the solution in exercise "%s" with a line of\ntext before the code! (Now "Code:" is inserted)' %
                         exer['title'] + '\n')
                     sol += '\nCode:\n'
-                # Write subex letter and 'Solution.' in bold on the same line
+                # Write 'Solution.' in bold on the same line
                 sol += '\n#' + envir_delimiter_lines['subex'][0] + '\n'
-                sol += '__%s) ' % letter
-                sol += solution_header[2:] + '\n' + subex['sol_docend'] + '\n'
+                sol += solution_header + '\n' + subex['sol_docend'] + '\n'
                 if solution_style == 'admon':
                     sol += '!enotice\n\n'
                 elif solution_style == 'quote':
@@ -1274,9 +1276,8 @@ def doconce_exercise_output(exer, solution_header = '__Solution.__', answer_head
                     s += answer_header + '\n' + subex['answer'] + '\n'
                     s += '# ' + envir_delimiter_lines['ans'][1] + '\n'
                     if option('answers_at_end'):
-                        # Write subex letter and 'Answer.' in bold on the same line
-                        sol += '\n__%s) ' % letter
-                        sol += answer_header[2:] + '\n' + subex['answer'] + '\n'
+                        # Write 'Answer.' in bold on the same line
+                        sol += answer_header + '\n' + subex['answer'] + '\n'
                     else:
                         sol += '\n# ' + envir_delimiter_lines['ans_at_end'][0] + '\n'
                         sol += answer_header + '\n' + subex['answer'] + '\n'
@@ -1305,9 +1306,8 @@ def doconce_exercise_output(exer, solution_header = '__Solution.__', answer_head
                     s += 'Code:\n'
                     sol += '\nCode:\n'
                 s += subex['solution'] + '\n'
-                # Write subex letter and 'Solution.' in bold on the same line
-                sol += '__%s) ' % letter
-                sol += solution_header[2:] + '\n' + subex['solution'] + '\n'
+                # Write 'Solution.' in bold on the same line
+                sol += solution_header + '\n' + subex['solution'] + '\n'
                 if solution_style == 'admon':
                     s += '!enotice\n\n'
                     sol += '!enotice\n\n'
