@@ -550,7 +550,7 @@ old = "help, format, find, subst, replace, remove, spellcheck, apply_inline_edit
 
 _registered_command_line_options = [
     ('--help', 'Print all command-line options for doconce'),
-    ('--output=', 'Output filename or file basename for `doconce format` commands.'),
+    ('--output=', 'Output filename or file basename for `doconce format` commands. May include an absolute or relative path to another folder. Any relative path for the output file should start from the folder that contains the `do.txt` file being converted.'),
     ('--debug', 'Write a debugging file _doconce_debugging.log with lots of intermediate results'),
     ('--no_abort', 'Do not abort the execution if syntax errors are found.'),
     ('--verbose=', 'Write progress of intermediate steps if they take longer than X seconds. 0: X=15 (default); '
@@ -780,7 +780,7 @@ _registered_command_line_options = [
                     '  paragraph:  plain paragraph with boldface heading. \n'
                     '  Note: the colors in mdfbox and other boxes can customized.'),
     ('--latex_admon_color=', "The color to be used as background in admonitions. A single value applies to all admons:"
-                    " either rgb tuple (--latex_admon_color=0.1,0.1,0.4) or saturated color" 
+                    " either rgb tuple (--latex_admon_color=0.1,0.1,0.4) or saturated color"
                     "('--latex_admon_color=yellow!5' - note the quotes needed for bash). \n"
                     "  Multiple values can be assigned, one for each admon (all admons must be specified): "
                     "'--latex_admon_color=warning:darkgreen!40!white;notice:darkgray!20!white;"
