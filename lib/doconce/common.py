@@ -1204,7 +1204,7 @@ def doconce_exercise_output(exer, solution_header = '__Solution.__', answer_head
         for i, subex in enumerate(exer['subex']):
             letter = string.ascii_lowercase[i]
             if subex['text']:
-                s += '\n#' + envir_delimiter_lines['subex'][0]
+                s += '\n#' + envir_delimiter_lines['subex'][0] + '\n'
             # Order the subexercise by letter
             if len(exer['subex']) > 1:
                 s +=    '\n__%s)__\n' % letter
