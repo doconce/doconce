@@ -124,7 +124,7 @@ html_cell_output = (
             '    <div class="output">\n'
             '      <div class="output_area">\n'
             '        <div class="output_subarea output_stream output_stdout output_text">'
-            '          %s\n'      # code output wrapped in <pre> 
+            '          %s\n'      # code output wrapped in <pre>
             '        </div>\n'
             '      </div>\n'
             '    </div>\n'
@@ -372,7 +372,7 @@ css_jupyter_blocks = (
     '    padding: .4em .4em 0 .4em;\n'
     '    box-flex: 1;\n'
     '    flex: 1;\n'
-    '}\n'    
+    '}\n'
     'div.output_text {\n'
     '    text-align: left;\n'
     '    color: #000;\n'
@@ -1090,10 +1090,13 @@ def html_code(filestr, code_blocks, code_block_types,
     html_style = option('html_style=', '')
     pygm, pygm_style = get_pygments_style(code_block_types)
 
+    debugpr('File before call to insert_code_blocks (format html):', filestr)
     filestr = insert_code_blocks(filestr, code_blocks, format, complete_doc=True, remove_hid=False)
+    debugpr('File after call to insert_code_blocks (format html):', filestr)
 
     code_style = pygm_style
     filestr = jupyter_execution.process_code_blocks(filestr, code_style, format)
+    debugpr('File after call to jupyter_execution.process_code_blocks (format html):', filestr)
 
     # Remove all <p></p> between </div> and <div> ?
     filestr = re.sub(r'</div>[\n]+<p></p>[\n]+(<!--.*-->[\n]{1})*[\n]+', r'\1', filestr)
@@ -1212,7 +1215,7 @@ def html_code(filestr, code_blocks, code_block_types,
     debugpr('File before call to insert_code_blocks (format html):', filestr)
     # I might have to move stuff up here ..
     filestr = insert_tex_blocks(filestr, tex_blocks, format, complete_doc=True)
-    debugpr('File after call to insert_code_and tex (format html):', filestr)
+    debugpr('File after call to insert_tex_blocks (format html):', filestr)
 
     needs_online_python_tutor = any(x.startswith('pyoptpro') for x in code_block_types)
     if pygm or needs_online_python_tutor:
@@ -1770,13 +1773,13 @@ def interpret_bokeh_plot(text):
         <head>
             <meta charset="utf-8">
             <title>Damped vibrations</title>
-    
+
             <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.css" type="text/css" />
             <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.js"></script>
             <script type="text/javascript">
                 Bokeh.set_log_level("info");
             </script>
-    
+
             <script type="text/javascript">
                 Bokeh.$(function() {
                     var modelid = "af0bc57e-f573-4a7f-be80-504fab00b254";
@@ -1787,7 +1790,7 @@ def interpret_bokeh_plot(text):
                     Bokeh.logger.info(" - modelid: af0bc57e-f573-4a7f-be80-504fab00b254");
                     Bokeh.logger.info(" - elementid: 4a9dd7a1-f20c-4fe5-9917-13d172ef031a");
                     var all_models = ...
-    
+
                     Bokeh.load_models(all_models);
                     var model = Bokeh.Collections(modeltype).get(modelid);
                     var view = new model.default_view({model: model, el: '#4a9dd7a1-f20c-4fe5-9917-13d172ef031a'});
