@@ -1694,7 +1694,7 @@ def format_cell_html(formatted_code, formatted_output, execution_count, show):
     elif show == 'output':
         # Render as code output
         formatted_output = html_cell_wrap + \
-                           html_cell_output % formatted_output + \
+                           html_cell_output % formatted_code + \
                            '</div>'
     else:
         errwarn('*** error: show=%s not recognized' % str(show))
