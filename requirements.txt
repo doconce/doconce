@@ -101,4 +101,4 @@ webencodings==0.5.1
 wheel==0.36.2
 widgetsnbextension==3.5.1
 zipp==3.4.0
-pytest==6.2.2
+pytest
