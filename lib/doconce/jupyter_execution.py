@@ -425,7 +425,7 @@ def execute_code_block(current_code, current_code_envir, kernel_client, format, 
     # Execute the code
     if kernel_client is None or not kernel_client.is_alive():
         return text_out, execution_count
-    elif postfix == '-out':      # Output cell
+    elif postfix == '-out' or postfix == "-noex": # Output cell, or do not execute
         # Skip executing the code
         outputs = [{'text': current_code}]
     else:
@@ -547,6 +547,8 @@ def get_execute_show(envir):
     elif postfix == '-t':   # Code as text
         execute = False
         show = 'text'
+    elif postfix == '-noex':   # Do not execute (but show it formatted)
+        execute = False
     # Only execute python
     if not option('execute'):
         execute = False

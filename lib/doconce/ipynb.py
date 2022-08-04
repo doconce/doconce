@@ -890,7 +890,7 @@ def execute_code_block(block, current_code_envir, kernel_client, execution_count
             execution_count=execution_count,
             metadata=dict(editable=editable, collapsed=collapsed)
         )
-        if option("execute"):
+        if option("execute") and postfix != "-noex":
             outputs, execution_count_out = kernel_client.run_cell(blockline)
             # Extract any error in code
             error = check_errors_in_code_output(outputs, execution_count)
