@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="DocOnce",
-    version="1.5.14",
+    version="1.5.15",
     author='Hans Petter Langtangen, Alessandro Marin',
     author_email="hpl@simula.no, Alessandro.Marin@fys.uio.no",
     maintainer = "Kristian Gregorius Hustad",

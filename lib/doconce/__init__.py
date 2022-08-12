@@ -62,7 +62,7 @@ Both directories contain a ``make.sh`` file for creating various formats.
 '''
 from __future__ import absolute_import
 
-__version__ = '1.5.14'
+__version__ = '1.5.15'
 version = __version__
 __author__ = 'Hans Petter Langtangen', 'Alessandro Marin', 'Johannes H. Ring', 'Kristian Gregorius Hustad'
 author = __author__
