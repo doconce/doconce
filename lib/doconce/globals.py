@@ -446,6 +446,47 @@ locale_dict = dict(
         # Quiz
         'question_prefix': 'Pregunta:', # question in multiple-choice quiz
         'choice_prefix': 'Alternativa', # choice in multiple-choice quiz
+        },
+     Polish={
+        'locale': 'pl_PL.UTF-8',
+        'latex package': 'polish',
+        'aspell_dictionary' : 'polish', 
+        'toc': 'Spis treści',
+        'Contents': 'Spis treści',
+        'Figure': 'Rysunek',
+        'Movie': 'Film',
+        'list of': 'Lista',
+        'and': 'i',
+        'Exercise': 'Ćwiczenie',
+        'Project': 'Projekt',
+        'Problem': 'Problem',
+        'Example': 'Przykład',
+        'Projects': 'Projekty',
+        'Problems': 'Problemy',
+        'Examples': 'Przykłady',
+        'Preface': 'Wstęp',
+        'Abstract': 'Streszczenie',
+        'Summary': 'Podsumowanie',
+        # Admons
+        'summary': 'podsumowanie',
+        'hint': 'podpowiedź',
+        'question': 'pytanie',
+        'notice': 'uwaga',
+        'warning': 'uwaga!',
+        # box, quote are silent wrt title
+        'remarks': 'uwagi', # In exercises
+        # Exercise headings
+        'Solution': 'Rozwiązanie',
+        'Answer': 'Odpowiedź',
+        'Hint': 'Podpowiedź',
+        # At the end (in Sphinx)
+        'index': 'Indeks',
+        # References
+        'Filename': 'Plik',
+        'Filenames': 'Pliki',
+        # Quiz
+        'question_prefix': 'Pytanie:', # question in multiple-choice quiz
+        'choice_prefix': 'Pytanie',      # choice in multiple-choice quiz
         }
     )
 # Let English be an alias for American
@@ -555,7 +596,7 @@ _registered_command_line_options = [
     ('--no_abort', 'Do not abort the execution if syntax errors are found.'),
     ('--verbose=', 'Write progress of intermediate steps if they take longer than X seconds. 0: X=15 (default); '
                     '1: X=5; 2: X=0'),
-    ('--language=', 'Native language to be used: English (default), Norwegian, German, French, Basque, Arabic, Italian'),
+    ('--language=', 'Native language to be used: English (default), Norwegian, German, French, Basque, Arabic, Italian, Polish'),
     ('--preprocess_include_subst', 'Turns on variable substitutions in # #include paths when running Preprocess: '
                     'preprocess -i -DMYDIR=rn1 will lead to the string "MYDIR" being replaced '
                     'by the value "rn1" in # #include "..." statements.'),
