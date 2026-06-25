@@ -1102,7 +1102,7 @@ def define(FILENAME_EXTENSION,
         'description':
         {'begin': '', 'item': '%s\n  :   ', 'end': '\n'},
 
-        'separator': '\n',
+        'separator': '',
         }
     CROSS_REFS['ipynb'] = ipynb_ref_and_label
 

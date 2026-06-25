@@ -160,6 +160,7 @@ Trash
 private
 test/testr/testfigs
 lib/DocOnce.egg-info/
+.vscode
 
 # submodules
 test/

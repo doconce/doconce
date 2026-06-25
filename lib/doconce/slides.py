@@ -244,6 +244,8 @@ def slides_html():
         filestr = re.sub(r'<section>\s+(?=<h[12])', r'<section>\n', filestr)
         filestr = re.sub(r'<p>\n</section>', '</section>', filestr)
         filestr = re.sub(r'\s+</section>', '\n</section>', filestr)
+        # LN attempt to remove extra newlines between bulletpoints
+        filestr = re.sub(r'<p><li>', '<li>', filestr)
         # Issue 209: remove "Figure #" captions
         # should capture 'Figure', 'Figur', etc, with or without caption
         filestr = re.sub(r'\n<p class="caption">.* \d+.*</p>\n', '\n', filestr)
@@ -1662,10 +1664,9 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
 
         #if '!bpop' not in part:
         #if slide_tp in ['reveal']:
-        part = part.replace('<li>', '<p><li>')  # more space between bullets
+        # part = part.replace('<li>', '<p><li>')  # more space between bullets # LN attempt to remove extra newlines between bulletpoints
         # else: the <p> destroys proper handling of incremental pop up
         # Try this for all and see if any problem appears
-        part = part.replace('<li ', '<p><li ')  # more space between bullets
 
         # Find pygments style
         m = re.search(r'typeset with pygments style "(.+?)"', part)
@@ -1769,7 +1770,7 @@ def generate_html5_slides(header, parts, footer, basename, filename, slide_tp='r
                           flags=re.DOTALL)
 
         # Add space after list, except in admons (ended by </div>)
-        part = re.sub(r'</ul>(?!\s*</div>)', r'</ul>\n<p>', part) #TODO: stray <p> tags
+        part = re.sub(r'</ul>(?!\s*</div>)', r'</ul>\n<p>', part) #TODO: stray <p> tags 
         part = re.sub(r'</ol>(?!\s*</div>)', r'</ol>\n<p>', part)
 
         if html_copyright_placement == 'titlepage' and part_no > 0:
