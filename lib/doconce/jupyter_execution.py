@@ -43,9 +43,9 @@ class JupyterKernelClient:
         """
         kernel_name = self.find_kernel_name(syntax)
         self.kernel_name = kernel_name
-        self.manager = KernelManager(kernel_name=kernel_name)
         if not self.kernel_name:
             return
+        self.manager = KernelManager(kernel_name=kernel_name)
         self.kernel = self.manager.start_kernel()
         self.client = self.manager.client()
         self.client.start_channels()
@@ -56,7 +56,12 @@ class JupyterKernelClient:
         :return: True or False
         :rtype: bool
         """
-        return self.manager.is_alive()
+        if not hasattr(self, 'manager'):
+            return False
+        try:
+            return self.manager.is_alive()
+        except (AttributeError, RuntimeError):
+            return False
 
     @staticmethod
     def find_kernel_name(syntax):
@@ -67,22 +72,45 @@ class JupyterKernelClient:
         :return: kernel name
         :rtype: str or None
         """
-        # Get Kernel specifications
-        # Kernel names look like: ['python3', 'ir', 'julia-1.6', 'bash']
-        # Kernel languages look like: ['python', 'R', 'julia', 'bash']
-        # Kernel display names look like: ['Python 3', 'R', 'Julia 1.6.1', 'Bash']
+        def _kernel_language(kernel_spec):
+            try:
+                return kernel_spec.language.lower()
+            except AttributeError:
+                return ''
+
         kernelspecmanager = kernelspec.KernelSpecManager()
-        kernel_specs = kernelspecmanager.get_all_specs()
-        kernel_name = [spec for spec in kernel_specs]
-        languages = [kernel_specs[spec]['spec']['language'].lower() for spec in kernel_specs]
-        display_names = [kernel_specs[spec]['spec']['display_name'] for spec in kernel_specs]
-        if syntax in languages:
-            return kernel_name[languages.index(syntax)]
-        else:
-            errwarn('*** No Jupyter kernels found for %s. The kernels available are:' % syntax)
-            errwarn('    %s' % ','.join(kernel_name))
-            errwarn('    To install Jupyter kernels see https://github.com/jupyter/jupyter/wiki/Jupyter-kernels')
-            return ''
+        common_kernel_names = {
+            'python': ['python3', 'python'],
+            'bash': ['bash'],
+        }
+
+        for candidate_kernel_name in common_kernel_names.get(syntax, []) + [syntax]:
+            try:
+                kernel_spec = kernelspecmanager.get_kernel_spec(candidate_kernel_name)
+            except (kernelspec.NoSuchKernel, TypeError, OSError):
+                continue
+            language = _kernel_language(kernel_spec)
+            if language == syntax:
+                return candidate_kernel_name
+
+        kernel_names = []
+        try:
+            kernel_names = list(kernelspecmanager.find_kernel_specs())
+            for candidate_kernel_name in kernel_names:
+                try:
+                    kernel_spec = kernelspecmanager.get_kernel_spec(candidate_kernel_name)
+                except (kernelspec.NoSuchKernel, TypeError, OSError):
+                    continue
+                language = _kernel_language(kernel_spec)
+                if language == syntax:
+                    return candidate_kernel_name
+        except (TypeError, OSError) as e:
+            errwarn('*** warning: unable to enumerate Jupyter kernels (%s)' % e)
+
+        errwarn('*** No Jupyter kernels found for %s. The kernels available are:' % syntax)
+        errwarn('    %s' % ','.join(kernel_names))
+        errwarn('    To install Jupyter kernels see https://github.com/jupyter/jupyter/wiki/Jupyter-kernels')
+        return ''
 
     def run_cell(self, source, timeout=120):
         """Execute code in kernel
