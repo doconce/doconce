@@ -5102,9 +5102,10 @@ def format_driver():
     dirname, basename, ext, filename = find_file_with_extensions(globals.filename, allowed_extensions=['.do.txt'])
     if not filename:
         errwarn('*** doconce file not found')
-        _abort()
         if '--no_abort' in sys.argv:
+            errwarn('avoided abortion because of --no_abort')
             sys.exit(1)
+        _abort()
     if dirname:
         os.chdir(dirname)
         errwarn('*** doconce format now works in directory %s' % dirname)
