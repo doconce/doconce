@@ -56,11 +56,10 @@ class JupyterKernelClient:
         :return: True or False
         :rtype: bool
         """
-        manager = getattr(self, 'manager', None)
-        if manager is None:
+        if not hasattr(self, 'manager'):
             return False
         try:
-            return manager.is_alive()
+            return self.manager.is_alive()
         except (AttributeError, RuntimeError):
             return False
 
@@ -73,6 +72,12 @@ class JupyterKernelClient:
         :return: kernel name
         :rtype: str or None
         """
+        def _kernel_language(kernel_spec):
+            try:
+                return kernel_spec.language.lower()
+            except AttributeError:
+                return ''
+
         kernelspecmanager = kernelspec.KernelSpecManager()
         common_kernel_names = {
             'python': ['python3', 'python'],
@@ -84,8 +89,8 @@ class JupyterKernelClient:
                 kernel_spec = kernelspecmanager.get_kernel_spec(candidate_kernel_name)
             except (kernelspec.NoSuchKernel, TypeError, OSError):
                 continue
-            language = getattr(kernel_spec, 'language', '')
-            if language and language.lower() == syntax:
+            language = _kernel_language(kernel_spec)
+            if language == syntax:
                 return candidate_kernel_name
 
         kernel_names = []
@@ -96,8 +101,8 @@ class JupyterKernelClient:
                     kernel_spec = kernelspecmanager.get_kernel_spec(candidate_kernel_name)
                 except (kernelspec.NoSuchKernel, TypeError, OSError):
                     continue
-                language = getattr(kernel_spec, 'language', '')
-                if language and language.lower() == syntax:
+                language = _kernel_language(kernel_spec)
+                if language == syntax:
                     return candidate_kernel_name
         except (TypeError, OSError) as e:
             errwarn('*** warning: unable to enumerate Jupyter kernels (%s)' % e)
