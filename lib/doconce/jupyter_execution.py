@@ -44,7 +44,6 @@ class JupyterKernelClient:
         kernel_name = self.find_kernel_name(syntax)
         self.kernel_name = kernel_name
         if not self.kernel_name:
-            self.manager = None
             return
         self.manager = KernelManager(kernel_name=kernel_name)
         self.kernel = self.manager.start_kernel()
@@ -57,10 +56,11 @@ class JupyterKernelClient:
         :return: True or False
         :rtype: bool
         """
-        if self.manager is None:
+        manager = getattr(self, 'manager', None)
+        if manager is None:
             return False
         try:
-            return self.manager.is_alive()
+            return manager.is_alive()
         except (AttributeError, RuntimeError):
             return False
 
@@ -79,27 +79,27 @@ class JupyterKernelClient:
             'bash': ['bash'],
         }
 
-        for kernel_name in common_kernel_names.get(syntax, []) + [syntax]:
+        for candidate_kernel_name in common_kernel_names.get(syntax, []) + [syntax]:
             try:
-                kernel_spec = kernelspecmanager.get_kernel_spec(kernel_name)
+                kernel_spec = kernelspecmanager.get_kernel_spec(candidate_kernel_name)
             except (kernelspec.NoSuchKernel, TypeError, OSError):
                 continue
             language = getattr(kernel_spec, 'language', '')
             if language and language.lower() == syntax:
-                return kernel_name
+                return candidate_kernel_name
 
         kernel_names = []
         try:
             kernel_names = list(kernelspecmanager.find_kernel_specs())
-            for kernel_name in kernel_names:
+            for candidate_kernel_name in kernel_names:
                 try:
-                    kernel_spec = kernelspecmanager.get_kernel_spec(kernel_name)
+                    kernel_spec = kernelspecmanager.get_kernel_spec(candidate_kernel_name)
                 except (kernelspec.NoSuchKernel, TypeError, OSError):
                     continue
                 language = getattr(kernel_spec, 'language', '')
                 if language and language.lower() == syntax:
-                    return kernel_name
-        except (TypeError, ImportError, OSError) as e:
+                    return candidate_kernel_name
+        except (TypeError, OSError) as e:
             errwarn('*** warning: unable to enumerate Jupyter kernels (%s)' % e)
 
         errwarn('*** No Jupyter kernels found for %s. The kernels available are:' % syntax)
