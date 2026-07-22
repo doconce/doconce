@@ -57,7 +57,12 @@ class JupyterKernelClient:
         :return: True or False
         :rtype: bool
         """
-        return self.manager is not None and self.manager.is_alive()
+        if self.manager is None:
+            return False
+        try:
+            return self.manager.is_alive()
+        except (AttributeError, RuntimeError):
+            return False
 
     @staticmethod
     def find_kernel_name(syntax):
@@ -77,7 +82,7 @@ class JupyterKernelClient:
         for kernel_name in common_kernel_names.get(syntax, []) + [syntax]:
             try:
                 kernel_spec = kernelspecmanager.get_kernel_spec(kernel_name)
-            except Exception:
+            except (kernelspec.NoSuchKernel, TypeError, OSError):
                 continue
             language = getattr(kernel_spec, 'language', '')
             if language and language.lower() == syntax:
@@ -89,13 +94,13 @@ class JupyterKernelClient:
             for kernel_name in kernel_names:
                 try:
                     kernel_spec = kernelspecmanager.get_kernel_spec(kernel_name)
-                except Exception:
+                except (kernelspec.NoSuchKernel, TypeError, OSError):
                     continue
                 language = getattr(kernel_spec, 'language', '')
                 if language and language.lower() == syntax:
                     return kernel_name
-        except Exception:
-            pass
+        except (TypeError, ImportError, OSError) as e:
+            errwarn('*** warning: unable to enumerate Jupyter kernels (%s)' % e)
 
         errwarn('*** No Jupyter kernels found for %s. The kernels available are:' % syntax)
         errwarn('    %s' % ','.join(kernel_names))
