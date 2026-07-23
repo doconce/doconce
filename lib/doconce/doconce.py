@@ -5103,6 +5103,7 @@ def format_driver():
     if not filename:
         errwarn('*** doconce file not found')
         _abort()
+        return 1
     if dirname:
         os.chdir(dirname)
         errwarn('*** doconce format now works in directory %s' % dirname)
