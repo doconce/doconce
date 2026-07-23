@@ -2777,7 +2777,7 @@ for _admon in globals.admons:
              '            block = re.sub(pygments_pattern, r\'"background: %%s">\' %%\n'
              '                           admon_css_vars[html_admon_style][\'background\'], block)\n'
              '        # Strip off <p> at the end of block to reduce space below the text\n'
-             "        block = re.sub(\'(<p>\s*)+$\', '', block)\n"
+             "        block = re.sub(r\'(<p>\\s*)+$\', '', block)\n"
              '        # Need a <p> after the title to ensure some space before the text\n'
              '        alert = """<div class="alert alert-block alert-%(_admon)s alert-text-%%s">\n'
              '<b>%%s</b>\n'
