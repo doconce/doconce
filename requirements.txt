@@ -17,6 +17,7 @@ lxml
 
 # Utilities
 requests
+regex
 
 # Testing
 pytest>=7
