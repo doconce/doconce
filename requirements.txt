@@ -6,8 +6,8 @@ publish-doconce
 
 # Notebook support
 jupyter
+notebook
 ipywidgets
-bash-kernel
 
 # Scientific Python
 numpy>=1.24
@@ -17,9 +17,13 @@ lxml
 
 # Utilities
 requests
-regex
+regex==2022.3.2 # latest causes problems
 future
 ffmpeg
+
+## Doconce utilities
+preprocess
+mako
 
 # Testing
 pytest>=7
