@@ -528,13 +528,33 @@ def ipynb_code(filestr, code_blocks, code_block_types,
     markers2rm.append(INLINE_TAGS_SUBST[format]['comment'] % envir_delimiter_lines['exercise'][0])
     markers2rm.append(INLINE_TAGS_SUBST[format]['comment'] % envir_delimiter_lines['exercise'][1])
     notebook_block_envir = code_block_types
+    border = option('ipynb_border_above_exercise_title=', None)
+    exercise_title_border = None
+    if border is not None and border.strip() != '':
+        tokens = border.split()
+        if len(tokens) != 2 or tokens[0] not in (
+                'none', 'hidden', 'dotted', 'dashed', 'solid',
+                'double', 'groove', 'ridge', 'inset', 'outset'):
+            errwarn('*** error: --ipynb_border_above_exercise_title=%s is illegal, must be '
+                    '"<style> <color>" with exactly two tokens, e.g. "solid green"' % border)
+            _abort()
+        exercise_title_border = '<hr style="border: none; border-top: 2px %s; margin: 1em 0;">' % border.strip()
+    marker_exercise_begin = INLINE_TAGS_SUBST[format]['comment'] % envir_delimiter_lines['exercise'][0]
+    pending_exercise = False
     for line in filestr.splitlines():
         if line == '':
             notebook_blocks[-1].append('\n')
         elif line.startswith('#'):
             # Each chapter, sub/sub/section in its own cell
             notebook_blocks.append([])
+            if pending_exercise and exercise_title_border:
+                notebook_blocks[-1].append(exercise_title_border)
+                notebook_blocks[-1].append('')
+            pending_exercise = False
             notebook_blocks[-1].append(line)
+        elif line == marker_exercise_begin:
+            pending_exercise = True
+            notebook_blocks[-1].append('\n')
         elif line in marker_subex_begin:
             # Each subex in its own cell
             notebook_blocks.append([])

@@ -877,6 +877,8 @@ _registered_command_line_options = [
                     'showing a YouTube or local video with a <video> tag.'),
     ('--ipynb_non_editable_text', "All text in a notebook is set to be uneditable. Code blocks are unchanged"),
     ('--ipynb_non_editable_code', "All codeblocks in a notebook is set to be uneditable"),
+    ('--ipynb_border_above_exercise_title=', 'Insert a horizontal rule above the exercise title. Value is '
+                    '"<style> <color>" e.g. "solid green". Default: None (no horizontal rule).'),
     ('--verbose', 'Write out all OS commands run by doconce.'),
     ('--examples_as_exercises', 'Treat examples of the form "==== Example: ..." as in exercise environments.'),
     ('--exercises_as_subsections', 'Forces exercises to be typeset as subsections. Used to override various '
