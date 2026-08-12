@@ -284,6 +284,8 @@ def debugpr(heading='', text=''):
 def _rmdolog():
     """Remove the .dolog file
     """
+    if globals.dofile_basename is None:
+        return
     logfilename = globals.dofile_basename + '.dolog'
     if os.path.isfile(logfilename):
         os.remove(logfilename)
