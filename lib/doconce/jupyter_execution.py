@@ -348,7 +348,7 @@ def process_code_blocks(filestr, code_style, format):
                                            format=format)
                 # Warn and abort on code errors
                 if error != '':
-                    if misc.option('execute=') == 'abort':
+                    if misc.option('execute=') == 'abort' and not postfix_err:
                         errwarn('*** error: Error in code block:')
                     else:
                         errwarn('*** Warning: found error in code block:')
